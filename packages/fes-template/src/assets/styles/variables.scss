@@ -1,0 +1,90 @@
+// Color
+$primary-color          : #3399ff;
+$info-color             : #2db7f5;
+$success-color          : #00cc66;
+$warning-color          : #ff9900;
+$error-color            : #ff5500;
+$link-color             : #3399ff;
+$link-hover-color       : #5cadff;
+$link-focus-color       : rgba(51,153,255, .2);
+$link-active-color      : #3091f2;
+$selected-color         : rgba($primary-color, .9);
+$tooltip-color          : #fff;
+//辅助/图标
+$subsidiary-color       : #9ea7b4;
+$disabled-color         : #f3f3f3;
+
+// Base
+$body-background        : #fff;
+$component-background   : #fff;
+$font-family            : "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;
+$code-family            : Consolas,Menlo,Courier,monospace;
+$title-color            : #464c5b;
+$text-color             : #657180;
+$black-text-color       : #333333;
+$sub-text-color         : #999;
+$dark-color             : #333;
+
+//失效 Disabled
+$tip-color              : #c3cbd6;
+$font-size-lg           : 16px;
+$font-size-base         : 14px;
+$font-size-small        : 12px;
+$line-height-base       : 1.5;
+$line-height-computed   : floor(($font-size-base * $line-height-base));
+$border-radius-base     : 6px;
+$border-radius-small    : 4px;
+$cursor-disabled        : not-allowed;
+
+// Border color
+$border-color-base      : #d7dde4;  // outside
+$border-color-split     : #e3e8ee;  // inside
+
+
+// Background color
+$background-color-base        : #f7f7f7;  // base
+$background-color-select-hover: #f3f3f3;
+$tooltip-bg                   : rgba(70, 76, 91, .9);
+$head-bg                      : #f9fafc;
+$table-thead-bg               : #f5f7f9;
+$table-td-stripe-bg           : #f5f7f9;
+$table-td-hover-bg            : #ebf7ff;
+$table-td-highlight-bg        : #ebf7ff;
+
+// Z-index
+$zindex-spin            : 8;
+$zindex-affix           : 10;
+$zindex-back-top        : 10;
+$zindex-select          : 900;
+$zindex-modal           : 1000;
+$zindex-message         : 1010;
+$zindex-notification    : 1010;
+$zindex-tooltip         : 1060;
+$zindex-loading-bar     : 2000;
+
+// Animation
+$animation-time         : .3s;
+$transition-time        : .2s;
+$ease-out            : cubic-bezier(0.215, 0.61, 0.355, 1);
+$ease-in             : cubic-bezier(0.55, 0.055, 0.675, 0.19);
+$ease-in-out         : cubic-bezier(0.645, 0.045, 0.355, 1);
+$ease-out-back       : cubic-bezier(0.12, 0.4, 0.29, 1.46);
+$ease-in-back        : cubic-bezier(0.71, -0.46, 0.88, 0.6);
+$ease-in-out-back    : cubic-bezier(0.71, -0.46, 0.29, 1.46);
+$ease-out-circ       : cubic-bezier(0.08, 0.82, 0.17, 1);
+$ease-in-circ        : cubic-bezier(0.6, 0.04, 0.98, 0.34);
+$ease-in-out-circ    : cubic-bezier(0.78, 0.14, 0.15, 0.86);
+$ease-out-quint      : cubic-bezier(0.23, 1, 0.32, 1);
+$ease-in-quint       : cubic-bezier(0.755, 0.05, 0.855, 0.06);
+$ease-in-out-quint   : cubic-bezier(0.86, 0, 0.07, 1);
+
+// Shadow
+$shadow-color           : rgba(0, 0, 0, .2);
+$shadow-1-up            : 0 -1px 6px $shadow-color;
+$shadow-1-down          : 0 1px 6px $shadow-color;
+$shadow-1-left          : -1px 0 6px $shadow-color;
+$shadow-1-right         : 1px 0 6px $shadow-color;
+$shadow-2               : 0 2px 8px $shadow-color;
+$box-shadow-base        : $shadow-1-down;
+
+$mask-color: rgba(55, 55, 55, .6);

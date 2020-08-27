@@ -1,0 +1,14 @@
+.ui-process-circle{
+    display: inline-block;
+    position: relative;
+}
+.ui-process-circle-inner{
+    position: absolute;
+    width: 100%;
+    left: 0;
+    top: 50%;
+    text-align: center;
+    line-height: 1;
+    @include transform(translateY(-50%));
+
+}

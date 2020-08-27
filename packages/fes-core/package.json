@@ -1,0 +1,33 @@
+{
+  "name": "@webank/fes-core",
+  "version": "0.1.0",
+  "description": "一个好用的前端管理台快速开发框架",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "harrywan,qlin",
+  "repository": {
+      "type": "git",
+      "url": "https://github.com/WeBankFinTech/fes.js.git"
+  },
+  "license": "MIT",
+  "keywords": [
+    "管理端",
+    "fes",
+    "fast",
+    "easy",
+    "strong"
+  ],
+  "dependencies": {
+    "axios": "^0.16.2",
+    "lodash": "^4.17.15",
+    "vue": "^2.6.10",
+    "vue-i18n": "^8.4.0",
+    "vue-router": "^2.6.0",
+    "vue-template-compiler": "^2.6.10"
+  },
+  "peerDependencies": {
+    "@webank/fes-core": "^0.1.0",
+    "@webank/fes-ui": "^0.1.0"
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "name": "fes",
+  "description": "一个好用的前端管理台快速开发框架",
+  "preferGlobal": true,
+  "scripts": {
+    "bootstrap": "lerna bootstrap"
+  },
+  "author": "harrywan qlin",
+  "license": "MIT",
+  "keywords": [
+    "管理端",
+    "fes",
+    "fast",
+    "easy",
+    "strong"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/WeBankFinTech/fes.git"
+  },
+  "dependencies": {
+    "lerna": "^3.18.4"
+  },
+  "devDependencies": {
+    "@webank/eslint-config-webank": "^0.1.6"
+  }
+}

@@ -1,0 +1,37 @@
+.ui-contextmenu {
+    position: relative;
+    display: inline-block;
+}
+
+.ui-contextmenu-slot{
+    width: 100%;
+    height: 100%;
+}
+
+.ui-contextmenu-list {
+    position: absolute;
+    max-height: 200px;
+    margin: 5px 0;
+    padding: 5px 0;
+    overflow: auto;
+    background-color: #fff;
+    z-index: $zindex-select;
+    border-radius: $border-radius-small;
+    box-shadow: $shadow-1-down;
+}
+
+.ui-contextmenu-item {
+    margin: 0;
+    padding: 7px 16px;
+    color: $text-color;
+    font-size: 12px !important;
+    line-height: normal;
+    white-space: nowrap;
+    list-style: none;
+    cursor: pointer;
+    clear: both;
+    transition: background .2s ease-in-out;
+    &:hover {
+        background: $disabled-color;
+    }
+}

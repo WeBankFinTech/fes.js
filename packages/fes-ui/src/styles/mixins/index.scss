@@ -1,0 +1,113 @@
+@mixin radius($px) {
+    border-radius: $px;
+}
+
+@mixin rotate($deg) {
+    transform: rotate($deg);
+}
+
+@mixin color($color){
+    color: $color;
+    &:active {
+        color: $color;
+    }
+    &:visited{
+        color: $color;
+    }
+}
+
+@mixin animation($animation){
+    animation: $animation;
+}
+
+@mixin transition($transition){
+    transition: $transition;
+}
+
+@mixin transform($transform){
+    transform: $transform;
+    -ms-transform: $transform;
+}
+
+@mixin user-select($user-select){
+    user-select: $user-select;
+}
+
+// clearfix
+@mixin clearfix($extend: true) {
+    @if $extend {
+        @extend %clearfix;
+    }
+    @else {
+        &:before,
+        &:after {
+            content: "";
+            display: table;
+        }
+        &:after {
+            clear: both;
+        }
+    }
+}
+
+%clearfix {
+    @include clearfix(false);
+}
+
+@mixin display-flex {
+    display: flex;
+}
+
+@mixin flex-direction($value: row) {
+    @if $value == row-reverse {
+        -webkit-box-direction: reverse;
+        -webkit-box-orient: horizontal;
+    } @else if $value == column {
+        -webkit-box-direction: normal;
+        -webkit-box-orient: vertical;
+    } @else if $value == column-reverse {
+        -webkit-box-direction: reverse;
+        -webkit-box-orient: vertical;
+    } @else {
+        -webkit-box-direction: normal;
+        -webkit-box-orient: horizontal;
+    }
+    flex-direction: $value;
+}
+
+@mixin flex($fg: 1, $fs: null, $fb: null) {
+    flex: $fg $fs $fb;
+}
+
+// fixed top & bottom
+@mixin fixed($pos: 0) {
+    position: fixed;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    @if $pos == bottom {
+        bottom: 0;
+    }
+    @else {
+        top: $pos;
+    }
+}
+
+
+/// Slightly lighten a color
+/// @access public
+/// @param {Color} $color - color to tint
+/// @param {Number} $percentage - percentage of `$color` in returned color
+/// @return {Color}
+@function tint($color, $percentage) {
+    @return mix(white, $color, $percentage);
+}
+
+/// Slightly darken a color
+/// @access public
+/// @param {Color} $color - color to shade
+/// @param {Number} $percentage - percentage of `$color` in returned color
+/// @return {Color}
+@function shade($color, $percentage) {
+    @return mix(black, $color, $percentage);
+}

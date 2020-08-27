@@ -1,0 +1,177 @@
+%common {
+    display: inline-block;
+    width: 100%;
+    position: relative;
+    vertical-align: middle;
+}
+
+.ui-input-swap {
+    @extend %common;
+    font-size: 0;
+    &.ui-input-readonly,
+    &.ui-input-disabled{
+        .ui-input-icon{
+            cursor: default;
+        }
+    }
+    &.ui-input-group {
+        display: table;
+        width: 100%;
+        border-collapse: separate;
+        position: relative;
+        font-size: 12px;
+        .ui-input{
+            display: table-cell;
+        }
+    }
+    &.ui-input-group-prepend {
+        .ui-input{
+            border-bottom-left-radius: 0!important;
+            border-top-left-radius: 0!important;
+        }
+    }
+    &.ui-input-group-append {
+        .ui-input{
+            border-bottom-right-radius: 0!important;
+            border-top-right-radius: 0!important;
+        }
+    }
+    .ui-input {
+        @extend %common;
+        height: 32px;
+        padding: 4px 8px;
+        border: 1px solid $border-color-base;
+        outline: 0;
+        background-image: none;
+        line-height: $line-height-base;
+        font-size: $font-size-small;
+        border-radius: $border-radius-small;
+        color: $text-color;
+        background-color: $tooltip-color;
+        cursor: text;
+        transition: border .2s ease-in-out, background .2s ease-in-out, box-shadow .2s ease-in-out;
+        &:hover {
+            border-color: $link-hover-color;
+        }
+        &:focus {
+            border-color: $link-hover-color;
+            box-shadow: 0 0 0 3px $link-focus-color;
+        }
+        &[readonly] {
+            cursor: auto;
+            &:hover,
+            &:focus {
+                border-color: $border-color-base;
+                box-shadow: none;
+            }
+        }
+        &[disabled] {
+            opacity: 1;
+            background-color: $disabled-color;
+            cursor: $cursor-disabled;
+            &:hover,
+            &:focus {
+                border-color: $border-color-base;
+                box-shadow: none;
+            }
+        }
+        &:not(:last-child) {
+            border-bottom-right-radius: 0!important;
+            border-top-right-radius: 0!important;
+        }
+    }
+    textarea.ui-input {
+        max-width: 100%;
+        height: auto;
+        word-wrap: break-word;
+        word-break: break-all;
+        overflow: auto;
+    }
+    .ui-input-content{
+        position: relative;
+    }
+    .ui-input-icon {
+        width: 32px;
+        height: 32px;
+        line-height: 32px;
+        font-size: 16px;
+        text-align: center;
+        color: $subsidiary-color;
+        cursor: pointer;
+        position: absolute;
+        right: 0;
+        z-index: 1;
+    }
+    .ui-input-icon+.ui-input-icon{
+        right: 32px;
+    }
+    .ui-input-icon+.ui-input-icon+.ui-input-icon{
+        right: 64px;
+    }
+    .ui-input-icon+.ui-input {
+        padding-right: 32px;
+    }
+    .ui-input-icon+.ui-input-icon+.ui-input {
+        padding-right: 64px;
+    }
+    .ui-input-prepend,
+    .ui-input-append {
+        display: table-cell;
+        width: 1px;
+        padding: 4px 8px;
+        vertical-align: middle;
+        white-space: nowrap;
+        font-size: inherit;
+        font-weight: 400;
+        line-height: 1;
+        color: $text-color;
+        text-align: center;
+        background-color: #eee;
+        border: 1px solid $border-color-base;
+        border-radius: $border-radius-small;
+    }
+    .ui-input-prepend {
+        border-bottom-right-radius: 0!important;
+        border-top-right-radius: 0!important;
+        border-right: 0;
+    }
+    .ui-input-append {
+        border-bottom-left-radius: 0!important;
+        border-top-left-radius: 0!important;
+        border-left: 0;
+    }
+    &.ui-input-text {
+        vertical-align: middle;
+    }
+    &.ui-input-password {
+        vertical-align: middle;
+        input {
+            letter-spacing: 0.3em;
+        }
+        input::-moz-placeholder,
+        textarea::-moz-placeholder {
+            letter-spacing: normal;
+        }
+        input:-ms-input-placeholder,
+        textarea:-ms-input-placeholder {
+            letter-spacing: normal;
+        }
+        input::-webkit-input-placeholder,
+        textarea::-webkit-input-placeholder {
+            letter-spacing: normal;
+        }
+    }
+    &.ui-input-number {
+        vertical-align: middle;
+    }
+    &.ui-input-textarea {
+        line-height: 1.5;
+        vertical-align: top
+    }
+    .ui-input-file-text {
+        display: inline-block;
+        margin-left: 8px;
+        vertical-align: middle;
+        font-size: $font-size-small;
+    }
+}

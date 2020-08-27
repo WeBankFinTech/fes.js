@@ -1,0 +1,226 @@
+.ui-select {
+    display: inline-block;
+    width: 100%;
+    vertical-align: middle;
+    color: $text-color;
+    font-size: $font-size-base;
+    position: relative;
+    line-height: normal;
+
+    &.ui-select-visible {
+        .ui-icon-md-arrow-dropdown {
+            @include transform(translateX(-3px) translateY(-50%) rotate(180deg));
+        }
+        .ui-select-selection{
+            border-color: $link-hover-color;
+            .ui-icon-md-arrow-dropdown, .ui-icon-md-close-circle{
+                color: $link-hover-color;
+            }
+        }
+    }
+
+    &.ui-select-disabled {
+        background-color: $background-color-select-hover;
+        .ui-select-selection {
+            cursor: not-allowed;
+            background-color: $background-color-select-hover;
+            &:hover, &:focus{
+                border-color: $border-color-base;
+                box-shadow: none;
+                .ui-icon-md-arrow-dropdown, .ui-icon-md-close-circle{
+                    color: $subsidiary-color;
+                }
+            }
+        }
+    }
+
+    &.ui-select-readonly{
+        .ui-select-selection {
+            cursor: default;
+            &:hover, &:focus{
+                border-color: $border-color-base;
+                box-shadow: none;
+                .ui-icon-md-arrow-dropdown, .ui-icon-md-close-circle{
+                    color: $subsidiary-color;
+                }
+            }
+        }
+    }
+
+    .ui-select-selection {
+        position: relative;
+        width: 100%;
+        border: 1px solid $border-color-base;
+        outline: 0;
+        font-size: $font-size-small;
+        border-radius: $border-radius-small;
+        background-color: $tooltip-color;
+        user-select: none;
+        cursor: pointer;
+        transition: all .2s ease-in-out;
+        &:hover, &:focus{
+            border-color: $link-hover-color;
+            .ui-icon-md-arrow-dropdown, .ui-icon-md-close-circle{
+                color: $link-hover-color;
+            }
+        }
+        &:focus{
+            box-shadow: 0 0 0 3px $link-focus-color;
+        }
+    }
+
+    .ui-select-selection-icons{
+        position: absolute;
+        right: 8px;
+        top: 0px;
+        bottom: 0px;
+        width: 12px;
+    }
+
+    .ui-icon-md-arrow-dropdown, .ui-icon-md-close-circle{
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        color: $subsidiary-color;
+        z-index: 1;
+        font-size: 18px;
+    }
+
+    .ui-icon-md-close-circle{
+        z-index: 2;
+    }
+
+    .ui-select-placeholder, .ui-select-selected-value {
+        display: block;
+        width: 100%;
+        height: 30px;
+        line-height: 30px;
+        font-size: $font-size-small;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        padding-left: 8px;
+        padding-right: 24px;
+        border: 0;
+        border-radius: $border-radius-small;
+        color: $text-color;
+    }
+
+    .ui-select-selected-input{
+        display: block;
+        width: 100%;
+        height: 30px;
+        line-height: 30px;
+        padding-left: 8px;
+        padding-right: 24px;
+        margin-bottom: 5px;
+        font-size: $font-size-small;
+        border: 0;
+        outline: 0;
+        border-bottom: 1px solid $border-color-split;
+        color: $text-color;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    .ui-select-placeholder {
+        color: $tip-color;
+    }
+
+    .ui-select-dropdown {
+        position: absolute;
+        top: 32px;
+        width: 100%;
+        max-height: 200px;
+        margin: 5px 0;
+        padding: 5px 0;
+        overflow-y: auto;
+        overflow-x: hidden;
+        background-color: #fff;
+        z-index: $zindex-select;
+        border-radius: $border-radius-small;
+        box-shadow: $shadow-1-down;
+        &.no-option-children{
+            max-height: 250px;
+        }
+    }
+
+    .ui-select-dropdown-list {
+        margin: 0;
+    }
+
+    .ui-select-item {
+        margin: 0;
+        padding: 7px 16px;
+        color: $text-color;
+        font-size: 12px !important;
+        line-height: normal;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        list-style: none;
+        cursor: pointer;
+        clear: both;
+        transition: background .2s ease-in-out;
+        &.focus {
+            background: $disabled-color;
+        }
+        &.ui-select-item-disabled, &.ui-select-item-disabled.focus {
+            color: $tip-color;
+            cursor: not-allowed;
+            background: transparent;
+        }
+        &.ui-select-item-selected, &.ui-select-item-selected.focus {
+            color: $selected-color;
+        }
+    }
+
+    .ui-select-pagination{
+        margin: 0;
+        padding: 0px 16px;
+        color: $text-color;
+        font-size: 16px;
+        line-height: normal;
+        white-space: nowrap;
+        list-style: none;
+        clear: both;
+        text-align: center;
+        .ui-button{
+            margin-right: 8px;
+            margin-left: 8px;
+        }
+    }
+
+    &.ui-select-multiple{
+        .ui-select-multiple-selected {
+            min-height: 30px;
+        }
+        .ui-select-selected-value {
+            display: inline-block;
+            padding: 0 6px;
+            margin: 3px 4px 2px 4px;
+            height: 22px;
+            line-height: 20px;
+            width: auto;
+            border: 1px solid $border-color-split;
+            background-color: $background-color-base;
+            .ui-icon{
+                margin-left: 6px;
+            }
+        }
+        .ui-select-item {
+            &.ui-select-item-selected{
+                @extend .ui-icon-md-checkmark;
+                &::before{
+                    @extend .ui-icon;
+                    display: block;
+                    float: right;
+                    color: $selected-color;
+                }
+            }
+        }
+    }
+}

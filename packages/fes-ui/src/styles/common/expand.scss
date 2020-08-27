@@ -1,0 +1,21 @@
+.ui-expand-null {
+    display: inline-block;
+    margin: 0;
+    width: 16px;
+    height: 16px;
+    line-height: 16px;
+    vertical-align: middle;
+    border: 0;
+    cursor: pointer;
+    outline: none;
+    position: relative;
+    font-size: 16px;
+    margin-top: -2px;
+    color: $text-color;
+    font-weight: bold;
+    transition: transform 0.3s ease;
+}
+
+.ui-expand-arrow {
+    @extend .ui-expand-null;
+}

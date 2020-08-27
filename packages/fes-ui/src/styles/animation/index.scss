@@ -1,0 +1,120 @@
+@keyframes loading {
+    0% {
+        transform: rotate(0deg) scale(1);
+    }
+    50% {
+        transform: rotate(180deg) scale(0.8);
+    }
+    100% {
+        transform: rotate(360deg) scale(1);
+    }
+}
+
+.fade-transition{
+    transition: opacity .3s;
+    opacity: 1;
+}
+
+.fade-enter, .fade-leave {
+    opacity: 0;
+}
+
+
+@keyframes tabfadeIn {
+    0% {
+        opacity: 0;
+    }
+    70% {
+        opacity: 0.8;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes tabfadeOut {
+    0% {
+        opacity: 1;
+    }
+    70% {
+        opacity: 0.2;
+    }
+    100%{
+        opacity: 0;
+    }
+}
+
+.tabfade-enter{
+    opacity: 0;
+}
+
+.tabfade-enter-active{
+    animation-name: tabfadeIn;
+    animation-duration: 0.3s;
+    animation-fill-mode: both;
+}
+
+.tabfade-leave,
+.tabfade-leave-active {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.tabfade-leave-active{
+    animation-name: tabfadeOut;
+    animation-duration: 0.3s;
+    animation-fill-mode: both;
+}
+
+@keyframes slideDownIn {
+    0% {
+        opacity: 0;
+        transform-origin: 0% 0%;
+        transform: scaleY(.8);
+    }
+    100% {
+        opacity: 1;
+        transform-origin: 0% 0%;
+        transform: scaleY(1);
+    }
+}
+
+@keyframes slideUpOut {
+    0% {
+        opacity: 1;
+        transform-origin: 0% 0%;
+        transform: scaleY(1);
+    }
+    100%{
+        opacity: 0;
+        transform-origin: 0% 0%;
+        transform: scaleY(.8);
+    }
+}
+
+.slide-transition{
+    animation-duration: .3s;
+    animation-fill-mode: both;
+    animation-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+.slide-enter{
+    animation-name: slideDownIn;
+}
+
+.slide-leave{
+    animation-name: slideUpOut;
+}
+
+
+.slide-to-down-enter-active {
+  animation-duration: .3s;
+  animation-name: slideDownIn;
+}
+.slide-to-down-leave-active {
+  animation-duration: .3s;
+  animation-name: slideUpOut;
+}

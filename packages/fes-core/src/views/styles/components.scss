@@ -1,0 +1,48 @@
+.query-page {
+  .query-page-search {
+    position: relative;
+    background-color: #f7f7f7;
+    .query-page-search-buttons {
+      position: absolute;
+      margin-bottom: 16px;
+      margin-left: 50px;
+      height: 32px;
+      line-height: 32px;
+      bottom: 0;
+      right: 40px;
+      .ui-button+.ui-button {
+        margin-left: 8px;
+      }
+    }
+    .ui-form {
+      width: 75%;
+    }
+    .ui-form-item {
+      display: inline-block;
+      width: 33.33%;
+    }
+  }
+  .query-page-table {
+    .ui-page {
+      margin: 20px;
+      text-align: center;
+    }
+  }
+  .ui-modal-dialog {
+    overflow: auto;
+  }
+  .ui-modal-body {
+    width: 500px;
+    padding-right: 30px;
+  }
+  .link {
+    color: #3399ff;
+    cursor: pointer;
+  }
+  .link:hover {
+    color: #5cadff;
+  }
+  .link:active {
+    color: #3091f2;
+  }
+}

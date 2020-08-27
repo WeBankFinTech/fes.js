@@ -1,0 +1,46 @@
+.ui-switch {
+  position: relative;
+  display: inline-block;
+  min-width: 44px;
+  height: 22px;
+  line-height: 22px;
+  vertical-align: middle;
+  text-align: left;
+  color: #fff;
+  @include radius(11px);
+  cursor: pointer;
+  outline: none;
+  &:focus:not(.ui-switch-disabled):not(.ui-switch-readonly){
+    box-shadow: 0 0 0 3px $link-focus-color;
+  }
+  &.ui-switch-readonly,
+  &.ui-switch-disabled {
+    cursor: default;
+  }
+  &.ui-switch-on {
+    background: $primary-color;
+    padding-left: 6px;
+    padding-right: 22px;
+    .ui-switch-circle {
+      top: 1px;
+      left: calc(100% - 21px);
+    }
+  }
+  &.ui-switch-off {
+    background: #ccc;
+    padding-left: 22px;
+    padding-right: 6px;
+    .ui-switch-circle {
+      top: 1px;
+      left: 1px;
+    }
+  }
+  .ui-switch-circle {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-color: #fff;
+    @include radius(50%);
+    @include transition(all 0.3s);
+  }
+}

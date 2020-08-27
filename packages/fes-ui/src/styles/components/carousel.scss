@@ -1,0 +1,40 @@
+.ui-carousel {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    opacity: 1;
+    @include user-select(none);
+    .ui-carousel-list {
+        position: relative;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        font-size: 0;
+        @include transition(transform 0.5s $ease-out-quint);
+        .ui-carousel-list-item {
+            display: inline-block;
+            width: 100%;
+            img {
+                width: 100%;
+                height: auto;
+            }
+        }
+    }
+    .ui-carousel-dot {
+        position: absolute;
+        bottom: 30px;
+        width: 100%;
+        text-align: center;
+        .ui-carousel-dot-item {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            margin: 8px 8px;
+            background-color: rgba(255, 255, 255, .5);
+            cursor: pointer;
+            &.current {
+                background-color: rgba(255, 255, 255, 1);
+            }
+        }
+    }
+}
