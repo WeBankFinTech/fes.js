@@ -1,0 +1,54 @@
+@import '../common/expand.scss';
+
+.ui-tree {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    border: none;
+    &.ui-child-tree {
+        padding: 0 0 0 25px !important;
+    }
+    &-node {
+        position: relative;
+        margin: 8px 0 0 0;
+        padding: 0;
+        outline: 0;
+        list-style: none;
+        white-space: nowrap;
+        width: 100%;
+        i, span, input {
+            cursor: pointer;
+            vertical-align: middle;
+        }
+    }
+    &-node-text {
+        display: inline-block;
+        margin: 0;
+        padding: 1px 5px;
+        cursor: pointer;
+        text-decoration: none;
+        @include radius(2px);
+        @include transition(all 0.3s $ease-out);
+        &:hover, &.selected {
+            background-color: #cfe8fb;
+        }
+    }
+    .loading{
+        display: inline-block;
+        width: 16px;
+        height: 16px;
+        line-height: 16px;
+        margin-top: 2px;
+        vertical-align: middle;
+        border: 0 none;
+        cursor: pointer;
+        outline: none;
+    }
+}
+.ui-tree.ui-tree-inline{
+    .ui-tree-just-data .ui-tree-node {
+        display: inline-block;
+        width: 200px;
+    }
+}

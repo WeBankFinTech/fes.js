@@ -1,0 +1,26 @@
+.ui-back-top-outer {
+  position: fixed;
+  z-index: $zindex-back-top;
+  right: 100px;
+  bottom: 50px;
+  height: 40px;
+  width: 40px;
+  cursor: pointer;
+  .ui-back-top-inner{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 40px;
+      width: 40px;
+      border-radius: 20px;
+      background-color: rgba(64, 64, 64, 0.2);
+      color: #fff;
+      text-align: center;
+      transition: all .3s $ease-in-out;
+      &:hover {
+        background-color: rgba(64, 64, 64, 0.4);
+        transition: all .3s $ease-in-out;
+      }
+
+  }
+}

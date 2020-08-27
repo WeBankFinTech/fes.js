@@ -1,0 +1,9 @@
+.ui-loading{
+    display: inline-block;
+    vertical-align: top;
+    background: transparent;
+    @include radius(100%);
+    @include animation(loading 0.75s 0s infinite linear);
+    animation-fill-mode: both;
+}
+

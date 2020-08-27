@@ -1,0 +1,53 @@
+.ui-toast-swap{
+    position: fixed;
+    width: 100%;
+    left: 0;
+    pointer-events: none;
+    z-index: $zindex-message;
+    text-align: center;
+    &.ui-toast-swap-center{
+        top: 40%;
+        @include transform(translate(0, -50%));
+    }
+    &.ui-toast-swap-top{
+        top: 20px;
+    }
+}
+
+.ui-toast-parent{
+    text-align: center;
+    margin: 10px auto;
+}
+
+.ui-toast {
+    display: inline-block;
+    font-size: $font-size-base;
+    padding: 8px 16px;
+    border-radius: $border-radius-small;
+    box-shadow: $shadow-2;
+    background: $component-background;
+
+    &-success .ui-icon {
+        color: $success-color;
+    }
+
+    &-error .ui-icon {
+        color: $error-color;
+    }
+
+    &-warn .ui-icon {
+        color: $warning-color;
+    }
+
+    &-info .ui-icon,
+    &-loading .ui-icon {
+        color: $info-color;
+    }
+
+    .ui-icon {
+        margin-right: 5px;
+        font-size: 16px;
+        top: 1px;
+        position: relative;
+    }
+}

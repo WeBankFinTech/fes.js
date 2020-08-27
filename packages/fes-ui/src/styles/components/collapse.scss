@@ -1,0 +1,56 @@
+.ui-collapse {
+    &.bordered {
+        border: 1px solid $border-color-split;
+        border-radius: 4px;
+        .ui-collapse-panel-title {
+            padding-left: 12px;
+            background-color: $background-color-base; 
+        }
+        .ui-collapse-panel-content {
+            padding: 4px 0 12px 12px;
+            &.left-icon {
+                padding-left: 32px;
+            }
+        }
+    }
+}
+
+.ui-collapse-panel {
+    &-title {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        height: 46px;
+        color: $title-color;
+        user-select: none;
+        cursor: pointer;
+        > .ui-icon {
+            color: $title-color;
+            font-size: 12px;
+            margin-right: 12px;
+            transition: transform 0.24s;
+            &.active {
+                transform: rotate(90deg);
+            }
+        }
+        &.disabled {
+            color: $tip-color;
+            > .ui-icon {
+                color: $tip-color;
+            }
+            cursor: not-allowed;
+        }
+        &.left-icon {
+            padding-left: 12px;
+            justify-content: flex-start;
+        }
+    }
+    &-content {
+        padding-bottom: 12px;
+        &.left-icon {
+            padding-left: 32px;
+        }
+    }
+    border-bottom: 1px solid $border-color-split;
+}

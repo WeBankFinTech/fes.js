@@ -1,0 +1,79 @@
+
+.theme-container.comp-page-class
+    .sidebar > .sidebar-links > li
+        margin-top: 0;
+    .theme-default-content, .page-nav, .page-edit
+        width: 100%;
+        max-width: 100%;
+    h1,h2
+        border-bottom: none;
+    table
+        display: table;
+        width: 100%;
+        thead
+            width: 100%;
+        th
+            background:rgba(0,0,0,.02)
+        tbody
+            width 100%;
+
+.pr-20
+    padding-right: 20px;
+
+.pl-20
+    padding-left: 20px;
+
+.article-row
+    margin: 5px 0;
+    text-align: center;
+    .ui-cell
+        color: white;
+        height: 50px;
+        line-height: 50px;
+        &:nth-child(n)
+            background: rgba(0, 153, 229, .7);
+        &:nth-child(2n)
+            background: rgba(0, 153, 229, .5);
+
+.ui-icons-list
+    margin: 40px 0;
+    list-style: none;
+    overflow: hidden;
+    zoom: 1;
+    &:before,
+    &:after
+        content: " ";
+        display: table;
+    li
+        float: left;
+        width: 16.66%;
+        text-align: center;
+        list-style: none;
+        cursor: pointer;
+        height: 100px;
+        color: #555;
+        transition: all 0.2s ease;
+        position: relative;
+        margin: 3px 0;
+        border-radius: 4px;
+        background-color: #fff;
+        overflow: hidden;
+        padding: 10px 0 0 0;
+    .ui-icon
+        font-size: 24px;
+        margin: 12px 0 16px;
+        transition: all .3s;
+    .ui-icon-class
+        font-size: 16px;
+        display: block;
+        text-align: center;
+        transform: scale(0.83);
+        font-family: "Lucida Console", Consolas;
+        white-space: nowrap;
+
+.ui-menu-item,.ui-menu-submenu
+    line-height: 48px;
+
+.ui-menu-mode-horizontal
+    .ui-menu-item,.ui-menu-submenu
+        line-height: 60px;

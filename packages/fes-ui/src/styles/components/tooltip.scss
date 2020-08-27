@@ -1,0 +1,285 @@
+$tooltip-max-width: 250px;
+$tooltip-arrow-width: 5px;
+$tooltip-distance: 3px;
+
+.ui-tooltip {
+    z-index: $zindex-tooltip;
+    display: block;
+    padding: 2px;
+
+    .ui-tooltip-swap{
+        position: relative;
+    }
+
+    &-inner{
+        min-height: 34px;
+        padding: 8px 10px;
+        color: $tooltip-color;
+        background-color: $tooltip-bg;
+        border-radius: $border-radius-small;
+        box-shadow: $box-shadow-base;
+        letter-spacing: normal;
+        text-align: left;
+        text-decoration: none;
+        text-shadow: none;
+        text-transform: none;
+        white-space: normal;
+        word-break: normal;
+        word-spacing: normal;
+        word-wrap: normal;
+    }
+
+    &-arrow{
+        position: absolute;
+        width: 0;
+        height: 0;
+        border-color: transparent;
+        border-style: solid;
+        box-sizing: content-box;
+        &:after {
+            display: block;
+            position: absolute;
+            left: -$tooltip-arrow-width;
+            top: -6px;
+            content: "";
+            width: 0;
+            height: 0;
+        }
+    }
+}
+
+.ui-tooltip.ui-tooltip-direction-top{
+    .ui-tooltip-swap{
+        padding: $tooltip-arrow-width 0;
+    }
+    @include transform(translateY(-100%));
+    .ui-tooltip-inner{
+        box-shadow: $shadow-1-up;
+    }
+    .ui-tooltip-arrow{
+        bottom: 1px;
+        left: 50%;
+        margin-left: -$tooltip-arrow-width;
+        border-width: $tooltip-arrow-width $tooltip-arrow-width 0;
+        border-top-color: $tooltip-bg;
+    }
+    &.ui-tooltip-align-left{
+        .ui-tooltip-arrow{
+            left: 0;
+            margin-left: $tooltip-arrow-width*3;
+        }
+    }
+    &.ui-tooltip-align-center{
+        @include transform(translate(-50%, -100%));
+    }
+    &.ui-tooltip-align-right{
+        @include transform(translate(-100%, -100%));
+        .ui-tooltip-arrow{
+            left: auto;
+            right: 0;
+            margin-right: $tooltip-arrow-width*3;
+        }
+    }
+    &.ui-tooltip-rich, &.ui-tooltip-confirm{
+        .ui-tooltip-arrow{
+            border-top-color: rgba(217,217,217,.5);
+            &:after{
+                border-color: transparent;
+                border-style: solid;
+                border-width: $tooltip-arrow-width;
+                border-bottom-width: 0;
+                border-top-color: #fff;
+            }
+        }
+    }
+}
+
+.ui-tooltip.ui-tooltip-direction-bottom{
+    .ui-tooltip-swap{
+        padding: $tooltip-arrow-width 0;
+    }
+
+    .ui-tooltip-inner{
+        box-shadow: $shadow-1-down;
+    }
+    .ui-tooltip-arrow{
+        top: 1px;
+        left: 50%;
+        margin-left: -$tooltip-arrow-width;
+        border-width: 0 $tooltip-arrow-width $tooltip-arrow-width;
+        border-bottom-color: $tooltip-bg;
+    }
+    &.ui-tooltip-align-left{
+        .ui-tooltip-arrow{
+            left: 0;
+            margin-left: $tooltip-arrow-width*3;
+        }
+    }
+    &.ui-tooltip-align-center{
+        @include transform(translateX(-50%));
+    }
+    &.ui-tooltip-align-right{
+        @include transform(translateX(-100%));
+        .ui-tooltip-arrow{
+            left: auto;
+            right: 0;
+            margin-right: $tooltip-arrow-width*3;
+        }
+    }
+    &.ui-tooltip-rich, &.ui-tooltip-confirm{
+        .ui-tooltip-arrow{
+            border-bottom-color: rgba(217,217,217,.5);
+            &:after{
+                border-color: transparent;
+                border-style: solid;
+                border-width: $tooltip-arrow-width;
+                border-top-width: 0;
+                border-bottom-color: #fff;
+                top: 1px;
+            }
+        }
+    }
+}
+
+.ui-tooltip.ui-tooltip-direction-left{
+    .ui-tooltip-swap{
+        padding: 0 $tooltip-arrow-width;
+    }
+
+    @include transform(translate(-100%, 0));
+    .ui-tooltip-inner{
+        box-shadow: $shadow-1-left;
+    }
+    .ui-tooltip-arrow{
+        top: 50%;
+        right: 1px;
+        margin-top: -$tooltip-arrow-width;
+        border-width: $tooltip-arrow-width 0 $tooltip-arrow-width $tooltip-arrow-width;
+        border-left-color: $tooltip-bg;
+    }
+    &.ui-tooltip-align-top{
+        .ui-tooltip-arrow{
+            top: 0;
+            margin-top: 8px;
+        }
+    }
+    &.ui-tooltip-align-center{
+        @include transform(translate(-100%, -50%));
+    }
+    &.ui-tooltip-align-bottom{
+        @include transform(translate(-100%, -100%));
+        .ui-tooltip-arrow{
+            top: auto;
+            bottom: 0;
+            margin-bottom: 8px;
+        }
+    }
+    &.ui-tooltip-rich, &.ui-tooltip-confirm{
+        .ui-tooltip-arrow{
+            border-left-color: rgba(217,217,217,.5);
+            &:after{
+                border-color: transparent;
+                border-style: solid;
+                border-width: $tooltip-arrow-width;
+                border-right-width: 0;
+                border-left-color: #fff;
+                left: -6px;
+                top: -5px;
+            }
+        }
+    }
+}
+
+.ui-tooltip.ui-tooltip-direction-right{
+    .ui-tooltip-swap{
+        padding: 0 $tooltip-arrow-width;
+    }
+
+    .ui-tooltip-inner{
+        box-shadow: $shadow-1-right;
+    }
+    .ui-tooltip-arrow{
+        top: 50%;
+        left: 1px;
+        margin-top: -$tooltip-arrow-width;
+        border-width: $tooltip-arrow-width $tooltip-arrow-width $tooltip-arrow-width 0;
+        border-right-color: $tooltip-bg;
+    }
+    &.ui-tooltip-align-top{
+        .ui-tooltip-arrow{
+            top: 0;
+            margin-top: 8px;
+        }
+    }
+    &.ui-tooltip-align-center{
+        @include transform(translateY(-50%));
+    }
+    &.ui-tooltip-align-bottom{
+        @include transform(translateY(-100%));
+        .ui-tooltip-arrow{
+            top: auto;
+            bottom: 0;
+            margin-bottom: 8px;
+        }
+    }
+    &.ui-tooltip-rich, &.ui-tooltip-confirm{
+        .ui-tooltip-arrow{
+            border-right-color: rgba(217,217,217,.5);
+            &:after{
+                border-color: transparent;
+                border-style: solid;
+                border-width: $tooltip-arrow-width;
+                border-left-width: 0;
+                border-right-color: #fff;
+                left: auto;
+                right: -6px;
+                top: -5px;
+            }
+        }
+    }
+}
+
+.ui-tooltip.ui-tooltip-rich,
+.ui-tooltip.ui-tooltip-confirm{
+    .ui-tooltip-inner{
+        color: $text-color;
+        background-color: #fff;
+        box-shadow: $box-shadow-base;
+    }
+}
+
+.ui-tooltip.ui-tooltip-confirm{
+    .ui-icon-md-help-circle{
+        color: $warning-color;
+        font-size: 16px;
+        margin-right: 8px;
+    }
+
+    .ui-tooltip-buttons{
+        text-align: right;
+        padding: 8px 6px;
+        button:first-child{
+            color: #fff;
+            background-color: $primary-color;
+            border-color: $primary-color;
+        }
+        button + button {
+            margin-left: 10px;
+            margin-bottom: 0;
+        }
+    }
+
+    .ui-button{
+        font-size: 12px;
+        margin: 0;
+        padding: 4px 6px;
+    }
+
+    .ui-tooltip-text{
+        padding: 8px 6px;
+    }
+
+    .ui-tooltip-inner{
+        min-width: 160px;
+    }
+}

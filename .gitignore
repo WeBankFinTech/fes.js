@@ -1,0 +1,10 @@
+.DS_Store
+.idea
+.git
+.vscode
+.history
+.cache
+node_modules
+npm-debug.log
+/packages/fes-template/dist
+/packages/fes-doc/docs/.vuepress/dist

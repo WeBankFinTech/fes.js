@@ -1,0 +1,114 @@
+.ui-form-item {
+  width: 100%;
+  padding-bottom: 24px;
+  zoom: 1;
+  &:after,
+  &:before {
+    content: "";
+    display: table
+  }
+  &.ui-form-item-required {
+    .ui-form-label:before {
+      content: "*";
+      line-height: 1;
+      margin-right: 4px;
+      color: $error-color;
+      font-family: SimSun;
+      font-size: 12px;
+    }
+  }
+  &.ui-form-item-error {
+    .ui-input {
+      border-color: $error-color;
+      &:hover {
+        border-color: $error-color;
+      }
+      &:focus {
+        border-color: $error-color;
+        box-shadow: 0 0 0 2px rgba(255, 85, 0, .2);
+      }
+    }
+    .ui-readonly-input {
+      &-content {
+        border-color: $error-color;
+        color: $error-color;
+      }
+    }
+    .ui-select {
+      .ui-select-selection {
+        border-color: $error-color;
+        &:hover {
+          border-color: $error-color;
+        }
+      }
+      &.ui-select-visible {
+        .ui-select-selection {
+          box-shadow: 0 0 0 2px rgba(255, 85, 0, .2);
+        }
+      }
+    }
+    .ui-radio .ui-radio-inner {
+      border-color: $error-color;
+    }
+    .ui-checkbox .ui-checkbox-inner {
+      border-color: $error-color;
+    }
+    .ui-icon {
+      color: $error-color;
+    }
+  }
+}
+
+.ui-form-label {
+  float: left;
+  display: block;
+  height: 32px;
+  line-height: 32px;
+  padding-right: 12px;
+  text-align: right;
+  color: $text-color;
+  font-size: 12px;
+}
+
+.ui-form-content {
+  position: relative;
+  line-height: 32px;
+  font-size: 12px;
+}
+
+.ui-form-error-tip {
+  position: absolute;
+  left: 0;
+  top: 100%;
+  line-height: 1;
+  margin-top: 6px;
+  color: $error-color;
+}
+
+.ui-form {
+  padding-top: 24px;
+  display: block;
+  .ui-form-position-left,
+  .ui-form-position-top {
+    .ui-form-label {
+      text-align: left;
+      padding-right: 0;
+    }
+  }
+  .ui-form-position-top {
+    .ui-form-label {
+      float: none;
+      height: auto;
+      line-height: 1.2;
+      padding-right: 0;
+      padding-bottom: 10px;
+    }
+  }
+  &.ui-form-type-query {
+    padding: 16px 0 8px 0;
+    font-size: 0;
+    .ui-form-item {
+      padding-bottom: 8px;
+    }
+  }
+}
