@@ -1,4 +1,4 @@
- <p align="center"><a href="https://webank.gitee.io/fes.js/" target="_blank" rel="noopener noreferrer"><img width="100" src="https://github.com/WeBankFinTech/fes.js/blob/master/images/logo.jpg" alt="Fes logo"></a></p>
+ <p align="center"><a href="https://webank.gitee.io/fes.js/" target="_blank" rel="noopener noreferrer"><img width="100" src="https://i.loli.net/2020/08/31/FB6zZyPEW5cVDAC.jpg" alt="Fes logo"></a></p>
 
 
 # Fes.js
@@ -13,20 +13,20 @@ Fes.js是一整套管理台前端应用解决方案，包含Fes-Cli、Fes-Core�
 - Fes-UI是组件库，包含30+的PC端组件库，可以快速搭建出增删改查等页面
 
 ## Fes-Core 运行时架构
-![image](https://github.com/WeBankFinTech/fes.js/blob/master/images/fes-core.png)
+![fes-core.png](https://i.loli.net/2020/08/31/EGRcloxSnm41NeC.png)
 
 ## 页面举例
 
 首页：
-![image](https://github.com/WeBankFinTech/fes.js/blob/master/images/home.png)
+![home.png](https://i.loli.net/2020/08/31/iDJ26GHcyZ9kpoh.png)
 
 表单页面：
-![image](https://github.com/WeBankFinTech/fes.js/blob/master/images/form.png)
+![form.png](https://i.loli.net/2020/08/31/tjpM83vVo4KYN7x.png)
 
 列表页面：
-![image](https://github.com/WeBankFinTech/fes.js/blob/master/images/list.png)
-![image](https://github.com/WeBankFinTech/fes.js/blob/master/images/listAndFrom.png)
-![image](https://github.com/WeBankFinTech/fes.js/blob/master/images/listAndImg.png)
+![list.png](https://i.loli.net/2020/08/31/MHaOBf6xWXgzyRQ.png)
+![listAndFrom.png](https://i.loli.net/2020/08/31/qXQgspFZkAmKW2H.png)
+![listAndImg.png](https://i.loli.net/2020/08/31/ryQhUSTH5ZMdYVi.png)
 
 ## 使用
 
