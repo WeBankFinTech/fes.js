@@ -1,13 +1,16 @@
 module.exports = {
     base: "/fes.js/",
     title: "Fes.js",
-    description: "Curd应用快速解决方案",
+    description: "中台应用前端快速解决方案",
     themeConfig: {
+        repo: "WeBankFinTech/fes.js",
+        sidebarDepth: 3,
+        lastUpdated: "上次编辑时间",
         nav: [
             { text: "指南", link: "/guide/" },
             { text: "API参考", link: "/api/" },
-            { text: "组件", link: "/ui/" },
-            { text: "CLI", link: "/cli/" }
+            { text: "组件", link: "/ui/" }
+            // { text: "CLI", link: "/cli/" }
         ],
         sidebar: {
             "/guide/": [
@@ -16,15 +19,15 @@ module.exports = {
                     collapsable: false,
                     sidebarDepth: 1,
                     children: [
-                        "",
-                        "install",
-                        "play",
-                        "directory-structure",
-                        "layout",
-                        "route",
-                        "permisson",
-                        "i18n",
-                        "option"
+                        "/guide/",
+                        "/guide/install.md",
+                        "/guide/play",
+                        "/guide/directory-structure",
+                        "/guide/layout",
+                        "/guide/route",
+                        "/guide/permisson",
+                        "/guide/i18n",
+                        "/guide/option"
                     ]
                 },
                 {
@@ -32,7 +35,7 @@ module.exports = {
                     collapsable: false,
                     sidebarDepth: 1,
                     children: []
-                },
+                }
                 // {
                 //     title: "迁移",
                 //     collapsable: false,
@@ -40,54 +43,52 @@ module.exports = {
                 //     children: ["migration", "migrationLast"]
                 // }
             ],
-            "/api/": [""],
+            "/api/": ["/api/"],
             "/ui/": [
-                "",
+                "/ui/",
                 {
                     title: "组件库",
                     collapsable: false,
                     sidebarDepth: 1,
                     children: [
-                        "layout",
-                        "icon",
-                        "button",
-                        "menu",
-                        "dropdown",
-                        "contextmenu",
-                        "collapse",
-                        "tab",
-                        "table",
-                        "pagination",
-                        "panel",
-                        "tree",
-                        "step",
-                        "zoom",
-                        "carousel",
-                        "toast",
-                        "message",
-                        "modal",
-                        "tooltip",
-                        "loading",
-                        "process-circle",
-                        "input",
-                        "select",
-                        "radio",
-                        "checkbox",
-                        "datePicker",
-                        "timePicker",
-                        "switch",
-                        "form",
-                        "upload",
-                        // "affix",
-                        'backTop',
-                        'draggable',
-                        "split",
+                        "/ui/layout",
+                        "/ui/icon",
+                        "/ui/button",
+                        "/ui/menu",
+                        "/ui/dropdown",
+                        "/ui/contextmenu",
+                        "/ui/collapse",
+                        "/ui/tab",
+                        "/ui/table",
+                        "/ui/pagination",
+                        "/ui/panel",
+                        "/ui/tree",
+                        "/ui/step",
+                        "/ui/zoom",
+                        "/ui/carousel",
+                        "/ui/toast",
+                        "/ui/message",
+                        "/ui/modal",
+                        "/ui/tooltip",
+                        "/ui/loading",
+                        "/ui/process-circle",
+                        "/ui/input",
+                        "/ui/select",
+                        "/ui/radio",
+                        "/ui/checkbox",
+                        "/ui/datePicker",
+                        "/ui/timePicker",
+                        "/ui/switch",
+                        "/ui/form",
+                        "/ui/upload",
+                        // "/ui/affix",
+                        "/ui/backTop",
+                        "/ui/draggable",
+                        "/ui/split"
                     ]
                 }
-            ],
+            ]
             // "/cli/": [{}]
-        },
-        lastUpdated: "Last Updated",
-        smoothScroll: true
+        }
     }
 };
