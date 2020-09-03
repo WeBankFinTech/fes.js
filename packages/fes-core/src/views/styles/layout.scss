@@ -380,7 +380,6 @@ $dark-selected-color: #ffffff;
 }
 
 .layout-left-user-name {
-  // flex: 1;
   padding: 0 20px;
   p {
     margin: 10px 0;
@@ -389,12 +388,12 @@ $dark-selected-color: #ffffff;
 }
 
 .layout-left-user-logout {
-  // flex: 1;
   height: 70px;
   line-height: 70px;
   text-align: center;
-  .ui-icon-logout {
+  .ui-icon {
     cursor: pointer;
+    vertical-align: middle;
   }
 }
 

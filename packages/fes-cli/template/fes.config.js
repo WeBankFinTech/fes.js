@@ -11,18 +11,17 @@ module.exports = {
         },
         // 测试环境 --env=sit 触发使用
         develop: {
-            api: ''
+            api: 'http://test.xxx.com'
         },
-        // 生产环境 --env=prod 触发使用
+        // 生产环境 --env=sit 触发使用
         prod: {
-            api: ''
+            api: 'http://xxx.com'
         }
     },
     // 配置角色-路由访问权限，使用FesApp.setRole('unLogin')来修改当前用户的角色，控制路由访问权限
     roles: {
         unLogin: ['/home'],
-        service: ['/list', '/home'],
-        admin: ['/list', '/api/fes']
+        admin: ['/list', '*']
     },
     // map
     map: {

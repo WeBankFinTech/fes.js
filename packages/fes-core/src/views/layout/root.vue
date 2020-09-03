@@ -3,8 +3,14 @@
         <div v-if="left" class="layout-left">
             <left />
             <span v-if="mode === 'vertical'" @click="toggleMenu" class="layout-left-fold-menu">
-                <Icon v-show="!leftHidden" type="double-left" />
-                <Icon v-show="leftHidden" type="double-right" />
+                <span v-show="!leftHidden">
+                    <Icon type="ios-arrow-back" />
+                    <Icon type="ios-arrow-back" />
+                </span>
+                <span v-show="leftHidden">
+                    <Icon type="ios-arrow-forward" />
+                    <Icon type="ios-arrow-forward" />
+                </span>
             </span>
         </div>
         <div class="layout-right">
