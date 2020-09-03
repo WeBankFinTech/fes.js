@@ -35,7 +35,8 @@ module.exports = {
                     collapsable: false,
                     sidebarDepth: 1,
                     children: []
-                }
+                },
+                "/guide/contact"
                 // {
                 //     title: "迁移",
                 //     collapsable: false,
