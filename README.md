@@ -17,13 +17,13 @@ Fes.js是一整套管理台前端应用解决方案，包含Fes-Cli、Fes-Core�
 
 ## 页面举例
 
-首页：
+首页
 ![home.png](https://i.loli.net/2020/08/31/iDJ26GHcyZ9kpoh.png)
 
-表单页面：
+表单页面
 ![form.png](https://i.loli.net/2020/08/31/tjpM83vVo4KYN7x.png)
 
-列表页面：
+列表页面
 ![list.png](https://i.loli.net/2020/08/31/MHaOBf6xWXgzyRQ.png)
 ![listAndFrom.png](https://i.loli.net/2020/08/31/qXQgspFZkAmKW2H.png)
 ![listAndImg.png](https://i.loli.net/2020/08/31/ryQhUSTH5ZMdYVi.png)
@@ -49,3 +49,10 @@ npm  run build
 ## 文档
 
 详细使用请查看 [文档](https://webank.gitee.io/fes.js/)
+
+
+## 社区联络微信群
+![微信群](https://i.loli.net/2020/09/03/ovOCxkaS4lf5A2j.jpg)      
+
+邮箱： harrywan@webank.com qlin@webank.com      
+微信： geniusWc
