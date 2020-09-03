@@ -3,9 +3,6 @@ import './assets/styles/main.scss';
 export default function () {
     this.FesApp.set('FesName', '$i18n.title');
 
-    setTimeout(() => {
-        this.FesApp.setRole('admin', false);
-    }, 1000);
 
     // 设置退出逻辑
     this.on('fes_logout', () => {
@@ -26,10 +23,10 @@ export default function () {
         console.log(`您浏览到了${route.path}`);
     });
 
-    // // 设置当前角色
-    // if (!this.FesStorage.get('userLogin') === true) {
-    //     this.setRole('unLogin')
-    // }
+    // 设置当前角色
+    if (!this.FesStorage.get('userLogin') === true) {
+        this.setRole('unLogin');
+    }
 
     // 设置AJAX配置
     this.FesApi.option({

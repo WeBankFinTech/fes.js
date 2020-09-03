@@ -16,7 +16,7 @@
                 <p>{{fesFesx.FesRoleName}}</p>
             </div>
             <div class="layout-left-user-logout">
-                <Icon @click="logout" type="logout" size="24" />
+                <Icon @click="logout" type="md-log-out" size="28" />
             </div>
         </div>
     </div>

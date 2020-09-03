@@ -392,9 +392,9 @@ module.exports = function webpackConfig(configs, webpack, mode) {
                      return `chunk-${joinedHash}`;
                  }),
 
-            /* config.plugin('Copyright') */
-            isBuild
-                 && new webpack.BannerPlugin(''),
+            // /* config.plugin('Copyright') */
+            // isBuild
+            //      && new webpack.BannerPlugin(''),
 
             /* config.plugin('case-sensitive-paths') */
             new CaseSensitivePathsPlugin(),

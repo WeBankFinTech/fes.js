@@ -205,10 +205,7 @@ class App {
 
     async setDefaultPage() {
         const defaultPage = await this.getDefaultPage(true);
-        this.router.addRoutes([{
-            path: '/',
-            redirect: () => defaultPage
-        }]);
+        this.router.push(defaultPage);
     }
 
     async setRole(roleId, redirect = true, update = true) {

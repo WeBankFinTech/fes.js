@@ -52,6 +52,9 @@
     "husky": "^3.0.9",
     "lint-staged": "^9.4.2"
   },
-  "dependencies": {},
+  "dependencies": {
+    "@webank/fes-core": "^0.1.0",
+    "@webank/fes-ui": "^0.1.0"
+  },
   "peerDependencies": {}
 }
