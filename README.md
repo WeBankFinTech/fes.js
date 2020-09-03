@@ -1,4 +1,4 @@
- <p align="center"><a href="https://webank.gitee.io/fes.js/" target="_blank" rel="noopener noreferrer"><img width="100" src="https://i.loli.net/2020/08/31/FB6zZyPEW5cVDAC.jpg" alt="Fes logo"></a></p>
+ <p align="center"><a href="https://webank.gitee.io/fes.js/" target="_blank" rel="noopener noreferrer"><img width="200" src="https://i.loli.net/2020/08/31/FB6zZyPEW5cVDAC.jpg" alt="Fes logo"></a></p>
 
 
 # Fes.js
