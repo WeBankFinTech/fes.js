@@ -61,7 +61,7 @@ this.FesApp.setAllowPage(urls, redirect, update)
 ```
 
 ### getAllowPageAsync
-获取当前用户的可访问资料列表
+获取当前用户的可访问资源列表
 ```js
 this.FesApp.getAllowPageAsync()
 ```
