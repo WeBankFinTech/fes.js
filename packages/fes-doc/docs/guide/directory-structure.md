@@ -270,8 +270,10 @@ export default function () {
 读取文件名称作为组件名称进行注册，例如`src/components/message.vue`注册的全局组件名称为`message`，
 
 ### 特殊组件
-`fesHeader.vue`用于自定义页面头部。参数`FesHeader`控制`fesHeader.vue` 是否显示。在`fes.config.js`中配置`FesHeader`定义全局，也可以在页面组件中单独定义`FesHeader`。   
-`fesLeft.vue` 用于自定义菜单栏。配置参数`FesLeft`控制`fesLeft.vue` 是否显示。在`fes.config.js`中配置`FesHeader`定义全局，也可以在页面组件中单独定义`FesHeader`。   
+`fesHeader.vue`      
+用于自定义页面头部。参数`FesHeader`控制`fesHeader.vue` 是否显示。在`fes.config.js`中配置`FesHeader`定义全局的，也可以在页面组件中单独配置`FesHeader`。     
+`fesLeft.vue`       
+用于自定义菜单栏。配置参数`FesLeft`控制`fesLeft.vue` 是否显示。在`fes.config.js`中配置`FesLeft`定义全局的，也可以在页面组件中单独配置`FesLeft`。   
 
 ## src/pages
 在`pages`目录下编写页面，`Fes.js`会根据`pages`目录以及文件结构自动生成[Vue-router](https://router.vuejs.org/zh-cn/)路由配置。
@@ -288,16 +290,16 @@ pages
 └── layout.vue        # 根路由下所有page共用的外层
 ```
 1. 如果目录下有`layout.vue`，则子目录对应的路径是当前目录对应路径的子路由。如果没有则子目录对应的路径和当前目录对应路径是平级的。
-2. 带参数的路径使用`@id.fes`的形式
+2. 带参数的路径使用`@id.vue`的形式
 
 ### 编译
 编译后在`.cache`目录下生成`routeConfig.js`，内容如下：
 ```js
-import layout from 'D:\\git\\fes-template\\src\\pages\\layout.fes';
-import index from 'D:\\git\\fes-template\\src\\pages\\index.fes';
-import a from 'D:\\git\\fes-template\\src\\pages\\a.fes';
-import b_index from 'D:\\git\\fes-template\\src\\pages\\b\\index.fes';
-import b__id from 'D:\\git\\fes-template\\src\\pages\\b\\@id.fes';
+import layout from 'D:\\git\\fes-template\\src\\pages\\layout.vue';
+import index from 'D:\\git\\fes-template\\src\\pages\\index.vue';
+import a from 'D:\\git\\fes-template\\src\\pages\\a.vue';
+import b_index from 'D:\\git\\fes-template\\src\\pages\\b\\index.vue';
+import b__id from 'D:\\git\\fes-template\\src\\pages\\b\\@id.vue';
 export default { 
     '/': { 
         component: layout,

@@ -2,6 +2,17 @@ module.exports = {
     base: "/fes.js/",
     title: "Fes.js",
     description: "中台应用前端快速解决方案",
+    plugins: {
+        "@vuepress/pwa": {
+            serviceWorker: true,
+            updatePopup: {
+                "/": {
+                    message: "发现新内容可用",
+                    buttonText: "刷新"
+                }
+            }
+        }
+    },
     themeConfig: {
         repo: "WeBankFinTech/fes.js",
         sidebarDepth: 3,

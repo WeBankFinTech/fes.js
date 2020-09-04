@@ -5,26 +5,26 @@
 `Vue-router`加载的路由是使用 `router.config.js` 配置的。而`Fes.js`将根据项目的 `pages`目录结构自动生成路由规则
 ```
 	pages
-	├── index.fes         # 根路由页面 路径 index.html#/
-    ├── a.fes             # 路径 /a
+	├── index.vue         # 根路由页面 路径 index.html#/
+    ├── a.vue             # 路径 /a
     ├── b                 # 文件夹b
-    │   ├── index.fes     # 路径 /b
-    │   ├── @id.fes       # 动态路由 /b/:id
-    │   └── c.fes         # 路径 /b/c
-    └── layout.fes        # 根路由下所有page共用的外层
+    │   ├── index.vue     # 路径 /b
+    │   ├── @id.vue       # 动态路由 /b/:id
+    │   └── c.vue         # 路径 /b/c
+    └── layout.vue        # 根路由下所有page共用的外层
 ```
-1. 如果目录下有`layout.fes`，则子目录对应的路径是当前目录对应路径的子路由。如果没有则子目录对应的路径和当前目录对应路径是平级的。
-2. 带参数的路径使用`@[filename].fes`的方式
+1. 如果目录下有`layout.vue`，则子目录对应的路径是当前目录对应路径的子路由。如果没有则子目录对应的路径和当前目录对应路径是平级的。
+2. 带参数的路径使用`@[filename].vue`的方式
 
 <br>
 Fes编译代码之前会根据 pages 目录结构生成下面的配置代码：
 
 ```javascript
-import layout from 'D:\\git\\fes-template\\src\\pages\\layout.fes';
-import index from 'D:\\git\\fes-template\\src\\pages\\index.fes';
-import a from 'D:\\git\\fes-template\\src\\pages\\a.fes';
-import b_index from 'D:\\git\\fes-template\\src\\pages\\b\\index.fes';
-import b__id from 'D:\\git\\fes-template\\src\\pages\\b\\@id.fes';
+import layout from 'D:\\git\\fes-template\\src\\pages\\layout.vue';
+import index from 'D:\\git\\fes-template\\src\\pages\\index.vue';
+import a from 'D:\\git\\fes-template\\src\\pages\\a.vue';
+import b_index from 'D:\\git\\fes-template\\src\\pages\\b\\index.vue';
+import b__id from 'D:\\git\\fes-template\\src\\pages\\b\\@id.vue';
 import b_c from 'D:\\git\\fes-template\\src\\pages\\b\\b_c';
 export default { 
     '/': { 
