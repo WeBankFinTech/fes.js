@@ -21,13 +21,13 @@ this.FesApp.addDirective(name, options)
 ### addComponent
 添加全局组件
 ```js
-this.FesApp.addDirective(name, component)
+this.FesApp.addComponent(name, component)
 ```
 
 ### addFilter
 添加全局过滤器
 ```js
-this.FesApp.addDirective(name, options)
+this.FesApp.addFilter(name, func)
 ```
 
 ### get
@@ -46,7 +46,7 @@ this.FesApp.set(key, value)
 设置角色       
 `roleId`角色的id              
 `redirect` 设置角色后是否跳转到角色所属资源地址的第一个，默认为true           
-`update` 当`redirect`为true跳转后是否使用当前路由，默认为true        
+`update` 当`redirect`为true跳转后是否使用当前路由，默认为true        
 ```js
 this.FesApp.setRole(roleId, redirect, update)
 ```
@@ -55,7 +55,7 @@ this.FesApp.setRole(roleId, redirect, update)
 设置当前用户可访问的资源列表         
 `urls`用户可访问的资源列表         
 `redirect`设置角色后是否跳转到角色所属资源地址的第一个，默认为true             
-`update` 当`redirect`为true跳转后是否使用当前路由，默认为true        
+`update` 当`redirect`为true跳转后是否使用当前路由，默认为true        
 ```js
 this.FesApp.setAllowPage(urls, redirect, update)
 ```
@@ -84,7 +84,7 @@ Vue Router的实例，具体API请参考[router-实例方法](https://router.vue
 ### setBeforeRouter
 路由跳转前的事件钩子，执行`next()`动作跳转路由，执行`next(false)`阻止跳转。
 ```js
-this.FesApp.setBeforeRouter(function (from, to, next) {
+this.FesApp.setBeforeRouter(function (to, from, next) {
     next();
 });
 ```
@@ -103,14 +103,14 @@ FesApp触发的事件
 #### fes_logout
 当点击系统默认退出按钮时，在FesApp上触发`fes_logout`事件。可以在退出事件里面执行清除逻辑。
 ```js
-this.FesApp.on('fes_logout', () => {
+this.FesApp.on('fes_logout', (FesAppInstance) => {
 })
 ```
 
 ### fes_logo_click
 点击logo时触发
 ```js
-this.FesApp.on('fes_logo_click', () => {
+this.FesApp.on('fes_logo_click', (FesAppInstance) => {
 })
 ```
 
@@ -290,7 +290,7 @@ this.FesMap.getValueByName(item, name)
 `item`表示数据字典项的名称    
 `value`表示`item`数据字典项中某项的值
 ```js
-this.FesMap.getValueByName(item, value)
+this.FesMap.getNameByValue(item, value)
 ```
 
 ## FesEnv
