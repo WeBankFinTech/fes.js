@@ -47,6 +47,7 @@ module.exports = {
                     sidebarDepth: 1,
                     children: []
                 },
+                "/guide/releaseNote",
                 "/guide/contact"
                 // {
                 //     title: "迁移",
