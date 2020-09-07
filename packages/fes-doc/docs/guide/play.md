@@ -1,8 +1,15 @@
 # 快速上手
 
 ## 创建项目
+
 ```shell
 fes init [projectName]
+```
+
+## 项目初始化
+
+```shell
+cd [projectName] && npm i
 ```
 
 ## 启动项目

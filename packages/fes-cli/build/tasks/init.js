@@ -1,7 +1,8 @@
 const path = require('path');
 const fs = require('fs-extra');
 const prompts = require('prompts');
-const { exec } = require('child_process');
+const tar = require('tar');
+const { execSync } = require('child_process');
 const log = require('../helpers/log');
 
 
@@ -13,22 +14,22 @@ function createProject(config, projectName) {
         return Promise.reject();
     }
     return new Promise((resolve, reject) => {
-        fs.copy(`${config.folders.CLI_DIR}/template`, `${config.folders.PROJECT_DIR}/${projectName}`).then(() => {
-            exec(`cd ${config.folders.PROJECT_DIR}/${projectName} && git init && npm i @webank/fes-core @webank/fes-ui && npm i`, (err) => {
-                if (err) {
-                    log.error(err);
-                    reject(err);
-                    return;
-                }
-                log.message(`项目 ${projectName} 创建完成，请执行下面的命令进行使用：`);
-                log.message(`$ cd ${projectName}`);
-                log.message('$ npm run dev');
-                resolve();
-            });
-        }).catch((err) => {
-            log.error(err);
-            reject(err);
-        });
+        const productDir = `${config.folders.PROJECT_DIR}/${projectName}`;
+        const stdout = execSync(`npm pack @webank/fes-template`, { encoding: 'utf8', stdio: [null]});
+        const filePath = path.resolve(config.folders.PROJECT_DIR, stdout.replace('\n', ''));
+        fs.mkdirSync(projectDir);
+        fs.createReadStream(filePath).pipe(
+            tar.x({
+                strip: 1,
+                C: productDir // alias for cwd:'some-dir', also ok
+            })
+        );
+        fs.unlinkSync(filePath);
+        log.message(`项目 ${projectName} 创建完成，请执行下面的命令进行使用：`);
+        log.message(`$ cd ${projectName}`);
+        log.message('$ npm i');
+        log.message('$ npm run dev');
+        resolve();
     });
 }
 

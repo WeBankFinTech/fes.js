@@ -1,31 +1,11 @@
 {
   "name": "@webank/fes-template",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "description": "fes项目模版",
   "main": "index.js",
   "scripts": {
     "build": "fes build",
-    "dev": "fes dev",
-    "lint": "fes lint"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
-  "lint-staged": {
-    "*.js": [
-      "eslint",
-      "git add"
-    ],
-    "*.fes": [
-      "eslint",
-      "git add"
-    ],
-    "*.vue": [
-      "eslint",
-      "git add"
-    ]
+    "dev": "fes dev"
   },
   "keywords": [
     "管理端",
@@ -43,17 +23,16 @@
     "README.md",
     "/src"
   ],
-  "author": "harrywan fanniehuang qlin",
+  "repository": {
+    "type": "git"
+  },
+  "author": "harrywan qlin",
   "license": "MIT",
   "devDependencies": {
-    "@webank/eslint-config-webank": "^0.1.6",
-    "csp-html-webpack-plugin": "^4.0.0",
-    "husky": "^3.0.9",
-    "lint-staged": "^9.4.2"
+    "@webank/eslint-config-webank": "^0.1.4"
   },
   "dependencies": {
-    "vue": "^2.6.10",
-    "@webank/fes-core": "^0.1.0",
+    "@webank/fes-core": "^0.1.1",
     "@webank/fes-ui": "^0.1.0"
   },
   "peerDependencies": {}
