@@ -108,7 +108,7 @@ module.exports = {
         }
     ],
     i18n: {
-        locale: 'en', // default zh-cn
+        locale: 'zh-cn', // default zh-cn
         messages: {
             'zh-cn': {
                 menu: {
