@@ -1,5 +1,6 @@
 {
-  "name": "fes",
+  "name": "fes.js",
+  "version": "0.1.0",
   "description": "一个好用的前端管理台快速开发框架",
   "preferGlobal": true,
   "scripts": {
