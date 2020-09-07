@@ -21,12 +21,3 @@
 #### 文档
 1.  修复在线文档未正常渲染的问题。
 2.  更新文档中描述不准备的地方。       
-
-
-
-## 联系
-Fes.js开源项目地址如下，欢迎大家提交issue及star：
-
-- Gitee地址：[https://gitee.com/WeBank/fes.js](https://gitee.com/WeBank/fes.js)
-
-- Github地址：[https://github.com/WeBankFinTech/fes.js](https://github.com/WeBankFinTech/fes.js)
