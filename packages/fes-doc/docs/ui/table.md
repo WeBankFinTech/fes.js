@@ -2,7 +2,6 @@
 pageClass: comp-page-class
 ---
 # Table 表格
-选项卡切换组件。
 
 ## 概述
 主要用于展示大量结构化数据。    

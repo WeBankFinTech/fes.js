@@ -34,7 +34,7 @@ export default {
 }
 </script>
 ```
-访问 `http://localhost:5000/#/list` 就是刚创建的页面。更多路由配置详见 [路由章节](#/guide/route)。
+访问 `http://localhost:5000/#/list` 就是刚创建的页面。更多路由配置详见 [路由章节](/guide/route)。
 
 ## 配置菜单
 打开根目录下的 `fes.config.js`
@@ -47,7 +47,7 @@ export default {
     }]
 }
 ```
-此时左侧菜单栏出现名为 `列表` 的导航，更多子菜单配置详见 [系统配置-菜单章节](#/guide/config)。
+此时左侧菜单栏出现名为 `列表` 的导航，更多子菜单配置详见 [目录结构-fes.config.js](/guide/directory-structure.html#fes-config-js)。
 
 ## 实现一个简单的列表
 在上述的`index.vue`文件下实现一个列表，代码如下：
@@ -118,7 +118,7 @@ export default {
 ```
 实现的效果如下：
 ![列表页](../../images/list.png)
-Fes使用 `fes-ui` 组件库，具体使用方法详见 [组件章节](/component)，关于FesData数据用法详见 [Fes实例章节](/guide/)
+Fes使用 `fes-ui` 组件库，具体使用方法详见 [组件章节](/ui/)，关于FesData数据用法详见 [Vue增强章节](/guide/option.html#fesdata)
         
  ## 接口调用与Mock数据
 打开根目录下的 `mock.js`，配置模拟接口：
@@ -153,7 +153,7 @@ this.FesApi.fetch("/api", {
     console.log(rst);
 });
 ```
-更多关于接口调用与Mock数据的使用方法详见 [接口调用章节](/guide/fesApi) 和 [mock数据章节](/guide/mock)。
+更多关于接口调用与Mock数据的使用方法详见 [接口调用章节](/api/#fesapi-2) 和 [mock数据章节](/guide/directory-structure.html#mock-js)。
 
 ## 编译打包
 - 进入工程目录
