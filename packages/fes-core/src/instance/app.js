@@ -204,7 +204,7 @@ class App {
     }
 
     async setDefaultPage() {
-        const defaultPage = await this.getDefaultPage(true);
+        const defaultPage = await this.getDefaultPage(false);
         this.router.push(defaultPage);
     }
 

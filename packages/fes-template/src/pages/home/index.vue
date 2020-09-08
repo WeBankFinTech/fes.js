@@ -76,7 +76,7 @@ export default {
             if (this.validate()) {
                 this.FesApi.fetch('login').then(() => {
                     // 设置用户、角色等
-                    this.FesApp.set('FesUserName', '万纯（harrywan）');
+                    this.FesApp.set('FesUserName', 'harrywan');
                     this.FesApp.set('FesRoleName', '管理员');
                     this.FesStorage.set('userLogin', true);
                     this.getRole();
