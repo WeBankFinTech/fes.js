@@ -34,7 +34,7 @@
   },
   "dependencies": {
     "@webank/fes-core": "^0.1.1",
-    "@webank/fes-ui": "^0.1.0"
+    "@webank/fes-ui": "^0.1.1"
   },
   "peerDependencies": {}
 }

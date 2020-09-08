@@ -60,13 +60,12 @@ pageClass: comp-page-class
     <cell span="12" class="pl-20">
         <componetTemplate title="向右偏移" template="ui/templates/layout/2.html">
             <template v-slot:demo>
-                <row class="article-row">
-                    <cell span="24">span24</cell>
-                </row>
-                <row class="article-row">
-                    <cell span="12">span12</cell>
-                    <cell span="12">span12</cell>
-                </row>
+                <Row class="article-row">
+                    <Cell span="8" offset="8">span8|offset8</Cell>
+                </Row>
+                <Row class="article-row">
+                    <Cell span="12" offset="12">span12|offset12</Cell>
+                </Row>
             </template>
             <template v-slot:description>
                 <p>通过设置offset属性，将列进行右偏移，偏移栅格数为offset的值</p>

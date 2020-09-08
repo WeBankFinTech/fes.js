@@ -32,6 +32,6 @@
         flex: 0 0 auto;
     }
     .ui-cell-offset-#{$i} {
-        width: ($i/24) * 100%;
+        margin-left: ($i/24) * 100%;
     }
 }

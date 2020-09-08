@@ -13,7 +13,7 @@ export default {
 
 ## 垂直布局
 ![垂直布局](../../images/layout2.png)
-垂直布局，横向空间更大。配合[Menu](/component/menu)组件使用，可实现多级菜单。在`fes.config.js`中配置：
+垂直布局，横向空间更大。配合[Menu](/ui/menu)组件使用，可实现多级菜单。在`fes.config.js`中配置：
 ```js
 export default {
     mode: 'horizontal'
