@@ -74,20 +74,20 @@ export default {
     methods: {
         login() {
             if (this.validate()) {
-                this.FesApi.fetch('login').then(() => {
+                // this.FesApi.fetch('login').then(() => {
                     // 设置用户、角色等
-                    this.FesApp.set('FesUserName', 'harrywan');
-                    this.FesApp.set('FesRoleName', '管理员');
-                    this.FesStorage.set('userLogin', true);
-                    this.getRole();
-                });
+                this.FesApp.set('FesUserName', 'harrywan');
+                this.FesApp.set('FesRoleName', '管理员');
+                this.FesStorage.set('userLogin', true);
+                this.getRole();
+                // });
             }
         },
         getRole() {
-            this.FesApi.fetch('getRoleName').then((res) => {
+            // this.FesApi.fetch('getRoleName').then((res) => {
                 // 默认跳入rolesConfig的第一项
-                this.FesApp.setRole(res);
-            });
+            this.FesApp.setRole("admin");
+            // });
         },
         input() {
             this.error = '';
