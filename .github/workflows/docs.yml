@@ -1,19 +1,23 @@
-# name: GitHub Actions Build and Deploy Demo
-# on:
-#   push:
-#     branches:
-#       - master
-# jobs:
-#   build-and-deploy:
-#     runs-on: ubuntu-latest
-#     steps:
-#     - name: Checkout
-#       uses: actions/checkout@master
-
-#     - name: Build and Deploy
-#       uses: JamesIves/github-pages-deploy-action@master
-#       env:
-#         ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-#         BRANCH: gh-pages
-#         FOLDER: build
-#         BUILD_SCRIPT: npm install && npm run build
+name: GitHub Actions Build and Deploy Demo
+on:
+  push:
+    branches:
+      - master
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@master
+    # 使用 node:10
+    - name: use Node.js 10
+    uses: actions/setup-node@v1
+    with:
+        node-version: 10
+    - name: Build and Deploy
+      uses: JamesIves/github-pages-deploy-action@master
+      env:
+        ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+        BRANCH: gh-pages
+        FOLDER: docs/.vuepress/dist
+        BUILD_SCRIPT: cd packages/fes-doc && npm install && npm run build
