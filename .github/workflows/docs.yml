@@ -1,4 +1,4 @@
-name: GitHub Actions Build and Deploy Docs
+name: Deploy Docs
 on:
   push:
     branches:
@@ -14,5 +14,5 @@ jobs:
       env:
         ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
         BRANCH: gh-pages
-        FOLDER: docs/.vuepress/dist
-        BUILD_SCRIPT: cd packages/fes-doc && npm install && npm run build
+        FOLDER: packages/fes-doc/docs/.vuepress/dist
+        BUILD_SCRIPT: cd packages/fes-doc && npm install && npm run build && cd ../../
