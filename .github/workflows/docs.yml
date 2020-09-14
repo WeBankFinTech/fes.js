@@ -1,4 +1,4 @@
-name: GitHub Actions Build and Deploy Demo
+name: GitHub Actions Build and Deploy Docs
 on:
   push:
     branches:
@@ -9,11 +9,6 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@master
-    # 使用 node:10
-    - name: use Node.js 10
-    uses: actions/setup-node@v1
-    with:
-        node-version: 10
     - name: Build and Deploy
       uses: JamesIves/github-pages-deploy-action@master
       env:
