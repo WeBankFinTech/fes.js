@@ -17,17 +17,30 @@ export default {{routes}};
     const routes = getRoute(config.folders.PROJECT_PAGE_DIR, config.folders.PROJECT_PAGE_DIR);
 
     const componentsTemplate = [];
-    routes.components.forEach((item) => {
-        componentsTemplate.push(render(IMPORT_TEMPLATE, {
-            name: item.name,
-            path: item.path
-        }));
-    });
+    let template = '';
+    if (config.lazyRouter) {
+        const componentsObj = {};
+        routes.components.forEach((item) => {
+            componentsObj[item.name] = item.path;
+        });
+        // component: () => import( /* webpackChunkName: "home" */ '../views/Home.vue')
+        template = render(MAIN_TEMPLATE, {
+            include: '',
+            routes: JSON.stringify(routes.newRoutes).replace(/"component":"(.+?)"/g, ($0, $1) => `"component": () => import( /* webpackChunkName: "${$1}" */ '${componentsObj[$1]}')`)
+        });
+    } else {
+        routes.components.forEach((item) => {
+            componentsTemplate.push(render(IMPORT_TEMPLATE, {
+                name: item.name,
+                path: item.path
+            }));
+        });
 
-    const template = render(MAIN_TEMPLATE, {
-        include: componentsTemplate.join(endOfLine),
-        routes: JSON.stringify(routes.newRoutes).replace(/"component":"(.+?)"/g, '"component": $1')
-    });
+        template = render(MAIN_TEMPLATE, {
+            include: componentsTemplate.join(endOfLine),
+            routes: JSON.stringify(routes.newRoutes).replace(/"component":"(.+?)"/g, '"component": $1')
+        });
+    }
 
     fs.outputFileSync(OUTPUT_PATH, template);
 }

@@ -4,13 +4,25 @@ const merge = require('webpack-merge');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
-const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin');
+const FriendlyErrorsPlugin = require('@soda/friendly-errors-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 const OptimizeCssnanoPlugin = require('@intervolga/optimize-cssnano-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlPlugin = require('html-webpack-plugin');
+const CompressionWebpackPlugin = require('compression-webpack-plugin');
+const autoprefixer = require('autoprefixer');
 const browsers = require('../helpers/browser');
+
+
+function handleGzipCompress(compress) {
+    if (!compress) return null;
+    if (typeof compress === 'boolean') {
+        return {};
+    }
+    return compress;
+}
+
 
 module.exports = function webpackConfig(configs, webpack, mode) {
     let template = path.resolve(
@@ -24,36 +36,26 @@ module.exports = function webpackConfig(configs, webpack, mode) {
     const isDev = mode === 'dev';
     const isBuild = mode === 'build';
 
-    const projectNodeModulesDir = path.resolve(
-        configs.folders.PROJECT_DIR,
-        './node_modules'
-    );
-    const cliNodeModulesDir = path.resolve(
-        configs.folders.CLI_DIR,
-        './node_modules'
-    );
-    const nodeModulesDir = ['node_modules', projectNodeModulesDir, cliNodeModulesDir];
+    const gzipCompress = handleGzipCompress(configs.compress);
+
     const presets = [
         [
-            path.resolve(cliNodeModulesDir, '@babel/preset-env'),
-            {
-                modules: false,
-                useBuiltIns: 'entry',
-                corejs: 3,
-                targets: {
-                    browsers
-                }
-            }
+            require.resolve('@babel/preset-env')
         ]
     ];
     const plugins = [
-        path.resolve(cliNodeModulesDir, '@babel/plugin-proposal-object-rest-spread'),
-        path.resolve(cliNodeModulesDir, '@babel/plugin-syntax-dynamic-import')
+        [
+            require.resolve('@babel/plugin-transform-runtime'), {
+                corejs: 3
+            }
+        ],
+        require.resolve('@babel/plugin-proposal-object-rest-spread'),
+        require.resolve('@babel/plugin-syntax-dynamic-import')
     ];
     const cssloaders = [
         isDev
             ? {
-                loader: 'vue-style-loader',
+                loader: require.resolve('vue-style-loader'),
                 options: {
                     sourceMap: false,
                     shadowMode: false
@@ -66,17 +68,19 @@ module.exports = function webpackConfig(configs, webpack, mode) {
                 }
             },
         {
-            loader: 'css-loader',
+            loader: require.resolve('css-loader'),
             options: {
                 sourceMap: false,
                 importLoaders: 2
             }
         },
         {
-            loader: 'postcss-loader',
+            loader: require.resolve('postcss-loader'),
             options: {
-                config: {
-                    path: path.resolve(configs.folders.CLI_DIR, 'build/configs/postcss.config.js')
+                postcssOptions: {
+                    plugins: [
+                        autoprefixer({ browsers })
+                    ]
                 },
                 sourceMap: false
             }
@@ -85,22 +89,18 @@ module.exports = function webpackConfig(configs, webpack, mode) {
 
 
     const baseConfig = {
-
         mode: isDev ? 'development' : 'production',
 
         context: path.resolve(configs.folders.PROJECT_DIR),
 
         entry: {
             app: [
-                path.resolve(configs.folders.CLI_DIR, './node_modules/babel-polyfill'),
-                // path.resolve(configs.folders.CLI_DIR, './build/utils/create-nonce'),
                 path.resolve(configs.folders.FES_DIR, './src/app.js')
             ]
         },
 
         resolve: {
             extensions: ['.js', '.fes', '.vue', '.json'],
-            modules: nodeModulesDir,
             alias: {
                 projectRoot: configs.folders.PROJECT_DIR,
                 '@': path.resolve(configs.folders.PROJECT_DIR, 'src'),
@@ -111,10 +111,6 @@ module.exports = function webpackConfig(configs, webpack, mode) {
                 ),
                 vue$: 'vue/dist/vue.esm.js'
             }
-        },
-
-        resolveLoader: {
-            modules: nodeModulesDir
         },
 
         output: {
@@ -134,13 +130,13 @@ module.exports = function webpackConfig(configs, webpack, mode) {
                     test: /\.vue|fes$/,
                     use: [
                         {
-                            loader: 'cache-loader',
+                            loader: require.resolve('cache-loader'),
                             options: {
                                 cacheDirectory: path.resolve(configs.folders.PROJECT_DIR, 'node_modules/.cache/vue-loader')
                             }
                         },
                         {
-                            loader: 'vue-loader',
+                            loader: require.resolve('vue-loader'),
                             options: {
                                 compilerOptions: {
                                     preserveWhitespace: false
@@ -156,11 +152,11 @@ module.exports = function webpackConfig(configs, webpack, mode) {
                     test: /\.(png|jpe?g|gif|webp)(\?.*)?$/,
                     use: [
                         {
-                            loader: 'url-loader',
+                            loader: require.resolve('url-loader'),
                             options: {
                                 limit: 4096,
                                 fallback: {
-                                    loader: 'file-loader',
+                                    loader: require.resolve('file-loader'),
                                     options: {
                                         name: isDev ? 'img/[name].[ext]' : 'img/[name].[hash:8].[ext]'
                                     }
@@ -175,7 +171,7 @@ module.exports = function webpackConfig(configs, webpack, mode) {
                     test: /\.(svg)(\?.*)?$/,
                     use: [
                         {
-                            loader: 'file-loader',
+                            loader: require.resolve('file-loader'),
                             options: {
                                 name: isDev ? 'img/[name].[ext]' : 'img/[name].[hash:8].[ext]'
                             }
@@ -188,11 +184,11 @@ module.exports = function webpackConfig(configs, webpack, mode) {
                     test: /\.(mp4|webm|ogg|mp3|wav|flac|aac)(\?.*)?$/,
                     use: [
                         {
-                            loader: 'url-loader',
+                            loader: require.resolve('url-loader'),
                             options: {
                                 limit: 4096,
                                 fallback: {
-                                    loader: 'file-loader',
+                                    loader: require.resolve('file-loader'),
                                     options: {
                                         name: isDev ? 'media/[name].[ext]' : 'media/[name].[hash:8].[ext]'
                                     }
@@ -207,11 +203,11 @@ module.exports = function webpackConfig(configs, webpack, mode) {
                     test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/i,
                     use: [
                         {
-                            loader: 'url-loader',
+                            loader: require.resolve('url-loader'),
                             options: {
                                 limit: 4096,
                                 fallback: {
-                                    loader: 'file-loader',
+                                    loader: require.resolve('file-loader'),
                                     options: {
                                         name: isDev ? 'fonts/[name].[ext]' : 'fonts/[name].[hash:8].[ext]'
                                     }
@@ -238,7 +234,7 @@ module.exports = function webpackConfig(configs, webpack, mode) {
                     test: /\.scss$/,
                     use: cssloaders.concat([
                         {
-                            loader: 'sass-loader',
+                            loader: require.resolve('sass-loader'),
                             options: {
                                 sourceMap: false
                             }
@@ -251,7 +247,7 @@ module.exports = function webpackConfig(configs, webpack, mode) {
                     test: /\.sass$/,
                     use: cssloaders.concat([
                         {
-                            loader: 'sass-loader',
+                            loader: require.resolve('sass-loader'),
                             options: {
                                 sourceMap: false,
                                 indentedSyntax: true
@@ -265,7 +261,7 @@ module.exports = function webpackConfig(configs, webpack, mode) {
                     test: /\.less$/,
                     use: cssloaders.concat([
                         {
-                            loader: 'less-loader',
+                            loader: require.resolve('less-loader'),
                             options: {
                                 sourceMap: false,
                                 javascriptEnabled: true
@@ -279,7 +275,7 @@ module.exports = function webpackConfig(configs, webpack, mode) {
                     test: /\.styl(us)?$/,
                     use: cssloaders.concat([
                         {
-                            loader: 'stylus-loader',
+                            loader: require.resolve('stylus-loader'),
                             options: {
                                 sourceMap: false,
                                 preferPathResolver: 'webpack'
@@ -291,18 +287,19 @@ module.exports = function webpackConfig(configs, webpack, mode) {
                 /* config.module.rule('js') */
                 {
                     test: /\.m?jsx?$/,
+                    exclude: /(node_modules|bower_components)/,
                     use: [
                         {
-                            loader: 'cache-loader',
+                            loader: require.resolve('cache-loader'),
                             options: {
                                 cacheDirectory: path.resolve(configs.folders.PROJECT_DIR, 'node_modules/.cache/babel-loader')
                             }
                         },
                         {
-                            loader: 'thread-loader'
+                            loader: require.resolve('thread-loader')
                         },
                         {
-                            loader: 'babel-loader',
+                            loader: require.resolve('babel-loader'),
                             options: {
                                 presets,
                                 plugins
@@ -401,6 +398,14 @@ module.exports = function webpackConfig(configs, webpack, mode) {
 
             /* config.plugin('friendly-errors') */
             new FriendlyErrorsPlugin(),
+
+            isBuild && gzipCompress && new CompressionWebpackPlugin({ // gzip 压缩
+                filename: '[path][base].gz',
+                test: /\.js$|\.html$|\.css/,
+                threshold: 10240,
+                minRatio: 0.8,
+                ...gzipCompress
+            }),
 
             /* config.plugin('index.html') */
             new HtmlPlugin({

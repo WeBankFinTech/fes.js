@@ -23,6 +23,6 @@
     "lerna": "^3.18.4"
   },
   "devDependencies": {
-    "@webank/eslint-config-webank": "^0.1.6"
+    "@webank/eslint-config-webank": "^0.1.7"
   }
 }
