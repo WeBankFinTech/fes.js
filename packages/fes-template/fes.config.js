@@ -1,7 +1,10 @@
 module.exports = {
-    mode: 'vertical', // 可选有vertical、horizontal，默认vertical
-    theme: 'blue', // 可选有blue、dark，默认blue
-    fesName: 'xx 运营平台', // 项目名称
+    // 可选有vertical、horizontal，默认vertical
+    mode: 'vertical',
+    // 可选有blue、dark，默认blue
+    theme: 'blue',
+    // 项目名称
+    fesName: 'Fes.js 运营平台',
     favicon: 'static/favicon.ico', // 图标
     // 环境变量配置, 默认使用local环境
     env: {
@@ -25,94 +28,54 @@ module.exports = {
     },
     // map
     map: {
-        status: [['1', '成功'], ['2', '失败']]
+        level: [['1', '青铜'], ['2', '白银'], ['3', '黄金'], ['4', '铂金']]
     },
     // 左侧菜单配置
     menu: [
         {
-            title: '$i18n.menu.interface',
-            path: '/api',
+            title: '列表页',
             subMenu: [
                 {
-                    title: 'Fes',
-                    path: '/api/fes'
-                },
-                {
-                    title: 'FesApp',
-                    path: '/api/fesApp'
-                },
-                {
-                    title: 'FesApi',
-                    path: '/api/fesApi'
-                },
-                {
-                    title: 'FesMenu',
-                    path: '/api/fesMenu'
-                },
-                {
-                    title: 'FesMap',
-                    path: '/api/fesMap'
-                },
-                {
-                    title: 'FesFesx',
-                    path: '/api/fesFesx'
-                },
-                {
-                    title: 'FesStorage',
-                    path: '/api/fesStorage'
-                },
-                {
-                    title: 'FesUtil',
-                    path: '/api/fesUtil'
+                    title: '查询列表',
+                    path: '/list'
                 }
             ]
         },
         {
-            title: '路由',
-            path: '/route'
+            title: '表单页',
+            subMenu: [
+                {
+                    title: '基础表单',
+                    path: '/form/base'
+                },
+                {
+                    title: '分步表单',
+                    path: '/form/step'
+                }
+            ]
         },
         {
-            icon: 'static/bell.png',
-            title: '列表页',
-            path: '/list'
-        },
-        {
-            title: '内容很多的编辑',
-            path: '/list/edit'
-        },
-        {
-            title: '显示头部',
-            path: '/header'
-        },
-        {
-            title: '静态资源',
-            path: '/static'
-        },
-        {
-            title: '子路由',
+            title: '功能演示',
             path: '/layout',
             subMenu: [
                 {
-                    title: '子路由A',
-                    path: '/layout/a'
+                    title: '$i18n.menu.internationalization',
+                    path: '/layout/i18n'
                 },
                 {
-                    title: '子路由B',
-                    path: '/layout/b'
+                    title: '静态资源',
+                    path: '/layout/static'
                 }
             ]
-        },
-        {
-            title: '国际化',
-            path: '/i18n'
         }
     ],
     i18n: {
-        locale: 'zh-cn', // default zh-cn
+        // default zh-cn
+        locale: 'zh-cn',
         messages: {
             'zh-cn': {
                 menu: {
-                    interface: '接口'
+                    internationalization: '国际化'
                 },
                 overview: '概述',
                 i18n: {
@@ -120,11 +83,11 @@ module.exports = {
                     achieve: '实现。',
                     ui: 'UI组件'
                 },
-                title: '标题'
+                title: 'Fes.js 运营平台'
             },
             en: {
                 menu: {
-                    interface: 'interface'
+                    internationalization: 'internationalization'
                 },
                 overview: 'Overview',
                 i18n: {
@@ -132,7 +95,7 @@ module.exports = {
                     achieve: 'to achieve.',
                     ui: 'UI components'
                 },
-                title: 'title'
+                title: 'Fes.js Admin'
             }
         }
     }
