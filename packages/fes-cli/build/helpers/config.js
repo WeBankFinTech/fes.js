@@ -44,6 +44,8 @@ function generateConfig(command, env) {
             const fesCofig = require(path.join(config.folders.PROJECT_DIR, 'fes.config.js'));
             config.CDN = fesCofig.env[config.env].cdn;
             config.needCDN = !!config.CDN;
+            config.compress = fesCofig.compress;
+            config.lazyRouter = fesCofig.lazyRouter;
         } catch (e) {
             config.needCDN = false;
         }

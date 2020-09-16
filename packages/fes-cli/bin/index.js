@@ -7,7 +7,7 @@ const generateConfig = require('../build/helpers/config');
 const log = require('../build/helpers/log');
 
 commander.usage('<command> [options]')
-    .version(pkg.version)
+    .version(pkg.version, '-v, --vers')
     .option('-e, --env <env>', '配置环境 local(本地) | sit(测试) | prod(生产)')
     .description(pkg.description);
 
