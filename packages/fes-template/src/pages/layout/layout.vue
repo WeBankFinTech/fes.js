@@ -1,13 +1,14 @@
 <template>
-    <div class="article">
-        <h2>{{$t('overview')}}</h2>
-        <p>
-            根路由下所有page共用的外层
-        </p>
-        <router-view />
+    <div class="page">
+        <div class="page-header">
+            <div class="page-header-title">公共路由</div>
+        </div>
+        <div class="page-body">
+            <router-view />
+        </div>
     </div>
 </template>
-<script type="text/ecmascript-6">
+<script>
 export default {
     FesReady() {
         // do something

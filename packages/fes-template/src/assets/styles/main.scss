@@ -28,12 +28,12 @@
   ul {
     padding-left: 40px;
   }
-
   li {
     list-style-type: disc;
     margin-bottom: 5px;
     font-size: 14px;
   }
+
   table{
     border-collapse: collapse;
     border-spacing: 0;
@@ -47,4 +47,44 @@
     padding: 8px 16px;
     text-align: left;
   }
+}
+
+.ml-8{
+    margin-left: 8px;
+}
+
+.ml-16{
+    margin-left: 16px;
+}
+
+// 修复问题
+.ui-modal .ui-modal-dialog{
+    overflow: visible;
+}
+
+.page {
+    display: flex;
+    flex-direction: column;
+    background: #f0f2f5;
+    min-height: 100%;
+    .page-header{
+        padding: 16px 32px 0;
+        background: #fff;
+        border-bottom: $border-color-split ;
+        .page-header-title{
+            color: $title-color;
+            font-weight: 500;
+            font-size: 16px;
+            margin-bottom: 16px;
+        }
+        .page-header-desc{
+            margin-bottom: 16px;
+        }
+    }
+    .page-body{
+        flex: auto;
+        min-height: 0;
+        margin: 24px 24px;
+        background: #fff;
+    }
 }

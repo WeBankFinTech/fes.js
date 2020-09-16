@@ -8,6 +8,18 @@ import fesConfig from '../config';
 
 const fesDataCache = {};
 
+const certainConfig = function (matchPages, prop, n = 1) {
+    const length = matchPages.length;
+    if (n > length) {
+        return matchPages[0].components.default[prop];
+    }
+    const matchPage = matchPages[length - n].components.default;
+    if (typeof matchPage[prop] === 'boolean') {
+        return matchPage[prop];
+    }
+    return certainConfig(matchPages, prop, n + 1);
+};
+
 const Page = {
     install(Vue, App) {
         Vue.mixin({
@@ -44,20 +56,22 @@ const Page = {
                 return data;
             },
             created() {
+                const defaultHeader = fesConfig.FesHeader === undefined ? false : fesConfig.FesHeader;
+                const defaultLeft = fesConfig.FesLeft === undefined ? true : fesConfig.FesLeft;
                 // route切换时，重新设置为初始值
                 const comp = (this.$route && this.$route.matched) || [];
                 if (comp.length > 0) {
                     const matchPage = comp[comp.length - 1].components.default;
                     if (this.$options.__file === matchPage.__file) {
-                        const defaultHeader = fesConfig.FesHeader === undefined ? false : fesConfig.FesHeader;
-                        const defaultLeft = fesConfig.FesLeft === undefined ? true : fesConfig.FesLeft;
-                        if (typeof matchPage.FesHeader === 'boolean') {
-                            this.$root.header = matchPage.FesHeader;
+                        const header = certainConfig(comp, 'FesHeader');
+                        if (typeof header === 'boolean') {
+                            this.$root.header = header;
                         } else {
                             this.$root.header = defaultHeader;
                         }
-                        if (typeof matchPage.FesLeft === 'boolean') {
-                            this.$root.left = matchPage.FesLeft;
+                        const left = certainConfig(comp, 'FesLeft');
+                        if (typeof left === 'boolean') {
+                            this.$root.left = left;
                         } else {
                             this.$root.left = defaultLeft;
                         }
