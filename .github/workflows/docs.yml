@@ -3,6 +3,8 @@ on:
   push:
     branches:
       - master
+    paths:
+      - 'packages/fes-doc/**/**'
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
