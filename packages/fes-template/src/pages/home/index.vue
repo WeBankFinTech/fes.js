@@ -3,7 +3,7 @@
         <div class="login-panel-swap">
             <div class="logo">
                 <span class="logo-text">
-                    xx运营平台
+                    Fes.js 运营平台
                 </span>
             </div>
             <div class="split" />
@@ -66,7 +66,6 @@ export default {
             this.$refs.username.focus();
         });
         this.initStyle();
-
         if (this.FesStorage.get('userLogin') === true) {
             this.getRole();
         }
@@ -74,20 +73,15 @@ export default {
     methods: {
         login() {
             if (this.validate()) {
-                // this.FesApi.fetch('login').then(() => {
-                    // 设置用户、角色等
+                // 设置用户、角色等
                 this.FesApp.set('FesUserName', 'harrywan');
                 this.FesApp.set('FesRoleName', '管理员');
                 this.FesStorage.set('userLogin', true);
                 this.getRole();
-                // });
             }
         },
         getRole() {
-            // this.FesApi.fetch('getRoleName').then((res) => {
-                // 默认跳入rolesConfig的第一项
-            this.FesApp.setRole("admin");
-            // });
+            this.FesApp.setRole('admin');
         },
         input() {
             this.error = '';
