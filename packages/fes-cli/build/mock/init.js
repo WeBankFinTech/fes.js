@@ -27,7 +27,6 @@ const main = {
         app.use(cookieParser());
 
         this.customRoute();
-        this.defaultRoute();
     },
 
     customRoute() {
@@ -91,20 +90,6 @@ const main = {
         util.watchFile(cgiMockFile, () => {
             log.message('[INFO] mock.js 发生变化');
             loadRouteConfig();
-        });
-    },
-
-    defaultRoute() {
-        const app = this.app;
-
-        setTimeout(() => {
-            app.use((err, req, res) => {
-                res.json({
-                    status: err.status || 500,
-                    message: err.message,
-                    err
-                });
-            });
         });
     }
 };

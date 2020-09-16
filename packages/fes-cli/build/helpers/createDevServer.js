@@ -3,13 +3,15 @@ const
 const webpack = require('webpack');
 const express = require('express');
 const opn = require('opn');
+const path = require('path');
 const webpackHotMiddleware = require('webpack-hot-middleware');
 const webpackDevMiddleware = require('webpack-dev-middleware');
 const initMock = require('../mock/init.js');
 
 
 module.exports = function createDevServer(port, defaultConfig) {
-    defaultConfig.entry.app.unshift('webpack-hot-middleware/client?reload=true');
+    const hotMiddlewarePath = require.resolve('webpack-hot-middleware');
+    defaultConfig.entry.app.unshift(`${hotMiddlewarePath.replace(path.basename(hotMiddlewarePath), '')}client?reload=true`);
     defaultConfig.plugins.push(new webpack.HotModuleReplacementPlugin());
     defaultConfig.plugins.push(new webpack.NamedModulesPlugin());
 
@@ -19,6 +21,7 @@ module.exports = function createDevServer(port, defaultConfig) {
     // devServer 自带支持，添加自定义插件。
     app.use(webpackDevMiddleware(compiler, {
         lazy: false,
+        logLevel: 'silent',
         watchOptions: {
             aggregateTimeout: 300,
             poll: 1000
@@ -31,7 +34,9 @@ module.exports = function createDevServer(port, defaultConfig) {
         publicPath: defaultConfig.output.publicPath
     }));
 
-    app.use(webpackHotMiddleware(compiler));
+    app.use(webpackHotMiddleware(compiler, {
+        log: false
+    }));
     app.use('/static', express.static('src/static'));
 
 

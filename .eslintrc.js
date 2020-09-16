@@ -15,6 +15,7 @@ module.exports = {
         'vue/comment-directive': 'off',
         'no-param-reassign': 'off',
         'func-names': 'off',
+        'global-require': 'off',
         'class-methods-use-this': 'off'
     }
 };
