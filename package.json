@@ -5,7 +5,9 @@
   "preferGlobal": true,
   "scripts": {
     "bootstrap": "lerna bootstrap",
-    "version": "lerna version --no-commit-hooks --no-private"
+    "version": "lerna version --no-commit-hooks --no-private",
+    "publish": "lerna publish from-git",
+    "push": "git push --tags"
   },
   "author": "harrywan qlin",
   "license": "MIT",
