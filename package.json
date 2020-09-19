@@ -23,6 +23,28 @@
     "lerna": "^3.18.4"
   },
   "devDependencies": {
-    "@webank/eslint-config-webank": "^0.1.7"
+    "@commitlint/cli": "^11.0.0",
+    "@commitlint/config-conventional": "^11.0.0",
+    "@webank/eslint-config-webank": "^0.1.7",
+    "commitizen": "^4.2.1",
+    "cz-lerna-changelog": "^2.0.3",
+    "husky": "^4.3.0",
+    "lint-staged": "^10.4.0"
+  },
+  "lint-staged": {
+    "*.{js,fes,jsx,vue,ts}": [
+      "eslint --format=codeframe"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-lerna-changelog"
+    }
   }
 }
