@@ -29,11 +29,11 @@
   "author": "harrywan qlin",
   "license": "MIT",
   "devDependencies": {
-    "^@webank/eslint-config-webank": "^0.1.4",
-    "^csp-html-webpack-plugin": "^4.0.0"
+    "@webank/eslint-config-webank": "^0.1.4",
+    "csp-html-webpack-plugin": "^4.0.0"
   },
   "dependencies": {
-    "^@webank/fes-core": "^0.1.4",
-    "^@webank/fes-ui": "^0.1.3"
+    "@webank/fes-core": "^0.1.4",
+    "@webank/fes-ui": "^0.1.3"
   }
 }
