@@ -1,14 +1,14 @@
 {
   "name": "@webank/fes-core",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "一个好用的前端管理台快速开发框架",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "harrywan,qlin",
   "repository": {
-      "type": "git",
-      "url": "https://github.com/WeBankFinTech/fes.js.git"
+    "type": "git",
+    "url": "https://github.com/WeBankFinTech/fes.js.git"
   },
   "license": "MIT",
   "keywords": [
