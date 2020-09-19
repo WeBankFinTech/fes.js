@@ -24,8 +24,11 @@
     }
   },
   "packages": [
-    "packages/*"
+    "packages/fes-cli",
+    "packages/fes-core",
+    "packages/fes-ui",
+    "packages/fes-template"
   ],
   "npmClient": "npm",
-  "ignoreChanges": ["**/fes-doc/**", "**/test/**", "**/*.md"]
+  "ignoreChanges": ["**/test/**", "**/*.md"]
 }
