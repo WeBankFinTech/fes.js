@@ -1,5 +1,5 @@
 {
-  "version": "0.1.0",
+  "version": "0.2.0",
   "changelog": {
     "repo": "WeBankFinTech/fes.js",
     "cacheDir": ".changelog",
@@ -17,7 +17,10 @@
   },
   "command": {
     "publish": {
-      "ignoreChanges": ["*.md", "**/test/**"],
+      "ignoreChanges": [
+        "*.md",
+        "**/test/**"
+      ],
       "message": "chore(release): publish"
     },
     "version": {
@@ -28,5 +31,8 @@
     "packages/*"
   ],
   "npmClient": "npm",
-  "ignoreChanges": ["**/test/**", "**/*.md"]
+  "ignoreChanges": [
+    "**/test/**",
+    "**/*.md"
+  ]
 }
