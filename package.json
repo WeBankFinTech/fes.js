@@ -4,7 +4,8 @@
   "description": "一个好用的前端管理台快速开发框架",
   "preferGlobal": true,
   "scripts": {
-    "bootstrap": "lerna bootstrap"
+    "bootstrap": "lerna bootstrap",
+    "version": "lerna version --no-commit-hooks --no-private"
   },
   "author": "harrywan qlin",
   "license": "MIT",

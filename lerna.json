@@ -17,17 +17,15 @@
   },
   "command": {
     "publish": {
-      "ignoreChanges": ["*.md", "**/test/**"]
+      "ignoreChanges": ["*.md", "**/test/**"],
+      "message": "chore(release): publish"
     },
     "version": {
       "push": false
     }
   },
   "packages": [
-    "packages/fes-cli",
-    "packages/fes-core",
-    "packages/fes-ui",
-    "packages/fes-template"
+    "packages/*"
   ],
   "npmClient": "npm",
   "ignoreChanges": ["**/test/**", "**/*.md"]
