@@ -30,7 +30,8 @@
   "license": "MIT",
   "devDependencies": {
     "@webank/eslint-config-webank": "^0.1.4",
-    "csp-html-webpack-plugin": "^4.0.0"
+    "csp-html-webpack-plugin": "^4.0.0",
+    "@babel/runtime-corejs3": "^7.11.2"
   },
   "dependencies": {
     "@webank/fes-core": "^0.2.0",

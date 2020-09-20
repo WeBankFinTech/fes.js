@@ -18,7 +18,7 @@ jobs:
 
       - name: Generate the changelog
         id: changelog
-        uses: babel/actions/generate-lerna-changelog@v2
+        uses: ./.github/actions/generate-changelog
         with:
           from: ${{ steps.tags.outputs.old }}
           to: ${{ steps.tags.outputs.new }}
