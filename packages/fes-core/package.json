@@ -27,7 +27,6 @@
     "vue-template-compiler": "^2.6.10"
   },
   "peerDependencies": {
-    "@webank/fes-core": "^0.1.0",
     "@webank/fes-ui": "^0.1.0"
   }
 }
