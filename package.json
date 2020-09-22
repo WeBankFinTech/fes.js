@@ -4,7 +4,9 @@
   "description": "一个好用的前端管理台快速开发框架",
   "preferGlobal": true,
   "scripts": {
-    "bootstrap": "lerna bootstrap"
+    "bootstrap": "lerna bootstrap",
+    "version": "lerna version --no-changelog --no-commit-hooks --no-private",
+    "publish": "lerna publish from-git"
   },
   "author": "harrywan qlin",
   "license": "MIT",
@@ -23,6 +25,28 @@
     "lerna": "^3.18.4"
   },
   "devDependencies": {
-    "@webank/eslint-config-webank": "^0.1.7"
+    "@commitlint/cli": "^11.0.0",
+    "@commitlint/config-conventional": "^11.0.0",
+    "@webank/eslint-config-webank": "^0.1.7",
+    "commitizen": "^4.2.1",
+    "cz-conventional-changelog": "^3.3.0",
+    "husky": "^4.3.0",
+    "lint-staged": "^10.4.0"
+  },
+  "lint-staged": {
+    "*.{js,fes,jsx,vue,ts}": [
+      "eslint --format=codeframe"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   }
 }

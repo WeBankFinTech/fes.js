@@ -1,7 +1,35 @@
 {
+  "version": "0.2.1",
+  "changelog": {
+    "repo": "WeBankFinTech/fes.js",
+    "cacheDir": ".changelog",
+    "labels": {
+      "PR: Spec Compliance :eyeglasses:": ":eyeglasses: Spec Compliance",
+      "PR: Breaking Change :boom:": ":boom: Breaking Change",
+      "PR: New Feature :rocket:": ":rocket: New Feature",
+      "PR: Bug Fix :bug:": ":bug: Bug Fix",
+      "PR: Polish :nail_care:": ":nail_care: Polish",
+      "PR: Docs :memo:": ":memo: Documentation",
+      "PR: Internal :house:": ":house: Internal",
+      "PR: Performance :running_woman:": ":running_woman: Performance",
+      "PR: Revert :leftwards_arrow_with_hook:": ":leftwards_arrow_with_hook: Revert"
+    }
+  },
+  "command": {
+    "publish": {
+      "ignoreChanges": [
+        "*.md",
+        "**/test/**"
+      ],
+      "message": "chore(release): publish"
+    }
+  },
   "packages": [
     "packages/*"
   ],
-  "version": "independent",
-  "npmClient": "npm"
+  "npmClient": "npm",
+  "ignoreChanges": [
+    "**/test/**",
+    "**/*.md"
+  ]
 }
