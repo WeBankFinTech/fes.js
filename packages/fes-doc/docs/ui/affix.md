@@ -8,7 +8,7 @@ pageClass: comp-page-class
 <ClientOnly>
 <row>
     <cell span="12" class="pr-20">
-        <componetTemplate title="基础使用" template="ui/templates/backTop/1.html">
+        <componetTemplate title="基础使用" template="ui/templates/affix/1.html">
             <template v-slot:demo>
                 <Affix :offset-top="60">
                     <Wb-button type="primary" long>默认距离滚动元素顶部0px</Wb-button>
@@ -22,7 +22,7 @@ pageClass: comp-page-class
         </componetTemplate>
     </cell>
     <cell span="12" class="pl-20">
-        <componetTemplate style="padding-top: 600px" title="slot自定义样式" template="ui/templates/backTop/2.html">
+        <componetTemplate style="padding-top: 600px" title="slot自定义样式" template="ui/templates/affix/2.html">
             <template v-slot:demo>
                 <Affix :offset-bottom="100">
                     <span class="demo-class">距离滚动元素顶部40px</span>
