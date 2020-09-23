@@ -16,7 +16,7 @@ const browsers = require('../helpers/browser');
 
 
 function handleGzipCompress(compress) {
-    if (!compress) return null;
+    if (!compress) return false;
     if (typeof compress === 'boolean') {
         return {};
     }
