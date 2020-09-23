@@ -55,6 +55,10 @@ module.exports = {
     FesLeft: true, 
     // 是否显示头部区域，默认为false
     FesHeader: false,
+    // 是否开启路由懒加载
+    lazyRouter: false,
+    // 是否开启 gzip 压缩，也可以传一个 obj 声明压缩参数
+    compress: false,
     // 环境变量配置, 默认使用local环境
     env: {
         // 本地开发环境
