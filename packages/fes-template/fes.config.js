@@ -6,6 +6,7 @@ module.exports = {
     // 项目名称
     fesName: 'Fes.js 运营平台',
     favicon: 'static/favicon.ico', // 图标
+    lazyRouter: true,
     // 环境变量配置, 默认使用local环境
     env: {
         // 本地开发环境
