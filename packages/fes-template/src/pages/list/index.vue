@@ -80,7 +80,7 @@ export default {
             editObj: {
                 name: '',
                 age: '',
-                date: ''
+                date: null
             },
             data: [
                 {
