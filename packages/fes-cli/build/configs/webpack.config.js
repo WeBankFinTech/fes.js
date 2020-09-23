@@ -46,7 +46,8 @@ module.exports = function webpackConfig(configs, webpack, mode) {
     const plugins = [
         [
             require.resolve('@babel/plugin-transform-runtime'), {
-                corejs: 3
+                corejs: 3,
+                proposals: true
             }
         ],
         require.resolve('@babel/plugin-proposal-object-rest-spread'),
@@ -426,21 +427,7 @@ module.exports = function webpackConfig(configs, webpack, mode) {
         baseConfig.optimization = {
             minimizer: [
                 new TerserPlugin({
-                    test: /\.m?js(\?.*)?$/i,
-                    chunkFilter: () => true,
-                    warningsFilter: () => true,
-                    extractComments: false,
-                    sourceMap: true,
-                    cache: true,
-                    cacheKeys: defaultCacheKeys => defaultCacheKeys,
-                    parallel: true,
-                    include: undefined,
-                    exclude: undefined,
-                    minify: undefined,
                     terserOptions: {
-                        output: {
-                            comments: /^\**!|@preserve|@license|@cc_on/i
-                        },
                         compress: {
                             arrows: false,
                             collapse_vars: false,
@@ -469,7 +456,11 @@ module.exports = function webpackConfig(configs, webpack, mode) {
                         mangle: {
                             safari10: true
                         }
-                    }
+                    },
+                    sourceMap: true,
+                    cache: true,
+                    parallel: true,
+                    extractComments: false
                 })
             ],
             splitChunks: {
