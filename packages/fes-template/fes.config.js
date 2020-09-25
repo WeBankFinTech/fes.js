@@ -24,8 +24,8 @@ module.exports = {
     },
     // 配置角色-路由访问权限，使用FesApp.setRole('unLogin')来修改当前用户的角色，控制路由访问权限
     roles: {
-        unLogin: ['/home'],
-        admin: ['/list', '*']
+        unLogin: ['/'],
+        admin: ['/dashboard/console', '*']
     },
     // map
     map: {
@@ -33,6 +33,15 @@ module.exports = {
     },
     // 左侧菜单配置
     menu: [
+        {
+            title: '工作台',
+            subMenu: [
+                {
+                    title: '工作台',
+                    path: '/dashboard/console'
+                }
+            ]
+        },
         {
             title: '列表页',
             subMenu: [

@@ -1,5 +1,4 @@
 @import "variables";
-@import "login";
 
 .article {
   padding: 20px;
@@ -57,9 +56,23 @@
     margin-left: 16px;
 }
 
+.mt-16{
+    margin-top: 16px;
+}
+
+.pr-16{
+    padding-right: 16px;
+}
+
 // 修复问题
 .ui-modal .ui-modal-dialog{
     overflow: visible;
+}
+
+.query-page .query-page-table .ui-page {
+    margin: 20px;
+    text-align: center;
+    justify-content: center;
 }
 
 .page {
@@ -70,7 +83,7 @@
     .page-header{
         padding: 16px 32px 0;
         background: #fff;
-        border-bottom: $border-color-split ;
+        border-bottom: 1px solid $border-color-split ;
         .page-header-title{
             color: $title-color;
             font-weight: 500;
@@ -86,5 +99,6 @@
         min-height: 0;
         margin: 24px 24px;
         background: #fff;
+        border: 1px solid $border-color-split ;
     }
 }
