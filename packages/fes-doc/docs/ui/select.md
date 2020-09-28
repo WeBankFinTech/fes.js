@@ -8,7 +8,7 @@ pageClass: comp-page-class
 
 ## 代码示例
 <ClientOnly>
-<row>
+<row class="ui-select-docs">
     <cell span="12" class="pr-20">
         <componetTemplate title="基础用法" template="ui/templates/select/1.html">
             <template v-slot:demo>
@@ -81,19 +81,22 @@ pageClass: comp-page-class
 </ClientOnly>
 
 <style lang="scss">
+.ui-select-docs {
+    .ui-select {
+        display: block;
+        margin-top: 20px;
+        width: 50%
+    }
+    .ui-select .ui-select-dropdown-list {
+        padding: 0;
+    }
+}
 .code-box-demo{
     .ui-select:first-child{
         margin-top: 0px;
     }
 }
-.ui-select {
-    display: block;
-    margin-top: 20px;
-    width: 50%
-}
-.ui-select .ui-select-dropdown-list {
-    padding: 0;
-}
+
 </style>
 
 <script>
