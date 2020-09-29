@@ -1,6 +1,6 @@
 {
   "name": "@webank/fes-template",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "description": "fes项目模版",
   "main": "index.js",
   "scripts": {
@@ -36,7 +36,7 @@
     "@antv/data-set": "^0.11.7",
     "@antv/g2": "^4.0.15",
     "@babel/runtime-corejs3": "^7.11.2",
-    "@webank/fes-core": "^0.2.3",
-    "@webank/fes-ui": "^0.2.3"
+    "@webank/fes-core": "^0.2.4",
+    "@webank/fes-ui": "^0.2.4"
   }
 }
