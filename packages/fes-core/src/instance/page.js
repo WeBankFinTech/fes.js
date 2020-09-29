@@ -61,8 +61,8 @@ const Page = {
                 // route切换时，重新设置为初始值
                 const comp = (this.$route && this.$route.matched) || [];
                 if (comp.length > 0) {
-                    const matchPage = comp[comp.length - 1].components.default;
-                    if (this.$options.__file === matchPage.__file) {
+                    const matchPage = comp[comp.length - 1].instances.default;
+                    if (this === matchPage) {
                         const header = certainConfig(comp, 'FesHeader');
                         if (typeof header === 'boolean') {
                             this.$root.header = header;
