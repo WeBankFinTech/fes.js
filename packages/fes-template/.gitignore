@@ -1,8 +1,0 @@
-.DS_Store
-.idea
-.git
-.vscode
-.cache
-/dist
-.history
-/node_modules

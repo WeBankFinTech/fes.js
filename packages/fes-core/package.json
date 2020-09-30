@@ -1,10 +1,11 @@
 {
   "name": "@webank/fes-core",
-  "version": "0.2.3",
+  "version": "0.2.1",
   "description": "一个好用的前端管理台快速开发框架",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "main": "src/index.js",
   "author": "harrywan,qlin",
   "repository": {
     "type": "git",
@@ -18,15 +19,13 @@
     "easy",
     "strong"
   ],
-  "dependencies": {
-    "axios": "^0.16.2",
-    "lodash": "^4.17.15",
-    "vue": "^2.6.10",
-    "vue-i18n": "^8.4.0",
-    "vue-router": "^2.6.0",
-    "vue-template-compiler": "^2.6.10"
-  },
   "peerDependencies": {
-    "@webank/fes-ui": "^0.1.0"
+    "vue": "^3.0.0"
+  },
+  "dependencies": {
+    "@babel/runtime-corejs3": "^7.11.2",
+    "@vue/compiler-sfc": "^3.0.0",
+    "vue": "^3.0.0",
+    "vue-router": "^4.0.0-beta.12"
   }
 }

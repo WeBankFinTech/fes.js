@@ -17,6 +17,9 @@ module.exports = {
         'no-param-reassign': 'off',
         'func-names': 'off',
         'global-require': 'off',
-        'class-methods-use-this': 'off'
+        'class-methods-use-this': 'off',
+        'no-restricted-syntax': 'off',
+        'import/prefer-default-export': 'off',
+        'import/no-unresolved': 'off'
     }
 };

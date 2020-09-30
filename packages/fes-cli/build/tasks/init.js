@@ -13,9 +13,9 @@ function createProject(config, projectName) {
         log.error('该项目已存在，请重新输入！');
         return Promise.reject();
     }
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
         const productDir = `${config.folders.PROJECT_DIR}/${projectName}`;
-        const stdout = execSync(`npm pack @webank/fes-template`, { encoding: 'utf8', stdio: [null]});
+        const stdout = execSync('npm pack @webank/fes-template', { encoding: 'utf8', stdio: [null] });
         const filePath = path.resolve(config.folders.PROJECT_DIR, stdout.replace('\n', ''));
         fs.mkdirSync(projectDir);
         fs.createReadStream(filePath).pipe(

@@ -35,14 +35,6 @@ commander.command('route')
         route(config);
     });
 
-commander.command('components')
-    .description('预编译 src/components 里面的组件')
-    .action(() => {
-        const components = require('../build/tasks/components');
-        const config = generateConfig('components');
-        components(config);
-    });
-
 commander.command('dev')
     .description('开发调试, 默认 local')
     .action(() => {

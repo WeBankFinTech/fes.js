@@ -14,19 +14,22 @@ const log = require('../helpers/log');
 
 const main = {
     init(app, argv, cwd) {
-        this.app = app;
-        this.argv = argv;
-        this.cwd = cwd;
+        const defaultCgiMockFile = path.join(process.cwd(), 'mock.js');
+        if (fs.existsSync(defaultCgiMockFile)) {
+            this.app = app;
+            this.argv = argv;
+            this.cwd = cwd;
 
-        app.use(logger('dev'));
-        app.use(
-            bodyParser.urlencoded({
-                extended: false
-            })
-        );
-        app.use(cookieParser());
+            app.use(logger('dev'));
+            app.use(
+                bodyParser.urlencoded({
+                    extended: false
+                })
+            );
+            app.use(cookieParser());
 
-        this.customRoute();
+            this.customRoute();
+        }
     },
 
     customRoute() {

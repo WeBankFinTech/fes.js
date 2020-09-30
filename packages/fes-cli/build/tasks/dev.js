@@ -7,8 +7,6 @@ const log = require('../helpers/log');
 const createDevConfig = require('../configs/webpack.config');
 
 const generateRoute = require('./route');
-const generateComponent = require('./components');
-
 
 function routeHandle(config) {
     generateRoute(config);
@@ -27,30 +25,12 @@ function routeHandle(config) {
     });
 }
 
-function globalComponentHandle(config) {
-    generateComponent(config);
-    // 监听components变化重新生成组件注入文件
-    const compWatcher = chokidar.watch(path.resolve(config.folders.PROJECT_DIR, './src/components'));
-    compWatcher.on('ready', () => {
-        compWatcher.on('add', (filePath) => {
-            if (path.extname(filePath) === '.fes' || path.extname(filePath) === '.vue') {
-                generateComponent(config);
-            }
-        }).on('unlink', (filePath) => {
-            if (path.extname(filePath) === '.fes' || path.extname(filePath) === '.vue') {
-                generateComponent(config);
-            }
-        });
-    });
-}
-
 function startDev(config) {
     routeHandle(config);
-    globalComponentHandle(config);
     const webpackConfig = createDevConfig(config, webpack, 'dev');
     if (!webpackConfig) return;
 
-    getPort(config.ports.server)
+    getPort(config.port)
         .then((port) => {
             log.message(`------------ find port success. port: ${port}`);
             createDevServer(port, webpackConfig);

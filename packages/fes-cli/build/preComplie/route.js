@@ -19,7 +19,7 @@ function checkHasLayout(path) {
     let hasLayout = false;
     dirList.forEach((item) => {
         if (fs.statSync(`${path}/${item}`).isFile()
-            && item[0] !== '.' && ['.fes', '.vue'].indexOf(Path.extname(item)) !== -1
+            && item[0] !== '.' && ['.vue', '.jsx'].indexOf(Path.extname(item)) !== -1
             && Path.basename(item, Path.extname(item)) === 'layout') {
             hasLayout = true;
         }
@@ -46,7 +46,7 @@ function genRoute(path, prePathUrl, preRoutes) {
     }
     dirList.forEach((item) => {
         if (fs.statSync(`${path}/${item}`).isFile()
-            && item[0] !== '.' && ['.fes', '.vue'].indexOf(Path.extname(item)) !== -1) {
+            && item[0] !== '.' && ['.jsx', '.vue'].indexOf(Path.extname(item)) !== -1) {
             const fileName = Path.basename(item, Path.extname(item));
             const preRouteName = path.slice(pagesDir.length + 1);
             let routePath = Path.posix.join(preRouteUrl, (fileName === 'index' ? '' : fileName.replace(/@/g, ':')));

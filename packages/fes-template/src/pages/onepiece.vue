@@ -1,7 +1,5 @@
 <template>
-    <div>
-        fes & 拉夫德鲁
-    </div>
+    <div>{{fes}}</div>
 </template>
 
 <script>

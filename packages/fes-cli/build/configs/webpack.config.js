@@ -2,7 +2,7 @@ const path = require('path');
 const fs = require('fs');
 const merge = require('webpack-merge');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const VueLoaderPlugin = require('vue-loader/lib/plugin');
+const { VueLoaderPlugin } = require('vue-loader');
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 const FriendlyErrorsPlugin = require('@soda/friendly-errors-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
@@ -27,7 +27,7 @@ function handleGzipCompress(compress) {
 module.exports = function webpackConfig(configs, webpack, mode) {
     let template = path.resolve(
         configs.folders.PROJECT_DIR,
-        './src/index.html'
+        './publish/index.html'
     );
     if (!fs.existsSync(template)) {
         template = path.resolve(configs.folders.FES_DIR, './src/index.html');
@@ -44,10 +44,10 @@ module.exports = function webpackConfig(configs, webpack, mode) {
         ]
     ];
     const plugins = [
+        [require.resolve('@vue/babel-plugin-jsx')],
         [
             require.resolve('@babel/plugin-transform-runtime'), {
-                corejs: 3,
-                proposals: true
+                corejs: 3
             }
         ],
         require.resolve('@babel/plugin-proposal-object-rest-spread'),
@@ -96,21 +96,16 @@ module.exports = function webpackConfig(configs, webpack, mode) {
 
         entry: {
             app: [
-                path.resolve(configs.folders.FES_DIR, './src/app.js')
+                path.resolve(configs.folders.PROJECT_DIR, './src/app.js')
             ]
         },
 
         resolve: {
-            extensions: ['.js', '.fes', '.vue', '.json'],
+            extensions: ['.js', '.jsx', '.vue', '.json'],
             alias: {
                 projectRoot: configs.folders.PROJECT_DIR,
                 '@': path.resolve(configs.folders.PROJECT_DIR, 'src'),
-                '@@': path.resolve(configs.folders.FES_DIR, 'src'),
-                assets: path.resolve(
-                    configs.folders.PROJECT_DIR,
-                    './src/assets/'
-                ),
-                vue$: 'vue/dist/vue.esm.js'
+                assets: path.resolve(configs.folders.PROJECT_DIR, './src/assets/')
             }
         },
 
@@ -128,7 +123,7 @@ module.exports = function webpackConfig(configs, webpack, mode) {
 
                 /* config.module.rule('vue') */
                 {
-                    test: /\.vue|fes$/,
+                    test: /\.vue$/,
                     use: [
                         {
                             loader: require.resolve('cache-loader'),
@@ -139,10 +134,9 @@ module.exports = function webpackConfig(configs, webpack, mode) {
                         {
                             loader: require.resolve('vue-loader'),
                             options: {
-                                compilerOptions: {
-                                    preserveWhitespace: false
-                                },
-                                cacheDirectory: path.resolve(configs.folders.PROJECT_DIR, 'node_modules/.cache/vue-loader')
+                                shadowMode: true,
+                                cacheDirectory: path.resolve(configs.folders.PROJECT_DIR, 'node_modules/.cache/vue-loader'),
+                                babelParserPlugins: ['jsx', 'classProperties', 'decorators-legacy']
                             }
                         }
                     ]
@@ -288,7 +282,18 @@ module.exports = function webpackConfig(configs, webpack, mode) {
                 /* config.module.rule('js') */
                 {
                     test: /\.m?jsx?$/,
-                    exclude: /(node_modules|bower_components)/,
+                    include(filePath) {
+                        if (filePath.startsWith(path.resolve(process.cwd(), 'src'))) {
+                            return true;
+                        }
+                        if (/fes-core.?src/.test(filePath)) {
+                            return true;
+                        }
+                        if (/fes-plugin-[a-z-]+.?(src|index)/.test(filePath)) {
+                            return true;
+                        }
+                        return false;
+                    },
                     use: [
                         {
                             loader: require.resolve('cache-loader'),
@@ -324,10 +329,10 @@ module.exports = function webpackConfig(configs, webpack, mode) {
 
             /* config.plugin('define') */
             new webpack.DefinePlugin({
-                'process.privateFesEnv': {
-                    env: `"${configs.env}"`
-                },
+                __VUE_OPTIONS_API__: true,
+                __VUE_PROD_DEVTOOLS__: false,
                 'process.env': {
+                    // NODE_ENV: isDev ? 'development' : 'production',
                     env: JSON.stringify(configs.env),
                     command: JSON.stringify(configs.command)
                 }
@@ -427,7 +432,21 @@ module.exports = function webpackConfig(configs, webpack, mode) {
         baseConfig.optimization = {
             minimizer: [
                 new TerserPlugin({
+                    test: /\.m?js(\?.*)?$/i,
+                    chunkFilter: () => true,
+                    warningsFilter: () => true,
+                    extractComments: false,
+                    sourceMap: true,
+                    cache: true,
+                    cacheKeys: defaultCacheKeys => defaultCacheKeys,
+                    parallel: true,
+                    include: undefined,
+                    exclude: undefined,
+                    minify: undefined,
                     terserOptions: {
+                        output: {
+                            comments: /^\**!|@preserve|@license|@cc_on/i
+                        },
                         compress: {
                             arrows: false,
                             collapse_vars: false,
@@ -456,11 +475,7 @@ module.exports = function webpackConfig(configs, webpack, mode) {
                         mangle: {
                             safari10: true
                         }
-                    },
-                    sourceMap: true,
-                    cache: true,
-                    parallel: true,
-                    extractComments: false
+                    }
                 })
             ],
             splitChunks: {

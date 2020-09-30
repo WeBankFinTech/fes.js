@@ -2,7 +2,7 @@ const
     http = require('http');
 const webpack = require('webpack');
 const express = require('express');
-const opn = require('opn');
+const open = require('open');
 const path = require('path');
 const webpackHotMiddleware = require('webpack-hot-middleware');
 const webpackDevMiddleware = require('webpack-dev-middleware');
@@ -43,7 +43,7 @@ module.exports = function createDevServer(port, defaultConfig) {
     // 初始化Mock数据
     initMock(app);
 
-    opn(`http://localhost:${port}`);
+    defaultConfig.open && open(`http://localhost:${port}`);
 
     http.createServer(app).listen(port);
 };

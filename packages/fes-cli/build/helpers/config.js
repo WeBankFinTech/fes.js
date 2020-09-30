@@ -1,6 +1,5 @@
 const path = require('path');
 const fs = require('fs');
-const log = require('./log');
 
 function generateConfig(command, env) {
     // cli目录
@@ -21,10 +20,7 @@ function generateConfig(command, env) {
     const config = {
         command,
         env,
-        ports: {
-            server: 5000,
-            liveReload: 35729
-        },
+        port: 5000,
         projectName,
         folders: {
             CLI_DIR,
@@ -37,28 +33,9 @@ function generateConfig(command, env) {
             PROJECT_CPN_DIR
         }
     };
-
-    if (fs.existsSync(fesConfigFile)) {
-        try {
-            // eslint-disable-next-line
-            const fesCofig = require(path.join(config.folders.PROJECT_DIR, 'fes.config.js'));
-            config.CDN = fesCofig.env[config.env].cdn;
-            config.needCDN = !!config.CDN;
-            config.compress = fesCofig.compress;
-            config.lazyRouter = fesCofig.lazyRouter;
-        } catch (e) {
-            config.needCDN = false;
-        }
-    }
-
-    if (!config.needCDN) {
-        if (config.command === 'dev' || config.command === 'build') {
-            log.warn('项目没有配置cdn，打包之后将不会请求cdn的地址，请开发者注意！！');
-        }
-    }
-
-    return config;
+    // eslint-disable-next-line
+    const fesCofig = require(fesConfigFile);
+    return Object.assign({}, config, fesCofig);
 }
-
 
 module.exports = generateConfig;
