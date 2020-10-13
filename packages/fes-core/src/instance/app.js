@@ -1,10 +1,12 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
+import Vuex from 'vuex';
 import VueI18n from 'vue-i18n';
 // eslint-disable-next-line
 import UiWebank from '@webank/fes-ui';
 // eslint-disable-next-line
 import routerConfig from 'projectRoot/.cache/routeConfig.js';
+import storeConfig from 'projectRoot/src/store/index.js';
 // eslint-disable-next-line
 import commonCompConfig from 'projectRoot/.cache/commonComp.js';
 import Page from './page';
@@ -56,7 +58,7 @@ class App {
         this.router = null;
         this.beforeRouter = null;
         this.afterRouter = null;
-
+        this.store = null;
         this.i18n = null;
     }
 
@@ -65,6 +67,7 @@ class App {
 
         // ======================安装插件====================
         Vue.use(VueRouter);
+        Vue.use(Vuex);
         Vue.use(UiWebank);
         Vue.use(VueI18n);
         Vue.use(fesComponents);
@@ -105,11 +108,13 @@ class App {
     run() {
         this.creatRouter();
         this.creatI18n();
+        this.createStore();
         // eslint-disable-next-line
         new Vue({
             el: '#app',
             extends: root,
             router: this.router,
+            store: this.store,
             i18n: this.i18n
         });
     }
@@ -187,6 +192,10 @@ class App {
             }
         });
         this.setDefaultPage();
+    }
+
+    createStore() {
+        this.store = new Vuex.Store(storeConfig);
     }
 
     async getDefaultPage(update) {
@@ -317,9 +326,9 @@ class App {
     }
 }
 
-util.merge(App.prototype, util.event);
-// 暂时去掉package.json引入，安全检测不通过
-// App.prototype.version = packageConfig.version;
-App.prototype.engine = 'Vue';
+    util.merge(App.prototype, util.event);
+    // 暂时去掉package.json引入，安全检测不通过
+    // App.prototype.version = packageConfig.version;
+    App.prototype.engine = 'Vue';
 
 export default new App();
