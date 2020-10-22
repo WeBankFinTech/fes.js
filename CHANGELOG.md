@@ -2,6 +2,12 @@
 
 <!-- DO NOT CHANGE THESE COMMENTS - See .github/actions/trigger-github-release/update-changelog.js -->
 <!-- insert-new-changelog-here -->
+# [0.3.0](https://github.com/WeBankFinTech/fes/compare/v0.2.4...v0.3.0) (2020-10-22)
+
+
+### :rocket: New Feature
+
+* **fes-cli:** 路由支持模糊匹配和智能路由匹配 ([f6c3f5f](https://github.com/WeBankFinTech/fes/commit/f6c3f5f)) by: **harrywan**, closes [#32](https://github.com/WeBankFinTech/fes.js/issues/32)
 ## [0.2.3](https://github.com/WeBankFinTech/fes/compare/v0.2.2...v0.2.3) (2020-09-25)
 
 
