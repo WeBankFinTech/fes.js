@@ -6,6 +6,7 @@
 ```
 	pages
 	├── index.vue         # 根路由页面 路径 index.html#/
+    ├── *.vue             # 模糊匹配 路径 *
     ├── a.vue             # 路径 /a
     ├── b                 # 文件夹b
     │   ├── index.vue     # 路径 /b
@@ -14,41 +15,19 @@
     └── layout.vue        # 根路由下所有page共用的外层
 ```
 1. 如果目录下有`layout.vue`，则子目录对应的路径是当前目录对应路径的子路由。如果没有则子目录对应的路径和当前目录对应路径是平级的。
-2. 带参数的路径使用`@[filename].vue`的方式
+2. 带参数的路径使用`@[filename].vue`的方式，例如@id.vue
+3. 支持模糊匹配，例如`pages/*.vue`对应的路径是`*`，可以通过此路由实现404效果
+4. pages下的components文件夹下的.vue不被解析成路由，可以存放跟业务相关的公共组件。
 
-<br>
-Fes编译代码之前会根据 pages 目录结构生成下面的配置代码：
+## 智能路由匹配
+根据精准匹配优先算法原则设计出路由排名算法，对匹配到的路由打分，选择分数最高的路由：
+- 路由的路径每个子项得到4分
+- 子项为静态细分(/list)再加3分
+- 子项为动态细分（/:orderId）再加2分
+- 根段加1分
+- 通配符匹配到的减去1分
 
-```javascript
-import layout from 'D:\\git\\fes-template\\src\\pages\\layout.vue';
-import index from 'D:\\git\\fes-template\\src\\pages\\index.vue';
-import a from 'D:\\git\\fes-template\\src\\pages\\a.vue';
-import b_index from 'D:\\git\\fes-template\\src\\pages\\b\\index.vue';
-import b__id from 'D:\\git\\fes-template\\src\\pages\\b\\@id.vue';
-import b_c from 'D:\\git\\fes-template\\src\\pages\\b\\b_c';
-export default { 
-    '/': { 
-        component: layout,
-        subRoutes: {
-            '/' : {
-                name: 'index', component: index
-            },
-            '/a' : {
-                name: 'a', component: a
-            },
-            '/b' : {
-                name: 'b_index', component: b_index
-            },
-            '/b/:id' : {
-                name: 'b__id', component:  b__id
-            },
-            '/c' : {
-                name: 'b_c', component:  b_c
-            }
-        }
-    }
-};
-```
+通过智能路由匹配可以解决类似`/list/create`和`/list/:id`到底匹配什么路由的问题。
 
 ## 跳转路由
 API参考[Vue-router](https://router.vuejs.org/zh-cn/)。[路由实例](https://router.vuejs.org/zh-cn/api/router-instance.html)路由实例会挂载在FesApp对象上。

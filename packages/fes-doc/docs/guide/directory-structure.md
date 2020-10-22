@@ -29,6 +29,8 @@ fes-project
     │   ├── home
     │   │   └── index.vue
     │   └── list
+    │       ├── components
+    │       │   └── common.vue
     │       ├── edit
     │       │   └── index.vue
     │       └── index.vue
