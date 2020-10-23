@@ -2,6 +2,12 @@
 
 <!-- DO NOT CHANGE THESE COMMENTS - See .github/actions/trigger-github-release/update-changelog.js -->
 <!-- insert-new-changelog-here -->
+## [0.3.1](https://github.com/WeBankFinTech/fes/compare/v0.3.0...v0.3.1) (2020-10-23)
+
+
+### :bug: Bug Fix
+
+* **fes-cli:** 修复window下编译路由配置时路径问题 ([9b29b8e](https://github.com/WeBankFinTech/fes/commit/9b29b8e)) by: **harrywan**
 # [0.3.0](https://github.com/WeBankFinTech/fes/compare/v0.2.4...v0.3.0) (2020-10-22)
 
 
