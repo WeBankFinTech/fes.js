@@ -18,14 +18,14 @@ const isProcessFile = function (path) {
 };
 
 const isProcessDirectory = function (path, item) {
-    const component = Path.posix.join(path, item);
+    const component = Path.join(path, item);
     return fs.statSync(component).isDirectory() && !['components'].includes(item);
 };
 
 const checkHasLayout = function (path) {
     const dirList = fs.readdirSync(path);
     return dirList.some((item) => {
-        if (!isProcessFile(Path.posix.join(path, item))) {
+        if (!isProcessFile(Path.join(path, item))) {
             return false;
         }
         const ext = Path.extname(item);
@@ -66,7 +66,7 @@ const build = function (components, parentRoutes, path, parentRoutePath) {
     }
     dirList.forEach((item) => {
         // 文件或者目录的绝对路径
-        const component = Path.posix.join(path, item);
+        const component = Path.join(path, item);
         if (isProcessFile(component)) {
             const ext = Path.extname(item);
             const fileName = Path.basename(item, ext);
@@ -76,7 +76,7 @@ const build = function (components, parentRoutes, path, parentRoutePath) {
             const routeName = getRouteName(parentRoutePath, fileName);
             components.push({
                 name: routeName,
-                path: component
+                path: component.replace(/\\/g, '\\\\') // 处理windows兼容性
             });
             if (hasLayout) {
                 if (fileName === 'layout') {
@@ -101,7 +101,7 @@ const build = function (components, parentRoutes, path, parentRoutePath) {
     dirList.forEach((item) => {
         if (isProcessDirectory(path, item)) {
             // 文件或者目录的绝对路径
-            const component = Path.posix.join(path, item);
+            const component = Path.join(path, item);
             const nextParentRouteUrl = Path.posix.join(parentRoutePath, item);
             if (hasLayout) {
                 build(components, layoutRoute.children, component, nextParentRouteUrl);
