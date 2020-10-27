@@ -2,6 +2,18 @@
 
 <!-- DO NOT CHANGE THESE COMMENTS - See .github/actions/trigger-github-release/update-changelog.js -->
 <!-- insert-new-changelog-here -->
+# [0.4.0](https://github.com/WeBankFinTech/fes/compare/v0.3.1...v0.4.0) (2020-10-27)
+
+
+### :rocket: New Feature
+
+* **fes-cli:** babel-runtie集成在fes-cli中,支持项目配置fes-cli ([2622ef2](https://github.com/WeBankFinTech/fes/commit/2622ef2)) by: **harrywan**
+* **fes-cli:** 支持单元测试 ([bf07558](https://github.com/WeBankFinTech/fes/commit/bf07558)) by: **harrywan**
+
+
+### ♻ 代码重构
+
+* **fes-cli:** 精简和优化mock代码 ([d521575](https://github.com/WeBankFinTech/fes/commit/d521575)) by: **harrywan**
 ## [0.3.1](https://github.com/WeBankFinTech/fes/compare/v0.3.0...v0.3.1) (2020-10-23)
 
 
