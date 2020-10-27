@@ -76,6 +76,12 @@ export default {
         if (this.FesStorage.get('userLogin') === true) {
             this.getRole();
         }
+
+        this.FesApi.fetch('/login', {
+
+        }).then((res) => {
+            console.log(res);
+        });
     },
     methods: {
         login() {

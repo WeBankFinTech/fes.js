@@ -6,7 +6,7 @@ const opn = require('opn');
 const path = require('path');
 const webpackHotMiddleware = require('webpack-hot-middleware');
 const webpackDevMiddleware = require('webpack-dev-middleware');
-const initMock = require('../mock/init.js');
+const createMock = require('./createMock');
 
 
 module.exports = function createDevServer(port, defaultConfig) {
@@ -18,7 +18,7 @@ module.exports = function createDevServer(port, defaultConfig) {
     const app = express();
 
     // 初始化Mock数据
-    initMock(app);
+    createMock(app);
 
     const compiler = webpack(defaultConfig);
 

@@ -25,12 +25,12 @@ module.exports = (cgiMock, Mock) => {
 
 
     // 正则匹配url, 返回一个字符串
-    // cgiMock(/\/abc|\/xyz/, 'regexp test!');
+    cgiMock(/\/abc|\/xyz/, 'regexp test!');
 
     // option.result 参数如果是一个函数, 可以实现自定义返回内容, 接收的参数是是经过 express 封装的 req 和 res 对象.
-    // cgiMock(/\/function$/, function (req, res) {
-    //     res.send('function test');
-    // });
+    cgiMock(/\/function$/, (req, res) => {
+        res.send('function test');
+    });
 
     // 返回文本 fs.readFileSync
     // cgiMock('/file', cgiMock.file('./test.json'));
