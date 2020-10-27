@@ -41,14 +41,22 @@ module.exports = function webpackConfig(configs, webpack, mode) {
 
     const presets = [
         [
-            require.resolve('@babel/preset-env')
+            require.resolve('@babel/preset-env'),
+            {
+                modules: false
+            }
         ]
     ];
     const plugins = [
         [
-            require.resolve('@babel/plugin-transform-runtime'), {
-                corejs: 3,
-                proposals: true
+            require.resolve('@babel/plugin-transform-runtime'),
+            {
+                corejs: {
+                    version: 3,
+                    proposals: true
+                },
+                useESModules: true,
+                absoluteRuntime: configs.folders.CLI_DIR
             }
         ],
         require.resolve('@babel/plugin-proposal-object-rest-spread'),
