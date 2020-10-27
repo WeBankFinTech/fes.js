@@ -1,6 +1,6 @@
 {
   "name": "@webank/fes-template",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "fes项目模版",
   "main": "index.js",
   "scripts": {
@@ -30,16 +30,16 @@
   "author": "harrywan qlin",
   "license": "MIT",
   "devDependencies": {
-    "@webank/fes-cli": "^0.3.1",
+    "@vue/test-utils": "^1.1.0",
     "@webank/eslint-config-webank": "^0.1.4",
-    "csp-html-webpack-plugin": "^4.0.0",
+    "@webank/fes-cli": "^0.4.0",
     "chai": "^4.2.0",
-    "@vue/test-utils": "^1.1.0"
+    "csp-html-webpack-plugin": "^4.0.0"
   },
   "dependencies": {
     "@antv/data-set": "^0.11.7",
     "@antv/g2": "^4.0.15",
-    "@webank/fes-core": "^0.3.0",
-    "@webank/fes-ui": "^0.3.0"
+    "@webank/fes-core": "^0.4.0",
+    "@webank/fes-ui": "^0.4.0"
   }
 }
