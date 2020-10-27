@@ -2,6 +2,12 @@
 
 <!-- DO NOT CHANGE THESE COMMENTS - See .github/actions/trigger-github-release/update-changelog.js -->
 <!-- insert-new-changelog-here -->
+## [0.4.1](https://github.com/WeBankFinTech/fes/compare/v0.4.0...v0.4.1) (2020-10-27)
+
+
+### ♻ 代码重构
+
+* **fes-template:** test目录也上传到npm ([1c191ac](https://github.com/WeBankFinTech/fes/commit/1c191ac)) by: **harrywan**
 # [0.4.0](https://github.com/WeBankFinTech/fes/compare/v0.3.1...v0.4.0) (2020-10-27)
 
 
