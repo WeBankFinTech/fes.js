@@ -59,6 +59,23 @@ commander.command('build')
         build(config);
     });
 
+commander
+    .command('test:unit')
+    .description('单元测试')
+    .option('-w, --watch', 'run in watch mode')
+    .option('-g, --grep', 'only run tests matching <pattern>')
+    .option('-s, --slow', "'slow' test threshold in milliseconds")
+    .option('-t, --timeout', 'timeout threshold in milliseconds')
+    .option('-b, --bail', 'bail after first test failure')
+    .option('-r, --require', 'require the given module before running tests')
+    .option('--include', 'include the given module into test bundle')
+    .option('--inspect-brk', 'Enable inspector to debug the tests')
+    .action(() => {
+        const test = require('../build/tasks/test');
+        const config = generateConfig('build', commander.env || 'dev');
+        test(config, process.argv.slice(3));
+    });
+
 commander.parse(process.argv);
 
 

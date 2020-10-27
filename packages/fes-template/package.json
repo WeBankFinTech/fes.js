@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "build": "fes build",
-    "dev": "fes dev"
+    "dev": "fes dev",
+    "test": "fes test:unit"
   },
   "keywords": [
     "管理端",
@@ -30,7 +31,9 @@
   "license": "MIT",
   "devDependencies": {
     "@webank/eslint-config-webank": "^0.1.4",
-    "csp-html-webpack-plugin": "^4.0.0"
+    "csp-html-webpack-plugin": "^4.0.0",
+    "chai": "^4.2.0",
+    "@vue/test-utils": "^1.1.0"
   },
   "dependencies": {
     "@antv/data-set": "^0.11.7",
