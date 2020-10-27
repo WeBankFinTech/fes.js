@@ -127,7 +127,6 @@ const fix = function (routes) {
     routes.forEach((item) => {
         const path = item.path;
         let arr = path.split('/');
-        // console.log(arr);
         if (arr[0] === '') {
             arr = arr.slice(1);
         }

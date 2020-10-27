@@ -1,6 +1,5 @@
 const path = require('path');
 const fs = require('fs');
-const log = require('./log');
 
 function generateConfig(command, env) {
     // cli目录
@@ -48,12 +47,6 @@ function generateConfig(command, env) {
             config.lazyRouter = fesCofig.lazyRouter;
         } catch (e) {
             config.needCDN = false;
-        }
-    }
-
-    if (!config.needCDN) {
-        if (config.command === 'dev' || config.command === 'build') {
-            log.warn('项目没有配置cdn，打包之后将不会请求cdn的地址，请开发者注意！！');
         }
     }
 

@@ -13,6 +13,7 @@ const HtmlPlugin = require('html-webpack-plugin');
 const CompressionWebpackPlugin = require('compression-webpack-plugin');
 const autoprefixer = require('autoprefixer');
 const browsers = require('../helpers/browser');
+const log = require('../helpers/log');
 
 
 function handleGzipCompress(compress) {
@@ -489,7 +490,7 @@ module.exports = function webpackConfig(configs, webpack, mode) {
     let advancedConfig = {};
     const projectWebpackConfigFile = path.resolve(configs.folders.PROJECT_DIR, 'webpack.config.js');
     if (fs.existsSync(projectWebpackConfigFile)) {
-        console.log('[init] 加载项目个性webpack配置文件');
+        log.message('加载项目个性webpack配置');
         // eslint-disable-next-line
         advancedConfig = require(projectWebpackConfigFile)(mode, configs, webpack);
     }

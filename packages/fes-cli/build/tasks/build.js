@@ -12,13 +12,14 @@ function startBuild(config) {
         const webpackConfig = createProdConfig(config, webpack, 'build');
         webpack(webpackConfig, (err) => {
             if (err) {
-                log.error(err);
+                log.error(JSON.stringify(err));
                 return;
             }
-            console.log('[build] success');
+            log.message('执行build成功');
         });
     } catch (e) {
-        log.error(e);
+        log.message('执行build失败：');
+        log.error(JSON.stringify(e));
     }
 }
 

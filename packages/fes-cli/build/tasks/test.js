@@ -24,15 +24,15 @@ module.exports = function (config, rawArgv) {
             stdio: 'inherit'
         });
         child.on('error', (e) => {
-            log.error('[ERROR] test命令执行失败');
+            log.error('执行test失败：');
             log.error(JSON.stringify(e));
         });
         child.on('exit', (code) => {
             if (code !== 0) {
-                log.message(`[fes] mochapack进程退出，code ${code}.`);
+                log.message(`mochapack进程退出，code ${code}.`);
             }
         });
     } else {
-        log.warn('[WRAN] 测试目录不存在，请在项目根目录创建目录test');
+        log.warn('测试目录不存在，请在项目根目录创建目录test');
     }
 };

@@ -59,22 +59,22 @@ const main = {
             util.cleanCache(cgiMockFile);
             try {
                 if (!fs.existsSync(cgiMockFile)) {
-                    log.error('[WARN] 不存在mock.js文件');
+                    log.error('mock.js文件不存在，请检查!');
                 } else {
                     // eslint-disable-next-line
                     const projectMock = require(cgiMockFile);
                     if (util.isFunction(projectMock)) {
                         global.router.stack = [];
                         projectMock(cgiMock, Mock, faker);
-                        log.message('[SUCCESS] mock.js 加载成功');
+                        log.message('mock.js 加载成功');
                     } else {
                         log.error(
-                            `[ERROR] mock.js cannot be ${typeof projectMock}`
+                            'mock.js 应该导出Function !'
                         );
                     }
                 }
             } catch (e) {
-                log.error('[ERROR] mock.js 有误，请检查');
+                log.error('mock.js 加载失败，请检查：');
                 log.error(JSON.stringify(e));
             }
         };
@@ -88,7 +88,7 @@ const main = {
         });
 
         util.watchFile(cgiMockFile, () => {
-            log.message('[INFO] mock.js 发生变化');
+            log.message('mock.js 发生变化，重新加载Mock');
             loadRouteConfig();
         });
     }

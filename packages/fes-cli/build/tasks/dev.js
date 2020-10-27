@@ -52,11 +52,11 @@ function startDev(config) {
 
     getPort(config.ports.server)
         .then((port) => {
-            log.message(`------------ find port success. port: ${port}`);
+            log.message(`dev本地http服务端口: ${port}`);
             createDevServer(port, webpackConfig);
         }).catch((err) => {
-            log.message('------------ build error.');
-            log.error(err);
+            log.message('执行dev失败：');
+            log.error(JSON.stringify(err));
         });
 }
 
