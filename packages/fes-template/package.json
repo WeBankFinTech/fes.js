@@ -22,7 +22,8 @@
     "mock.js",
     "package.json",
     "README.md",
-    "/src"
+    "/src",
+    "/test"
   ],
   "repository": {
     "type": "git"
