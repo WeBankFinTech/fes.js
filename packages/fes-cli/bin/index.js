@@ -62,18 +62,30 @@ commander.command('build')
 commander
     .command('test:unit')
     .description('单元测试')
-    .option('-w, --watch', 'run in watch mode')
-    .option('-g, --grep', 'only run tests matching <pattern>')
-    .option('-s, --slow', "'slow' test threshold in milliseconds")
-    .option('-t, --timeout', 'timeout threshold in milliseconds')
-    .option('-b, --bail', 'bail after first test failure')
-    .option('-r, --require', 'require the given module before running tests')
-    .option('--include', 'include the given module into test bundle')
-    .option('--inspect-brk', 'Enable inspector to debug the tests')
-    .action(() => {
+    .option('--port', '<integer> Port where the server is running.')
+    .option('--auto-watch', 'Auto watch source files and run on change.')
+    .option('--detached', 'Detach the server.')
+    .option('--no-auto-watch', 'Do not watch source files.')
+    .option('--log-level', '<disable | error | warn | info | debug> Level of logging.')
+    .option('--colors', 'Use colors when reporting and printing logs.')
+    .option('--no-colors', 'Do not use colors when reporting or printing logs.')
+    .option('--reporters', 'List of reporters (available: dots, progress, junit, growl, coverage).')
+    .option('--browsers', 'List of browsers to start (eg. --browsers Chrome,ChromeCanary,Firefox).')
+    .option('--capture-timeout', '<integer> Kill browser if does not capture in given time [ms].')
+    .option('--single-run', 'Run the test when browsers captured and exit.')
+    .option('--no-single-run', 'Disable single-run.')
+    .option('--report-slower-than', '<integer> Report tests that are slower than given time [ms].')
+    .option('--fail-on-empty-test-suite', 'Fail on empty test suite.')
+    .option('--no-fail-on-empty-test-suite', 'Do not fail on empty test suite.')
+    .option('--fail-on-failing-test-suite', 'Fail on failing test suite.')
+    .option('--no-fail-on-failing-test-suite', 'Do not fail on failing test suite.')
+    .option('--coverage', '是否进行覆盖测试')
+    .action((options) => {
         const test = require('../build/tasks/test');
         const config = generateConfig('build', commander.env || 'dev');
-        test(config, process.argv.slice(3));
+        test(config, process.argv.slice(3), {
+            coverage: options.coverage
+        });
     });
 
 commander.parse(process.argv);

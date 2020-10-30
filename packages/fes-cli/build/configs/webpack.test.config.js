@@ -1,13 +1,50 @@
 const path = require('path');
 const ProgressBarPlugin = require('progress-bar-webpack-plugin');
-const nodeExternals = require('webpack-node-externals');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
-
-const isCoverage = process.env.NODE_ENV === 'coverage';
-
 const generateConfig = require('../helpers/config');
 
 const configs = generateConfig();
+
+const presets = [
+    [
+        require.resolve('@babel/preset-env'),
+        {
+            modules: false
+        }
+    ]
+];
+const plugins = [
+    [
+        require.resolve('@babel/plugin-transform-runtime'),
+        {
+            corejs: {
+                version: 3,
+                proposals: true
+            },
+            useESModules: true,
+            absoluteRuntime: configs.folders.CLI_DIR // 这里是指fes-cli的目录
+        }
+    ],
+    require.resolve('@babel/plugin-proposal-object-rest-spread'),
+    require.resolve('@babel/plugin-syntax-dynamic-import')
+];
+
+const cssloaders = [
+    {
+        loader: require.resolve('vue-style-loader'),
+        options: {
+            sourceMap: false,
+            shadowMode: false
+        }
+    },
+    {
+        loader: require.resolve('css-loader'),
+        options: {
+            sourceMap: false,
+            importLoaders: 2
+        }
+    }
+];
 
 const webpackConfig = {
     mode: 'development',
@@ -15,9 +52,7 @@ const webpackConfig = {
         path: configs.folders.PROJECT_DIST_DIR,
         publicPath: '/dist/',
         filename: '[name].js',
-        chunkFilename: '[id].js',
-        devtoolModuleFilenameTemplate: '[absolute-resource-path]',
-        devtoolFallbackModuleFilenameTemplate: '[absolute-resource-path]?[hash]'
+        chunkFilename: '[id].js'
     },
     resolve: {
         extensions: ['.js', '.vue', '.fes', '.json'],
@@ -29,28 +64,31 @@ const webpackConfig = {
             vue$: 'vue/dist/vue.esm.js'
         },
         modules: [
-            'node_modules',
             path.join(configs.folders.CLI_DIR, 'node_modules'),
-            path.join(configs.folders.PROJECT_DIR, 'node_modules')
+            path.join(configs.folders.PROJECT_DIR, 'node_modules'),
+            'node_modules'
         ]
     },
-    externals: [nodeExternals()],
     module: {
-        rules: [].concat(
-            isCoverage
-                ? {
-                    test: /\.js$/,
-                    include: path.resolve('packages'), // instrument only testing sources with Istanbul, after ts-loader runs
-                    loader: 'istanbul-instrumenter-loader',
-                    query: {
-                        esModules: true
+        rules: [
+            {
+                test: /\.js$/,
+                include: path.resolve(configs.folders.PROJECT_DIR, 'src'), // instrument only testing sources with Istanbul, after ts-loader runs
+                loader: 'istanbul-instrumenter-loader',
+                query: {
+                    esModules: true
+                }
+            },
+            {
+                test: /\.m?js$/,
+                exclude: /(node_modules|bower_components)/,
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                        presets,
+                        plugins
                     }
                 }
-                : [],
-            {
-                test: /\.(jsx?|babel|es6)$/,
-                exclude: /(node_modules|bower_components)/,
-                loader: 'babel-loader'
             },
             {
                 test: /\.vue$/,
@@ -62,23 +100,140 @@ const webpackConfig = {
                     optimizeSSR: false
                 }
             },
+            /* config.module.rule('images') */
+            {
+                test: /\.(png|jpe?g|gif|webp)(\?.*)?$/,
+                use: [
+                    {
+                        loader: require.resolve('url-loader'),
+                        options: {
+                            limit: 4096,
+                            fallback: {
+                                loader: 'file-loader',
+                                options: {
+                                    name: 'img/[name].[ext]'
+                                }
+                            }
+                        }
+                    }
+                ]
+            },
+
+            /* config.module.rule('svg') */
+            {
+                test: /\.(svg)(\?.*)?$/,
+                use: [
+                    {
+                        loader: require.resolve('file-loader'),
+                        options: {
+                            name: 'img/[name].[ext]'
+                        }
+                    }
+                ]
+            },
+
+            /* config.module.rule('media') */
+            {
+                test: /\.(mp4|webm|ogg|mp3|wav|flac|aac)(\?.*)?$/,
+                use: [
+                    {
+                        loader: require.resolve('url-loader'),
+                        options: {
+                            limit: 4096,
+                            fallback: {
+                                loader: require.resolve('file-loader'),
+                                options: {
+                                    name: 'media/[name].[ext]'
+                                }
+                            }
+                        }
+                    }
+                ]
+            },
+
+            /* config.module.rule('fonts') */
+            {
+                test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/i,
+                use: [
+                    {
+                        loader: require.resolve('url-loader'),
+                        options: {
+                            limit: 4096,
+                            fallback: {
+                                loader: require.resolve('file-loader'),
+                                options: {
+                                    name: 'fonts/[name].[ext]'
+                                }
+                            }
+                        }
+                    }
+                ]
+            },
+
+            /* config.module.rule('css') */
             {
                 test: /\.css$/,
-                loaders: ['style-loader', 'css-loader']
+                use: cssloaders
             },
+
+            /* config.module.rule('scss') */
             {
-                test: /\.(svg|otf|ttf|woff2?|eot|gif|png|jpe?g)(\?\S*)?$/,
-                loader: 'url-loader',
-                query: {
-                    limit: 10000,
-                    name: path.posix.join('static', '[name].[hash:7].[ext]')
-                }
+                test: /\.scss$/,
+                use: cssloaders.concat([
+                    {
+                        loader: require.resolve('sass-loader'),
+                        options: {
+                            sourceMap: false
+                        }
+                    }
+                ])
+            },
+
+            /* config.module.rule('sass') */
+            {
+                test: /\.sass$/,
+                use: cssloaders.concat([
+                    {
+                        loader: require.resolve('sass-loader'),
+                        options: {
+                            sourceMap: false,
+                            indentedSyntax: true
+                        }
+                    }
+                ])
+            },
+
+            /* config.module.rule('less') */
+            {
+                test: /\.less$/,
+                use: cssloaders.concat([
+                    {
+                        loader: require.resolve('less-loader'),
+                        options: {
+                            sourceMap: false,
+                            javascriptEnabled: true
+                        }
+                    }
+                ])
+            },
+
+            /* config.module.rule('stylus') */
+            {
+                test: /\.styl(us)?$/,
+                use: cssloaders.concat([
+                    {
+                        loader: require.resolve('stylus-loader'),
+                        options: {
+                            sourceMap: false,
+                            preferPathResolver: 'webpack'
+                        }
+                    }
+                ])
             }
-        )
+        ]
     },
     plugins: [new VueLoaderPlugin(), new ProgressBarPlugin()],
-    target: 'node',
-    devtool: 'inline-cheap-module-source-map'
+    devtool: '#inline-source-map'
 };
 
 module.exports = webpackConfig;

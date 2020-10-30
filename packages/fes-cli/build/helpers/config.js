@@ -3,7 +3,7 @@ const fs = require('fs');
 
 function generateConfig(command, env) {
     // cli目录
-    const CLI_DIR = path.dirname(path.dirname(fs.realpathSync(process.argv[1])));
+    const CLI_DIR = process.env.cliPath || path.dirname(path.dirname(fs.realpathSync(process.argv[1])));
     // 解决git-bash目录问题
     const PROJECT_DIR = process.env.PWD || process.cwd();
     const FES_DIR = path.resolve(PROJECT_DIR, './node_modules/@webank/fes-core');

@@ -20,8 +20,8 @@ module.exports = {
         nav: [
             { text: "指南", link: "/guide/" },
             { text: "API参考", link: "/api/" },
-            { text: "组件", link: "/ui/" }
-            // { text: "CLI", link: "/cli/" }
+            { text: "组件", link: "/ui/" },
+            { text: "CLI", link: "/cli/" }
         ],
         sidebar: {
             "/guide/": [
@@ -38,7 +38,8 @@ module.exports = {
                         "/guide/route",
                         "/guide/permisson",
                         "/guide/i18n",
-                        "/guide/option"
+                        "/guide/option",
+                        "/guide/unit"
                     ]
                 },
                 {

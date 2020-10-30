@@ -11,6 +11,7 @@ const TerserPlugin = require('terser-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlPlugin = require('html-webpack-plugin');
 const CompressionWebpackPlugin = require('compression-webpack-plugin');
+const HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
 const autoprefixer = require('autoprefixer');
 const browsers = require('../helpers/browser');
 const log = require('../helpers/log');
@@ -324,6 +325,7 @@ module.exports = function webpackConfig(configs, webpack, mode) {
         devtool: isDev && 'cheap-module-eval-source-map',
 
         plugins: [
+            new HardSourceWebpackPlugin(),
 
             /* config.plugin('progress') */
             new webpack.ProgressPlugin(),

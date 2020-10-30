@@ -3,6 +3,7 @@
 .git
 .vscode
 .cache
+.coverage
 /dist
 .history
 /node_modules

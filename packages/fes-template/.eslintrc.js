@@ -1,5 +1,9 @@
 
 module.exports = {
+    env: {
+        "mocha": true,
+        "es6": true
+    },
     extends: [
         '@webank/eslint-config-webank/vue',
     ],

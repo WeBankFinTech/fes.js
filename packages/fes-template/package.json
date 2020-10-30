@@ -6,7 +6,9 @@
   "scripts": {
     "build": "fes build",
     "dev": "fes dev",
-    "test": "fes test:unit"
+    "test": "fes3 test:unit --single-run",
+    "cover": "fes3 test:unit --single-run --coverage",
+    "lint": "eslint -c ./.eslintrc.js --fix  --ext .js,.vue,.fes ./src"
   },
   "keywords": [
     "管理端",
@@ -19,6 +21,8 @@
     ".eslintrc.js",
     ".gitignore",
     "fes.config.js",
+    "karma.config.js",
+    "webpack.config.js",
     "mock.js",
     "package.json",
     "README.md",
