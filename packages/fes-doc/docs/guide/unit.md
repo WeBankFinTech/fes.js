@@ -2,7 +2,7 @@
 
 ## 准备工作
 
-升级`@webank/fes-cli`到0.4.1以上
+升级`@webank/fes-cli`到0.4.2以上
 ```shell
 npm i -g @webank/fes-cli
 ```
