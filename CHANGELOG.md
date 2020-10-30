@@ -5,14 +5,17 @@
 ## [0.4.3](https://github.com/WeBankFinTech/fes/compare/v0.4.2...v0.4.3) (2020-10-30)
 
 
-### :bug: Bug Fix
+### 优化
 
-* **fes-template:** 修改fes3为fes ([9c832c7](https://github.com/WeBankFinTech/fes/commit/9c832c7)) by: **harrywan**
+* 单元测试改为使用karma框架
+* 支持覆盖测试
+* 使用hard-source-webpack-plugin优化编译速度
 
 
 ### :memo: Documentation
 
 * 单元测试文档 ([eef8924](https://github.com/WeBankFinTech/fes/commit/eef8924)) by: **harrywan**
+  
 ## [0.4.2](https://github.com/WeBankFinTech/fes/compare/v0.4.1...v0.4.2) (2020-10-30)
 
 
