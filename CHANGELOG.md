@@ -2,6 +2,17 @@
 
 <!-- DO NOT CHANGE THESE COMMENTS - See .github/actions/trigger-github-release/update-changelog.js -->
 <!-- insert-new-changelog-here -->
+## [0.4.3](https://github.com/WeBankFinTech/fes/compare/v0.4.2...v0.4.3) (2020-10-30)
+
+
+### :bug: Bug Fix
+
+* **fes-template:** 修改fes3为fes ([9c832c7](https://github.com/WeBankFinTech/fes/commit/9c832c7)) by: **harrywan**
+
+
+### :memo: Documentation
+
+* 单元测试文档 ([eef8924](https://github.com/WeBankFinTech/fes/commit/eef8924)) by: **harrywan**
 ## [0.4.2](https://github.com/WeBankFinTech/fes/compare/v0.4.1...v0.4.2) (2020-10-30)
 
 
