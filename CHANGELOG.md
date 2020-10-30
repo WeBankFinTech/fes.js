@@ -2,6 +2,12 @@
 
 <!-- DO NOT CHANGE THESE COMMENTS - See .github/actions/trigger-github-release/update-changelog.js -->
 <!-- insert-new-changelog-here -->
+## [0.4.2](https://github.com/WeBankFinTech/fes/compare/v0.4.1...v0.4.2) (2020-10-30)
+
+
+### :memo: Documentation
+
+* rEADME添加单元测试描述 ([2fd6e05](https://github.com/WeBankFinTech/fes/commit/2fd6e05)) by: **harrywan**
 ## [0.4.1](https://github.com/WeBankFinTech/fes/compare/v0.4.0...v0.4.1) (2020-10-27)
 
 
