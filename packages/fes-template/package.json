@@ -6,8 +6,8 @@
   "scripts": {
     "build": "fes build",
     "dev": "fes dev",
-    "test": "fes3 test:unit --single-run",
-    "cover": "fes3 test:unit --single-run --coverage",
+    "test": "fes test:unit --single-run",
+    "cover": "fes test:unit --single-run --coverage",
     "lint": "eslint -c ./.eslintrc.js --fix  --ext .js,.vue,.fes ./src"
   },
   "keywords": [
