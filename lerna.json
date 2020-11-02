@@ -1,5 +1,5 @@
 {
-  "version": "0.2.3",
+  "version": "2.0.0",
   "changelog": {
     "repo": "WeBankFinTech/fes.js",
     "cacheDir": ".changelog",
@@ -27,7 +27,8 @@
   "packages": [
     "packages/*"
   ],
-  "npmClient": "npm",
+  "npmClient": "yarn",
+  "useWorkspaces": true,
   "ignoreChanges": [
     "**/test/**",
     "**/*.md"

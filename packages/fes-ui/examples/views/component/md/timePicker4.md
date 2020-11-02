@@ -1,9 +1,0 @@
-```html
-<time-picker
-    v-model="step"
-    :hourStep="2"
-    :minuteStep="2"
-    :secondStep="2"
->
-</time-picker>
-```

@@ -1,10 +1,15 @@
 {
   "name": "fes.js",
-  "version": "0.1.0",
+  "version": "2.0.0",
   "description": "一个好用的前端管理台快速开发框架",
   "preferGlobal": true,
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
   "scripts": {
     "bootstrap": "lerna bootstrap",
+    "build": "father-build",
     "version": "lerna version --no-changelog --no-commit-hooks --no-private",
     "publish": "lerna publish from-git"
   },
@@ -30,6 +35,7 @@
     "@webank/eslint-config-webank": "^0.1.7",
     "commitizen": "^4.2.1",
     "cz-conventional-changelog": "^3.3.0",
+    "father-build": "^1.18.5",
     "husky": "^4.3.0",
     "lint-staged": "^10.4.0"
   },

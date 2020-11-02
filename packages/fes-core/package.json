@@ -1,31 +1,36 @@
 {
   "name": "@webank/fes-core",
-  "version": "0.2.1",
-  "description": "一个好用的前端管理台快速开发框架",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "main": "src/index.js",
-  "author": "harrywan,qlin",
+  "version": "2.0.0",
+  "description": "@webank/fes-core",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "files": [
+    "lib"
+  ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/WeBankFinTech/fes.js.git"
+    "url": ""
   },
-  "license": "MIT",
   "keywords": [
-    "管理端",
-    "fes",
-    "fast",
-    "easy",
-    "strong"
+    "fes"
   ],
-  "peerDependencies": {
-    "vue": "^3.0.0"
+  "authors": [
+    ""
+  ],
+  "license": "MIT",
+  "bugs": "",
+  "homepage": "",
+  "publishConfig": {
+    "access": "public"
   },
   "dependencies": {
-    "@babel/runtime-corejs3": "^7.11.2",
-    "@vue/compiler-sfc": "^3.0.0",
-    "vue": "^3.0.0",
-    "vue-router": "^4.0.0-beta.12"
+    "@babel/register": "^7.12.1",
+    "@umijs/babel-preset-umi": "^3.2.24",
+    "@umijs/utils": "3.2.24",
+    "@webank/fes-runtime": "^2.0.0",
+    "dotenv": "8.2.0",
+    "joi": "17.3.0",
+    "set-value": "3.0.2",
+    "tapable": "2.0.0"
   }
 }

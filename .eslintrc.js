@@ -20,6 +20,7 @@ module.exports = {
         'class-methods-use-this': 'off',
         'no-restricted-syntax': 'off',
         'import/prefer-default-export': 'off',
-        'import/no-unresolved': 'off'
+        'import/no-unresolved': 'off',
+        'no-continue': 'off'
     }
 };

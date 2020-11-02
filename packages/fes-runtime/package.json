@@ -1,0 +1,29 @@
+{
+  "name": "@webank/fes-runtime",
+  "version": "2.0.0",
+  "description": "@webank/fes-runtime",
+  "main": "dist/index.js",
+  "files": [
+    "dist"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/WeBankFinTech/fes.js"
+  },
+  "keywords": [
+    "fes"
+  ],
+  "sideEffects": false,
+  "authors": [],
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "peerDependencies": {
+    "vue": "^3.0.0"
+  },
+  "dependencies": {
+    "vue-router": "^4.0.0-rc.1"
+  },
+  "module": "dist/index.esm.js"
+}

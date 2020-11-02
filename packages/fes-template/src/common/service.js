@@ -11,7 +11,6 @@ import { requestWrap } from '@webank/fes-plugin-request';
 
 // });
 
-
 // or
 export default requestWrap({
     login: {
