@@ -2,6 +2,17 @@
 
 <!-- DO NOT CHANGE THESE COMMENTS - See .github/actions/trigger-github-release/update-changelog.js -->
 <!-- insert-new-changelog-here -->
+## [0.4.4](https://github.com/WeBankFinTech/fes/compare/v0.4.3...v0.4.4) (2020-11-13)
+
+
+### :bug: Bug Fix
+
+* **fes-core:** 修复模糊匹配对"/"路由判断失效 ([47f67e5](https://github.com/WeBankFinTech/fes/commit/47f67e5)) by: **harrywan**
+
+
+### :memo: Documentation
+
+* 手动修改更新文档 ([d599d2d](https://github.com/WeBankFinTech/fes/commit/d599d2d)) by: **harrywan**
 ## [0.4.3](https://github.com/WeBankFinTech/fes/compare/v0.4.2...v0.4.3) (2020-10-30)
 
 
