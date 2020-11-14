@@ -180,18 +180,7 @@ export default class Service extends EventEmitter {
         // 1. merge default config
         // 2. validate
         this.setStage(ServiceStage.getConfig);
-        const defaultConfig = await this.applyPlugins({
-            key: 'modifyDefaultConfig',
-            type: this.ApplyPluginsType.modify,
-            initialValue: await this.configInstance.getDefaultConfig()
-        });
-        this.config = await this.applyPlugins({
-            key: 'modifyConfig',
-            type: this.ApplyPluginsType.modify,
-            initialValue: this.configInstance.getConfig({
-                defaultConfig
-            })
-        });
+        await this.setConfig();
 
         // merge paths to keep the this.paths ref
         this.setStage(ServiceStage.getPaths);
@@ -206,6 +195,21 @@ export default class Service extends EventEmitter {
         }));
         Object.keys(paths).forEach((key) => {
             this.paths[key] = paths[key];
+        });
+    }
+
+    async setConfig() {
+        const defaultConfig = await this.applyPlugins({
+            key: 'modifyDefaultConfig',
+            type: this.ApplyPluginsType.modify,
+            initialValue: await this.configInstance.getDefaultConfig()
+        });
+        this.config = await this.applyPlugins({
+            key: 'modifyConfig',
+            type: this.ApplyPluginsType.modify,
+            initialValue: this.configInstance.getConfig({
+                defaultConfig
+            })
         });
     }
 
@@ -257,7 +261,8 @@ export default class Service extends EventEmitter {
                         'config',
                         'env',
                         'args',
-                        'hasPlugins'
+                        'hasPlugins',
+                        'setConfig'
                     ].includes(prop)
                 ) {
                     return typeof this[prop] === 'function'
@@ -422,13 +427,6 @@ export default class Service extends EventEmitter {
         this.args = args;
         await this.init();
 
-        // TODO 临时实现
-        await this.applyPlugins({
-            key: 'onGenerateFiles',
-            type: ApplyPluginsType.event
-        });
-
-
         this.setStage(ServiceStage.run);
         await this.applyPlugins({
             key: 'onStart',
@@ -437,11 +435,11 @@ export default class Service extends EventEmitter {
                 args
             }
         });
-        // TODO 执行命令
-        // return this.runCommand({
-        //     name,
-        //     args
-        // });
+
+        return this.runCommand({
+            name,
+            args
+        });
     }
 
     async runCommand({

@@ -1,0 +1,36 @@
+{
+  "name": "@webank/fes-plugin-built-in",
+  "version": "2.0.0",
+  "description": "@webank/fes-plugin-built-in",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "files": [
+    "lib"
+  ],
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "keywords": [
+    "fes"
+  ],
+  "authors": [
+    ""
+  ],
+  "license": "MIT",
+  "bugs": "",
+  "homepage": "",
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@umijs/utils": "^3.2.24",
+    "@umijs/bundler-webpack": "^3.2.23",
+    "@umijs/server": "^3.2.23",
+    "@vue/babel-plugin-jsx": "^1.0.0-rc.3",
+    "@webank/fes-core": "^2.0.0",
+    "cliui": "6.0.0",
+    "vue-loader": "^16.0.0-rc.1",
+    "html-webpack-plugin": "^3.2.0"
+  }
+}

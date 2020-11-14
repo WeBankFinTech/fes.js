@@ -30,11 +30,9 @@
   "license": "MIT",
   "devDependencies": {
     "@vue/compiler-sfc": "^3.0.0",
-    "@webank/eslint-config-webank": "^0.1.4",
-    "csp-html-webpack-plugin": "^4.0.0"
+    "@webank/eslint-config-webank": "^0.1.4"
   },
   "dependencies": {
-    "@babel/runtime-corejs3": "^7.11.2",
     "vue": "^3.0.2",
     "@webank/fes": "^2.0.0"
   }

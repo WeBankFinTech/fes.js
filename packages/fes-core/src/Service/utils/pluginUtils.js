@@ -73,7 +73,7 @@ export function pathToObj({ path, cwd }) {
     } else {
         id = winPath(path);
     }
-    id = id.replace('@webank/fes-core/lib/plugins', '@@');
+    id = id.replace('@webank/fes-plugin-built-in/lib/plugins', '@@');
     id = id.replace(/\.js$/, '');
 
     const key = isPkgPlugin

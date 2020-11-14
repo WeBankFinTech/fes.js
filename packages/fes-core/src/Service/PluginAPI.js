@@ -2,7 +2,7 @@ import assert from 'assert';
 import * as utils from '@umijs/utils';
 import { isValidPlugin, pathToObj } from './utils/pluginUtils';
 import { EnableBy, PluginType, ServiceStage } from './enums';
-
+import Logger from '../logger/logger';
 // TODO
 // 标准化 logger
 export default class PluginAPI {
@@ -11,6 +11,7 @@ export default class PluginAPI {
         this.key = opts.key;
         this.service = opts.service;
         this.utils = utils;
+        this.logger = new Logger(`fes:plugin:${this.id || this.key}`);
     }
 
     // TODO: reversed keys

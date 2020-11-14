@@ -196,8 +196,6 @@ export default class Config {
         return {};
     }
 
-    // @ts-ignore
-    // @ts-ignore
     addAffix(file, affix) {
         const ext = extname(file);
         return file.replace(new RegExp(`${ext}$`), `.${affix}${ext}`);

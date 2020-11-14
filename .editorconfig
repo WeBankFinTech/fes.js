@@ -1,6 +1,7 @@
 # http://editorconfig.org
 
 root = true
+lib
 
 [*]
 charset = utf-8
