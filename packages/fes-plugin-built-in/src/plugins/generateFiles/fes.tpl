@@ -6,8 +6,8 @@ import {
 } from 'vue';
 import { plugin } from './core/plugin';
 import './core/pluginRegister';
-import { ApplyPluginsType, createRouter, createWebHashHistory } from '{{{ runtimePath }}}';
-import { getRoutes } from './core/routes';
+import { ApplyPluginsType } from '{{{ runtimePath }}}';
+import { createRouter } from './core/routes';
 {{{ imports }}}
 
 {{{ entryCodeAhead }}}
@@ -23,10 +23,7 @@ const renderClient = (opts = {}) => {
         }
     });
 
-    const router = createRouter({
-        history: createWebHashHistory(),
-        routes: getRoutes()
-    });
+    const router = createRouter();
     const app = createApp(rootContainer);
     app.use(router);
 

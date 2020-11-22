@@ -1,4 +1,4 @@
-import { requestWrap } from '@webank/fes-plugin-request';
+import { requestWrap } from '@webank/fes';
 
 // TODO
 // 响应体控制
@@ -6,10 +6,6 @@ import { requestWrap } from '@webank/fes-plugin-request';
 // 错误控制
 // 跳错误页面 || 或者重新登录
 // 段时间内不能重复发送的请求
-
-// request(url, data, option).then(() => {
-
-// });
 
 // or
 export default requestWrap({

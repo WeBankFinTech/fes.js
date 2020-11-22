@@ -1,29 +1,64 @@
-import { debounce } from 'throttle-debounce';
-import initAxiosInstance from './request';
+import { readFileSync, copyFileSync, statSync } from 'fs';
+import { join } from 'path';
 
-let request;
-
-function _advanceRequest({ url, debounce: waitTime, options = {} }) {
-    return debounce((data, specialCaseOptions) => {
-        request(url, data, Object.assign(options, specialCaseOptions));
-    }, true, waitTime || 0);
-}
-
-export const requestWrap = (interfaces) => {
-    const obj = {};
-    Object.entries(interfaces).forEach(([key, value]) => {
-        if (value.url) {
-            obj[key] = _advanceRequest(value);
-        } else {
-            obj[key] = requestWrap(value);
+export default (api) => {
+    api.addRuntimePluginKey(() => 'request');
+    // 配置
+    api.describe({
+        config: {
+            schema(joi) {
+                return joi.object({
+                    dataField: joi
+                        .string()
+                        .pattern(/^[a-zA-Z]*$/)
+                        .allow('')
+                });
+            },
+            default: {
+                dataField: 'result',
+                messageUI: 'ant-design-vue'
+            }
         }
     });
-    return obj;
-};
 
-export const createRequest = () => ({
-    install(app, options, ctx) {
-        request = initAxiosInstance(options, { router: ctx.router });
-        ctx.request = request;
-    }
-});
+    const namespace = 'plugin-request';
+    const requestTemplate = readFileSync(join(__dirname, 'template', 'request.ts'), 'utf-8');
+    api.onGenerateFiles(() => {
+        // 文件写出
+        const { dataField = '', messageUI } = api.config.request;
+        api.writeTmpFile({
+            path: `${namespace}/request.js`,
+            content: requestTemplate
+                .replace('REPLACE_MESSAGE_UI', messageUI || 'ant-design-vue')
+                .replace('REPLACE_DATA_FIELD', dataField)
+        });
+    });
+
+    let generatedOnce = false;
+    api.onGenerateFiles(() => {
+        if (generatedOnce) return;
+        generatedOnce = true;
+        const cwd = join(__dirname, './template');
+        const files = api.utils.glob.sync('**/*', {
+            cwd
+        });
+        const base = join(api.paths.absTmpPath, namespace);
+        files.forEach((file) => {
+            if (['request.js'].includes(file)) return;
+            const source = join(cwd, file);
+            const target = join(base, file);
+            if (statSync(source).isDirectory()) {
+                api.utils.mkdirp.sync(target);
+            } else {
+                copyFileSync(source, target);
+            }
+        });
+    });
+
+    api.addFesExports(() => [
+        {
+            exportAll: true,
+            source: `../${namespace}/request.js`
+        }
+    ]);
+};

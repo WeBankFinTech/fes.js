@@ -76,13 +76,15 @@ export function checkHttpRequestHasBody(method) {
 }
 
 export function trimObj(obj) {
-    Object.entries(obj).forEach(([key, value]) => {
-        if (isString(value)) {
-            obj[key] = value.trim();
-        } else if (isObject(value)) {
-            trimObj(value);
-        } else if (Array.isArray(value)) {
-            trimObj(value);
-        }
-    });
+    if (isObject(obj)) {
+        Object.entries(obj).forEach(([key, value]) => {
+            if (isString(value)) {
+                obj[key] = value.trim();
+            } else if (isObject(value)) {
+                trimObj(value);
+            } else if (Array.isArray(value)) {
+                trimObj(value);
+            }
+        });
+    }
 }

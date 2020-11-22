@@ -4,6 +4,7 @@ import {
     join
 } from 'path';
 import { routesToJSON } from '@webank/fes-core';
+import { runtimePath } from '../constants';
 
 export default function (api) {
     const {
@@ -16,9 +17,15 @@ export default function (api) {
         api.writeTmpFile({
             path: 'core/routes.js',
             content: Mustache.render(routesTpl, {
+                runtimePath,
                 routes: routesToJSON({ routes, config: api.config }),
                 config: api.config
             })
         });
     });
+
+    api.addFesExports(() => ({
+        specifiers: ['router'],
+        source: './routes.js'
+    }));
 }
