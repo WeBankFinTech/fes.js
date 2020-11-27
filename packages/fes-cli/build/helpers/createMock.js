@@ -15,28 +15,6 @@ const util = require('./util');
 
 const router = express.Router();
 
-const proxy = httpProxy.createProxyServer();
-
-proxy.on('open', (proxySocket) => {
-    proxySocket.on('data', (chunk) => {
-        log.message(chunk.toString());
-    });
-});
-proxy.on('proxyRes', (proxyRes) => {
-    log.message(
-        'RAW Response from the target',
-        JSON.stringify(proxyRes.headers, true, 2)
-    );
-    const cookie = proxyRes.headers['set-cookie'];
-    if (cookie && cookie.length > 0) {
-        for (let i = 0; i < cookie.length; i++) {
-            cookie[i] = cookie[i].replace('Secure', '');
-        }
-    }
-});
-proxy.on('error', (e) => {
-    log.error(e);
-});
 
 // 根据参数个数获取配置
 function getOption(arg) {
@@ -135,6 +113,41 @@ const createMock = function () {
     };
 
     cgiMock.proxy = function (host) {
+        const proxy = httpProxy.createProxyServer();
+        proxy.on('open', (proxySocket) => {
+            proxySocket.on('data', (chunk) => {
+                log.message(chunk.toString());
+            });
+        });
+        proxy.on('proxyReq', (proxyReq, req) => {
+            proxyReq.setHeader('Host', url.parse(host).host);
+            if (req.body) {
+                const bodyData = JSON.stringify(req.body);
+                // incase if content-type is application/x-www-form-urlencoded -> we need to change to application/json
+                proxyReq.setHeader('Content-Type', 'application/json');
+                proxyReq.setHeader('Content-Length', Buffer.byteLength(bodyData));
+                // stream the content
+                proxyReq.write(bodyData);
+            }
+        });
+        proxy.on('proxyRes', (proxyRes) => {
+            log.message(
+                'RAW Response from the target',
+                JSON.stringify(proxyRes.headers, true, 2)
+            );
+            const cookie = proxyRes.headers['set-cookie'];
+            if (cookie && cookie.length > 0) {
+                for (let i = 0; i < cookie.length; i++) {
+                    cookie[i] = cookie[i].replace('Secure', '');
+                }
+            }
+        });
+        proxy.on('error', (e) => {
+            log.error(e);
+        });
+        proxy.on('proxyReq', (proxyReq) => {
+            proxyReq.setHeader('Host', url.parse(host).host);
+        });
         process.nextTick(() => {
             router.use((req, res) => {
                 proxy.web(req, res, {
@@ -142,9 +155,6 @@ const createMock = function () {
                     secure: false
                 });
             });
-        });
-        proxy.on('proxyReq', (proxyReq) => {
-            proxyReq.setHeader('Host', url.parse(host).host);
         });
     };
 
@@ -192,6 +202,7 @@ const loadCustomRoute = function (app) {
 
 module.exports = function (app) {
     app.use(logger('dev'));
+    app.use(bodyParser.json());
     app.use(
         bodyParser.urlencoded({
             extended: false

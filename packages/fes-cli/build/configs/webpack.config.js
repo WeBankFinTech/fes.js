@@ -143,7 +143,7 @@ module.exports = function webpackConfig(configs, webpack, mode) {
                         {
                             loader: require.resolve('cache-loader'),
                             options: {
-                                cacheDirectory: path.resolve(configs.folders.PROJECT_DIR, 'node_modules/.cache/vue-loader')
+                                cacheDirectory: path.resolve(configs.folders.PROJECT_DIR, '.cache/vue-loader')
                             }
                         },
                         {
@@ -152,7 +152,7 @@ module.exports = function webpackConfig(configs, webpack, mode) {
                                 compilerOptions: {
                                     preserveWhitespace: false
                                 },
-                                cacheDirectory: path.resolve(configs.folders.PROJECT_DIR, 'node_modules/.cache/vue-loader')
+                                cacheDirectory: path.resolve(configs.folders.PROJECT_DIR, '.cache/vue-loader')
                             }
                         }
                     ]
@@ -303,7 +303,7 @@ module.exports = function webpackConfig(configs, webpack, mode) {
                         {
                             loader: require.resolve('cache-loader'),
                             options: {
-                                cacheDirectory: path.resolve(configs.folders.PROJECT_DIR, 'node_modules/.cache/babel-loader')
+                                cacheDirectory: path.resolve(configs.folders.PROJECT_DIR, '.cache/babel-loader')
                             }
                         },
                         {
@@ -325,7 +325,9 @@ module.exports = function webpackConfig(configs, webpack, mode) {
         devtool: isDev && 'cheap-module-eval-source-map',
 
         plugins: [
-            new HardSourceWebpackPlugin(),
+            new HardSourceWebpackPlugin({
+                cacheDirectory: path.resolve(configs.folders.PROJECT_DIR, '.cache/hard-source')
+            }),
 
             /* config.plugin('progress') */
             new webpack.ProgressPlugin(),
