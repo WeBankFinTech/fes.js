@@ -32,6 +32,7 @@
                         <span
                             v-for="(option, index) in selectedOption"
                             :key="index"
+                            :title="option.currentLabel"
                             class="ui-select-selected-value"
                         >
                             {{option.currentLabel}}

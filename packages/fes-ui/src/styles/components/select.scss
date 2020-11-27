@@ -199,8 +199,11 @@
             min-height: 30px;
         }
         .ui-select-selected-value {
+            max-width: 80%;
+            position: relative;
             display: inline-block;
             padding: 0 6px;
+            padding-right: 20px;
             margin: 3px 4px 2px 4px;
             height: 22px;
             line-height: 20px;
@@ -208,14 +211,23 @@
             border: 1px solid $border-color-split;
             background-color: $background-color-base;
             .ui-icon{
-                margin-left: 6px;
+                position: absolute;
+                right: 6px;
+                top: 4px;
             }
         }
         .ui-select-item {
+            &.ui-select-item-selected {
+                padding-right: 30px;
+                position: relative;
+            }
             &.ui-select-item-selected{
                 @extend .ui-icon-md-checkmark;
                 &::before{
                     @extend .ui-icon;
+                    position: absolute;
+                    right: 16px;
+                    bottom: 8px;
                     display: block;
                     float: right;
                     color: $selected-color;

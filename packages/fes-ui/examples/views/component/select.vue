@@ -9,7 +9,7 @@
         <panel>
             <div slot="template">
                 <div class="panel-case">
-                    <Wb-select v-model="value" :options="arr" filterable style="width:200px" @on-search="search2" @on-change="change" />
+                    <Wb-select v-model="value" :options="arr" @on-search="search2" @on-change="change" filterable style="width:200px" />
                 </div>
                 <div class="panel-header">
                     <span>基础用法</span>
@@ -27,7 +27,7 @@
         <panel>
             <div slot="template">
                 <div class="panel-case">
-                    <Wb-select v-model="value1" filterable style="width:200px" @finished="finished" @on-change="change">
+                    <Wb-select v-model="value1" @finished="finished" @on-change="change" filterable style="width:200px">
                         <wb-option :value="1" label="北京市" />
                         <wb-option :value="2">
                             上海市上海市上海市上海市上海市上海市上海市上海市上海市上海市上海市
@@ -62,7 +62,7 @@
         <panel>
             <div slot="template">
                 <div class="panel-case">
-                    <Wb-select v-model="value2" filterable @on-change="change">
+                    <Wb-select v-model="value2" @on-change="change" filterable>
                         <wb-option :value="1">
                             北京市
                         </wb-option>
@@ -96,9 +96,9 @@
         <panel>
             <div slot="template">
                 <div class="panel-case">
-                    <Wb-select v-model="value3" filterable @on-search="search" @on-change="change">
+                    <Wb-select v-model="value3" @on-search="search" @on-change="change" filterable>
                         <wb-option v-for="item in options" :key="item" :value="item">
-                            {{ item }}
+                            {{item}}
                         </wb-option>
                     </Wb-select>
                 </div>
@@ -115,10 +115,10 @@
         <panel>
             <div slot="template">
                 <div class="panel-case">
-                    <Wb-select v-model="value4" :multiple-limit="2" multiple @on-change="change">
+                    <Wb-select v-model="value4" :multiple-limit="2" @on-change="change" multiple>
                         <wb-option :value="1" label="北京市" />
                         <wb-option :value="2">
-                            上海市
+                            上海市111111111111111111111111111111111111111111111111111111111111111111111上海市111111111111111111111111111111111111111111111111111111111111111111111
                         </wb-option>
                         <wb-option :value="3" disabled>
                             深圳市
@@ -393,16 +393,16 @@
     </div>
 </template>
 <script type="text/ecmascript-6">
-import markdown1 from './md/select.md'
-import markdown2 from './md/select2.md'
-import markdown3 from './md/select2.md'
-import markdown4 from './md/select2.md'
+import markdown1 from './md/select.md';
+import markdown2 from './md/select2.md';
+import markdown3 from './md/select2.md';
+import markdown4 from './md/select2.md';
+
 export default {
     components: {
         markdown1, markdown2, markdown3, markdown4
     },
-    data: function () {
-        
+    data() {
         return {
             value: [1, 2, 3],
             value1: '',
@@ -411,16 +411,16 @@ export default {
             value4: [],
             options: [1, 2, 3, 4],
             arr: []
-        }
+        };
     },
     mounted() {
         let i = 0;
-        let arr = [];
+        const arr = [];
         while (i < 10000) {
             arr.push({
                 value: i,
                 text: `optionoptionoptionoptionoptionoption${i}`
-            })
+            });
             i++;
         }
         this.arr = arr;
@@ -429,16 +429,16 @@ export default {
         finished() {
             console.log('finished');
         },
-        change: function (value) {
-            console.log(value)
+        change(value) {
+            console.log(value);
         },
-        search: function (value) {
+        search(value) {
             // this.options = [];
             // for (let i = 1; i < 10; i++) {
             //     this.options.push(value + '|' + i)
             // }
         },
-        search2: function (value) {
+        search2(value) {
             // let i = 0;
             // let arr = [];
             // while (i < 10000) {
@@ -451,5 +451,5 @@ export default {
             // this.arr = arr;
         }
     }
-}
+};
 </script>
