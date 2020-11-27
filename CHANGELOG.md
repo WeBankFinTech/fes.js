@@ -2,6 +2,19 @@
 
 <!-- DO NOT CHANGE THESE COMMENTS - See .github/actions/trigger-github-release/update-changelog.js -->
 <!-- insert-new-changelog-here -->
+## [0.4.5](https://github.com/WeBankFinTech/fes/compare/v0.4.4...v0.4.5) (2020-11-27)
+
+
+### :bug: Bug Fix
+
+* **fes-cli:** 修复mock对post请求的支持 ([e4815cb](https://github.com/WeBankFinTech/fes/commit/e4815cb)) by: **万纯**
+* **fes-core:** v-permisson也支持模糊匹配 ([9d29199](https://github.com/WeBankFinTech/fes/commit/9d29199)) by: **万纯**
+* **fes-ui:** 修复select组件展示内容长多的选项时超出框范围 ([97ef412](https://github.com/WeBankFinTech/fes/commit/97ef412)) by: **万纯**
+
+
+### :memo: Documentation
+
+* **fes-doc:** 更正对v-perssion用法 ([27abe1b](https://github.com/WeBankFinTech/fes/commit/27abe1b)) by: **万纯**
 ## [0.4.4](https://github.com/WeBankFinTech/fes/compare/v0.4.3...v0.4.4) (2020-11-13)
 
 
