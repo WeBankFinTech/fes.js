@@ -9,7 +9,7 @@
 ### 按钮权限
 菜单权限使用菜单的路径当做资源id，而按钮则可以自定义资源id。例如我们定义一个按钮的资源id为'/hr/shelf-action'：
 ```html
-<Wb-button v-permission:="/hr/shelf-action"></Wb-button>
+<Wb-button v-permission:="'/hr/shelf-action'"></Wb-button>
 ```
 在如果设置角色或者直接设置可访问资源列表后, 资源列表包含'/hr/shelf-action'，则此按钮可见。
 ```javascript
