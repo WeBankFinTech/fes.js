@@ -2,7 +2,7 @@ import assert from 'assert';
 import * as utils from '@umijs/utils';
 import { isValidPlugin, pathToObj } from './utils/pluginUtils';
 import { EnableBy, PluginType, ServiceStage } from './enums';
-import Logger from '../logger/logger';
+import Logger from '../logger';
 // TODO
 // 标准化 logger
 export default class PluginAPI {
