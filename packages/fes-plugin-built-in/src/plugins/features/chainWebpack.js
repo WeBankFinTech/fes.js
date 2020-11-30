@@ -21,7 +21,6 @@ export default (api) => {
         ]);
         webpackConfig.module
             .rule('js-in-node_modules').use('babel-loader').tap((options) => {
-                console.log(options);
                 options.cacheDirectory = winPath(`${prefix}/.fes/.cache/babel-loader`);
                 return options;
             });

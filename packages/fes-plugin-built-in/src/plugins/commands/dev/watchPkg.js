@@ -3,7 +3,7 @@ import { chokidar, winPath, lodash } from '@umijs/utils';
 import { existsSync, readFileSync } from 'fs';
 import { isPlugin, PluginType } from '@webank/fes-core';
 
-function getFesPlugins(opts) {
+function getPlugins(opts) {
     return Object.keys({
         ...opts.pkg.dependencies,
         ...opts.pkg.devDependencies
@@ -12,7 +12,7 @@ function getFesPlugins(opts) {
     ));
 }
 
-function getFesPluginsFromPkgPath(opts) {
+function getPluginsFromPkgPath(opts) {
     let pkg = {};
     if (existsSync(opts.pkgPath)) {
         try {
@@ -21,17 +21,17 @@ function getFesPluginsFromPkgPath(opts) {
             // ignore
         }
     }
-    return getFesPlugins({ pkg });
+    return getPlugins({ pkg });
 }
 
 export function watchPkg(opts) {
     const pkgPath = join(opts.cwd, 'package.json');
-    const plugins = getFesPluginsFromPkgPath({ pkgPath });
+    const plugins = getPluginsFromPkgPath({ pkgPath });
     const watcher = chokidar.watch(pkgPath, {
         ignoreInitial: true
     });
     watcher.on('all', () => {
-        const newPlugins = getFesPluginsFromPkgPath({ pkgPath });
+        const newPlugins = getPluginsFromPkgPath({ pkgPath });
         if (!lodash.isEqual(plugins, newPlugins)) {
             // 已经重启了，只处理一次就够了
             opts.onChange();

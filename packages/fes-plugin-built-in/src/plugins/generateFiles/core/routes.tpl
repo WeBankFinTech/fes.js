@@ -1,4 +1,4 @@
-import { createRouter, createWebHashHistory } from '{{{ runtimePath }}}';
+import { createRouter as createVueRouter, createWebHashHistory } from '{{{ runtimePath }}}';
 
 export function getRoutes() {
   const routes = {{{ routes }}};
@@ -7,11 +7,11 @@ export function getRoutes() {
 }
 
 let router = null;
-export const createHistory = () => {
+export const createRouter = () => {
   if (router) {
       return router;
   }
-  router = createRouter({
+  router = createVueRouter({
       history: createWebHashHistory(),
       routes: getRoutes()
   });

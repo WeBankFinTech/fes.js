@@ -7,7 +7,7 @@ import {
 import { plugin } from './core/plugin';
 import './core/pluginRegister';
 import { ApplyPluginsType } from '{{{ runtimePath }}}';
-import { createRouter } from './core/routes';
+import { createRouter, getRoutes } from './core/routes';
 {{{ imports }}}
 
 {{{ entryCodeAhead }}}

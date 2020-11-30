@@ -2,12 +2,12 @@ import { lodash, winPath } from '@umijs/utils';
 import assert from 'assert';
 
 const reserveLibrarys = ['fes']; // reserve library
+// todo 插件导出内容冲突问题待解决
 const reserveExportsNames = [
     'Link',
     'NavLink',
     'Redirect',
     'dynamic',
-    'router',
     'withRouter',
     'Route'
 ];
