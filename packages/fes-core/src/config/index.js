@@ -1,10 +1,5 @@
-import {
-    existsSync
-} from 'fs';
-import {
-    extname,
-    join
-} from 'path';
+import { existsSync } from 'fs';
+import { extname, join } from 'path';
 import {
     chalk,
     chokidar,
@@ -18,9 +13,7 @@ import {
 } from '@umijs/utils';
 import assert from 'assert';
 import joi from 'joi';
-import {
-    ServiceStage
-} from '../Service/enums';
+import { ServiceStage } from '../service/enums';
 import {
     getUserConfigWithKey,
     updateUserConfigWithKey
@@ -28,10 +21,7 @@ import {
 import isEqual from './utils/isEqual';
 import mergeDefault from './utils/mergeDefault';
 
-const CONFIG_FILES = [
-    '.fes.js',
-    'config/config.js'
-];
+const CONFIG_FILES = ['.fes.js', 'config/config.js'];
 
 // TODO:
 // 1. custom config file
@@ -57,10 +47,7 @@ export default class Config {
 
         // collect default config
         const defaultConfig = pluginIds.reduce((memo, pluginId) => {
-            const {
-                key,
-                config = {}
-            } = this.service.plugins[pluginId];
+            const { key, config = {} } = this.service.plugins[pluginId];
             if ('default' in config) memo[key] = config.default;
             return memo;
         }, {});
@@ -68,26 +55,23 @@ export default class Config {
         return defaultConfig;
     }
 
-    getConfig({
-        defaultConfig
-    }) {
+    getConfig({ defaultConfig }) {
         assert(
             this.service.stage >= ServiceStage.pluginReady,
-            'Config.getConfig() failed, it should not be executed before plugin is ready.',
+            'Config.getConfig() failed, it should not be executed before plugin is ready.'
         );
 
         const userConfig = this.getUserConfig();
         // 用于提示用户哪些 key 是未定义的
         // TODO: 考虑不排除 false 的 key
-        const userConfigKeys = Object.keys(userConfig).filter(key => userConfig[key] !== false);
+        const userConfigKeys = Object.keys(userConfig).filter(
+            key => userConfig[key] !== false
+        );
 
         // get config
         const pluginIds = Object.keys(this.service.plugins);
         pluginIds.forEach((pluginId) => {
-            const {
-                key,
-                config = {}
-            } = this.service.plugins[pluginId];
+            const { key, config = {} } = this.service.plugins[pluginId];
             // recognize as key if have schema config
             if (!config.schema) return;
 
@@ -102,14 +86,12 @@ export default class Config {
             const schema = config.schema(joi);
             assert(
                 joi.isSchema(schema),
-                `schema return from plugin ${pluginId} is not valid schema.`,
+                `schema return from plugin ${pluginId} is not valid schema.`
             );
-            const {
-                error
-            } = schema.validate(value);
+            const { error } = schema.validate(value);
             if (error) {
                 const e = new Error(
-                    `Validate config "${key}" failed, ${error.message}`,
+                    `Validate config "${key}" failed, ${error.message}`
                 );
                 e.stack = error.stack;
                 throw e;
@@ -137,7 +119,9 @@ export default class Config {
 
         if (userConfigKeys.length) {
             const keys = userConfigKeys.length > 1 ? 'keys' : 'key';
-            throw new Error(`Invalid config ${keys}: ${userConfigKeys.join(', ')}`);
+            throw new Error(
+                `Invalid config ${keys}: ${userConfigKeys.join(', ')}`
+            );
         }
 
         return userConfig;
@@ -153,11 +137,11 @@ export default class Config {
             if (process.env.FES_ENV) {
                 const envConfigFileName = this.addAffix(
                     configFile,
-                    process.env.FES_ENV,
+                    process.env.FES_ENV
                 );
                 const fileNameWithoutExt = envConfigFileName.replace(
                     extname(envConfigFileName),
-                    '',
+                    ''
                 );
                 envConfigFile = getFile({
                     base: this.cwd,
@@ -166,7 +150,7 @@ export default class Config {
                 }).filename;
                 if (!envConfigFile) {
                     throw new Error(
-                        `get user config failed, ${envConfigFile} does not exist, but process.env.FES_ENV is set to ${process.env.FES_ENV}.`,
+                        `get user config failed, ${envConfigFile} does not exist, but process.env.FES_ENV is set to ${process.env.FES_ENV}.`
                     );
                 }
             }
@@ -203,7 +187,7 @@ export default class Config {
 
     requireConfigs(configFiles) {
         // eslint-disable-next-line
-        return configFiles.map(f => compatESModuleRequire(require(f)));
+        return configFiles.map((f) => compatESModuleRequire(require(f)));
     }
 
     mergeConfig(...configs) {
@@ -266,10 +250,7 @@ export default class Config {
             const pluginChanged = [];
             const valueChanged = [];
             Object.keys(this.service.plugins).forEach((pluginId) => {
-                const {
-                    key,
-                    config = {}
-                } = this.service.plugins[pluginId];
+                const { key, config = {} } = this.service.plugins[pluginId];
                 // recognize as key if have schema config
                 if (!config.schema) return;
                 if (!isEqual(newUserConfig[key], userConfig[key])) {
@@ -277,7 +258,10 @@ export default class Config {
                         key,
                         pluginId
                     };
-                    if (newUserConfig[key] === false || userConfig[key] === false) {
+                    if (
+                        newUserConfig[key] === false
+                        || userConfig[key] === false
+                    ) {
                         pluginChanged.push(changed);
                     } else {
                         valueChanged.push(changed);

@@ -1,33 +1,21 @@
-import {
-    join
-} from 'path';
-import {
-    EventEmitter
-} from 'events';
+import { join } from 'path';
+import { EventEmitter } from 'events';
 import assert from 'assert';
-import {
-    AsyncSeriesWaterfallHook
-} from 'tapable';
-import {
-    existsSync
-} from 'fs';
+import { AsyncSeriesWaterfallHook } from 'tapable';
+import { existsSync } from 'fs';
 import { BabelRegister } from '@umijs/utils';
-import {
-    resolvePlugins
-} from './utils/pluginUtils';
+import { resolvePlugins } from './utils/pluginUtils';
 import loadDotEnv from './utils/loadDotEnv';
 import isPromise from './utils/isPromise';
-import PluginAPI from './PluginAPI';
+import PluginAPI from './pluginAPI';
 import {
     ApplyPluginsType,
     ConfigChangeType,
     EnableBy,
     ServiceStage
 } from './enums';
-import Config from '../Config/Config';
-import {
-    getUserConfigWithKey
-} from '../Config/utils/configUtils';
+import Config from '../config';
+import { getUserConfigWithKey } from '../config/utils/configUtils';
 import getPaths from './getPaths';
 
 // TODO
@@ -137,7 +125,7 @@ export default class Service extends EventEmitter {
     resolvePackage() {
         try {
             // eslint-disable-next-line
-            return require(join(this.cwd, 'package.json'));
+            return require(join(this.cwd, "package.json"));
         } catch (e) {
             return {};
         }
@@ -161,9 +149,7 @@ export default class Service extends EventEmitter {
         Object.keys(this.hooksByPluginId).forEach((id) => {
             const hooks = this.hooksByPluginId[id];
             hooks.forEach((hook) => {
-                const {
-                    key
-                } = hook;
+                const { key } = hook;
                 hook.pluginId = id;
                 this.hooks[key] = (this.hooks[key] || []).concat(hook);
             });
@@ -188,11 +174,11 @@ export default class Service extends EventEmitter {
         if (this.config.outputPath) {
             this.paths.absOutputPath = join(this.cwd, this.config.outputPath);
         }
-        const paths = (await this.applyPlugins({
+        const paths = await this.applyPlugins({
             key: 'modifyPaths',
             type: ApplyPluginsType.modify,
             initialValue: this.paths
-        }));
+        });
         Object.keys(paths).forEach((key) => {
             this.paths[key] = paths[key];
         });
@@ -283,11 +269,7 @@ export default class Service extends EventEmitter {
     }
 
     async initPlugin(plugin) {
-        const {
-            id,
-            key,
-            apply
-        } = plugin;
+        const { id, key, apply } = plugin;
 
         const api = this.getPluginAPI({
             id,
@@ -318,10 +300,7 @@ export default class Service extends EventEmitter {
         // api.skipPlugins() 的插件
         if (this.skipPluginIds.has(pluginId)) return false;
 
-        const {
-            key,
-            enableBy
-        } = this.plugins[pluginId];
+        const { key, enableBy } = this.plugins[pluginId];
 
         // 手动设置为 false
         if (this.userConfig[key] === false) return false;
@@ -354,72 +333,75 @@ export default class Service extends EventEmitter {
                 if ('initialValue' in opts) {
                     assert(
                         Array.isArray(opts.initialValue),
-                        'applyPlugins failed, opts.initialValue must be Array if opts.type is add.',
+                        'applyPlugins failed, opts.initialValue must be Array if opts.type is add.'
                     );
                 }
                 // eslint-disable-next-line
-                const tAdd = new AsyncSeriesWaterfallHook(['memo']);
+                const tAdd = new AsyncSeriesWaterfallHook(["memo"]);
                 for (const hook of hooks) {
                     if (!this.isPluginEnable(hook.pluginId)) {
                         continue;
                     }
-                    tAdd.tapPromise({
-                        name: hook.pluginId,
-                        stage: hook.stage || 0,
-                        // @ts-ignore
-                        before: hook.before
-                    },
-                    async (memo) => {
-                        const items = await hook.fn(opts.args);
-                        return memo.concat(items);
-                    },);
+                    tAdd.tapPromise(
+                        {
+                            name: hook.pluginId,
+                            stage: hook.stage || 0,
+                            // @ts-ignore
+                            before: hook.before
+                        },
+                        async (memo) => {
+                            const items = await hook.fn(opts.args);
+                            return memo.concat(items);
+                        }
+                    );
                 }
                 return tAdd.promise(opts.initialValue || []);
             case ApplyPluginsType.modify:
                 // eslint-disable-next-line
-                const tModify = new AsyncSeriesWaterfallHook(['memo']);
+                const tModify = new AsyncSeriesWaterfallHook(["memo"]);
                 for (const hook of hooks) {
                     if (!this.isPluginEnable(hook.pluginId)) {
                         continue;
                     }
-                    tModify.tapPromise({
-                        name: hook.pluginId,
-                        stage: hook.stage || 0,
-                        // @ts-ignore
-                        before: hook.before
-                    },
-                    async memo => hook.fn(memo, opts.args),);
+                    tModify.tapPromise(
+                        {
+                            name: hook.pluginId,
+                            stage: hook.stage || 0,
+                            // @ts-ignore
+                            before: hook.before
+                        },
+                        async memo => hook.fn(memo, opts.args)
+                    );
                 }
                 return tModify.promise(opts.initialValue);
             case ApplyPluginsType.event:
                 // eslint-disable-next-line
-                const tEvent = new AsyncSeriesWaterfallHook(['_']);
+                const tEvent = new AsyncSeriesWaterfallHook(["_"]);
                 for (const hook of hooks) {
                     if (!this.isPluginEnable(hook.pluginId)) {
                         continue;
                     }
-                    tEvent.tapPromise({
-                        name: hook.pluginId,
-                        stage: hook.stage || 0,
-                        // @ts-ignore
-                        before: hook.before
-                    },
-                    async () => {
-                        await hook.fn(opts.args);
-                    },);
+                    tEvent.tapPromise(
+                        {
+                            name: hook.pluginId,
+                            stage: hook.stage || 0,
+                            // @ts-ignore
+                            before: hook.before
+                        },
+                        async () => {
+                            await hook.fn(opts.args);
+                        }
+                    );
                 }
                 return tEvent.promise();
             default:
                 throw new Error(
-                    `applyPlugin failed, type is not defined or is not matched, got ${opts.type}.`,
+                    `applyPlugin failed, type is not defined or is not matched, got ${opts.type}.`
                 );
         }
     }
 
-    async run({
-        name,
-        args = {}
-    }) {
+    async run({ name, args = {} }) {
         args._ = args._ || [];
         // shift the command itself
         if (args._[0] === name) args._.shift();
@@ -442,10 +424,7 @@ export default class Service extends EventEmitter {
         });
     }
 
-    async runCommand({
-        name,
-        args = {}
-    }) {
+    async runCommand({ name, args = {} }) {
         assert(this.stage >= ServiceStage.init, 'service is not initialized.');
 
         args._ = args._ || [];
@@ -457,9 +436,7 @@ export default class Service extends EventEmitter {
             : this.commands[name];
         assert(command, `run command failed, command ${name} does not exists.`);
 
-        const {
-            fn
-        } = command;
+        const { fn } = command;
         return fn({
             args
         });

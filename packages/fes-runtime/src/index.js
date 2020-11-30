@@ -10,4 +10,4 @@ export {
     createRouter
 } from 'vue-router';
 
-export { default as Plugin, ApplyPluginsType } from './Plugin/Plugin';
+export { default as Plugin, ApplyPluginsType } from './plugin';

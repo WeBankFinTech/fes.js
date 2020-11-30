@@ -1,11 +1,11 @@
 
 
-import Config from './Config/Config';
-import Service from './Service/Service';
-import PluginAPI from './Service/PluginAPI';
+import Config from './config';
+import Service from './service';
+import PluginAPI from './service/pluginAPI';
 import Logger from './logger/logger';
-import { PluginType } from './Service/enums';
-import { isPlugin } from './Service/utils/pluginUtils';
+import { PluginType } from './service/enums';
+import { isPlugin } from './service/utils/pluginUtils';
 
 export * from './route';
 
