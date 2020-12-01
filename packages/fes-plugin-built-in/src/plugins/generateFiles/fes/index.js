@@ -1,7 +1,7 @@
 import { readFileSync } from 'fs';
 import { join } from 'path';
 import { winPath } from '@umijs/utils';
-import { runtimePath } from './constants';
+import { runtimePath } from '../../../utils/constants';
 
 export function importsToStr(
     imports,

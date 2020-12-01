@@ -5,12 +5,12 @@ export default [
     require.resolve('./plugins/registerMethods'),
 
     // misc
-    require.resolve('./plugins/routes'),
+    require.resolve('./plugins/mics/routes'),
 
     // generate files
     require.resolve('./plugins/generateFiles/core/plugin'),
     require.resolve('./plugins/generateFiles/core/routes'),
-    require.resolve('./plugins/generateFiles/core/fesExports'),
+    require.resolve('./plugins/generateFiles/core/exports'),
     require.resolve('./plugins/generateFiles/fes'),
 
     // bundle configs
@@ -48,6 +48,6 @@ export default [
     require.resolve('./plugins/features/vueLoader'),
 
     // commands
-    require.resolve('./plugins/commands/build/build'),
-    require.resolve('./plugins/commands/dev/dev')
+    require.resolve('./plugins/commands/build'),
+    require.resolve('./plugins/commands/dev')
 ];

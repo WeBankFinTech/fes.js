@@ -55,7 +55,7 @@ export default (api) => {
         });
     });
 
-    api.addFesExports(() => [
+    api.addExports(() => [
         {
             exportAll: true,
             source: `../${namespace}/request.js`

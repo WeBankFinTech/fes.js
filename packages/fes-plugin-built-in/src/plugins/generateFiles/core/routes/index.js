@@ -4,7 +4,7 @@ import {
     join
 } from 'path';
 import { routesToJSON } from '@webank/fes-core';
-import { runtimePath } from '../constants';
+import { runtimePath } from '../../../../utils/constants';
 
 export default function (api) {
     const {
@@ -24,7 +24,7 @@ export default function (api) {
         });
     });
 
-    api.addFesExports(() => ({
+    api.addExports(() => ({
         specifiers: ['router'],
         source: './routes.js'
     }));

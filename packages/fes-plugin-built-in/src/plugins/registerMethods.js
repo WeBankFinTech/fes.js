@@ -6,7 +6,7 @@ export default function (api) {
     [
         'onExit',
         'onGenerateFiles',
-        'addFesExports',
+        'addExports',
         'addRuntimePluginKey',
         'addRuntimePlugin',
         'addEntryImportsAhead',

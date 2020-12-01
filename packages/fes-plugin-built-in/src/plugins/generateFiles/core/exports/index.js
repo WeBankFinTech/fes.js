@@ -63,14 +63,14 @@ export function generateExports({
 export default function (api) {
     api.onGenerateFiles(async () => {
         const fesExports = await api.applyPlugins({
-            key: 'addFesExports',
+            key: 'addExports',
             type: api.ApplyPluginsType.add,
             initialValue: []
         });
 
         const fesExportsHook = {}; // repeated definition
         api.writeTmpFile({
-            path: 'core/fesExports.js',
+            path: 'core/exports.js',
             content:
         `${fesExports
             .map(item => generateExports({

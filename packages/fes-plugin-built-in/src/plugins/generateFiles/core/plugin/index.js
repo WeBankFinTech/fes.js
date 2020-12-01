@@ -1,7 +1,7 @@
 import { readFileSync } from 'fs';
 import { join } from 'path';
 import { getFile, winPath } from '@umijs/utils';
-import { runtimePath } from '../constants';
+import { runtimePath } from '../../../../utils/constants';
 
 export default function (api) {
     const {
@@ -54,7 +54,7 @@ export default function (api) {
         });
     });
 
-    api.addFesExports(() => ({
+    api.addExports(() => ({
         specifiers: ['plugin'],
         source: './plugin'
     }));

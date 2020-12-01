@@ -1,25 +1,18 @@
 import { Server } from '@umijs/server';
-import {
-    delay
-} from '@umijs/utils';
+import { delay } from '@umijs/utils';
 import assert from 'assert';
 import {
     cleanTmpPathExceptCache,
     getBundleAndConfigs
-} from '../buildDevUtils';
-import generateFiles from '../generateFiles';
-import {
-    watchPkg
-} from './watchPkg';
+} from '../../../utils/buildDevUtils';
+import generateFiles from '../../../utils/generateFiles';
+import { watchPkg } from './watchPkg';
 
 export default (api) => {
     const {
         env,
         paths,
-        utils: {
-            chalk,
-            portfinder
-        }
+        utils: { chalk, portfinder }
     } = api;
 
     const unwatchs = [];
@@ -80,16 +73,13 @@ export default (api) => {
                 // watch config change
                 const unwatchConfig = api.service.configInstance.watch({
                     userConfig: api.service.userConfig,
-                    onChange: async ({
-                        pluginChanged,
-                        valueChanged
-                    }) => {
+                    onChange: async ({ pluginChanged, valueChanged }) => {
                         if (pluginChanged.length) {
                             console.log();
                             api.logger.info(
                                 `Plugins of ${pluginChanged
                                     .map(p => p.key)
-                                    .join(', ')} changed.`,
+                                    .join(', ')} changed.`
                             );
                             api.restartServer();
                         }
@@ -98,17 +88,18 @@ export default (api) => {
                             let regenerateTmpFiles = false;
                             const fns = [];
                             const reloadConfigs = [];
-                            valueChanged.forEach(({
-                                key,
-                                pluginId
-                            }) => {
-                                const {
+                            valueChanged.forEach(({ key, pluginId }) => {
+                                const { onChange } = api.service.plugins[pluginId].config || {};
+                                if (
                                     onChange
-                                } = api.service.plugins[pluginId].config || {};
-                                if (onChange === api.ConfigChangeType.regenerateTmpFiles) {
+                                    === api.ConfigChangeType.regenerateTmpFiles
+                                ) {
                                     regenerateTmpFiles = true;
                                 }
-                                if (!onChange || onChange === api.ConfigChangeType.reload) {
+                                if (
+                                    !onChange
+                                    || onChange === api.ConfigChangeType.reload
+                                ) {
                                     reload = true;
                                     reloadConfigs.push(key);
                                 }
@@ -119,7 +110,11 @@ export default (api) => {
 
                             if (reload) {
                                 console.log();
-                                api.logger.info(`Config ${reloadConfigs.join(', ')} changed.`);
+                                api.logger.info(
+                                    `Config ${reloadConfigs.join(
+                                        ', '
+                                    )} changed.`
+                                );
                                 api.restartServer();
                             } else {
                                 api.service.userConfig = api.service.configInstance.getUserConfig();
@@ -181,9 +176,7 @@ export default (api) => {
                 },
                 proxy: api.config.proxy,
                 beforeMiddlewares,
-                afterMiddlewares: [
-                    ...middlewares
-                ],
+                afterMiddlewares: [...middlewares],
                 ...(api.config.devServer || {})
             });
             const listenRet = await server.listen({
@@ -202,7 +195,7 @@ export default (api) => {
         fn() {
             assert(
                 env === 'development',
-                'api.getPort() is only valid in development.',
+                'api.getPort() is only valid in development.'
             );
             return port;
         }
@@ -213,7 +206,7 @@ export default (api) => {
         fn() {
             assert(
                 env === 'development',
-                'api.getHostname() is only valid in development.',
+                'api.getHostname() is only valid in development.'
             );
             return hostname;
         }
@@ -224,7 +217,7 @@ export default (api) => {
         fn() {
             assert(
                 env === 'development',
-                'api.getServer() is only valid in development.',
+                'api.getServer() is only valid in development.'
             );
             return server;
         }

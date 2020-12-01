@@ -5,8 +5,8 @@ import {
     cleanTmpPathExceptCache,
     getBundleAndConfigs,
     printFileSizes
-} from '../buildDevUtils';
-import generateFiles from '../generateFiles';
+} from '../../../utils/buildDevUtils';
+import generateFiles from '../../../utils/generateFiles';
 
 const logger = new Logger('fes:plugin-built-in');
 
