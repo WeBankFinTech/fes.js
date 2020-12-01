@@ -5,7 +5,7 @@ export default [
     require.resolve('./plugins/registerMethods'),
 
     // misc
-    require.resolve('./plugins/mics/routes'),
+    require.resolve('./plugins/misc/routes'),
 
     // generate files
     require.resolve('./plugins/generateFiles/core/plugin'),
