@@ -22,12 +22,13 @@ export default (api) => {
     });
 
     const namespace = 'plugin-request';
+    const absoluteFilePath = `${namespace}/request.js`;
     const requestTemplate = readFileSync(join(__dirname, 'template', 'request.js'), 'utf-8');
     api.onGenerateFiles(() => {
         // 文件写出
         const { dataField = '', messageUI } = api.config.request;
         api.writeTmpFile({
-            path: `${namespace}/request.js`,
+            path: absoluteFilePath,
             content: requestTemplate
                 .replace('REPLACE_MESSAGE_UI', messageUI || 'ant-design-vue')
                 .replace('REPLACE_DATA_FIELD', dataField)
@@ -58,7 +59,7 @@ export default (api) => {
     api.addExports(() => [
         {
             exportAll: true,
-            source: `../${namespace}/request.js`
+            source: absoluteFilePath
         }
     ]);
 };

@@ -11,11 +11,13 @@ export default function (api) {
         utils: { Mustache }
     } = api;
 
+    const absoluteFilePath = 'core/routes.js';
+
     api.onGenerateFiles(async () => {
         const routesTpl = readFileSync(join(__dirname, 'routes.tpl'), 'utf-8');
         const routes = await api.getRoutes();
         api.writeTmpFile({
-            path: 'core/routes.js',
+            path: absoluteFilePath,
             content: Mustache.render(routesTpl, {
                 runtimePath,
                 routes: routesToJSON({ routes, config: api.config }),
@@ -26,6 +28,6 @@ export default function (api) {
 
     api.addExports(() => ({
         specifiers: ['router'],
-        source: './routes.js'
+        source: absoluteFilePath
     }));
 }

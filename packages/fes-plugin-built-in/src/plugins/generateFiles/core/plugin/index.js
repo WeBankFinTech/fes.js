@@ -9,6 +9,8 @@ export default function (api) {
         utils: { Mustache }
     } = api;
 
+    const absoluteFilePath = 'core/plugin.js';
+
     api.onGenerateFiles(async () => {
         const validKeys = await api.applyPlugins({
             key: 'addRuntimePluginKey',
@@ -31,7 +33,7 @@ export default function (api) {
             ].filter(Boolean)
         });
         api.writeTmpFile({
-            path: 'core/plugin.js',
+            path: absoluteFilePath,
             content: Mustache.render(
                 readFileSync(join(__dirname, 'plugin.tpl'), 'utf-8'),
                 {
@@ -56,6 +58,6 @@ export default function (api) {
 
     api.addExports(() => ({
         specifiers: ['plugin'],
-        source: './plugin'
+        source: absoluteFilePath
     }));
 }
