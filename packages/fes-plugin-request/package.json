@@ -2,14 +2,16 @@
   "name": "@webank/fes-plugin-request",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "lib/index.js",
+  "files": [
+    "lib"
+  ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "module": "dist/index.esm.js",
   "keywords": [],
   "author": "",
-  "type": "module",
   "license": "MIT",
   "peerDependencies": {
     "@webank/fes": "^2.0.0"
