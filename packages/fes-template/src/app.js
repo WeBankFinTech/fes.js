@@ -1,1 +1,2 @@
-// 入口函数 - 可有可无
+// 配置fes-plugin-request
+export const request = {};

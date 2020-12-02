@@ -9,7 +9,7 @@
   ],
   "scripts": {
     "bootstrap": "lerna bootstrap",
-    "build": "father-build",
+    "build": "father-build --watch",
     "version": "lerna version --no-changelog --no-commit-hooks --no-private",
     "publish": "lerna publish from-git"
   },
