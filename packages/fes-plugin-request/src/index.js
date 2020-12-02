@@ -22,7 +22,7 @@ export default (api) => {
     });
 
     const namespace = 'plugin-request';
-    const requestTemplate = readFileSync(join(__dirname, 'template', 'request.ts'), 'utf-8');
+    const requestTemplate = readFileSync(join(__dirname, 'template', 'request.js'), 'utf-8');
     api.onGenerateFiles(() => {
         // 文件写出
         const { dataField = '', messageUI } = api.config.request;

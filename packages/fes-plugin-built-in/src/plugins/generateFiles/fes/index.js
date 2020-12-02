@@ -3,9 +3,7 @@ import { join } from 'path';
 import { winPath } from '@umijs/utils';
 import { runtimePath } from '../../../utils/constants';
 
-export function importsToStr(
-    imports,
-) {
+export function importsToStr(imports) {
     return imports.map((imp) => {
         const { source, specifier } = imp;
         if (specifier) {
@@ -48,14 +46,14 @@ export default function (api) {
                         key: 'addEntryImportsAhead',
                         type: api.ApplyPluginsType.add,
                         initialValue: []
-                    }),
+                    })
                 ).join('\r\n'),
                 imports: importsToStr(
                     await api.applyPlugins({
                         key: 'addEntryImports',
                         type: api.ApplyPluginsType.add,
                         initialValue: []
-                    }),
+                    })
                 ).join('\r\n')
             })
         });
