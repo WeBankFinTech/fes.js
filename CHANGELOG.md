@@ -2,6 +2,12 @@
 
 <!-- DO NOT CHANGE THESE COMMENTS - See .github/actions/trigger-github-release/update-changelog.js -->
 <!-- insert-new-changelog-here -->
+## [0.4.6](https://github.com/WeBankFinTech/fes/compare/v0.4.5...v0.4.6) (2020-12-06)
+
+
+### :bug: Bug Fix
+
+* **fes-cli:** 兼容高版本node ([839a933](https://github.com/WeBankFinTech/fes/commit/839a933)) by: **bac-joker**
 ## [0.4.5](https://github.com/WeBankFinTech/fes/compare/v0.4.4...v0.4.5) (2020-11-27)
 
 
