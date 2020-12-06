@@ -1,6 +1,6 @@
 {
   "name": "@webank/fes-template",
-  "version": "0.4.5",
+  "version": "0.4.6",
   "description": "fes项目模版",
   "main": "index.js",
   "scripts": {
@@ -37,7 +37,7 @@
   "devDependencies": {
     "@vue/test-utils": "^1.1.0",
     "@webank/eslint-config-webank": "^0.1.4",
-    "@webank/fes-cli": "^0.4.5",
+    "@webank/fes-cli": "^0.4.6",
     "chai": "^4.2.0",
     "csp-html-webpack-plugin": "^4.0.0"
   },
