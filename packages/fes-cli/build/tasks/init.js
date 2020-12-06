@@ -23,13 +23,14 @@ function createProject(config, projectName) {
                 strip: 1,
                 C: productDir // alias for cwd:'some-dir', also ok
             })
-        );
-        fs.unlinkSync(filePath);
-        log.message(`项目 ${projectName} 创建完成，请执行下面的命令进行使用：`);
-        log.message(`$ cd ${projectName}`);
-        log.message('$ npm i');
-        log.message('$ npm run dev');
-        resolve();
+        ).on('finish', () => {
+            fs.unlinkSync(filePath);
+            log.message(`项目 ${projectName} 创建完成，请执行下面的命令进行使用：`);
+            log.message(`$ cd ${projectName}`);
+            log.message('$ npm i');
+            log.message('$ npm run dev');
+            resolve();
+        });
     });
 }
 
