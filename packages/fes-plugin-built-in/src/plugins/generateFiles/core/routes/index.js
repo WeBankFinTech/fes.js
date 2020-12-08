@@ -1,9 +1,5 @@
-
 import { readFileSync } from 'fs';
-import {
-    join
-} from 'path';
-import { routesToJSON } from '@webank/fes-core';
+import { join } from 'path';
 import { runtimePath } from '../../../../utils/constants';
 
 export default function (api) {
@@ -15,12 +11,12 @@ export default function (api) {
 
     api.onGenerateFiles(async () => {
         const routesTpl = readFileSync(join(__dirname, 'routes.tpl'), 'utf-8');
-        const routes = await api.getRoutes();
+        const routes = await api.getRoutesJSON();
         api.writeTmpFile({
             path: absoluteFilePath,
             content: Mustache.render(routesTpl, {
                 runtimePath,
-                routes: routesToJSON({ routes, config: api.config }),
+                routes,
                 config: api.config
             })
         });

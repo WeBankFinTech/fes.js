@@ -7,8 +7,6 @@ import PluginAPI from './service/pluginAPI';
 import { PluginType } from './service/enums';
 import { isPlugin } from './service/utils/pluginUtils';
 
-export * from './route';
-
 export {
     Config,
     Service,
