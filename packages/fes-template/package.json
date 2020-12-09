@@ -1,8 +1,7 @@
 {
   "name": "@webank/fes-template",
-  "version": "0.2.1",
+  "version": "2.0.0",
   "description": "fes项目模版",
-  "main": "index.js",
   "scripts": {
     "build": "fes build",
     "dev": "fes dev"
@@ -35,6 +34,7 @@
   "dependencies": {
     "vue": "^3.0.2",
     "@webank/fes": "^2.0.0",
-    "@webank/fes-plugin-request": "^1.0.0"
+    "@webank/fes-plugin-request": "^1.0.0",
+    "@webank/fes-plugin-access": "^1.0.0"
   }
 }

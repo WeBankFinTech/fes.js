@@ -21,9 +21,4 @@ export default function (api) {
             })
         });
     });
-
-    api.addExports(() => ({
-        specifiers: ['router'],
-        source: absoluteFilePath
-    }));
 }

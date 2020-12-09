@@ -18,7 +18,12 @@ export default function (api) {
             initialValue: [
                 'modifyClientRenderOpts',
                 'rootContainer',
-                'render'
+                // 渲染
+                'render',
+                // 修改路由
+                'patchRoutes',
+                // 生成router时触发
+                'onRouterCreated'
             ]
         });
         const plugins = await api.applyPlugins({

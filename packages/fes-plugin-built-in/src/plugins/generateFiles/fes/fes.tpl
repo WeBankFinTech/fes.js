@@ -13,13 +13,14 @@ import { createRouter, getRoutes } from './core/routes';
 {{{ entryCodeAhead }}}
 
 const renderClient = (opts = {}) => {
-    const rootContainer = opts.plugin.applyPlugins({
+    const { plugin, routes, rootElement } = opts;
+    const rootContainer = plugin.applyPlugins({
         type: 'modify',
         key: 'rootContainer',
         initialValue: defineComponent(() => () => (<RouterView></RouterView>)),
         args: {
-            routes: opts.routes,
-            plugin: opts.plugin
+            routes: routes,
+            plugin: plugin
         }
     });
 
@@ -28,8 +29,8 @@ const renderClient = (opts = {}) => {
     app.use(router);
 
     // TODO other plugins install
-    if (opts.rootElement) {
-        app.mount(opts.rootElement);
+    if (rootElement) {
+        app.mount(rootElement);
     }
     return app;
 }

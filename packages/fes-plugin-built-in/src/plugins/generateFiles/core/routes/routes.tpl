@@ -1,8 +1,15 @@
-import { createRouter as createVueRouter, createWebHashHistory } from '{{{ runtimePath }}}';
+import { createRouter as createVueRouter, createWebHashHistory, ApplyPluginsType } from '{{{ runtimePath }}}';
+import { plugin } from './plugin';
 
 export function getRoutes() {
   const routes = {{{ routes }}};
-  // TODO 支持动态变更路由
+  
+  plugin.applyPlugins({
+    key: 'patchRoutes',
+    type: ApplyPluginsType.event,
+    args: { routes },
+  });
+
   return routes;
 }
 
@@ -16,7 +23,11 @@ export const createRouter = () => {
       routes: getRoutes()
   });
 
+  plugin.applyPlugins({
+    key: 'onRouterCreated',
+    type: ApplyPluginsType.event,
+    args: { router },
+  });
+
   return router;
 };
-
-export { router };
