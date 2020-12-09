@@ -12,4 +12,4 @@ export {
 } from '@webank/fes-runtime';
 
 // @ts-ignore
-export * from '@@/core/fesExports';
+export * from '@@/core/exports';
