@@ -15,7 +15,7 @@ import { createRouter, getRoutes } from './core/routes';
 const renderClient = (opts = {}) => {
     const { plugin, routes, rootElement } = opts;
     const rootContainer = plugin.applyPlugins({
-        type: 'modify',
+        type: ApplyPluginsType.modify,
         key: 'rootContainer',
         initialValue: defineComponent(() => () => (<RouterView></RouterView>)),
         args: {

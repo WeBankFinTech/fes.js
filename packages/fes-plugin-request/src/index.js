@@ -56,7 +56,7 @@ export default (api) => {
         });
     });
 
-    api.addExports(() => [
+    api.addPluginExports(() => [
         {
             exportAll: true,
             source: absoluteFilePath

@@ -13,7 +13,7 @@ const reserveExportsNames = [
     'Route'
 ];
 
-export function generateExports(basePath, { item, fesExportsHook }) {
+export default function generateExports(basePath, { item, fesExportsHook }) {
     assert(item.source, 'source should be supplied.');
     const source = path.relative(path.basename(basePath), item.source);
     assert(
@@ -57,26 +57,4 @@ export function generateExports(basePath, { item, fesExportsHook }) {
     return `export { ${specifiersStrArr.join(', ')} } from '${winPath(
         source
     )}';`;
-}
-
-export default function (api) {
-    api.onGenerateFiles(async () => {
-        const fesExports = await api.applyPlugins({
-            key: 'addExports',
-            type: api.ApplyPluginsType.add,
-            initialValue: []
-        });
-
-        const fesExportsHook = {}; // repeated definition
-        const absoluteFilePath = 'core/exports.js';
-        api.writeTmpFile({
-            path: absoluteFilePath,
-            content: `${fesExports
-                .map(item => generateExports(absoluteFilePath, {
-                    item,
-                    fesExportsHook
-                }))
-                .join('\n')}\n`
-        });
-    });
 }

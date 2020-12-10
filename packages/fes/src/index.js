@@ -1,15 +1,4 @@
-export {
-    useRoute,
-    useRouter,
-    onBeforeRouteUpdate,
-    onBeforeRouteLeave,
-    RouterLink,
-    useLink,
-    createWebHashHistory,
-    createRouter,
-    Plugin,
-    ApplyPluginsType
-} from '@webank/fes-runtime';
 
+export * from '@@/core/coreExports';
 // @ts-ignore
-export * from '@@/core/exports';
+export * from '@@/core/pluginExports';

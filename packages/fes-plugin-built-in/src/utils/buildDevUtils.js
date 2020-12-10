@@ -42,7 +42,7 @@ export async function getBundleAndConfigs({
                 port,
                 hot: process.env.HMR !== 'none',
                 entry: {
-                    umi: join(api.paths.absTmpPath, 'fes.js')
+                    fes: join(api.paths.absTmpPath, 'fes.js')
                 },
                 // @ts-ignore
                 bundleImplementor,

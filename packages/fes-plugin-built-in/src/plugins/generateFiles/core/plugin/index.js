@@ -61,7 +61,7 @@ export default function (api) {
         });
     });
 
-    api.addExports(() => ({
+    api.addCoreExports(() => ({
         specifiers: ['plugin'],
         source: absoluteFilePath
     }));
