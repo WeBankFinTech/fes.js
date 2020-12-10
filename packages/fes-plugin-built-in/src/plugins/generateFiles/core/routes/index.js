@@ -22,7 +22,7 @@ export default function (api) {
         });
     });
 
-    api.addExports(() => [
+    api.addCoreExports(() => [
         {
             specifiers: ['router'],
             source: absoluteFilePath
