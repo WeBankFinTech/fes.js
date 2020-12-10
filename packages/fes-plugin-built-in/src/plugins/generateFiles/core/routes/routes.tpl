@@ -31,3 +31,5 @@ export const createRouter = () => {
 
   return router;
 };
+
+export { router } 

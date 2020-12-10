@@ -1,4 +1,4 @@
-import { hasAccess } from './core';
+import { access } from './core';
 
 export function onRouterCreated({ router }) {
     router.beforeEach(async (to, from, next) => {
@@ -8,7 +8,7 @@ export function onRouterCreated({ router }) {
         } else {
             path = to.path;
         }
-        const canRoute = await hasAccess(path);
+        const canRoute = await access.hasAccess(path);
         if (canRoute) {
             next();
         } else {

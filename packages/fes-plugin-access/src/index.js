@@ -109,12 +109,12 @@ export default (api) => {
         });
     });
 
-    // api.addExports(() => [
-    //     {
-    //         exportAll: true,
-    //         source: absoluteFilePath
-    //     }
-    // ]);
+    api.addExports(() => [
+        {
+            specifiers: ['access', 'useAccess'],
+            source: absoluteFilePath
+        }
+    ]);
 
     api.addRuntimePlugin(() => `@@/${absRuntimeFilePath}`);
 };

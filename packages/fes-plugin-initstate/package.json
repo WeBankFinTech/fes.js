@@ -1,0 +1,19 @@
+{
+  "name": "@webank/fes-plugin-initstate",
+  "version": "1.0.0",
+  "description": "",
+  "main": "lib/index.js",
+  "files": [
+    "lib"
+  ],
+  "module": "dist/index.esm.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "peerDependencies": {
+    "@webank/fes": "^2.0.0"
+  }
+}
