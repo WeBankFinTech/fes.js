@@ -15,7 +15,7 @@ export default {
         const fes = ref('fes upgrade to vue3');
         const accessOnepicess = useAccess('/onepiece');
         onMounted(() => {
-            console.log('mounted!');
+            console.log('mounted!!!');
             console.log(router);
             setAccess(new Promise((resolve) => {
                 setTimeout(() => {

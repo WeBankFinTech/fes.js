@@ -1,0 +1,29 @@
+<template>
+    <div class="page-loading">
+        <Spin size="large" />
+    </div>
+</template>
+<script>
+import { Spin } from 'ant-design-vue';
+import 'ant-design-vue/lib/spin/style';
+
+export default {
+    setup() {
+        return {
+            Spin
+        };
+    }
+};
+</script>
+<style>
+.page-loading{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+</style>

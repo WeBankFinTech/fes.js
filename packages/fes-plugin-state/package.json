@@ -1,5 +1,5 @@
 {
-  "name": "@webank/fes-plugin-initstate",
+  "name": "@webank/fes-plugin-state",
   "version": "1.0.0",
   "description": "",
   "main": "lib/index.js",
@@ -15,5 +15,8 @@
   "license": "MIT",
   "peerDependencies": {
     "@webank/fes": "^2.0.0"
+  },
+  "dependencies": {
+    "@umijs/utils": "^3.2.24"
   }
 }
