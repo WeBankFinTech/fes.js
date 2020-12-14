@@ -5,7 +5,7 @@ import { lodash, winPath } from '@umijs/utils';
 import { getModels } from './utils/getModels';
 import { getTmpFile } from './utils/getTmpFile';
 
-const namespace = 'plugin-state';
+const namespace = 'plugin-model';
 
 export default (api) => {
     const {
@@ -55,7 +55,6 @@ export default (api) => {
         });
 
         const tmpFiles = getTmpFile(files, additionalModels, paths.absSrcPath);
-        console.log(tmpFiles);
 
         api.writeTmpFile({
             path: absCoreFilePath,
@@ -76,6 +75,13 @@ export default (api) => {
             })
         });
     });
+
+    api.addPluginExports(() => [
+        {
+            specifiers: ['useModel'],
+            source: absCoreFilePath
+        }
+    ]);
 
     // 注册 getInitialState 方法
     api.addRuntimePluginKey(() => 'getInitialState');

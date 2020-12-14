@@ -7,3 +7,19 @@ import PageLoading from '@/components/PageLoading.vue';
 export const initialStateConfig = {
     loading: <PageLoading />
 };
+
+/**
+ * 设置页面初始化状态
+ */
+export async function getInitialState() {
+    const syncFunc = () => new Promise((resolve) => {
+        setTimeout(() => {
+            resolve({
+                a: 1,
+                b: 2
+            });
+        }, 3000);
+    });
+    const res = await syncFunc();
+    return res;
+}

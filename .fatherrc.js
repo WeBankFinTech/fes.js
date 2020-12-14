@@ -4,7 +4,7 @@ import { join } from 'path';
 // utils must build before core
 // runtime must build before renderer-react
 
-const headPkgs = ['fes-runtime', 'fes-core', 'fes', 'fes-plugin-built-in', 'fes-plugin-request', 'fes-plugin-access', 'fes-plugin-state'];
+const headPkgs = ['fes-runtime', 'fes-core', 'fes', 'fes-plugin-built-in', 'fes-plugin-request', 'fes-plugin-access', 'fes-plugin-model'];
 const tailPkgs = [];
 // const otherPkgs = readdirSync(join(__dirname, 'packages')).filter(
 //   (pkg) =>

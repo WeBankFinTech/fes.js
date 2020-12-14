@@ -7,15 +7,19 @@
 
 <script>
 import { ref, onMounted } from 'vue';
-import { useAccess, access, router } from '@webank/fes';
+import {
+    useAccess, access, router, useModel
+} from '@webank/fes';
 
 const { setAccess } = access;
 export default {
     setup() {
         const fes = ref('fes upgrade to vue3');
         const accessOnepicess = useAccess('/onepiece');
+        const { initialState } = useModel('@@initialState');
         onMounted(() => {
-            console.log('mounted!!!');
+            console.log(initialState);
+            console.log('mounted1!!!');
             console.log(router);
             setAccess(new Promise((resolve) => {
                 setTimeout(() => {
@@ -23,6 +27,9 @@ export default {
                 }, 3000);
             }));
             // router.push('/onepiece');
+        });
+        onMounted(() => {
+            console.log('mounted2!!!');
         });
         return {
             fes,
