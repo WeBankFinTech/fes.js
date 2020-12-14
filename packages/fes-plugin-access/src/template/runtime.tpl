@@ -1,4 +1,4 @@
-import { access } from './core';
+import { access } from "./core";
 
 export function onRouterCreated({ router }) {
     router.beforeEach(async (to, from, next) => {

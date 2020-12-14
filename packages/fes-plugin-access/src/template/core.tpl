@@ -11,7 +11,7 @@ function isPromise(obj) {
 const state = reactive({
     roles: {{{REPLACE_ROLES}}},
     currentRoleId: "",
-    currentAccessIds: ["/"],
+    currentAccessIds: [],
 });
 
 const rolePromiseList = [];

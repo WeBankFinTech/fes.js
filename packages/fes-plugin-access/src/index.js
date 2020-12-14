@@ -86,7 +86,18 @@ export default (api) => {
         utils: { Mustache }
     } = api;
 
-    api.addRuntimePluginKey(() => 'access');
+    api.describe({
+        config: {
+            schema(joi) {
+                return joi.object({
+                    roles: joi
+                        .object()
+                });
+            },
+            default: {
+            }
+        }
+    });
 
     const absoluteFilePath = join(namespace, 'core.js');
 

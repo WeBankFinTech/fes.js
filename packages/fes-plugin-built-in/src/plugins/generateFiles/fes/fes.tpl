@@ -7,7 +7,7 @@ import {
 import { plugin } from './core/plugin';
 import './core/pluginRegister';
 import { ApplyPluginsType } from '{{{ runtimePath }}}';
-import { createRouter, getRoutes } from './core/routes';
+import { getRoutes } from './core/routes/routes';
 {{{ imports }}}
 
 {{{ entryCodeAhead }}}
@@ -24,9 +24,13 @@ const renderClient = (opts = {}) => {
         }
     });
 
-    const router = createRouter();
     const app = createApp(rootContainer);
-    app.use(router);
+    
+    plugin.applyPlugins({
+        key: 'onAppCreated',
+        type: ApplyPluginsType.event,
+        args: { app },
+    });
 
     // TODO other plugins install
     if (rootElement) {

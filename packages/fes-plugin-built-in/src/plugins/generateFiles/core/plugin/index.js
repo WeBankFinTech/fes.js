@@ -18,6 +18,8 @@ export default function (api) {
             initialValue: [
                 'modifyClientRenderOpts',
                 'rootContainer',
+                // app生成时触发
+                'onAppCreated',
                 // 渲染
                 'render',
                 // 修改路由

@@ -5,11 +5,10 @@ export default [
     require.resolve('./plugins/registerMethods'),
 
     // misc
-    require.resolve('./plugins/misc/routes'),
+    require.resolve('./plugins/misc/route'),
 
     // generate files
     require.resolve('./plugins/generateFiles/core/plugin'),
-    require.resolve('./plugins/generateFiles/core/routes'),
     require.resolve('./plugins/generateFiles/core/exports/coreExports'),
     require.resolve('./plugins/generateFiles/core/exports/pluginExports'),
     require.resolve('./plugins/generateFiles/fes'),

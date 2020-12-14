@@ -1,8 +1,9 @@
-import { readdirSync, statSync } from 'fs';
+import { readdirSync, statSync, readFileSync } from 'fs';
 import {
     join, extname, posix, basename
 } from 'path';
 import { lodash } from '@umijs/utils';
+import { runtimePath } from '../../../utils/constants';
 
 //   pages
 //  ├── index.vue         # 根路由页面 路径 /
@@ -230,4 +231,34 @@ export default function (api) {
             return getRoutesJSON({ routes, config: api.config });
         }
     });
+
+    const {
+        utils: { Mustache }
+    } = api;
+
+    const namespace = 'core/routes';
+
+    const absCoreFilePath = join(namespace, 'routes.js');
+
+    const absRuntimeFilePath = join(namespace, 'runtime.js');
+
+    api.onGenerateFiles(async () => {
+        const routesTpl = readFileSync(join(__dirname, 'template/routes.tpl'), 'utf-8');
+        const routes = await api.getRoutesJSON();
+        api.writeTmpFile({
+            path: absCoreFilePath,
+            content: Mustache.render(routesTpl, {
+                runtimePath,
+                routes,
+                config: api.config
+            })
+        });
+
+        api.writeTmpFile({
+            path: absRuntimeFilePath,
+            content: readFileSync(join(__dirname, 'template/runtime.tpl'), 'utf-8')
+        });
+    });
+
+    api.addRuntimePlugin(() => `@@/${absRuntimeFilePath}`);
 }

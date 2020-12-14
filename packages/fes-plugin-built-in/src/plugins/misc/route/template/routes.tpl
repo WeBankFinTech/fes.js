@@ -1,5 +1,5 @@
 import { createRouter as createVueRouter, createWebHashHistory, ApplyPluginsType } from '{{{ runtimePath }}}';
-import { plugin } from './plugin';
+import { plugin } from '@@/core/coreExports';
 
 export function getRoutes() {
   const routes = {{{ routes }}};
@@ -31,5 +31,3 @@ export const createRouter = () => {
 
   return router;
 };
-
-export { router } 
