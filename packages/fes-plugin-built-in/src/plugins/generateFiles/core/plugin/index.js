@@ -25,7 +25,9 @@ export default function (api) {
                 // 修改路由
                 'patchRoutes',
                 // 生成router时触发
-                'onRouterCreated'
+                'onRouterCreated',
+                // 初始化数据
+                'getInitialState'
             ]
         });
         const plugins = await api.applyPlugins({

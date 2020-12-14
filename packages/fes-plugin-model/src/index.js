@@ -83,9 +83,6 @@ export default (api) => {
         }
     ]);
 
-    // 注册 getInitialState 方法
-    api.addRuntimePluginKey(() => 'getInitialState');
-
     // 注册 initialStateConfig 方法
     api.addRuntimePluginKey(() => 'initialStateConfig');
 
