@@ -73,6 +73,10 @@ $table-head-background-color: $background-color-base;
         &:first-child {
             padding-left: 0;
         }
+        &.disabled {
+            cursor: not-allowed;
+            color: #657180;
+        }
     }
     .ui-table-column-sorter {
         margin-left: 4px;

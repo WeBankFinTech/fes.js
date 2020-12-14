@@ -16,6 +16,7 @@
                         <Column prop="age" name="年龄" sort />
                         <Column prop="adr" name="地址" />
                         <Column prop="status" name="等级" />
+                        <Column name="操作" :action="action" />
                     </Wb-table>
                     <Wb-button class="mt20" @click="getSelectedTr">获取选择的行</Wb-button>
                 </div>
@@ -255,12 +256,24 @@ export default {
                 func: function () {
                     console.log(this)
                     console.log(arguments)
+                },
+                disabled(trData) {
+                    if (trData.name === '张晓刚') {
+                        return true;
+                    }
+                    return false;
                 }
             }, {
                 text: '删除',
                 func: function () {
                     console.log(this)
                     console.log(arguments)
+                },
+                disabled(trData) {
+                    if (trData.name !== '张晓刚') {
+                        return true;
+                    }
+                    return false;
                 }
             }],
             component: function (trData, tdData) {
@@ -337,6 +350,12 @@ export default {
 
     },
     methods: {
+        disabledCell(trData) {
+            if (trData.name === '张晓刚') {
+                return true;
+            }
+            return false;
+        },
         formatDate: function (data) {
             var year = data.getFullYear();
             var m = data.getMonth();

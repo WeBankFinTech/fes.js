@@ -1,19 +1,19 @@
 <template>
     <div class="ui-table-action">
         <Wb-button
-            v-for="(item, index) in col.action"
+            v-for="(item, index) in actions"
             :key="index"
-            @click.stop="fireAction(item, $event)"
-            class="ui-table-action-text"
+            :disabled="item._disabled"
+            :class="['ui-table-action-text', item.disabledClassName, item._disabled && 'disabled']"
             type="text"
+            @click.stop="fireAction(item, $event)"
         >
-            {{item.text}}
+            {{ item.text }}
         </Wb-button>
     </div>
 </template>
 <script>
 import WbButton from '../button';
-
 export default {
     components: {
         WbButton
@@ -28,9 +28,25 @@ export default {
             default: undefined
         }
     },
+    computed: {
+        actions() {
+            return this.col.action.map((item) => {
+                let _disabled = false;
+                if (typeof item.disabled === 'boolean') {
+                    _disabled = item.disabled;
+                }
+                if (typeof item.disabled === 'function') {
+                    _disabled = item.disabled(this.trData);
+                }
+                return Object.assign({_disabled}, item);
+            })
+        }
+    },
     methods: {
         fireAction(item, event) {
-            this.$emit('on-click', item, this.trData, event);
+            if (!item._disabled) {
+                this.$emit('on-click', item, this.trData, event);
+            }
         }
     }
 };
