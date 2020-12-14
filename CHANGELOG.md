@@ -2,6 +2,12 @@
 
 <!-- DO NOT CHANGE THESE COMMENTS - See .github/actions/trigger-github-release/update-changelog.js -->
 <!-- insert-new-changelog-here -->
+## [0.4.7](https://github.com/WeBankFinTech/fes/compare/v0.4.6...v0.4.7) (2020-12-14)
+
+
+### :rocket: New Feature
+
+* table 添加action disable 功能 ([c287a54](https://github.com/WeBankFinTech/fes/commit/c287a54)) by: **bac-joker**
 ## [0.4.6](https://github.com/WeBankFinTech/fes/compare/v0.4.5...v0.4.6) (2020-12-06)
 
 
