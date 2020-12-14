@@ -11,7 +11,7 @@ async function getInitialState() {
 }
 
 export function onRouterCreated({ router }) {
-    router.beforeEach(async (to, from) => {
+    router.beforeEach(async (to, from, next) => {
         let path;
         if (to.matched.length === 1) {
             path = to.matched[0].path;
@@ -21,6 +21,18 @@ export function onRouterCreated({ router }) {
         // 等待初始化数据
         await getInitialState();
         const canRoute = await access.hasAccess(path);
-        return canRoute
+        if (canRoute) {
+            next();
+        } else {
+            const notAllowHandler = plugin.applyPlugins({
+                key: "notAllowHandler",
+                type: ApplyPluginsType.modify,
+                initialValue: null,
+            });
+            if (notAllowHandler && typeof notAllowHandler === "function") {
+                notAllowHandler(router, to, from);
+            }
+            next(false);
+        }
     });
 }

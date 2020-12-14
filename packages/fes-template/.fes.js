@@ -4,7 +4,7 @@
 export default {
     access: {
         roles: {
-            admin: ["/", "/onepiece"]
+            admin: ["/"]
         }
     }
 };
