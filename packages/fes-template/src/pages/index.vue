@@ -20,7 +20,7 @@ export default {
         const router = useRouter();
         onMounted(() => {
             console.log(router);
-            console.log(initialState.value);
+            console.log(initialState);
             console.log('mounted1!!');
             // router.push('/onepiece');
         });

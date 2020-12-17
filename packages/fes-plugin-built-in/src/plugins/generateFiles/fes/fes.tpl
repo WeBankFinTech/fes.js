@@ -13,7 +13,7 @@ import { getRoutes } from './core/routes/routes';
 {{{ entryCodeAhead }}}
 
 const renderClient = (opts = {}) => {
-    const { plugin, routes, rootElement } = opts;
+    const { plugin, routes, rootElement, initialState } = opts;
     const rootContainer = plugin.applyPlugins({
         type: ApplyPluginsType.modify,
         key: 'rootContainer',
@@ -25,6 +25,7 @@ const renderClient = (opts = {}) => {
     });
 
     const app = createApp(rootContainer);
+    app.provide("initialState", initialState);
     
     plugin.applyPlugins({
         key: 'onAppCreated',
@@ -32,7 +33,6 @@ const renderClient = (opts = {}) => {
         args: { app },
     });
 
-    // TODO other plugins install
     if (rootElement) {
         app.mount(rootElement);
     }
@@ -47,6 +47,7 @@ const getClientRender = (args = {}) => plugin.applyPlugins({
       key: 'modifyClientRenderOpts',
       type: ApplyPluginsType.modify,
       initialValue: {
+        initialState: args.initialState,
         routes: args.routes || getRoutes(),
         plugin,
         rootElement: '{{{ rootElement }}}',
@@ -60,8 +61,35 @@ const getClientRender = (args = {}) => plugin.applyPlugins({
   args,
 });
 
-const clientRender = getClientRender();
-export default clientRender();
+
+
+const beforeRenderConfig = plugin.applyPlugins({
+    key: "beforeRender",
+    type: ApplyPluginsType.modify,
+    initialValue: {
+        loading: defineComponent(() => () => <></>),
+        action: () => {},
+    },
+});
+
+const beforeRender = async () => {
+    if (typeof beforeRenderConfig.action === "function") {
+        const app = createApp(beforeRenderConfig.loading);
+        app.mount("#app");
+        const initialState = await beforeRenderConfig.action();
+        app.unmount();
+        return initialState;
+    }
+};
+
+const render = async () => {
+    const initialState = await beforeRender();
+    const clientRender = getClientRender({initialState});
+    clientRender();
+};
+
+render();
+
 
 {{{ entryCode }}}
 

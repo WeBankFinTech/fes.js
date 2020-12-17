@@ -83,8 +83,5 @@ export default (api) => {
         }
     ]);
 
-    // 注册 initialStateConfig 方法
-    api.addRuntimePluginKey(() => 'initialStateConfig');
-
     api.addRuntimePlugin(() => `@@/${absRuntimeFilePath}`);
 };

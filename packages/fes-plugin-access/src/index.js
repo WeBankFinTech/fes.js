@@ -49,7 +49,7 @@ export default (api) => {
         }
     ]);
 
-    api.addRuntimePluginKey(() => 'notAllowHandler');
+    api.addRuntimePluginKey(() => 'noAccessHandler');
 
     api.addRuntimePlugin(() => `@@/${absRuntimeFilePath}`);
 };

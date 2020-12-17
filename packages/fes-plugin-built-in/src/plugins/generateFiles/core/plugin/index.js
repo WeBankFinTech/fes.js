@@ -16,6 +16,8 @@ export default function (api) {
             key: 'addRuntimePluginKey',
             type: api.ApplyPluginsType.add,
             initialValue: [
+                // 初始化数据
+                'beforeRender',
                 'modifyClientRenderOpts',
                 'rootContainer',
                 // app生成时触发
@@ -25,9 +27,7 @@ export default function (api) {
                 // 修改路由
                 'patchRoutes',
                 // 生成router时触发
-                'onRouterCreated',
-                // 初始化数据
-                'getInitialState'
+                'onRouterCreated'
             ]
         });
         const plugins = await api.applyPlugins({

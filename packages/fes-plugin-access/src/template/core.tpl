@@ -1,4 +1,6 @@
-import { reactive, computed } from "vue";
+import { reactive, computed, inject } from "vue";
+
+const accessKey = Symbol("plugin-access");
 
 function isPromise(obj) {
     return (
@@ -106,32 +108,38 @@ const match = (path, accessIds) => {
         }
     }
     return false;
-}
-
-const hasLoading = ()=>{
-    return rolePromiseList.length || accessPromiseList.length
-}
-
-const hasAccess = async (path) => {
-    if(!hasLoading()){
-        return match(path, getAllowAccessIds())
-    }
-    await Promise.all(rolePromiseList.concat(accessPromiseList));
-    return match(path, getAllowAccessIds())
 };
 
-const allowPageIds = computed(getAllowAccessIds);
+const hasLoading = () => {
+    return rolePromiseList.length || accessPromiseList.length;
+};
+
+const hasAccess = async (path) => {
+    if (!hasLoading()) {
+        return match(path, getAllowAccessIds());
+    }
+    await Promise.all(rolePromiseList.concat(accessPromiseList));
+    return match(path, getAllowAccessIds());
+};
+
+export const install = (app) => {
+    const allowPageIds = computed(getAllowAccessIds);
+    const useAccess = (path) => {
+        const result = computed(() => {
+            return match(path, allowPageIds.value);
+        });
+        return result;
+    };
+    app.provide(accessKey, useAccess);
+};
 
 export const access = {
     hasAccess,
     hasLoading,
     setRole,
-    setAccess
-}
+    setAccess,
+};
 
 export const useAccess = (path) => {
-    const result = computed(() => {
-        return match(path, allowPageIds.value);
-    });
-    return result;
-}
+    return inject(accessKey)(path);
+};
