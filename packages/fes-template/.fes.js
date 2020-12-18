@@ -6,5 +6,10 @@ export default {
         roles: {
             admin: ["/"]
         }
+    },
+    layout: {
+        menus: [{
+            path: '/'
+        }]
     }
 };

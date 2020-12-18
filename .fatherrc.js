@@ -1,10 +1,19 @@
-import { readdirSync } from 'fs';
-import { join } from 'path';
+import { readdirSync } from "fs";
+import { join } from "path";
 
 // utils must build before core
 // runtime must build before renderer-react
 
-const headPkgs = ['fes-runtime', 'fes-core', 'fes', 'fes-plugin-built-in', 'fes-plugin-request', 'fes-plugin-access', 'fes-plugin-model'];
+const headPkgs = [
+    "fes-runtime",
+    "fes-core",
+    "fes",
+    "fes-plugin-built-in",
+    "fes-plugin-request",
+    "fes-plugin-access",
+    "fes-plugin-model",
+    "fes-plugin-layout",
+];
 const tailPkgs = [];
 // const otherPkgs = readdirSync(join(__dirname, 'packages')).filter(
 //   (pkg) =>
@@ -14,8 +23,8 @@ const tailPkgs = [];
 const otherPkgs = [];
 
 export default {
-  target: 'node',
-  cjs: { type: 'babel', lazy: false },
-  disableTypeCheck: true,
-  pkgs: [...headPkgs, ...otherPkgs, ...tailPkgs],
+    target: "node",
+    cjs: { type: "babel", lazy: false },
+    disableTypeCheck: true,
+    pkgs: [...headPkgs, ...otherPkgs, ...tailPkgs],
 };

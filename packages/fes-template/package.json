@@ -36,6 +36,7 @@
     "@webank/fes": "^2.0.0",
     "@webank/fes-plugin-access": "^1.0.0",
     "@webank/fes-plugin-model": "^1.0.0",
+    "@webank/fes-plugin-layout": "^1.0.0",
     "ant-design-vue": "2.0.0-rc.3"
   }
 }

@@ -12,12 +12,10 @@ export default (api) => {
         config: {
             schema(joi) {
                 return joi.object({
-                    roles: joi
-                        .object()
+                    roles: joi.object()
                 });
             },
-            default: {
-            }
+            default: {}
         }
     });
 
@@ -31,14 +29,20 @@ export default (api) => {
 
         api.writeTmpFile({
             path: absoluteFilePath,
-            content: Mustache.render(readFileSync(join(__dirname, 'template/core.tpl'), 'utf-8'), {
-                REPLACE_ROLES: JSON.stringify(roles)
-            })
+            content: Mustache.render(
+                readFileSync(join(__dirname, 'template/core.tpl'), 'utf-8'),
+                {
+                    REPLACE_ROLES: JSON.stringify(roles)
+                }
+            )
         });
 
         api.writeTmpFile({
             path: absRuntimeFilePath,
-            content: readFileSync(join(__dirname, 'template/runtime.tpl'), 'utf-8')
+            content: readFileSync(
+                join(__dirname, 'template/runtime.tpl'),
+                'utf-8'
+            )
         });
     });
 

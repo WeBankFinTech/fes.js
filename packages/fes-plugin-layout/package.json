@@ -2,7 +2,11 @@
   "name": "@webank/fes-plugin-layout",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "lib/index.js",
+  "files": [
+    "lib"
+  ],
+  "module": "dist/index.esm.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -11,6 +15,6 @@
   "license": "MIT",
   "peerDependencies": {
     "vue": "^3.0.0",
-    "@webank/fes-core": "^0.2.4"
+    "@webank/fes": "^2.0.0"
   }
 }

@@ -28,9 +28,10 @@
     "@umijs/bundler-webpack": "^3.2.23",
     "@umijs/server": "^3.2.23",
     "@vue/babel-plugin-jsx": "^1.0.0-rc.3",
+    "@vue/compiler-sfc": "^3.0.4",
     "@webank/fes-core": "^2.0.0",
     "cliui": "6.0.0",
-    "vue-loader": "^16.0.0-rc.1",
+    "vue-loader": "^16.1.2",
     "html-webpack-plugin": "^3.2.0"
   }
 }

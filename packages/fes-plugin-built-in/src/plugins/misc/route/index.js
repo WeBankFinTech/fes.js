@@ -3,6 +3,7 @@ import {
     join, extname, posix, basename
 } from 'path';
 import { lodash } from '@umijs/utils';
+import { parse } from '@vue/compiler-sfc';
 import { runtimePath } from '../../../utils/constants';
 
 //   pages
@@ -80,6 +81,10 @@ const genRoutes = function (parentRoutes, path, parentRoutePath) {
         // 文件或者目录的绝对路径
         const component = join(path, item);
         if (isProcessFile(component)) {
+            const { descriptor } = parse(readFileSync(component, 'utf-8'));
+            const routeMetaBlock = descriptor.customBlocks.find(
+                b => b.type === 'config'
+            );
             const ext = extname(item);
             const fileName = basename(item, ext);
             // 路由的path
@@ -94,14 +99,16 @@ const genRoutes = function (parentRoutes, path, parentRoutePath) {
                     layoutRoute.children.push({
                         path: routePath,
                         component: componentPath,
-                        name: routeName
+                        name: routeName,
+                        meta: routeMetaBlock.content ? JSON.parse(routeMetaBlock.content) : {}
                     });
                 }
             } else {
                 parentRoutes.push({
                     path: routePath,
                     component: componentPath,
-                    name: routeName
+                    name: routeName,
+                    meta: routeMetaBlock.content ? JSON.parse(routeMetaBlock.content) : {}
                 });
             }
         }

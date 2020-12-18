@@ -1,7 +1,12 @@
 <template>
     <div>{{fes}}</div>
 </template>
-
+<config>
+{
+    "title": "onepiece",
+    "layout": "true"
+}
+</config>
 <script>
 import { ref } from 'vue';
 

@@ -3626,6 +3626,28 @@
     postcss-selector-parser "^6.0.4"
     source-map "^0.6.1"
 
+"@vue/compiler-sfc@^3.0.4":
+  version "3.0.4"
+  resolved "https://registry.yarnpkg.com/@vue/compiler-sfc/-/compiler-sfc-3.0.4.tgz#2119fe1e68d2c268aafa20461c82c139a9adf8e0"
+  integrity sha512-brDn6HTuK6R3oBCjtMPPsIpyJEZFinlnxjtBXww/goFJOJBAU9CrsdegwyZItNnixCFUIg4CLv4Nj1Eg/eKlfg==
+  dependencies:
+    "@babel/parser" "^7.12.0"
+    "@babel/types" "^7.12.0"
+    "@vue/compiler-core" "3.0.4"
+    "@vue/compiler-dom" "3.0.4"
+    "@vue/compiler-ssr" "3.0.4"
+    "@vue/shared" "3.0.4"
+    consolidate "^0.16.0"
+    estree-walker "^2.0.1"
+    hash-sum "^2.0.0"
+    lru-cache "^5.1.1"
+    magic-string "^0.25.7"
+    merge-source-map "^1.1.0"
+    postcss "^7.0.32"
+    postcss-modules "^3.2.2"
+    postcss-selector-parser "^6.0.4"
+    source-map "^0.6.1"
+
 "@vue/compiler-ssr@3.0.2":
   version "3.0.2"
   resolved "https://registry.npmjs.org/@vue/compiler-ssr/-/compiler-ssr-3.0.2.tgz#73af4d274a79bfcc72a996a9b45f1072e7deaa26"
@@ -3633,6 +3655,14 @@
   dependencies:
     "@vue/compiler-dom" "3.0.2"
     "@vue/shared" "3.0.2"
+
+"@vue/compiler-ssr@3.0.4":
+  version "3.0.4"
+  resolved "https://registry.yarnpkg.com/@vue/compiler-ssr/-/compiler-ssr-3.0.4.tgz#ccbd1f55734d51d1402fad825ac102002a7a07c7"
+  integrity sha512-4aYWQEL4+LS4+D44K9Z7xMOWMEjBsz4Li9nMcj2rxRQ35ewK6uFPodvs6ORP60iBDSkwUFZoldFlNemQlu1BFw==
+  dependencies:
+    "@vue/compiler-dom" "3.0.4"
+    "@vue/shared" "3.0.4"
 
 "@vue/reactivity@3.0.2":
   version "3.0.2"
@@ -14702,10 +14732,10 @@ vue-i18n@^9.0.0-beta.2:
   dependencies:
     source-map "^0.6.1"
 
-vue-loader@^16.0.0-rc.1:
-  version "16.0.0-rc.1"
-  resolved "https://registry.npmjs.org/vue-loader/-/vue-loader-16.0.0-rc.1.tgz#9c1f1684e2d01c8a72216f9d4db119e15c622645"
-  integrity sha512-yR+BS90EOXTNieasf8ce9J3TFCpm2DGqoqdbtiwQ33hon3FyIznLX7sKavAq1VmfBnOeV6It0Htg4aniv8ph1g==
+vue-loader@^16.1.2:
+  version "16.1.2"
+  resolved "https://registry.yarnpkg.com/vue-loader/-/vue-loader-16.1.2.tgz#5c03b6c50d2a5f983c7ceba15c50d78ca2b298f4"
+  integrity sha512-8QTxh+Fd+HB6fiL52iEVLKqE9N1JSlMXLR92Ijm6g8PZrwIxckgpqjPDWRP5TWxdiPaHR+alUWsnu1ShQOwt+Q==
   dependencies:
     chalk "^4.1.0"
     hash-sum "^2.0.0"
