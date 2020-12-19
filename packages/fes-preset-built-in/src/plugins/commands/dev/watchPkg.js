@@ -1,14 +1,15 @@
 import { join } from 'path';
 import { chokidar, winPath, lodash } from '@umijs/utils';
 import { existsSync, readFileSync } from 'fs';
-import { isPlugin, PluginType } from '@webank/fes-core';
+import { isPluginOrPreset, PluginType } from '@webank/fes-core';
 
 function getPlugins(opts) {
     return Object.keys({
         ...opts.pkg.dependencies,
         ...opts.pkg.devDependencies
     }).filter(name => (
-        isPlugin(PluginType.plugin, name)
+        isPluginOrPreset(PluginType.plugin, name)
+        || isPluginOrPreset(PluginType.preset, name)
     ));
 }
 

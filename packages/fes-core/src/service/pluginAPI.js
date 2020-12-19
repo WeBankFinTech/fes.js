@@ -99,6 +99,26 @@ export default class PluginAPI {
         }
     }
 
+    registerPresets(presets) {
+        assert(
+            this.service.stage === ServiceStage.initPresets,
+            'api.registerPresets() failed, it should only used in presets.',
+        );
+        assert(
+            Array.isArray(presets),
+            'api.registerPresets() failed, presets must be Array.',
+        );
+        const extraPresets = presets.map(preset => (isValidPlugin(preset)
+            ? (preset)
+            : pathToObj({
+                type: PluginType.preset,
+                path: preset,
+                cwd: this.service.cwd
+            })));
+        // 插到最前面，下个 while 循环优先执行
+        this.service._extraPresets.splice(0, 0, ...extraPresets);
+    }
+
     registerMethod({
         name,
         fn,

@@ -30,7 +30,7 @@
         "strong"
     ],
     "dependencies": {
-        "@webank/fes-plugin-built-in": "^2.0.0",
+        "@webank/fes-preset-built-in": "^2.0.0",
         "@webank/fes-core": "^2.0.0",
         "@webank/fes-runtime": "^2.0.0",
         "@umijs/utils": "3.2.24",

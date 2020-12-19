@@ -8,7 +8,7 @@ const headPkgs = [
     "fes-runtime",
     "fes-core",
     "fes",
-    "fes-plugin-built-in",
+    "fes-preset-built-in",
     "fes-plugin-request",
     "fes-plugin-access",
     "fes-plugin-model",

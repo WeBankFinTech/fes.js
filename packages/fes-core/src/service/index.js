@@ -3,8 +3,8 @@ import { EventEmitter } from 'events';
 import assert from 'assert';
 import { AsyncSeriesWaterfallHook } from 'tapable';
 import { existsSync } from 'fs';
-import { BabelRegister } from '@umijs/utils';
-import { resolvePlugins } from './utils/pluginUtils';
+import { BabelRegister, lodash } from '@umijs/utils';
+import { resolvePresets, pathToObj, resolvePlugins } from './utils/pluginUtils';
 import loadDotEnv from './utils/loadDotEnv';
 import isPromise from './utils/isPromise';
 import PluginAPI from './pluginAPI';
@@ -12,6 +12,7 @@ import {
     ApplyPluginsType,
     ConfigChangeType,
     EnableBy,
+    PluginType,
     ServiceStage
 } from './enums';
 import Config from '../config';
@@ -21,7 +22,6 @@ import getPaths from './getPaths';
 // TODO
 // 1. duplicated key
 // 2. Logger
-// 3. 支持插件集?
 export default class Service extends EventEmitter {
     cwd;
 
@@ -41,8 +41,13 @@ export default class Service extends EventEmitter {
     // plugin methods
     pluginMethods = {};
 
+    // initial presets and plugins from arguments, config, process.env, and package.json
+    initialPresets = [];
+
     // initial plugins from arguments, config, process.env, and package.json
     initialPlugins = [];
+
+    _extraPresets = [];
 
     _extraPlugins = [];
 
@@ -111,6 +116,11 @@ export default class Service extends EventEmitter {
             pkg: this.pkg,
             cwd: this.cwd
         };
+        this.initialPresets = resolvePresets({
+            ...baseOpts,
+            presets: opts.presets || [],
+            userConfigPresets: this.userConfig.presets || []
+        });
         this.initialPlugins = resolvePlugins({
             ...baseOpts,
             plugins: opts.plugins || [],
@@ -140,8 +150,7 @@ export default class Service extends EventEmitter {
 
     async init() {
         this.setStage(ServiceStage.init);
-        // we should have the final hooksByPluginId which is added with api.register()
-        await this.initPlugins();
+        await this.initPresetsAndPlugins();
 
         // hooksByPluginId -> hooks
         // hooks is mapped with hook key, prepared for applyPlugins()
@@ -199,8 +208,14 @@ export default class Service extends EventEmitter {
         });
     }
 
-    async initPlugins() {
+    async initPresetsAndPlugins() {
+        this.setStage(ServiceStage.initPresets);
         this._extraPlugins = [];
+        while (this.initialPresets.length) {
+            // eslint-disable-next-line
+            await this.initPreset(this.initialPresets.shift());
+        }
+
         this.setStage(ServiceStage.initPlugins);
         this._extraPlugins.push(...this.initialPlugins);
         while (this._extraPlugins.length) {
@@ -248,6 +263,7 @@ export default class Service extends EventEmitter {
                         'env',
                         'args',
                         'hasPlugins',
+                        'hasPresets',
                         'setConfig'
                     ].includes(prop)
                 ) {
@@ -267,6 +283,61 @@ export default class Service extends EventEmitter {
         }
         return ret || {};
     }
+
+    async initPreset(preset) {
+        const { id, key, apply } = preset;
+        preset.isPreset = true;
+
+        const api = this.getPluginAPI({ id, key, service: this });
+
+        // register before apply
+        this.registerPlugin(preset);
+        const { presets, plugins } = await this.applyAPI({
+            api,
+            apply
+        });
+
+        // register extra presets and plugins
+        if (presets) {
+            assert(
+                Array.isArray(presets),
+                `presets returned from preset ${id} must be Array.`,
+            );
+            // 插到最前面，下个 while 循环优先执行
+            this._extraPresets.splice(
+                0,
+                0,
+                ...presets.map(path => pathToObj({
+                    type: PluginType.preset,
+                    path,
+                    cwd: this.cwd
+                })),
+            );
+        }
+
+        // 深度优先
+        const extraPresets = lodash.clone(this._extraPresets);
+        this._extraPresets = [];
+        while (extraPresets.length) {
+            // eslint-disable-next-line
+            await this.initPreset(extraPresets.shift());
+        }
+
+        if (plugins) {
+            assert(
+                Array.isArray(plugins),
+                `plugins returned from preset ${id} must be Array.`,
+            );
+            this._extraPlugins.push(
+                ...plugins.map(path => pathToObj({
+                    type: PluginType.plugin,
+                    path,
+                    cwd: this.cwd
+                })),
+            );
+        }
+    }
+
 
     async initPlugin(plugin) {
         const { id, key, apply } = plugin;
@@ -319,10 +390,17 @@ export default class Service extends EventEmitter {
         return true;
     }
 
+    hasPresets(presetIds) {
+        return presetIds.every((presetId) => {
+            const preset = this.plugins[presetId];
+            return preset && preset.isPreset && this.isPluginEnable(presetId);
+        });
+    }
+
     hasPlugins(pluginIds) {
         return pluginIds.every((pluginId) => {
             const plugin = this.plugins[pluginId];
-            return plugin && this.isPluginEnable(pluginId);
+            return plugin && !plugin.isPreset && this.isPluginEnable(pluginId);
         });
     }
 

@@ -9,27 +9,37 @@ import {
     lodash
 } from '@umijs/utils';
 
+import { PluginType } from '../enums';
+
 const RE = {
-    plugin: /^(@webank\/)?fes-plugin-/
+    [PluginType.plugin]: /^(@webank\/)?fes-plugin-/,
+    [PluginType.preset]: /^(@webank\/)?fes-preset-/
 };
 
-export function isPlugin(name) {
+export function isPluginOrPreset(type, name) {
     const hasScope = name.charAt(0) === '@';
-    const re = RE.plugin;
+    const re = RE[type];
     if (hasScope) {
         return re.test(name.split('/')[1]) || re.test(name);
     }
     return re.test(name);
 }
 
-export function getPlugins(opts) {
+export function getPluginsOrPresets(type, opts) {
+    const upperCaseType = type.toUpperCase();
     return [
         // dependencies
-        ...opts.plugins,
+        // opts
+        ...((opts[type === PluginType.preset ? 'presets' : 'plugins']) || []),
+        // env
+        ...(process.env[`FES_${upperCaseType}S`] || '').split(',').filter(Boolean),
         ...Object.keys(opts.pkg.devDependencies || {})
             .concat(Object.keys(opts.pkg.dependencies || {}))
-            .filter(isPlugin.bind(null)),
-        ...opts.userConfigPlugins
+            .filter(isPluginOrPreset.bind(null, type)),
+        // user config
+        ...((opts[
+            type === PluginType.preset ? 'userConfigPresets' : 'userConfigPlugins'
+        ]) || [])
     ].map(path => resolve.sync(path, {
         basedir: opts.cwd,
         extensions: ['.js', '.ts']
@@ -46,14 +56,14 @@ function nameToKey(name) {
         .join('.');
 }
 
-function pkgNameToKey(pkgName) {
+function pkgNameToKey(pkgName, type) {
     if (pkgName.charAt(0) === '@' && !pkgName.startsWith('@webank/')) {
         pkgName = pkgName.split('/')[1];
     }
-    return nameToKey(pkgName.replace(RE.plugin, ''));
+    return nameToKey(pkgName.replace(RE[type], ''));
 }
 
-export function pathToObj({ path, cwd }) {
+export function pathToObj({ path, type, cwd }) {
     let pkg = null;
     let isPkgPlugin = false;
     const pkgJSONPath = pkgUp.sync({ cwd: path });
@@ -74,11 +84,11 @@ export function pathToObj({ path, cwd }) {
     } else {
         id = winPath(path);
     }
-    id = id.replace('@webank/fes-plugin-built-in/lib/plugins', '@@');
+    id = id.replace('@webank/fes-preset-built-in/lib/plugins', '@@');
     id = id.replace(/\.js$/, '');
 
     const key = isPkgPlugin
-        ? pkgNameToKey(pkg.name)
+        ? pkgNameToKey(pkg.name, type)
         : nameToKey(basename(path, extname(path)));
 
     return {
@@ -100,10 +110,22 @@ export function pathToObj({ path, cwd }) {
     };
 }
 
+export function resolvePresets(opts) {
+    const type = PluginType.preset;
+    const presets = [...getPluginsOrPresets(type, opts)];
+    return presets.map(path => pathToObj({
+        type,
+        path,
+        cwd: opts.cwd
+    }));
+}
+
 export function resolvePlugins(opts) {
-    const plugins = getPlugins(opts);
+    const type = PluginType.plugin;
+    const plugins = getPluginsOrPresets(type, opts);
     return plugins.map(path => pathToObj({
         path,
+        type,
         cwd: opts.cwd
     }));
 }

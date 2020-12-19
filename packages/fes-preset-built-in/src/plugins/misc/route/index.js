@@ -185,7 +185,7 @@ const getRoutesJSON = function ({ routes, config }) {
         // eslint-disable-next-line
         return (
             /^\((.+)?\)(\s+)?=>/.test(component)
-            || /^function([^\(]+)?\(([^\)]+)?\)([^{]+)?{/.test(component)
+            || /^function([^(]+)?\(([^)]+)?\)([^{]+)?{/.test(component)
         );
     }
 

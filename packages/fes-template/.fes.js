@@ -11,5 +11,8 @@ export default {
         menus: [{
             path: '/'
         }]
+    },
+    devServer: {
+        port: 8080
     }
 };

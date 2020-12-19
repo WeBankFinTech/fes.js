@@ -1,7 +1,7 @@
 {
-  "name": "@webank/fes-plugin-built-in",
+  "name": "@webank/fes-preset-built-in",
   "version": "2.0.0",
-  "description": "@webank/fes-plugin-built-in",
+  "description": "@webank/fes-preset-built-in",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "files": [
