@@ -24,11 +24,13 @@
     "access": "public"
   },
   "dependencies": {
+    "express": "4.17.1",
     "@umijs/utils": "^3.2.24",
     "@umijs/bundler-webpack": "^3.2.23",
     "@umijs/server": "^3.2.23",
-    "@vue/babel-plugin-jsx": "^1.0.0-rc.3",
+    "@vue/babel-plugin-jsx": "^1.0.0-rc.5",
     "@vue/compiler-sfc": "^3.0.4",
+    "@vue/preload-webpack-plugin": "1.1.2",
     "@webank/fes-core": "^2.0.0",
     "cliui": "6.0.0",
     "vue-loader": "^16.1.2",

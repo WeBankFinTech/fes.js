@@ -1,0 +1,40 @@
+{
+  "name": "@webank/fes-template-h5",
+  "version": "2.0.0",
+  "description": "fes项目模版",
+  "scripts": {
+    "build": "fes build",
+    "dev": "fes dev"
+  },
+  "keywords": [
+    "管理端",
+    "fes",
+    "fast",
+    "easy",
+    "strong"
+  ],
+  "files": [
+    ".eslintrc.js",
+    ".gitignore",
+    "fes.config.js",
+    "mock.js",
+    "package.json",
+    "README.md",
+    "/src"
+  ],
+  "repository": {
+    "type": "git"
+  },
+  "author": "harrywan qlin",
+  "license": "MIT",
+  "devDependencies": {
+    "@vue/compiler-sfc": "^3.0.0",
+    "@webank/eslint-config-webank": "^0.1.4"
+  },
+  "dependencies": {
+    "vue": "^3.0.2",
+    "@webank/fes": "^2.0.0",
+    "@webank/fes-plugin-access": "^1.0.0",
+    "@webank/fes-plugin-model": "^1.0.0"
+  }
+}
