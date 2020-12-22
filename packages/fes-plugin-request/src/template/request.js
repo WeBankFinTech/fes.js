@@ -1,12 +1,10 @@
 import axios from 'axios';
 
 // import { debounce } from 'throttle-debounce';
-import { message } from 'REPLACE_MESSAGE_UI';
 import { ApplyPluginsType, plugin, router } from '@webank/fes';
 import {
     checkHttpRequestHasBody,
     trimObj,
-    isString,
     isFunction,
     isObject
 } from './helpers';
@@ -17,28 +15,15 @@ import {
  * {
  *  errorMessage: '', // 错误地址
  *  errorPage: '', // 错误页面地址
- *  showType: 1 // 0 不提示 | 1 警告 | 2 错误 | 9 页面跳转
  * }
  */
-function errrorHandler(error) {
+function _errorHandler(error, customerErrorHandler) {
     if (isFunction(error)) {
         error();
-    } else if (isString(error)) {
-        message.error(error);
-    } else if (isObject(error)) {
-        switch (error.showType) {
-            case 1:
-                message.warning(error.errorMessage);
-                break;
-            case 2:
-                message.error(error.errorMessage);
-                break;
-            case 9:
-                router.replace(error.errorPage);
-                break;
-            default:
-                throw new Error(error);
-        }
+    } else if (error.errorPage) {
+        router.replace(error.errorPage);
+    } else {
+        customerErrorHandler && customerErrorHandler(error);
     }
 }
 
@@ -66,6 +51,7 @@ function getRequestInstance() {
         errorConfig,
         requestInterceptors,
         responseInterceptors,
+        errorHandler,
         ...otherConfigs
     } = plugin.applyPlugins({
         key: 'request',
@@ -100,7 +86,7 @@ function getRequestInstance() {
         [
             function (response) {
                 if (isObject(response.data) && response.data.code !== '0') {
-                    errrorHandler(_errorConfig[response.data.code] || response.data.msg || response.data.errorMessage || response.data.errorMsg || '服务异常');
+                    _errorHandler(_errorConfig[response.data.code] || response.data.msg || response.data.errorMessage || response.data.errorMsg || '服务异常', errorHandler);
                     return Promise.reject(response);
                 }
 
@@ -110,7 +96,7 @@ function getRequestInstance() {
                     // The request was made and the server responded with a status code
                     // that falls out of the range of 2xx
                     if (_errorConfig[error.response.status]) {
-                        errrorHandler(_errorConfig[error.response.status]);
+                        _errorHandler(_errorConfig[error.response.status], errorHandler);
                     }
                 }
                 return Promise.reject(error);

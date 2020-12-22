@@ -15,8 +15,7 @@ export default (api) => {
                 });
             },
             default: {
-                dataField: 'result',
-                messageUI: 'ant-design-vue'
+                dataField: 'result'
             }
         }
     });
@@ -26,11 +25,10 @@ export default (api) => {
     const requestTemplate = readFileSync(join(__dirname, 'template', 'request.js'), 'utf-8');
     api.onGenerateFiles(() => {
         // 文件写出
-        const { dataField = '', messageUI } = api.config.request;
+        const { dataField = '' } = api.config.request;
         api.writeTmpFile({
             path: absoluteFilePath,
             content: requestTemplate
-                .replace('REPLACE_MESSAGE_UI', messageUI || 'ant-design-vue')
                 .replace('REPLACE_DATA_FIELD', dataField)
         });
     });
