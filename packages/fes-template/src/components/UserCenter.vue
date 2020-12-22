@@ -6,7 +6,7 @@ import { useModel } from '@webank/fes';
 
 export default {
     setup() {
-        const { initialState } = useModel('@@initialState');
+        const initialState = useModel('@@initialState');
         return {
             initialState
         };
