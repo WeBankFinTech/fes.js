@@ -53,7 +53,7 @@ export default (api) => {
         }
     ]);
 
-    api.addRuntimePluginKey(() => 'noAccessHandler');
+    api.addRuntimePluginKey(() => 'access');
 
     api.addRuntimePlugin(() => `@@/${absRuntimeFilePath}`);
 };

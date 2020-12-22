@@ -13,13 +13,13 @@ export function onRouterCreated({ router }) {
         if (canRoute) {
             next();
         } else {
-            const noAccessHandler = plugin.applyPlugins({
-                key: "noAccessHandler",
+            const runtimeConfig = plugin.applyPlugins({
+                key: "access",
                 type: ApplyPluginsType.modify,
                 initialValue: null,
             });
-            if (noAccessHandler && typeof noAccessHandler === "function") {
-                noAccessHandler(router, to, from);
+            if (runtimeConfig.noAccessHandler && typeof runtimeConfig.noAccessHandler === "function") {
+                runtimeConfig.noAccessHandler(router, to, from);
             }
             next(false);
         }
