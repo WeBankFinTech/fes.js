@@ -1,15 +1,19 @@
-// fes.config.js 只负责管理 cli 相关的配置
+// .fes.js 只负责管理编译时配置，只能使用plain Object
 
 
 export default {
     access: {
         roles: {
-            admin: ["/"]
+            admin: ["/", "/onepiece"]
         }
     },
     layout: {
+        title: "Fes.js",
+        logo: 'https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg',
         menus: [{
-            path: '/'
+            name: 'index'
+        }, {
+            name: 'onepiece'
         }]
     },
     devServer: {

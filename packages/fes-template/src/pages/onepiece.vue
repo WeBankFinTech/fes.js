@@ -3,8 +3,8 @@
 </template>
 <config>
 {
-    "title": "onepiece",
-    "layout": "true"
+    "name": "onepiece",
+    "title": "onepiece"
 }
 </config>
 <script>

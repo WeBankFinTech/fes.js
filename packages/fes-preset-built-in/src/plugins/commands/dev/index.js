@@ -33,7 +33,6 @@ export default (api) => {
         description: 'start a dev server for development',
         async fn({ args = {} }) {
             const defaultPort = process.env.PORT || args.port || api.config.devServer?.port;
-            console.log(api.config.devServer);
             port = await portfinder.getPortPromise({
                 port: defaultPort ? parseInt(String(defaultPort), 10) : 8000
             });

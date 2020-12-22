@@ -1,6 +1,6 @@
 import { access } from '@webank/fes';
 import PageLoading from '@/components/PageLoading.vue';
-
+import UserCenter from '@/components/UserCenter.vue';
 
 export const beforeRender = {
     loading: <PageLoading />,
@@ -10,10 +10,13 @@ export const beforeRender = {
             setTimeout(() => {
                 setRole('admin');
                 resolve({
-                    a: 1,
-                    b: 2
+                    userName: 'harrywan'
                 });
-            }, 3000);
+            }, 1000);
         });
     }
+};
+
+export const layout = {
+    userCenter: <UserCenter />
 };

@@ -267,5 +267,12 @@ export default function (api) {
         });
     });
 
+    api.addCoreExports(() => [
+        {
+            specifiers: ['getRoutes'],
+            source: absCoreFilePath
+        }
+    ]);
+
     api.addRuntimePlugin(() => `@@/${absRuntimeFilePath}`);
 }

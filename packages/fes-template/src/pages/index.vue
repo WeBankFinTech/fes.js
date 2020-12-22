@@ -6,8 +6,9 @@
 </template>
 <config>
 {
+    "name": "index",
     "title": "首页",
-    "layout": "false"
+    "layout": false
 }
 </config>
 <script>

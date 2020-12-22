@@ -4,7 +4,7 @@
     </div>
 </template>
 <script>
-import { Spin } from 'ant-design-vue';
+import Spin from 'ant-design-vue/lib/spin';
 import 'ant-design-vue/lib/spin/style';
 
 export default {
