@@ -24,6 +24,7 @@ export default function () {
             require.resolve('./plugins/features/cssnano'),
             require.resolve('./plugins/features/copy'),
             require.resolve('./plugins/features/define'),
+            require.resolve('./plugins/features/devScripts'),
             require.resolve('./plugins/features/devServer'),
             require.resolve('./plugins/features/devtool'),
             require.resolve('./plugins/features/externals'),
@@ -44,7 +45,6 @@ export default function () {
             require.resolve('./plugins/features/styleLoader'),
             require.resolve('./plugins/features/targets'),
             require.resolve('./plugins/features/terserOptions'),
-            require.resolve('./plugins/features/theme'),
             require.resolve('./plugins/features/vueLoader'),
 
             // commands

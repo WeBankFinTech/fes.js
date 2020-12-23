@@ -17,6 +17,6 @@
     "@webank/fes": "^2.0.0"
   },
   "dependencies": {
-    "@umijs/utils": "^3.2.24"
+    "@umijs/utils": "3.3.3"
   }
 }

@@ -39,6 +39,6 @@ export default {
 
 <style scoped>
 .haizekuo {
-    background: url('../images/icon.png');
+    /* background: url('../images/icon.png'); */
 }
 </style>

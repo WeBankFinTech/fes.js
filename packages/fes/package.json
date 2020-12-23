@@ -33,7 +33,7 @@
         "@webank/fes-preset-built-in": "^2.0.0",
         "@webank/fes-core": "^2.0.0",
         "@webank/fes-runtime": "^2.0.0",
-        "@umijs/utils": "3.2.24",
+        "@umijs/utils": "3.3.3",
         "resolve-cwd": "^3.0.0"
     }
 }

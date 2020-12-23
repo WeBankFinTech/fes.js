@@ -155,13 +155,13 @@ export default (api) => {
             });
 
             const beforeMiddlewares = await api.applyPlugins({
-                key: 'addBeforeMiddewares',
+                key: 'addBeforeMiddlewares',
                 type: api.ApplyPluginsType.add,
                 initialValue: [],
                 args: {}
             });
             const middlewares = await api.applyPlugins({
-                key: 'addMiddewares',
+                key: 'addMiddlewares',
                 type: api.ApplyPluginsType.add,
                 initialValue: [],
                 args: {}

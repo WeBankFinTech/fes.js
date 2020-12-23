@@ -9,7 +9,7 @@ export default (api) => {
                 return joi
                     .object({})
                     .description(
-                        'more html-webpack-plugin options see https://github.com/jantimon/html-webpack-plugin#configuration',
+                        'more html-webpack-plugin options see https://github.com/jantimon/html-webpack-plugin#configuration'
                     );
             },
             default: {
@@ -18,8 +18,12 @@ export default (api) => {
         }
     });
 
-    api.chainWebpack((webpackConfig) => {
+    api.chainWebpack(async (webpackConfig) => {
         const isProd = api.env === 'production';
+        const headScripts = await api.applyPlugins({
+            key: 'addHTMLHeadScripts',
+            initialState: []
+        });
         const htmlOptions = {
             templateParameters: (compilation, assets, pluginOptions) => {
                 // enhance html-webpack-plugin's built in template params
@@ -55,6 +59,7 @@ export default (api) => {
         }
 
         const HTMLPlugin = require('html-webpack-plugin');
+        const HtmlWebpackTagsPlugin = require('html-webpack-tags-plugin');
         const PreloadPlugin = require('@vue/preload-webpack-plugin');
         const multiPageConfig = api.config.html.pages;
         const htmlPath = join(api.paths.cwd, 'public/index.html');
@@ -96,6 +101,17 @@ export default (api) => {
             }
         } else {
             // TODO 支持多页
+        }
+
+        if (!isProd) {
+            webpackConfig
+                .plugin('html-tags')
+                .use(HtmlWebpackTagsPlugin, [{
+                    append: true,
+                    scripts: headScripts.map(script => ({
+                        path: script.src
+                    }))
+                }]);
         }
     });
 };
