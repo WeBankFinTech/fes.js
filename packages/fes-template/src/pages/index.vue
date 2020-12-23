@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="haizekuo">
         fes & 拉夫德鲁 <br />
         accessOnepicess: {{accessOnepicess}}
     </div>
@@ -7,8 +7,7 @@
 <config>
 {
     "name": "index",
-    "title": "首页",
-    "layout": false
+    "title": "首页"
 }
 </config>
 <script>
@@ -37,3 +36,9 @@ export default {
     }
 };
 </script>
+
+<style scoped>
+.haizekuo {
+    background: url('../images/icon.png');
+}
+</style>

@@ -55,6 +55,10 @@ export default (api) => {
         memo.resolve.alias.set('@', paths.absSrcPath);
         memo.resolve.alias.set('@@', paths.absTmpPath);
 
+        Object.keys(api.config.alias).forEach((key) => {
+            memo.resolve.alias.set(key, api.config.alias[key]);
+        });
+
         return memo;
     });
 };

@@ -2,6 +2,11 @@
 
 
 export default {
+    base: '/foo/',
+    define: {
+        FOO: 'bar'
+    },
+    publicPath: '/',
     access: {
         roles: {
             admin: ["/", "/onepiece"]

@@ -4,6 +4,7 @@
   "description": "fes项目模版",
   "scripts": {
     "build": "fes build",
+    "analyze": "ANALYZE=1 fes build",
     "dev": "fes dev"
   },
   "keywords": [

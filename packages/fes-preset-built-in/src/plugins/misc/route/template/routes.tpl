@@ -13,13 +13,14 @@ export function getRoutes() {
   return routes;
 }
 
+const ROUTER_BASE = '{{{ routerBase }}}';
 let router = null;
 export const createRouter = () => {
   if (router) {
       return router;
   }
   router = createVueRouter({
-      history: createWebHashHistory(),
+      history: createWebHashHistory(ROUTER_BASE),
       routes: getRoutes()
   });
 

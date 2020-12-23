@@ -30,7 +30,8 @@ export async function getBundleAndConfigs({
         env: api.env,
         bundler: { id: Bundler.id, version: Bundler.version }
     };
-        // get config
+
+    // get config
     async function getConfig({ type }) {
         const env = api.env === 'production' ? 'production' : 'development';
         const getConfigOpts = await api.applyPlugins({

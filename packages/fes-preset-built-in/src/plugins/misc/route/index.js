@@ -257,7 +257,8 @@ export default function (api) {
             content: Mustache.render(routesTpl, {
                 runtimePath,
                 routes,
-                config: api.config
+                config: api.config,
+                routerBase: api.config.base || ''
             })
         });
 

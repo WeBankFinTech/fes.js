@@ -9,7 +9,7 @@ export default (api) => {
                 return joi
                     .object({})
                     .description(
-                        'more vue-loader options see https://vue-loader.vuejs.org/',
+                        'more html-webpack-plugin options see https://github.com/jantimon/html-webpack-plugin#configuration',
                     );
             },
             default: {
@@ -77,7 +77,7 @@ export default (api) => {
                 .use(HTMLPlugin, [htmlOptions]);
 
             // TODO onlyHtml 将资源注入 html 中的逻辑
-            if (!htmlOptions.onlyHtml) {
+            if (!htmlOptions.onlyHtml || htmlOptions.preload !== false) {
                 // inject preload/prefetch to HTML
                 webpackConfig
                     .plugin('preload')

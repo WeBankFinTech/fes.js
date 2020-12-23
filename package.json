@@ -32,7 +32,7 @@
   "devDependencies": {
     "@commitlint/cli": "^11.0.0",
     "@commitlint/config-conventional": "^11.0.0",
-    "@webank/eslint-config-webank": "^0.1.7",
+    "@webank/eslint-config-webank": "^0.2.7",
     "commitizen": "^4.2.1",
     "cz-conventional-changelog": "^3.3.0",
     "father-build": "^1.18.5",

@@ -35,7 +35,7 @@ export default (api) => {
         if (type === 'csr' && !process.env.ANALYZE_SSR) {
             webpackConfig
                 .plugin('bundle-analyzer')
-                .use(require('umi-webpack-bundle-analyzer').BundleAnalyzerPlugin, [
+                .use(require('webpack-bundle-analyzer').BundleAnalyzerPlugin, [
           api.config?.analyze || {}
                 ]);
         }
