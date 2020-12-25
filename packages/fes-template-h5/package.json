@@ -29,12 +29,11 @@
   "license": "MIT",
   "devDependencies": {
     "@vue/compiler-sfc": "^3.0.0",
-    "@webank/eslint-config-webank": "^0.1.4"
+    "@webank/eslint-config-webank": "0.2.7",
+    "postcss-px-to-viewport": "1.1.1"
   },
   "dependencies": {
-    "vue": "^3.0.2",
-    "@webank/fes": "^2.0.0",
-    "@webank/fes-plugin-access": "^1.0.0",
-    "@webank/fes-plugin-model": "^1.0.0"
+    "vue": "^3.0.4",
+    "@webank/fes": "^2.0.0"
   }
 }

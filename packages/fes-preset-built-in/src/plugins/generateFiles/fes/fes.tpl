@@ -67,8 +67,8 @@ const beforeRenderConfig = plugin.applyPlugins({
     key: "beforeRender",
     type: ApplyPluginsType.modify,
     initialValue: {
-        loading: defineComponent(() => () => <></>),
-        action: () => {},
+        loading: null,
+        action: null
     },
 });
 

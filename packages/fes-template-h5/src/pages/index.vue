@@ -1,7 +1,7 @@
 <template>
-    <div>
+    <div class="onepiece">
         fes & 拉夫德鲁 <br />
-        accessOnepicess: {{accessOnepicess}}
+        <!-- <Icon type="smile"></Icon> -->
     </div>
 </template>
 <config>
@@ -12,17 +12,15 @@
 </config>
 <script>
 import { ref, onMounted } from 'vue';
-import { useAccess, useModel, useRouter } from '@webank/fes';
+import { useRouter } from '@webank/fes';
+// import Icon from '@/components/Icon';
 
 export default {
     setup() {
         const fes = ref('fes upgrade to vue3');
-        const accessOnepicess = useAccess('/onepiece');
-        const { initialState } = useModel('@@initialState');
         const router = useRouter();
         onMounted(() => {
             console.log(router);
-            console.log(initialState);
             console.log('mounted1!!');
             // router.push('/onepiece');
         });
@@ -30,9 +28,23 @@ export default {
             console.log('mounted2!!');
         });
         return {
-            fes,
-            accessOnepicess
+            fes
         };
     }
 };
 </script>
+
+<style lang="less" scoped>
+@import "~@/styles/mixins/hairline";
+
+div {
+    padding: 20px;
+    p {
+        margin: 20px;
+    }
+}
+.onepiece {
+    .hairline("top");
+    background: url('../images/male.png');
+}
+</style>

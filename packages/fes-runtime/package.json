@@ -20,7 +20,7 @@
     "access": "public"
   },
   "peerDependencies": {
-    "vue": "^3.0.0"
+    "vue": "^3.0.4"
   },
   "dependencies": {
     "vue-router": "^4.0.1"

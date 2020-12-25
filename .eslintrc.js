@@ -1,7 +1,7 @@
 
 module.exports = {
     extends: [
-        '@webank/eslint-config-webank/vue',
+        '@webank/eslint-config-webank/vue.js'
     ],
     globals: {
         // 这里填入你的项目需要的全局变量
@@ -11,13 +11,8 @@ module.exports = {
     },
     rules: {
         'vue/comment-directive': 'off',
-        'no-param-reassign': 'off',
-        'func-names': 'off',
         'global-require': 'off',
-        'class-methods-use-this': 'off',
-        'no-restricted-syntax': 'off',
-        'import/prefer-default-export': 'off',
         'import/no-unresolved': 'off',
-        'no-continue': 'off'
+        'no-restricted-syntax': 'off'
     }
 };

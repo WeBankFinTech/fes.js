@@ -301,7 +301,7 @@ export default class Service extends EventEmitter {
         if (presets) {
             assert(
                 Array.isArray(presets),
-                `presets returned from preset ${id} must be Array.`,
+                `presets returned from preset ${id} must be Array.`
             );
             // 插到最前面，下个 while 循环优先执行
             this._extraPresets.splice(
@@ -311,7 +311,7 @@ export default class Service extends EventEmitter {
                     type: PluginType.preset,
                     path,
                     cwd: this.cwd
-                })),
+                }))
             );
         }
 
@@ -326,14 +326,14 @@ export default class Service extends EventEmitter {
         if (plugins) {
             assert(
                 Array.isArray(plugins),
-                `plugins returned from preset ${id} must be Array.`,
+                `plugins returned from preset ${id} must be Array.`
             );
             this._extraPlugins.push(
                 ...plugins.map(path => pathToObj({
                     type: PluginType.plugin,
                     path,
                     cwd: this.cwd
-                })),
+                }))
             );
         }
     }

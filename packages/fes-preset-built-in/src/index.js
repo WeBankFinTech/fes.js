@@ -34,6 +34,7 @@ export default function () {
             require.resolve('./plugins/features/hash'),
             require.resolve('./plugins/features/html'),
             require.resolve('./plugins/features/inlineLimit'),
+            require.resolve('./plugins/features/imageMinimizer'),
             require.resolve('./plugins/features/lessLoader'),
             require.resolve('./plugins/features/mountElementId'),
             require.resolve('./plugins/features/nodeModulesTransform'),

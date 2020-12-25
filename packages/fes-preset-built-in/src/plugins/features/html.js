@@ -7,7 +7,10 @@ export default (api) => {
         config: {
             schema(joi) {
                 return joi
-                    .object({})
+                    .object({
+                        options: joi.object(),
+                        pages: joi.object()
+                    })
                     .description(
                         'more html-webpack-plugin options see https://github.com/jantimon/html-webpack-plugin#configuration'
                     );
@@ -20,15 +23,11 @@ export default (api) => {
 
     api.chainWebpack(async (webpackConfig) => {
         const isProd = api.env === 'production';
-        const headScripts = await api.applyPlugins({
-            key: 'addHTMLHeadScripts',
-            initialState: []
-        });
         const htmlOptions = {
             templateParameters: (compilation, assets, pluginOptions) => {
                 // enhance html-webpack-plugin's built in template params
                 let stats;
-                return Object.assign({
+                return {
                     // make stats lazy as it is expensive
                     get webpack() {
                         // eslint-disable-next-line
@@ -40,8 +39,9 @@ export default (api) => {
                         files: assets,
                         options: pluginOptions
                     }
-                }, api.config.html.options);
-            }
+                };
+            },
+            ...api.config.html.options
         };
 
 
@@ -104,6 +104,11 @@ export default (api) => {
         }
 
         if (!isProd) {
+            const headScripts = await api.applyPlugins({
+                key: 'addHTMLHeadScripts',
+                type: api.ApplyPluginsType.add,
+                initialState: []
+            });
             webpackConfig
                 .plugin('html-tags')
                 .use(HtmlWebpackTagsPlugin, [{

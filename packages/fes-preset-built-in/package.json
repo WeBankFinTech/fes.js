@@ -24,18 +24,17 @@
     "access": "public"
   },
   "dependencies": {
-    "express": "4.17.1",
-    "@umijs/utils": "3.3.3",
     "@umijs/bundler-webpack": "3.3.3",
     "@umijs/server": "3.3.3",
+    "@umijs/utils": "3.3.3",
     "@vue/babel-plugin-jsx": "^1.0.0-rc.5",
     "@vue/compiler-sfc": "^3.0.4",
     "@vue/preload-webpack-plugin": "1.1.2",
     "@webank/fes-core": "^2.0.0",
     "cliui": "6.0.0",
-    "vue-loader": "^16.1.2",
     "html-webpack-plugin": "^3.2.0",
     "html-webpack-tags-plugin": "2.0.17",
+    "vue-loader": "^16.1.2",
     "webpack-bundle-analyzer": "4.3.0"
   }
 }

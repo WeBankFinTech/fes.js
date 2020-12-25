@@ -16,7 +16,7 @@ export default (api) => {
                                     cert: joi.string()
                                 })
                                 .unknown(),
-                            joi.boolean(),
+                            joi.boolean()
                         ),
                         headers: joi.object(),
                         writeToDisk: joi.alternatives(joi.boolean(), joi.function())
