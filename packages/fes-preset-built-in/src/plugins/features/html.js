@@ -112,7 +112,7 @@ export default (api) => {
             webpackConfig
                 .plugin('html-tags')
                 .use(HtmlWebpackTagsPlugin, [{
-                    append: true,
+                    append: false,
                     scripts: headScripts.map(script => ({
                         path: script.src
                     }))

@@ -46,7 +46,7 @@ export default (api) => {
     });
 
     api.addHTMLHeadScripts(() => [{
-        src: `${api.config.publicPath}@@/devScripts.js`
+        src: '@@/devScripts.js'
     }]);
 
     api.onGenerateFiles(() => {

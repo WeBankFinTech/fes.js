@@ -1,7 +1,7 @@
 <template>
     <div class="onepiece">
         fes & 拉夫德鲁 <br />
-        <!-- <Icon type="smile"></Icon> -->
+        <fes-icon @click="clickIcon" :spin="true" class="one-icon" type="smile" />
     </div>
 </template>
 <config>
@@ -18,6 +18,7 @@ import { useRouter } from '@webank/fes';
 export default {
     setup() {
         const fes = ref('fes upgrade to vue3');
+        const rotate = ref(90);
         const router = useRouter();
         onMounted(() => {
             console.log(router);
@@ -27,8 +28,13 @@ export default {
         onMounted(() => {
             console.log('mounted2!!');
         });
+        const clickIcon = () => {
+            console.log('click Icon');
+        };
         return {
-            fes
+            fes,
+            rotate,
+            clickIcon
         };
     }
 };
@@ -36,6 +42,7 @@ export default {
 
 <style lang="less" scoped>
 @import "~@/styles/mixins/hairline";
+@import "~@/styles/mixins/hover";
 
 div {
     padding: 20px;
@@ -43,8 +50,13 @@ div {
         margin: 20px;
     }
 }
+.one-icon {
+    color: yellow;
+    font-size: 24px;
+    .hover();
+}
 .onepiece {
     .hairline("top");
-    background: url('../images/male.png');
+    // background: url('../images/male.png');
 }
 </style>

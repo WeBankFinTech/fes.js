@@ -28,7 +28,7 @@ export default class PluginAPI {
             if (plugins[id]) {
                 const name = plugins[id].isPreset ? 'preset' : 'plugin';
                 throw new Error(
-                    `api.describe() failed, ${name} ${id} is already registered by ${plugins[id].path}.`,
+                    `api.describe() failed, ${name} ${id} is already registered by ${plugins[id].path}.`
                 );
             }
             plugins[id] = plugins[this.id];
@@ -51,11 +51,11 @@ export default class PluginAPI {
     register(hook) {
         assert(
             hook.key && typeof hook.key === 'string',
-            `api.register() failed, hook.key must supplied and should be string, but got ${hook.key}.`,
+            `api.register() failed, hook.key must supplied and should be string, but got ${hook.key}.`
         );
         assert(
             hook.fn && typeof hook.fn === 'function',
-            `api.register() failed, hook.fn must supplied and should be function, but got ${hook.fn}.`,
+            `api.register() failed, hook.fn must supplied and should be function, but got ${hook.fn}.`
         );
         this.service.hooksByPluginId[this.id] = (
             this.service.hooksByPluginId[this.id] || []
@@ -66,7 +66,7 @@ export default class PluginAPI {
         const { name, alias } = command;
         assert(
             !this.service.commands[name],
-            `api.registerCommand() failed, the command ${name} is exists.`,
+            `api.registerCommand() failed, the command ${name} is exists.`
         );
         this.service.commands[name] = command;
         if (alias) {
@@ -79,11 +79,11 @@ export default class PluginAPI {
         assert(
             this.service.stage === ServiceStage.initPresets
         || this.service.stage === ServiceStage.initPlugins,
-            'api.registerPlugins() failed, it should only be used in registering stage.',
+            'api.registerPlugins() failed, it should only be used in registering stage.'
         );
         assert(
             Array.isArray(plugins),
-            'api.registerPlugins() failed, plugins must be Array.',
+            'api.registerPlugins() failed, plugins must be Array.'
         );
         const extraPlugins = plugins.map(plugin => (isValidPlugin(plugin)
             ? (plugin)
@@ -102,11 +102,11 @@ export default class PluginAPI {
     registerPresets(presets) {
         assert(
             this.service.stage === ServiceStage.initPresets,
-            'api.registerPresets() failed, it should only used in presets.',
+            'api.registerPresets() failed, it should only used in presets.'
         );
         assert(
             Array.isArray(presets),
-            'api.registerPresets() failed, presets must be Array.',
+            'api.registerPresets() failed, presets must be Array.'
         );
         const extraPresets = presets.map(preset => (isValidPlugin(preset)
             ? (preset)
@@ -127,7 +127,7 @@ export default class PluginAPI {
         if (this.service.pluginMethods[name]) {
             if (exitsError) {
                 throw new Error(
-                    `api.registerMethod() failed, method ${name} is already exist.`,
+                    `api.registerMethod() failed, method ${name} is already exist.`
                 );
             } else {
                 return;

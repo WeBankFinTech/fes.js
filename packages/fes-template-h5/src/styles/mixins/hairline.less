@@ -18,6 +18,7 @@
     html:not([data-scale]) & {
         @media (min-resolution: 2dppx) {
             border-top: none;
+            position: relative;
 
             &::before {
                 .scale-hairline-common(@color, 0, auto, auto, 0);
@@ -40,6 +41,7 @@
     html:not([data-scale]) & {
         @media (min-resolution: 2dppx) {
             border-right: none;
+            position: relative;
 
             &::after {
                 .scale-hairline-common(@color, 0, 0, auto, auto);
@@ -63,6 +65,7 @@
     html:not([data-scale]) & {
         @media (min-resolution: 2dppx) {
             border-bottom: none;
+            position: relative;
 
             &::after {
                 .scale-hairline-common(@color, auto, auto, 0, 0);
@@ -85,6 +88,7 @@
     html:not([data-scale]) & {
         @media (min-resolution: 2dppx) {
             border-left: none;
+            position: relative;
 
             &::before {
                 .scale-hairline-common(@color, 0, auto, auto, 0);

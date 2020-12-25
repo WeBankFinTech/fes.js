@@ -13,6 +13,7 @@ const headPkgs = [
     "fes-plugin-access",
     "fes-plugin-model",
     "fes-plugin-layout",
+    "fes-plugin-icon",
 ];
 const tailPkgs = [];
 // const otherPkgs = readdirSync(join(__dirname, 'packages')).filter(

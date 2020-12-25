@@ -1,8 +1,6 @@
-@import "~@/styles/theme.less";
-
 .inner-icon {
     display: inline-block;
-    color: @icon-color;
+    color: inherit;
     font-style: normal;
     line-height: 0;
     text-align: center;
@@ -19,6 +17,9 @@
 
     svg {
         display: inline-block;
+        width: 1em;
+        height: 1em;
+        fill: currentColor;
     }
 
     &::before {
