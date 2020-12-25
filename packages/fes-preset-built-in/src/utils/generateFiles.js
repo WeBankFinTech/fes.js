@@ -32,7 +32,7 @@ export default async ({ api, watch }) => {
             'all',
             lodash.throttle(async () => {
                 await generate();
-            }, 100),
+            }, 100)
         );
     }
 

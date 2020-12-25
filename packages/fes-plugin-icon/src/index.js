@@ -17,7 +17,9 @@ export default (api) => {
     const namespace = 'plugin-icon';
     const absRuntimeFilePath = join(namespace, 'runtime.js');
 
-    // TODO 监听 icons 文件变更，重新生成文件
+    // 监听 icons 文件变更，重新生成文件
+    api.addTmpGenerateWatcherPaths(() => join(api.paths.absSrcPath, 'icons'));
+
     api.onGenerateFiles(async () => {
         const base = join(api.paths.absSrcPath, 'icons');
         const iconFiles = api.utils.glob.sync('**/*', {

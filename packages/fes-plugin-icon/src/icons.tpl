@@ -1,9 +1,9 @@
 {{#ICON_NAMES}}
-import smile from './icons/{{.}}';
+import {{.}} from './icons/{{.}}';
 {{/ICON_NAMES}}
 
 export default {
     {{#ICON_NAMES}}
-    {{.}}
+    {{.}},
     {{/ICON_NAMES}}
 };
