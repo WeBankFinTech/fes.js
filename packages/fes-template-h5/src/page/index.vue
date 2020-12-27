@@ -57,6 +57,6 @@ div {
 }
 .onepiece {
     .hairline("top");
-    // background: url('../images/male.png');
+    background: url('../images/male.png');
 }
 </style>

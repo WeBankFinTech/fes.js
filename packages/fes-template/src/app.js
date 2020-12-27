@@ -1,6 +1,6 @@
 import { access } from '@webank/fes';
-import PageLoading from '@/components/PageLoading.vue';
-import UserCenter from '@/components/UserCenter.vue';
+import PageLoading from '@/components/PageLoading';
+import UserCenter from '@/components/UserCenter';
 
 export const beforeRender = {
     loading: <PageLoading />,

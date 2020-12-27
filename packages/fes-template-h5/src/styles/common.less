@@ -3,6 +3,9 @@ img {
     -webkit-touch-callout: none;
 }
 
+html {
+    touch-action: manipulation; // 处理 IOS10+，click点击 300ms 问题
+}
 body {
     background-color: #f7f7f7;
 }
@@ -19,4 +22,24 @@ a {
 
 * {
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+/* 适配 iPhone X 顶部填充*/
+@supports (top: env(safe-area-inset-top)){
+    body,
+    .alien-screen-header {
+        padding-top: constant(safe-area-inset-top, 40px);
+        padding-top: env(safe-area-inset-top, 40px);
+        padding-top: var(safe-area-inset-top, 40px);
+    }
+}
+
+/* 判断iPhoneX 将 footer 的 padding-bottom 填充到最底部 */
+@supports (bottom: env(safe-area-inset-bottom)){
+    body,
+    .alien-screen-footer {
+        padding-bottom: constant(safe-area-inset-bottom, 20px);
+        padding-bottom: env(safe-area-inset-bottom, 20px);
+        padding-top: var(safe-area-inset-bottom, 20px);
+    }
 }

@@ -13,7 +13,8 @@ export function typeOf(obj) {
         '[object RegExp]': 'regExp',
         '[object Undefined]': 'undefined',
         '[object Null]': 'null',
-        '[object Object]': 'object'
+        '[object Object]': 'object',
+        '[object URLSearchParams]': 'URLSearchParams'
     };
     return map[Object.prototype.toString.call(obj)];
 }
@@ -38,13 +39,14 @@ export function isObject(obj) {
     return typeOf(obj) === 'object';
 }
 
-export function isHtmlElement(node) {
-    return node && node.nodeType === Node.ELEMENT_NODE;
+export function isURLSearchParams(obj) {
+    return typeOf(obj) === 'URLSearchParams';
 }
 
+// eslint-disable-next-line
 export const isUndefined = val => val === undefined;
 
-export const isDefined = val => val !== undefined && val !== null;
+export const isDefined = val => val != null;
 
 
 export function checkHttpRequestHasBody(method) {
@@ -87,4 +89,17 @@ export function trimObj(obj) {
             }
         });
     }
+}
+
+/**
+ * 唯一定位一个请求（url, data | params, method）
+ *      其中请求参数(data, params)根据请求方法,只使用其中一个
+ *      一个请求同时包含 data | params 参数的设计本身不合理
+ *      不对这种情况进行兼容
+ */
+export function genRequestKey(url, data, method) {
+    if (isURLSearchParams(data)) {
+        return `${url}${data.toString()}${method}`;
+    }
+    return `${url}${JSON.stringify(data)}${method}`;
 }

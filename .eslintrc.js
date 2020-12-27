@@ -8,6 +8,7 @@ module.exports = {
         // 这里值为 false 表示这个全局变量不允许被重新赋值，比如：
         //
         // Vue: false
+        __DEV__: false
     },
     rules: {
         'vue/comment-directive': 'off',
