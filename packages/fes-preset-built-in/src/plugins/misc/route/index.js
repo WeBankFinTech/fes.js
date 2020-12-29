@@ -47,8 +47,9 @@ const getRouteName = function (parentRoutePath, fileName) {
         .replace(/\*/g, 'FUZZYMATCH');
 };
 
-const getComponentPath = function (parentRoutePath, fileName) {
-    return posix.join('@/pages/', parentRoutePath, fileName);
+const getComponentPath = function (parentRoutePath, fileName, config) {
+    const pagesName = config.singular ? 'page' : 'pages';
+    return posix.join(`@/${pagesName}/`, parentRoutePath, fileName);
 };
 
 const getRoutePath = function (parentRoutePath, fileName) {
@@ -67,7 +68,7 @@ const getRoutePath = function (parentRoutePath, fileName) {
 };
 
 // TODO 约定 layout 目录作为布局文件夹，
-const genRoutes = function (parentRoutes, path, parentRoutePath) {
+const genRoutes = function (parentRoutes, path, parentRoutePath, config) {
     const dirList = readdirSync(path);
     const hasLayout = checkHasLayout(path);
     const layoutRoute = {
@@ -91,7 +92,7 @@ const genRoutes = function (parentRoutes, path, parentRoutePath) {
             const routePath = getRoutePath(parentRoutePath, fileName);
             // 路由名称
             const routeName = getRouteName(parentRoutePath, fileName);
-            const componentPath = getComponentPath(parentRoutePath, fileName);
+            const componentPath = getComponentPath(parentRoutePath, fileName, config);
             if (hasLayout) {
                 if (fileName === 'layout') {
                     layoutRoute.component = componentPath;
@@ -120,9 +121,9 @@ const genRoutes = function (parentRoutes, path, parentRoutePath) {
             const component = join(path, item);
             const nextParentRouteUrl = posix.join(parentRoutePath, item);
             if (hasLayout) {
-                genRoutes(layoutRoute.children, component, nextParentRouteUrl);
+                genRoutes(layoutRoute.children, component, nextParentRouteUrl, config);
             } else {
-                genRoutes(parentRoutes, component, nextParentRouteUrl);
+                genRoutes(parentRoutes, component, nextParentRouteUrl, config);
             }
         }
     });
@@ -172,7 +173,7 @@ const getRoutes = function ({ config, absPagesPath }) {
     if (config.routes) return config.routes;
 
     const routes = [];
-    genRoutes(routes, absPagesPath, '/');
+    genRoutes(routes, absPagesPath, '/', config);
     fix(routes);
     return routes;
 };

@@ -3,6 +3,10 @@ import pxtoviewport from 'postcss-px-to-viewport';
 
 
 export default {
+    define: {
+        // __VUE_OPTIONS_API__: true,
+        // __VUE_PROD_DEVTOOLS__: false
+    },
     html: {
         options: {
             title: '海贼王'

@@ -1,5 +1,5 @@
 import {
-    genRequestKey, isObject, isString, isURLSearchParams, checkHttpRequestHasBody
+    isObject, isString, isURLSearchParams, checkHttpRequestHasBody
 } from './helpers';
 /**
  * 缓存实现的功能
@@ -122,13 +122,11 @@ function getCacheData({ key, cacheType = 'ram' }) {
 
 export default (ctx, next) => {
     const { config } = ctx;
-    let requestKey;
     if (config.cache) {
         const data = checkHttpRequestHasBody(config.method) ? config.data : config.params;
-        requestKey = genRequestKey(config.url, data, config.method);
         if (canCache(data)) {
             ctx.response = {
-                data: getCacheData({ key: requestKey, cacheType: config.cache.cacheType })
+                data: getCacheData({ key: ctx.key, cacheType: config.cache.cacheType })
             };
             return;
         }
@@ -137,7 +135,7 @@ export default (ctx, next) => {
 
     if (config.cache) {
         setCacheData({
-            key: requestKey,
+            key: ctx.key,
             data: ctx.response.data,
             ...config.cache
         });

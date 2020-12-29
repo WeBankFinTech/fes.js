@@ -44,6 +44,7 @@ export default function () {
             require.resolve('./plugins/features/proxy'),
             require.resolve('./plugins/features/publicPath'),
             require.resolve('./plugins/features/styleLoader'),
+            require.resolve('./plugins/features/singular'),
             require.resolve('./plugins/features/targets'),
             require.resolve('./plugins/features/terserOptions'),
             require.resolve('./plugins/features/vueLoader'),

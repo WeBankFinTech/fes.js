@@ -19,7 +19,8 @@ export default function getServicePaths({
     if (isDirectoryAndExist(join(cwd, 'src'))) {
         absSrcPath = join(cwd, 'src');
     }
-    const absPagesPath = config.singular
+
+    const absPagesPath = config.singular !== false
         ? join(absSrcPath, 'page')
         : join(absSrcPath, 'pages');
 

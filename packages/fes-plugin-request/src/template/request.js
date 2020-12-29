@@ -8,6 +8,9 @@ import {
 
 import setDataField from './setDataField';
 import paramsProcess from './paramsProcess';
+import genRequestKey from './genRequestKey';
+import preventRepeatReq from './preventRepeatReq';
+import cacheControl from './cacheControl';
 import resDataAdaptor from './resDataAdaptor';
 import resErrorProcess from './resErrorProcess';
 
@@ -63,6 +66,9 @@ function getRequestInstance() {
     addResponseInterceptors(instance, responseInterceptors);
 
     scheduler.use(paramsProcess);
+    scheduler.use(genRequestKey);
+    scheduler.use(preventRepeatReq);
+    scheduler.use(cacheControl);
     scheduler.use(axiosMiddleware);
     scheduler.use(resDataAdaptor);
     scheduler.use(resErrorProcess);
