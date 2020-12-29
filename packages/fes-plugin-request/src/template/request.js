@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { ApplyPluginsType, plugin } from '@webank/fes';
+import scheduler from 'scheduler';
 import {
     checkHttpRequestHasBody,
     isFunction
@@ -28,6 +29,16 @@ function addResponseInterceptors(instance, interceptors) {
     addInterceptors(instance, interceptors, 'response');
 }
 
+function axiosMiddleware(context, next) {
+    context.instance.request(context.config).then((response) => {
+        context.response = response;
+    }).catch((error) => {
+        context.error = error;
+    }).finally(() => {
+        next();
+    });
+}
+
 function getRequestInstance() {
     const {
         responseDataAdaptor,
@@ -42,33 +53,36 @@ function getRequestInstance() {
         initialValue: {}
     });
 
-    const instance = axios.create(Object.assign({
+    const defaultConfig = Object.assign({
         timeout: 10000,
         withCredentials: true
-    }, otherConfigs));
+    }, otherConfigs);
+    const instance = axios.create(defaultConfig);
 
-    // eslint-disable-next-line
-    const dataField = REPLACE_DATA_FIELD;
-    addRequestInterceptors(requestInterceptors);
-    addResponseInterceptors(responseInterceptors);
+    addRequestInterceptors(instance, requestInterceptors);
+    addResponseInterceptors(instance, responseInterceptors);
 
-
-    paramsProcess(instance);
-    resDataAdaptor(instance, { responseDataAdaptor });
-    resErrorProcess(instance, { errorConfig, errorHandler });
-    setDataField(instance, dataField);
+    scheduler.use(paramsProcess);
+    scheduler.use(axiosMiddleware);
+    scheduler.use(resDataAdaptor);
+    scheduler.use(resErrorProcess);
+    scheduler.use(setDataField);
 
     return {
-        instance
+        context: {
+            instance,
+            defaultConfig,
+            dataField: REPLACE_DATA_FIELD, // eslint-disable-line
+            responseDataAdaptor,
+            errorConfig,
+            errorHandler
+        },
+        request: scheduler.compose()
     };
 }
 
-let currentRequestInstance = null;
-export const request = (url, data, options = {}) => {
-    if (!currentRequestInstance) {
-        const { instance } = getRequestInstance();
-        currentRequestInstance = instance;
-    }
+
+function userConfigHandler(url, data, options = {}) {
     options.url = url;
     options.method = (options.method || 'post').toUpperCase();
     if (checkHttpRequestHasBody(options.method)) {
@@ -76,5 +90,31 @@ export const request = (url, data, options = {}) => {
     } else {
         options.params = data;
     }
-    return currentRequestInstance.request(options);
+}
+
+let currentRequestInstance = null;
+
+function createContext(userConfig) {
+    return {
+        ...currentRequestInstance.context,
+        config: {
+            ...currentRequestInstance.context.defaultConfig,
+            ...userConfig
+        }
+    };
+}
+
+export const request = (url, data, options = {}) => {
+    if (!currentRequestInstance) {
+        currentRequestInstance = getRequestInstance();
+    }
+    const userConfig = userConfigHandler(url, data, options);
+    const context = createContext(userConfig);
+
+    return currentRequestInstance.request(context).then((ctx) => {
+        if (!ctx.error) {
+            return ctx.config.useResonse ? ctx.response : ctx.response.data;
+        }
+        return Promise.reject(ctx.error);
+    });
 };
