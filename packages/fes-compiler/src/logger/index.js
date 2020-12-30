@@ -61,7 +61,7 @@ export default class Logger {
             delete this.profilers[id];
             process.stderr.write(`${this.PROFILE} `);
             msg = `${this.PROFILE} ${chalk.cyan(
-                `└ ${namespace}`,
+                `└ ${namespace}`
             )} Completed in ${this.formatTiming(time - timeEnd)}`;
             console.log(msg);
         } else {

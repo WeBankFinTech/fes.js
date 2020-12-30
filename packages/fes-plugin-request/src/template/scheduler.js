@@ -30,4 +30,4 @@ class Scheduler {
     }
 }
 
-export default Scheduler();
+export default new Scheduler();

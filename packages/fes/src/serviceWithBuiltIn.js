@@ -1,5 +1,5 @@
 import { dirname } from 'path';
-import { Service as CoreService } from '@webank/fes-core';
+import { Service as CoreService } from '@webank/fes-compiler';
 
 class Service extends CoreService {
     constructor(opts) {

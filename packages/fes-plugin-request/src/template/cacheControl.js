@@ -44,7 +44,7 @@ const CACHE_TYPE = {
     local: 'localStorage'
 };
 
-const CACHE_DATA = new Map();
+const CACHE_DATA_MAP = new Map();
 
 function genInnerKey(key, cacheType) {
     if (cacheType !== CACHE_TYPE.ram) {
@@ -53,17 +53,18 @@ function genInnerKey(key, cacheType) {
     return key;
 }
 
-function canCache(requestData) {
-    return isObject(requestData) || isString(requestData) || isURLSearchParams(requestData);
+function canCache(data) {
+    return !data || isObject(data) || isString(data) || Array.isArray(data) || isURLSearchParams(data);
 }
 
 function setCacheData({
     key,
-    cacheType,
+    cacheType = 'ram',
     data,
     cacheTime = 1000 * 60 * 3
 }) {
     const _key = genInnerKey(key, cacheType);
+
     const currentCacheData = {
         cacheType,
         data,
@@ -83,7 +84,7 @@ function setCacheData({
             }
         }
     } else {
-        CACHE_DATA.set(_key, currentCacheData);
+        CACHE_DATA_MAP.set(_key, currentCacheData);
     }
 }
 
@@ -111,33 +112,36 @@ function getCacheData({ key, cacheType = 'ram' }) {
             return null;
         }
     } else {
-        const currentCacheData = CACHE_DATA.get(_key);
+        const currentCacheData = CACHE_DATA_MAP.get(_key);
         if (currentCacheData && !isExpire(currentCacheData)) {
             return currentCacheData.data;
         }
-        CACHE_DATA.delete(_key);
+        CACHE_DATA_MAP.delete(_key);
         return null;
     }
 }
 
-export default (ctx, next) => {
+export default async (ctx, next) => {
     const { config } = ctx;
     if (config.cache) {
-        const data = checkHttpRequestHasBody(config.method) ? config.data : config.params;
-        if (canCache(data)) {
+        const cacheData = getCacheData({ key: ctx.key, cacheType: config.cache.cacheType });
+        if (cacheData) {
             ctx.response = {
-                data: getCacheData({ key: ctx.key, cacheType: config.cache.cacheType })
+                data: cacheData
             };
             return;
         }
     }
-    next();
+    await next();
 
     if (config.cache) {
-        setCacheData({
-            key: ctx.key,
-            data: ctx.response.data,
-            ...config.cache
-        });
+        const requestdata = checkHttpRequestHasBody(config.method) ? config.data : config.params;
+        if (ctx.response && canCache(requestdata) && canCache(ctx.response.data)) {
+            setCacheData({
+                key: ctx.key,
+                data: ctx.response.data,
+                ...config.cache
+            });
+        }
     }
 };

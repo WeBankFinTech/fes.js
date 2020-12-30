@@ -1,29 +1,19 @@
-import { isObject, isFunction } from 'helpers';
+import { isObject } from './helpers';
 
-function resErrorProcess(error, customerErrorHandler) {
-    if (isFunction(error)) {
-        error();
-    } else {
-        customerErrorHandler && customerErrorHandler(error);
-    }
-}
-
-
-export default ({
+export default async ({
     error,
-    errorConfig,
-    errorHandler,
+    errorHandler = {},
     response
 }, next) => {
-    const _errorConfig = Object.assign({
-        403: '用户得到授权，但访问是禁止的'
-    }, errorConfig);
-
-    if (isObject(response.data) && response.data.code !== '0') {
-        resErrorProcess(_errorConfig[response.data.code] || response.data.msg || response.data.errorMessage || response.data.errorMsg || '服务异常', errorHandler);
-    } else if (error && error.response && _errorConfig[error.response.status]) {
-        resErrorProcess(_errorConfig[error.response.status], errorHandler);
+    if (response && isObject(response.data) && response.data.code !== '0') {
+        errorHandler[response.data.code] && errorHandler[response.data.code](response);
+    } else if (error) {
+        if (error.type) {
+            errorHandler[error.type] && errorHandler[error.type](error);
+        } else if (error.response) {
+            errorHandler[error.response.status] && errorHandler[error.response.status](error);
+        }
     }
 
-    next();
+    await next();
 };

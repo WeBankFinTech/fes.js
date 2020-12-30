@@ -6,7 +6,7 @@ import { join } from "path";
 
 const headPkgs = [
     "fes-runtime",
-    "fes-core",
+    "fes-compiler",
     "fes",
     "fes-preset-built-in",
     "fes-plugin-request",

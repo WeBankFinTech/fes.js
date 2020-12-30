@@ -35,6 +35,7 @@
   "dependencies": {
     "vue": "^3.0.4",
     "@webank/fes": "^2.0.0",
-    "@webank/fes-plugin-icon": "^1.0.0"
+    "@webank/fes-plugin-icon": "^1.0.0",
+    "@webank/fes-plugin-request": "^1.0.0"
   }
 }

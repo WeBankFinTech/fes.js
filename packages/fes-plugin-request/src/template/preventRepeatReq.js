@@ -1,17 +1,17 @@
-const requestQueue = new Map();
+const requestMap = new Map();
 
-export default (ctx, next) => {
+export default async (ctx, next) => {
     const key = ctx.key;
-    if (requestQueue.get(key)) {
+    if (requestMap.get(key)) {
         ctx.error = {
             type: 'REPEAT',
             msg: '重复请求'
         };
         return;
     }
-    requestQueue.set(key, true);
+    requestMap.set(key, true);
 
-    next();
+    await next();
 
-    requestQueue.delete(key);
+    requestMap.delete(key);
 };

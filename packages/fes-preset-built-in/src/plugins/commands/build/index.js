@@ -1,6 +1,6 @@
 import { relative } from 'path';
 import { existsSync } from 'fs';
-import { Logger } from '@webank/fes-core';
+import { Logger } from '@webank/fes-compiler';
 import {
     cleanTmpPathExceptCache,
     getBundleAndConfigs,

@@ -12,8 +12,7 @@
 </config>
 <script>
 import { ref, onMounted } from 'vue';
-import { useRouter } from '@webank/fes';
-// import Icon from '@/components/Icon';
+import { useRouter, request } from '@webank/fes';
 
 export default {
     setup() {
@@ -23,14 +22,44 @@ export default {
         onMounted(() => {
             console.log(router);
             console.log('mounted1!!');
-            // router.push('/onepiece');
-        });
-        onMounted(() => {
-            console.log('mounted2!!');
         });
         const clickIcon = () => {
             console.log('click Icon');
         };
+        request('api', {}, {
+            cache: {
+                cacheType: 'ram',
+                cacheTime: 5 * 1000
+            }
+        }).then((data) => {
+            console.log(data);
+        }).catch((err) => {
+            console.log(err);
+        });
+        setTimeout(() => {
+            request('api', {}, {
+                cache: {
+                    cacheType: 'ram',
+                    cacheTime: 5 * 1000
+                }
+            }).then((data) => {
+                console.log(data);
+            }).catch((err) => {
+                console.log(err);
+            });
+        }, 200);
+        setTimeout(() => {
+            request('api', {}, {
+                cache: {
+                    cacheType: 'ram',
+                    cacheTime: 5 * 1000
+                }
+            }).then((data) => {
+                console.log(data);
+            }).catch((err) => {
+                console.log(err);
+            });
+        }, 6000);
         return {
             fes,
             rotate,

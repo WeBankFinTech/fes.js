@@ -5,6 +5,7 @@ export default (api) => {
     api.addRuntimePluginKey(() => 'request');
     // 配置
     api.describe({
+        key: 'request',
         config: {
             schema(joi) {
                 return joi.object({
@@ -15,7 +16,7 @@ export default (api) => {
                 });
             },
             default: {
-                dataField: 'result'
+                dataField: ''
             }
         }
     });
@@ -29,7 +30,7 @@ export default (api) => {
         api.writeTmpFile({
             path: absoluteFilePath,
             content: requestTemplate
-                .replace('REPLACE_DATA_FIELD', dataField)
+                .replace('REPLACE_DATA_FIELD', JSON.stringify(dataField))
         });
     });
 

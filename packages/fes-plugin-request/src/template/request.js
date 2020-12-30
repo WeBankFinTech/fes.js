@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { ApplyPluginsType, plugin } from '@webank/fes';
-import scheduler from 'scheduler';
+import scheduler from './scheduler';
 import {
     checkHttpRequestHasBody,
     isFunction
@@ -10,6 +10,7 @@ import setDataField from './setDataField';
 import paramsProcess from './paramsProcess';
 import genRequestKey from './genRequestKey';
 import preventRepeatReq from './preventRepeatReq';
+import throttle from './throttle';
 import cacheControl from './cacheControl';
 import resDataAdaptor from './resDataAdaptor';
 import resErrorProcess from './resErrorProcess';
@@ -32,22 +33,21 @@ function addResponseInterceptors(instance, interceptors) {
     addInterceptors(instance, interceptors, 'response');
 }
 
-function axiosMiddleware(context, next) {
-    context.instance.request(context.config).then((response) => {
-        context.response = response;
-    }).catch((error) => {
+async function axiosMiddleware(context, next) {
+    try {
+        context.response = await context.instance.request(context.config);
+    } catch (error) {
         context.error = error;
-    }).finally(() => {
-        next();
-    });
+    }
+    await next();
 }
 
 function getRequestInstance() {
     const {
         responseDataAdaptor,
         errorConfig,
-        requestInterceptors,
-        responseInterceptors,
+        requestInterceptors = [],
+        responseInterceptors = [],
         errorHandler,
         ...otherConfigs
     } = plugin.applyPlugins({
@@ -65,14 +65,15 @@ function getRequestInstance() {
     addRequestInterceptors(instance, requestInterceptors);
     addResponseInterceptors(instance, responseInterceptors);
 
-    scheduler.use(paramsProcess);
-    scheduler.use(genRequestKey);
-    scheduler.use(preventRepeatReq);
-    scheduler.use(cacheControl);
-    scheduler.use(axiosMiddleware);
-    scheduler.use(resDataAdaptor);
-    scheduler.use(resErrorProcess);
-    scheduler.use(setDataField);
+    scheduler.use(paramsProcess)
+        .use(genRequestKey)
+        .use(preventRepeatReq)
+        .use(throttle)
+        .use(cacheControl)
+        .use(axiosMiddleware)
+        .use(resDataAdaptor)
+        .use(resErrorProcess)
+        .use(setDataField);
 
     return {
         context: {
@@ -96,6 +97,7 @@ function userConfigHandler(url, data, options = {}) {
     } else {
         options.params = data;
     }
+    return options;
 }
 
 let currentRequestInstance = null;
@@ -117,10 +119,10 @@ export const request = (url, data, options = {}) => {
     const userConfig = userConfigHandler(url, data, options);
     const context = createContext(userConfig);
 
-    return currentRequestInstance.request(context).then((ctx) => {
-        if (!ctx.error) {
-            return ctx.config.useResonse ? ctx.response : ctx.response.data;
+    return currentRequestInstance.request(context).then(() => {
+        if (!context.error) {
+            return context.config.useResonse ? context.response : context.response.data;
         }
-        return Promise.reject(ctx.error);
+        return Promise.reject(context.error);
     });
 };
