@@ -14,19 +14,17 @@
 <script>
 import { ref, onMounted } from 'vue';
 import {
-    useAccess, useModel, useRouter, useI18n, setLocale
+    useAccess, useRouter, useI18n, setLocale
 } from '@webank/fes';
 
 export default {
     setup() {
         const fes = ref('fes upgrade to vue3');
         const accessOnepicess = useAccess('/onepiece');
-        const { initialState } = useModel('@@initialState');
         const { t } = useI18n();
         const router = useRouter();
         onMounted(() => {
             console.log(router);
-            console.log(initialState);
             console.log('mounted1!!');
             setTimeout(() => {
                 setLocale('en-US');

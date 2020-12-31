@@ -45,7 +45,7 @@
 </template>
 
 <script>
-import { ref, toRefs, computed } from 'vue';
+import { toRefs, computed } from 'vue';
 import { useRoute, useRouter } from '@webank/fes';
 import Menu from 'ant-design-vue/lib/menu';
 import 'ant-design-vue/lib/menu/style';

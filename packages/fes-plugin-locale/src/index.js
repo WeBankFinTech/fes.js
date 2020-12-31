@@ -22,6 +22,10 @@ export default (api) => {
 
     const absRuntimeFilePath = join(namespace, 'runtime.js');
 
+    const selectLangComponentFilePath = join(namespace, 'views/SelectLang.vue');
+
+    const langConfigFilePath = join(namespace, 'langUConfigMap');
+
     function getLocaleFileBasePath() {
         return join(api.paths.absSrcPath, api.config.singular ? 'locale' : 'locales');
     }
@@ -56,16 +60,30 @@ export default (api) => {
                 'utf-8'
             )
         });
+
+        api.writeTmpFile({
+            path: langConfigFilePath,
+            content: readFileSync(
+                join(__dirname, 'template/langUConfigMap.js'),
+                'utf-8'
+            )
+        });
+
+        api.writeTmpFile({
+            path: selectLangComponentFilePath,
+            content: readFileSync(
+                join(__dirname, 'views/SelectLang.vue'),
+                'utf-8'
+            )
+        });
     });
 
     api.addPluginExports(() => [
         {
-            specifiers: ['useI18n', 'setLocale'],
+            specifiers: ['useI18n', 'setLocale', 'SelectLang'],
             source: absoluteFilePath
         }
     ]);
-
-    // api.addRuntimePluginKey(() => 'access');
 
     api.addRuntimePlugin(() => `@@/${absRuntimeFilePath}`);
 };

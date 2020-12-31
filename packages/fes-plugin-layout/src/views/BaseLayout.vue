@@ -17,7 +17,10 @@
         </a-layout-sider>
         <a-layout>
             <a-layout-header v-if="routeLayout" class="layout-header">
-                <slot name="userCenter"></slot>
+                <div class="layout-header-user">
+                    <slot name="userCenter"></slot>
+                </div>
+                <SelectLang />
             </a-layout-header>
             <a-layout-content class="layout-content">
                 <slot></slot>
@@ -31,10 +34,10 @@
 
 <script>
 import { ref, computed } from 'vue';
-import { useRoute } from '@webank/fes';
+import { useRoute, SelectLang } from '@webank/fes';
 import Layout from 'ant-design-vue/lib/layout';
 import 'ant-design-vue/lib/layout/style';
-import Menu from './Menu.vue';
+import Menu from './Menu';
 
 export default {
     components: {
@@ -43,7 +46,8 @@ export default {
         [Layout.Content.name]: Layout.Content,
         [Layout.Header.name]: Layout.Header,
         [Layout.Footer.name]: Layout.Footer,
-        Menu
+        Menu,
+        SelectLang: SelectLang || (<></>)
     },
     props: {
         menus: {
@@ -89,7 +93,7 @@ export default {
             default: 200
         }
     },
-    setup(props, content) {
+    setup() {
         const route = useRoute();
         const routeLayout = computed(() => {
             const _routeLayout = route.meta.layout;
@@ -136,10 +140,15 @@ export default {
         }
     }
     .layout-header {
+        display: flex;
+        align-items: center;
         height: 48px;
         line-height: 48px;
         background: #fff;
-        padding: 0;
+        padding: 0 24px;
+        .layout-header-user {
+            flex: 1
+        }
     }
     .layout-content {
         position: relative;

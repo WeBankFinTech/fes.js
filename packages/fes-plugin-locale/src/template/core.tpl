@@ -7,6 +7,7 @@
 // 所有插件使用一个语言和配置
 
 import { createI18n, useI18n }  from 'vue-i18n/dist/vue-i18n.esm-bundler.js';
+import SelectLang from "./views/SelectLang"
 
 const defaultLangUConfigMap = {
   'ar-EG': {
@@ -348,4 +349,4 @@ const install = (app)=>{
     app.use(i18n);
 }
 
-export { useI18n, setLocale, addLocale, getAllLocales, install }
+export { useI18n, setLocale, SelectLang, install }

@@ -16,6 +16,7 @@
   "peerDependencies": {
     "vue": "^3.0.4",
     "@webank/fes": "^2.0.0",
-    "ant-design-vue": "2.0.0-rc.3"
+    "ant-design-vue": "2.0.0-rc.3",
+    "@ant-design/icons-vue": "^5.1.6"
   }
 }

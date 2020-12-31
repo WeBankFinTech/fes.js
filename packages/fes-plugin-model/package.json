@@ -13,10 +13,11 @@
   "keywords": [],
   "author": "",
   "license": "MIT",
-  "peerDependencies": {
-    "@webank/fes": "^2.0.0"
-  },
   "dependencies": {
     "@umijs/utils": "3.3.3"
+  },
+  "peerDependencies": {
+    "vue": "^3.0.4",
+    "@webank/fes": "^2.0.0"
   }
 }
