@@ -2,7 +2,7 @@ export default (api) => {
     api.describe({
         key: 'singular',
         config: {
-            default: {},
+            default: true,
             schema(joi) {
                 return joi
                     .boolean();

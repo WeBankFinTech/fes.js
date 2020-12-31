@@ -27,7 +27,7 @@ export default (api) => {
             ...getModels(srcModelsPath),
             ...getModels(
                 paths.absPagesPath,
-                `**/${getModelDir()}/**/*.{js,jsx}`,
+                `**/${getModelDir()}/**/*.{js,jsx}`
             ),
             ...getModels(paths.absPagesPath, '**/*.model.{js,jsx}')
         ]);

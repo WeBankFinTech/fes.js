@@ -21,6 +21,10 @@ export default {
             name: 'onepiece'
         }]
     },
+    locale: {
+        locale: 'zh-CN',
+        fallbackLocale: 'zh-CN'
+    },
     devServer: {
         port: 8080
     }
