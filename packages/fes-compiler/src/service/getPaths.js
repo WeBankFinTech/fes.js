@@ -20,7 +20,7 @@ export default function getServicePaths({
         absSrcPath = join(cwd, 'src');
     }
 
-    const absPagesPath = config.singular !== false
+    const absPagesPath = config.singular
         ? join(absSrcPath, 'page')
         : join(absSrcPath, 'pages');
 
