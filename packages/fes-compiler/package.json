@@ -9,17 +9,18 @@
   ],
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "git+https://github.com/WeBankFinTech/fes.js.git",
+    "directory": "packages/fes-compiler"
   },
   "keywords": [
     "fes"
   ],
-  "authors": [
-    ""
-  ],
+  "author": "qlin",
   "license": "MIT",
-  "bugs": "",
-  "homepage": "",
+  "bugs": {
+    "url": "https://github.com/WeBankFinTech/fes.js/issues"
+  },
+  "homepage": "https://github.com/WeBankFinTech/fes.js#readme",
   "publishConfig": {
     "access": "public"
   },

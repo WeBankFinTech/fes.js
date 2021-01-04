@@ -28,8 +28,8 @@ export default (api) => {
                     // lerna 仓库如果用 yarn workspace 的依赖不一定在 node_modules，可能被提到根目录，并且没有 link
                     resolve.sync(`${library}/package.json`, {
                         basedir: cwd
-                    }),
-                ),
+                    })
+                )
             );
         }
         return null;
@@ -47,7 +47,7 @@ export default (api) => {
         libraries.forEach((library) => {
             memo.resolve.alias.set(
                 library.name,
-                getUserLibDir({ library: library.name }) || library.path,
+                getUserLibDir({ library: library.name }) || library.path
             );
         });
 

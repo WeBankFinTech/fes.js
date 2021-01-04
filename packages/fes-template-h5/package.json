@@ -1,7 +1,7 @@
 {
   "name": "@webank/fes-template-h5",
-  "version": "2.0.0",
-  "description": "fes项目模版",
+  "version": "1.0.0",
+  "description": "fes 移动端项目模版",
   "scripts": {
     "build": "fes build",
     "dev": "fes dev"
@@ -16,17 +16,21 @@
   "files": [
     ".eslintrc.js",
     ".gitignore",
-    "fes.config.js",
-    "mock.js",
     "package.json",
     "README.md",
     "/src"
   ],
   "repository": {
-    "type": "git"
+    "type": "git",
+    "url": "git+https://github.com/WeBankFinTech/fes.js.git",
+    "directory": "packages/fes-template-h5"
   },
-  "author": "harrywan qlin",
+  "author": "qlin",
   "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/WeBankFinTech/fes.js/issues"
+  },
+  "homepage": "https://github.com/WeBankFinTech/fes.js#readme",
   "devDependencies": {
     "@vue/compiler-sfc": "^3.0.0",
     "@webank/eslint-config-webank": "0.2.7",

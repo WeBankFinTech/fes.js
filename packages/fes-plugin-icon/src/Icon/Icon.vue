@@ -1,3 +1,4 @@
+<script>
 import { computed } from 'vue';
 // eslint-disable-next-line
 import icons from './icons';
@@ -37,3 +38,4 @@ export default {
         );
     }
 };
+</script>

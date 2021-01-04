@@ -40,7 +40,7 @@ export default (api) => {
     api.onGenerateFiles(() => {
         if (generatedOnce) return;
         generatedOnce = true;
-        const cwd = join(__dirname, '../src');
+        const cwd = join(__dirname, '.');
         const files = api.utils.glob.sync('**/*', {
             cwd
         });

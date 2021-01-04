@@ -16,12 +16,17 @@
     },
     "main": "index.js",
     "module": "dist/index.esm.js",
-    "author": "harrywan,qlin",
+    "author": "qlin",
     "repository": {
         "type": "git",
-        "url": "https://github.com/WeBankFinTech/fes.js.git"
+        "url": "git+https://github.com/WeBankFinTech/fes.js.git",
+        "directory": "packages/fes"
     },
     "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/WeBankFinTech/fes.js/issues"
+    },
+    "homepage": "https://github.com/WeBankFinTech/fes.js#readme",
     "keywords": [
         "管理端",
         "fes",

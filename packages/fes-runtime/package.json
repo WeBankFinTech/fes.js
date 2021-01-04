@@ -8,14 +8,19 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/WeBankFinTech/fes.js"
+    "url": "git+https://github.com/WeBankFinTech/fes.js.git",
+    "directory": "packages/fes-runtime"
   },
   "keywords": [
     "fes"
   ],
   "sideEffects": false,
-  "authors": [],
+  "author": "qlin",
   "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/WeBankFinTech/fes.js/issues"
+  },
+  "homepage": "https://github.com/WeBankFinTech/fes.js#readme",
   "publishConfig": {
     "access": "public"
   },

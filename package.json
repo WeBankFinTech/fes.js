@@ -11,9 +11,8 @@
     "bootstrap": "lerna bootstrap",
     "build": "father-build --watch",
     "version": "lerna version --no-changelog --no-commit-hooks --no-private",
-    "publish": "lerna publish from-git"
+    "publish": "father-build && lerna publish from-git"
   },
-  "author": "harrywan qlin",
   "license": "MIT",
   "keywords": [
     "管理端",
@@ -22,10 +21,6 @@
     "easy",
     "strong"
   ],
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/WeBankFinTech/fes.git"
-  },
   "dependencies": {
     "lerna": "^3.18.4"
   },

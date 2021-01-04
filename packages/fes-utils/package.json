@@ -1,12 +1,24 @@
 {
-  "name": "fes-utils",
+  "name": "@webank/fes-utils",
   "version": "1.0.0",
-  "description": "",
+  "description": "@webank/fes-utils",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
-  "license": "MIT"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WeBankFinTech/fes.js.git",
+    "directory": "packages/fes-utils"
+  },
+  "keywords": [
+    "fes"
+  ],
+  "author": "qlin",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/WeBankFinTech/fes.js/issues"
+  },
+  "homepage": "https://github.com/WeBankFinTech/fes.js#readme",
+  "private": true
 }
