@@ -1,9 +1,13 @@
-import { reactive, toRefs } from "vue";
+import { reactive, ref } from "vue";
 import { getRoutes, plugin, ApplyPluginsType } from "@@/core/coreExports";
 import BaseLayout from "./views/BaseLayout.vue";
 import { fillMenuData } from "./helpers";
 
 const userConfig = reactive({{{REPLACE_USER_CONFIG}}});
+const langConfig = {
+    localInited: ref(false),
+    component: null
+};
 export function rootContainer(childComponent, args) {
     const runtimeConfig = plugin.applyPlugins({
         key: "layout",
@@ -19,7 +23,13 @@ export function rootContainer(childComponent, args) {
                 if(runtimeConfig.userCenter){
                     return <runtimeConfig.userCenter></runtimeConfig.userCenter>
                 }
-                return <></>
+                return <div></div>
+            },
+            lang: () => {
+                if(langConfig.localInited.value){
+                    return <langConfig.component></langConfig.component>
+                }
+                return <div></div>
             }
           };
         return (
@@ -28,3 +38,10 @@ export function rootContainer(childComponent, args) {
         );
     };
 }
+
+{{#HAS_LOCALE}}
+export function onLocaleReady({ i18n, SelectLang }){
+    langConfig.localInited.value = true;
+    langConfig.component = SelectLang;
+}
+{{/HAS_LOCALE}}

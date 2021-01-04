@@ -30,7 +30,7 @@ export default class Plugin {
         Object.keys(plugin.apply).forEach((key) => {
             assert(
                 this.validKeys.indexOf(key) > -1,
-                `register failed, invalid key ${key} from plugin ${plugin.path}.`,
+                `register failed, invalid key ${key} from plugin ${plugin.path}.`
             );
             if (!this.hooks[key]) this.hooks[key] = [];
             this.hooks[key] = this.hooks[key].concat(plugin.apply[key]);
@@ -70,7 +70,7 @@ export default class Plugin {
         if (args) {
             assert(
                 typeof args === 'object',
-                'applyPlugins failed, args must be plain object.',
+                'applyPlugins failed, args must be plain object.'
             );
         }
 
@@ -80,7 +80,7 @@ export default class Plugin {
                     return hooks.reduce(
                         async (memo, hook) => {
                             assert(typeof hook === 'function' || typeof hook === 'object' || isPromiseLike(hook),
-                                `applyPlugins failed, all hooks for key ${key} must be function, plain object or Promise.`,);
+                                `applyPlugins failed, all hooks for key ${key} must be function, plain object or Promise.`);
                             if (isPromiseLike(memo)) {
                                 memo = await memo;
                             }
@@ -98,13 +98,13 @@ export default class Plugin {
                         },
                         isPromiseLike(initialValue)
                             ? initialValue
-                            : Promise.resolve(initialValue),
+                            : Promise.resolve(initialValue)
                     );
                 }
                 return hooks.reduce((memo, hook) => {
                     assert(
                         typeof hook === 'function' || typeof hook === 'object',
-                        `applyPlugins failed, all hooks for key ${key} must be function or plain object.`,
+                        `applyPlugins failed, all hooks for key ${key} must be function or plain object.`
                     );
                     if (typeof hook === 'function') {
                         return hook(memo, args);
@@ -117,7 +117,7 @@ export default class Plugin {
                 return hooks.forEach((hook) => {
                     assert(
                         typeof hook === 'function',
-                        `applyPlugins failed, all hooks for key ${key} must be function.`,
+                        `applyPlugins failed, all hooks for key ${key} must be function.`
                     );
                     hook(args);
                 });

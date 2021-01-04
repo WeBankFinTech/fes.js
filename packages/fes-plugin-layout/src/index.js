@@ -29,7 +29,8 @@ export default (api) => {
             content: Mustache.render(
                 readFileSync(join(__dirname, 'template/runtime.tpl'), 'utf-8'),
                 {
-                    REPLACE_USER_CONFIG: JSON.stringify(userConfig)
+                    REPLACE_USER_CONFIG: JSON.stringify(userConfig),
+                    HAS_LOCALE: api.pkg.dependencies?.['@webank/fes-plugin-locale']
                 }
             )
         });

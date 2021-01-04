@@ -20,7 +20,7 @@
                 <div class="layout-header-user">
                     <slot name="userCenter"></slot>
                 </div>
-                <SelectLang />
+                <slot name="lang"></slot>
             </a-layout-header>
             <a-layout-content class="layout-content">
                 <slot></slot>
@@ -34,7 +34,7 @@
 
 <script>
 import { ref, computed } from 'vue';
-import { useRoute, SelectLang } from '@webank/fes';
+import { useRoute } from '@@/core/coreExports';
 import Layout from 'ant-design-vue/lib/layout';
 import 'ant-design-vue/lib/layout/style';
 import Menu from './Menu';
@@ -46,8 +46,7 @@ export default {
         [Layout.Content.name]: Layout.Content,
         [Layout.Header.name]: Layout.Header,
         [Layout.Footer.name]: Layout.Footer,
-        Menu,
-        SelectLang: SelectLang || (<></>)
+        Menu
     },
     props: {
         menus: {

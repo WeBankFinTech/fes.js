@@ -80,10 +80,12 @@ export default (api) => {
 
     api.addPluginExports(() => [
         {
-            specifiers: ['useI18n', 'setLocale', 'SelectLang'],
+            specifiers: ['useI18n', 'setLocale'],
             source: absoluteFilePath
         }
     ]);
+
+    api.addRuntimePluginKey(() => 'onLocaleReady');
 
     api.addRuntimePlugin(() => `@@/${absRuntimeFilePath}`);
 };
