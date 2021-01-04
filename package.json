@@ -10,8 +10,8 @@
   "scripts": {
     "bootstrap": "lerna bootstrap",
     "build": "father-build --watch",
-    "version": "lerna version --no-changelog --no-commit-hooks --no-private",
-    "publish": "father-build && lerna publish from-git"
+    "version": "lerna version prerelease --preid alpha --no-changelog --no-commit-hooks --no-private",
+    "publish": "father-build && lerna publish from-git --dist-tag next"
   },
   "license": "MIT",
   "keywords": [
