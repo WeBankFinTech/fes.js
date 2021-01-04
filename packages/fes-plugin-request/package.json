@@ -1,6 +1,6 @@
 {
   "name": "@webank/fes-plugin-request",
-  "version": "1.0.0-0",
+  "version": "0.0.0",
   "description": "@webank/fes-plugin-request",
   "main": "lib/index.js",
   "files": [

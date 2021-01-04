@@ -1,6 +1,6 @@
 {
   "name": "@webank/fes-plugin-locale",
-  "version": "1.0.0-0",
+  "version": "0.0.0",
   "description": "@webank/fes-plugin-locale",
   "main": "lib/index.js",
   "files": [
