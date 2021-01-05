@@ -1,6 +1,6 @@
 {
     "name": "@webank/fes",
-    "version": "2.0.0-alpha.0",
+    "version": "2.0.0-alpha.1",
     "description": "一个好用的前端管理台快速开发框架",
     "preferGlobal": true,
     "scripts": {

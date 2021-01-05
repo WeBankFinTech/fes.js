@@ -1,6 +1,6 @@
 {
   "name": "@webank/fes-template-h5",
-  "version": "2.0.0-alpha.0",
+  "version": "2.0.0-alpha.1",
   "description": "fes 移动端项目模版",
   "scripts": {
     "build": "fes build",
