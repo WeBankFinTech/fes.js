@@ -27,6 +27,9 @@
         "url": "https://github.com/WeBankFinTech/fes.js/issues"
     },
     "homepage": "https://github.com/WeBankFinTech/fes.js#readme",
+    "publishConfig": {
+        "access": "public"
+    },
     "keywords": [
         "管理端",
         "fes",

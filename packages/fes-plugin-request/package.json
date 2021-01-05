@@ -24,6 +24,9 @@
     "url": "https://github.com/WeBankFinTech/fes.js/issues"
   },
   "homepage": "https://github.com/WeBankFinTech/fes.js#readme",
+  "publishConfig": {
+    "access": "public"
+  },
   "peerDependencies": {
     "@webank/fes": "^2.0.0"
   },
