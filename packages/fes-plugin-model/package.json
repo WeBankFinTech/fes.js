@@ -1,6 +1,6 @@
 {
   "name": "@webank/fes-plugin-model",
-  "version": "0.0.0",
+  "version": "2.0.0-alpha.0",
   "description": "@webank/fes-plugin-model",
   "main": "lib/index.js",
   "files": [
@@ -28,7 +28,7 @@
     "@umijs/utils": "3.3.3"
   },
   "peerDependencies": {
-    "vue": "^3.0.4",
-    "@webank/fes": "^2.0.0"
+    "@webank/fes": "^2.0.0",
+    "vue": "^3.0.4"
   }
 }

@@ -1,6 +1,6 @@
 {
   "name": "@webank/fes-template-h5",
-  "version": "0.0.0",
+  "version": "2.0.0-alpha.0",
   "description": "fes 移动端项目模版",
   "scripts": {
     "build": "fes build",
@@ -37,9 +37,9 @@
     "postcss-px-to-viewport": "1.1.1"
   },
   "dependencies": {
-    "vue": "^3.0.4",
     "@webank/fes": "^2.0.0",
     "@webank/fes-plugin-icon": "^1.0.0",
-    "@webank/fes-plugin-request": "^1.0.0"
+    "@webank/fes-plugin-request": "^1.0.0",
+    "vue": "^3.0.4"
   }
 }

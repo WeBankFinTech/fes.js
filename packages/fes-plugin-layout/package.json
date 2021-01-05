@@ -1,6 +1,6 @@
 {
   "name": "@webank/fes-plugin-layout",
-  "version": "0.0.0",
+  "version": "2.0.0-alpha.0",
   "description": "@webank/fes-plugin-layout",
   "main": "lib/index.js",
   "files": [
@@ -25,9 +25,9 @@
   },
   "homepage": "https://github.com/WeBankFinTech/fes.js#readme",
   "peerDependencies": {
-    "vue": "^3.0.4",
+    "@ant-design/icons-vue": "^5.1.6",
     "@webank/fes": "^2.0.0",
     "ant-design-vue": "2.0.0-rc.3",
-    "@ant-design/icons-vue": "^5.1.6"
+    "vue": "^3.0.4"
   }
 }
