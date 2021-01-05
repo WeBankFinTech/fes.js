@@ -1,19 +1,16 @@
-import { reactive, ref } from "vue";
+import { reactive } from "vue";
 import { getRoutes, plugin, ApplyPluginsType } from "@@/core/coreExports";
 import BaseLayout from "./views/BaseLayout.vue";
 import { fillMenuData } from "./helpers";
 
 const userConfig = reactive({{{REPLACE_USER_CONFIG}}});
-const langConfig = {
-    localInited: ref(false),
-    component: null
-};
 export function rootContainer(childComponent, args) {
     const runtimeConfig = plugin.applyPlugins({
         key: "layout",
         type: ApplyPluginsType.modify,
         initialValue: {},
     });
+    const localeShared = plugin.openShared("locale");
     const routeConfig = getRoutes();
     userConfig.menus = fillMenuData(userConfig.menus, routeConfig);
     return () => {
@@ -21,15 +18,15 @@ export function rootContainer(childComponent, args) {
             default: () => <childComponent></childComponent>,
             userCenter: () => {
                 if(runtimeConfig.userCenter){
-                    return <runtimeConfig.userCenter></runtimeConfig.userCenter>
+                    return (<runtimeConfig.userCenter></runtimeConfig.userCenter>)
                 }
-                return <div></div>
+                return null
             },
-            lang: () => {
-                if(langConfig.localInited.value){
-                    return <langConfig.component></langConfig.component>
+            locale: () => {
+                if(localeShared){
+                    return (<localeShared.SelectLang></localeShared.SelectLang>)
                 }
-                return <div></div>
+                return null
             }
           };
         return (
@@ -38,10 +35,3 @@ export function rootContainer(childComponent, args) {
         );
     };
 }
-
-{{#HAS_LOCALE}}
-export function onLocaleReady({ i18n, SelectLang }){
-    langConfig.localInited.value = true;
-    langConfig.component = SelectLang;
-}
-{{/HAS_LOCALE}}

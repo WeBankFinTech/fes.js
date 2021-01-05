@@ -22,6 +22,17 @@ export default class Plugin {
     constructor(opts) {
         this.validKeys = opts?.validKeys || [];
         this.hooks = {};
+        // 共享
+        this.shared = {};
+    }
+
+    share(key, obj) {
+        assert(!Object.keys(this.shared).includes(key), 'share failed, key repeat');
+        this.shared[key] = obj;
+    }
+
+    openShared(key) {
+        return this.shared[key];
     }
 
     register(plugin) {

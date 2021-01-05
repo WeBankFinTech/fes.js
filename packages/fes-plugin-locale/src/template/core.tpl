@@ -22,6 +22,9 @@ if (Array.isArray(locales)) {
 
 const i18n = createI18n({ ...defaultOptions, messages });
 
+// 共享出去
+plugin.share("locale", { i18n, SelectLang })
+
 const setLocale = (locale)=>{
     i18n.global.locale = locale
 };
@@ -32,11 +35,6 @@ const getAllLocales = ()=>{};
 
 const install = (app)=>{
     app.use(i18n);
-    plugin.applyPlugins({
-        key: 'onLocaleReady',
-        type: ApplyPluginsType.event,
-        args: { i18n, SelectLang }
-    });
 }
 
 export { useI18n, setLocale, install }

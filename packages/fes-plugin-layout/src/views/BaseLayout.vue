@@ -20,7 +20,7 @@
                 <div class="layout-header-user">
                     <slot name="userCenter"></slot>
                 </div>
-                <slot name="lang"></slot>
+                <slot name="locale"></slot>
             </a-layout-header>
             <a-layout-content class="layout-content">
                 <slot></slot>

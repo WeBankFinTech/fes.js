@@ -73,13 +73,18 @@ const beforeRenderConfig = plugin.applyPlugins({
 });
 
 const beforeRender = async () => {
+    let initialState = {};
     if (typeof beforeRenderConfig.action === "function") {
         const app = createApp(beforeRenderConfig.loading);
         app.mount("#app");
-        const initialState = await beforeRenderConfig.action();
+        try {
+            initialState = await beforeRenderConfig.action();
+        } catch(e){
+            console.error(`[fes] beforeRender执行出现异常`)
+        }
         app.unmount();
-        return initialState;
     }
+    return initialState;
 };
 
 const render = async () => {
