@@ -31,7 +31,7 @@ export default class Plugin {
         this.shared[key] = obj;
     }
 
-    openShared(key) {
+    getShared(key) {
         return this.shared[key];
     }
 

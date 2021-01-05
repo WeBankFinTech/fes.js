@@ -10,7 +10,7 @@ export function rootContainer(childComponent, args) {
         type: ApplyPluginsType.modify,
         initialValue: {},
     });
-    const localeShared = plugin.openShared("locale");
+    const localeShared = plugin.getShared("locale");
     const routeConfig = getRoutes();
     userConfig.menus = fillMenuData(userConfig.menus, routeConfig);
     return () => {
