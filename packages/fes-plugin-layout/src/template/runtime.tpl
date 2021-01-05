@@ -15,7 +15,7 @@ export function rootContainer(childComponent, args) {
     userConfig.menus = fillMenuData(userConfig.menus, routeConfig);
     return () => {
         const slots = {
-            default: () => <childComponent></childComponent>,
+            default: () => <childComponent keepAlive={userConfig.multiTabs}></childComponent>,
             userCenter: () => {
                 if(runtimeConfig.userCenter){
                     return (<runtimeConfig.userCenter></runtimeConfig.userCenter>)

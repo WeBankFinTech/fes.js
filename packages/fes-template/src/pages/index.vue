@@ -3,6 +3,7 @@
         <div>国际化： {{t("test")}}</div>
         fes & 拉夫德鲁 <br />
         accessOnepicess: {{accessOnepicess}}
+        <input />
     </div>
 </template>
 <config>

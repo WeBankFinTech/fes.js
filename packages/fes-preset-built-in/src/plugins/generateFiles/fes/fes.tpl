@@ -8,6 +8,8 @@ import { plugin } from './core/plugin';
 import './core/pluginRegister';
 import { ApplyPluginsType } from '{{{ runtimePath }}}';
 import { getRoutes } from './core/routes/routes';
+import BaseView from './core/routes/baseView';
+
 {{{ imports }}}
 
 {{{ entryCodeAhead }}}
@@ -17,7 +19,9 @@ const renderClient = (opts = {}) => {
     const rootContainer = plugin.applyPlugins({
         type: ApplyPluginsType.modify,
         key: 'rootContainer',
-        initialValue: defineComponent(() => () => (<RouterView></RouterView>)),
+        initialValue: defineComponent((props) => {
+            return () => (<BaseView {...props}></BaseView>)
+        }),
         args: {
             routes: routes,
             plugin: plugin

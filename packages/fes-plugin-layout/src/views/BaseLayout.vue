@@ -1,7 +1,7 @@
 <template>
     <a-layout class="main-layout">
         <a-layout-sider
-            v-if="routeLayout"
+            v-if="routeHasLayout"
             v-model:collapsed="collapsed"
             :width="sideWidth"
             :class="{ collapsed: collapsed }"
@@ -16,16 +16,22 @@
             <Menu :menus="menus" :theme="theme" />
         </a-layout-sider>
         <a-layout>
-            <a-layout-header v-if="routeLayout" class="layout-header">
+            <a-layout-header v-if="routeHasLayout" class="layout-header">
                 <div class="layout-header-user">
                     <slot name="userCenter"></slot>
                 </div>
                 <slot name="locale"></slot>
             </a-layout-header>
             <a-layout-content class="layout-content">
+                <template v-if="multiTabs">
+                    <a-tabs :activeKey="route.path" @tabClick="switchTab" class="layout-content-tabs" hide-add type="editable-card">
+                        <a-tab-pane v-for="page in openedPageList" :key="page.path" :tab="page.meta.title" closable>
+                        </a-tab-pane>
+                    </a-tabs>
+                </template>
                 <slot></slot>
             </a-layout-content>
-            <a-layout-footer v-if="routeLayout" class="layout-footer">
+            <a-layout-footer v-if="routeHasLayout" class="layout-footer">
                 Ant Design ©2020 Created by MumbleFe
             </a-layout-footer>
         </a-layout>
@@ -33,10 +39,14 @@
 </template>
 
 <script>
-import { ref, computed } from 'vue';
-import { useRoute } from '@@/core/coreExports';
+import {
+    ref, computed, reactive, unref
+} from 'vue';
+import { useRoute, useRouter } from '@@/core/coreExports';
 import Layout from 'ant-design-vue/lib/layout';
 import 'ant-design-vue/lib/layout/style';
+import Tabs from 'ant-design-vue/lib/tabs';
+import 'ant-design-vue/lib/tabs/style';
 import Menu from './Menu';
 
 export default {
@@ -46,6 +56,8 @@ export default {
         [Layout.Content.name]: Layout.Content,
         [Layout.Header.name]: Layout.Header,
         [Layout.Footer.name]: Layout.Footer,
+        [Tabs.name]: Tabs,
+        [Tabs.TabPane.name]: Tabs.TabPane,
         Menu
     },
     props: {
@@ -94,12 +106,27 @@ export default {
     },
     setup() {
         const route = useRoute();
-        const routeLayout = computed(() => {
+        const router = useRouter();
+        const openedPageList = reactive([]);
+        const routeHasLayout = computed(() => {
             const _routeLayout = route.meta.layout;
             return _routeLayout === undefined ? true : _routeLayout;
         });
+        router.beforeEach((to) => {
+            if (!openedPageList.some(page => unref(page.path) === to.path)) {
+                openedPageList.push(to);
+            }
+            return true;
+        });
+        // 还需要考虑参数
+        const switchTab = (path) => {
+            router.push(path);
+        };
         return {
-            routeLayout,
+            switchTab,
+            route,
+            openedPageList,
+            routeHasLayout,
             collapsed: ref(false)
         };
     }
@@ -139,11 +166,14 @@ export default {
         }
     }
     .layout-header {
+        position: relative;
+        z-index: 1;
         display: flex;
         align-items: center;
         height: 48px;
         line-height: 48px;
         background: #fff;
+        box-shadow: 0 1px 4px rgba(0,21,41,.08);
         padding: 0 24px;
         .layout-header-user {
             flex: 1
@@ -151,6 +181,15 @@ export default {
     }
     .layout-content {
         position: relative;
+        .layout-content-tabs {
+            background: rgb(255, 255, 255);
+            margin: 0px;
+            padding-top: 6px;
+            width: 100%;
+            .ant-tabs-nav-container {
+                padding-left: 16px;
+            }
+        }
     }
     .layout-footer {
         text-align: center;

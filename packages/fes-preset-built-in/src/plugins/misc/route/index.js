@@ -250,6 +250,8 @@ export default function (api) {
 
     const absRuntimeFilePath = join(namespace, 'runtime.js');
 
+    const baseViewFilePath = join(namespace, 'baseView.vue');
+
     api.onGenerateFiles(async () => {
         const routesTpl = readFileSync(join(__dirname, 'template/routes.tpl'), 'utf-8');
         const routes = await api.getRoutesJSON();
@@ -266,6 +268,11 @@ export default function (api) {
         api.writeTmpFile({
             path: absRuntimeFilePath,
             content: readFileSync(join(__dirname, 'template/runtime.tpl'), 'utf-8')
+        });
+
+        api.writeTmpFile({
+            path: baseViewFilePath,
+            content: readFileSync(join(__dirname, 'template/baseView.vue'), 'utf-8')
         });
     });
 
