@@ -25,11 +25,22 @@
             <a-layout-content class="layout-content">
                 <template v-if="multiTabs">
                     <a-tabs :activeKey="route.path" @tabClick="switchTab" class="layout-content-tabs" hide-add type="editable-card">
-                        <a-tab-pane v-for="page in openedPageList" :key="page.path" :tab="page.meta.title" closable>
+                        <a-tab-pane v-for="page in openedPageList" :key="page.path" closable>
+                            <template #tab>
+                                {{page.name}}
+                                <ReloadOutlined v-show="route.path === page.path" @click="reloadTab(page.path)" class="layout-tabs-close-icon" />
+                            </template>
                         </a-tab-pane>
                     </a-tabs>
+                    <router-view v-slot="{ Component, route }">
+                        <keep-alive>
+                            <component :key="getPageKey(route)" :is="Component" />
+                        </keep-alive>
+                    </router-view>
                 </template>
-                <slot></slot>
+                <template v-else>
+                    <router-view></router-view>
+                </template>
             </a-layout-content>
             <a-layout-footer v-if="routeHasLayout" class="layout-footer">
                 Ant Design ©2020 Created by MumbleFe
@@ -47,7 +58,11 @@ import Layout from 'ant-design-vue/lib/layout';
 import 'ant-design-vue/lib/layout/style';
 import Tabs from 'ant-design-vue/lib/tabs';
 import 'ant-design-vue/lib/tabs/style';
+import { ReloadOutlined } from '@ant-design/icons-vue';
 import Menu from './Menu';
+
+let i = 0;
+const getKey = () => ++i;
 
 export default {
     components: {
@@ -58,6 +73,7 @@ export default {
         [Layout.Footer.name]: Layout.Footer,
         [Tabs.name]: Tabs,
         [Tabs.TabPane.name]: Tabs.TabPane,
+        ReloadOutlined,
         Menu
     },
     props: {
@@ -114,15 +130,42 @@ export default {
         });
         router.beforeEach((to) => {
             if (!openedPageList.some(page => unref(page.path) === to.path)) {
-                openedPageList.push(to);
+                openedPageList.push({
+                    path: to.path,
+                    route: to,
+                    name: to.meta.name,
+                    key: getKey()
+                });
             }
             return true;
         });
         // 还需要考虑参数
         const switchTab = (path) => {
-            router.push(path);
+            const selectedRoute = openedPageList.find(item => item.path === path);
+            if (selectedRoute) {
+                router.push({
+                    path,
+                    query: selectedRoute.route.query,
+                    params: selectedRoute.route.params
+                });
+            }
+        };
+        const reloadTab = (path) => {
+            const selectedPage = openedPageList.find(item => item.path === path);
+            if (selectedPage) {
+                selectedPage.key = getKey();
+            }
+        };
+        const getPageKey = (_route) => {
+            const selectedPage = openedPageList.find(item => item.path === _route.path);
+            if (selectedPage) {
+                return selectedPage.key;
+            }
+            return '';
         };
         return {
+            getPageKey,
+            reloadTab,
             switchTab,
             route,
             openedPageList,
@@ -188,6 +231,16 @@ export default {
             width: 100%;
             .ant-tabs-nav-container {
                 padding-left: 16px;
+                .layout-tabs-close-icon {
+                    vertical-align: middle;
+                    color: rgba(0, 0, 0, 0.45);
+                    font-size: 12px;
+                    margin-left: 6px;
+                    margin-top: -2px;
+                    &:hover{
+                        color: rgba(0, 0, 0, 0.8);
+                    }
+                }
             }
         }
     }
