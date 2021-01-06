@@ -27,6 +27,9 @@
   "publishConfig": {
     "access": "public"
   },
+  "dependencies": {
+    "@umijs/utils": "3.3.3"
+  },
   "peerDependencies": {
     "@ant-design/icons-vue": "^5.1.6",
     "@webank/fes": "^2.0.0",
