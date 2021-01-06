@@ -28,7 +28,7 @@
     "access": "public"
   },
   "peerDependencies": {
-    "@webank/fes": "^2.0.0",
+    "@webank/fes": "^2.0.0-alpha.0",
     "vue": "^3.0.4"
   }
 }
