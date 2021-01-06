@@ -1,6 +1,6 @@
 <template>
     <a-dropdown>
-        <GlobalOutlined />
+        <div class="lang-icon"><GlobalOutlined /></div>
         <template #overlay>
             <a-menu :selectedKeys="selectedKeys" @click="handleClick">
                 <a-menu-item
@@ -53,6 +53,11 @@ export default {
 </script>
 
 <style lang="less">
+.lang-icon {
+    margin: 0 8px;
+    padding: 0 4px;
+    cursor: pointer;
+}
 .lang-item {
     display: flex;
     align-items: center;

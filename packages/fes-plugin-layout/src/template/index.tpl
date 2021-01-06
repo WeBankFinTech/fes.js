@@ -33,7 +33,7 @@ const Layout = defineComponent({
                     return null;
                 },
             };
-            return <BaseLayout {...userConfig} v-slots={slots}></BaseLayout>;
+            return <BaseLayout locale={ localeShared ? true : false } {...userConfig} v-slots={slots}></BaseLayout>;
         };
     }
 })
