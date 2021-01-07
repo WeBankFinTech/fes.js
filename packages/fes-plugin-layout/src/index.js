@@ -1,5 +1,6 @@
 import { readFileSync, copyFileSync, statSync } from 'fs';
 import { join } from 'path';
+import { winPath } from '@umijs/utils';
 
 const namespace = 'plugin-layout';
 
@@ -18,16 +19,18 @@ export default (api) => {
         }
     });
 
-    const absRuntimeFilePath = join(namespace, 'runtime.js');
+    api.addRuntimePluginKey(() => 'layout');
+
+    const absFilePath = join(namespace, 'index.js');
 
     api.onGenerateFiles(() => {
         // 文件写出
         const userConfig = api.config.layout || {};
 
         api.writeTmpFile({
-            path: absRuntimeFilePath,
+            path: absFilePath,
             content: Mustache.render(
-                readFileSync(join(__dirname, 'template/runtime.tpl'), 'utf-8'),
+                readFileSync(join(__dirname, 'template/index.tpl'), 'utf-8'),
                 {
                     REPLACE_USER_CONFIG: JSON.stringify(userConfig),
                     HAS_LOCALE: api.pkg.dependencies?.['@webank/fes-plugin-locale']
@@ -58,7 +61,14 @@ export default (api) => {
         });
     });
 
-    api.addRuntimePluginKey(() => 'layout');
-
-    api.addRuntimePlugin(() => `@@/${absRuntimeFilePath}`);
+    // 把BaseLayout插入到路由配置中，作为跟路由
+    api.modifyRoutes(routes => [
+        {
+            path: '/',
+            component: winPath(
+                join(api.paths.absTmpPath || '', absFilePath)
+            ),
+            children: routes
+        }
+    ]);
 };

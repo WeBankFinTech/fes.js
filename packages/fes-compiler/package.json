@@ -3,7 +3,6 @@
   "version": "2.0.0-alpha.0",
   "description": "@webank/fes-compiler",
   "main": "lib/index.js",
-  "types": "lib/index.d.ts",
   "files": [
     "lib"
   ],
@@ -28,7 +27,6 @@
     "@babel/register": "^7.12.1",
     "@umijs/babel-preset-umi": "3.3.3",
     "@umijs/utils": "3.3.3",
-    "@webank/fes-runtime": "^2.0.0",
     "dotenv": "8.2.0",
     "joi": "17.3.0",
     "set-value": "3.0.2",

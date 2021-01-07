@@ -1,53 +1,74 @@
 <template>
-    <a-layout class="main-layout">
-        <a-layout-sider
-            v-if="routeHasLayout"
-            v-model:collapsed="collapsed"
-            :width="sideWidth"
-            :class="{ collapsed: collapsed }"
-            collapsible
-            theme="dark"
-            class="layout-sider"
-        >
-            <div class="logo">
-                <img :src="logo" class="logo-img" />
-                <h1 class="logo-name">{{title}}</h1>
-            </div>
-            <Menu :menus="menus" :theme="theme" />
-        </a-layout-sider>
-        <a-layout>
-            <a-layout-header v-if="routeHasLayout" class="layout-header">
-                <div class="layout-header-user">
+    <a-layout
+        v-if="routeHasLayout"
+        :class="[
+            collapsed ? 'main-layout-collapsed' : '',
+            `main-layout-navigation-${navigation}`
+        ]"
+        class="main-layout"
+    >
+        <template v-if="navigation !== 'top'">
+            <div v-if="fixedSideBar" class="layout-sider-fixed-stuff"></div>
+            <a-layout-sider
+                v-model:collapsed="collapsed"
+                :width="sideWidth"
+                :class="[
+                    'layout-sider',
+                    fixedSideBar ? 'layout-sider-fixed' : ''
+                ]"
+                collapsible
+                theme="dark"
+            >
+                <div class="layout-logo">
+                    <img :src="logo" class="logo-img" />
+                    <h1 class="logo-name">{{title}}</h1>
+                </div>
+                <Menu :menus="menus" :theme="theme" />
+            </a-layout-sider>
+        </template>
+        <a-layout class="child-layout">
+            <a-layout-header v-if="fixedHeader" class="layout-header">
+            </a-layout-header>
+            <a-layout-header
+                :class="[fixedHeader ? 'layout-header-fixed' : '']"
+                class="layout-header"
+            >
+                <template v-if="navigation === 'top'">
+                    <div class="layout-logo">
+                        <img :src="logo" class="logo-img" />
+                        <h1 class="logo-name">{{title}}</h1>
+                    </div>
+                    <Menu :menus="menus" :theme="theme" class="layout-menu" mode="horizontal" />
+                </template>
+                <div class="layout-header-custom">
                     <slot name="userCenter"></slot>
                 </div>
-                <slot name="locale"></slot>
+                <template v-if="locale">
+                    <slot name="locale"></slot>
+                </template>
             </a-layout-header>
             <a-layout-content class="layout-content">
-                <template v-if="multiTabs">
-                    <a-tabs :activeKey="route.path" @tabClick="switchTab" class="layout-content-tabs" hide-add type="editable-card">
-                        <a-tab-pane v-for="page in openedPageList" :key="page.path" :tab="page.meta.title" closable>
-                        </a-tab-pane>
-                    </a-tabs>
-                </template>
-                <slot></slot>
+                <MultiTabProvider v-if="multiTabs" />
+                <router-view v-else></router-view>
             </a-layout-content>
-            <a-layout-footer v-if="routeHasLayout" class="layout-footer">
+            <a-layout-footer class="layout-footer">
                 Ant Design ©2020 Created by MumbleFe
             </a-layout-footer>
         </a-layout>
     </a-layout>
+    <div v-else class="layout-content">
+        <MultiTabProvider v-if="multiTabs" />
+        <router-view v-else></router-view>
+    </div>
 </template>
 
 <script>
-import {
-    ref, computed, reactive, unref
-} from 'vue';
-import { useRoute, useRouter } from '@@/core/coreExports';
+import { ref, computed } from 'vue';
+import { useRoute } from '@@/core/coreExports';
 import Layout from 'ant-design-vue/lib/layout';
 import 'ant-design-vue/lib/layout/style';
-import Tabs from 'ant-design-vue/lib/tabs';
-import 'ant-design-vue/lib/tabs/style';
 import Menu from './Menu';
+import MultiTabProvider from './MultiTabProvider';
 
 export default {
     components: {
@@ -56,9 +77,8 @@ export default {
         [Layout.Content.name]: Layout.Content,
         [Layout.Header.name]: Layout.Header,
         [Layout.Footer.name]: Layout.Footer,
-        [Tabs.name]: Tabs,
-        [Tabs.TabPane.name]: Tabs.TabPane,
-        Menu
+        Menu,
+        MultiTabProvider
     },
     props: {
         menus: {
@@ -81,7 +101,7 @@ export default {
         },
         theme: {
             type: String,
-            default: 'dark'
+            default: 'dark' // light、dark
         },
         navigation: {
             type: String,
@@ -106,26 +126,12 @@ export default {
     },
     setup() {
         const route = useRoute();
-        const router = useRouter();
-        const openedPageList = reactive([]);
         const routeHasLayout = computed(() => {
             const _routeLayout = route.meta.layout;
             return _routeLayout === undefined ? true : _routeLayout;
         });
-        router.beforeEach((to) => {
-            if (!openedPageList.some(page => unref(page.path) === to.path)) {
-                openedPageList.push(to);
-            }
-            return true;
-        });
-        // 还需要考虑参数
-        const switchTab = (path) => {
-            router.push(path);
-        };
         return {
-            switchTab,
             route,
-            openedPageList,
             routeHasLayout,
             collapsed: ref(false)
         };
@@ -133,29 +139,86 @@ export default {
 };
 </script>
 
-<style lang="less">
+<style lang="less" vars="{ sideWidth: sideWidth +'px' }">
 .main-layout {
     min-height: 100vh;
-    .layout-sider{
-        &.collapsed{
-            .logo{
+    &.main-layout-collapsed {
+        .layout-sider {
+            .logo {
                 justify-content: center;
-                .logo-name{
+                .logo-name {
                     display: none;
                 }
             }
         }
-        .logo {
+        .layout-sider-fixed-stuff {
+            overflow: hidden;
+            width: 80px;
+        }
+    }
+    &.main-layout-navigation-top {
+        .layout-header {
+            padding-left: 24px;
+            color: hsla(0,0%,100%,.65);
+            background: #001529;
+            .layout-menu {
+                line-height: 48px;
+            }
+            .layout-logo {
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+                min-width: 165px;
+                height: 100%;
+                overflow: hidden;
+                transition: all .3s;
+                .logo-img {
+                    height: 32px;
+                    width: auto;
+                }
+                .logo-name {
+                    overflow: hidden;
+                    margin: 0 0 0 12px;
+                    color: #fff;
+                    font-weight: 600;
+                    font-size: 18px;
+                    line-height: 32px;
+                }
+            }
+            &.layout-header-fixed {
+                left: 0;
+                width: 100%;
+            }
+        }
+    }
+    .layout-sider-fixed-stuff {
+        overflow: hidden;
+        width: var(--sideWidth);
+        transition: width 0.2s;
+        flex-shrink: 0;
+    }
+    .child-layout {
+        position: relative;
+    }
+    .layout-sider {
+        &.layout-sider-fixed {
+            position: fixed;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 200px;
+        }
+        .layout-logo {
             height: 32px;
             margin: 16px;
             display: flex;
             justify-content: flex-start;
             align-items: center;
-            .logo-img{
+            .logo-img {
                 height: 32px;
                 width: auto;
             }
-            .logo-name{
+            .logo-name {
                 overflow: hidden;
                 margin: 0 0 0 12px;
                 color: #fff;
@@ -173,23 +236,22 @@ export default {
         height: 48px;
         line-height: 48px;
         background: #fff;
-        box-shadow: 0 1px 4px rgba(0,21,41,.08);
-        padding: 0 24px;
-        .layout-header-user {
-            flex: 1
+        box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
+        padding: 0;
+        .layout-header-custom {
+            flex: 1;
+        }
+        &.layout-header-fixed {
+            position: fixed;
+            top: 0;
+            left: var(--sideWidth);
+            right: 0;
+            z-index: 10;
+            width: calc(100% - var(--sideWidth));
         }
     }
     .layout-content {
         position: relative;
-        .layout-content-tabs {
-            background: rgb(255, 255, 255);
-            margin: 0px;
-            padding-top: 6px;
-            width: 100%;
-            .ant-tabs-nav-container {
-                padding-left: 16px;
-            }
-        }
     }
     .layout-footer {
         text-align: center;

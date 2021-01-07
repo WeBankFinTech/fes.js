@@ -9,7 +9,6 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "module": "dist/index.esm.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/WeBankFinTech/fes.js.git",

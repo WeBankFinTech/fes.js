@@ -9,7 +9,6 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "module": "dist/index.esm.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/WeBankFinTech/fes.js.git",
@@ -28,7 +27,7 @@
     "access": "public"
   },
   "peerDependencies": {
-    "@webank/fes": "^2.0.0"
+    "@webank/fes": "^2.0.0-alpha.0"
   },
   "dependencies": {
     "axios": "0.21.1"
