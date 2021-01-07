@@ -50,5 +50,7 @@
     "@webank/fes-plugin-model": "^1.0.0",
     "ant-design-vue": "2.0.0-rc.3",
     "vue": "3.0.4"
-  }
+  },
+  "private": true
 }
+ 

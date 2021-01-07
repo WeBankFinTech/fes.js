@@ -44,5 +44,6 @@
     "@webank/fes-plugin-icon": "^1.0.0",
     "@webank/fes-plugin-request": "^1.0.0",
     "vue": "^3.0.4"
-  }
+  },
+  "private": true
 }
