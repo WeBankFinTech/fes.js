@@ -16,23 +16,27 @@
                     'layout-sider',
                     fixedSideBar ? 'layout-sider-fixed' : ''
                 ]"
+                :theme="siderTheme"
                 collapsible
-                theme="dark"
             >
-                <div class="layout-logo">
+                <div v-if="navigation !== 'mixin'" class="layout-logo">
                     <img :src="logo" class="logo-img" />
                     <h1 class="logo-name">{{title}}</h1>
                 </div>
-                <Menu :menus="menus" :theme="theme" />
+                <Menu :menus="menus" :theme="siderTheme" />
             </a-layout-sider>
         </template>
         <a-layout class="child-layout">
-            <a-layout-header v-if="fixedHeader" class="layout-header">
+            <a-layout-header v-if="currentFixedHeader" class="layout-header">
             </a-layout-header>
             <a-layout-header
-                :class="[fixedHeader ? 'layout-header-fixed' : '']"
+                :class="[currentFixedHeader ? 'layout-header-fixed' : '']"
                 class="layout-header"
             >
+                <div v-if="navigation === 'mixin'" class="layout-logo">
+                    <img :src="logo" class="logo-img" />
+                    <h1 class="logo-name">{{title}}</h1>
+                </div>
                 <template v-if="navigation === 'top'">
                     <div class="layout-logo">
                         <img :src="logo" class="logo-img" />
@@ -105,7 +109,7 @@ export default {
         },
         navigation: {
             type: String,
-            default: 'side' // side 左右（上/下）、 top 上/下、 mixin 上/下（左/右）
+            default: 'mixin' // side 左右（上/下）、 top 上/下、 mixin 上/下（左/右）
         },
         fixedHeader: {
             type: Boolean,
@@ -124,13 +128,22 @@ export default {
             default: 200
         }
     },
-    setup() {
+    setup(props) {
         const route = useRoute();
         const routeHasLayout = computed(() => {
             const _routeLayout = route.meta.layout;
             return _routeLayout === undefined ? true : _routeLayout;
         });
+        const siderTheme = computed(() => {
+            if (props.navigation === 'mixin') {
+                return 'light';
+            }
+            return props.theme;
+        });
+        const currentFixedHeader = computed(() => props.fixedHeader || props.navigation === 'mixin');
         return {
+            siderTheme,
+            currentFixedHeader,
             route,
             routeHasLayout,
             collapsed: ref(false)
@@ -157,6 +170,44 @@ export default {
         }
     }
     &.main-layout-navigation-top {
+        .layout-header {
+            padding-left: 24px;
+            color: hsla(0,0%,100%,.65);
+            background: #001529;
+            .layout-menu {
+                line-height: 48px;
+            }
+            .layout-logo {
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+                min-width: 165px;
+                height: 100%;
+                overflow: hidden;
+                transition: all .3s;
+                .logo-img {
+                    height: 32px;
+                    width: auto;
+                }
+                .logo-name {
+                    overflow: hidden;
+                    margin: 0 0 0 12px;
+                    color: #fff;
+                    font-weight: 600;
+                    font-size: 18px;
+                    line-height: 32px;
+                }
+            }
+            &.layout-header-fixed {
+                left: 0;
+                width: 100%;
+            }
+        }
+    }
+    &.main-layout-navigation-mixin {
+        .layout-sider {
+            padding: 48px 0 0;
+        }
         .layout-header {
             padding-left: 24px;
             color: hsla(0,0%,100%,.65);

@@ -2,7 +2,7 @@
     <a-menu
         :selectedKeys="selectedKeys"
         @click="onMenuClick"
-        theme="dark"
+        :theme="theme"
         mode="inline"
     >
         <template v-for="(item, index) in menus" :key="index">

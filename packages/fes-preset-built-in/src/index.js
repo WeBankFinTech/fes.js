@@ -4,9 +4,6 @@ export default function () {
             // register methods
             require.resolve('./plugins/registerMethods'),
 
-            // misc
-            require.resolve('./plugins/misc/route'),
-
             // generate files
             require.resolve('./plugins/generateFiles/core/plugin'),
             require.resolve('./plugins/generateFiles/core/exports/coreExports'),
@@ -48,6 +45,9 @@ export default function () {
             require.resolve('./plugins/features/targets'),
             require.resolve('./plugins/features/terserOptions'),
             require.resolve('./plugins/features/vueLoader'),
+
+            // misc
+            require.resolve('./plugins/misc/route'),
 
             // commands
             require.resolve('./plugins/commands/build'),
