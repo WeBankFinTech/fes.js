@@ -15,7 +15,7 @@ export default {
     layout: {
         title: "Fes.js",
         logo: 'https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg',
-        multiTabs: true,
+        multiTabs: false,
         menus: [{
             name: 'index'
         }, {

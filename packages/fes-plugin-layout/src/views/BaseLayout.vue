@@ -45,7 +45,7 @@
                     <Menu :menus="menus" :theme="theme" class="layout-menu" mode="horizontal" />
                 </template>
                 <div class="layout-header-custom">
-                    <slot name="userCenter"></slot>
+                    <slot name="customHeader"></slot>
                 </div>
                 <template v-if="locale">
                     <slot name="locale"></slot>
@@ -109,7 +109,7 @@ export default {
         },
         navigation: {
             type: String,
-            default: 'mixin' // side 左右（上/下）、 top 上/下、 mixin 上/下（左/右）
+            default: 'side' // side 左右（上/下）、 top 上/下、 mixin 上/下（左/右）
         },
         fixedHeader: {
             type: Boolean,
@@ -207,6 +207,10 @@ export default {
     &.main-layout-navigation-mixin {
         .layout-sider {
             padding: 48px 0 0;
+            box-shadow: 2px 0 8px 0 rgba(29,35,41,.05);
+            .ant-layout-sider-trigger {
+                border-top: 1px solid #f0f0f0;
+            }
         }
         .layout-header {
             padding-left: 24px;

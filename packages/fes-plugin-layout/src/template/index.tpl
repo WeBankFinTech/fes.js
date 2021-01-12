@@ -18,10 +18,10 @@ const Layout = defineComponent({
         userConfig.menus = fillMenuData(userConfig.menus, routeConfig);
         return () => {
             const slots = {
-                userCenter: () => {
-                    if (runtimeConfig.userCenter) {
+                customHeader: () => {
+                    if (runtimeConfig.customHeader) {
                         return (
-                            <runtimeConfig.userCenter></runtimeConfig.userCenter>
+                            <runtimeConfig.customHeader></runtimeConfig.customHeader>
                         );
                     }
                     return null;

@@ -24,8 +24,13 @@ export default (api) => {
     const absFilePath = join(namespace, 'index.js');
 
     api.onGenerateFiles(() => {
-        // 文件写出
-        const userConfig = api.config.layout || {};
+        const { name } = api.pkg;
+
+        // .fes配置
+        const userConfig = {
+            title: name,
+            ...(api.config.layout || {})
+        };
 
         api.writeTmpFile({
             path: absFilePath,

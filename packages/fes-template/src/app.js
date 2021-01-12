@@ -20,5 +20,5 @@ export const beforeRender = {
 };
 
 export const layout = {
-    userCenter: <UserCenter />
+    customHeader: <UserCenter />
 };
