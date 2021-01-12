@@ -30,7 +30,7 @@ export default (api) => {
         api.writeTmpFile({
             path: absoluteFilePath,
             content: Mustache.render(
-                readFileSync(join(__dirname, 'template/core.tpl'), 'utf-8'),
+                readFileSync(join(__dirname, 'runtime/core.tpl'), 'utf-8'),
                 {
                     REPLACE_ROLES: JSON.stringify(roles)
                 }
@@ -40,7 +40,7 @@ export default (api) => {
         api.writeTmpFile({
             path: absRuntimeFilePath,
             content: readFileSync(
-                join(__dirname, 'template/runtime.tpl'),
+                join(__dirname, 'runtime/runtime.tpl'),
                 'utf-8'
             )
         });

@@ -22,10 +22,6 @@ export default (api) => {
 
     const absRuntimeFilePath = join(namespace, 'runtime.js');
 
-    const selectLangComponentFilePath = join(namespace, 'views/SelectLang.vue');
-
-    const langConfigFilePath = join(namespace, 'langUConfigMap');
-
     function getLocaleFileBasePath() {
         return join(api.paths.absSrcPath, api.config.singular ? 'locale' : 'locales');
     }
@@ -45,7 +41,7 @@ export default (api) => {
         api.writeTmpFile({
             path: absoluteFilePath,
             content: Mustache.render(
-                readFileSync(join(__dirname, 'template/core.tpl'), 'utf-8'),
+                readFileSync(join(__dirname, 'runtime/core.tpl'), 'utf-8'),
                 {
                     REPLACE_LOCALES: locales,
                     REPLACE_DEFAULT_OPTIONS: JSON.stringify(defaultOptions)
@@ -56,25 +52,15 @@ export default (api) => {
         api.writeTmpFile({
             path: absRuntimeFilePath,
             content: readFileSync(
-                join(__dirname, 'template/runtime.tpl'),
+                join(__dirname, 'runtime/runtime.tpl'),
                 'utf-8'
             )
         });
 
-        api.writeTmpFile({
-            path: langConfigFilePath,
-            content: readFileSync(
-                join(__dirname, 'template/langUConfigMap.js'),
-                'utf-8'
-            )
-        });
-
-        api.writeTmpFile({
-            path: selectLangComponentFilePath,
-            content: readFileSync(
-                join(__dirname, 'views/SelectLang.vue'),
-                'utf-8'
-            )
+        api.copyTmpFiles({
+            namespace,
+            path: join(__dirname, 'runtime'),
+            ignore: ['.tpl']
         });
     });
 

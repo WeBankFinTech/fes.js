@@ -23,7 +23,7 @@ if (Array.isArray(locales)) {
 const i18n = createI18n({ ...defaultOptions, messages });
 
 // 共享出去
-plugin.share("locale", { i18n, SelectLang })
+plugin.share("locale", { i18n, SelectLang });
 
 const setLocale = (locale)=>{
     i18n.global.locale = locale

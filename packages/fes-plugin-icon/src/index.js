@@ -1,4 +1,4 @@
-import { readFileSync, copyFileSync, statSync } from 'fs';
+import { readFileSync } from 'fs';
 import { join, basename } from 'path';
 import optimizeSvg from './optimizeSvg';
 
@@ -20,6 +20,7 @@ export default (api) => {
     // 监听 icons 文件变更，重新生成文件
     api.addTmpGenerateWatcherPaths(() => join(api.paths.absSrcPath, 'icons'));
 
+    let generatedOnce = false;
     api.onGenerateFiles(async () => {
         const base = join(api.paths.absSrcPath, 'icons');
         const iconFiles = api.utils.glob.sync('**/*', {
@@ -40,7 +41,7 @@ export default (api) => {
         api.writeTmpFile({
             path: `${namespace}/icons.js`,
             content: api.utils.Mustache.render(
-                readFileSync(join(__dirname, './icons.tpl'), 'utf-8'),
+                readFileSync(join(__dirname, 'runtime/icons.tpl'), 'utf-8'),
                 {
                     ICON_NAMES: iconNames
                 }
@@ -49,29 +50,18 @@ export default (api) => {
 
         api.writeTmpFile({
             path: absRuntimeFilePath,
-            content: api.utils.Mustache.render(readFileSync(join(__dirname, 'runtime.tpl'), 'utf-8'), {
+            content: api.utils.Mustache.render(readFileSync(join(__dirname, 'runtime/runtime.tpl'), 'utf-8'), {
             })
         });
-    });
 
-    let generatedOnce = false;
-    api.onGenerateFiles(() => {
-        if (generatedOnce) return;
-        generatedOnce = true;
-        const cwd = join(__dirname, './Icon');
-        const files = api.utils.glob.sync('**/*', {
-            cwd
-        });
-        const base = join(api.paths.absTmpPath, namespace);
-        files.forEach((file) => {
-            const source = join(cwd, file);
-            const target = join(base, file);
-            if (statSync(source).isDirectory()) {
-                api.utils.mkdirp.sync(target);
-            } else {
-                copyFileSync(source, target);
-            }
-        });
+        if (!generatedOnce) {
+            generatedOnce = true;
+            api.copyTmpFiles({
+                namespace,
+                path: join(__dirname, 'runtime'),
+                ignore: ['.tpl']
+            });
+        }
     });
 
     api.addRuntimePlugin(() => `@@/${absRuntimeFilePath}`);

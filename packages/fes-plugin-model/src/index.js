@@ -58,20 +58,20 @@ export default (api) => {
 
         api.writeTmpFile({
             path: absCoreFilePath,
-            content: Mustache.render(readFileSync(join(__dirname, 'template/core.tpl'), 'utf-8'), {
+            content: Mustache.render(readFileSync(join(__dirname, 'runtime/core.tpl'), 'utf-8'), {
                 ...tmpFiles
             })
         });
 
         api.writeTmpFile({
             path: absRuntimeFilePath,
-            content: Mustache.render(readFileSync(join(__dirname, 'template/runtime.tpl'), 'utf-8'), {
+            content: Mustache.render(readFileSync(join(__dirname, 'runtime/runtime.tpl'), 'utf-8'), {
             })
         });
 
         api.writeTmpFile({
             path: absInitlaStateFilePath,
-            content: Mustache.render(readFileSync(join(__dirname, 'models/initialState.tpl'), 'utf-8'), {
+            content: Mustache.render(readFileSync(join(__dirname, 'runtime/models/initialState.tpl'), 'utf-8'), {
             })
         });
     });

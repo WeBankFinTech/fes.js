@@ -1,4 +1,4 @@
-import { readFileSync, copyFileSync, statSync } from 'fs';
+import { readFileSync } from 'fs';
 import { join } from 'path';
 
 export default (api) => {
@@ -38,20 +38,10 @@ export default (api) => {
     api.onGenerateFiles(() => {
         if (generatedOnce) return;
         generatedOnce = true;
-        const cwd = join(__dirname, './template');
-        const files = api.utils.glob.sync('**/*', {
-            cwd
-        });
-        const base = join(api.paths.absTmpPath, namespace);
-        files.forEach((file) => {
-            if (['request.js'].includes(file)) return;
-            const source = join(cwd, file);
-            const target = join(base, file);
-            if (statSync(source).isDirectory()) {
-                api.utils.mkdirp.sync(target);
-            } else {
-                copyFileSync(source, target);
-            }
+        api.copyTmpFiles({
+            namespace,
+            path: join(__dirname, 'template'),
+            ignore: ['request.js']
         });
     });
 

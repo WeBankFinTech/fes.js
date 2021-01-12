@@ -1,7 +1,7 @@
 <script>
 import { computed } from 'vue';
 // eslint-disable-next-line
-import icons from './icons';
+import icons from '../icons';
 
 const noop = () => { };
 
