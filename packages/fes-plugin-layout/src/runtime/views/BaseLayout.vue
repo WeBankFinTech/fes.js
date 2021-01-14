@@ -157,7 +157,7 @@ export default {
     min-height: 100vh;
     &.main-layout-collapsed {
         .layout-sider {
-            .logo {
+            .layout-logo {
                 justify-content: center;
                 .logo-name {
                     display: none;
