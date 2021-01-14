@@ -1,5 +1,5 @@
-import { access, install } from "./core";
-import { plugin, ApplyPluginsType } from "@@/core/coreExports";
+import { plugin, ApplyPluginsType } from '@@/core/coreExports';
+import { access, install } from './core';
 
 export function onRouterCreated({ router }) {
     router.beforeEach(async (to, from, next) => {
@@ -14,11 +14,11 @@ export function onRouterCreated({ router }) {
             next();
         } else {
             const runtimeConfig = plugin.applyPlugins({
-                key: "access",
+                key: 'access',
                 type: ApplyPluginsType.modify,
-                initialValue: null,
+                initialValue: {}
             });
-            if (runtimeConfig.noAccessHandler && typeof runtimeConfig.noAccessHandler === "function") {
+            if (runtimeConfig.noAccessHandler && typeof runtimeConfig.noAccessHandler === 'function') {
                 runtimeConfig.noAccessHandler(router, to, from);
             }
             next(false);
@@ -27,5 +27,5 @@ export function onRouterCreated({ router }) {
 }
 
 export function onAppCreated({ app }) {
-    install(app)
+    install(app);
 }

@@ -1,4 +1,6 @@
 import { reactive, computed, inject } from "vue";
+import createDirective from "./createDirective";
+import createComponent from "./createComponent";
 
 const accessKey = Symbol("plugin-access");
 
@@ -20,17 +22,11 @@ const rolePromiseList = [];
 const accessPromiseList = [];
 
 const getAllowAccessIds = () => {
-    if (
-        Array.isArray(state.currentAccessIds) &&
-        state.currentAccessIds.length > 0
-    ) {
-        return state.currentAccessIds;
-    }
     const roleAccessIds = state.roles[state.currentRoleId];
     if (Array.isArray(roleAccessIds) && roleAccessIds.length > 0) {
-        return roleAccessIds;
+        return state.currentAccessIds.concat(roleAccessIds);
     }
-    return [];
+    return state.currentAccessIds;
 };
 
 const _syncSetAccessIds = (promise) => {
@@ -55,9 +51,16 @@ const setAccess = (accessIds) => {
         return _syncSetAccessIds(accessIds);
     }
     if (!Array.isArray(accessIds)) {
-        throw new Error("[plugin-access]: pageIds必须是array");
+        throw new Error("[plugin-access]: argument to the setAccess() must be array or promise");
     }
     state.currentAccessIds = accessIds;
+};
+
+const addAccess = (accessId) => {
+    if (typeof accessId !== 'string') {
+        throw new Error("[plugin-access]: argument to the addAccess() must be string");
+    }
+    state.currentAccessIds.push(accessId);
 };
 
 const _syncSetRoleId = (promise) => {
@@ -82,12 +85,15 @@ const setRole = async (roleId) => {
         return _syncSetRoleId(roleId);
     }
     if (typeof roleId !== "string") {
-        throw new Error("[plugin-access]: roleId必须是string");
+        throw new Error("[plugin-access]: argument to the setRole() must be string or promise");
     }
     state.currentRoleId = roleId;
 };
 
 const match = (path, accessIds) => {
+    if(path === null || path === undefined) {
+        return false;
+    }
     if (!Array.isArray(accessIds) || accessIds.length === 0) {
         return false;
     }
@@ -131,6 +137,8 @@ export const install = (app) => {
         return result;
     };
     app.provide(accessKey, useAccess);
+    app.directive("access", createDirective(useAccess));
+    app.component("Access", createComponent(useAccess));
 };
 
 export const access = {
@@ -138,6 +146,7 @@ export const access = {
     hasLoading,
     setRole,
     setAccess,
+    addAccess
 };
 
 export const useAccess = (path) => {

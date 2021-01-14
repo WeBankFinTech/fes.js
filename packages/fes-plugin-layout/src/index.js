@@ -26,6 +26,10 @@ export default (api) => {
     api.onGenerateFiles(() => {
         const { name } = api.pkg;
 
+        const HAS_LOCALE = api.hasPlugins(['@webank/fes-plugin-locale']);
+
+        const HAS_ACCESS = api.hasPlugins(['@webank/fes-plugin-access']);
+
         // .fes配置
         const userConfig = {
             title: name,
@@ -38,7 +42,7 @@ export default (api) => {
                 readFileSync(join(__dirname, 'runtime/index.tpl'), 'utf-8'),
                 {
                     REPLACE_USER_CONFIG: JSON.stringify(userConfig),
-                    HAS_LOCALE: api.pkg.dependencies?.['@webank/fes-plugin-locale']
+                    HAS_LOCALE
                 }
             )
         });

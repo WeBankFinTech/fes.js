@@ -23,6 +23,7 @@ export default (api) => {
 
     const absRuntimeFilePath = join(namespace, 'runtime.js');
 
+    const generatedOnce = false;
     api.onGenerateFiles(() => {
         // 文件写出
         const { roles = {} } = api.config.access || {};
@@ -37,12 +38,10 @@ export default (api) => {
             )
         });
 
-        api.writeTmpFile({
-            path: absRuntimeFilePath,
-            content: readFileSync(
-                join(__dirname, 'runtime/runtime.tpl'),
-                'utf-8'
-            )
+        api.copyTmpFiles({
+            namespace,
+            path: join(__dirname, 'runtime'),
+            ignore: ['.tpl']
         });
     });
 

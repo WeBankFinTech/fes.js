@@ -1,9 +1,9 @@
 import { unref, computed } from 'vue';
-import { useAccess } from '@webank/fes';
+import { useAccess } from '../../plugin-access/core';
 
 if (!useAccess) {
     throw new Error(
-        '[plugin-layout]: pLugin-layout依赖plugin-access，请先安装plugin-access！'
+        '[plugin-layout]: pLugin-layout depends on plugin-access，please install plugin-access first！'
     );
 }
 
