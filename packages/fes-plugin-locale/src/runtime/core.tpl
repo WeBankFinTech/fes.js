@@ -6,7 +6,7 @@
 // 其他插件可以运行时修改配置
 // 所有插件使用一个语言和配置
 import { isRef } from 'vue';
-import { createI18n, useI18n } from 'vue-i18n/dist/vue-i18n.esm-bundler.js';
+import { createI18n, useI18n } from 'vue-i18n';
 import { plugin, ApplyPluginsType } from "@@/core/coreExports";
 import SelectLang from "./views/SelectLang";
 
