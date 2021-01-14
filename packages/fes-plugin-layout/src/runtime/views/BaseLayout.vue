@@ -56,7 +56,7 @@
                 <router-view v-else></router-view>
             </a-layout-content>
             <a-layout-footer class="layout-footer">
-                Ant Design ©2020 Created by MumbleFe
+                Fes.js ©2020 Created by MumbleFe
             </a-layout-footer>
         </a-layout>
     </a-layout>
