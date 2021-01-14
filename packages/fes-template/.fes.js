@@ -22,6 +22,9 @@ export default {
             name: 'onepiece'
         }]
     },
+    locale: {
+        legacy: true
+    },
     devServer: {
         port: 8080
     }

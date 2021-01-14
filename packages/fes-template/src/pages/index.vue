@@ -16,21 +16,22 @@
 <script>
 import { ref, onMounted } from 'vue';
 import {
-    access, useAccess, useRouter, useI18n, setLocale
+    access, useAccess, useRouter, useI18n, locale
 } from '@webank/fes';
 
 export default {
     setup() {
         const fes = ref('fes upgrade to vue3');
         const accessOnepicess = useAccess('/onepiece1');
-        const { t } = useI18n();
+        const localI18n = useI18n();
         const router = useRouter();
         const accessId = ref('/onepiece1');
         onMounted(() => {
             console.log(router);
-            console.log('mounted1!!');
             setTimeout(() => {
-                setLocale('en-US');
+                locale.setLocale({ lang: 'en-US' });
+                locale.addLocale({ lang: 'ja-JP', messages: { test: 'テスト' } });
+                console.log(locale.getAllLocales());
                 access.addAccess('/onepiece1');
             }, 2000);
             setTimeout(() => {
@@ -38,14 +39,11 @@ export default {
             }, 4000);
             // router.push('/onepiece');
         });
-        onMounted(() => {
-            console.log('mounted2!!');
-        });
         return {
             accessId,
             fes,
             accessOnepicess,
-            t
+            t: localI18n.t
         };
     }
 };

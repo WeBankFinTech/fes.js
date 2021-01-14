@@ -23,7 +23,6 @@ export default (api) => {
 
     const absRuntimeFilePath = join(namespace, 'runtime.js');
 
-    const generatedOnce = false;
     api.onGenerateFiles(() => {
         // 文件写出
         const { roles = {} } = api.config.access || {};

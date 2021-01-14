@@ -10,13 +10,17 @@ export default (api) => {
     } = api;
 
     api.describe({
+        key: 'locale',
         config: {
             schema(joi) {
                 return joi.object();
             },
-            default: {}
+            default: {},
+            onChange: api.ConfigChangeType.regenerateTmpFiles
         }
     });
+
+    api.addRuntimePluginKey(() => 'locale');
 
     const absoluteFilePath = join(namespace, 'core.js');
 
@@ -30,11 +34,17 @@ export default (api) => {
     api.addTmpGenerateWatcherPaths(getLocaleFileBasePath);
 
     api.onGenerateFiles(() => {
+        // .fes配置
+        const userConfig = {
+            locale: 'zh-CN', // default locale
+            fallbackLocale: 'zh-CN', // set fallback locale
+            legacy: true,
+            baseNavigator: true, // 开启浏览器语言检测
+            share: true, // 用户是否需要手动改变语言
+            ...api.config.locale
+        };
+
         const loacleConfigFileBasePath = getLocaleFileBasePath();
-
-        // 文件写出
-        const defaultOptions = api.config.locale || {};
-
 
         const locales = getLocalesJSON(loacleConfigFileBasePath);
 
@@ -44,16 +54,14 @@ export default (api) => {
                 readFileSync(join(__dirname, 'runtime/core.tpl'), 'utf-8'),
                 {
                     REPLACE_LOCALES: locales,
-                    REPLACE_DEFAULT_OPTIONS: JSON.stringify(defaultOptions)
+                    REPLACE_DEFAULT_OPTIONS: JSON.stringify({
+                        locale: userConfig.locale,
+                        fallbackLocale: userConfig.fallbackLocale,
+                        legacy: userConfig.legacy
+                    }, null, 2),
+                    BASE_NAVIGATOR: userConfig.baseNavigator,
+                    SHARE: userConfig.share
                 }
-            )
-        });
-
-        api.writeTmpFile({
-            path: absRuntimeFilePath,
-            content: readFileSync(
-                join(__dirname, 'runtime/runtime.tpl'),
-                'utf-8'
             )
         });
 
@@ -66,12 +74,10 @@ export default (api) => {
 
     api.addPluginExports(() => [
         {
-            specifiers: ['useI18n', 'setLocale'],
+            specifiers: ['useI18n', 'locale'],
             source: absoluteFilePath
         }
     ]);
-
-    api.addRuntimePluginKey(() => 'onLocaleReady');
 
     api.addRuntimePlugin(() => `@@/${absRuntimeFilePath}`);
 };

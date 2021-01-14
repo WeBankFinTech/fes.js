@@ -4,7 +4,7 @@
         <template #overlay>
             <a-menu :selectedKeys="selectedKeys" @click="handleClick">
                 <a-menu-item
-                    v-for="(item) in configs"
+                    v-for="item in configs"
                     :key="item.lang"
                     class="lang-item"
                 >
@@ -23,7 +23,7 @@ import 'ant-design-vue/lib/dropdown/style';
 import 'ant-design-vue/lib/menu/style';
 import { GlobalOutlined } from '@ant-design/icons-vue';
 import { useI18n } from 'vue-i18n/dist/vue-i18n.esm-bundler';
-import { reactive, computed } from 'vue';
+import { computed } from 'vue';
 import langUConfigMap from '../langUConfigMap';
 
 export default {
@@ -34,14 +34,20 @@ export default {
         GlobalOutlined
     },
     setup() {
-        const { availableLocales, locale } = useI18n();
+        const { messages, locale } = useI18n();
         const selectedKeys = computed(() => [locale.value]);
-        const configs = reactive([]);
-        availableLocales.forEach((item) => {
-            configs.push(langUConfigMap[item] || {});
+        const configs = computed(() => {
+            const arr = [];
+            Object.keys(messages.value)
+                .sort()
+                .forEach((item) => {
+                    arr.push(langUConfigMap[item] || {});
+                });
+            return arr;
         });
         const handleClick = ({ key }) => {
             locale.value = key;
+            window.localStorage.setItem('fes_locale', key);
         };
         return {
             handleClick,
