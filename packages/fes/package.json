@@ -42,6 +42,12 @@
         "@webank/fes-compiler": "^2.0.0-alpha.0",
         "@webank/fes-preset-built-in": "^2.0.0-alpha.0",
         "@webank/fes-runtime": "^2.0.0-alpha.0",
+        "commander": "^6.2.1",
+        "envinfo": "^7.7.3",
+        "leven": "^3.1.0",
         "resolve-cwd": "^3.0.0"
+    },
+    "engines": {
+        "node": "^10.12.0 || ^12.0.0 || >= 14.0.0"
     }
 }
