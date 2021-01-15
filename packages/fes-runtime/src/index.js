@@ -7,6 +7,7 @@ export {
     RouterLink,
     useLink,
     createWebHashHistory,
+    createWebHistory,
     createRouter
 } from 'vue-router';
 

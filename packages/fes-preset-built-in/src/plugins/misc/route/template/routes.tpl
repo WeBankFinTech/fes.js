@@ -1,4 +1,4 @@
-import { createRouter as createVueRouter, createWebHashHistory, ApplyPluginsType } from '{{{ runtimePath }}}';
+import { createRouter as createVueRouter, {{{ CREATE_HISTORY }}}, ApplyPluginsType } from '{{{ runtimePath }}}';
 import { plugin } from '@@/core/coreExports';
 
 export function getRoutes() {
@@ -19,8 +19,9 @@ export const createRouter = () => {
   if (router) {
       return router;
   }
+  const history = {{{ CREATE_HISTORY }}}(ROUTER_BASE)
   router = createVueRouter({
-      history: createWebHashHistory(ROUTER_BASE),
+      history,
       routes: getRoutes()
   });
 
