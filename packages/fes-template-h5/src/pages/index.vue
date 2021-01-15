@@ -2,6 +2,8 @@
     <div class="onepiece">
         fes & 拉夫德鲁 <br />
         <fes-icon @click="clickIcon" :spin="true" class="one-icon" type="smile" />
+        <div v-if="loading" class="loading">loading</div>
+        <div v-else class="data">{{data}}</div>
     </div>
 </template>
 <config>
@@ -12,7 +14,7 @@
 </config>
 <script>
 import { ref, onMounted } from 'vue';
-import { useRouter, request } from '@webank/fes';
+import { useRouter, useRequest } from '@webank/fes';
 
 export default {
     setup() {
@@ -26,41 +28,10 @@ export default {
         const clickIcon = () => {
             console.log('click Icon');
         };
-        request('api', {}, {
-            cache: {
-                cacheType: 'ram',
-                cacheTime: 5 * 1000
-            }
-        }).then((data) => {
-            console.log(data);
-        }).catch((err) => {
-            console.log(err);
-        });
-        setTimeout(() => {
-            request('api', {}, {
-                cache: {
-                    cacheType: 'ram',
-                    cacheTime: 5 * 1000
-                }
-            }).then((data) => {
-                console.log(data);
-            }).catch((err) => {
-                console.log(err);
-            });
-        }, 200);
-        setTimeout(() => {
-            request('api', {}, {
-                cache: {
-                    cacheType: 'ram',
-                    cacheTime: 5 * 1000
-                }
-            }).then((data) => {
-                console.log(data);
-            }).catch((err) => {
-                console.log(err);
-            });
-        }, 6000);
+        const { loading, data } = useRequest('api');
         return {
+            loading,
+            data,
             fes,
             rotate,
             clickIcon

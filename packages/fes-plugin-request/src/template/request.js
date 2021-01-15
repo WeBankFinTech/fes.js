@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { ApplyPluginsType, plugin } from '@webank/fes';
+import { ref } from 'vue';
 import scheduler from './scheduler';
 import {
     checkHttpRequestHasBody,
@@ -125,4 +126,32 @@ export const request = (url, data, options = {}) => {
         }
         return Promise.reject(context.error);
     });
+};
+
+function isPromiseLike(obj) {
+    return !!obj && typeof obj === 'object' && typeof obj.then === 'function';
+}
+
+export const useRequest = (url, data, options = {}) => {
+    const loadingRef = ref(true);
+    const errorRef = ref(null);
+    const dataRef = ref(null);
+    let promise;
+    if (isPromiseLike(url)) {
+        promise = url;
+    } else {
+        promise = request(url, data, options);
+    }
+    promise.then((res) => {
+        dataRef.value = res;
+    }).catch((error) => {
+        errorRef.value = error;
+    }).finally(() => {
+        loadingRef.value = false;
+    });
+    return {
+        loading: loadingRef,
+        error: errorRef,
+        data: dataRef
+    };
 };

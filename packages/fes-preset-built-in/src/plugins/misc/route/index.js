@@ -170,7 +170,7 @@ const fix = function (routes) {
 
 const getRoutes = function ({ config, absPagesPath }) {
     // 用户配置了routes则使用用户配置的
-    if (config.routes) return config.routes;
+    if (config.router.routes) return config.router.routes;
 
     const routes = [];
     genRoutes(routes, absPagesPath, '/', config);
@@ -215,7 +215,17 @@ const getRoutesJSON = function ({ routes, config }) {
 
 export default function (api) {
     api.describe({
-        key: 'routes'
+        key: 'router',
+        config: {
+            schema(joi) {
+                return joi
+                    .object({
+                        routes: joi.array(),
+                        mode: joi.string()
+                    });
+            },
+            default: {}
+        }
     });
 
     api.registerMethod({
@@ -259,7 +269,8 @@ export default function (api) {
                 runtimePath,
                 routes,
                 config: api.config,
-                routerBase: api.config.base || ''
+                routerBase: api.config.base || '',
+                CREATE_HISTORY: api.config.router.mode === 'history' ? 'createWebHistory' : 'createWebHashHistory'
             })
         });
 
