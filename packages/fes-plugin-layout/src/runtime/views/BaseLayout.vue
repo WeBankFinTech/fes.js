@@ -8,7 +8,7 @@
         class="main-layout"
     >
         <template v-if="navigation !== 'top'">
-            <div v-if="fixedSideBar" class="layout-sider-fixed-stuff"></div>
+            <div v-if="fixedSideBar" :style="siderFixedStuffStyle" class="layout-sider-fixed-stuff"></div>
             <a-layout-sider
                 v-model:collapsed="collapsed"
                 :width="sideWidth"
@@ -30,6 +30,7 @@
             <a-layout-header v-if="currentFixedHeader" class="layout-header">
             </a-layout-header>
             <a-layout-header
+                :style="headerFixedStyle"
                 :class="[currentFixedHeader ? 'layout-header-fixed' : '']"
                 class="layout-header"
             >
@@ -129,6 +130,7 @@ export default {
         }
     },
     setup(props) {
+        const collapsed = ref(false);
         const route = useRoute();
         const routeHasLayout = computed(() => {
             const _routeLayout = route.meta.layout;
@@ -141,12 +143,39 @@ export default {
             return props.theme;
         });
         const currentFixedHeader = computed(() => props.fixedHeader || props.navigation === 'mixin');
+        const siderFixedStuffStyle = computed(() => {
+            if (collapsed.value) {
+                return {
+                    width: '80px'
+                };
+            }
+            return {
+                width: `${props.sideWidth}px`
+            };
+        });
+        const headerFixedStyle = computed(() => {
+            if (!currentFixedHeader.value) {
+                return {};
+            }
+            if (props.navigation === 'side') {
+                return {
+                    left: `${props.sideWidth}px`,
+                    width: `calc(100% - ${props.sideWidth}px)`
+                };
+            }
+            return {
+                left: 0,
+                width: '100%'
+            };
+        });
         return {
             siderTheme,
             currentFixedHeader,
             route,
             routeHasLayout,
-            collapsed: ref(false)
+            collapsed,
+            siderFixedStuffStyle,
+            headerFixedStyle
         };
     }
 };
@@ -163,10 +192,6 @@ export default {
                     display: none;
                 }
             }
-        }
-        .layout-sider-fixed-stuff {
-            overflow: hidden;
-            width: 80px;
         }
     }
     &.main-layout-navigation-top {
@@ -197,10 +222,6 @@ export default {
                     font-size: 18px;
                     line-height: 32px;
                 }
-            }
-            &.layout-header-fixed {
-                left: 0;
-                width: 100%;
             }
         }
     }
@@ -240,15 +261,10 @@ export default {
                     line-height: 32px;
                 }
             }
-            &.layout-header-fixed {
-                left: 0;
-                width: 100%;
-            }
         }
     }
     .layout-sider-fixed-stuff {
         overflow: hidden;
-        width: var(--sideWidth);
         transition: width 0.2s;
         flex-shrink: 0;
     }
@@ -299,10 +315,8 @@ export default {
         &.layout-header-fixed {
             position: fixed;
             top: 0;
-            left: var(--sideWidth);
             right: 0;
             z-index: 10;
-            width: calc(100% - var(--sideWidth));
         }
     }
     .layout-content {
