@@ -1,6 +1,6 @@
 {
   "name": "@webank/fes-plugin-layout",
-  "version": "2.0.0-alpha.4",
+  "version": "2.0.0-alpha.5",
   "description": "@webank/fes-plugin-layout",
   "main": "lib/index.js",
   "files": [
