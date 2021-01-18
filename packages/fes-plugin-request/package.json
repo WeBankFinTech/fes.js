@@ -1,6 +1,6 @@
 {
   "name": "@webank/fes-plugin-request",
-  "version": "2.0.0-alpha.1",
+  "version": "2.0.0-alpha.2",
   "description": "@webank/fes-plugin-request",
   "main": "lib/index.js",
   "files": [
@@ -27,8 +27,8 @@
     "access": "public"
   },
   "peerDependencies": {
-    "vue": "^3.0.4",
-    "@webank/fes": "^2.0.0-alpha.0"
+    "@webank/fes": "^2.0.0-alpha.0",
+    "vue": "^3.0.4"
   },
   "dependencies": {
     "axios": "0.21.1"
