@@ -181,7 +181,7 @@ export default {
 };
 </script>
 
-<style lang="less" vars="{ sideWidth: sideWidth +'px' }">
+<style lang="less">
 .main-layout {
     min-height: 100vh;
     &.main-layout-collapsed {
