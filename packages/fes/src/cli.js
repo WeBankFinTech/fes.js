@@ -50,31 +50,6 @@ program
     .description(fesPkg.description);
 
 program
-    .command('create <app-name>')
-    .description('create a new project powered by fes.js')
-    .option('-f, --force', 'Overwrite target directory if it exists')
-    .option('--merge', 'Merge target directory if it exists')
-    .option('-x, --proxy <proxyUrl>', 'Use specified proxy when creating project')
-    .action(async () => {
-        if (args._.length > 2) {
-            console.log(chalk.yellow('\n Info: You provided more than one argument. The first one will be used as the app\'s name, the rest are ignored.'));
-        }
-        try {
-            await new Service({
-                cwd: getCwd(),
-                pkg: getPkg(process.cwd())
-            }).run({
-                name: 'create',
-                args
-            });
-        } catch (e) {
-            console.error(chalk.red(e.message));
-            console.error(e.stack);
-            process.exit(1);
-        }
-    });
-
-program
     .command('dev')
     .description('run local http service for development')
     .action(() => {

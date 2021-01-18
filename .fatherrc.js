@@ -14,7 +14,8 @@ const headPkgs = [
     "fes-plugin-model",
     "fes-plugin-layout",
     "fes-plugin-icon",
-    "fes-plugin-locale"
+    "fes-plugin-locale",
+    "create-fes-app"
 ];
 const tailPkgs = [];
 // const otherPkgs = readdirSync(join(__dirname, 'packages')).filter(

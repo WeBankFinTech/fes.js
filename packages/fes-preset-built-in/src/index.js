@@ -50,7 +50,6 @@ export default function () {
             require.resolve('./plugins/misc/route'),
 
             // commands
-            require.resolve('./plugins/commands/create'),
             require.resolve('./plugins/commands/build'),
             require.resolve('./plugins/commands/dev')
         ]
