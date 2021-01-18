@@ -2,10 +2,10 @@ import path from 'path';
 import { chalk } from '@umijs/utils';
 import validateProjectName from 'validate-npm-package-name';
 import fs from 'fs-extra';
-import { execSync } from 'child_process';
 import inquirer from 'inquirer';
-import tar from 'tar';
+
 import { clearConsole } from './utils';
+import AppGenerator from './generator/App';
 
 export default async ({ cwd, args }) => {
     if (args.proxy) {
@@ -81,26 +81,18 @@ export default async ({ cwd, args }) => {
     ]);
 
     if (template) {
-        const map = {
-            pc: '@webank/fes-template',
-            h5: '@webank/fes-template-h5'
-        };
-        fs.mkdirSync(targetDir);
-        const stdout = execSync(`npm pack ${map[template]}`, { encoding: 'utf8', stdio: [null] });
-        const tempFilePath = path.resolve(cwd, stdout.replace('\n', ''));
-        fs.createReadStream(tempFilePath).pipe(
-            tar.x({
-                strip: 1,
-                C: targetDir
-            })
-        ).on('finish', () => {
-            fs.removeSync(tempFilePath);
-            console.log();
-            console.log(chalk.green(`project ${projectName} created successfully, please execute the following command to use:`));
-            console.log(`$ cd ${projectName}`);
-            console.log('$ yarn');
-            console.log('$ yarn dev');
-            console.log();
+        const generator = new AppGenerator({
+            cwd,
+            args,
+            targetDir,
+            path: path.join(__dirname, `../templates/app/${template}`)
         });
+        await generator.run();
+        console.log();
+        console.log(chalk.green(`project ${projectName} created successfully, please execute the following command to use:`));
+        console.log(`$ cd ${projectName}`);
+        console.log('$ yarn');
+        console.log('$ yarn dev');
+        console.log();
     }
 };
