@@ -26,6 +26,9 @@
     "url": "https://github.com/WeBankFinTech/fes.js/issues"
   },
   "homepage": "https://github.com/WeBankFinTech/fes.js#readme",
+  "publishConfig": {
+    "access": "public"
+  },
   "dependencies": {
     "@umijs/utils": "3.3.3",
     "fs-extra": "^9.0.1",
