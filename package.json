@@ -8,6 +8,7 @@
     "packages/*"
   ],
   "scripts": {
+    "clean": "lerna clean",
     "bootstrap": "lerna bootstrap",
     "build": "father-build --watch",
     "ver": "lerna version prerelease --preid alpha --no-changelog --no-commit-hooks --no-private",
