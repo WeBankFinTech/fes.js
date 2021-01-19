@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "composite": true,
+    "declaration": true,
+    "declarationMap": true,
+    "lib": ["DOM", "ES2020"],
+    "module": "CommonJS",
+    "moduleResolution": "node",
+    "newLine": "lf",
+    "noEmitOnError": true,
+    "noImplicitAny": false,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "sourceMap": true,
+    "strict": true,
+    "strictNullChecks": true,
+    "target": "ES2018"
+  }
+}

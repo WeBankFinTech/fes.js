@@ -12,7 +12,9 @@
     "bootstrap": "lerna bootstrap",
     "build": "father-build --watch",
     "ver": "lerna version prerelease --preid alpha --no-changelog --no-commit-hooks --no-private",
-    "release": "father-build && lerna publish from-git --dist-tag next"
+    "release": "father-build && lerna publish from-git --dist-tag next",
+    "docs:dev": "vuepress dev docs --clean-cache",
+    "docs:build": "vuepress build docs --clean-cache"
   },
   "license": "MIT",
   "keywords": [
@@ -33,7 +35,13 @@
     "cz-conventional-changelog": "^3.3.0",
     "father-build": "^1.18.5",
     "husky": "^4.3.0",
-    "lint-staged": "^10.4.0"
+    "lint-staged": "^10.4.0",
+    "esbuild-loader": "^2.7.0",
+    "vuepress": "^2.0.0-alpha.18",
+    "@vuepress/plugin-pwa": "^2.0.0-alpha.18",
+    "@vuepress/theme-vue": "^2.0.0-alpha.18",
+    "@vuepress/plugin-docsearch": "^2.0.0-alpha.18",
+    "@vuepress/plugin-pwa-popup": "^2.0.0-alpha.18"
   },
   "lint-staged": {
     "*.{js,jsx,vue,ts}": [
