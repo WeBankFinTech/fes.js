@@ -4,6 +4,7 @@
 .vscode
 .history
 .cache
+.temp
 *.log
 node_modules
 npm-debug.log
