@@ -7,16 +7,18 @@ actions:
     link: /zh/guide/getting-started.html
     type: primary
   - text: 项目简介
-    link: /guide/
+    link: /zh/guide/
     type: secondary
 features:
-  - title: 简洁至上
-    details: 以 Markdown 为中心的项目结构，以最少的配置帮助你专注于写作。
-  - title: Vue 驱动
-    details: 享受 Vue 的开发体验，可以在 Markdown 中使用 Vue 组件，又可以使用 Vue 来开发自定义主题。
-  - title: 高性能
-    details: VuePress 会为每个页面预渲染生成静态的 HTML，同时，每个页面被加载的时候，将作为 SPA 运行。
-footer: MIT Licensed | Copyright © 2018-present Evan You
+  - title: 可扩展
+    details: 借鉴Umi实现了完整的生命周期和插件化机制，插件可以管理项目的编译时和运行时，能力均可以通过插件封装进来，在fes.js中协调有序的运行。
+  - title: Fast
+    details: 内置了路由、构建、部署、测试等，并且提供诸如布局、权限、国际化、状态管理、API请求、数据字典、SvgIcon等插件，可以满足大部分日常开发需求。
+  - title: Easy
+    details: 基于Vue.js，上手简单。设计上尽量通过约定方式简化概念，更容易上手。约定不能完全替代配置，统一管理插件配置入口，一致的体验，学习起来更轻松。
+  - title: Strong
+    details: 经过多个项目中打磨，趋于稳定。
+footer: MIT Licensed | Copyright © 2020-present Webank
 ---
 
 ### 像数 1, 2, 3 一样容易
@@ -25,17 +27,14 @@ footer: MIT Licensed | Copyright © 2018-present Evan You
   <CodeGroupItem title="YARN" active>
 
 ```bash
-# 在你的项目中安装
-yarn add -D vuepress@next
+# 创建模板
+npx @webank/create-fes-app myapp
 
-# 新建一个 markdown 文件
-echo '# Hello VuePress' > README.md
+# 安装依赖
+yarn 
 
-# 开始写作
-yarn vuepress dev
-
-# 构建静态文件
-yarn vuepress build
+# 运行
+yarn dev
 ```
 
   </CodeGroupItem>
@@ -43,17 +42,14 @@ yarn vuepress build
   <CodeGroupItem title="NPM">
 
 ```bash
-# 在你的项目中安装
-npm install -D vuepress@next
+# 创建模板
+npx @webank/create-fes-app myapp
 
-# 新建一个 markdown 文件
-echo '# Hello VuePress' > README.md
+# 安装依赖
+npm install 
 
-# 开始写作
-npx vuepress dev
-
-# 构建静态文件
-npx vuepress build
+# 运行
+npm run dev
 ```
 
   </CodeGroupItem>

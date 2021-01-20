@@ -13,20 +13,20 @@ const config: UserConfig<DefaultThemeOptions> = {
   locales: {
     '/': {
       lang: 'en-US',
-      title: 'VuePress',
-      description: 'Vue-powered Static Site Generator',
+      title: 'Fes.js',
+      description: 'A Good Front-end Application Solution',
     },
     '/zh/': {
       lang: 'zh-CN',
-      title: 'VuePress',
-      description: 'Vue 驱动的静态网站生成器',
+      title: 'Fes.js',
+      description: '一个好用的前端应用解决方案',
     },
   },
 
   themeConfig: {
     logo: '/hero.png',
 
-    repo: 'vuepress/vuepress-next',
+    repo: 'WeBankFinTech/fes.js',
 
     docsDir: 'docs',
 
