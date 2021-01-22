@@ -14,6 +14,8 @@ module.exports = {
         'vue/comment-directive': 'off',
         'global-require': 'off',
         'import/no-unresolved': 'off',
-        'no-restricted-syntax': 'off'
+        'no-restricted-syntax': 'off',
+        'no-undefined': 'off',
+        'vue/valid-template-root': 'off'
     }
 };

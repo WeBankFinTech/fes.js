@@ -24,7 +24,7 @@ const config: UserConfig<DefaultThemeOptions> = {
   },
 
   themeConfig: {
-    logo: '/hero.png',
+    logo: '/logo.png',
 
     repo: 'WeBankFinTech/fes.js',
 

@@ -74,6 +74,7 @@ import Layout from 'ant-design-vue/lib/layout';
 import 'ant-design-vue/lib/layout/style';
 import Menu from './Menu';
 import MultiTabProvider from './MultiTabProvider';
+import defaultLogo from '../assets/logo.png';
 
 export default {
     components: {
@@ -102,7 +103,7 @@ export default {
         },
         logo: {
             type: String,
-            default: ''
+            default: defaultLogo
         },
         theme: {
             type: String,
