@@ -15,6 +15,7 @@ export default function () {
             require.resolve('./plugins/features/analyze'),
             require.resolve('./plugins/features/autoprefixer'),
             require.resolve('./plugins/features/base'),
+            require.resolve('./plugins/features/babelPluginImport'),
             require.resolve('./plugins/features/chainWebpack'),
             require.resolve('./plugins/features/chunks'),
             require.resolve('./plugins/features/cssLoader'),

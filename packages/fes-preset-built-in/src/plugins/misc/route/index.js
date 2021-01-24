@@ -101,7 +101,7 @@ const genRoutes = function (parentRoutes, path, parentRoutePath, config) {
                         path: routePath,
                         component: componentPath,
                         name: routeName,
-                        meta: routeMetaBlock.content ? JSON.parse(routeMetaBlock.content) : {}
+                        meta: routeMetaBlock?.content ? JSON.parse(routeMetaBlock.content) : {}
                     });
                 }
             } else {
@@ -109,7 +109,7 @@ const genRoutes = function (parentRoutes, path, parentRoutePath, config) {
                     path: routePath,
                     component: componentPath,
                     name: routeName,
-                    meta: routeMetaBlock.content ? JSON.parse(routeMetaBlock.content) : {}
+                    meta: routeMetaBlock?.content ? JSON.parse(routeMetaBlock.content) : {}
                 });
             }
         }
