@@ -5,6 +5,11 @@
         <access :id="accessId"> accessOnepicess1 <input /> </access>
         <div v-access="accessId"> accessOnepicess2 <input /> </div>
         <input />
+        <div>
+            <div>数据字典：</div>
+            <div v-for="item in status" :key="item.key">{{item.value}}-{{item.key}}</div>
+            <div v-for="item in coustomStatus" :key="item.key">{{item.value}}-{{item.key}}</div>
+        </div>
     </div>
 </template>
 <config>
@@ -14,9 +19,9 @@
 }
 </config>
 <script>
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, reactive } from 'vue';
 import {
-    access, useAccess, useRouter, useI18n, locale
+    access, useAccess, useRouter, useI18n, locale, enums
 } from '@webank/fes';
 
 export default {
@@ -26,6 +31,9 @@ export default {
         const localI18n = useI18n();
         const router = useRouter();
         const accessId = ref('/onepiece1');
+        const status = reactive(enums.$data.status);
+        enums.push('coustomStatus', [{ id: 1, desc: '是' }, { id: 1, desc: '否' }], 'id', 'desc');
+        const coustomStatus = reactive(enums.$data.coustomStatus);
         onMounted(() => {
             console.log(router);
             setTimeout(() => {
@@ -43,7 +51,9 @@ export default {
             accessId,
             fes,
             accessOnepicess,
-            t: localI18n.t
+            t: localI18n.t,
+            status,
+            coustomStatus
         };
     }
 };
