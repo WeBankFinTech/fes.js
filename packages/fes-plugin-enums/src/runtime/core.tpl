@@ -1,3 +1,5 @@
+import { readonly } from "vue"
+
 // [[key, value]]，默认配置格式
 const _ENUMS = {{{REPLACE_ENUMS}}}
 const ENUMS = {}
@@ -11,14 +13,14 @@ Object.keys(_ENUMS).forEach(key => {
  * @param {string} key 枚举键名称
  * @param {string} dir 枚举键值路径，默认value，格式如：value.propName、value.propName[0]
  */
-function get(name, key, dir='value') {
+function get(name, key, opt = { dir: 'value' }) {
     let list = ENUMS[name] || []
     if (key) {
-        let value = list.filter(item => item.key === key)[0]
-        if (!value) return key
-        return parseValueDir(value, dir)
+        let res = list.filter(item => item.key === key)[0]
+        if (!res) return key
+        return readonly(parseValueDir(res.value, opt.dir) || key)
     } else {
-        return list
+        return readonly(list)
     }
 }
 
@@ -34,15 +36,30 @@ function remove(name) {
  * 添加一个新的枚举，重复添加会覆盖
  * @param {string} name 枚举名称
  * @param {Array<Object|Array>} _enum 枚举数组，数组元素可以是数组或者对象
- * @param {string} keyName 指定枚举键名称取值属性
- * @param {string} valueName 指定枚举键值取值属性
+ * @param {object} opt {keyName: 'key', valueName: ''} keyName: 指定枚举键名称取值属性 valueName 指定枚举键值取值属性
  */
-function push(name, _enum, keyName='key', valueName='value') {
+function push(name, _enum, opt = { keyName: '', valueName: '' }) {
     if (ENUMS[name]) {
         console.warn(`enums warn: the ${name}'s enum already exists, cover!`)
     }
-    ENUMS[name] = convert(name, _enum, keyName, valueName)
+    ENUMS[name] = convert(name, _enum, opt)
     return get(name)
+}
+
+/**
+ * 基于现有的枚举，连接上新的枚举后返回新的枚举
+ * @param {string} name 枚举名称
+ * @param {Array<Object|Array>} _enum 枚举数组，数组元素可以是数组或者对象
+ * @param {object} opt {keyName: 'key', valueName: ''} keyName: 指定枚举键名称取值属性 valueName 指定枚举键值取值属性 before: 是否添加在现有的之前
+ */
+function concat(name, _enum, opt = { keyName: '', valueName: '', before: false }) {
+    let list = ENUMS[name] || []
+    let partList = convert(name, _enum, opt) || []
+    if (opt.before) {
+        return readonly(partList.concat(list))
+    } else {
+        return readonly(list.concat(partList))
+    }
 }
 
 /**
@@ -73,10 +90,9 @@ function parseValueDir(value, dir='value') {
  * 转换传入的枚举数组
  * @param {string} name 枚举名称
  * @param {Array<Object|Array>} _enum 枚举数组，数组元素可以是数组或者对象
- * @param {string} keyName 指定枚举键名称取值属性
- * @param {string} valueName 指定枚举键值取值属性
+ * @param {object} opt {keyName: 'key', valueName: ''} keyName: 指定枚举键名称取值属性 valueName 指定枚举键值取值属性
  */
-function convert(name, _enum, keyName='key', valueName='value') {
+function convert(name, _enum, opt = { keyName: '', valueName: '' }) {
     if (!name) {
         throw new Error(`enums error: name must not be empty！`)
     }
@@ -85,35 +101,35 @@ function convert(name, _enum, keyName='key', valueName='value') {
     }
     let list = []
     _enum.forEach((item, index) => {
+        let _item;
         if (Array.isArray(item)) {
-            let _item = item[1]
-            if (Object.prototype.toString.call(_item) !== '[object Object]') {
-                _item = { value: _item }
-            }
-            _item.key = item[0]
-            list.push(_item)
+            _item = {key: item[0], value: item[1]}
         } else if(Object.prototype.toString.call(item) === '[object Object]') {
-            list.push({
-                key: item[keyName],
-                value: item[valueName],
-                ...item
-            })
+            if (!opt.keyName) opt.keyName = 'key'
+            // key可能为空，有场景需要使用，比如全选
+            _item = {
+                key: item[opt.keyName],
+                value: opt.valueName ? item[opt.valueName] : item
+            }
         } else {
-            console.log(`enums warn: the ${name}'s enum item[${index}] must be array or object！`)
+            console.warn(`enums warn: the key ${name} enum item[${index}] must be array or object！`)
+            return
+        }
+        let res = list.filter(item => item.key === _item.key)[0]
+        if (res) { // 重复key覆盖提示
+            console.warn(`enums warn: the key ${res.key} enum item already exists, cover!`)
+            res.value = _item.value
+        } else {
+            list.push(_item)
         }
     })
     return list
 }
 
-const $data = new Proxy(ENUMS, {
-    get: function(target, key) {
-        return get(key)
-    }
-})
-
 export const enums = {
     get,
     push,
     remove,
-    $data
+    concat,
+    convert
 }
