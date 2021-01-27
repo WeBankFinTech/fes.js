@@ -11,16 +11,26 @@ Object.keys(_ENUMS).forEach(key => {
  * 获取枚举键值，如不传key，则返回name的枚举数组
  * @param {string} name 枚举名称
  * @param {string} key 枚举键名称
- * @param {string} dir 枚举键值路径，默认value，格式如：value.propName、value.propName[0]
+ * @param {{
+ *  dir: string
+ *  extend: Array<{
+ *      key:string
+ *      dir:string
+ *      transfer: Function
+ * }>}} opt 配置项
  */
-function get(name, key, opt = { dir: 'value' }) {
+function get(name, key, opt = { dir: 'value', extend: []}) {
+    if (Object.prototype.toString.call(key) === '[object Object]') { 
+        opt = key
+        key = ''
+    }
     let list = ENUMS[name] || []
     if (key) {
         let res = list.filter(item => item.key === key)[0]
         if (!res) return key
         return readonly(parseValueDir(res.value, opt.dir) || key)
     } else {
-        return readonly(list)
+        return readonly(format(list, opt.extend))
     }
 }
 
@@ -49,17 +59,48 @@ function push(name, _enum, opt = { keyName: '', valueName: '' }) {
 /**
  * 基于现有的枚举，连接上新的枚举后返回新的枚举
  * @param {string} name 枚举名称
- * @param {Array<Object|Array>} _enum 枚举数组，数组元素可以是数组或者对象
- * @param {object} opt {keyName: 'key', valueName: ''} keyName: 指定枚举键名称取值属性 valueName 指定枚举键值取值属性 before: 是否添加在现有的之前
+ * @param {Array<any|Array>} _enum 枚举数组，数组元素可以是数组或者对象
+ * @param {{
+ *  keyName: string,
+ *  valueName: string,
+ *  before: boolean,
+ *  extend: Array<{
+ *      key: string
+ *      dir: string
+ *      transfer: Function
+ *  }>
+ * }} opt 配置项，keyName: 指定枚举键名称取值属性 valueName 指定枚举键值取值属性 before: 是否添加在现有的之前
  */
-function concat(name, _enum, opt = { keyName: '', valueName: '', before: false }) {
+function concat(name, _enum, opt = { keyName: '', valueName: '', before: false, extend: [] }) {
     let list = ENUMS[name] || []
     let partList = convert(name, _enum, opt) || []
     if (opt.before) {
-        return readonly(partList.concat(list))
+        list = partList.concat(list)
     } else {
-        return readonly(list.concat(partList))
+        list = list.concat(partList)
     }
+    return readonly(format(list, extend))
+}
+
+/**
+ * 格式化枚举
+ * @param {Array} _enum 枚举数组 
+ * @param {Array<{key:string, dir:string, transfer: Function}>} extend 格式化规则
+ */
+function format(_enum = [], extend = []) {
+    if (!extend || extend.length <= 0) return _enum;
+    return _enum.map(item => {
+        let _item = {...item}
+        extend.forEach(fItem => {
+            if (!fItem.key) return
+            if (typeof fItem.transfer === 'function') {
+                _item[fItem.key] = fItem.transfer(item)
+            } else {
+                _item[fItem.key] = parseValueDir(item.value, fItem.dir)
+            }
+        })
+        return _item
+    })
 }
 
 /**
@@ -90,7 +131,7 @@ function parseValueDir(value, dir='value') {
  * 转换传入的枚举数组
  * @param {string} name 枚举名称
  * @param {Array<Object|Array>} _enum 枚举数组，数组元素可以是数组或者对象
- * @param {object} opt {keyName: 'key', valueName: ''} keyName: 指定枚举键名称取值属性 valueName 指定枚举键值取值属性
+ * @param {{keyName: 'key', valueName: string}} opt keyName: 指定枚举键名称取值属性 valueName 指定枚举键值取值属性
  */
 function convert(name, _enum, opt = { keyName: '', valueName: '' }) {
     if (!name) {
