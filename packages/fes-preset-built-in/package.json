@@ -37,6 +37,7 @@
     "html-webpack-tags-plugin": "2.0.17",
     "vue-loader": "^16.1.2",
     "webpack-bundle-analyzer": "4.3.0",
-    "babel-plugin-import": "1.13.3"
+    "babel-plugin-import": "1.13.3",
+    "hard-source-webpack-plugin": "0.13.1"
   }
 }
