@@ -141,7 +141,7 @@ export const genModels = (imports, absSrcPath) => {
     const models = sort(raw);
 
     if (checkDuplicates(contents.map(ele => ele.namespace))) {
-        throw Error('umi: models 中包含重复的 namespace！');
+        throw Error('plugin-model: models 中包含重复的 namespace！');
     }
     return raw.sort(
         (a, b) => models.indexOf(a.namespace) - models.indexOf(b.namespace)
