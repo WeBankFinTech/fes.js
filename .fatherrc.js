@@ -15,6 +15,7 @@ const headPkgs = [
     "fes-plugin-layout",
     "fes-plugin-icon",
     "fes-plugin-locale",
+    "fes-plugin-enums",
     "create-fes-app"
 ];
 const tailPkgs = [];
