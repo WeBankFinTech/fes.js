@@ -18,11 +18,14 @@
   "files": [
     ".eslintrc.js",
     ".gitignore",
-    "fes.config.js",
+    ".fes.js",
+    ".fes.prod.js",
     "mock.js",
     "package.json",
     "README.md",
-    "/src"
+    "tsconfig.json",
+    "/src",
+    "/config"
   ],
   "repository": {
     "type": "git",
