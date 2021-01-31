@@ -4,7 +4,6 @@ import { existsSync, readdirSync, readFileSync } from 'fs';
 import { rimraf, chalk } from '@umijs/utils';
 import zlib from 'zlib';
 
-
 export async function getBundleAndConfigs({
     api,
     port
@@ -92,7 +91,7 @@ export async function getBundleAndConfigs({
         type: api.ApplyPluginsType.modify,
         key: 'modifyBundleConfigs',
         initialValue: [await getConfig({ type: 'csr' })].filter(
-            Boolean,
+            Boolean
         ),
         args: {
             ...bundlerArgs,
@@ -194,21 +193,21 @@ export function printFileSizes(stats, dir) {
         `${makeRow(
             chalk.cyan.bold('File'),
             chalk.cyan.bold('Size'),
-            chalk.cyan.bold('Gzipped'),
+            chalk.cyan.bold('Gzipped')
         )
         }\n\n${
             // eslint-disable-next-line
             orderedAssets.map(asset => makeRow(/js$/.test(asset.name) ? (asset.suggested ? chalk.yellow(join(dir, asset.name)) : chalk.green(join(dir, asset.name))) : chalk.blue(join(dir, asset.name)),
                 filesize(asset.size),
-                getGzippedSize(asset),))
-                .join('\n')}`,
+                getGzippedSize(asset)))
+                .join('\n')}`
     );
 
 
     console.log(
         `${ui.toString()}\n\n  ${chalk.gray(
-            'Images and other types of assets omitted.',
-        )}\n`,
+            'Images and other types of assets omitted.'
+        )}\n`
     );
 
     if (orderedAssets?.some(asset => asset.suggested)) {
@@ -216,17 +215,17 @@ export function printFileSizes(stats, dir) {
     // TODO: use umi docs
         console.log();
         console.log(
-            chalk.yellow('The bundle size is significantly larger than recommended.'),
+            chalk.yellow('The bundle size is significantly larger than recommended.')
         );
         console.log(
             chalk.yellow(
-                'Consider reducing it with code splitting: https://umijs.org/docs/load-on-demand',
-            ),
+                'Consider reducing it with code splitting: https://umijs.org/docs/load-on-demand'
+            )
         );
         console.log(
             chalk.yellow(
-                'You can also analyze the project dependencies using ANALYZE=1',
-            ),
+                'You can also analyze the project dependencies using ANALYZE=1'
+            )
         );
         console.log();
     }
