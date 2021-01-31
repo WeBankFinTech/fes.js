@@ -9,7 +9,8 @@
     "files": [
         "lib",
         "dist",
-        "bin"
+        "bin",
+        "types.d.ts"
     ],
     "bin": {
         "fes": "./bin/fes.js"
@@ -49,5 +50,6 @@
     },
     "engines": {
         "node": "^10.12.0 || ^12.0.0 || >= 14.0.0"
-    }
+    },
+    "types": "types.d.ts"
 }

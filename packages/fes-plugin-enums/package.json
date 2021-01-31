@@ -1,0 +1,33 @@
+{
+  "name": "@webank/fes-plugin-enums",
+  "version": "2.0.0-alpha.2",
+  "description": "@webank/fes-plugin-enums",
+  "main": "lib/index.js",
+  "files": [
+    "lib"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WeBankFinTech/fes.js.git",
+    "directory": "packages/fes-plugin-enums"
+  },
+  "keywords": [
+    "fes"
+  ],
+  "author": "aringlai",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/WeBankFinTech/fes.js/issues"
+  },
+  "homepage": "https://github.com/WeBankFinTech/fes.js#readme",
+  "publishConfig": {
+    "access": "public"
+  },
+  "peerDependencies": {
+    "@webank/fes": "^2.0.0-alpha.0",
+    "vue": "^3.0.4"
+  }
+}

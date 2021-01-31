@@ -18,11 +18,14 @@
   "files": [
     ".eslintrc.js",
     ".gitignore",
-    "fes.config.js",
+    ".fes.js",
+    ".fes.prod.js",
     "mock.js",
     "package.json",
     "README.md",
-    "/src"
+    "tsconfig.json",
+    "/src",
+    "/config"
   ],
   "repository": {
     "type": "git",
@@ -48,6 +51,7 @@
     "@webank/fes-plugin-layout": "^2.0.0-alpha.0",
     "@webank/fes-plugin-locale": "^2.0.0-alpha.0",
     "@webank/fes-plugin-model": "^2.0.0-alpha.0",
+    "@webank/fes-plugin-enums": "^2.0.0-alpha.0",
     "ant-design-vue": "2.0.0-rc.3",
     "vue": "3.0.4"
   },

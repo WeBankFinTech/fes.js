@@ -26,5 +26,8 @@ export default {
     },
     devServer: {
         port: 8080
+    },
+    enums: {
+        status: [['0', '无效的'], ['1', '有效的']]
     }
 };

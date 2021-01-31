@@ -5,6 +5,10 @@
         <access :id="accessId"> accessOnepicess1 <input /> </access>
         <div v-access="accessId"> accessOnepicess2 <input /> </div>
         <input />
+        <h4>数据字典</h4>
+        <div v-for="item in enumsGet('status')" :key="item.key">{{item.value}}：{{item.key}}</div>
+        <div v-for="item in roles" :key="item.key">{{item.name}}：{{item.disabled}}</div>
+        <div>{{enumsGet('roles', '2', { dir: 'eName' })}}</div>
     </div>
 </template>
 <config>
@@ -16,7 +20,7 @@
 <script>
 import { ref, onMounted } from 'vue';
 import {
-    access, useAccess, useRouter, useI18n, locale
+    access, useAccess, useRouter, useI18n, locale, enums
 } from '@webank/fes';
 
 export default {
@@ -26,6 +30,39 @@ export default {
         const localI18n = useI18n();
         const router = useRouter();
         const accessId = ref('/onepiece1');
+        enums.push('roles', [
+            {
+                id: '1',
+                cName: '系统管理员',
+                eName: 'System',
+                perm: ['1', '2', '3']
+            },
+            {
+                id: '2',
+                cName: '业务管理员',
+                eName: 'Business',
+                perm: ['1', '2']
+            },
+            {
+                id: '3',
+                cName: '普通用户',
+                eName: 'User',
+                perm: ['1']
+            }
+        ], { keyName: 'id' });
+        const roles = enums.get('roles', {
+            extend: [
+                {
+                    key: 'name',
+                    dir: 'cName'
+                },
+                {
+                    key: 'disabled',
+                    transfer: item => item.value.perm.some(i => i >= 2)
+                }
+            ]
+        });
+        console.log(roles);
         onMounted(() => {
             console.log(router);
             setTimeout(() => {
@@ -43,7 +80,9 @@ export default {
             accessId,
             fes,
             accessOnepicess,
-            t: localI18n.t
+            t: localI18n.t,
+            enumsGet: enums.get,
+            roles
         };
     }
 };
