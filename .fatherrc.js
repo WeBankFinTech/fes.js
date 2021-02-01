@@ -16,7 +16,8 @@ const headPkgs = [
     "fes-plugin-icon",
     "fes-plugin-locale",
     "fes-plugin-enums",
-    "create-fes-app"
+    "fes-plugin-unit-jest",
+    "create-fes-app",
 ];
 const tailPkgs = [];
 // const otherPkgs = readdirSync(join(__dirname, 'packages')).filter(

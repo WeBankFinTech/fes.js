@@ -1,6 +1,5 @@
 import { chalk, yParser, semver } from '@umijs/utils';
 import program from 'commander';
-import leven from 'leven';
 import { Service } from './serviceWithBuiltIn';
 import fork from './utils/fork';
 import getCwd from './utils/getCwd';
@@ -23,23 +22,6 @@ function checkNodeVersion(wanted, id) {
 }
 
 checkNodeVersion(requiredVersion, '@webank/fes');
-
-function suggestCommands(unknownCommand) {
-    const availableCommands = program.commands.map(cmd => cmd._name);
-
-    let suggestion;
-
-    availableCommands.forEach((cmd) => {
-        const isBestMatch = leven(cmd, unknownCommand) < leven(suggestion || '', unknownCommand);
-        if (leven(cmd, unknownCommand) < 3 && isBestMatch) {
-            suggestion = cmd;
-        }
-    });
-
-    if (suggestion) {
-        console.log(`  ${chalk.red(`Did you mean ${chalk.yellow(suggestion)}?`)}`);
-    }
-}
 
 // process.argv: [node, fes.js, command, args]
 const args = yParser(process.argv.slice(2));
@@ -117,16 +99,24 @@ program
             .then(console.log);
     });
 
-// output help information on unknown commands
 program
     .arguments('[command]')
-    .action((cmd) => {
+    .option('--debug', 'Skip prompts and use default preset')
+    .action(async (cmd) => {
         if (cmd) {
-            program.outputHelp();
-            console.log(`  ${chalk.red(`Unknown command ${chalk.yellow(cmd)}.`)}`);
-            console.log();
-            suggestCommands(cmd);
-            process.exitCode = 1;
+            try {
+                await new Service({
+                    cwd: getCwd(),
+                    pkg: getPkg(process.cwd())
+                }).run({
+                    name: cmd,
+                    args
+                });
+            } catch (e) {
+                console.error(chalk.red(e.message));
+                console.error(e.stack);
+                process.exit(1);
+            }
         }
     });
 
