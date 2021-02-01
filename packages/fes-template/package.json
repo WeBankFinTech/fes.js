@@ -44,7 +44,7 @@
   },
   "devDependencies": {
     "@vue/compiler-sfc": "^3.0.0",
-    "@webank/eslint-config-webank": "0.2.7"
+    "@webank/eslint-config-webank": "^0.2.10"
   },
   "dependencies": {
     "@webank/fes": "^2.0.0-alpha.0",
