@@ -17,6 +17,7 @@ const headPkgs = [
     "fes-plugin-locale",
     "fes-plugin-enums",
     "fes-plugin-jest",
+    "fes-plugin-vuex",
     "create-fes-app",
 ];
 const tailPkgs = [];
