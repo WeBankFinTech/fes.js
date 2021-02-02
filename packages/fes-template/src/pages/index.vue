@@ -9,6 +9,7 @@
         <div v-for="item in enumsGet('status')" :key="item.key">{{item.value}}：{{item.key}}</div>
         <div v-for="item in roles" :key="item.key">{{item.name}}：{{item.disabled}}</div>
         <div>{{enumsGet('roles', '2', { dir: 'eName' })}}</div>
+        <h4>Vuex <button @click="increment">click me：{{count}}</button></h4>
     </div>
 </template>
 <config>
@@ -18,7 +19,8 @@
 }
 </config>
 <script>
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, computed } from 'vue';
+import { useStore } from 'vuex';
 import {
     access, useAccess, useRouter, useI18n, locale, enums
 } from '@webank/fes';
@@ -63,6 +65,8 @@ export default {
             ]
         });
         console.log(roles);
+        const store = useStore();
+        console.log('store==>', store);
         onMounted(() => {
             console.log(router);
             setTimeout(() => {
@@ -82,7 +86,9 @@ export default {
             accessOnepicess,
             t: localI18n.t,
             enumsGet: enums.get,
-            roles
+            roles,
+            count: computed(() => store.state.counter.count),
+            increment: () => store.commit('counter/increment')
         };
     }
 };
