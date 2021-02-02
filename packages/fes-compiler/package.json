@@ -31,6 +31,7 @@
     "joi": "17.3.0",
     "readline": "^1.3.0",
     "set-value": "3.0.2",
-    "tapable": "2.0.0"
+    "tapable": "2.0.0",
+    "commander": "^6.2.1"
   }
 }

@@ -17,7 +17,7 @@ export default function (api) {
     } = api;
 
     api.registerCommand({
-        name: 'build',
+        command: 'build',
         description: 'build application for production',
         async fn() {
             cleanTmpPathExceptCache({

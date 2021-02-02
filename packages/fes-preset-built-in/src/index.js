@@ -53,7 +53,9 @@ export default function () {
 
             // commands
             require.resolve('./plugins/commands/build'),
-            require.resolve('./plugins/commands/dev')
+            require.resolve('./plugins/commands/dev'),
+            require.resolve('./plugins/commands/help'),
+            require.resolve('./plugins/commands/info')
         ]
     };
 }

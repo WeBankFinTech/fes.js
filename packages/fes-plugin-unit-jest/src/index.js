@@ -12,19 +12,13 @@ export default function (api) {
     const { utils: { mergeConfig }, cwd } = api;
 
     api.registerCommand({
-        name: 'test:unit',
-        usage: 'fes test:unit [options] <regexForTestFiles>',
+        command: 'test:unit',
         description: 'run unit tests with jest',
         options: {
             '--watch': 'run tests in watch mode',
             '--debug': 'debug'
         },
-        details:
-            'All jest command line options are supported.\n'
-            + 'See https://facebook.github.io/jest/docs/en/cli.html for more details.',
         async fn({ args }) {
-            console.log(args);
-
             process.env.NODE_ENV = 'test';
 
             args.debug && logger.log(`args: ${JSON.stringify(args)}`);

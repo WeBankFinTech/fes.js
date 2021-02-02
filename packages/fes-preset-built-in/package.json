@@ -38,6 +38,7 @@
     "vue-loader": "^16.1.2",
     "webpack-bundle-analyzer": "4.3.0",
     "babel-plugin-import": "1.13.3",
-    "hard-source-webpack-plugin": "0.13.1"
+    "hard-source-webpack-plugin": "0.13.1",
+    "envinfo": "^7.7.3"
   }
 }
