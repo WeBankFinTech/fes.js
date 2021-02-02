@@ -6,20 +6,38 @@ import { Logger } from '@webank/fes-compiler';
 import { options as CliOptions } from 'jest-cli/build/cli/args';
 import createDefaultConfig from './createDefaultConfig';
 
-const logger = new Logger('fes:plugin-built-in');
+const logger = new Logger('fes:plugin-unit-jest');
+
+function getCommandOptiton() {
+    const opt = {};
+    Object.keys(CliOptions).forEach((key) => {
+        const option = CliOptions[key];
+        let otpKey = '';
+        if (option.alias) {
+            otpKey = `-${option.alias} --${key}`;
+        } else {
+            otpKey = `--${key}`;
+        }
+        if (key !== 'version') {
+            opt[otpKey] = option.description;
+        }
+    });
+    return opt;
+}
 
 export default function (api) {
     const { utils: { mergeConfig }, cwd } = api;
 
     api.registerCommand({
-        command: 'test:unit',
+        command: 'test',
         description: 'run unit tests with jest',
-        options: {
-            '--watch': 'run tests in watch mode',
-            '--debug': 'debug'
-        },
+        options: getCommandOptiton(),
         async fn({ args }) {
             process.env.NODE_ENV = 'test';
+
+            if (args._[0] === 'test') {
+                args._.shift();
+            }
 
             args.debug && logger.log(`args: ${JSON.stringify(args)}`);
 
