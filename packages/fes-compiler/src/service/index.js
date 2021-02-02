@@ -490,7 +490,7 @@ export default class Service extends EventEmitter {
         this.program
             .usage('<command> [options]')
             .version(`@webank/fes ${this.fesPkg.version}`, '-v, --vers', 'output the current version')
-            .description('一个好用的前端解决方案');
+            .description(chalk.cyan('一个好用的前端应用解决方案'));
     }
 
     parseCommand() {
