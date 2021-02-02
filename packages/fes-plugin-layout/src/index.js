@@ -33,6 +33,7 @@ export default (api) => {
         // .fes配置
         const userConfig = {
             title: name,
+            footer: 'Created by Fes.js',
             ...(api.config.layout || {})
         };
 
