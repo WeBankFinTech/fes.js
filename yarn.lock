@@ -4306,7 +4306,7 @@
     "@vue/compiler-core" "3.0.5"
     "@vue/shared" "3.0.5"
 
-"@vue/compiler-sfc@^3.0.0", "@vue/compiler-sfc@^3.0.4", "@vue/compiler-sfc@^3.0.5":
+"@vue/compiler-sfc@^3.0.4", "@vue/compiler-sfc@^3.0.5":
   version "3.0.5"
   resolved "https://registry.yarnpkg.com/@vue/compiler-sfc/-/compiler-sfc-3.0.5.tgz#3ae08e60244a72faf9598361874fb7bdb5b1d37c"
   integrity sha512-uOAC4X0Gx3SQ9YvDC7YMpbDvoCmPvP0afVhJoxRotDdJ+r8VO3q4hFf/2f7U62k4Vkdftp6DVni8QixrfYzs+w==
@@ -6940,9 +6940,9 @@ connect-history-api-fallback@^1.6.0:
   integrity sha512-e54B99q/OUoH64zYYRf3HBP5z24G38h5D3qXu23JGRoigpX5Ss4r9ZnDk3g0Z8uQC2x2lPaJ+UlWBc1ZWBWdLg==
 
 consola@^2.15.0:
-  version "2.15.0"
-  resolved "https://registry.yarnpkg.com/consola/-/consola-2.15.0.tgz#40fc4eefa4d2f8ef2e2806147f056ea207fcc0e9"
-  integrity sha512-vlcSGgdYS26mPf7qNi+dCisbhiyDnrN1zaRbw3CSuc2wGOMEGGPsp46PdRG5gqXwgtJfjxDkxRNAgRPr1B77vQ==
+  version "2.15.1"
+  resolved "https://registry.yarnpkg.com/consola/-/consola-2.15.1.tgz#6c9141d97798537551e5b411a1423e39e4a7abd6"
+  integrity sha512-uNINF19d9f1/Pza5aNmQ/JlrmY4uPOW0BxID3Xvw5iOP6diJArUXp+JgcIQ4fR56qV+HB9o/ZRUnrnYd92LxZw==
 
 console-browserify@^1.1.0:
   version "1.2.0"
