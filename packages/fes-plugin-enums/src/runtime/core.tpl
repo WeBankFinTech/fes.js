@@ -25,13 +25,15 @@ function get(name, key, opt = { dir: 'value', extend: []}) {
         key = ''
     }
     let list = ENUMS[name] || []
+    let value
     if (key) {
         let res = list.filter(item => item.key === key)[0]
         if (!res) return key
-        return readonly(parseValueDir(res.value, opt.dir) || key)
+        value = parseValueDir(res.value, opt.dir) || key
     } else {
-        return readonly(format(list, opt.extend))
+        value = format(list, opt.extend)
     }
+    return typeof value === 'object' ? readonly(value) : value 
 }
 
 /**
