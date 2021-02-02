@@ -40,7 +40,6 @@
     "access": "public"
   },
   "devDependencies": {
-    "@vue/compiler-sfc": "^3.0.0",
     "@webank/eslint-config-webank": "^0.2.10",
     "postcss-px-to-viewport": "1.1.1"
   },

@@ -25,7 +25,6 @@
   },
   "homepage": "https://github.com/WeBankFinTech/fes.js#readme",
   "devDependencies": {
-    "@vue/compiler-sfc": "^3.0.0",
     "@webank/eslint-config-webank": "0.2.7",
     "postcss-px-to-viewport": "1.1.1"
   },

@@ -42,6 +42,9 @@ export default (api) => {
             key: 'addProjectFirstLibraries',
             type: api.ApplyPluginsType.add,
             initialValue: [
+                {
+                    name: 'vue'
+                }
             ]
         });
         libraries.forEach((library) => {
