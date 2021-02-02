@@ -33,6 +33,6 @@
     "@ant-design/icons-vue": "^5.1.6",
     "@webank/fes": "^2.0.0-alpha.0",
     "ant-design-vue": "2.0.0-rc.3",
-    "vue": "^3.0.4"
+    "vue": "3.0.5"
   }
 }
