@@ -6,7 +6,7 @@ import { Logger } from '@webank/fes-compiler';
 import { options as CliOptions } from 'jest-cli/build/cli/args';
 import createDefaultConfig from './createDefaultConfig';
 
-const logger = new Logger('fes:plugin-unit-jest');
+const logger = new Logger('fes:plugin-built-in');
 
 export default function (api) {
     const { utils: { mergeConfig }, cwd } = api;
@@ -16,7 +16,7 @@ export default function (api) {
         description: 'run unit tests with jest',
         options: {
             '--watch': 'run tests in watch mode',
-            '--debug': 'print debug logs'
+            '--debug': 'debug'
         },
         async fn({ args }) {
             process.env.NODE_ENV = 'test';
