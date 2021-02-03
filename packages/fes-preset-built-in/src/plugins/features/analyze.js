@@ -36,7 +36,7 @@ export default (api) => {
             webpackConfig
                 .plugin('bundle-analyzer')
                 .use(require('webpack-bundle-analyzer').BundleAnalyzerPlugin, [
-          api.config?.analyze || {}
+                    api.config?.analyze || {}
                 ]);
         }
         return webpackConfig;

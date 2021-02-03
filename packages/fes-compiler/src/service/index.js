@@ -536,7 +536,9 @@ export default class Service extends EventEmitter {
             }
             if (commandOption.fn) {
                 c.action(async () => {
-                    await commandOption.fn({ rawArgv, args, program });
+                    await commandOption.fn({
+                        rawArgv, args, options: c.opts(), program
+                    });
                 });
             }
         });
