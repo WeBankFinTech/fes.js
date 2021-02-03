@@ -1,6 +1,5 @@
-import { Server } from '@umijs/server';
-import { delay } from '@umijs/utils';
 import assert from 'assert';
+import { delay } from '@umijs/utils';
 import {
     cleanTmpPathExceptCache,
     getBundleAndConfigs
@@ -170,6 +169,8 @@ export default (api) => {
                 initialValue: [],
                 args: {}
             });
+
+            const { Server } = require('@umijs/server');
 
             server = new Server({
                 ...opts,

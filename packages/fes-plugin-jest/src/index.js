@@ -1,4 +1,4 @@
-import { runCLI } from 'jest';
+
 import assert from 'assert';
 import { join } from 'path';
 import { existsSync } from 'fs';
@@ -71,6 +71,8 @@ export default function (api) {
             }, {});
             args.debug && logger.log(`config from args: ${JSON.stringify(argsConfig)}`);
 
+            // 比较大的库建议使用require，使用时才加载，提升fes命令的效率
+            const { runCLI } = require('jest');
             // Run jest
             const result = await runCLI(
                 {

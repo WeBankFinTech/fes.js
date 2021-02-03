@@ -1,18 +1,15 @@
 
-
-import envinfo from 'envinfo';
-
 export default function (api) {
     api.registerCommand({
         command: 'info',
         description: 'print debugging information about your environment',
         async fn() {
-            envinfo.run(
+            require('envinfo').run(
                 {
                     System: ['OS', 'CPU'],
                     Binaries: ['Node', 'Yarn', 'npm'],
                     Browsers: ['Chrome', 'Edge', 'Firefox', 'Safari'],
-                    npmPackages: '/**/{typescript,*vue*,@webank/*/}',
+                    npmPackages: ['@webank/fes', 'vue', 'vue-router'],
                     npmGlobalPackages: ['@webank/fes']
                 },
                 {
