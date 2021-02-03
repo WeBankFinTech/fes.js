@@ -14,7 +14,7 @@ export default {
     },
     layout: {
         title: "Fes.js",
-        logo: 'https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg',
+        footer: 'Created by MumbelFe',
         multiTabs: false,
         menus: [{
             name: 'index'
@@ -27,5 +27,8 @@ export default {
     },
     devServer: {
         port: 8080
+    },
+    enums: {
+        status: [['0', '无效的'], ['1', '有效的']]
     }
 };
