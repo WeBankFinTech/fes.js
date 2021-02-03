@@ -1,6 +1,6 @@
 {
   "name": "@webank/fes-preset-built-in",
-  "version": "2.0.0-alpha.6",
+  "version": "2.0.0-alpha.8",
   "description": "@webank/fes-preset-built-in",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -31,7 +31,7 @@
     "@vue/babel-plugin-jsx": "^1.0.0-rc.5",
     "@vue/compiler-sfc": "^3.0.4",
     "@vue/preload-webpack-plugin": "1.1.2",
-    "@webank/fes-compiler": "^2.0.0-alpha.6",
+    "@webank/fes-compiler": "^2.0.0-alpha.8",
     "babel-plugin-import": "1.13.3",
     "cliui": "6.0.0",
     "envinfo": "^7.7.3",
