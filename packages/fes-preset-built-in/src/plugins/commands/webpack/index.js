@@ -6,13 +6,22 @@ export default function (api) {
     api.registerCommand({
         command: 'webpack',
         description: 'inspect webpack configurations',
-        options: {
-            '--rule <ruleName>': 'inspect a specific module rule',
-            '--plugin <pluginName>': 'inspect a specific plugin',
-            '--rules': 'list all module rule names',
-            '--plugins': 'list all plugin names',
-            '--verbose': 'show full function definitions in output'
-        },
+        options: [{
+            name: '--rule <ruleName>',
+            description: 'inspect a specific module rule'
+        }, {
+            name: '--plugin <pluginName>',
+            description: 'inspect a specific plugin'
+        }, {
+            name: '--rules',
+            description: 'list all module rule names'
+        }, {
+            name: '--plugins',
+            description: 'list all plugin names'
+        }, {
+            name: '--verbose',
+            description: 'show full function definitions in output'
+        }],
         async fn({ options }) {
             const { toString } = require('webpack-chain');
             const { highlight } = require('cli-highlight');

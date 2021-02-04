@@ -9,20 +9,21 @@ import createDefaultConfig from './createDefaultConfig';
 const logger = new Logger('fes:plugin-unit-jest');
 
 function getCommandOptiton() {
-    const opt = {};
+    const opts = [];
     Object.keys(CliOptions).forEach((key) => {
         const option = CliOptions[key];
-        let otpKey = '';
-        if (option.alias) {
-            otpKey = `-${option.alias} --${key}`;
-        } else {
-            otpKey = `--${key}`;
-        }
+        const opt = {};
         if (key !== 'version') {
-            opt[otpKey] = option.description;
+            if (option.alias) {
+                opt.name = `-${option.alias} --${key}`;
+            } else {
+                opt.name = `--${key}`;
+            }
+            opt.description = option.description;
+            opts.push(opt);
         }
     });
-    return opt;
+    return opts;
 }
 
 export default function (api) {

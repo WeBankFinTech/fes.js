@@ -4,7 +4,7 @@ import assert from 'assert';
 import { AsyncSeriesWaterfallHook } from 'tapable';
 import { existsSync } from 'fs';
 import { BabelRegister, lodash, chalk } from '@umijs/utils';
-import { Command } from 'commander';
+import { Command, Option } from 'commander';
 import { resolvePresets, pathToObj, resolvePlugins } from './utils/pluginUtils';
 import loadDotEnv from './utils/loadDotEnv';
 import isPromise from './utils/isPromise';
@@ -526,17 +526,24 @@ export default class Service extends EventEmitter {
         assert(this.stage >= ServiceStage.init, 'service is not initialized.');
 
         Object.keys(this.commands).forEach((command) => {
-            const commandOption = this.commands[command];
+            const commandOptionConfig = this.commands[command];
             const program = this.program;
-            let c = program.command(command).description(commandOption.description);
-            if (commandOption.options) {
-                Object.keys(commandOption.options).forEach((option) => {
-                    c = c.option(option, commandOption.options[option]);
+            let c = program.command(command).description(commandOptionConfig.description);
+            if (Array.isArray(commandOptionConfig.options)) {
+                commandOptionConfig.options.forEach((config) => {
+                    const option = new Option(config.name, config.description);
+                    if (config.default) {
+                        option.default(config.default);
+                    }
+                    if (config.choices) {
+                        option.choices(config.choices);
+                    }
+                    c = c.addOption(option);
                 });
             }
-            if (commandOption.fn) {
+            if (commandOptionConfig.fn) {
                 c.action(async () => {
-                    await commandOption.fn({
+                    await commandOptionConfig.fn({
                         rawArgv, args, options: c.opts(), program
                     });
                 });
