@@ -9,7 +9,7 @@ export default {
     publicPath: '/',
     access: {
         roles: {
-            admin: ["/", "/onepiece"]
+            admin: ["/", "/onepiece", '/store']
         }
     },
     layout: {
@@ -20,6 +20,8 @@ export default {
             name: 'index'
         }, {
             name: 'onepiece'
+        }, {
+            name: 'store'
         }]
     },
     locale: {
@@ -30,5 +32,8 @@ export default {
     },
     enums: {
         status: [['0', '无效的'], ['1', '有效的']]
+    },
+    vuex: {
+        strict: true
     }
 };
