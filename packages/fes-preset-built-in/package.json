@@ -41,6 +41,9 @@
     "vue-loader": "^16.1.2",
     "webpack-bundle-analyzer": "4.3.0",
     "cli-highlight": "^2.1.4",
-    "webpack-chain": "6.5.1"
+    "webpack-chain": "6.5.1",
+    "body-parser": "^1.19.0",
+    "cookie-parser": "^1.4.5",
+    "mockjs": "^1.1.0"
   }
 }

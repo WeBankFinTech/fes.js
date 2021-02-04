@@ -12,6 +12,15 @@ export default {
             admin: ["/", "/onepiece"]
         }
     },
+    mock: {
+        prefix: '/v2'
+    },
+    proxy: {
+        '/v2': {
+            'target': 'https://api.douban.com/',
+            'changeOrigin': true, 
+        },
+    },
     layout: {
         title: "Fes.js",
         footer: 'Created by MumbelFe',
