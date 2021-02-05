@@ -47,6 +47,7 @@ export default function () {
             require.resolve('./plugins/features/terserOptions'),
             require.resolve('./plugins/features/vueLoader'),
             require.resolve('./plugins/features/hardSource'),
+            require.resolve('./plugins/features/mock'),
 
             // misc
             require.resolve('./plugins/misc/route'),
@@ -56,10 +57,7 @@ export default function () {
             require.resolve('./plugins/commands/dev'),
             require.resolve('./plugins/commands/help'),
             require.resolve('./plugins/commands/info'),
-            require.resolve('./plugins/commands/webpack'),
-
-            // mock
-            require.resolve('./plugins/commands/mock')
+            require.resolve('./plugins/commands/webpack')
         ]
     };
 }
