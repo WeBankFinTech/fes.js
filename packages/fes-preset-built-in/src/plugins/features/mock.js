@@ -65,8 +65,7 @@ export default (api) => {
 
     // 把基于 cgiMockfile 的相对绝对转成绝对路径
     function parsePath(value) {
-        const PROJECT_DIR = process.env.PWD || api.cwd;
-        return resolve(PROJECT_DIR, value);
+        return resolve(api.cwd, value);
     }
 
     const createMock = () => {
