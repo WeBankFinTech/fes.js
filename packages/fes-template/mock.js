@@ -1,4 +1,4 @@
-module.exports = (cgiMock, Mock) => {
+module.exports = ({ cgiMock, Mock }) => {
     const { Random } = Mock;
 
     // 测试 proxy 与 mock 用例集合
