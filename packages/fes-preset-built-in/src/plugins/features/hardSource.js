@@ -23,7 +23,7 @@ export default (api) => {
                     environmentHash: {
                         root: cwd,
                         files: ['package-lock.json', 'yarn.lock'].concat(
-                            Array.isArray(configFiles) ? configFiles : [configFiles]
+                            Array.isArray(configFiles) ? configFiles : []
                         )
                     },
                     ...api.config.hardSource || {}
