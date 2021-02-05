@@ -265,6 +265,7 @@ export default class Service extends EventEmitter {
                         'paths',
                         'cwd',
                         'pkg',
+                        'configInstance',
                         'userConfig',
                         'config',
                         'env',

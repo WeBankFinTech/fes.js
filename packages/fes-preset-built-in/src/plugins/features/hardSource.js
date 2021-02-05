@@ -9,30 +9,22 @@ export default (api) => {
     });
 
     api.chainWebpack((webpackConfig) => {
-        const HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
-        const { winPath } = require('@umijs/utils');
-        const crypto = require('crypto');
-        const path = require('path');
-        const { toString } = require('webpack-chain');
-        const cwd = api.cwd;
         if (api.env === 'development') {
+            const HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
+            const { winPath } = require('@umijs/utils');
+            const path = require('path');
+            const cwd = api.cwd;
+            const configFiles = (api.configInstance.configFile || []).map(item => path.relative(cwd, item));
+
             webpackConfig
                 .plugin('hardSource')
                 .use(HardSourceWebpackPlugin, [{
                     cacheDirectory: winPath(`${cwd}/.cache/hard-source/[confighash]`),
-                    configHash: (config) => {
-                        const hardSourcePlugin = config.plugins.find(
-                            ({ constructor }) => constructor.name === 'HardSourceWebpackPlugin'
-                        );
-                        const cacheDir = hardSourcePlugin.getCachePath();
-                        const context = path.resolve(process.cwd(), config.context);
-                        const clone = Object.assign({}, config, {
-                            context: path.relative(cacheDir, context)
-                        });
-                        return crypto
-                            .createHash('sha256')
-                            .update(toString(clone))
-                            .digest('hex');
+                    environmentHash: {
+                        root: cwd,
+                        files: ['package-lock.json', 'yarn.lock'].concat(
+                            Array.isArray(configFiles) ? configFiles : [configFiles]
+                        )
                     },
                     ...api.config.hardSource || {}
                 }]);

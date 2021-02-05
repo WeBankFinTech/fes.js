@@ -130,41 +130,9 @@ export default class Config {
     getUserConfig() {
         const configFile = this.getConfigFile();
         this.configFile = configFile;
-        // 潜在问题：
-        // .local 和 .env 的配置必须有 configFile 才有效
-        if (configFile) {
-            let envConfigFile;
-            if (process.env.FES_ENV) {
-                const envConfigFileName = this.addAffix(
-                    configFile,
-                    process.env.FES_ENV
-                );
-                const fileNameWithoutExt = envConfigFileName.replace(
-                    extname(envConfigFileName),
-                    ''
-                );
-                envConfigFile = getFile({
-                    base: this.cwd,
-                    fileNameWithoutExt,
-                    type: 'javascript'
-                }).filename;
-                if (!envConfigFile) {
-                    throw new Error(
-                        `get user config failed, ${envConfigFile} does not exist, but process.env.FES_ENV is set to ${process.env.FES_ENV}.`
-                    );
-                }
-            }
-            const files = [
-                configFile,
-                envConfigFile,
-                this.localConfig && this.addAffix(configFile, 'local')
-            ]
-                .filter(f => !!f)
-                .map(f => join(this.cwd, f))
-                .filter(f => existsSync(f));
-
+        if (configFile.length > 0) {
             // clear require cache and set babel register
-            const requireDeps = files.reduce((memo, file) => {
+            const requireDeps = configFile.reduce((memo, file) => {
                 memo = memo.concat(parseRequireDeps(file));
                 return memo;
             }, []);
@@ -175,7 +143,7 @@ export default class Config {
             });
 
             // require config and merge
-            return this.mergeConfig(...this.requireConfigs(files));
+            return this.mergeConfig(...this.requireConfigs(configFile));
         }
         return {};
     }
@@ -201,8 +169,41 @@ export default class Config {
 
     getConfigFile() {
         // TODO: support custom config file
-        const configFile = CONFIG_FILES.find(f => existsSync(join(this.cwd, f)));
-        return configFile ? winPath(configFile) : null;
+        let configFile = CONFIG_FILES.find(f => existsSync(join(this.cwd, f)));
+        if (!configFile) return [];
+        configFile = winPath(configFile);
+        let envConfigFile;
+        // 潜在问题：
+        // .local 和 .env 的配置必须有 configFile 才有效
+        if (process.env.FES_ENV) {
+            const envConfigFileName = this.addAffix(
+                configFile,
+                process.env.FES_ENV
+            );
+            const fileNameWithoutExt = envConfigFileName.replace(
+                extname(envConfigFileName),
+                ''
+            );
+            envConfigFile = getFile({
+                base: this.cwd,
+                fileNameWithoutExt,
+                type: 'javascript'
+            }).filename;
+            if (!envConfigFile) {
+                throw new Error(
+                    `get user config failed, ${envConfigFile} does not exist, but process.env.FES_ENV is set to ${process.env.FES_ENV}.`
+                );
+            }
+        }
+        const files = [
+            configFile,
+            envConfigFile,
+            this.localConfig && this.addAffix(configFile, 'local')
+        ]
+            .filter(f => !!f)
+            .map(f => join(this.cwd, f))
+            .filter(f => existsSync(f));
+        return files;
     }
 
     getWatchFilesAndDirectories() {

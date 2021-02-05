@@ -4,7 +4,7 @@
 export default {
     base: '/foo/',
     define: {
-        __DEV__: true
+        __DEV__: false
     },
     publicPath: '/',
     access: {
