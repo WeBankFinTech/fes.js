@@ -54,6 +54,7 @@
     "@webank/fes-plugin-enums": "^2.0.0-alpha.0",
     "@webank/fes-plugin-jest": "^2.0.0-alpha.0",
     "@webank/fes-plugin-vuex": "^2.0.0-alpha.0",
+    "@webank/fes-plugin-request": "2.0.0-alpha.1",
     "ant-design-vue": "2.0.0-rc.3",
     "vue": "3.0.5",
     "vuex": "^4.0.0-rc.2"

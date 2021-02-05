@@ -56,7 +56,10 @@ export default function () {
             require.resolve('./plugins/commands/dev'),
             require.resolve('./plugins/commands/help'),
             require.resolve('./plugins/commands/info'),
-            require.resolve('./plugins/commands/webpack')
+            require.resolve('./plugins/commands/webpack'),
+
+            // mock
+            require.resolve('./plugins/commands/mock')
         ]
     };
 }
