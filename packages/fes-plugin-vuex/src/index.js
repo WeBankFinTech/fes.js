@@ -1,5 +1,6 @@
-import { readdirSync, readFileSync, statSync } from 'fs';
+import { readFileSync } from 'fs';
 import { join } from 'path';
+import { parseStore } from './helper';
 
 const namespace = 'plugin-vuex';
 
@@ -9,66 +10,36 @@ export default (api) => {
         utils: { Mustache }
     } = api;
 
-    /**
-     * 获取文件夹所有JS文件路径
-     * @param {string} dir
-     */
-    function getDirFilePaths(dir) {
-        const dirs = readdirSync(dir);
-        let pathList = [];
-        for (const name of dirs) {
-            const path = join(dir, name);
-            const info = statSync(path);
-            if (info.isDirectory()) {
-                pathList = pathList.concat(getDirFilePaths(path));
-            } else if (path.endsWith('.js')) {
-                pathList.push(path);
-            }
+    api.describe({
+        key: 'vuex',
+        config: {
+            schema(joi) {
+                return joi.object();
+            },
+            onChange: api.ConfigChangeType.regenerateTmpFiles
         }
-        return pathList;
-    }
+    });
 
-    /**
-     * 解析vuex模块及插件文件
-     * @param {Array<string>} pathList 文件路径
-     * @param {string} root
-     */
-    function parseStore(pathList, root) {
-        const store = {
-            modules: [],
-            plugins: [],
-            importModules: [],
-            importPlugins: []
-        };
-        for (const path of pathList) {
-            const moduleName = path.replace(root, '').replace('.js', '').replace(/(\/|\.|-|_)\S/g, text => text[1].toUpperCase());
-            if (path.indexOf('plugin') > -1) {
-                store.importPlugins.push(`import ${moduleName} from '${path}'`);
-                store.plugins.push(moduleName);
-            } else {
-                store.importModules.push(`import ${moduleName} from '${path}'`);
-                store.modules.push(`${moduleName}`);
-            }
-        }
-        return store;
-    }
-
+    const absCoreFilePath = join(namespace, 'core.js');
     const absRuntimeFilePath = join(namespace, 'runtime.js');
     api.onGenerateFiles(() => {
-        const root = join(paths.absSrcPath, 'stores');
-        const storePaths = getDirFilePaths(root);
-        const store = parseStore(storePaths, join(root, '/'));
-
+        const root = join(paths.absSrcPath, api.config.singular ? 'store' : 'stores');
+        const store = parseStore(root);
+        const vuexConfig = api.config.vuex || {};
         // 文件写出
         api.writeTmpFile({
-            path: absRuntimeFilePath,
+            path: absCoreFilePath,
             content: Mustache.render(
-                readFileSync(join(__dirname, 'runtime/runtime.tpl'), 'utf-8'),
+                readFileSync(join(__dirname, 'runtime/core.tpl'), 'utf-8'),
                 {
                     IMPORT_MODULES: store.importModules.join('\n'),
                     IMPORT_PLUGINS: store.importPlugins.join('\n'),
                     MODULES: `{ ${store.modules.join(', ')} }`,
-                    PLUGINS: `[${store.plugins.join(', ')}]`
+                    PLUGINS: `[${store.plugins.join(', ')}]`,
+                    MUTATION_TYPES: JSON.stringify(store.MUTATION_TYPES),
+                    ACTION_TYPES: JSON.stringify(store.ACTION_TYPES),
+                    GETTER_TYPES: JSON.stringify(store.GETTER_TYPES),
+                    VUEX_CONFIG: JSON.stringify(vuexConfig)
                 }
             )
         });
@@ -79,5 +50,13 @@ export default (api) => {
             ignore: ['.tpl']
         });
     });
+
+    api.addPluginExports(() => [
+        {
+            specifiers: ['MUTATION_TYPES', 'ACTION_TYPES', 'GETTER_TYPES'],
+            source: absCoreFilePath
+        }
+    ]);
+
     api.addRuntimePlugin(() => `@@/${absRuntimeFilePath}`);
 };
