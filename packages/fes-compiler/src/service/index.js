@@ -3,7 +3,8 @@ import { EventEmitter } from 'events';
 import assert from 'assert';
 import { AsyncSeriesWaterfallHook } from 'tapable';
 import { existsSync } from 'fs';
-import { BabelRegister, lodash } from '@umijs/utils';
+import { lodash } from '@umijs/utils';
+import BabelRegister from './babelRegister';
 import { resolvePresets, pathToObj, resolvePlugins } from './utils/pluginUtils';
 import loadDotEnv from './utils/loadDotEnv';
 import isPromise from './utils/isPromise';
@@ -146,6 +147,9 @@ export default class Service extends EventEmitter {
         const localPath = `${basePath}.local`;
         loadDotEnv(basePath);
         loadDotEnv(localPath);
+        if (process.env.FES_ENV) {
+            loadDotEnv(`${basePath}.${process.env.FES_ENV}`);
+        }
     }
 
     async init() {

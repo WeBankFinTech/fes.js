@@ -10,8 +10,8 @@ export default (api) => {
                             from: joi.string(),
                             to: joi.string()
                         }),
-                        joi.string(),
-                    ),
+                        joi.string()
+                    )
                 );
             }
         }

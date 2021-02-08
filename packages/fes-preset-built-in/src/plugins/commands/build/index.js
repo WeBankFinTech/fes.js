@@ -5,8 +5,9 @@ import {
     cleanTmpPathExceptCache,
     getBundleAndConfigs,
     printFileSizes
-} from '../../../utils/buildDevUtils';
+} from '../buildDevUtils';
 import generateFiles from '../../../utils/generateFiles';
+import { build } from './build';
 
 const logger = new Logger('fes:plugin-built-in');
 
@@ -28,11 +29,7 @@ export default function (api) {
             await generateFiles({ api, watch: false });
 
             // build
-            const {
-                bundler,
-                bundleConfigs,
-                bundleImplementor
-            } = await getBundleAndConfigs({ api });
+            const { bundleConfig } = await getBundleAndConfigs({ api });
             try {
                 // clear output path before exec build
                 if (process.env.CLEAR_OUTPUT !== 'none') {
@@ -42,10 +39,7 @@ export default function (api) {
                     }
                 }
 
-                const { stats } = await bundler.build({
-                    bundleConfigs,
-                    bundleImplementor
-                });
+                const { stats } = await build({ bundleConfig });
                 if (process.env.RM_TMPDIR !== 'none') {
                     rimraf.sync(paths.absTmpPath);
                 }

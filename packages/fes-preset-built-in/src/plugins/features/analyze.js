@@ -28,15 +28,15 @@ export default (api) => {
                 defaultSizes: 'parsed' // stat  // gzip
             }
         },
-        enableBy: () => !!(process.env.ANALYZE || process.env.ANALYZE_SSR)
+        enableBy: () => !!process.env.ANALYZE
     });
     api.chainWebpack((webpackConfig, opts) => {
         const { type } = opts;
-        if (type === 'csr' && !process.env.ANALYZE_SSR) {
+        if (type === 'csr') {
             webpackConfig
                 .plugin('bundle-analyzer')
                 .use(require('webpack-bundle-analyzer').BundleAnalyzerPlugin, [
-          api.config?.analyze || {}
+                    api.config?.analyze || {}
                 ]);
         }
         return webpackConfig;

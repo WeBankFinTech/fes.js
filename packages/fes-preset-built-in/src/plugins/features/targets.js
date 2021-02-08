@@ -4,7 +4,6 @@ export default (api) => {
         key: 'targets',
         config: {
             default: {
-                node: true,
                 chrome: 49,
                 firefox: 64,
                 safari: 10,

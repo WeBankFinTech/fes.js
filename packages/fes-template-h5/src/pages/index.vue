@@ -1,7 +1,7 @@
 <template>
     <div class="onepiece">
-        fes & 拉夫德鲁 <br />
-        <fes-icon @click="clickIcon" :spin="true" class="one-icon" type="smile" />
+        fes & 拉夫德鲁<br />
+        <fes-icon :spin="true" class="one-icon" type="smile" @click="clickIcon" />
         <div v-if="loading" class="loading">loading</div>
         <div v-else class="data">{{data}}</div>
     </div>

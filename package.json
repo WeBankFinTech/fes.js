@@ -25,7 +25,7 @@
     "strong"
   ],
   "dependencies": {
-    "lerna": "^3.18.4"
+    "lerna": "^3.22.1"
   },
   "devDependencies": {
     "@commitlint/cli": "^11.0.0",
@@ -38,7 +38,7 @@
     "commitizen": "^4.2.1",
     "cz-conventional-changelog": "^3.3.0",
     "esbuild-loader": "^2.7.0",
-    "father-build": "^1.18.5",
+    "father-build": "^1.19.1",
     "husky": "^4.3.0",
     "lint-staged": "^10.4.0",
     "vuepress": "^2.0.0-alpha.18"

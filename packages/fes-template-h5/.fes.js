@@ -15,9 +15,6 @@ export default {
             title: '海贼王'
         }
     },
-    imageMinimizer: {
-        disable: false
-    },
     extraPostCSSPlugins: [
         pxtoviewport({
             unitToConvert: 'px',

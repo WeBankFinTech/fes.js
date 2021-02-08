@@ -80,6 +80,7 @@ program
     .action(async () => {
         try {
             process.env.NODE_ENV = 'production';
+            process.env.FES_ENV = args.mode || '';
             await new Service({
                 cwd: getCwd(),
                 pkg: getPkg(process.cwd())

@@ -8,16 +8,4 @@ export default (api) => {
             }
         }
     });
-    api.modifyBabelPresetOpts(opts => Object.assign({}, opts, {
-        typescript: false,
-        env: {
-            useBuiltIns: 'entry',
-            corejs: 3,
-            modules: false
-        },
-        react: false,
-        reactRemovePropTypes: false,
-        reactRequire: false,
-        svgr: false
-    }));
 };

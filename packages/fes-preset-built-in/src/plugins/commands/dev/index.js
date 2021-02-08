@@ -1,12 +1,12 @@
-import { Server } from '@umijs/server';
 import { delay } from '@umijs/utils';
 import assert from 'assert';
 import {
     cleanTmpPathExceptCache,
     getBundleAndConfigs
-} from '../../../utils/buildDevUtils';
+} from '../buildDevUtils';
 import generateFiles from '../../../utils/generateFiles';
 import { watchPkg } from './watchPkg';
+import { startDevServer } from './devServer';
 
 export default (api) => {
     const {
@@ -24,8 +24,7 @@ export default (api) => {
         for (const unwatch of unwatchs) {
             unwatch();
         }
-        // eslint-disable-next-line
-        server?.listeningApp?.close();
+        server?.close();
     }
 
     api.registerCommand({
@@ -37,14 +36,11 @@ export default (api) => {
                 port: defaultPort ? parseInt(String(defaultPort), 10) : 8000
             });
             hostname = process.env.HOST || api.config.devServer?.host || '0.0.0.0';
-            console.log(chalk.cyan('Starting the development server...'));
+            console.log(chalk.cyan(`Starting the development server http://${hostname}:${port} ...`));
             process.send({
                 type: 'UPDATE_PORT',
                 port
             });
-
-            // enable https, HTTP/2 by default when using --https
-            const isHTTPS = process.env.HTTPS || args.https;
 
             cleanTmpPathExceptCache({
                 absTmpPath: paths.absTmpPath
@@ -141,18 +137,7 @@ export default (api) => {
             await delay(500);
 
             // dev
-            const {
-                bundler,
-                bundleConfigs,
-                bundleImplementor
-            } = await getBundleAndConfigs({
-                api,
-                port
-            });
-            const opts = bundler.setupDevServerOpts({
-                bundleConfigs,
-                bundleImplementor
-            });
+            const { bundleConfig } = await getBundleAndConfigs({ api });
 
             const beforeMiddlewares = await api.applyPlugins({
                 key: 'addBeforeMiddlewares',
@@ -166,25 +151,16 @@ export default (api) => {
                 initialValue: [],
                 args: {}
             });
-
-            server = new Server({
-                ...opts,
-                compress: true,
-                https: !!isHTTPS,
-                headers: {
-                    'access-control-allow-origin': '*'
-                },
+            server = startDevServer({
+                webpackConfig: bundleConfig,
+                host: hostname,
+                port,
                 proxy: api.config.proxy,
                 beforeMiddlewares,
                 afterMiddlewares: [...middlewares],
-                ...(api.config.devServer || {})
-            });
-            const listenRet = await server.listen({
-                port,
-                hostname
+                customerDevServerConfig: api.config.devServer
             });
             return {
-                ...listenRet,
                 destroy
             };
         }

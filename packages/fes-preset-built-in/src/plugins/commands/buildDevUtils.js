@@ -1,109 +1,70 @@
-import { Bundler as DefaultBundler } from '@umijs/bundler-webpack';
 import { join, resolve } from 'path';
 import { existsSync, readdirSync, readFileSync } from 'fs';
 import { rimraf, chalk } from '@umijs/utils';
 import zlib from 'zlib';
+import getConfig from './webpackConfig/getConfig';
 
 export async function getBundleAndConfigs({
-    api,
-    port
+    api
 }) {
-    // bundler
-    const Bundler = await api.applyPlugins({
-        type: api.ApplyPluginsType.modify,
-        key: 'modifyBundler',
-        initialValue: DefaultBundler
-    });
-
-    const bundleImplementor = await api.applyPlugins({
-        key: 'modifyBundleImplementor',
-        type: api.ApplyPluginsType.modify,
-        initialValue: undefined
-    });
-
-    const bundler = new Bundler({
-        cwd: api.cwd,
-        config: api.config
-    });
-    const bundlerArgs = {
-        env: api.env,
-        bundler: { id: Bundler.id, version: Bundler.version }
-    };
-
     // get config
-    async function getConfig({ type }) {
-        const env = api.env === 'production' ? 'production' : 'development';
-        const getConfigOpts = await api.applyPlugins({
-            type: api.ApplyPluginsType.modify,
-            key: 'modifyBundleConfigOpts',
-            initialValue: {
-                env,
-                type,
-                port,
-                hot: process.env.HMR !== 'none',
-                entry: {
-                    fes: join(api.paths.absTmpPath, 'fes.js')
-                },
-                // @ts-ignore
-                bundleImplementor,
-                async modifyBabelOpts(opts) {
-                    return api.applyPlugins({
-                        type: api.ApplyPluginsType.modify,
-                        key: 'modifyBabelOpts',
-                        initialValue: opts
-                    });
-                },
-                async modifyBabelPresetOpts(opts) {
-                    return api.applyPlugins({
-                        type: api.ApplyPluginsType.modify,
-                        key: 'modifyBabelPresetOpts',
-                        initialValue: opts
-                    });
-                },
-                async chainWebpack(webpackConfig, opts) {
-                    return api.applyPlugins({
-                        type: api.ApplyPluginsType.modify,
-                        key: 'chainWebpack',
-                        initialValue: webpackConfig,
-                        args: {
-                            ...opts
-                        }
-                    });
-                }
-            },
-            args: {
-                ...bundlerArgs,
-                type
-            }
-        });
-        return api.applyPlugins({
-            type: api.ApplyPluginsType.modify,
-            key: 'modifyBundleConfig',
-            initialValue: await bundler.getConfig(getConfigOpts),
-            args: {
-                ...bundlerArgs,
-                type
-            }
-        });
-    }
-
-    const bundleConfigs = await api.applyPlugins({
+    const env = api.env === 'production' ? 'production' : 'development';
+    const getConfigOpts = await api.applyPlugins({
         type: api.ApplyPluginsType.modify,
-        key: 'modifyBundleConfigs',
-        initialValue: [await getConfig({ type: 'csr' })].filter(
-            Boolean
-        ),
+        key: 'modifyBundleConfigOpts',
+        initialValue: {
+            cwd: api.paths.cwd,
+            config: api.config,
+            env,
+            entry: {
+                index: join(api.paths.absTmpPath, 'fes.js')
+            },
+            // @ts-ignore
+            async modifyBabelOpts(opts) {
+                return api.applyPlugins({
+                    type: api.ApplyPluginsType.modify,
+                    key: 'modifyBabelOpts',
+                    initialValue: opts
+                });
+            },
+            async modifyBabelPresetOpts(opts) {
+                return api.applyPlugins({
+                    type: api.ApplyPluginsType.modify,
+                    key: 'modifyBabelPresetOpts',
+                    initialValue: opts
+                });
+            },
+            async chainWebpack(webpackConfig, opts) {
+                return api.applyPlugins({
+                    type: api.ApplyPluginsType.modify,
+                    key: 'chainWebpack',
+                    initialValue: webpackConfig,
+                    args: {
+                        ...opts
+                    }
+                });
+            },
+            async headScripts() {
+                return api.applyPlugins({
+                    key: 'addHTMLHeadScripts',
+                    type: api.ApplyPluginsType.add,
+                    initialState: []
+                });
+            }
+        },
         args: {
-            ...bundlerArgs,
-            getConfig
         }
     });
 
-    return {
-        bundleImplementor,
-        bundler,
-        bundleConfigs
-    };
+    const bundleConfig = await api.applyPlugins({
+        type: api.ApplyPluginsType.modify,
+        key: 'modifyBundleConfig',
+        initialValue: await getConfig(getConfigOpts),
+        args: {
+        }
+    });
+
+    return { bundleConfig };
 }
 
 export function cleanTmpPathExceptCache({
@@ -219,7 +180,7 @@ export function printFileSizes(stats, dir) {
         );
         console.log(
             chalk.yellow(
-                'Consider reducing it with code splitting: https://umijs.org/docs/load-on-demand'
+                'Consider reducing it with code splitting'
             )
         );
         console.log(

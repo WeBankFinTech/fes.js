@@ -1,6 +1,6 @@
 <template>
     <div class="haizekuo">
-        <div>国际化： {{t("test")}}</div>
+        <div>国际化 {{t("test")}}</div>
         fes & 拉夫德鲁 <br />
         <access :id="accessId"> accessOnepicess1 <input /> </access>
         <div v-access="accessId"> accessOnepicess2 <input /> </div>

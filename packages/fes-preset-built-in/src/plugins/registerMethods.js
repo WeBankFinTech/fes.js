@@ -25,7 +25,6 @@ export default function (api) {
         'modifyBundleImplementor',
         'modifyBundleConfigOpts',
         'modifyBundleConfig',
-        'modifyBundleConfigs',
         'modifyBabelOpts',
         'modifyBabelPresetOpts',
         'chainWebpack',
