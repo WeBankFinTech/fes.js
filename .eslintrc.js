@@ -17,5 +17,10 @@ module.exports = {
         'no-restricted-syntax': 'off',
         'no-undefined': 'off',
         'vue/valid-template-root': 'off'
+    },
+    parserOptions: {
+        babelOptions: {
+            presets: ['@babel/preset-env']
+        }
     }
 };

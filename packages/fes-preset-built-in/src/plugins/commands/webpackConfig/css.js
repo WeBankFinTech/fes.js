@@ -84,7 +84,12 @@ export default function createCssWebpackConfig({
         lang: 'less',
         test: /\.less$/,
         loader: 'less-loader',
-        options: config.lessLoader || {},
+        options: {
+            lessOptions: {
+                javascriptEnabled: true,
+                ...config.lessLoader
+            }
+        },
         browserslist
     });
 

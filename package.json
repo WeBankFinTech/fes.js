@@ -34,7 +34,7 @@
     "@vuepress/plugin-pwa": "^2.0.0-alpha.18",
     "@vuepress/plugin-pwa-popup": "^2.0.0-alpha.18",
     "@vuepress/theme-vue": "^2.0.0-alpha.18",
-    "@webank/eslint-config-webank": "^0.2.10",
+    "@webank/eslint-config-webank": "0.2.10",
     "commitizen": "^4.2.1",
     "cz-conventional-changelog": "^3.3.0",
     "esbuild-loader": "^2.7.0",

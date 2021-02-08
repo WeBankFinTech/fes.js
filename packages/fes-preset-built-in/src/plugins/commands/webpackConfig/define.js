@@ -26,7 +26,7 @@ function resolveDefine(opts = {}) {
 
     for (const key in define) {
         if (Object.prototype.hasOwnProperty.call(define, key)) {
-            define[key] = JSON.stringify(opts.define[key]);
+            define[key] = JSON.stringify(define[key]);
         }
     }
 

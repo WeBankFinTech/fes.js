@@ -3,11 +3,12 @@ import { EventEmitter } from 'events';
 import assert from 'assert';
 import { AsyncSeriesWaterfallHook } from 'tapable';
 import { existsSync } from 'fs';
-import { lodash } from '@umijs/utils';
-import BabelRegister from './babelRegister';
+import { lodash, chalk } from '@umijs/utils';
+import { Command, Option } from 'commander';
 import { resolvePresets, pathToObj, resolvePlugins } from './utils/pluginUtils';
 import loadDotEnv from './utils/loadDotEnv';
 import isPromise from './utils/isPromise';
+import BabelRegister from './babelRegister';
 import PluginAPI from './pluginAPI';
 import {
     ApplyPluginsType,
@@ -88,6 +89,8 @@ export default class Service extends EventEmitter {
         // repoDir should be the root dir of repo
         this.pkg = opts.pkg || this.resolvePackage();
         this.env = opts.env || process.env.NODE_ENV;
+        this.fesPkg = opts.fesPkg || {};
+
 
         assert(existsSync(this.cwd), `cwd ${this.cwd} does not exist.`);
 
@@ -111,6 +114,10 @@ export default class Service extends EventEmitter {
             config: this.userConfig,
             env: this.env
         });
+
+        this.program = new Command();
+
+        this.initCommand();
 
         // setup initial plugins
         const baseOpts = {
@@ -262,6 +269,7 @@ export default class Service extends EventEmitter {
                         'paths',
                         'cwd',
                         'pkg',
+                        'configInstance',
                         'userConfig',
                         'config',
                         'env',
@@ -483,12 +491,28 @@ export default class Service extends EventEmitter {
         }
     }
 
-    async run({ name, args = {} }) {
-        args._ = args._ || [];
-        // shift the command itself
-        if (args._[0] === name) args._.shift();
+    initCommand() {
+        this.program
+            .usage('<command> [options]')
+            .version(`@webank/fes ${this.fesPkg.version}`, '-v, --vers', 'output the current version')
+            .description(chalk.cyan('一个好用的前端应用解决方案'));
+    }
 
-        this.args = args;
+    parseCommand() {
+        this.program.on('--help', () => {
+            console.log();
+            console.log(
+                `  Run ${chalk.cyan(
+                    'fes <command> --help'
+                )} for detailed usage of given command.`
+            );
+            console.log();
+        });
+        this.program.commands.forEach(c => c.on('--help', () => console.log()));
+        this.program.parse(process.argv);
+    }
+
+    async run({ rawArgv = {}, args = {} }) {
         await this.init();
 
         this.setStage(ServiceStage.run);
@@ -500,27 +524,37 @@ export default class Service extends EventEmitter {
             }
         });
 
-        return this.runCommand({
-            name,
-            args
-        });
+        this.runCommand({ rawArgv, args });
     }
 
-    async runCommand({ name, args = {} }) {
+    async runCommand({ rawArgv = {}, args = {} }) {
         assert(this.stage >= ServiceStage.init, 'service is not initialized.');
 
-        args._ = args._ || [];
-        // shift the command itself
-        if (args._[0] === name) args._.shift();
-
-        const command = typeof this.commands[name] === 'string'
-            ? this.commands[this.commands[name]]
-            : this.commands[name];
-        assert(command, `run command failed, command ${name} does not exists.`);
-
-        const { fn } = command;
-        return fn({
-            args
+        Object.keys(this.commands).forEach((command) => {
+            const commandOptionConfig = this.commands[command];
+            const program = this.program;
+            let c = program.command(command).description(commandOptionConfig.description);
+            if (Array.isArray(commandOptionConfig.options)) {
+                commandOptionConfig.options.forEach((config) => {
+                    const option = new Option(config.name, config.description);
+                    if (config.default) {
+                        option.default(config.default);
+                    }
+                    if (config.choices) {
+                        option.choices(config.choices);
+                    }
+                    c = c.addOption(option);
+                });
+            }
+            if (commandOptionConfig.fn) {
+                c.action(async () => {
+                    await commandOptionConfig.fn({
+                        rawArgv, args, options: c.opts(), program
+                    });
+                });
+            }
         });
+
+        this.parseCommand();
     }
 }

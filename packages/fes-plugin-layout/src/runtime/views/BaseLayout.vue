@@ -56,8 +56,8 @@
                 <MultiTabProvider v-if="multiTabs" />
                 <router-view v-else></router-view>
             </a-layout-content>
-            <a-layout-footer class="layout-footer">
-                Fes.js ©2020 Created by MumbleFe
+            <a-layout-footer v-if="footer" class="layout-footer">
+                {{footer}}
             </a-layout-footer>
         </a-layout>
     </a-layout>
@@ -128,7 +128,8 @@ export default {
         sideWidth: {
             type: Number,
             default: 200
-        }
+        },
+        footer: String
     },
     setup(props) {
         const collapsed = ref(false);

@@ -1,5 +1,5 @@
-import { delay } from '@umijs/utils';
 import assert from 'assert';
+import { delay } from '@umijs/utils';
 import {
     cleanTmpPathExceptCache,
     getBundleAndConfigs
@@ -28,8 +28,15 @@ export default (api) => {
     }
 
     api.registerCommand({
-        name: 'dev',
-        description: 'start a dev server for development',
+        command: 'dev',
+        description: 'start a local http service for development',
+        options: [{
+            name: '--port',
+            description: 'http service port, like 8080'
+        }, {
+            name: '--https',
+            description: 'whether to turn on the https service'
+        }],
         async fn({ args = {} }) {
             const defaultPort = process.env.PORT || args.port || api.config.devServer?.port;
             port = await portfinder.getPortPromise({

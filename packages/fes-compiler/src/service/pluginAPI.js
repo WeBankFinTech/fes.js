@@ -3,6 +3,7 @@ import * as utils from '@umijs/utils';
 import { isValidPlugin, pathToObj } from './utils/pluginUtils';
 import { EnableBy, PluginType, ServiceStage } from './enums';
 import Logger from '../logger';
+
 // TODO
 // 标准化 logger
 export default class PluginAPI {
@@ -62,16 +63,21 @@ export default class PluginAPI {
         ).concat(hook);
     }
 
-    registerCommand(command) {
-        const { name, alias } = command;
+    registerCommand(commandOption) {
+        const { command, fn } = commandOption;
         assert(
-            !this.service.commands[name],
-            `api.registerCommand() failed, the command ${name} is exists.`
+            !this.service.commands[command],
+            `api.registerCommand() failed, the command ${command} is exists.`
         );
-        this.service.commands[name] = command;
-        if (alias) {
-            this.service.commands[alias] = name;
-        }
+        assert(
+            typeof command === 'string',
+            'api.registerCommand() failed, the command must be String.'
+        );
+        assert(
+            typeof fn === 'function',
+            'api.registerCommand() failed, the fn must be function.'
+        );
+        this.service.commands[command] = commandOption;
     }
 
     // 在 preset 初始化阶段放后面，在插件注册阶段放前面

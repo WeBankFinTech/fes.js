@@ -9,16 +9,28 @@ export default {
     publicPath: '/',
     access: {
         roles: {
-            admin: ["/", "/onepiece"]
+            admin: ["/", "/onepiece", '/store']
         }
+    },
+    mock: {
+        prefix: '/v2'
+    },
+    proxy: {
+        '/v2': {
+            'target': 'https://api.douban.com/',
+            'changeOrigin': true, 
+        },
     },
     layout: {
         title: "Fes.js",
+        footer: 'Created by MumbelFe',
         multiTabs: false,
         menus: [{
             name: 'index'
         }, {
             name: 'onepiece'
+        }, {
+            name: 'store'
         }]
     },
     locale: {
@@ -29,5 +41,8 @@ export default {
     },
     enums: {
         status: [['0', '无效的'], ['1', '有效的']]
+    },
+    vuex: {
+        strict: true
     }
 };

@@ -18,11 +18,4 @@ export default function createVueWebpackConfig({
     webpackConfig
         .plugin('vue-loader')
         .use(require('vue-loader').VueLoaderPlugin);
-
-    // webpackConfig
-    //     .plugin('feature-flags')
-    //     .use(webpack.DefinePlugin, [{
-    //         __VUE_OPTIONS_API__: 'true',
-    //         __VUE_PROD_DEVTOOLS__: 'false'
-    //     }]);
 }

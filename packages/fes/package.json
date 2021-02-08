@@ -1,6 +1,6 @@
 {
     "name": "@webank/fes",
-    "version": "2.0.0-alpha.2",
+    "version": "2.0.0-alpha.8",
     "description": "一个好用的前端管理台快速开发框架",
     "preferGlobal": true,
     "scripts": {
@@ -40,12 +40,9 @@
     ],
     "dependencies": {
         "@umijs/utils": "3.3.3",
-        "@webank/fes-compiler": "^2.0.0-alpha.2",
-        "@webank/fes-preset-built-in": "^2.0.0-alpha.2",
-        "@webank/fes-runtime": "^2.0.0-alpha.2",
-        "commander": "^6.2.1",
-        "envinfo": "^7.7.3",
-        "leven": "^3.1.0",
+        "@webank/fes-compiler": "^2.0.0-alpha.8",
+        "@webank/fes-preset-built-in": "^2.0.0-alpha.8",
+        "@webank/fes-runtime": "^2.0.0-alpha.8",
         "resolve-cwd": "^3.0.0"
     },
     "engines": {

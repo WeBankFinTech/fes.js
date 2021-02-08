@@ -20,7 +20,7 @@
 <script>
 import { ref, onMounted } from 'vue';
 import {
-    access, useAccess, useRouter, useI18n, locale, enums
+    access, useAccess, useRouter, useI18n, locale, enums, request
 } from '@webank/fes';
 
 export default {
@@ -75,6 +75,25 @@ export default {
                 accessId.value = '11';
             }, 4000);
             // router.push('/onepiece');
+
+            console.log('测试 mock!!');
+            request('/v2/file').then((data) => {
+                console.log(data);
+            }).catch((err) => {
+                console.log(err);
+            });
+            request('/v2/movie/in_theaters_mock').then((data) => {
+                console.log(data);
+            }).catch((err) => {
+                console.log(err);
+            });
+
+            console.log('测试 proxy!!');
+            request('/v2/movie/in_theaters_proxy').then((resp) => {
+                console.log(resp);
+            }).catch((err) => {
+                console.log(err);
+            });
         });
         return {
             accessId,

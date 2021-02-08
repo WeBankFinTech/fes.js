@@ -41,14 +41,17 @@ export default function () {
             require.resolve('./plugins/features/terserOptions'),
             require.resolve('./plugins/features/nodeModulesTransform'),
             require.resolve('./plugins/features/vueLoader'),
-            require.resolve('./plugins/features/hardSource'),
+            require.resolve('./plugins/features/mock'),
 
             // misc
             require.resolve('./plugins/misc/route'),
 
             // commands
             require.resolve('./plugins/commands/build'),
-            require.resolve('./plugins/commands/dev')
+            require.resolve('./plugins/commands/dev'),
+            require.resolve('./plugins/commands/help'),
+            require.resolve('./plugins/commands/info'),
+            require.resolve('./plugins/commands/webpack')
         ]
     };
 }

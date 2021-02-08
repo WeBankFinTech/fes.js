@@ -2,6 +2,7 @@ import { chalk, yParser } from '@umijs/utils';
 import { Service } from './serviceWithBuiltIn';
 import getCwd from './utils/getCwd';
 import getPkg from './utils/getPkg';
+import fesPkg from '../package.json';
 
 const args = yParser(process.argv.slice(2));
 
@@ -27,7 +28,8 @@ function onSignal(signal, service) {
         process.env.FES_ENV = args.mode || '';
         const service = new Service({
             cwd: getCwd(),
-            pkg: getPkg(process.cwd())
+            pkg: getPkg(process.cwd()),
+            fesPkg
         });
         await service.run({
             name: 'dev',

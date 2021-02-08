@@ -1,6 +1,6 @@
 {
   "name": "@webank/fes-plugin-access",
-  "version": "2.0.0-alpha.2",
+  "version": "2.0.0-alpha.8",
   "description": "@webank/fes-plugin-access",
   "main": "lib/index.js",
   "files": [
@@ -28,6 +28,6 @@
   },
   "peerDependencies": {
     "@webank/fes": "^2.0.0-alpha.0",
-    "vue": "^3.0.4"
+    "vue": "3.0.5"
   }
 }

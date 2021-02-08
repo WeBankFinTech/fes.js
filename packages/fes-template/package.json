@@ -6,7 +6,8 @@
     "build": "fes build",
     "prod": "FES_ENV=prod fes build",
     "analyze": "ANALYZE=1 fes build",
-    "dev": "fes dev"
+    "dev": "fes dev",
+    "test:unit": "fes test:unit"
   },
   "keywords": [
     "管理端",
@@ -42,8 +43,7 @@
     "access": "public"
   },
   "devDependencies": {
-    "@vue/compiler-sfc": "^3.0.0",
-    "@webank/eslint-config-webank": "^0.2.10"
+    "@webank/eslint-config-webank": "0.2.10"
   },
   "dependencies": {
     "@webank/fes": "^2.0.0-alpha.0",
@@ -52,8 +52,12 @@
     "@webank/fes-plugin-locale": "^2.0.0-alpha.0",
     "@webank/fes-plugin-model": "^2.0.0-alpha.0",
     "@webank/fes-plugin-enums": "^2.0.0-alpha.0",
-    "ant-design-vue": "2.0.0-rc.3",
-    "vue": "3.0.4"
+    "@webank/fes-plugin-jest": "^2.0.0-alpha.8",
+    "@webank/fes-plugin-vuex": "^2.0.0-alpha.8",
+    "@webank/fes-plugin-request": "2.0.0-alpha.1",
+    "ant-design-vue": "2.0.0",
+    "vue": "3.0.5",
+    "vuex": "^4.0.0-rc.2"
   },
   "private": true
 }

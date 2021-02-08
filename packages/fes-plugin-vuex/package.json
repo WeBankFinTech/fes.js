@@ -1,0 +1,37 @@
+{
+  "name": "@webank/fes-plugin-vuex",
+  "version": "2.0.0-alpha.8",
+  "description": "@webank/fes-plugin-vuex",
+  "main": "lib/index.js",
+  "files": [
+    "lib"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WeBankFinTech/fes.js.git",
+    "directory": "packages/fes-plugin-vuex"
+  },
+  "keywords": [
+    "fes"
+  ],
+  "author": "aringlai",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/WeBankFinTech/fes.js/issues"
+  },
+  "homepage": "https://github.com/WeBankFinTech/fes.js#readme",
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@umijs/utils": "3.3.3"
+  },
+  "peerDependencies": {
+    "@webank/fes": "^2.0.0-alpha.0",
+    "vue": "3.0.5",
+    "vuex": "^4.0.0-rc.2"
+  }
+}

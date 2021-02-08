@@ -28,11 +28,10 @@ export default (api) => {
 
         const HAS_LOCALE = api.hasPlugins(['@webank/fes-plugin-locale']);
 
-        const HAS_ACCESS = api.hasPlugins(['@webank/fes-plugin-access']);
-
         // .fes配置
         const userConfig = {
             title: name,
+            footer: 'Created by Fes.js',
             ...(api.config.layout || {})
         };
 

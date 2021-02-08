@@ -78,6 +78,12 @@ export default async function getConfig({
     webpackConfig.externals(config.externals || {});
     webpackConfig.devtool(isDev ? (config.devtool || 'cheap-module-source-map') : config.devtool);
 
+    // --------------- cache -----------
+    webpackConfig.cache({
+        type: 'filesystem',
+        cacheDirectory: join(cwd, '.cache/webpack')
+    });
+
     // --------------- entry -----------
     // Feature 公共模块 vue vue-router 处理 dependOn ?
     Object.keys(entry).forEach((key) => {
