@@ -6,6 +6,7 @@ export function startDevServer({
     webpackConfig,
     host,
     port,
+    proxy,
     beforeMiddlewares,
     afterMiddlewares,
     customerDevServerConfig
@@ -14,8 +15,10 @@ export function startDevServer({
         contentBase: webpackConfig.output.path,
         hot: true,
         host,
+        proxy,
         compress: true,
         noInfo: true,
+        disableHostCheck: true,
         clientLogLevel: 'silent',
         stats: 'errors-only',
         before: (app) => {

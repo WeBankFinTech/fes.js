@@ -4351,13 +4351,6 @@
     eslint-plugin-vue "^7.5.0"
     vue-eslint-parser "^7.4.1"
 
-"@webank/fes-plugin-request@2.0.0-alpha.1":
-  version "2.0.0-alpha.1"
-  resolved "https://registry.npmjs.org/@webank/fes-plugin-request/-/fes-plugin-request-2.0.0-alpha.1.tgz#3e61bfabb961df1f3e7732ff160d1d3e9f5d0be7"
-  integrity sha512-3ME9ciTBz3tzNwF8VxNocRScOu5yF/jSuu9VEtoE0YP2LsMZ5Tzw2xxrLxguPfdmdsUTkv1Ci7czx2QRo9M0/g==
-  dependencies:
-    axios "0.21.1"
-
 "@webassemblyjs/ast@1.11.0":
   version "1.11.0"
   resolved "https://registry.npmjs.org/@webassemblyjs/ast/-/ast-1.11.0.tgz#a5aa679efdc9e51707a4207139da57920555961f"
@@ -16398,7 +16391,7 @@ vuepress@^2.0.0-alpha.18:
     "@vuepress/core" "2.0.0-alpha.20"
     "@vuepress/theme-default" "2.0.0-alpha.21"
 
-vuex@^4.0.0-rc.2:
+vuex@^4.0.0:
   version "4.0.0"
   resolved "https://registry.npmjs.org/vuex/-/vuex-4.0.0.tgz#ac877aa76a9c45368c979471e461b520d38e6cf5"
   integrity sha512-56VPujlHscP5q/e7Jlpqc40sja4vOhC4uJD1llBCWolVI8ND4+VzisDVkUMl+z5y0MpIImW6HjhNc+ZvuizgOw==

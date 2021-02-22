@@ -9,8 +9,11 @@ export default {
     publicPath: '/',
     access: {
         roles: {
-            admin: ["/", "/onepiece", '/store']
+            admin: ["/", "/onepiece", '/store', '/simpleList']
         }
+    },
+    request: {
+        dataField: 'result'
     },
     mock: {
         prefix: '/v2'
@@ -31,6 +34,8 @@ export default {
             name: 'onepiece'
         }, {
             name: 'store'
+        }, {
+            name: 'simpleList'
         }]
     },
     locale: {

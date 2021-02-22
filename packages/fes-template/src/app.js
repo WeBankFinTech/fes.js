@@ -3,6 +3,8 @@
 import { access } from '@webank/fes';
 import PageLoading from '@/components/PageLoading';
 import UserCenter from '@/components/UserCenter';
+import Andt from 'ant-design-vue';
+import 'ant-design-vue/dist/antd.css';
 
 export const beforeRender = {
     loading: <PageLoading />,
@@ -17,6 +19,10 @@ export const beforeRender = {
             }, 1000);
         });
     }
+};
+
+export const onAppCreated = ({ app }) => {
+    app.use(Andt);
 };
 
 export const layout = {
