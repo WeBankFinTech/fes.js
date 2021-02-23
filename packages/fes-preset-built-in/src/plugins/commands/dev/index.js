@@ -42,12 +42,17 @@ export default (api) => {
             port = await portfinder.getPortPromise({
                 port: defaultPort ? parseInt(String(defaultPort), 10) : 8000
             });
-            hostname = process.env.HOST || api.config.devServer?.host || '0.0.0.0';
-            console.log(chalk.cyan(`Starting the development server http://${hostname}:${port} ...`));
+            hostname = process.env.HOST || api.config.devServer?.host || 'localhost';
+
             process.send({
                 type: 'UPDATE_PORT',
                 port
             });
+
+            // enable https
+            const isHTTPS = process.env.HTTPS || args.https;
+
+            console.log(chalk.cyan(`Starting the development server ${isHTTPS ? 'https' : 'http'}://${hostname}:${port} ...`));
 
             cleanTmpPathExceptCache({
                 absTmpPath: paths.absTmpPath
@@ -163,6 +168,7 @@ export default (api) => {
                 host: hostname,
                 port,
                 proxy: api.config.proxy,
+                https: isHTTPS,
                 beforeMiddlewares,
                 afterMiddlewares: [...middlewares],
                 customerDevServerConfig: api.config.devServer

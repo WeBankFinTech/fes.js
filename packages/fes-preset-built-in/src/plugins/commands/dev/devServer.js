@@ -1,11 +1,15 @@
 import WebpackDevServer from 'webpack-dev-server';
 import webpack from 'webpack';
+import fs from 'fs';
+import path from 'path';
 
 
 export function startDevServer({
     webpackConfig,
     host,
     port,
+    proxy,
+    https,
     beforeMiddlewares,
     afterMiddlewares,
     customerDevServerConfig
@@ -18,6 +22,7 @@ export function startDevServer({
         noInfo: true,
         clientLogLevel: 'silent',
         stats: 'errors-only',
+        proxy,
         before: (app) => {
             beforeMiddlewares.forEach((middleware) => {
                 app.use(middleware);
@@ -33,6 +38,11 @@ export function startDevServer({
         },
         ...(customerDevServerConfig || {})
     };
+    if (https) {
+        options.https = true;
+        options.key = fs.readFileSync(path.resolve(__dirname, './cert/key.pem'));
+        options.cert = fs.readFileSync(path.resolve(__dirname, './cert/cert.pem'));
+    }
     WebpackDevServer.addDevServerEntrypoints(webpackConfig, options);
     const compiler = webpack(webpackConfig);
     const server = new WebpackDevServer(compiler, options);
