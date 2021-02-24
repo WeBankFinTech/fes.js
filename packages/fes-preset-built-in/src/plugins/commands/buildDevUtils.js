@@ -2,7 +2,7 @@ import { join, resolve } from 'path';
 import { existsSync, readdirSync, readFileSync } from 'fs';
 import { rimraf, chalk } from '@umijs/utils';
 import zlib from 'zlib';
-import getConfig from './webpackConfig/getConfig';
+import getConfig from './webpackConfig';
 
 export async function getBundleAndConfigs({
     api

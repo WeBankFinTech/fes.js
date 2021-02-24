@@ -6,7 +6,7 @@
     "build": "fes build",
     "prod": "FES_ENV=prod fes build",
     "analyze": "ANALYZE=1 fes build",
-    "dev": "fes dev",
+    "dev": "fes dev --https",
     "test:unit": "fes test:unit"
   },
   "keywords": [
