@@ -115,9 +115,8 @@ export default class Service extends EventEmitter {
             env: this.env
         });
 
-        this.program = new Command();
+        this.program = this.initCommand();
 
-        this.initCommand();
 
         // setup initial plugins
         const baseOpts = {
@@ -492,24 +491,12 @@ export default class Service extends EventEmitter {
     }
 
     initCommand() {
-        this.program
+        const command = new Command();
+        command
             .usage('<command> [options]')
             .version(`@webank/fes ${this.fesPkg.version}`, '-v, --vers', 'output the current version')
             .description(chalk.cyan('一个好用的前端应用解决方案'));
-    }
-
-    parseCommand() {
-        this.program.on('--help', () => {
-            console.log();
-            console.log(
-                `  Run ${chalk.cyan(
-                    'fes <command> --help'
-                )} for detailed usage of given command.`
-            );
-            console.log();
-        });
-        this.program.commands.forEach(c => c.on('--help', () => console.log()));
-        this.program.parse(process.argv);
+        return command;
     }
 
     async run({ rawArgv = {}, args = {} }) {
@@ -524,7 +511,7 @@ export default class Service extends EventEmitter {
             }
         });
 
-        this.runCommand({ rawArgv, args });
+        return this.runCommand({ rawArgv, args });
     }
 
     async runCommand({ rawArgv = {}, args = {} }) {
@@ -555,6 +542,20 @@ export default class Service extends EventEmitter {
             }
         });
 
-        this.parseCommand();
+        return this.parseCommand();
+    }
+
+    async parseCommand() {
+        this.program.on('--help', () => {
+            console.log();
+            console.log(
+                `  Run ${chalk.cyan(
+                    'fes <command> --help'
+                )} for detailed usage of given command.`
+            );
+            console.log();
+        });
+        this.program.commands.forEach(c => c.on('--help', () => console.log()));
+        return this.program.parseAsync(process.argv);
     }
 }

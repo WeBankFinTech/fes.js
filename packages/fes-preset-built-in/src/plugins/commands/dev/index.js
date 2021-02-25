@@ -1,12 +1,4 @@
-import assert from 'assert';
-import { delay } from '@umijs/utils';
-import {
-    cleanTmpPathExceptCache,
-    getBundleAndConfigs
-} from '../buildDevUtils';
-import generateFiles from '../../../utils/generateFiles';
-import { watchPkg } from './watchPkg';
-import { startDevServer } from './devServer';
+const assert = require('assert');
 
 export default (api) => {
     const {
@@ -38,6 +30,14 @@ export default (api) => {
             description: 'whether to turn on the https service'
         }],
         async fn({ args = {} }) {
+            const {
+                cleanTmpPathExceptCache,
+                getBundleAndConfigs
+            } = require('../buildDevUtils');
+            const { delay } = require('@umijs/utils');
+            const generateFiles = require('../../../utils/generateFiles').default;
+            const { watchPkg } = require('./watchPkg');
+
             const defaultPort = process.env.PORT || args.port || api.config.devServer?.port;
             port = await portfinder.getPortPromise({
                 port: defaultPort ? parseInt(String(defaultPort), 10) : 8000
@@ -163,6 +163,7 @@ export default (api) => {
                 initialValue: [],
                 args: {}
             });
+            const { startDevServer } = require('./devServer');
             server = startDevServer({
                 webpackConfig: bundleConfig,
                 host: hostname,

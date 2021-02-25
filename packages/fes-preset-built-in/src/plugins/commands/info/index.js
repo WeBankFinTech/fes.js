@@ -4,7 +4,7 @@ export default function (api) {
         command: 'info',
         description: 'print debugging information about your environment',
         async fn() {
-            require('envinfo').run(
+            return require('envinfo').run(
                 {
                     System: ['OS', 'CPU'],
                     Binaries: ['Node', 'Yarn', 'npm'],

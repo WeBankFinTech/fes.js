@@ -1,13 +1,5 @@
-import { relative } from 'path';
-import { existsSync } from 'fs';
+
 import { Logger } from '@webank/fes-compiler';
-import {
-    cleanTmpPathExceptCache,
-    getBundleAndConfigs,
-    printFileSizes
-} from '../buildDevUtils';
-import generateFiles from '../../../utils/generateFiles';
-import { build } from './build';
 
 const logger = new Logger('fes:plugin-built-in');
 
@@ -21,6 +13,16 @@ export default function (api) {
         command: 'build',
         description: 'build application for production',
         async fn() {
+            const { relative } = require('path');
+            const { existsSync } = require('fs');
+            const {
+                cleanTmpPathExceptCache,
+                getBundleAndConfigs,
+                printFileSizes
+            } = require('../buildDevUtils');
+            const generateFiles = require('../../../utils/generateFiles').default;
+            const { build } = require('./build');
+
             cleanTmpPathExceptCache({
                 absTmpPath: paths.absTmpPath
             });

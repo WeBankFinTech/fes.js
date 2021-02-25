@@ -1,7 +1,3 @@
-
-import assert from 'assert';
-import { getBundleAndConfigs } from '../buildDevUtils';
-
 export default function (api) {
     api.registerCommand({
         command: 'webpack',
@@ -23,11 +19,13 @@ export default function (api) {
             description: 'show full function definitions in output'
         }],
         async fn({ options }) {
+            const assert = require('assert');
+            const { getBundleAndConfigs } = require('../buildDevUtils');
             const { toString } = require('webpack-chain');
             const { highlight } = require('cli-highlight');
             const { bundleConfig } = await getBundleAndConfigs({ api });
 
-            let config = bundleConfig.filter(bc => bc.entry?.index)[0];
+            let config = bundleConfig;
             assert(config, 'No valid config found with fes entry.');
 
             if (options.rule) {
