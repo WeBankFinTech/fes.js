@@ -17,7 +17,7 @@ features:
   - title: Strong
     details: 只需要关心页面内容，减少犯错的机会！提供单元测试、覆盖测试的能力保障项目质量。
   - title: 可扩展
-    details: 借鉴Umi实现了完整的生命周期和插件化机制，插件可以管理项目的编译时和运行时，能力均可以通过插件封装进来，在fes.js中协调有序的运行。
+    details: 借鉴Umi实现了完整的生命周期和插件化机制，插件可以管理项目的编译时和运行时，能力均可以通过插件封装进来，在 Fes.js 中协调有序的运行。
   - title: 面向未来
     details: 在满足需求的同时，我们也不会停止对新技术的探索。已使用Vue3.0来提升应用性能，已使用webpack5提升构建性能和实现微服务，未来会探索vite等新技术。
 footer: MIT Licensed | Copyright © 2020-present Webank

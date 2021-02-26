@@ -19,7 +19,7 @@ const config: UserConfig<DefaultThemeOptions> = {
     '/zh/': {
       lang: 'zh-CN',
       title: 'Fes.js',
-      description: '一个好用的前端应用解决方案',
+      description: '一套好用的前端应用解决方案',
     },
   },
 

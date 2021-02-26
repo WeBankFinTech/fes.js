@@ -2,8 +2,7 @@
 
 ## 依赖环境
 
-- [Node.js v12+](https://nodejs.org/)
-- [Yarn v1 classic](https://classic.yarnpkg.com/zh-Hans/) （可选）
+- [Node.js v10+](https://nodejs.org/)
 
 ## 手动安装
 
