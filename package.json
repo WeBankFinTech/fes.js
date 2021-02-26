@@ -38,6 +38,8 @@
     "commitizen": "^4.2.1",
     "cz-conventional-changelog": "^3.3.0",
     "esbuild-loader": "^2.7.0",
+    "postcss-loader": "^5.0.0",
+    "postcss": "^8.0.0",
     "father-build": "^1.19.1",
     "husky": "^4.3.0",
     "lint-staged": "^10.4.0",
