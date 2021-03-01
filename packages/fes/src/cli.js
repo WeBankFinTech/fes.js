@@ -56,7 +56,6 @@ const args = yParser(rawArgv);
                 args,
                 rawArgv
             });
-            process.exit(0);
         }
     } catch (e) {
         console.error(chalk.red(e.message));
