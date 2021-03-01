@@ -54,7 +54,7 @@ export default (api) => {
     });
 
 
-    // 把BaseLayout插入到路由配置中，作为跟路由
+    // 把BaseLayout插入到路由配置中，作为根路由
     api.modifyRoutes(routes => [
         {
             path: '/',

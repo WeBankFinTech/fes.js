@@ -1,3 +1,0 @@
-# medium-zoom
-
-> TODO

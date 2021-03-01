@@ -91,11 +91,12 @@ const config: UserConfig<DefaultThemeOptions> = {
     [
       '@vuepress/plugin-docsearch',
       {
-        // TODO: create algolia index for vuepress-next
-        // apiKey: '',
-        // appId: '',
-        // indexName: '',
+        apiKey: '<API_KEY>',
+        indexName: '<INDEX_NAME>',
         locales: {
+          '/': {
+            placeholder: 'Search Documentation',
+          },
           '/zh/': {
             placeholder: '搜索文档',
           },

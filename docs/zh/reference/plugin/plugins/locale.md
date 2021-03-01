@@ -1,0 +1,1 @@
+# fes-plugin-locale

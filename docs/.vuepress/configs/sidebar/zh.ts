@@ -4,87 +4,71 @@ export const zh: SidebarConfig = {
   '/zh/guide/': [
     {
       isGroup: true,
-      text: '指南',
+      text: '介绍',
       children: [
         '/zh/guide/README.md',
-        '/zh/guide/getting-started.md',
-        '/zh/guide/configuration.md',
-        '/zh/guide/page.md',
-        '/zh/guide/markdown.md',
-        '/zh/guide/assets.md',
-        '/zh/guide/i18n.md',
-        '/zh/guide/deployment.md',
-        '/zh/guide/theme.md',
-        '/zh/guide/plugin.md',
-        '/zh/guide/bundler.md',
+        '/zh/guide/getting-started.md', 
       ],
     },
-  ],
-  '/zh/guide/advanced/': [
     {
       isGroup: true,
-      text: '深入',
+      text: '基础',
       children: [
-        '/zh/guide/advanced/markdown.md',
-        '/zh/guide/advanced/theme.md',
-        '/zh/guide/advanced/plugin.md',
-      ],
+      ]
     },
-  ],
-  '/zh/reference/': [
     {
       isGroup: true,
-      text: 'VuePress 参考',
+      text: '进阶',
       children: [
-        '/zh/reference/cli.md',
-        '/zh/reference/config.md',
-        '/zh/reference/frontmatter.md',
-        '/zh/reference/components.md',
-        '/zh/reference/plugin-api.md',
-        '/zh/reference/theme-api.md',
-      ],
+      ]
     },
+    "/zh/guide/contributing.md",
+    "/zh/guide/faq.md"
   ],
-  '/zh/reference/bundler/': [
-    {
-      isGroup: true,
-      text: '打包工具参考',
-      children: [
-        '/zh/reference/bundler/webpack.md',
-        '/zh/reference/bundler/vite.md',
-      ],
-    },
+  '/zh/reference/config/': [
+    '/zh/reference/config/README.md'
   ],
-  '/zh/reference/default-theme/': [
-    {
-      isGroup: true,
-      text: '默认主题参考',
-      children: [
-        '/zh/reference/default-theme/config.md',
-        '/zh/reference/default-theme/frontmatter.md',
-        '/zh/reference/default-theme/components.md',
-        '/zh/reference/default-theme/markdown.md',
-      ],
-    },
+  '/zh/reference/api/': [
+    '/zh/reference/api/README.md'
   ],
   '/zh/reference/plugin/': [
     {
       isGroup: true,
-      text: '官方插件参考',
+      text: '指南',
       children: [
-        '/zh/reference/plugin/active-header-links.md',
-        '/zh/reference/plugin/back-to-top.md',
-        '/zh/reference/plugin/container.md',
-        '/zh/reference/plugin/debug.md',
-        '/zh/reference/plugin/docsearch.md',
-        '/zh/reference/plugin/git.md',
-        '/zh/reference/plugin/google-analytics.md',
-        '/zh/reference/plugin/medium-zoom.md',
-        '/zh/reference/plugin/nprogress.md',
-        '/zh/reference/plugin/palette-stylus.md',
-        '/zh/reference/plugin/pwa.md',
-        '/zh/reference/plugin/pwa-popup.md',
+        '/zh/reference/plugin/README.md',
       ],
     },
+    {
+      isGroup: true,
+      text: 'Presets',
+      children: [
+      ],
+    },
+    {
+      isGroup: true,
+      text: 'Plugins',
+      children: [
+        '/zh/reference/plugin/plugins/access.md',
+        '/zh/reference/plugin/plugins/enums.md',
+        '/zh/reference/plugin/plugins/icon.md',
+        '/zh/reference/plugin/plugins/jest.md',
+        '/zh/reference/plugin/plugins/layout.md',
+        '/zh/reference/plugin/plugins/locale.md',
+        '/zh/reference/plugin/plugins/model.md',
+        '/zh/reference/plugin/plugins/request.md',
+        '/zh/reference/plugin/plugins/vuex.md',
+      ],
+    },
+    {
+      isGroup: true,
+      text: '插件开发',
+      children: [
+        '/zh/reference/plugin/api.md'
+      ],
+    },
+  ],
+  '/zh/reference/cli/': [
+    '/zh/reference/cli/README.md',
   ],
 }
