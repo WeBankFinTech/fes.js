@@ -17,7 +17,8 @@ export default (api) => {
             schema(joi) {
                 return joi.alternatives(joi.boolean(), joi.object());
             }
-        }
+        },
+        enableBy: () => process.env.NODE_ENV === 'development'
     });
 
     // 对 array、object 遍历处理
@@ -149,7 +150,7 @@ export default (api) => {
         if (!mockFlag) return;
 
         loadMock = createMock();
-        chokidar.watch(mockFile, {
+        return chokidar.watch(mockFile, {
             ignoreInitial: true
         }).on('change', () => {
             api.logger.info('mock.js changed，reload');
