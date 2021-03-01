@@ -1,6 +1,6 @@
 {
   "name": "@webank/fes-plugin-enums",
-  "version": "2.0.0-alpha.8",
+  "version": "2.0.0-rc.0",
   "description": "@webank/fes-plugin-enums",
   "main": "lib/index.js",
   "files": [

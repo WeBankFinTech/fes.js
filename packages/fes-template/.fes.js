@@ -9,7 +9,7 @@ export default {
     publicPath: '/',
     access: {
         roles: {
-            admin: ["/", "/onepiece", '/store', '/simpleList']
+            admin: ["/", "/onepiece", '/store']
         }
     },
     request: {

@@ -11,7 +11,7 @@
     "clean": "lerna clean",
     "bootstrap": "lerna bootstrap",
     "build": "father-build --watch",
-    "ver": "lerna version prerelease --preid alpha --no-changelog --no-commit-hooks --no-private",
+    "ver": "lerna version prerelease --preid rc --no-changelog --no-commit-hooks --no-private",
     "release": "father-build && lerna publish from-git --dist-tag next",
     "docs:dev": "vuepress dev docs --clean-cache",
     "docs:build": "vuepress build docs --clean-cache"

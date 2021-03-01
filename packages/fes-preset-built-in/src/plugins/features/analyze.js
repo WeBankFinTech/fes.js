@@ -30,15 +30,12 @@ export default (api) => {
         },
         enableBy: () => !!process.env.ANALYZE
     });
-    api.chainWebpack((webpackConfig, opts) => {
-        const { type } = opts;
-        if (type === 'csr') {
-            webpackConfig
-                .plugin('bundle-analyzer')
-                .use(require('webpack-bundle-analyzer').BundleAnalyzerPlugin, [
-                    api.config?.analyze || {}
-                ]);
-        }
+    api.chainWebpack((webpackConfig) => {
+        webpackConfig
+            .plugin('bundle-analyzer')
+            .use(require('webpack-bundle-analyzer').BundleAnalyzerPlugin, [
+                api.config?.analyze || {}
+            ]);
         return webpackConfig;
     });
 };
