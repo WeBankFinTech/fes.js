@@ -14,6 +14,7 @@ export const zh: SidebarConfig = {
       isGroup: true,
       text: '基础',
       children: [
+        '/zh/guide/directory-structure.md', 
       ]
     },
     {
