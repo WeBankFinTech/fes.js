@@ -72,4 +72,4 @@ Vue CLI 是基于 Vue.js 进行快速开发的完整系统，提供交互式脚�
 
 ### UMI
 
-UMI 是个很好的选择，Fes.js 很多功能是借鉴 UMI 做的。如果 UMI 对 Vue 支持足够够好的话，可能 Fes.js 2.0 版本就不会出现了。喜欢 React 的同学推荐使用 UMI。
+UMI 是个很好的选择，Fes.js 很多功能是借鉴 UMI 做的。UMI 是基于 React 封装的应用级框架，贯彻着函数式编程的思维。而 Vue 有所不同，虽然 Vue 3.0 向函数式迈了一大步，但大家可能依然喜欢编写 `.vue`文件，而非 `.jsx` 文件。两种思维方式会导致部分API设计上有所差异，虽然 UMI 有 `plugin-vue` ，但不太 "vue"。推荐喜欢 React 的同学使用 UMI。

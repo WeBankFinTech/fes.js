@@ -119,7 +119,7 @@ export default {
 ::: tip
 在开发插件时可能用上，平时一般用不上
 :::
-创建哈希历史记录。对于没有 `host`（例如file://）或者需要部署在非根目录时非常有用 。请注意，如果SEO对您很重要，您应该使用`createWebHistory`。
+创建一个 hash 历史记录。对于没有主机的 web 应用程序 (例如 file://)，或当配置服务器不能处理任意URL时这非常有用。注意：如果 SEO 对你很重要，你应该使用 `createWebHistory`。
 
 ### createWebHistory
 ::: tip
@@ -131,7 +131,7 @@ export default {
 ::: tip
 在开发插件时可能用上，平时一般用不上
 :::
-创建基于内存的历史。此历史的主要目的是处理 SSR。它开始于一个特殊的混沌 location 。如果用户不在浏览器上下文中，则由他们通过调用`router.push()`或`router.replace()`变更 location。
+创建一个基于内存的历史记录。这个历史记录的主要目的是处理 SSR。它在一个特殊的位置开始，这个位置无处不在。如果用户不在浏览器上下文中，它们可以通过调用 router.push() 或 router.replace() 将该位置替换为启动位置。
 
 ### createRouter
 创建一个路由器实例，该实例可用于 Vue 应用程序。查看[路由器选项](https://next.router.vuejs.org/api/#routeroptions)，了解可以传递的所有属性的列表。

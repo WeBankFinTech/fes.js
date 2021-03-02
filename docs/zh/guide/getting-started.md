@@ -53,10 +53,11 @@ npx @webank/create-fes-app myapp
 </CodeGroup>
 
 
-如果项目目录 `workspace/myapp` 已经存在，则会提示目录已存在，你可以选择 `Overwrite` 删除目录后重新创建项目，也可以选择 `Merge` 使用模板文件覆盖当前目录文件。
+如果项目目录 `workspace/myapp` 已经存在，则会提示目录已存在，你可以选择 `Overwrite` 删除目录后重新创建项目，也可以选择 `Merge` 使用模板文件覆盖当前目录文件。      
 ![目录已存在提示](/pickTemplateTip.png)
 
-如果项目目录 `workspace/myapp` 不存在，你会被提示选取一个 template。你可以选默认适用于中后台前端应用的 `PC` 类型，也可以选适用于移动端的 `H5` 类型。    
+如果项目目录 `workspace/myapp` 不存在，你会被提示选取一个 template。你可以选默认适用于中后台前端应用的 `PC` 类型，也可以选适用于移动端的 `H5` 类型。      
+
 ![选择模板类型](/pickTemplate.png)
 
 ##### 步骤3 安装依赖
