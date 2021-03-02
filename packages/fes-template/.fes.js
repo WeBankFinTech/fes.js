@@ -24,20 +24,7 @@ export default {
             'changeOrigin': true, 
         },
     },
-    layout: {
-        title: "Fes.js",
-        footer: 'Created by MumbelFe',
-        multiTabs: false,
-        menus: [{
-            name: 'index'
-        }, {
-            name: 'onepiece'
-        }, {
-            name: 'store'
-        }, {
-            name: 'simpleList'
-        }]
-    },
+    layout: false,
     locale: {
         legacy: true
     },

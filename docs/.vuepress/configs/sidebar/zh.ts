@@ -16,6 +16,10 @@ export const zh: SidebarConfig = {
       children: [
         '/zh/guide/directory-structure.md', 
         '/zh/guide/route.md', 
+        '/zh/guide/plugin.md', 
+        '/zh/guide/template.md', 
+        '/zh/guide/mock.md', 
+        '/zh/guide/env.md', 
       ]
     },
     {

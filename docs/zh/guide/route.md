@@ -103,6 +103,11 @@ pages
 ]
 ```
 
+需要注意的是，满足以下任意规则的文件不会被注册为路由：
+- 不是 .vue 文件
+- components 目录中的文件
+
+
 ### 动态路由
 Fes.js 里约定以 `@` 开头的文件或文件夹映射为动态路由。
 比如：
@@ -200,14 +205,8 @@ const router = new VueRouter({
 ]
 ```
 
-### 忽略
-需要注意的是，满足以下任意规则的文件不会被注册为路由：
-- 不是 .vue 文件
-- components 目录中的文件
-
-
 ### 智能路由
-可以看到，编译后路由都会有count属性，这是我们根据精准匹配优先算法原则设计出路由排名算法，对匹配到的路由打分：
+可以看到，编译后路由都会有 `count` 属性，这是我们根据精准匹配优先算法原则设计出路由排名算法，对匹配到的路由打分：
 - 路由的路径每个子项得到4分
 - 子项为静态细分(`/list`)再加3分
 - 子项为动态细分（`/:orderId`）再加2分
@@ -217,6 +216,15 @@ const router = new VueRouter({
 当我们跳转路由时，如果URL匹配到多个路由，则选择分数最高的路由。
 
 ## 路由跳转
+
+### 声明式
+```vue
+<template>
+    <router-link to="/home">Home</router-link>
+</template>
+```
+
+### 命令式
 页面跳转 API 由 `router` 实例提供，查看 [Vue Rouer 文档](https://next.router.vuejs.org/zh/api/#router-%E6%96%B9%E6%B3%95)了解更多。
 
 ```js
