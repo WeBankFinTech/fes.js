@@ -21,7 +21,7 @@ import {
 import isEqual from './utils/isEqual';
 import mergeDefault from './utils/mergeDefault';
 
-const CONFIG_FILES = ['.fes.js', 'config/config.js'];
+const CONFIG_FILES = ['.fes.js'];
 
 // TODO:
 // 1. custom config file
