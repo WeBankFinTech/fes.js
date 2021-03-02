@@ -7,7 +7,7 @@ const config: UserConfig<DefaultThemeOptions> = {
 
   evergreen: process.env.NODE_ENV !== 'production',
 
-  head: [['link', { rel: 'icon', href: `/logo.png` }]],
+  head: [['link', { rel: 'manifest', href: '/manifest.webmanifest' }], ['link', { rel: 'icon', href: `/logo.png` }]],
 
   // site-level locales config
   locales: {
@@ -88,26 +88,30 @@ const config: UserConfig<DefaultThemeOptions> = {
   },
 
   plugins: [
-    [
-      '@vuepress/plugin-docsearch',
-      {
-        apiKey: '<API_KEY>',
-        indexName: '<INDEX_NAME>',
-        locales: {
-          '/': {
-            placeholder: 'Search Documentation',
-          },
-          '/zh/': {
-            placeholder: '搜索文档',
-          },
-        },
-      },
-    ],
+    // [
+    //   '@vuepress/plugin-docsearch',
+    //   {
+    //     apiKey: '<API_KEY>',
+    //     indexName: '<INDEX_NAME>',
+    //     locales: {
+    //       '/': {
+    //         placeholder: 'Search Documentation',
+    //       },
+    //       '/zh/': {
+    //         placeholder: '搜索文档',
+    //       },
+    //     },
+    //   },
+    // ],
     ['@vuepress/plugin-pwa'],
     [
       '@vuepress/plugin-pwa-popup',
       {
         locales: {
+          '/': {
+            message: 'New content is available.',
+            buttonText: 'Refresh',
+          },
           '/zh/': {
             message: '发现新内容可用',
             buttonText: '刷新',
