@@ -9,7 +9,7 @@ export {
     createWebHashHistory,
     createWebHistory,
     createMemoryHistory,
-    createRouter
+    createRouter,
     Plugin,
     ApplyPluginsType
 } from '@webank/fes-runtime';
