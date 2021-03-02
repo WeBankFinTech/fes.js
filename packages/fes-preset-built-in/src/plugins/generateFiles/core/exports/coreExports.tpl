@@ -4,9 +4,12 @@ export {
     onBeforeRouteUpdate,
     onBeforeRouteLeave,
     RouterLink,
+    RouterView,
     useLink,
     createWebHashHistory,
-    createRouter,
+    createWebHistory,
+    createMemoryHistory,
+    createRouter
     Plugin,
     ApplyPluginsType
 } from '@webank/fes-runtime';

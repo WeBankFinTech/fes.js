@@ -5,9 +5,11 @@ export {
     onBeforeRouteUpdate,
     onBeforeRouteLeave,
     RouterLink,
+    RouterView,
     useLink,
     createWebHashHistory,
     createWebHistory,
+    createMemoryHistory,
     createRouter
 } from 'vue-router';
 
