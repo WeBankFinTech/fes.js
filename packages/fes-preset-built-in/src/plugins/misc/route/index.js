@@ -170,7 +170,8 @@ const fix = function (routes) {
 
 const getRoutes = function ({ config, absPagesPath }) {
     // 用户配置了routes则使用用户配置的
-    if (config.router.routes) return config.router.routes;
+    const configRoutes = config.router.routes;
+    if (configRoutes && configRoutes.length > 0) return configRoutes;
 
     const routes = [];
     genRoutes(routes, absPagesPath, '/', config);
@@ -224,7 +225,9 @@ export default function (api) {
                         mode: joi.string()
                     });
             },
-            default: {}
+            default: {
+                mode: 'hash'
+            }
         }
     });
 
@@ -260,9 +263,16 @@ export default function (api) {
 
     const absRuntimeFilePath = join(namespace, 'runtime.js');
 
+    const historyType = {
+        h5: 'createWebHistory',
+        hash: 'createWebHashHistory',
+        memory: 'createMemoryHistory'
+    };
+
     api.onGenerateFiles(async () => {
         const routesTpl = readFileSync(join(__dirname, 'template/routes.tpl'), 'utf-8');
         const routes = await api.getRoutesJSON();
+
         api.writeTmpFile({
             path: absCoreFilePath,
             content: Mustache.render(routesTpl, {
@@ -270,7 +280,7 @@ export default function (api) {
                 routes,
                 config: api.config,
                 routerBase: api.config.base || '',
-                CREATE_HISTORY: api.config.router.mode === 'history' ? 'createWebHistory' : 'createWebHashHistory'
+                CREATE_HISTORY: historyType[api.config.router.mode] || 'createWebHashHistory'
             })
         });
 
