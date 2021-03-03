@@ -100,25 +100,117 @@ import { access } from '@webank/fes-plugin-access'
 ```
 
 #### access.hasAccess
-判断一个资源是否拥有权限
-
 - **类型**：函数
+  
+- **详情**: 判断某个资源是否可见。
+- **参数**：
+  - accessId，资源Id
+- **返回值**：Boolean
+
+#### access.hasLoading
+- **类型**：函数
+  
+- **详情**：可以用异步数据来设置权限，`hasLoading` 用来判断异步数据是否已经加载完毕。
+- **参数**：null
+- **返回值**：Boolean
+```js
+import { access } from '@webank/fes';
+console.log(access.hasLoading())
+```
+
+
+#### access.setRole
+- **类型**：函数
+  
+- **详情**：设置当前的角色。
+- **参数**：
+  - roleId，角色Id，有两种类型：
+    - String，对应着 `roles` 配置对象中的 `key`。
+    - Promise，Promise resolve 的结果应对应着 `roles` 配置对象中的 `key`。
+```js
+import { access } from '@webank/fes';
+access.setRole(['admin'])
+```
+
+#### access.setAccess
+- **类型**：函数
+  
+- **详情**：设置当前的角色。
+- **参数**：
+  - accessIds，资源Id数组，有两种类型：
+    - Array，数组项对应着 `roles` 配置对象中的 `key`。
+    - Promise，Promise resolve 的结果应该是`Array<accessId>`。
+```js
+import { access } from '@webank/fes';
+access.setAccess(['/a', '/b', '/c'])
+```
+
+#### access.addAccess
+- **类型**：函数
+  
+- **详情**：添加某个资源Id为可见。
+- **参数**：
+  - accessId，资源Id
+
+```js
+import { access } from '@webank/fes';
+access.addAccess("aaa");
+```
+
+### useAccess
+- **类型**：[composition]((https://v3.cn.vuejs.org/guide/composition-api-introduction.html)) 函数
   
 - **详情**：判断某个资源是否可见。
 - **参数**：
   - accessId，资源Id
-
-#### access.hasLoading
-
-
-#### access.setRole
-
-#### access.setAccess
-    
-#### access.addAccess
-
-### useAccess
-
+- **返回值**：`ref`
+  
+```vue
+<template>
+    <div v-if="accessOnepicess">accessOnepicess</div>
+</template>
+<script>
+import { useAccess } from '@webank/fes';
+export default {
+    setup(){
+        const accessOnepicess = useAccess('/onepiece1');
+        return {
+            accessOnepicess
+        }
+    }
+}
+</script>
+```
 ### v-access
+在指令 `v-access` 中传入 `accessId`，则当 `accessId` 拥有权限时渲染DOM，当没有权限时隐藏此DOM。
+```vue
+<template>
+    <div v-access="accessId"> accessOnepicess2 </div>
+</template>
+<script>
+export default {
+    setup(){
+        return {
+            accessId: 'accessOnepicess'
+        }
+    }
+}
+</script>
+```
 
 ### 组件 Access
+组件 `Access` 中传入 `accessId`，则当 `accessId` 拥有权限时渲染此组件，当没有权限时隐藏此组件。
+```vue
+<template>
+    <access :id="accessId"> accessOnepicess1 <input /> </access>
+</template>
+<script>
+export default {
+    setup(){
+        return {
+            accessId: 'accessOnepicess'
+        }
+    }
+}
+</script>
+```
