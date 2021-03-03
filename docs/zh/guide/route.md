@@ -1,10 +1,10 @@
 # 路由
 
-像Vue、React这类框架是用组件化搭建页面，路由解决的是路径到组件的匹配问题。Fes.js 基于 [Vue Router](https://next.router.vuejs.org/) 实现了路由，感兴趣的同学可以看看。
+像Vue、React这类框架是用组件化搭建页面，路由解决的是路径到组件的匹配问题。Fes.js 基于 `Vue Router` 实现的路由，想了解更多的同学可以看看[官方文档](https://next.router.vuejs.org/)。
 
 ## 路由配置
 
-在配置文件中通过 router 进行配置，格式为路由信息的数组。
+在配置文件（.fes.js）中通过 router 进行配置，格式为路由信息的数组。
 ```js
 export default {
     router: {
@@ -15,7 +15,7 @@ export default {
 ```
 
 ### routes
-添加到路由的初始路由列表。具体使用参考 [Vue Router 文档](https://next.router.vuejs.org/zh/guide/)
+添加到路由的初始路由列表。具体使用参考 [Vue Router 文档](https://next.router.vuejs.org/zh/guide/)中关于路由配置、路由匹配相关内容。
 
 
 ### mode 
@@ -103,7 +103,7 @@ pages
 ]
 ```
 
-需要注意的是，满足以下任意规则的文件不会被注册为路由：
+**需要注意的是，满足以下任意规则的文件不会被注册为路由**：
 - 不是 .vue 文件
 - components 目录中的文件
 
@@ -140,7 +140,7 @@ pages
 ```
 
 ### 模糊匹配
-Fes.js 下约定文件名为 `*` 的路由是模糊匹配路由，可以用此特性实现404路由。     
+Fes.js 下约定文件名为 `*` 的路由是模糊匹配路由，可以用此特性实现 `404` 路由。     
 
 比如以下目录结构：
 
@@ -164,7 +164,7 @@ pages
 
 ### 扩展路由元信息
 我们在定义路由时可以配置`meta`字段，用来记录一些跟路由相关的信息：
-```
+```js
 const router = new VueRouter({
   routes: [
     {
@@ -182,7 +182,7 @@ const router = new VueRouter({
   ]
 })
 ```
-在 Fes.js 里约定在 `.vue` 文件中的 `config` 为 `meta` 配置。如果 'pages/a.vue' 中有如下配置：
+在 Fes.js 里约定在 `.vue` 文件中的 `config` 为 `meta` 配置。如果 `pages/a.vue` 中有如下配置：
 ```vue
 <config>
 {
@@ -192,7 +192,7 @@ const router = new VueRouter({
 </config>
 ```
 则编译后的路由配置为：
-```js
+```js{5-8}
 [
     { 
         path: '/a', 
@@ -213,7 +213,7 @@ const router = new VueRouter({
 - 根段(`/`)再1分
 - 通配符(`*`)匹配到的减去1分
 
-当我们跳转路由时，如果URL匹配到多个路由，则选择分数最高的路由。
+当我们跳转路由时，如果 URL 匹配到多个路由，则选择分数最高的路由。
 
 ## 路由跳转
 

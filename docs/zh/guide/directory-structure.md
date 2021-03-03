@@ -1,6 +1,6 @@
 # 目录结构
 
-在[快速入门](./getting-started.html)中，大家对框架应该有初步的印象，接下来我们了解下目录结构。Fes.js遵循 `约定优于配置` 的原则，一个基础的 Fes.js 项目大致是这样的。
+在[快速上手](./getting-started.html)中，大家对框架应该有初步的印象，接下来我们了解下目录结构。Fes.js遵循 `约定优于配置` 的原则，一个基础的 Fes.js 项目大致是这样的。
 ```
 fes-template
 ├── package.json
@@ -44,7 +44,7 @@ process.env.FES_ENV = 'prod';
 ```
 
 #### mock.js
-mock 文件。
+mock 配置文件。
 
 ### dist 目录
 执行 `fes build` 后，产物默认会存放在这里。
