@@ -4,16 +4,12 @@ export default (api) => {
         config: {
             schema(joi) {
                 return joi
-                    .object({
-                        options: joi.object(),
-                        pages: joi.object()
-                    })
+                    .object()
                     .description(
                         'more html-webpack-plugin options see https://github.com/jantimon/html-webpack-plugin#configuration'
                     );
             },
             default: {
-                options: {}
             }
         }
     });

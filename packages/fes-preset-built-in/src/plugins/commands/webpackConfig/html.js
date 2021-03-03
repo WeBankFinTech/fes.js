@@ -1,5 +1,6 @@
 import { join, resolve } from 'path';
 import { existsSync } from 'fs';
+import resolveDefine from './resolveDefine';
 
 export default async function createHtmlWebpackConfig({
     cwd,
@@ -10,8 +11,10 @@ export default async function createHtmlWebpackConfig({
 }) {
     const htmlOptions = {
         filename: '[name].html',
-        ...config.html.options
+        ...config.html,
+        templateParameters: resolveDefine(null, true)
     };
+    htmlOptions.title = htmlOptions.title || 'fes.js';
 
 
     if (isProd) {
