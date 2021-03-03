@@ -19,9 +19,12 @@ export function onRouterCreated({ router }) {
                 initialValue: {}
             });
             if (runtimeConfig.noAccessHandler && typeof runtimeConfig.noAccessHandler === 'function') {
-                runtimeConfig.noAccessHandler(router, to, from);
+                runtimeConfig.noAccessHandler({
+                    router, to, from, next
+                });
+            } else {
+                next(false);
             }
-            next(false);
         }
     });
 }
