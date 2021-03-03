@@ -163,6 +163,12 @@ export default async function getConfig({
     });
 
     // --------------- js -----------
+    // https://webpack.docschina.org/configuration/module/#resolve-fully-specified
+    webpackConfig.module
+        .rule('esm')
+        .test(/\.m?jsx?$/)
+        .resolve.set('fullySpecified', false);
+
     webpackConfig.module
         .rule('js')
         .test(/\.(js|mjs|jsx)$/)
