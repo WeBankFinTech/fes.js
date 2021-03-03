@@ -5,8 +5,12 @@
 
 比如插件 `/node_modules/@webank/fes-plugin-foo/index.js`，通常来说，其 `id` 为 `@webank/fes-plugin-foo`，`key` 为 `foo`。
 
-## 启用插件
-插件有多种启用方式
+::: tip
+id 一般用不上，对于普通开发者 key 用来配置插件，而插件开发者可以使用 key 判断是否安装某个插件。 
+:::
+
+## 启动插件
+有多种方式引入插件
 
 ### package.json 依赖
 Fes.js 会自动检测 `dependencies` 和 `devDependencies` 里的 fes 插件，比如：
@@ -32,16 +36,17 @@ export default {
 1. 项目相对路径的插件
 2. 非 npm 包入口文件的插件
 
-注意：
-- 请不要配置 npm 包的插件，否则会报重复注册的错误
+::: warning
+请不要配置 npm 包的插件，否则会报重复注册的错误
+:::
 
 ### 环境变量
 还可通过环境变量 `FES_PRESETS` 和 `FES_PLUGINS` 注册额外插件。
 
 比如：
-
-$ FES_PRESETS=/a/b/preset.js fes dev
-
+```bash
+FES_PRESETS=/a/b/preset.js fes dev
+```
 
 ## 禁用插件
 
@@ -51,7 +56,7 @@ export default {
     mock: false,
 }
 ```
-会禁用 Fes.js 内置的 mock 插件及其功能。
+Mock 插件的 `key` 是 `mock`，我们在配置文件中配置 `mock` 为 `false`，则会禁用 Mock 插件及其功能。
 
 ## 配置插件
 
@@ -63,4 +68,4 @@ export default {
     }
 }
 ```
-这里的 `mock` 是 `mock` 插件的 key。
+这里的 `mock` 是 Mock插件 的 key。
