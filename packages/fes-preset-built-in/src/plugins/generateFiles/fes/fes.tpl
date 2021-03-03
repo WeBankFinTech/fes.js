@@ -81,7 +81,8 @@ const beforeRender = async () => {
         try {
             initialState = await beforeRenderConfig.action();
         } catch(e){
-            console.error(`[fes] beforeRender执行出现异常`)
+            console.error(`[fes] beforeRender执行出现异常：`);
+            console.error(e);
         }
         app.unmount();
     }
