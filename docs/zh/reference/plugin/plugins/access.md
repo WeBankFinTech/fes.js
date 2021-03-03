@@ -57,6 +57,16 @@ export default {
 }
 ```
 
+#### roles
+- **类型**：对象
+  
+- **默认值**：`{}`
+
+- **详情**：     
+  
+  角色预定义列表。`key` 是角色 Id ，`value`是角色 Id 对应的资源列表。
+
+
 ### 运行时配置
 在 `app.js` 中配置：
 ```js
@@ -68,11 +78,47 @@ export const access = {
 };
 
 ```
+#### noAccessHandler
+- **类型**：函数
+  
+- **默认值**：null
+
+- **详情**：     
+  
+  当进入某个路由时，如果路由对应的页面不属于可见资源列表，则会暂停进入，调用 `noAccessHandler` 函数。
+- **参数**
+  - router
+  - to
+  - from
+  - next
 
 ## API
 
-### 函数
+### access
+```js
+import { access } from '@webank/fes-plugin-access'
+```
 
-### 指令
+#### access.hasAccess
+判断一个资源是否拥有权限
 
-### 组件
+- **类型**：函数
+  
+- **详情**：判断某个资源是否可见。
+- **参数**：
+  - accessId，资源Id
+
+#### access.hasLoading
+
+
+#### access.setRole
+
+#### access.setAccess
+    
+#### access.addAccess
+
+### useAccess
+
+### v-access
+
+### 组件 Access
