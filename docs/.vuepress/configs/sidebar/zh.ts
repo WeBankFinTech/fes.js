@@ -40,13 +40,6 @@ export const zh: SidebarConfig = {
   '/zh/reference/plugin/': [
     {
       isGroup: true,
-      text: '指南',
-      children: [
-        '/zh/reference/plugin/README.md',
-      ],
-    },
-    {
-      isGroup: true,
       text: 'Presets',
       children: [
       ],

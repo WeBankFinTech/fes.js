@@ -1,10 +1,10 @@
 # 路由
 
-像Vue、React这类框架是用组件化搭建页面，路由解决的是路径到组件的匹配问题。Fes.js 基于 `Vue Router` 实现的路由，想了解更多的同学可以看看[官方文档](https://next.router.vuejs.org/)。
+像 Vue 、React 这类框架是用组件化搭建页面，路由解决的是路径到组件的匹配问题。Fes.js 基于 `Vue Router` 实现的路由，想了解更多的同学可以看看[官方文档](https://next.router.vuejs.org/)。
 
 ## 路由配置
 
-在配置文件（.fes.js）中通过 router 进行配置，格式为路由信息的数组。
+在配置文件 `.fes.js`中通过 `router` 进行配置。
 ```js
 export default {
     router: {
@@ -15,11 +15,11 @@ export default {
 ```
 
 ### routes
-添加到路由的初始路由列表。具体使用参考 [Vue Router 文档](https://next.router.vuejs.org/zh/guide/)中关于路由配置、路由匹配相关内容。
+`routes` 是配置添加到路由的初始路由列表，格式为路由信息的数组。具体使用参考 [Vue Router 文档](https://next.router.vuejs.org/zh/guide/) 中关于路由配置、路由匹配相关内容。
 
 
 ### mode 
-创建 Histroy 的类型：
+创建历史记录的类型：
 - **h5**，对应 [createWebHistory](https://next.router.vuejs.org/zh/api/#createwebhistory)
 - **hash**，对应 [createWebHashHistory](https://next.router.vuejs.org/zh/api/#createWebHashHistory)
 - **memory**，对应 [createMemoryHistory](https://next.router.vuejs.org/zh/api/#createWebHashHistory)
@@ -104,8 +104,8 @@ pages
 ```
 
 **需要注意的是，满足以下任意规则的文件不会被注册为路由**：
-- 不是 .vue 文件
-- components 目录中的文件
+- 不是 `.vue` 文件
+- `components` 目录中的文件
 
 
 ### 动态路由

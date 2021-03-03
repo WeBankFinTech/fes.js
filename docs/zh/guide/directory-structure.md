@@ -1,6 +1,6 @@
 # 目录结构
 
-在[快速上手](./getting-started.html)中，大家对框架应该有初步的印象，接下来我们了解下目录结构。Fes.js遵循 `约定优于配置` 的原则，一个基础的 Fes.js 项目大致是这样的。
+在[快速上手](./getting-started.html)中，大家对框架应该有初步的印象，接下来我们了解下目录结构。Fes.js 遵循 `约定优于配置` 的原则，一个基础的 Fes.js 项目大致是这样的：
 ```
 fes-template
 ├── package.json
@@ -24,7 +24,7 @@ fes-template
 包含插件和插件集，以 `@webank/fes-preset-`、`@webank/fes-plugin-`、`fes-preset-` 和 `fes-plugin-` 开头的依赖会被自动注册为插件或插件集。
 
 #### tsconfig.json
-支持`@webank/fes`和使用`@`的API提示
+解决 `@webank/fes` 和使用 `@` 的 API 提示
 
 #### .fes.js
 配置文件，包含 Fes.js 内置功能和插件的配置。
@@ -32,7 +32,7 @@ fes-template
 #### .env
 定义环境变量。
 
-比如`.env`文件内容如下：
+比如 `.env` 文件内容如下：
 ```
 PORT=8888
 FES_ENV=prod
@@ -44,7 +44,7 @@ process.env.FES_ENV = 'prod';
 ```
 
 #### mock.js
-mock 配置文件。
+mock 数据的配置文件。
 
 ### dist 目录
 执行 `fes build` 后，产物默认会存放在这里。
@@ -58,7 +58,7 @@ mock 配置文件。
 ### src 目录
 
 #### .fes 目录
-临时文件目录，比如入口文件、路由等，都会被临时生成到这里。不要提交 .fes 目录到 git 仓库，他们会在 fes dev 和 fes build 时被删除并重新生成。
+临时文件目录，比如入口文件、路由等，都会被临时生成到这里。不要提交 `.fes` 目录到 `git` 仓库，他们会在 `fes dev` 和 `fes build` 时被删除并重新生成。
 
 #### pages 目录
 所有路由组件存放在这里。
