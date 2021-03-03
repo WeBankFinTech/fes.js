@@ -6,6 +6,9 @@ export default {
     define: {
         __DEV__: false
     },
+    html: {
+        title: '海贼王'
+    },
     publicPath: '/',
     access: {
         roles: {
