@@ -3,7 +3,7 @@ import { resolve } from 'path';
 import { chokidar, lodash } from '@umijs/utils';
 import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
-import Mock from 'mockjs';
+import mockjs from 'mockjs';
 
 export default (api) => {
     let mockFlag = false; // mock 开关flag
@@ -76,7 +76,9 @@ export default (api) => {
             if (!option.url || !option.result) return;
             requestList.push(option);
         };
-        cgiMock.file = function (file) {
+
+        const utils = {};
+        utils.file = function (file) {
             return readFileSync(parsePath(file));
         };
 
@@ -98,9 +100,9 @@ export default (api) => {
             if (!lodash.isFunction(projectMock)) {
                 api.logger.info('mock.js should export Function'); return;
             }
-            projectMock({ cgiMock, Mock });
+            projectMock({ cgiMock, mockjs, utils });
         } catch (err) {
-            api.logger.info('mock.js run fail!');
+            api.logger.error('mock.js run fail!');
         }
 
         return (req, res, next) => {

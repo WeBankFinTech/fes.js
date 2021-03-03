@@ -1,5 +1,5 @@
-module.exports = ({ cgiMock, Mock }) => {
-    const { Random } = Mock;
+module.exports = function ({ cgiMock, mockjs, utils }) {
+    const { Random } = mockjs;
 
     // 测试 proxy 与 mock 用例集合
     cgiMock('/movie/in_theaters_mock', (req, res) => {
@@ -48,7 +48,7 @@ module.exports = ({ cgiMock, Mock }) => {
     cgiMock('/text', Random.cparagraph());
 
     // 返回一个字符串 利用 mock.js 产生随机字符
-    cgiMock('/random', Mock.mock({
+    cgiMock('/random', mockjs.mock({
         'string|1-10': '★'
     }));
 
@@ -61,7 +61,7 @@ module.exports = ({ cgiMock, Mock }) => {
     });
 
     // 返回文本 readFileSync
-    cgiMock('/file', cgiMock.file('./package.json'));
+    cgiMock('/file', utils.file('./package.json'));
 
     // 更复杂的规则配置
     cgiMock({
