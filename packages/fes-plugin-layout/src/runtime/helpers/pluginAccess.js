@@ -7,29 +7,29 @@ if (!useAccess) {
     );
 }
 
-const hasAccess = (item) => {
+export const hasAccessByMenuItem = (item) => {
     let res;
     if (item.path && (!item.children || item.children.length === 0)) {
         res = useAccess(item.path);
     } else if (item.children && item.children.length > 0) {
-        res = computed(() => item.children.some(child => hasAccess(child)));
+        res = computed(() => item.children.some(child => hasAccessByMenuItem(child)));
     }
     return res;
 };
 
-const addAcessTag = (arr) => {
+const _addAccessTag = (arr) => {
     if (Array.isArray(arr)) {
         arr.forEach((item) => {
-            item.access = hasAccess(item);
+            item.access = hasAccessByMenuItem(item);
             if (item.children && item.children.length > 0) {
-                addAcessTag(item.children);
+                _addAccessTag(item.children);
             }
         });
     }
 };
 
-export default function (menus) {
+export const addAccessTag = (menus) => {
     const originData = unref(menus);
-    addAcessTag(originData);
+    _addAccessTag(originData);
     return originData;
-}
+};

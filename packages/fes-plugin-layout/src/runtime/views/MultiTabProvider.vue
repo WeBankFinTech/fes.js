@@ -1,18 +1,18 @@
 <template>
     <a-tabs
         :activeKey="route.path"
-        @tabClick="switchPage"
         class="layout-content-tabs"
         hide-add
         type="editable-card"
+        @tabClick="switchPage"
     >
         <a-tab-pane v-for="page in pageList" :key="page.path" closable>
             <template #tab>
                 {{page.name}}
                 <ReloadOutlined
                     v-show="route.path === page.path"
-                    @click="reloadPage(page.path)"
                     class="layout-tabs-close-icon"
+                    @click="reloadPage(page.path)"
                 />
             </template>
         </a-tab-pane>
@@ -36,7 +36,7 @@
     </a-tabs>
     <router-view v-slot="{ Component, route }">
         <keep-alive>
-            <component :key="getPageKey(route)" :is="Component" />
+            <component :is="Component" :key="getPageKey(route)" />
         </keep-alive>
     </router-view>
 </template>
