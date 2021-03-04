@@ -12,7 +12,7 @@
     "bootstrap": "lerna bootstrap",
     "build": "father-build --watch",
     "ver": "lerna version prerelease --preid rc --no-changelog --no-commit-hooks --no-private",
-    "release": "father-build && lerna publish from-git --dist-tag next",
+    "release": "father-build && lerna publish from-git",
     "docs:dev": "vuepress dev docs --clean-cache",
     "docs:build": "vuepress build docs --clean-cache"
   },
