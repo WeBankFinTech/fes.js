@@ -250,11 +250,13 @@ export default async function getConfig({
         };
     }))].filter(Boolean);
     // const publicCopyIgnore = ['.DS_Store'];
-    webpackConfig
-        .plugin('copy')
-        .use(require.resolve('copy-webpack-plugin'), [{
-            patterns: copyPatterns
-        }]);
+    if (copyPatterns.length) {
+        webpackConfig
+            .plugin('copy')
+            .use(require.resolve('copy-webpack-plugin'), [{
+                patterns: copyPatterns
+            }]);
+    }
 
     // --------------- define -----------
     createDefineWebpackConfig({
