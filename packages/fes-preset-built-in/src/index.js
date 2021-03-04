@@ -28,6 +28,7 @@ export default function () {
             require.resolve('./plugins/features/extraBabelPresets'),
             require.resolve('./plugins/features/extraPostCSSPlugins'),
             require.resolve('./plugins/features/html'),
+            require.resolve('./plugins/features/globalCSS'),
             require.resolve('./plugins/features/inlineLimit'),
             require.resolve('./plugins/features/lessLoader'),
             require.resolve('./plugins/features/mountElementId'),
