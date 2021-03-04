@@ -63,6 +63,18 @@ export default {
             ]
         });
         console.log(roles);
+        console.log(enums.get('status', {
+            extend: [
+                {
+                    key: 'name',
+                    dir: 'value'
+                },
+                {
+                    key: 'disabled',
+                    transfer: item => item.key === '0'
+                }
+            ]
+        }));
         onMounted(() => {
             console.log(router);
             setTimeout(() => {
