@@ -2,9 +2,10 @@ import {
     winPath
 } from '@umijs/utils';
 
-function getBabelOpts({
+function getBableOpts({
     cwd,
     targets,
+    config,
     presetOpts
 }) {
     const presets = [
@@ -19,7 +20,8 @@ function getBabelOpts({
                 },
                 modules: false
             }
-        ]
+        ],
+        ...(config.extraBabelPresets || [])
     ];
     const plugins = [
         require('@babel/plugin-proposal-export-default-from').default,
@@ -45,7 +47,8 @@ function getBabelOpts({
                 importOpts.libraryName
             ])
             : []),
-        require.resolve('@vue/babel-plugin-jsx')
+        require.resolve('@vue/babel-plugin-jsx'),
+        ...(config.extraBabelPresets || [])
     ];
     return {
         babelrc: false,
@@ -62,6 +65,7 @@ function getBabelOpts({
 
 export default async ({
     cwd,
+    config,
     modifyBabelOpts,
     modifyBabelPresetOpts,
     targets
@@ -72,8 +76,9 @@ export default async ({
     if (modifyBabelPresetOpts) {
         presetOpts = await modifyBabelPresetOpts(presetOpts);
     }
-    let babelOpts = getBabelOpts({
+    let babelOpts = getBableOpts({
         cwd,
+        config,
         presetOpts,
         targets
     });
