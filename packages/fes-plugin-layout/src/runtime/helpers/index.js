@@ -27,7 +27,7 @@ const matchPath = (config, path) => {
         for (let i = 0; i < config.length; i++) {
             const item = config[i];
             if (item.path && item.path === path) {
-                res = item.meta;
+                res = item.meta || {};
                 res.path = item.path;
                 break;
             }

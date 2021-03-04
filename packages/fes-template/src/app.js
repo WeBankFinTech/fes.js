@@ -21,25 +21,10 @@ export const beforeRender = {
 
 export const layout = {
     customHeader: <UserCenter />
-};
-
-export const access = {
-    unAccessHandler({ to, next }) {
-        const accesssIds = accessApi.getAccess();
-        if (to.path === '/404') {
-            accessApi.setAccess(accesssIds.concat(['/404']));
-            return next('/404');
-        }
-        if (!accesssIds.includes('/403')) {
-            accessApi.setAccess(accesssIds.concat(['/403']));
-        }
-        next('/403');
-    },
-    noFoundHandler({ next }) {
-        const accesssIds = accessApi.getAccess();
-        if (!accesssIds.includes('/404')) {
-            accessApi.setAccess(accesssIds.concat(['/404']));
-        }
-        next('/404');
-    }
+    // unAccessHandler({ next }) {
+    //     next(false);
+    // },
+    // noFoundHandler({ next }) {
+    //     next(false);
+    // }
 };
