@@ -111,7 +111,7 @@ function format(_enum = [], extend = []) {
  * @param dir 
  */
 function parseValueDir(value, dir='value') {
-    if (['object', 'function'].indexOf(typeof value) || !value || !dir) return value
+    if (!['object', 'function'].includes(typeof value) || !value || !dir) return value
     if (dir.startsWith('[')) {
         let key = dir.slice(1, dir.indexOf(']'))
         return parseValueDir(value[key], dir.slice(dir.indexOf(']') + 1))
@@ -133,7 +133,7 @@ function parseValueDir(value, dir='value') {
  * 转换传入的枚举数组
  * @param {string} name 枚举名称
  * @param {Array<Object|Array>} _enum 枚举数组，数组元素可以是数组或者对象
- * @param {{keyName: 'key', valueName: string}} opt keyName: 指定枚举键名称取值属性 valueName 指定枚举键值取值属性
+ * @param {keyName: string, valueName: string} opt keyName: 指定枚举键名称取值属性 valueName 指定枚举键值取值属性
  */
 function convert(name, _enum, opt = { keyName: '', valueName: '' }) {
     if (!name) {
