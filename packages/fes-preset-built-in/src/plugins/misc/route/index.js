@@ -57,14 +57,15 @@ const getRoutePath = function (parentRoutePath, fileName) {
     if (fileName === 'index') {
         fileName = '';
     }
-    let routePath = posix.join(parentRoutePath, fileName);
     // /@id.vue -> /:id
-    routePath = routePath.replace(/@/g, ':');
-    // /*.vue -> *
-    if (routePath === '/*') {
-        routePath = '*';
+    if (fileName.startsWith('@')) {
+        fileName = fileName.replace(/@/, ':');
     }
-    return routePath;
+    // /*.vue -> :pathMatch(.*)
+    if (fileName.includes('*')) {
+        fileName = fileName.replace('*', ':pathMatch(.*)');
+    }
+    return posix.join(parentRoutePath, fileName);
 };
 
 // TODO 约定 layout 目录作为布局文件夹，
@@ -140,7 +141,7 @@ const genRoutes = function (parentRoutes, path, parentRoutePath, config) {
 
  * @param {*} routes
  */
-const fix = function (routes) {
+const rank = function (routes) {
     routes.forEach((item) => {
         const path = item.path;
         let arr = path.split('/');
@@ -150,9 +151,9 @@ const fix = function (routes) {
         let count = 0;
         arr.forEach((sonPath) => {
             count += 4;
-            if (sonPath.indexOf(':') !== -1) {
+            if (sonPath.indexOf(':') !== -1 && sonPath.indexOf(':pathMatch(.*)') === -1) {
                 count += 2;
-            } else if (sonPath.indexOf('*') !== -1) {
+            } else if (sonPath.indexOf(':pathMatch(.*)') !== -1) {
                 count -= 1;
             } else if (sonPath === '') {
                 count += 1;
@@ -162,7 +163,7 @@ const fix = function (routes) {
         });
         item.count = count;
         if (item.children && item.children.length) {
-            fix(item.children);
+            rank(item.children);
         }
     });
     routes = routes.sort((a, b) => b.count - a.count);
@@ -175,7 +176,7 @@ const getRoutes = function ({ config, absPagesPath }) {
 
     const routes = [];
     genRoutes(routes, absPagesPath, '/', config);
-    fix(routes);
+    rank(routes);
     return routes;
 };
 

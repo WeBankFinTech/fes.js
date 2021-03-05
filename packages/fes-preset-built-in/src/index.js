@@ -43,6 +43,7 @@ export default function () {
             require.resolve('./plugins/features/nodeModulesTransform'),
             require.resolve('./plugins/features/vueLoader'),
             require.resolve('./plugins/features/mock'),
+            require.resolve('./plugins/features/dynamicImport'),
 
             // misc
             require.resolve('./plugins/misc/route'),

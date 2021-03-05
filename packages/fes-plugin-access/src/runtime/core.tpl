@@ -1,4 +1,4 @@
-import { reactive, computed, inject } from "vue";
+import { reactive, unref, computed, inject } from "vue";
 import createDirective from "./createDirective";
 import createComponent from "./createComponent";
 
@@ -56,12 +56,9 @@ const setAccess = (accessIds) => {
     state.currentAccessIds = accessIds;
 };
 
-const addAccess = (accessId) => {
-    if (typeof accessId !== 'string') {
-        throw new Error("[plugin-access]: argument to the addAccess() must be string");
-    }
-    state.currentAccessIds.push(accessId);
-};
+const getAccess = () => {
+    return state.currentAccessIds.slice(0)
+}
 
 const _syncSetRoleId = (promise) => {
     rolePromiseList.push(promise);
@@ -116,12 +113,12 @@ const match = (path, accessIds) => {
     return false;
 };
 
-const hasLoading = () => {
+const isDataReady = () => {
     return rolePromiseList.length || accessPromiseList.length;
 };
 
 const hasAccess = async (path) => {
-    if (!hasLoading()) {
+    if (!isDataReady()) {
         return match(path, getAllowAccessIds());
     }
     await Promise.all(rolePromiseList.concat(accessPromiseList));
@@ -132,7 +129,7 @@ export const install = (app) => {
     const allowPageIds = computed(getAllowAccessIds);
     const useAccess = (path) => {
         const result = computed(() => {
-            return match(path, allowPageIds.value);
+            return match(unref(path), allowPageIds.value);
         });
         return result;
     };
@@ -143,10 +140,10 @@ export const install = (app) => {
 
 export const access = {
     hasAccess,
-    hasLoading,
+    isDataReady,
     setRole,
     setAccess,
-    addAccess
+    getAccess,
 };
 
 export const useAccess = (path) => {

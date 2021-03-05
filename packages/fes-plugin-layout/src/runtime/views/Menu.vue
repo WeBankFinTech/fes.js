@@ -1,11 +1,11 @@
 <template>
     <a-menu
         :selectedKeys="selectedKeys"
-        @click="onMenuClick"
         :theme="theme"
         mode="inline"
+        @click="onMenuClick"
     >
-        <template v-for="(item, index) in menus" :key="index">
+        <template v-for="(item, index) in fixedMenus" :key="index">
             <template v-if="item.access">
                 <a-sub-menu v-if="item.children" :title="item.title">
                     <template
@@ -52,7 +52,7 @@ import 'ant-design-vue/lib/menu/style';
 import {
     UserOutlined
 } from '@ant-design/icons-vue';
-import addAccessTag from '../helpers/addAccessTag';
+import { addAccessTag } from '../helpers/pluginAccess';
 
 export default {
     components: {
@@ -93,7 +93,7 @@ export default {
         const selectedKeys = computed(() => [route.path]);
         return {
             selectedKeys,
-            menus: fixedMenus,
+            fixedMenus,
             onMenuClick
         };
     }

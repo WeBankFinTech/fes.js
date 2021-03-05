@@ -73,7 +73,6 @@ export default {
                 locale.setLocale({ lang: 'en-US' });
                 locale.addLocale({ lang: 'ja-JP', messages: { test: 'テスト' } });
                 console.log(locale.getAllLocales());
-                access.addAccess('/onepiece1');
             }, 2000);
             setTimeout(() => {
                 accessId.value = '11';

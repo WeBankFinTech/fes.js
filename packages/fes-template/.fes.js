@@ -12,7 +12,7 @@ export default {
     publicPath: '/',
     access: {
         roles: {
-            admin: ["/", "/onepiece", '/store']
+            admin: ["/"]
         }
     },
     request: {
@@ -52,5 +52,6 @@ export default {
     },
     vuex: {
         strict: true
-    }
+    },
+    dynamicImport: true
 };

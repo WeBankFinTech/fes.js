@@ -23,6 +23,8 @@ export default (api) => {
 
     const absFilePath = join(namespace, 'index.js');
 
+    const absRuntimeFilePath = join(namespace, 'runtime.js');
+
     api.onGenerateFiles(() => {
         const { name } = api.pkg;
 
@@ -53,6 +55,7 @@ export default (api) => {
         });
     });
 
+    api.addRuntimePlugin(() => `@@/${absRuntimeFilePath}`);
 
     // 把BaseLayout插入到路由配置中，作为根路由
     api.modifyRoutes(routes => [
