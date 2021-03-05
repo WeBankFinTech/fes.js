@@ -1,6 +1,6 @@
-import { parser } from '@umijs/utils';
+import { parser, winPath } from '@umijs/utils';
 import { readdirSync, readFileSync, statSync } from 'fs';
-import { join, sep } from 'path';
+import { join } from 'path';
 
 /**
  * 获取文件夹所有JS文件路径
@@ -10,7 +10,7 @@ function getDirFilePaths(dir) {
     const dirs = readdirSync(dir);
     let pathList = [];
     for (const name of dirs) {
-        const path = join(dir, name);
+        const path = winPath(join(dir, name));
         const info = statSync(path);
         if (info.isDirectory()) {
             pathList = pathList.concat(getDirFilePaths(path));
@@ -28,7 +28,7 @@ function getDirFilePaths(dir) {
 function pathToHump(path, root) {
     return path.replace(root, '')
         .replace('.js', '')
-        .replace(RegExp(`(${sep}|\\.|-|_)\\S`, 'g'), text => text[1].toUpperCase())
+        .replace(RegExp('(/|\\.|-|_)\\S', 'g'), text => text[1].toUpperCase())
         .replace(/\S/, text => text.toLowerCase());
 }
 
@@ -102,7 +102,7 @@ function parseModel(paths = [], root) {
     let GETTER_TYPES = {};
     paths.forEach((path) => {
         const moduleName = pathToHump(path, root);
-        importModules.push(`import ${moduleName} from '${path.replace(/\\/g, '\\\\')}'`);
+        importModules.push(`import ${moduleName} from '${path}'`);
         modules.push(moduleName);
         const content = readFileSync(path).toString('utf-8');
         let ast = parser.parse(content, {

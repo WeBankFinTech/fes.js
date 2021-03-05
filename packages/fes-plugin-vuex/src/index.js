@@ -1,5 +1,6 @@
 import { readFileSync } from 'fs';
 import { join } from 'path';
+import { winPath } from '@umijs/utils';
 import { parseStore } from './helper';
 
 const namespace = 'plugin-vuex';
@@ -23,7 +24,7 @@ export default (api) => {
     const absCoreFilePath = join(namespace, 'core.js');
     const absRuntimeFilePath = join(namespace, 'runtime.js');
     api.onGenerateFiles(() => {
-        const root = join(paths.absSrcPath, api.config.singular ? 'store' : 'stores');
+        const root = winPath(join(paths.absSrcPath, api.config.singular ? 'store' : 'stores'));
         const store = parseStore(root);
         const vuexConfig = api.config.vuex || {};
         // 文件写出
