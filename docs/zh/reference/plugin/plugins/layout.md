@@ -1,4 +1,4 @@
-# @webank/fes-plugin-layout
+# @fesjs/plugin-layout
 
 ## 介绍
 为了进一步降低研发成本，我们尝试将布局通过 fes 插件的方式内置，只需通过简单的配置即可拥有布局，包括导航以及侧边栏。从而做到用户无需关心布局。
@@ -6,8 +6,8 @@
 - 布局，提供 `side`、 `top`、`mixin` 三种布局。
 - 主题，提供 `light`、`dark` 两种主题。
 - 默认实现对路由的 404、403 处理。
-- 搭配 [@webank/fes-plugin-access](./access.html) 插件使用，可以完成对路由的权限控制。
-- 搭配 [@webank/fes-plugin-loacle](./locale.html) 插件使用，提供切换语言的能力。
+- 搭配 [@fesjs/plugin-access](./access.html) 插件使用，可以完成对路由的权限控制。
+- 搭配 [@fesjs/plugin-loacle](./locale.html) 插件使用，提供切换语言的能力。
 - 支持自定义头部区域。
   
 - 可配置页面是否需要 layout。
@@ -27,8 +27,8 @@
 ```json
 {
     "dependencies": {
-        "@webank/fes": "^2.0.0",
-        "@webank/fes-plugin-layout": "^2.0.0"
+        "@fesjs/fes": "^2.0.0",
+        "@fesjs/plugin-layout": "^2.0.0"
     },
 }
 ```

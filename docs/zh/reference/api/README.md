@@ -3,9 +3,9 @@ sidebar: auto
 ---
 
 # API
-Fes.js 统一了API的出口，所有运行时API（包含Fes.js内置API和插件提供的API）全部通过`@webank/fes`导出。
+Fes.js 统一了API的出口，所有运行时API（包含Fes.js内置API和插件提供的API）全部通过`@fesjs/fes`导出。
 ```js
-import { someApi  } from "@webank/fes"
+import { someApi  } from "@fesjs/fes"
 ```
 
 ## 基础API
@@ -73,7 +73,7 @@ Fes.js 路由基于 [Vue Router 4.0](https://next.router.vuejs.org/introduction.
 ### useRoute
 返回当前 `route` 实例，相当于在模板内使用 `$route`。必须在 `setup` 函数内调用。
 ```js
-import { useRoute } from "@webank/fes";
+import { useRoute } from "@fesjs/fes";
 export default {
     setup(){
         const route = useRoute()
@@ -84,7 +84,7 @@ export default {
 ### useRouter
 返回 `router` 实例，相当于在模板语法中使用 `$router`。必须在 `setup` 函数内调用。
 ```js
-import { useRouter } from "@webank/fes";
+import { useRouter } from "@fesjs/fes";
 export default {
     setup(){
         const router = useRouter()
@@ -95,7 +95,7 @@ export default {
 ### onBeforeRouteUpdate
 添加导航守卫，在当前路由即将更新时触发。类似于之前的`beforeRouteUpdate`，但是可用于任何组件。卸载组件时，将移除守卫。
 ```js
-import { onBeforeRouteUpdate } from "@webank/fes";
+import { onBeforeRouteUpdate } from "@fesjs/fes";
 export default {
     setup(){
         onBeforeRouteUpdate((to, from, next)=>{
@@ -106,7 +106,7 @@ export default {
 ### onBeforeRouteLeave
 添加导航守卫，在当前路由即将离开时触发。类似于之前的`beforeRouteLeave`，但可用于任何组件。卸载组件时，将移除守卫。
 ```js
-import { onBeforeRouteLeave } from "@webank/fes";
+import { onBeforeRouteLeave } from "@fesjs/fes";
 export default {
     setup(){
         onBeforeRouteLeave((to, from, next)=>{
@@ -146,7 +146,7 @@ export default {
 ### useLink
 返回的结果跟 RouterLink 的作用域插槽的属性一致，查看[官方API](https://next.router.vuejs.org/api/#router-link-s-v-slot)了解更多。
 ```js
-import { RouterLink, useLink } from '@webank/fes'
+import { RouterLink, useLink } from '@fesjs/fes'
 
 export default {
   name: 'AppLink',

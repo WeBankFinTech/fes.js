@@ -1,4 +1,4 @@
-# @webank/fes-plugin-access
+# @fesjs/plugin-access
 
 
 
@@ -37,8 +37,8 @@ Fes.js 用角色定义一组资源。当访问 Fes.js 应用时，使用插件�
 ```json
 {
     "dependencies": {
-        "@webank/fes": "^2.0.0",
-        "@webank/fes-plugin-access": "^2.0.0"
+        "@fesjs/fes": "^2.0.0",
+        "@fesjs/plugin-access": "^2.0.0"
     },
 }
 ```
@@ -133,9 +133,9 @@ export const access = {
 ## API
 
 ### access
-插件 API 通过 `@webank/fes` 导出：
+插件 API 通过 `@fesjs/fes` 导出：
 ```js
-import { access } from '@webank/fes'
+import { access } from '@fesjs/fes'
 ```
 
 #### access.hasAccess
@@ -153,7 +153,7 @@ import { access } from '@webank/fes'
 - **参数**：null
 - **返回值**：Boolean
 ```js
-import { access } from '@webank/fes';
+import { access } from '@fesjs/fes';
 console.log(access.isDataReady())
 ```
 
@@ -167,7 +167,7 @@ console.log(access.isDataReady())
     - String，对应着 `roles` 配置对象中的 `key`。
     - Promise，Promise resolve 的结果应对应着 `roles` 配置对象中的 `key`。
 ```js
-import { access } from '@webank/fes';
+import { access } from '@fesjs/fes';
 access.setRole(['admin'])
 ```
 
@@ -180,7 +180,7 @@ access.setRole(['admin'])
     - Array，数组项对应着 `roles` 配置对象中的 `key`。
     - Promise，Promise resolve 的结果应该是`Array<accessId>`。
 ```js
-import { access } from '@webank/fes';
+import { access } from '@fesjs/fes';
 access.setAccess(['/a', '/b', '/c'])
 ```
 
@@ -191,7 +191,7 @@ access.setAccess(['/a', '/b', '/c'])
 - **参数**：null
 
 ```js
-import { access } from '@webank/fes';
+import { access } from '@fesjs/fes';
 access.getAccess();
 ```
 
@@ -208,7 +208,7 @@ access.getAccess();
     <div v-if="accessOnepicess">accessOnepicess</div>
 </template>
 <script>
-import { useAccess } from '@webank/fes';
+import { useAccess } from '@fesjs/fes';
 export default {
     setup(){
         const accessOnepicess = useAccess('/onepiece1');

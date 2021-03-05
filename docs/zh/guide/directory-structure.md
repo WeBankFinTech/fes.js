@@ -21,10 +21,10 @@ fes-template
 ### 根目录
 
 #### package.json
-包含插件和插件集，以 `@webank/fes-preset-`、`@webank/fes-plugin-`、`fes-preset-` 和 `fes-plugin-` 开头的依赖会被自动注册为插件或插件集。
+包含插件和插件集，以 `@fesjs/preset-`、`@fesjs/plugin-`、`fes-preset-` 和 `fes-plugin-` 开头的依赖会被自动注册为插件或插件集。
 
 #### tsconfig.json
-解决 `@webank/fes` 和使用 `@` 的 API 提示
+解决 `@fesjs/fes` 和使用 `@` 的 API 提示
 
 #### .fes.js
 配置文件，包含 Fes.js 内置功能和插件的配置。

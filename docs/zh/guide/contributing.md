@@ -4,23 +4,23 @@
 
 项目仓库借助于 [Yarn Classic 工作区](https://classic.yarnpkg.com/zh-Hans/docs/workspaces) 来实现 [Monorepo](https://en.wikipedia.org/wiki/Monorepo) ，在 `packages` 目录下存放了多个互相关联的独立 Package 。
 
-- `@webank/create-fes-app`: 创建项目模板模块。提供`create-fes-app`命令，提供创建多种类型项目模板的能力。
+- `@fesjs/create-fes-app`: 创建项目模板模块。提供`create-fes-app`命令，提供创建多种类型项目模板的能力。
   
-- `@webank/fes`: 入口模块。提供`fes`命令和 API 入口。 
+- `@fesjs/fes`: 入口模块。提供`fes`命令和 API 入口。 
 
-- `@webank/fes-compiler`: 编译时插件管理模块。定义插件的生命周期、插件配置、插件通讯机制等。
+- `@fesjs/compiler`: 编译时插件管理模块。定义插件的生命周期、插件配置、插件通讯机制等。
 
-- `@webank/fes-runtime`: 运行时插件模块。集成了vue-router，定义运行时插件生命周期、插件通讯机制。
+- `@fesjs/runtime`: 运行时插件模块。集成了vue-router，定义运行时插件生命周期、插件通讯机制。
 
-- `@webank/fes-preset-build-in`: 内置插件集。包含`dev`、`build`等命令，集成webpack5+babel，提供方便编写插件的API，入口文件处理，路由处理等能力。
+- `@fesjs/preset-build-in`: 内置插件集。包含`dev`、`build`等命令，集成webpack5+babel，提供方便编写插件的API，入口文件处理，路由处理等能力。
 
-- `@webank/fes-template`: 适用于PC类型的模板项目。
+- `@fesjs/fes-template`: 适用于PC类型的模板项目。
 
-- `@webank/fes-template-h5`: 适用于H5类型的模板项目。
+- `@fesjs/fes-template-h5`: 适用于H5类型的模板项目。
 
-- `@webank/fes-plugin-${name}`: 官方插件。
+- `@fesjs/plugin-${name}`: 官方插件。
 
-- `@webank/fes`: 是 `@webank/compiler` + `@webank/fes-runtime` + `@webank/fes-preset-build-in` 的封装。用户只需要安装此依赖和额外的插件或者插件集。
+- `@fesjs/fes`: 是 `@fesjs/compiler` + `@fesjs/runtime` + `@fesjs/preset-build-in` 的封装。用户只需要安装此依赖和额外的插件或者插件集。
 
 ## 开发配置
 

@@ -1,4 +1,4 @@
-# @webank/fes-plugin-icon
+# @fesjs/plugin-icon
 
 ## 介绍
 
@@ -9,8 +9,8 @@
 ```json
 {
     "dependencies": {
-        "@webank/fes": "^2.0.0",
-        "@webank/fes-plugin-icon": "^2.0.0"
+        "@fesjs/fes": "^2.0.0",
+        "@fesjs/plugin-icon": "^2.0.0"
     },
 }
 ```

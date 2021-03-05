@@ -1,4 +1,4 @@
-# @webank/fes-plugin-vuex
+# @fesjs/plugin-vuex
 ## 介绍
 集成vuex插件
 
@@ -14,8 +14,8 @@ vuex的提供的api直接导入使用
 ```json
 {
     "dependencies": {
-        "@webank/fes": "^2.0.0",
-        "@webank/fes-plugin-vuex": "^2.0.0"
+        "@fesjs/fes": "^2.0.0",
+        "@fesjs/plugin-vuex": "^2.0.0"
     }
 }
 ```
@@ -43,7 +43,7 @@ store.dispatch('user/login')
 使用该插件，可以利用导出的事件类型，如：
 ```js
 import { useStore } from 'vuex';
-import { MUTATION_TYPES, GETTER_TYPES, ACTION_TYPES } from '@webank/fes';
+import { MUTATION_TYPES, GETTER_TYPES, ACTION_TYPES } from '@fesjs/fes';
 const store = useStore();
 store.getters[GETTER_TYPES.user.address]
 store.commit(MUTATION_TYPES.counter.increment)

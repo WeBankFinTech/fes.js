@@ -22,7 +22,7 @@ Options:
 
 ```bash
 # 全局安装
-yarn global add @webank/create-fes-app
+yarn global add @fesjs/create-fes-app
 
 # 创建模板
 create-fes-app fes-app
@@ -34,7 +34,7 @@ create-fes-app fes-app
 
 ```bash
 # 全局安装
-npm i -g @webank/create-fes-app
+npm i -g @fesjs/create-fes-app
 
 # 创建模板
 create-fes-app fes-app
@@ -50,7 +50,7 @@ create-fes-app fes-app
 
 ```bash
 # 创建模板
-yarn create @webank/fes-app myapp
+yarn create @fesjs/fes-app myapp
 
 # 安装依赖
 yarn 
@@ -65,7 +65,7 @@ yarn dev
 
 ```bash
 # 创建模板
-npx @webank/create-fes-app myapp
+npx @fesjs/create-fes-app myapp
 
 # 安装依赖
 npm install 

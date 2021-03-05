@@ -1,6 +1,6 @@
 # 配置
 
-`fes` 在 `.fes.js` 文件中添加项目基础配置。一份常见的配置示例如下：
+Fes.js 约定 `.fes.js` 文件为项目基础配置文件，一份常见的配置示例如下：
 ```js
 export default {
     base: '/foo/',

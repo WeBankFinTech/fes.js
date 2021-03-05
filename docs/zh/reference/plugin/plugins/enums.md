@@ -1,4 +1,4 @@
-# @webank/fes-plugin-enums
+# @fesjs/plugin-enums
 ## 介绍
 日常业务开发中，有很多场景会使用到枚举值，比如select-options、table-column。
 
@@ -8,8 +8,8 @@
 ```json
 {
     "dependencies": {
-        "@webank/fes": "^2.0.0",
-        "@webank/fes-plugin-enums": "^2.0.0"
+        "@fesjs/fes": "^2.0.0",
+        "@fesjs/plugin-enums": "^2.0.0"
     }
 }
 ```
@@ -30,7 +30,7 @@ export default {
 ### 动态配置
 在业务代码中
 ```js
-import { enums } from '@webank/fes';
+import { enums } from '@fesjs/fes';
 // 动态添加
 enums.push('status', [['0', '无效的'], ['1', '有效的']]
 enums.get('status', '1') // 有效的
@@ -60,7 +60,7 @@ enums.get('status', '1') // 有效的
     </div>
 </template>
 <script>
-import { enums } from '@webank/fes';
+import { enums } from '@fesjs/fes';
 
 export default {
     setup() {

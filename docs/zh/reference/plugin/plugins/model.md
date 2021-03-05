@@ -1,4 +1,4 @@
-# @webank/fes-plugin-model
+# @fesjs/plugin-model
 
 
 ## 启用方式

@@ -221,7 +221,7 @@ export default {
 - 默认值： `false`
 - 详情：
 
-    配置是否启用单数模式的目录。 比如 `src/pages` 的约定在开启后为 `src/page` 目录，@webank/fes-plugins 插件也遵照此配置的约定。
+    配置是否启用单数模式的目录。 比如 `src/pages` 的约定在开启后为 `src/page` 目录，@fesjs/fes-plugins 插件也遵照此配置的约定。
 
 ## targets
 - 类型： `object`

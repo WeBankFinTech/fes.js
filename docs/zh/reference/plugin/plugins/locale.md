@@ -1,4 +1,4 @@
-# @webank/fes-plugin-locale
+# @fesjs/plugin-locale
 
 ## 介绍
 国际化插件，基于 [Vue I18n](https://github.com/intlify/vue-i18n-next)，用于解决 i18n 问题。
@@ -7,8 +7,8 @@
 ```json
 {
     "dependencies": {
-        "@webank/fes": "^2.0.0",
-        "@webank/fes-plugin-locale": "^2.0.0"
+        "@fesjs/fes": "^2.0.0",
+        "@fesjs/plugin-locale": "^2.0.0"
     },
 }
 ```
@@ -125,9 +125,9 @@ const localeShared = plugin.getShared("locale");
 ## API
 
 ### locale
-插件 API 通过 `@webank/fes` 导出：
+插件 API 通过 `@fesjs/fes` 导出：
 ```js
-import { locale } from '@webank/fes'
+import { locale } from '@fesjs/fes'
 ```
 
 #### locale.messages
@@ -143,7 +143,7 @@ import { locale } from '@webank/fes'
   - locale，语言的名称，应该是符合 `<lang>-<COUNTRY>` 规范的名称。
 - **返回值**：`null`
 ```js
-import { locale } from '@webank/fes';
+import { locale } from '@fesjs/fes';
 locale.setLocale({ locale: 'en-US' });
 ```
 
@@ -156,7 +156,7 @@ locale.setLocale({ locale: 'en-US' });
   - messages, 语言信息。
 - **返回值**：`null`
 ```js
-import { locale } from '@webank/fes'
+import { locale } from '@fesjs/fes'
 locale.addLocale({ locale: 'ja-JP', messages: { test: 'テスト' } });
 ```
 
@@ -168,7 +168,7 @@ locale.addLocale({ locale: 'ja-JP', messages: { test: 'テスト' } });
 - **参数**：null
 - **返回值**：`Array`
 ```js
-import { locale } from '@webank/fes';
+import { locale } from '@fesjs/fes';
 console.log(locale.getAllLocales());
 // ["en-US", "id-ID", "ja-JP", "pt-BR", "zh-CN", "zh-TW"]
 ```
@@ -186,7 +186,7 @@ Composition API, 只能在 `setup` 函数中使用，更多细节参考 [Vue I18
 </template>
 
 <script>
-import { useI18n } from '@webank/fes'
+import { useI18n } from '@fesjs/fes'
 
 export default {
  setup() {

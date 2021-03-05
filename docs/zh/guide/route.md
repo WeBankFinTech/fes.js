@@ -229,7 +229,7 @@ const router = new VueRouter({
 页面跳转 API 由 `router` 实例提供，查看 [Vue Rouer 文档](https://next.router.vuejs.org/zh/api/#router-%E6%96%B9%E6%B3%95)了解更多。
 
 ```js
-import { useRouter } from '@webank/fes';
+import { useRouter } from '@fesjs/fes';
 
 export default {
     setup(){

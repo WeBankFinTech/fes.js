@@ -1,4 +1,4 @@
-# @webank/fes-plugin-request
+# @fesjs/plugin-request
 
 基于 axios 封装的 request，内置防止重复请求、请求节流、错误处理等功能。
 ## 启用方式
@@ -7,8 +7,8 @@
 ```json
 {
     "dependencies": {
-        "@webank/fes": "^2.0.0",
-        "@webank/fes-plugin-request": "^2.0.0"
+        "@fesjs/fes": "^2.0.0",
+        "@fesjs/plugin-request": "^2.0.0"
     },
 }
 ```
@@ -66,7 +66,7 @@ export const request = {
 ### 发起一个普通 post 请求
 
 ```js
-import {request} from '@webank/fes';
+import {request} from '@fesjs/fes';
 
 request('/api/login', {
     username: 'robby',
@@ -81,7 +81,7 @@ request('/api/login', {
 ### 请求节流
 
 ```js
-import {request} from '@webank/fes';
+import {request} from '@fesjs/fes';
 
 request('/api/login', {
     username: 'robby',
@@ -98,7 +98,7 @@ request('/api/login', {
 ### 请求缓存
 
 ```js
-import {request} from '@webank/fes';
+import {request} from '@fesjs/fes';
 
 request('/api/login', {
     username: 'robby',
@@ -120,7 +120,7 @@ request('/api/login', {
 ### 结合 use 使用
 
 ```js
-import {useRequest} from '@webank/fes';
+import {useRequest} from '@fesjs/fes';
 
 
 export default {

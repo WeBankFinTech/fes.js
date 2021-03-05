@@ -1,4 +1,4 @@
-# @webank/fes-plugin-jest
+# @fesjs/plugin-jest
 ## 启用方式
 
 ## 配置
