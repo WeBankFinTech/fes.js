@@ -92,7 +92,7 @@ pages
                 "count": 5
             },
             {
-                "path": "*",
+                "path": "/:pathMatch(.*)",
                 "component": require('@/pages/*').default,
                 "name": "FUZZYMATCH",
                 "meta": {},
@@ -140,7 +140,7 @@ pages
 ```
 
 ### 模糊匹配
-Fes.js 下约定文件名为 `*` 的路由是模糊匹配路由，可以用此特性实现 `404` 路由。     
+Fes.js 下约定文件名为 `*` 的路由是模糊匹配路由，可以用此特性实现 [404 路由](https://next.router.vuejs.org/zh/guide/essentials/dynamic-matching.html#%E6%8D%95%E8%8E%B7%E6%89%80%E6%9C%89%E8%B7%AF%E7%94%B1%E6%88%96-404-not-found-%E8%B7%AF%E7%94%B1)。     
 
 比如以下目录结构：
 
@@ -156,7 +156,7 @@ pages
         path: '/', component: require('@/pages/index').default, count: 5
     },
     {
-        path: '*', component: require('@/pages/**').default, count: 3
+        path: '/:pathMatch(.*)', component: require('@/pages/**').default, count: 3
     }
 ]
 ```
@@ -216,6 +216,7 @@ const router = new VueRouter({
 当我们跳转路由时，如果 URL 匹配到多个路由，则选择分数最高的路由。
 
 ## 路由跳转
+想学习更多，可以查看 [Vue Router 官方文档](https://next.router.vuejs.org/zh/guide/essentials/navigation.html#%E6%9B%BF%E6%8D%A2%E5%BD%93%E5%89%8D%E4%BD%8D%E7%BD%AE)。
 
 ### 声明式
 ```vue

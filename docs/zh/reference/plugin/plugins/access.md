@@ -45,8 +45,8 @@ Fes.js 用角色定义一组资源。当访问 Fes.js 应用时，使用插件�
 
 ## 配置
 
-### 编译配置
-在 `.fes.js` 中配置：
+### 编译时配置
+在执行 `fes dev` 或者 `fes build` 时，通过此配置生成运行时的代码，在配置文件`.fes.js` 中配置：
 ```js
 export default {
     access: {
@@ -68,35 +68,74 @@ export default {
 
 
 ### 运行时配置
-在 `app.js` 中配置：
+在 `app.js` 中配置
+
+#### unAccessHandler
+- **类型**：`Function`
+  
+- **默认值**：`null`
+
+- **详情**：     
+  
+  当进入某个路由时，如果路由对应的页面不属于可见资源列表，则会暂停进入，调用 `unAccessHandler` 函数。
+- **参数**
+  - router：createRouter 创建的路由实例
+  - to： 准备进入的路由
+  - from：离开的路由
+  - next： [next函数](https://next.router.vuejs.org/zh/guide/advanced/navigation-guards.html#%E5%8F%AF%E9%80%89%E7%9A%84%E7%AC%AC%E4%B8%89%E4%B8%AA%E5%8F%82%E6%95%B0-next)
+
+比如：
 ```js
 export const access = {
-    noAccessHandler({ router, to, from, next}) {
-        console.log("被拦截");
-        next(false);
+    unAccessHandler({ to, next }) {
+        const accesssIds = accessApi.getAccess();
+        if (to.path === '/404') {
+            accessApi.setAccess(accesssIds.concat(['/404']));
+            return next('/404');
+        }
+        if (!accesssIds.includes('/403')) {
+            accessApi.setAccess(accesssIds.concat(['/403']));
+        }
+        next('/403');
     }
 };
 
 ```
-#### noAccessHandler
-- **类型**：函数
+
+#### noFoundHandler
+- **类型**：`Function`
   
-- **默认值**：null
+- **默认值**：`null`
 
 - **详情**：     
   
-  当进入某个路由时，如果路由对应的页面不属于可见资源列表，则会暂停进入，调用 `noAccessHandler` 函数。
+  当进入某个路由时，如果路由对应的页面不存在，则会调用 `noFoundHandler` 函数。
 - **参数**
-  - router
-  - to
-  - from
-  - next
+  - router：createRouter 创建的路由实例
+  - to： 准备进入的路由
+  - from：离开的路由
+  - next： [next函数](https://next.router.vuejs.org/zh/guide/advanced/navigation-guards.html#%E5%8F%AF%E9%80%89%E7%9A%84%E7%AC%AC%E4%B8%89%E4%B8%AA%E5%8F%82%E6%95%B0-next)
+
+比如：
+```js
+export const access = {
+    noFoundHandler({ next }) {
+        const accesssIds = accessApi.getAccess();
+        if (!accesssIds.includes('/404')) {
+            accessApi.setAccess(accesssIds.concat(['/404']));
+        }
+        next('/404');
+    }
+};
+
+```
 
 ## API
 
 ### access
+插件 API 通过 `@webank/fes` 导出：
 ```js
-import { access } from '@webank/fes-plugin-access'
+import { access } from '@webank/fes'
 ```
 
 #### access.hasAccess
@@ -107,15 +146,15 @@ import { access } from '@webank/fes-plugin-access'
   - accessId，资源Id
 - **返回值**：Boolean
 
-#### access.hasLoading
+#### access.isDataReady
 - **类型**：函数
   
-- **详情**：可以用异步数据来设置权限，`hasLoading` 用来判断异步数据是否已经加载完毕。
+- **详情**：可以用异步数据来设置权限，`isDataReady` 用来判断异步数据是否已经加载完毕。
 - **参数**：null
 - **返回值**：Boolean
 ```js
 import { access } from '@webank/fes';
-console.log(access.hasLoading())
+console.log(access.isDataReady())
 ```
 
 
@@ -145,16 +184,15 @@ import { access } from '@webank/fes';
 access.setAccess(['/a', '/b', '/c'])
 ```
 
-#### access.addAccess
+#### access.getAccess
 - **类型**：函数
   
-- **详情**：添加某个资源Id为可见。
-- **参数**：
-  - accessId，资源Id
+- **详情**：返回当前可见的资源列表。
+- **参数**：null
 
 ```js
 import { access } from '@webank/fes';
-access.addAccess("aaa");
+access.getAccess();
 ```
 
 ### useAccess
