@@ -35,7 +35,10 @@ const getDefaultLocale = () => {
             fallbackLocale: window.navigator.language,
         };
     }
-    return {};
+    return {
+        locale: 'zh-CN',
+        fallbackLocale: 'zh-CN',
+    };
 };
 
 const messages = {};
