@@ -52,21 +52,21 @@ const i18n = createI18n({
 });
 
 window.localStorage.setItem("fes_locale", i18n.global.locale);
-const setLocale = ({ lang }) => {
+const setLocale = ({ locale }) => {
     if (isRef(i18n.global.locale)) {
-        i18n.global.locale.value = lang;
+        i18n.global.locale.value = locale;
     } else {
-        i18n.global.locale = lang;
+        i18n.global.locale = locale;
     }
-    window.localStorage.setItem("fes_locale", lang);
+    window.localStorage.setItem("fes_locale", locale);
 };
 
-const addLocale = ({ lang, messages }) => {
-    messages[lang] = messages;
+const addLocale = ({ locale, messages }) => {
+    messages[locale] = messages;
     if (isRef(i18n.global.messages)) {
-        i18n.global.messages.value[lang] = messages;
+        i18n.global.messages.value[locale] = messages;
     } else {
-        i18n.global.messages[lang] = messages;
+        i18n.global.messages[locale] = messages;
     }
 };
 
