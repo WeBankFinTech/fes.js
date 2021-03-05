@@ -31,7 +31,27 @@ export default {
 - 详情：  
 
     设置路由前缀，通常用于部署到非根目录。比如你有路由 `/pageA`、`/pageB`，然后设置了 `base` 为 `/manage/`，那么就可以通过 `/manage/pageA`、`/manage/pageB` 访问到它们。
- 
+
+## chainWebpack
+
+- 类型：`function`
+- 默认值：`null`
+- 详情：
+
+    通过 [webpack-chain](https://github.com/neutrinojs/webpack-chain) 的 API 修改 webpack 配置。
+
+示例：
+
+```js
+export default {
+    chainWebpack(memo, { env, webpack }) {
+        // 删除 fes 内置插件
+        memo.plugins.delete('copy');
+    },
+}
+```
+
+
 ## cssLoader
 
 - 类型： `object`
@@ -99,6 +119,31 @@ export default {
 
     用户配置 sourcemap 类型。详见 [ webpack#devtool 配置](https://webpack.js.org/configuration/devtool/#devtool)。
 
+## dynamicImport
+
+- 类型： `boolean`
+- 默认值： false
+- 详情：
+
+    路由是否按需加载
+## externals
+
+- 类型：`object`
+- 默认值：`{}`
+- 详情：
+
+    设置哪些模块可以不被打包，通过 `<script>` 或其他方式引入。
+
+示例：
+
+```js
+export default {
+    externals: {
+      vue: 'window.Vue',
+    },
+}
+```
+
 ## extraPostCSSPlugins
 
 - 类型： `array`
@@ -155,17 +200,10 @@ export default {
 ## nodeModulesTransform
 
 - 类型： `object`
-- 默认值： `{ type: 'all' }`
+- 默认值： `{ exclude: [] }`
 - 详情：
 
-    设置 node_modules 目录下依赖文件的编译方式。子配置项包含：
-    - `type`，编译模式类型，可选 `all` 和 `none`。
-        - 默认值是 `all`，全部编译，然后可以通过 `exclude` 忽略不需要编译的依赖库。
-        - 当切换为 `none`，默认值编译 [es5-imcompatible-versions](https://github.com/umijs/es5-imcompatible-versions) 里声明的依赖，可通过 `exclude` 配置添加额外需要编译的。
-
-    - `exclude`，忽略的依赖库，包名，暂不支持绝对路径。
-
-    前者速度较慢，但可规避常见的兼容性等问题，后者反之。 
+    默认编译所有 `node_modules` 下的包，可以通过配置 `exclude` 来跳过某些包，以提高编译速度。
 
 ## outputPath
 
@@ -178,6 +216,30 @@ export default {
 ::: tip
 不允许设定为 `src`、`public`、`pages` 等约定目录。
 :::
+
+## plugins
+
+- 类型： `Array(string)`
+- 默认值： `[]`
+- 详情：
+
+    配置额外的 `fes` 插件。
+    数组项为指向插件的路径，可以是 npm 依赖、相对路径或绝对路径。如果是相对路径，则会从项目根目录开始找。
+
+- 示例：
+```js
+export default {
+  plugins: [
+    // npm 依赖
+    'fes-plugin-hello',
+    // 相对路径
+    './plugin',
+    // 绝对路径
+    `${__dirname}/plugin.js`,
+  ],
+};
+```
+
 
 ## postcssLoader
 
@@ -274,11 +336,4 @@ const defaultTerserOptions = {
 ```
 - 详情：
 
-    配置 [压缩器 terser 的配置项](https://github.com/terser/terser#minify-options)。
-## title
-
-- 类型： `string`
-- 默认值： `''`
-- 详情：
-
-    配置标题。
+    配置 [压缩器 terser 的配置项](https://github.com/terser/terser#minify-options)
