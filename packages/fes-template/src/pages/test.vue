@@ -2,7 +2,7 @@
     <div>test</div>
 </template>
 <script>
-import { } from '@webank/fes';
+import { } from '@fesjs/fes';
 
 export default {
 

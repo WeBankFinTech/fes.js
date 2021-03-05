@@ -14,7 +14,7 @@
 </config>
 <script>
 import { ref, onMounted } from 'vue';
-import { useRouter, useRequest } from '@webank/fes';
+import { useRouter, useRequest } from '@fesjs/fes';
 
 export default {
     setup() {

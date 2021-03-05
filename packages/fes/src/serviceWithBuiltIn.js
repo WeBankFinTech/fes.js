@@ -1,5 +1,5 @@
 import { dirname } from 'path';
-import { Service as CoreService } from '@webank/fes-compiler';
+import { Service as CoreService } from '@fesjs/compiler';
 
 class Service extends CoreService {
     constructor(opts) {
@@ -9,7 +9,7 @@ class Service extends CoreService {
         super({
             ...opts,
             presets: [
-                require.resolve('@webank/fes-preset-built-in'),
+                require.resolve('@fesjs/preset-built-in'),
                 ...(opts.presets || [])
             ],
             plugins: [...(opts.plugins || [])]

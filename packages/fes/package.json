@@ -1,5 +1,5 @@
 {
-    "name": "@webank/fes",
+    "name": "@fesjs/fes",
     "version": "2.0.0-rc.0",
     "description": "一个好用的前端管理台快速开发框架",
     "preferGlobal": true,
@@ -40,9 +40,9 @@
     ],
     "dependencies": {
         "@umijs/utils": "3.3.3",
-        "@webank/fes-compiler": "^2.0.0-rc.0",
-        "@webank/fes-preset-built-in": "^2.0.0-rc.0",
-        "@webank/fes-runtime": "^2.0.0-rc.0",
+        "@fesjs/compiler": "^2.0.0-rc.0",
+        "@fesjs/preset-built-in": "^2.0.0-rc.0",
+        "@fesjs/runtime": "^2.0.0-rc.0",
         "resolve-cwd": "^3.0.0"
     },
     "engines": {

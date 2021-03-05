@@ -12,6 +12,6 @@ export {
     createRouter,
     Plugin,
     ApplyPluginsType
-} from '@webank/fes-runtime';
+} from '@fesjs/runtime';
 
 CORE_EXPORTS

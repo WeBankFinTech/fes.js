@@ -1,5 +1,5 @@
 {
-  "name": "@webank/fes-template",
+  "name": "@fesjs/template",
   "version": "2.0.0-alpha",
   "description": "fes项目模版",
   "scripts": {
@@ -46,16 +46,16 @@
     "@webank/eslint-config-webank": "0.2.10"
   },
   "dependencies": {
-    "@webank/fes": "^2.0.0-rc.0",
-    "@webank/fes-plugin-access": "^2.0.0-rc.0",
-    "@webank/fes-plugin-layout": "^2.0.0-rc.0",
-    "@webank/fes-plugin-locale": "^2.0.0-rc.0",
-    "@webank/fes-plugin-model": "^2.0.0-rc.0",
-    "@webank/fes-plugin-enums": "^2.0.0-rc.0",
-    "@webank/fes-plugin-jest": "^2.0.0-rc.0",
-    "@webank/fes-plugin-vuex": "^2.0.0-rc.0",
+    "@fesjs/fes": "^2.0.0-rc.0",
+    "@fesjs/plugin-access": "^2.0.0-rc.0",
+    "@fesjs/plugin-layout": "^2.0.0-rc.0",
+    "@fesjs/plugin-locale": "^2.0.0-rc.0",
+    "@fesjs/plugin-model": "^2.0.0-rc.0",
+    "@fesjs/plugin-enums": "^2.0.0-rc.0",
+    "@fesjs/plugin-jest": "^2.0.0-rc.0",
+    "@fesjs/plugin-vuex": "^2.0.0-rc.0",
     "ant-design-vue": "2.0.0",
-    "vue": "3.0.5",
+    "vue": "^3.0.5",
     "vuex": "^4.0.0"
   },
   "private": true

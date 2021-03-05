@@ -12,8 +12,8 @@ import {
 import { PluginType } from '../enums';
 
 const RE = {
-    [PluginType.plugin]: /^(@webank\/)?fes-plugin-/,
-    [PluginType.preset]: /^(@webank\/)?fes-preset-/
+    [PluginType.plugin]: /^(@fesjs\/)?plugin-/,
+    [PluginType.preset]: /^(@fesjs\/)?preset-/
 };
 
 export function isPluginOrPreset(type, name) {
@@ -57,7 +57,7 @@ function nameToKey(name) {
 }
 
 function pkgNameToKey(pkgName, type) {
-    if (pkgName.charAt(0) === '@' && !pkgName.startsWith('@webank/')) {
+    if (pkgName.charAt(0) === '@' && !pkgName.startsWith('@fesjs/')) {
         pkgName = pkgName.split('/')[1];
     }
     return nameToKey(pkgName.replace(RE[type], ''));
@@ -84,7 +84,7 @@ export function pathToObj({ path, type, cwd }) {
     } else {
         id = winPath(path);
     }
-    id = id.replace('@webank/fes-preset-built-in/lib/plugins', '@@');
+    id = id.replace('@fesjs/preset-built-in/lib/plugins', '@@');
     id = id.replace(/\.js$/, '');
 
     const key = isPkgPlugin

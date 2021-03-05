@@ -1,7 +1,7 @@
 {
-  "name": "@webank/fes-plugin-access",
+  "name": "@fesjs/plugin-access",
   "version": "2.0.0-rc.0",
-  "description": "@webank/fes-plugin-access",
+  "description": "@fesjs/plugin-access",
   "main": "lib/index.js",
   "files": [
     "lib"
@@ -27,7 +27,7 @@
     "access": "public"
   },
   "peerDependencies": {
-    "@webank/fes": "^2.0.0-alpha.0",
-    "vue": "3.0.5"
+    "@fesjs/fes": "^2.0.0-rc.0",
+    "vue": "^3.0.5"
   }
 }

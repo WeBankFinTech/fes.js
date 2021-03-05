@@ -1,5 +1,5 @@
 
-import { Logger } from '@webank/fes-compiler';
+import { Logger } from '@fesjs/compiler';
 
 const logger = new Logger('fes:plugin-built-in');
 

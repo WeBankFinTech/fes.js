@@ -9,8 +9,8 @@ export default function (api) {
                     System: ['OS', 'CPU'],
                     Binaries: ['Node', 'Yarn', 'npm'],
                     Browsers: ['Chrome', 'Edge', 'Firefox', 'Safari'],
-                    npmPackages: ['@webank/fes', 'vue', 'vue-router'],
-                    npmGlobalPackages: ['@webank/fes']
+                    npmPackages: ['@fesjs/fes', 'vue', 'vue-router'],
+                    npmGlobalPackages: ['@fesjs/fes']
                 },
                 {
                     showNotFound: true,

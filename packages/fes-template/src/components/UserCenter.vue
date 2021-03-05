@@ -2,7 +2,7 @@
     <div>{{initialState.userName}}</div>
 </template>
 <script>
-import { useModel } from '@webank/fes';
+import { useModel } from '@fesjs/fes';
 
 export default {
     setup() {

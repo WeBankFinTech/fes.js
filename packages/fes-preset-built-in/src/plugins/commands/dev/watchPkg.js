@@ -1,7 +1,7 @@
 import { join } from 'path';
 import { chokidar, winPath, lodash } from '@umijs/utils';
 import { existsSync, readFileSync } from 'fs';
-import { isPluginOrPreset, PluginType } from '@webank/fes-compiler';
+import { isPluginOrPreset, PluginType } from '@fesjs/compiler';
 
 function getPlugins(opts) {
     return Object.keys({

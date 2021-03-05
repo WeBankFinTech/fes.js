@@ -1,7 +1,7 @@
 {
-  "name": "@webank/fes-plugin-icon",
+  "name": "@fesjs/plugin-icon",
   "version": "2.0.0-rc.0",
-  "description": "@webank/fes-plugin-icon",
+  "description": "@fesjs/plugin-icon",
   "main": "lib/index.js",
   "files": [
     "lib"
@@ -27,7 +27,7 @@
     "access": "public"
   },
   "peerDependencies": {
-    "vue": "3.0.5"
+    "vue": "^3.0.5"
   },
   "dependencies": {
     "svgo": "1.3.2"

@@ -16,7 +16,7 @@
 <script>
 import { computed, ref } from 'vue';
 import { useStore } from 'vuex';
-import { MUTATION_TYPES, GETTER_TYPES, ACTION_TYPES } from '@webank/fes';
+import { MUTATION_TYPES, GETTER_TYPES, ACTION_TYPES } from '@fesjs/fes';
 
 export default {
     setup() {

@@ -20,8 +20,8 @@
 <script>
 import { ref, onMounted } from 'vue';
 import {
-    access, useAccess, useRouter, useI18n, locale, enums, request
-} from '@webank/fes';
+    useAccess, useRouter, useI18n, locale, enums, request
+} from '@fesjs/fes';
 
 export default {
     setup() {

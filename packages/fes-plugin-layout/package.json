@@ -1,7 +1,7 @@
 {
-  "name": "@webank/fes-plugin-layout",
+  "name": "@fesjs/plugin-layout",
   "version": "2.0.0-rc.0",
-  "description": "@webank/fes-plugin-layout",
+  "description": "@fesjs/plugin-layout",
   "main": "lib/index.js",
   "files": [
     "lib"
@@ -31,8 +31,8 @@
   },
   "peerDependencies": {
     "@ant-design/icons-vue": "^5.1.6",
-    "@webank/fes": "^2.0.0-alpha.0",
+    "@fesjs/fes": "^2.0.0-rc.0",
     "ant-design-vue": "2.0.0",
-    "vue": "3.0.5"
+    "vue": "^3.0.5"
   }
 }

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { ApplyPluginsType, plugin } from '@webank/fes';
+import { ApplyPluginsType, plugin } from '@fesjs/fes';
 import { ref } from 'vue';
 import scheduler from './scheduler';
 import {

@@ -1,5 +1,5 @@
 {
-  "name": "@webank/fes-template-h5",
+  "name": "@fesjs/template-h5",
   "version": "2.0.0-alpha.1",
   "description": "fes 移动端项目模版",
   "scripts": {
@@ -44,10 +44,10 @@
     "postcss-px-to-viewport": "1.1.1"
   },
   "dependencies": {
-    "@webank/fes": "^2.0.0-alpha.0",
-    "@webank/fes-plugin-icon": "^2.0.0-alpha.0",
-    "@webank/fes-plugin-request": "^2.0.0-alpha.0",
-    "vue": "3.0.5"
+    "@fesjs/fes": "^2.0.0-rc.0",
+    "@fesjs/plugin-icon": "^2.0.0-rc.0",
+    "@fesjs/plugin-request": "^2.0.0-rc.0",
+    "vue": "^3.0.5"
   },
   "private": true
 }

@@ -28,7 +28,7 @@ export default (api) => {
     api.onGenerateFiles(() => {
         const { name } = api.pkg;
 
-        const HAS_LOCALE = api.hasPlugins(['@webank/fes-plugin-locale']);
+        const HAS_LOCALE = api.hasPlugins(['@fesjs/plugin-locale']);
 
         // .fes配置
         const userConfig = {

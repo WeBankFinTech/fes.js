@@ -1,4 +1,4 @@
-import { requestWrap } from '@webank/fes';
+import { requestWrap } from '@fesjs/fes';
 
 // TODO
 // 响应体控制
