@@ -4,574 +4,281 @@ sidebar: auto
 
 # 配置
 
-VuePress 配置的参考文档，可以通过配置文件来设置这些配置。 VuePress 约定的配置文件为（按照优先顺序）：
+以下配置项通过字母排序。
 
-- 当前工作目录 `cwd` 下：
-  - `vuepress.config.ts`
-  - `vuepress.config.js`
-- 源文件目录 `sourceDir` 下：
-  - `.vuepress/config.ts`
-  - `.vuepress/config.js`
+## alias
 
-你也可以通过 [命令行接口](./cli.md) 的 `--config` 选项来指定配置文件。
+- 类型： `object`
+- 默认值： `{}`
+- 详情：  
 
-## 站点配置
+    配置别名，对引用路径进行映射。
 
-### base
+- 示例：
+```js
+export default {
+    alias: {
+       main: 'src/assets/styles/main'
+    }
+}
+```
+然后 `import('main')`，实际上是 `import('src/assets/styles/main')`。
 
-- 类型： `string`
-
-- 默认值： `/`
-
-- 详情：
-
-  部署站点的基础路径。
-
-  如果你想让你的网站部署到一个子路径下，你将需要设置它。它的值应当总是以斜杠开始，并以斜杠结束。举例来说，如果你想将你的网站部署到 `https://foo.github.io/bar/`，那么 `base` 应该被设置成 `"/bar/"`。
-
-  `base` 将会作为前缀自动地插入到所有以 `/` 开始的其他选项的链接中，所以你只需要指定一次。
-
-- 参考：
-  - [指南 > 静态资源 > Base Helper](../guide/assets.md#base-helper)
-  - [指南 > 部署](../guide/deployment.md)
-
-### lang
+## base
 
 - 类型： `string`
-
-- 默认值： `en-US`
-
-- 详情：
-
-  站点的语言。
-
-  它将会在最终渲染出的 HTML 中作为 `<html>` 标签的 `lang` 属性。
-
-  它可以设置在不同语言的 locales 中。
-
-- 参考：
-  - [配置 > locales](#locales)
-
-### title
-
-- 类型： `string`
-
 - 默认值： `''`
+- 详情：  
 
-- 详情：
+    设置路由前缀，通常用于部署到非根目录。比如你有路由 `/pageA`、`/pageB`，然后设置了 `base` 为 `/manage/`，那么就可以通过 `/manage/pageA`、`/manage/pageB` 访问到它们。
+ 
+## cssLoader
 
-  站点的标题。
-
-  它将会作为所有页面标题的后缀，并且在默认主题的导航栏中显示。
-
-  它可以设置在不同语言的 locales 中。
-
-- 参考：
-  - [配置 > locales](#locales)
-
-### description
-
-- 类型： `string`
-
+- 类型： `object`
 - 默认值： `''`
+- 详情：  
 
-- 详情：
+    设置 [css-loader 配置项](https://github.com/webpack-contrib/css-loader#options)。
 
-  站点的描述。
+## copy
 
-  它将会在最终渲染出的 HTML 中作为 `<meta name="description" />` 标签的 `content` 属性。它会被每个页面的 Frontmatter 中的 `description` 字段覆盖。
-
-  它可以设置在不同语言的 locales 中。
-
-- 参考：
-  - [配置 > locales](#locales)
-  - [Frontmatter > description](./frontmatter.md#description)
-
-### head
-
-- 类型： `HeadConfig[]`
-
+- 类型： `Array(string)  ||  Array(object)`
 - 默认值： `[]`
-
 - 详情：
 
-  在最终渲染出的 HTML 的 `<head>` 标签内加入的额外标签。
-  
-  你可以通过 `[tagName, { attrName: attrValue }, innerHTML?]` 的格式来添加标签。
-
-  它可以设置在不同语言的 locales 中。
-
+    设置要复制到输出目录的文件、文件夹。
+    
+    配置约定 `from-to` 规则， 其中 `from` 是相对于 `cwd` 的路径，`to` 是相对于输出路径的路径。
 - 示例：
-
-  增加一个自定义的 favicon ：
-
 ```js
-module.exports = {
-  head: [
-    ['link', { rel: 'icon', href: '/logo.png' }]
-  ]
+export default {
+    copy: {
+        from: '/src/assets/images',
+        to: 'assets/images'
+    }
 }
 ```
+上面示例中，实现了将 `cwd` 路径中的 `/src/assets/images` 文件夹，在编译完成后，`copy` 到输出路径下的 `assets/images` 文件夹。
 
-  渲染为：
+## define
 
-```html
-<head>
-  <link rel="icon" href="/logo.png" />
-</head>
-```
-
-- 参考：
-  - [配置 > locales](#locales)
-  - [Frontmatter > head](./frontmatter.md#head)
-
-### locales
-
-- 类型： `{ [path: string]: Partial<SiteLocaleData> }`
-
+- 类型： `object`
 - 默认值： `{}`
-
 - 详情：
-
-  多语言支持的各个语言 locales 。
-
-  可以使用的字段有：
-
-  - [lang](#lang)
-  - [title](#title)
-  - [description](#description)
-  - [head](#head)
-
-- 参考：
-  - [指南 > I18n](../guide/i18n.md)
-
-## 主题配置
-
-### theme
-
-- 类型： `string`
-
-- 默认值： `'@vuepress/default'`
-
-- 详情：
-
-  你想要使用的主题的名称或绝对路径。
-
-  这个选项可以接收主题名称、主题简称或主题的绝对路径。
-
+    
+    用于提供给代码中可用的变量。
 - 示例：
-
 ```js
-module.exports = {
-  theme: 'vuepress-theme-foo',
-  theme: 'bar',
-  theme: '/path/to/local/theme',
+export default {
+    define: {
+        __DEV__: 'development'
+    }
 }
 ```
+然后你代码里写 `console.log(__DEV__)`，会被编译成 `console.log('development')`。
 
-- 参考：
-  - [指南 > 主题](../guide/theme.md)
+## devServer
 
-### themeConfig
-
-- 类型： `ThemeConfig`
-
+- 类型： `object`
 - 默认值： `{}`
-
 - 详情：
+    
+    配置开发服务器。支持以下子配置项：
 
-  为当前使用的主题提供的配置项。具体的配置项取决于你使用的主题。
+    - port，端口号，默认 `8000`
+    - host，默认 `localhost`
+    - https，是否启用 https server，同时也会开启 HTTP/2
 
-- 参考：
-  - [默认主题 > 配置](./default-theme/config.md)
+    启用 port 和 host 也可以通过环境变量 `PORT` 和 `HOST` 临时指定。
 
-## 打包工具配置
-
-### bundler
+## devtool
 
 - 类型： `string`
-
-- 默认值： `'@vuepress/webpack'`
-
+- 默认值： `cheap-module-source-map` in dev, `undefined` in build
 - 详情：
 
-  你想要使用的打包工具的名称。
+    用户配置 sourcemap 类型。详见 [ webpack#devtool 配置](https://webpack.js.org/configuration/devtool/#devtool)。
 
-  可以使用打包工具名称的简称。
+## extraPostCSSPlugins
 
-- 参考：
-  - [指南 > 打包工具](../guide/bundler.md)
+- 类型： `array`
+- 默认值： `[]`
+- 详情：  
 
-### bundlerConfig
+    设置额外的 [postcss 插件](https://github.com/postcss/postcss/blob/master/docs/plugins.md)。
 
-- 类型： `BundlerConfig`
-
-- 默认值： `{}`
-
-- 详情：
-
-  为当前使用的打包工具提供的配置项。具体的配置项取决于你使用的打包工具。
-
-## 目录配置
-
-### dest
-
-- 类型： `string`
-
-- 默认值： `` `${sourceDir}/.vuepress/dist` ``
-
-- 详情：
-
-  指定 `vuepress build` 命令的输出目录。
-
-### temp
-
-- 类型： `string`
-
-- 默认值： `` `${sourceDir}/.vuepress/.temp` ``
-
-- 详情：
-
-  指定临时文件目录。
-
-### cache
-
-- 类型： `string`
-
-- 默认值： `` `${sourceDir}/.vuepress/.cache` ``
-
-- 详情：
-
-  指定缓存目录。
-
-### public
-
-- 类型： `string`
-
-- 默认值： `` `${sourceDir}/.vuepress/public` ``
-
-- 详情：
-
-  指定 Public 文件目录。
-
-- 参考：
-  - [指南 > 静态资源 > Public 文件](../guide/assets.md#public-文件)
-
-## Markdown 配置
-
-### markdown
-
-- 类型： `MarkdownOptions`
-
-- 默认值： `{}`
-
-- 详情：
-
-  对 VuePress 内置的 Markdown 语法扩展进行配置。
-
-- 参考：
-  - [指南 > Markdown > 语法扩展](../guide/markdown.md#语法扩展)
-
-#### markdown.anchor
-
-- 类型： `AnchorPluginOptions | false`
-
-- 详情：
-
-  [markdown-it-anchor](https://github.com/valeriangalliat/markdown-it-anchor) 的配置项。
-
-  设置为 `false` 可以禁用该插件。
-
-- 参考：
-  - [指南 > Markdown > 语法扩展 > 标题锚点](../guide/markdown.md#标题锚点)
-
-#### markdown.assets
-
-- 类型： `AssetsPluginOptions | false`
-
-- 详情：
-
-  VuePress 内置的 markdown-it assets 插件的配置项。
-
-  设置为 `false` 可以禁用该插件。
-
-::: danger
-除非你了解它的用途，否则你不应该设置该配置项。
-:::
-
-#### markdown.code
-
-- 类型： `CodePluginOptions | false`
-
-- 详情：
-
-  VuePress 内置的 markdown-it code 插件的配置项。
-
-  设置为 `false` 可以禁用该插件。
-
-- 参考：
-  - [指南 > Markdown > 语法扩展 > 代码块](../guide/markdown.md#代码块)
-
-##### markdown.code.highlight
-
-- 类型： `boolean`
-
-- 默认值： `true`
-
-- 详情：
-
-  是否启用代码块语法高亮。
-
-  如果你想在客户端进行语法高翔，你可以禁用该配置项。比如使用 [Prismjs](https://prismjs.com/) 或 [highlight.js](https://highlightjs.org/) 。
-
-- 参考：
-  - [指南 > Markdown > 语法扩展 > 代码块 > 语法高亮](../guide/markdown.md#语法高亮)
-
-##### markdown.code.highlightLines
-
-- 类型： `boolean`
-
-- 默认值： `true`
-
-- 详情：
-
-  是否启用代码块行高亮。
-
-- 参考：
-  - [指南 > Markdown > 语法扩展 > 代码块 > 行高亮](../guide/markdown.md#行高亮)
-
-##### markdown.code.lineNumbers
-
-- 类型： `boolean`
-
-- 默认值： `true`
-
-- 详情：
-
-  是否启用代码块行号。
-
-- 参考：
-  - [指南 > Markdown > 语法扩展 > 代码块 > 行号](../guide/markdown.md#行号)
-
-##### markdown.code.preWrapper
-
-- 类型： `boolean`
-
-- 默认值： `true`
-
-- 详情：
-
-  是否在 `<pre>` 标签外额外包裹一层。
-
-  `highlightLines` 和 `lineNumbers` 依赖于这个额外的包裹层。这换句话说，如果你禁用了 `preWrapper` ，那么行高亮和行号也会被同时禁用。
-
-  如果你想要在客户端来实现这些功能时，可以禁用该配置项。比如使用 [Prismjs Line Highlight](https://prismjs.com/plugins/line-highlight/) 或者 [Prismjs Line Numbers](https://prismjs.com/plugins/line-numbers/)。
-
-##### markdown.code.vPre
-
-- 类型： `boolean`
-
-- 默认值： `true`
-
-- 详情：
-
-  是否在 `<pre>` 标签上添加 `v-pre` 指令。
-
-- 参考：
-  - [指南 > Markdown > 语法扩展 > 代码块 > 添加 v-pre](../guide/markdown.md#添加-v-pre)
-
-#### markdown.customComponent
-
-- 类型： `undefined | false`
-
-- 详情：
-
-  VuePress 内置的 markdown-it custom-component 插件的配置项。
-
-  设置为 `false` 可以禁用该插件。
-
-::: danger
-除非你了解它的用途，否则你不应该设置该配置项。
-:::
-
-#### markdown.emoji
-
-- 类型： `EmojiPluginOptions | false`
-
-- 详情：
-
-  [markdown-it-emoji](https://github.com/markdown-it/markdown-it-emoji) 的配置项。
-
-  设置为 `false` 可以禁用该插件。
-
-- 参考：
-  - [指南 > Markdown > 语法扩展 > Emoji](../guide/markdown.md#emoji)
-
-#### markdown.extractHeaders
-
-- 类型： `ExtractHeadersPluginOptions | false`
-
-- 详情：
-
-  VuePress 内置的 markdown-it extract-headers 插件的配置项。
-
-  它将会把页面的标题提取到 Page Data 中，可以用于生成侧边栏、目录等。比如当前页面的侧边栏，就是由这个插件提取出的标题来自动生成的。
-
-  设置为 `false` 可以禁用该插件。
-
-#### markdown.hoistTags
-
-- 类型： `HoistTagsPluginOptions | false`
-
-- 详情：
-
-  VuePress 内置的 markdown-it hoist-tags 插件的配置项。
-
-  它将会把你的 Markdown 中特定的 HTML 标签提升到 SFC 的顶层。默认情况下，只有 `<script>` 和 `<style>` 标签会被提升。你可以通过这个配置项，在 Markdown 中使用 SFC 自定义块。
-
-  设置为 `false` 可以禁用该插件。
-
-- 参考：
-  - [深入 > Markdown 与 Vue SFC](../guide/advanced/markdown.md)
-
-#### markdown.links
-
-- 类型： `LinksPluginOptions | false`
-
-- 详情：
-
-  VuePress 内置的 markdown-it 链接插件的配置项。
-
-  它将会把站内链接转换为 `<RouterLink>` ，并且会在站外链接上添加额外的属性。
-
-  设置为 `false` 可以禁用该插件。
-
-- 参考：
-  - [指南 > Markdown > 语法扩展 > 链接](../guide/markdown.md#链接)
-
-#### markdown.toc
-
-- 类型： `TocPluginOptions | false`
-
-- 详情：
-
-  VuePress 内置的 markdown-it 目录插件的配置项。
-
-  设置为 `false` 可以禁用该插件。
-
-- 参考：
-  - [指南 > Markdown > 语法扩展 > 目录](../guide/markdown.md#目录)
-
-## 开发配置项
-
-### debug
-
-- 类型： `boolean`
-
-- 默认值： `false`
-
-- 详情：
-
-  是否启用 Debug 模式。
-
-  该配置项主要提供给开发者使用。同时，我们使用了 [debug](https://github.com/visionmedia/debug) 模块打印 Debug 日志，可以通过 `DEBUG=vuepress*` 环境变量来启用。
-
-### host
-
-- 类型： `string`
-
-- 默认值： `'0.0.0.0'`
-
-- 详情：
-
-  指定开发服务器的主机名。
-
-### port
+## inlineLimit
 
 - 类型： `number`
-
-- 默认值： `8080`
-
+- 默认值： `8192`(8k)
 - 详情：
 
-  指定开发服务器的端口号。
+    配置图片文件是否走 base64 编译的阈值。默认是 `8192` 字节，小于它会被编译为 base64 编码，否则会生成单独的文件。
+    
+## lessLoader
 
-### open
-
-- 类型： `boolean`
-
-- 默认值： `false`
-
+- 类型： `object`
+- 默认值： `{}`
 - 详情：
 
-  是否在开发服务器启动后打开浏览器。
+    设置 [less-loader 配置项](https://github.com/webpack-contrib/less-loader)。
 
-### evergreen
+## mock
 
-- 类型： `boolean`
-
-- 默认值： `true`
-
+- 类型： `object || boolean`
+- 默认值： `{}`
 - 详情：
 
-  如果你的对象只有那些 “常青树” 浏览器，你可以将其设置成 `true` 。这将会禁用一些转译过程和 Polyfills ，带来更快的构建速度和更小的文件体积。
+    配置 mock 属性。
 
-### pagePatterns
+    - 当 mock 为 `boolean` 类型时，`true` 表示打开 mock，`false` 表示关闭 mock。
+    - 当 mock 为 `object` 类型时，默认打开 mock。也可以通过子属性 `prefix` 添加过滤条件，满足条件的走 mock 文件。 
 
-- 类型： `string[]`
+- 示例：
+```js
+export default {
+    mock: {
+        prefix: '/api/auth'
+    }
+}
+```
+然后所有以 `/api/users` 开始的请求，就能进入 mock.js 文件处理。
 
-- 默认值： `['**/*.md', '!.vuepress', '!node_modules']`
-
-- 详情：
-
-  指定页面文件的 Patterns 。这些 Patterns 是相对于 Source 目录的。
-
-### templateDev
+## mountElementId
 
 - 类型： `string`
-
-- 默认值： `'@vuepress/client/templates/index.dev.html'`
-
+- 默认值： `app`
 - 详情：
 
-  指定开发时使用的 HTML 模板。
+    指定渲染到的 HTML 元素 id。
 
-### templateSSR
+## nodeModulesTransform
+
+- 类型： `object`
+- 默认值： `{ type: 'all' }`
+- 详情：
+
+    设置 node_modules 目录下依赖文件的编译方式。子配置项包含：
+    - `type`，编译模式类型，可选 `all` 和 `none`。
+        - 默认值是 `all`，全部编译，然后可以通过 `exclude` 忽略不需要编译的依赖库。
+        - 当切换为 `none`，默认值编译 [es5-imcompatible-versions](https://github.com/umijs/es5-imcompatible-versions) 里声明的依赖，可通过 `exclude` 配置添加额外需要编译的。
+
+    - `exclude`，忽略的依赖库，包名，暂不支持绝对路径。
+
+    前者速度较慢，但可规避常见的兼容性等问题，后者反之。 
+
+## outputPath
 
 - 类型： `string`
-
-- 默认值： `'@vuepress/client/templates/index.ssr.html'`
-
+- 默认值： `dist`
 - 详情：
 
-  指定构建时 (SSR) 使用的 HTML 模板。
+    指定输出路径。
 
-### shouldPreload
+::: tip
+不允许设定为 `src`、`public`、`pages` 等约定目录。
+:::
 
-- 类型： `((file: string, type: string) => boolean)) | boolean`
+## postcssLoader
 
-- 默认值： `true`
-
+- 类型： `object`
+- 默认值： `{}`
 - 详情：
 
-  一个函数，用来控制哪些文件是需要生成对应的 `<link rel="preload">` 标签的。设置为 `true` 或者 `false` 来完全启用或禁用它。 
+    设置 [postcss-loader 配置项](https://github.com/postcss/postcss-loader#options)。
 
-  默认情况下，只有当前页面所需的文件会被预加载。所以在绝大部分情况下，你只需要使用 `true` 就可以了。
+## proxy
 
-### shouldPrefetch
+- 类型： `object`
+- 默认值： `{}`
+- 详情：
 
-- 类型： `((file: string, type: string) => boolean)) | boolean`
+    配置代理能力。
 
+- 示例：
+```js
+export default {
+    proxy: {
+        '/v2': {
+            'target': 'https://api.douban.com/',
+            'changeOrigin': true, 
+        }
+    }
+}
+```
+然后访问 `/v2/movie/in_theaters_proxy` 就能访问到 [http://api.douban.com/v2/movie/in_theaters_proxy](http://api.douban.com/v2/movie/in_theaters_proxy) 的数据。
+
+## publicpath
+
+- 类型： `publicPath`
+- 默认值： `/`
+- 详情：
+
+    配置 webpack 的 publicPath。当打包的时候，webpack 会在静态文件路径前面添加 `publicPath` 的值，当你需要修改静态文件地址时，比如使用 CDN 部署，把 `publicPath` 的值设为 CDN 的值就可以。
+
+## singular
+- 类型： `boolean`
 - 默认值： `false`
-
 - 详情：
 
-  一个函数，用来控制哪些文件是需要生成对应的 `<link rel="prefetch">` 标签的。设置为 `true` 或者 `false` 来完全启用或禁用它。 
+    配置是否启用单数模式的目录。 比如 `src/pages` 的约定在开启后为 `src/page` 目录，@webank/fes-plugins 插件也遵照此配置的约定。
 
-  如果你将它设置为 `true` ，所有其它页面所需的文件都会被预拉取。这对于小型站点来说是十分有帮助的，因为它会大大提升页面切换的速度。但是在你的网站有很多页面时不建议你这么做。
+## targets
+- 类型： `object`
+- 默认值： `{}`
+- 详情：
 
-## 插件 API
+    配置需要兼容的浏览器最低版本，会自动引入 polyfill 和做语法转换。
 
-用户配置文件同样可以作为一个 VuePress 插件，所以除了 `name` 和 `multiple` 配置项以外的所有插件 API 都可以在配置文件中使用。
+## terserOptions
 
-前往 [插件 API 参考](./plugin-api.md) 查看所有插件 API 。
+- 类型： `object`
+- 默认值：
+```js
+const defaultTerserOptions = {
+    compress: {
+        // turn off flags with small gains to speed up minification
+        arrows: false,
+        collapse_vars: false, // 0.3kb
+        comparisons: false,
+        computed_props: false,
+        hoist_funs: false,
+        hoist_props: false,
+        hoist_vars: false,
+        inline: false,
+        loops: false,
+        negate_iife: false,
+        properties: false,
+        reduce_funcs: false,
+        reduce_vars: false,
+        switches: false,
+        toplevel: false,
+        typeofs: false,
+
+        // a few flags with noticeable gains/speed ratio
+        // numbers based on out of the box vendor bundle
+        booleans: true, // 0.7kb
+        if_return: true, // 0.4kb
+        sequences: true, // 0.7kb
+        unused: true, // 2.3kb
+
+        // required features to drop conditional branches
+        conditionals: true,
+        dead_code: true,
+        evaluate: true
+    },
+    mangle: {
+        safari10: true
+    }
+}
+```
+- 详情：
+
+    配置 [压缩器 terser 的配置项](https://github.com/terser/terser#minify-options)。
+## title
+
+- 类型： `string`
+- 默认值： `''`
+- 详情：
+
+    配置标题。
