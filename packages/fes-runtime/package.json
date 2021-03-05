@@ -1,7 +1,7 @@
 {
-  "name": "@webank/fes-runtime",
-  "version": "2.0.0-rc.0",
-  "description": "@webank/fes-runtime",
+  "name": "@fesjs/runtime",
+  "version": "2.0.0-rc.1",
+  "description": "@fesjs/runtime",
   "main": "dist/index.js",
   "files": [
     "dist"
@@ -25,7 +25,7 @@
     "access": "public"
   },
   "peerDependencies": {
-    "vue": "3.0.5"
+    "vue": "^3.0.5"
   },
   "dependencies": {
     "vue-router": "^4.0.1"

@@ -2,7 +2,7 @@
 import assert from 'assert';
 import { join } from 'path';
 import { existsSync } from 'fs';
-import { Logger } from '@webank/fes-compiler';
+import { Logger } from '@fesjs/compiler';
 import { options as CliOptions } from 'jest-cli/build/cli/args';
 import createDefaultConfig from './createDefaultConfig';
 

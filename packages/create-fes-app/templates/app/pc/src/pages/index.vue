@@ -22,8 +22,8 @@
 import { ref, onMounted, computed } from 'vue';
 import { useStore } from 'vuex';
 import {
-    access, useAccess, useRouter, useI18n, locale, enums
-} from '@webank/fes';
+    useAccess, useRouter, useI18n, locale, enums
+} from '@fesjs/fes';
 
 export default {
     setup() {

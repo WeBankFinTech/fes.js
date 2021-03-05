@@ -1,7 +1,7 @@
 {
-  "name": "@webank/fes-utils",
+  "name": "@fesjs/utils",
   "version": "0.0.0",
-  "description": "@webank/fes-utils",
+  "description": "@fesjs/fesjsutils",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

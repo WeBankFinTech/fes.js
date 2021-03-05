@@ -1,7 +1,7 @@
 <template>
     <div class="onepiece">
         fes & 拉夫德鲁 <br />
-        <fes-icon @click="clickIcon" :spin="true" class="one-icon" type="smile" />
+        <fes-icon :spin="true" class="one-icon" type="smile" @click="clickIcon" />
         <div v-if="loading" class="loading">loading</div>
         <div v-else class="data">{{data}}</div>
     </div>
@@ -14,7 +14,7 @@
 </config>
 <script>
 import { ref, onMounted } from 'vue';
-import { useRouter, useRequest } from '@webank/fes';
+import { useRouter, useRequest } from '@fesjs/fes';
 
 export default {
     setup() {

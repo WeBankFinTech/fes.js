@@ -494,7 +494,7 @@ export default class Service extends EventEmitter {
         const command = new Command();
         command
             .usage('<command> [options]')
-            .version(`@webank/fes ${this.fesPkg.version}`, '-v, --vers', 'output the current version')
+            .version(`@fesjs/fes ${this.fesPkg.version}`, '-v, --vers', 'output the current version')
             .description(chalk.cyan('一个好用的前端应用解决方案'));
         return command;
     }

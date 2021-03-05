@@ -1,6 +1,6 @@
 
 
-import { access } from '@webank/fes';
+import { access } from '@fesjs/fes';
 import PageLoading from '@/components/PageLoading';
 import UserCenter from '@/components/UserCenter';
 

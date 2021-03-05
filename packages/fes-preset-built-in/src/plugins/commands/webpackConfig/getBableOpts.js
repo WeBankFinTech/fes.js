@@ -52,6 +52,7 @@ function getBableOpts({
     ];
     return {
         babelrc: false,
+        configFile: false,
         cacheDirectory: process.env.BABEL_CACHE !== 'none' ? winPath(`${cwd}/.cache/babel-loader`) : false,
         presets,
         plugins,
