@@ -1,8 +1,8 @@
-# Command Line Interface
+# 命令行接口
 
-VuePress CLI is provided by [@vuepress/cli](https://www.npmjs.com/package/@vuepress/cli) package. It is a dependency of the [vuepress](https://www.npmjs.com/package/vuepress) package, and you can also install it separately.
+VuePress 命令行接口是由 [@vuepress/cli](https://www.npmjs.com/package/@vuepress/cli) 包提供的。它是 [vuepress](https://www.npmjs.com/package/vuepress) 包的依赖之一，当然你也可以单独安装它。
 
-Run `vuepress --help` to get following help messages:
+执行 `vuepress --help` 来获取下列帮助信息：
 
 ```bash
 Usage:
@@ -25,7 +25,7 @@ Options:
 
 ## dev
 
-Start a development server to develop your VuePress site locally.
+启动一个开发服务器，在本地开发你的 VuePress 站点。
 
 ```bash
 Usage:
@@ -47,12 +47,12 @@ Options:
 ```
 
 ::: tip
-Options set by CLI will override those options with the same name in your config file.
+通过命令行设置的配置项，会覆盖你配置文件中的同名配置项。
 :::
 
 ## build
 
-Build your VuePress site to static files, which are ready for [deployment](../guide/deployment.md).
+将你的 VuePress 站点构建成静态文件，以便你进行后续[部署](../guide/deployment.md)。
 
 ```bash
 Usage:
@@ -71,11 +71,11 @@ Options:
 ```
 
 ::: tip
-Options set by CLI will override those options with the same name in your config file.
+通过命令行设置的配置项，会覆盖你配置文件中的同名配置项。
 :::
 
 ## info
 
-Outputs information about your system and dependencies.
+输出当前系统和依赖相关的信息。
 
-This command would be helpful when you want to check your environment or report an issue.
+在你想要检查你的环境，或者提交 Issue 时候，可以使用该命令。

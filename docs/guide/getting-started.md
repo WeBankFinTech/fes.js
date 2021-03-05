@@ -1,29 +1,43 @@
-# Getting Started
+# 快速上手
 
-## Prerequisites
-
-- [Node.js v12+](https://nodejs.org/)
-- [Yarn v1 classic](https://classic.yarnpkg.com/en/) (Optional)
-
-## Manual Installation
-
-This section will help you build a basic VuePress documentation site from ground up. If you already have an existing project and would like to keep documentation inside the project, start from Step 3.
-
-- **Step 1**: Create and change into a new directory
-
+## 依赖环境
+首先得有 [Node.js](https://nodejs.org/)，并确保 node 版本是 10.13 或以上。
 ```bash
-mkdir vuepress-starter
-cd vuepress-starter
+# 打印 node 版本
+node -v
+v10.13.0
+```
+推荐使用 yarn 管理 npm 依赖
+```bash
+# 全局安装 yarn
+npm i yarn -g
 ```
 
-- **Step 2**: Initialize your project
+## 安装模板
 
+这一章节会帮助你从头搭建一个简单的 Fes.js 前端应用。
+
+##### 步骤1 创建工作空间     
+如果不存在，则创建
+```bash
+# 创建目录 workspace
+mkdir workspace
+# 进入目录 workspace
+cd workspace
+```
+如果已存在工作空间，则直接进入
+```bash
+# 进入目录 workspace
+cd workspace
+```
+
+##### 步骤2 创建模板
 <CodeGroup>
   <CodeGroupItem title="YARN" active>
 
 ```bash
-git init
-yarn init
+# 创建模板
+yarn create @fesjs/fes-app myapp
 ```
 
   </CodeGroupItem>
@@ -31,20 +45,30 @@ yarn init
   <CodeGroupItem title="NPM">
 
 ```bash
-git init
-npm init
+# 创建模板
+npx @fesjs/create-fes-app myapp
 ```
 
   </CodeGroupItem>
 </CodeGroup>
 
-- **Step 3**: Install VuePress locally
 
+如果项目目录 `workspace/myapp` 已经存在，则会提示目录已存在，你可以选择 `Overwrite` 删除目录后重新创建项目，也可以选择 `Merge` 使用模板文件覆盖当前目录文件。      
+![目录已存在提示](/pickTemplateTip.png)
+
+如果项目目录 `workspace/myapp` 不存在，你会被提示选取一个 template。你可以选默认适用于中后台前端应用的 `PC` 类型，也可以选适用于移动端的 `H5` 类型。      
+
+![选择模板类型](/pickTemplate.png)
+
+##### 步骤3 安装依赖
 <CodeGroup>
   <CodeGroupItem title="YARN" active>
 
 ```bash
-yarn add -D vuepress@next
+# 进入项目目录
+cd myapp
+# 安装依赖
+yarn 
 ```
 
   </CodeGroupItem>
@@ -52,43 +76,31 @@ yarn add -D vuepress@next
   <CodeGroupItem title="NPM">
 
 ```bash
-npm install -D vuepress@next
+# 进入项目目录
+cd myapp
+# 安装依赖
+npm i 
 ```
 
   </CodeGroupItem>
 </CodeGroup>
 
-- **Step 4**: Add some [scripts](https://classic.yarnpkg.com/en/docs/package-json#toc-scripts) to `package.json`
-
-```json
-{
-  "scripts": {
-    "docs:dev": "vuepress dev docs",
-    "docs:build": "vuepress build docs"
-  }
-}
-```
-
-- **Step 5**: Add the default temp and cache directory to `.gitignore` file
-
-```bash
-echo 'node_modules\n.temp\n.cache' >> .gitignore
-```
-
-- **Step 6**: Create your first document
-
-```bash
-mkdir docs
-echo '# Hello VuePress' > docs/README.md
-```
-
-- **Step 7**: Serve the documentation site in the local server
-
+##  启动项目
 <CodeGroup>
   <CodeGroupItem title="YARN" active>
 
 ```bash
-yarn docs:dev
+# 开发调试
+yarn dev
+
+yarn run v1.22.4
+$ fes dev
+Starting the development server http://localhost:8080 ...
+
+✔ Webpack
+  Compiled successfully in 15.91s
+
+ DONE  Compiled successfully in 15917ms                               11:17:08 AM
 ```
 
   </CodeGroupItem>
@@ -96,12 +108,85 @@ yarn docs:dev
   <CodeGroupItem title="NPM">
 
 ```bash
-npm run docs:dev
+# 开发调试
+npm run dev
+
+
+> @fesjs/fes-template@2.0.0-alpha.1 dev /Users/harrywan/company/git/fes.js/packages/fes-template
+> fes dev
+
+Starting the development server http://localhost:8080 ...
+
+✔ Webpack
+  Compiled successfully in 3.66s
+
+ DONE  Compiled successfully in 3662ms                                11:17:46 AM
 ```
 
   </CodeGroupItem>
 </CodeGroup>
 
-  VuePress will start a hot-reloading development server at [http://localhost:8080](http://localhost:8080). When you modify your markdown files, the content in the browser will be auto updated.
 
-By now, you should have a basic but functional VuePress documentation site. Next, learn about the basics of [configuration](./configuration.md) in VuePress.
+Fes.js 会在 [http://localhost:8080](http://localhost:8080) 启动一个热重载的开发服务器。当你修改你的 .vue 文件时，浏览器中的内容也会自动更新。
+
+![home](/home.png)
+
+
+## 部署发布
+
+### 构建
+<CodeGroup>
+  <CodeGroupItem title="YARN" active>
+
+```bash
+# 构建
+yarn build
+
+yarn run v1.22.4
+$ fes build
+
+✔ Webpack
+  Compiled successfully in 45.37s
+
+✨  Done in 48.87s.
+```
+
+  </CodeGroupItem>
+
+  <CodeGroupItem title="NPM">
+
+```bash
+# 构建
+npm run build
+
+> @fesjs/fes-template@2.0.0-alpha.1 build /Users/harrywan/company/git/fes.js/packages/fes-template
+> fes build
+
+✔ Webpack
+  Compiled successfully in 45.37s
+```
+
+  </CodeGroupItem>
+</CodeGroup>
+
+构建产物默认生成到 ./dist 下，然后通过 tree 命令查看。
+```base
+tree ./dist
+
+dist
+├── chunk-vendors.27cd4686.js
+├── chunk-vendors.a5f5de67.css
+├── index.11411d43.css
+├── index.d72f1ba2.js
+├── index.html
+├── logo.png
+└── static
+    └── logo.0f85bba0.png
+```
+
+### 本地验证
+发布之前，可以通过 [serve](https://github.com/vercel/serve) 做本地验证，验证结果应该跟执行 `dev` 的结果一样。
+
+
+### 部署
+本地验证完，就可以部署了。你需要把 dist 目录部署到服务器上。

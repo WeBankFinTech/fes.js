@@ -1,3 +1,0 @@
-# Writing a Theme
-
-> TODO
