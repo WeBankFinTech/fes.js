@@ -84,8 +84,6 @@ export function trimObj(obj) {
                 obj[key] = value.trim();
             } else if (isObject(value)) {
                 trimObj(value);
-            } else if (Array.isArray(value)) {
-                trimObj(value);
             }
         });
     }

@@ -46,7 +46,6 @@ async function axiosMiddleware(context, next) {
 function getRequestInstance() {
     const {
         responseDataAdaptor,
-        errorConfig,
         requestInterceptors = [],
         responseInterceptors = [],
         errorHandler,
@@ -82,7 +81,6 @@ function getRequestInstance() {
             defaultConfig,
             dataField: REPLACE_DATA_FIELD, // eslint-disable-line
             responseDataAdaptor,
-            errorConfig,
             errorHandler
         },
         request: scheduler.compose()
