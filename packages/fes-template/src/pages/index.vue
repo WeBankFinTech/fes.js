@@ -78,8 +78,8 @@ export default {
         onMounted(() => {
             console.log(router);
             setTimeout(() => {
-                locale.setLocale({ lang: 'en-US' });
-                locale.addLocale({ lang: 'ja-JP', messages: { test: 'テスト' } });
+                locale.setLocale({ locale: 'en-US' });
+                locale.addLocale({ locale: 'ja-JP', messages: { test: 'テスト' } });
                 console.log(locale.getAllLocales());
             }, 2000);
             setTimeout(() => {

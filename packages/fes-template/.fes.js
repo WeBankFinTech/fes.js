@@ -12,7 +12,7 @@ export default {
     publicPath: '/',
     access: {
         roles: {
-            admin: ["/"]
+            admin: ["/", "https://www.baidu.com"]
         }
     },
     request: {
@@ -31,10 +31,12 @@ export default {
         title: "Fes.js",
         footer: 'Created by MumbelFe',
         multiTabs: false,
+        navigation: 'mixin',
         menus: [{
-            name: 'index'
+            name: 'index',
         }, {
-            name: 'onepiece'
+            name: 'onepiece',
+            path: 'https://www.baidu.com'
         }, {
             name: 'store'
         }, {

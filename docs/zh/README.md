@@ -30,7 +30,7 @@ footer: MIT Licensed | Copyright © 2020-present Webank
 
 ```bash
 # 创建模板
-yarn create @webank/fes-app myapp
+yarn create @fesjs/fes-app myapp
 
 # 安装依赖
 yarn 
@@ -45,7 +45,7 @@ yarn dev
 
 ```bash
 # 创建模板
-npx @webank/create-fes-app myapp
+npx @fesjs/create-fes-app myapp
 
 # 安装依赖
 npm install 
@@ -61,5 +61,5 @@ npm run dev
 
 | Github Issue  | 微信群 | Fes.js开源运营小助手 |
 | --- | --- | --- |
-| [@webank/fes.js/issues](https://github.com/WeBankFinTech/fes.js/issues) | <img src="https://i.loli.net/2020/09/11/2XhKtPZd6NFVbDE.png" width="250" /> | <img src="https://i.loli.net/2020/09/16/sxwr62CKhmYOUyV.jpg" height="250"/> |
+| [@fesjs/fes.js/issues](https://github.com/WeBankFinTech/fes.js/issues) | <img src="https://i.loli.net/2020/09/11/2XhKtPZd6NFVbDE.png" width="250" /> | <img src="https://i.loli.net/2020/09/16/sxwr62CKhmYOUyV.jpg" height="250"/> |
 

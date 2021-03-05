@@ -152,10 +152,10 @@ export default class Service extends EventEmitter {
         const basePath = join(this.cwd, '.env');
         const localPath = `${basePath}.local`;
         loadDotEnv(basePath);
-        loadDotEnv(localPath);
         if (process.env.FES_ENV) {
             loadDotEnv(`${basePath}.${process.env.FES_ENV}`);
         }
+        loadDotEnv(localPath);
     }
 
     async init() {

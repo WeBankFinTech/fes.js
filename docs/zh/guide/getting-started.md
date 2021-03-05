@@ -37,7 +37,7 @@ cd workspace
 
 ```bash
 # 创建模板
-yarn create @webank/fes-app myapp
+yarn create @fesjs/fes-app myapp
 ```
 
   </CodeGroupItem>
@@ -46,7 +46,7 @@ yarn create @webank/fes-app myapp
 
 ```bash
 # 创建模板
-npx @webank/create-fes-app myapp
+npx @fesjs/create-fes-app myapp
 ```
 
   </CodeGroupItem>
@@ -112,7 +112,7 @@ Starting the development server http://localhost:8080 ...
 npm run dev
 
 
-> @webank/fes-template@2.0.0-alpha.1 dev /Users/harrywan/company/git/fes.js/packages/fes-template
+> @fesjs/fes-template@2.0.0-alpha.1 dev /Users/harrywan/company/git/fes.js/packages/fes-template
 > fes dev
 
 Starting the development server http://localhost:8080 ...
@@ -159,7 +159,7 @@ $ fes build
 # 构建
 npm run build
 
-> @webank/fes-template@2.0.0-alpha.1 build /Users/harrywan/company/git/fes.js/packages/fes-template
+> @fesjs/fes-template@2.0.0-alpha.1 build /Users/harrywan/company/git/fes.js/packages/fes-template
 > fes build
 
 ✔ Webpack

@@ -3,7 +3,7 @@
 ## 插件的 id 和 key
 每个插件都会对应一个 `id` 和一个 `key`，**`id` 是路径的简写，`key` 是进一步简化后用于配置的唯一值**。
 
-比如插件 `/node_modules/@webank/fes-plugin-foo/index.js`，通常来说，其 `id` 为 `@webank/fes-plugin-foo`，`key` 为 `foo`。
+比如插件 `/node_modules/@fesjs/plugin-foo/index.js`，通常来说，其 `id` 为 `@fesjs/plugin-foo`，`key` 为 `foo`。
 
 ::: tip
 id 一般用不上，对于普通开发者 key 用来配置插件，而插件开发者可以使用 key 判断是否安装某个插件。 
@@ -17,11 +17,11 @@ Fes.js 会自动检测 `dependencies` 和 `devDependencies` 里的 fes 插件，
 ```json
 {
   "dependencies": {
-    "@webank/fes-plugin-request": "^2.0.0"
+    "@fesjs/plugin-request": "^2.0.0"
   }
 }
 ```
-那么 `@webank/fes-plugin-request` 会自动被注册，无需在配置里重复声明。
+那么 `@fesjs/plugin-request` 会自动被注册，无需在配置里重复声明。
 
 ### 配置
 在配置里可通过 `presets` 和 `plugins` 配置插件，比如：
