@@ -157,6 +157,7 @@ export default async function getConfig({
     const { targets, browserslist } = getTargetsAndBrowsersList({ config });
     const babelOpts = await getBableOpts({
         cwd,
+        config,
         modifyBabelOpts,
         modifyBabelPresetOpts,
         targets

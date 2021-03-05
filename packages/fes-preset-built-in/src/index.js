@@ -28,6 +28,7 @@ export default function () {
             require.resolve('./plugins/features/extraBabelPresets'),
             require.resolve('./plugins/features/extraPostCSSPlugins'),
             require.resolve('./plugins/features/html'),
+            require.resolve('./plugins/features/globalCSS'),
             require.resolve('./plugins/features/inlineLimit'),
             require.resolve('./plugins/features/lessLoader'),
             require.resolve('./plugins/features/mountElementId'),
@@ -42,6 +43,7 @@ export default function () {
             require.resolve('./plugins/features/nodeModulesTransform'),
             require.resolve('./plugins/features/vueLoader'),
             require.resolve('./plugins/features/mock'),
+            require.resolve('./plugins/features/dynamicImport'),
 
             // misc
             require.resolve('./plugins/misc/route'),
