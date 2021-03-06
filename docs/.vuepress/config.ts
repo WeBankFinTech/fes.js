@@ -3,11 +3,11 @@ import type { DefaultThemeOptions } from '@vuepress/theme-default'
 import { navbar, sidebar } from './configs'
 
 const config: UserConfig<DefaultThemeOptions> = {
-  base: '/',
+  base: '/fesjs/',
 
   evergreen: process.env.NODE_ENV !== 'production',
 
-  head: [['link', { rel: 'manifest', href: '/manifest.webmanifest' }], ['link', { rel: 'icon', href: `/logo.png` }]],
+  head: [['link', { rel: 'manifest', href: '/fesjs/manifest.webmanifest' }], ['link', { rel: 'icon', href: `/fesjs/logo.png` }]],
 
   // site-level locales config
   locales: {

@@ -5,6 +5,7 @@
 .history
 .cache
 .temp
+dist
 *.log
 node_modules
 npm-debug.log
