@@ -16,11 +16,13 @@ export const en: SidebarConfig = {
       children: [
         '/guide/directory-structure.md', 
         '/guide/config.md', 
+        '/guide/runtime-config.md', 
         '/guide/route.md', 
         '/guide/plugin.md', 
         '/guide/template.md', 
         '/guide/mock.md', 
         '/guide/env.md', 
+        '/guide/css.md', 
       ]
     },
     {

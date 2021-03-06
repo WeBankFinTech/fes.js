@@ -182,7 +182,7 @@ const router = new VueRouter({
   ]
 })
 ```
-在 Fes.js 里约定在 `.vue` 文件中的 `config` 为 `meta` 配置。如果 `pages/a.vue` 中有如下配置：
+在 Fes.js 里约定在 `.vue`单文件组件中的 `config`区块 为 `meta` 配置。如果 `pages/a.vue` 中有如下配置：
 ```vue
 <config>
 {

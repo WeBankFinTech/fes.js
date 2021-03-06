@@ -1,6 +1,7 @@
 # 配置
 
 Fes.js 约定 `.fes.js` 文件为项目基础配置文件，一份常见的配置示例如下：
+
 ```js
 export default {
     base: '/foo/',
@@ -34,8 +35,8 @@ export default {
 }
 ```
 
-## 配置文件
-可以新建 `.fes.local.js` 作为本地临时配置文件。这份配置会和 `.fes.js` 做 deep merge 后形成最终配置。
+## 本地临时配置文件
+可以新建 `.fes.local.js` 作为本地临时配置文件。这份配置会和 `.fes.js` 做 `deep merge` 后形成最终配置。
 ```js
 // .fes.js
 export default { mock: false };
@@ -54,26 +55,39 @@ export default {
 };
 ```
 ::: tip
-`.fes.local.js` 仅在 fes dev 时有效。
-
-`.fes.local.js` 是本地验证使用的临时配置，请将其添加到 `.gitignore`，务必不要提交到 git 仓库中。
-
-`.fes.local.js` 配置的优先级最高，比 `FES_ENV` 指定的配置更高。
+`.fes.local.js` 是本地验证使用的临时配置，仅在 `fes dev` 时有效，请将其添加到 `.gitignore`，务必不要提交到 `git` 仓库中。
 :::
 
 ## 多环境多份配置
-可以通过环境变量 `FES_ENV` 区分不同环境，来指定配置文件。
-```js
-    // .fes.js
-    export default { mock: false };
+可以通过环境变量 `FES_ENV` 区分不同环境，来指定当前环境的配置文件，这份配置会和 `.fes.js` 做 `deep merge` 后形成最终配。
 
-    // .fes.local.js
-    export default { 
-        mock: true,
-        dvServer: { port: 8080 }
-    };
+比如配置如下：
+```js
+// .fes.js
+export default { mock: false };
+
+// .fes.uat.js
+export default { 
+    mock: true,
+    dvServer: { port: 8080 }
+};
 ```
-根据指定的 `FES_ENV` 拿对应的配置，这份配置会和 `.fes.js` 做 deep merge 后形成最终配。
+当我们运行：
+```bash
+FES_ENV=uat fes dev
+```
+这时候会命中 `.fes.uat.js` 这份环境配置，最终配置是：
+```js
+{ 
+    mock: true,
+    devServer: { port: 8080 }
+};
+```
+
+## 优先级
+
+本地临时配置  >  环境配置  >  基础配置
+
 ::: tip
-`FES_ENV` 指定的配置优先级高于 `.fes.js` 文件的配置
-:::
+如果多份配置中存在相同的配置项，**则优先级高的会覆盖优先级低的**。
+::: 

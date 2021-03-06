@@ -176,7 +176,7 @@ console.log(locale.getAllLocales());
 
 ### useI18n
 Composition API, 只能在 `setup` 函数中使用，更多细节参考 [Vue I18n](https://vue-i18n.intlify.dev/api/composition.html#usei18n)。
-举个例子：
+举个 🌰：
 ```vue
 <template>
   <form>

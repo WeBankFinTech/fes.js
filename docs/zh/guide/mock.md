@@ -17,7 +17,7 @@ Fes.js 约定 `src/mock.js` 为 mock 文件。
 
 ## 编写 Mock 文件
 
-可以参考如下例子：
+可以参考如下 🌰：
 ``` js
 module.exports = function ({ cgiMock, mockjs, utils }) {
     const { Random } = mockjs;
