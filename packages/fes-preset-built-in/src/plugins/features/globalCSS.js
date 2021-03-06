@@ -10,7 +10,6 @@ export default (api) => {
     const files = [
         'global.css',
         'global.less',
-        'global.stylus'
     ];
     const globalCSSFile = files
         .map(file => join(absSrcPath || '', file))

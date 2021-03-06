@@ -1,5 +1,8 @@
 import { join, resolve } from 'path';
 import { existsSync } from 'fs';
+import {
+    winPath,
+} from '@umijs/utils';
 import resolveDefine from './resolveDefine';
 
 export default async function createHtmlWebpackConfig({
@@ -41,7 +44,7 @@ export default async function createHtmlWebpackConfig({
             ? htmlPath
             : defaultHtmlPath;
 
-        publicCopyIgnore.push(htmlOptions.template);
+        publicCopyIgnore.push(winPath(htmlOptions.template));
         webpackConfig
             .plugin('html')
             .use(require.resolve('html-webpack-plugin'), [htmlOptions]);
