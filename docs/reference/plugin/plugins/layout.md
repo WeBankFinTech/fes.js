@@ -16,11 +16,15 @@
 默认是 `side`
 
 ### side
-![side](/side.png)
+<!-- ![side](/side.png) -->
+<img :src="$withBase('side.png')" alt="side">
+
 ### top
-![top](/top.png)
+<!-- ![top](/top.png) -->
+<img :src="$withBase('top.png')" alt="top">
 ### mixin
-![mixin](/mixin.png)
+<!-- ![mixin](/mixin.png) -->
+<img :src="$withBase('mixin.png')" alt="mixin">
 
 ## 启用方式
 在 `package.json` 中引入依赖：
