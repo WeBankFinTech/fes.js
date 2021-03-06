@@ -1,12 +1,12 @@
 <p align="center">
   <a href="https://github.com/WeBankFinTech/fes.js">
-    <img alt="fes.js" width="250" src="https://i.loli.net/2020/08/31/FB6zZyPEW5cVDAC.jpg">
+    <img alt="fes.js" width="250" src="https://i.loli.net/2021/03/06/LjT4JiPKgkxCSHy.png">
   </a>
 </p>
 
 <div align="center">
 
-一套优秀的中后台前端解决方案
+一个优秀的前端解决方案
 
 [![GitHub issues](https://img.shields.io/github/issues/WeBankFinTech/fes.js.svg?style=flat-square)](https://github.com/WeBankFinTech/fes.js/issues)
 [![MIT](https://img.shields.io/dub/l/vibe-d.svg?style=flat-square)](http://opensource.org/licenses/MIT)
@@ -14,78 +14,69 @@
 
 </div>
 
-- 在线体验 - [http://webank.gitee.io/fes-pro/](http://webank.gitee.io/fes-pro/)
-- 使用文档 - [https://webank.gitee.io/fes.js/](https://webank.gitee.io/fes.js/)
+- 使用文档 - [https://winixt.gitee.io/fesjs/zh/](https://winixt.gitee.io/fesjs/zh/)
 - 更新日志 - [https://github.com/WeBankFinTech/fes.js/blob/master/CHANGELOG.md](https://github.com/WeBankFinTech/fes.js/blob/master/CHANGELOG.md)
 
-# 前言
-不管什么项目可能需要一个或者更多的管理台，管理台应用的内容一般是权限管理、增删改查、报表等业务逻辑相对固定的。但是大量的增删改查和接口联调非常耗费开发者时间，而且现在对管理台前端有了更高的要求，希望前端应用有美观而且统一的UI和一致的交互体验。     
-Fes.js支撑从开发、联调、部署整个前端应用研发流程，提供模板项目、cli命令行工具、丰富的PC端组件和一系列API，提效中后台开发，让开发只关注如何用组件搭建出页面。
+# 痛点
+在开发一个前端项目之前，我们可能需要做如下准备工作：
+- 搭建开发环境
+- 约定代码规范
+- 封装API请求
+- 配置路由
+- 实现布局、菜单、导航
+- 实现登录
+- 权限管理
+- ...
+
+除了准备工作之外，还会遇到很多相似的业务类型，比如中后台应用大多都是工作台、增删改查、权限、图表等。如果每次项目都完全手动处理一遍，不仅耗费时间，久而久之可能会存在多种技术栈、开发规范，导致开发流程不统一，历史项目越来越难维护。所以我们需要一套完整的解决方案，管理开发到部署整个流程。
 
 
-## 简介
-Fes.js是一整套管理台前端应用解决方案，包含Fes-Cli、Fes-Core、Fes-UI三部分。
-- Fes-Cli是命令行工具，一行命令创建工程、开启开发调试、打包发布。
-- Fes-Core是运行时框架，固定页面布局，提供权限管理、储存管理、路由管理、接口管理、状态管理、数据字典管理、环境管理等API。以插件的方式提供扩展接口。
-- Fes-UI是组件库，包含30+的PC端组件库，可以快速搭建出增删改查等页面
+## Fes.js 是什么？
+Fes.js 是一个好用的前端应用解决方案。Fes.js 以 Vue 3.0 和路由为基础，同时支持配置式路由和约定式路由，并以此进行功能扩展。配以覆盖编译时和运行时生命周期完善的插件体系，支持各种功能扩展和业务需求。     
 
-## 特性
-- 国际化，语言可配置，通过API切换
-- 自动生成路由，目录即路由
-- 动态权限，不同权限对应不同菜单
-- Mock 数据，本地数据调试
-- 固定布局，只需关心页面内容
-- 数据字典，简单定义，随处翻译
+它主要具备以下功能：
+- 🚀  __快速__ ，内置了路由、开发、构建等，并且提供测试、布局、权限、国际化、状态管理、API请求、数据字典、SvgIcon等插件，可以满足大部分日常开发需求。  
+  
+- 🧨  __简单__ ，基于Vue.js 3.0，上手简单。贯彻“约定优于配置”思想，设计插件上尽可能用约定替代配置，同时提供统一的插件配置入口，简单简洁又不失灵活。提供一致性的API入口，一致化的体验，学习起来更轻松。
 
+- 💪  __健壮__ ，只需要关心页面内容，减少写BUG的机会！提供单元测试、覆盖测试能力保障项目质量。
 
-## 页面举例
-![home.png](https://i.loli.net/2020/09/24/tYOseINfD1F9Lg8.png)
-![form.png](https://i.loli.net/2020/09/24/c8JIeQbxGhB3VFa.png)
-![list.png](https://i.loli.net/2020/09/24/k3LWHY7ZjxtlF4z.png)
-![listAndFrom.png](https://i.loli.net/2020/09/24/fFmi43r6KoXxnQu.png)
-![listAndImg.png](https://i.loli.net/2020/09/24/2mzrDqyoEsQ4g96.png)
-![fu.png](https://i.loli.net/2020/09/24/ahT3nFKr6DBPbej.png)
+- 📦  __可扩展__ ，借鉴Umi实现了完整的生命周期和插件化机制，插件可以管理项目的编译时和运行时，能力均可以通过插件封装进来，在 Fes.js 中协调有序的运行。
+
+- 📡  __面向未来__ ，在满足需求的同时，我们也不会停止对新技术的探索。已使用Vue3.0来提升应用性能，已使用webpack5提升构建性能和实现微服务，未来会探索vite等新技术。
 
 
-## 使用
-
-1. 安装fes.js
+## 像数 1, 2, 3 一样容易
+使用 `yarn`：
 ```bash
-# install
-npm install @webank/fes-cli -g
+# 创建模板
+yarn create @fesjs/fes-app myapp
+
+# 安装依赖
+yarn 
+
+# 运行
+yarn dev
 ```
 
-2. 初始化项目
-   
+使用 `npm`：
 ```bash
-# create a project
-fes init [project]
-```
+# 创建模板
+npx @fesjs/create-fes-app myapp
 
-3. 安装依赖
-```bash
-cd [project] 
-npm i
-```
+# 安装依赖
+npm install 
 
-4. 启动本地服务
-```bash
-# start dev
+# 运行
 npm run dev
 ```
 
-5. 打包编译
-```bash
-# build
-npm  run build
-```
+## 反馈
 
+| Github Issue  | 微信群 | Fes.js开源运营小助手 |
+| --- | --- | --- |
+| [@fesjs/fes.js/issues](https://github.com/WeBankFinTech/fes.js/issues) | <img src="https://i.loli.net/2020/09/11/2XhKtPZd6NFVbDE.png" width="250" /> | <img src="https://i.loli.net/2020/09/16/sxwr62CKhmYOUyV.jpg" height="250"/> |
 
-## 社区联络微信群
-<img alt="fes.js社区群" width="250" src="https://i.loli.net/2020/09/11/2XhKtPZd6NFVbDE.png">
-
-如果群满了，请联系：      
-<img alt="fes.js助手" width="250" src="https://i.loli.net/2020/09/16/sxwr62CKhmYOUyV.jpg"> 
 
 ## Contributing
 

@@ -7,7 +7,9 @@
 
 ## 配置项
 
-### beforeRender(lastOpts)
+### beforeRender
+
+beforeRender(lastOpts)
 
 在渲染之前执行，执行`action`过程中显示 `loading` 配置的组件，执行结果作为参数 `initialState` 传给 `modifyClientRenderOpts`。
 
@@ -37,7 +39,11 @@ export function beforeRender(lastOpts) {
 };
 ```
 
-### patchRoutes({routes })
+### patchRoutes
+
+patchRoutes({routes })
+
+
 修改路由。
 
 比如在最前面添加一个 /foo 路由：
@@ -53,7 +59,10 @@ export function patchRoutes({ routes }) {
 直接修改 `routes`, 不需要返回
 :::
 
-### modifyClientRenderOpts(lastOpts)
+### modifyClientRenderOpts
+
+modifyClientRenderOpts(lastOpts)
+
 修改 `clientRender` 参数。参数是一个对象：
 - routes，路由配置信息
 - rootElement， 渲染的根节点，默认是 `#app`，可通过配置 `mountElementId` 修改。
@@ -70,7 +79,10 @@ export function modifyClientRenderOpts(lastOpts) {
 }
 ```
 
-### rootContainer(LastRootContainer, args)
+### rootContainer
+
+rootContainer(LastRootContainer, args)
+
 修改交给 Vue 渲染时的根组件，默认是 `<RouterView></RouterView>`。
 
 - LastRootContainer，上一个插件修改后的结果。
@@ -92,7 +104,10 @@ export function rootContainer(container) {
 
 ```
 
-### onAppCreated({app})
+### onAppCreated
+
+onAppCreated({app})
+
 创建 app 实例后触发。
 
 比如用于安装 Vue 插件：
@@ -106,7 +121,10 @@ export function onAppCreated({ app }) {
 
 ```
 
-### render(oldRender: Function)
+### render
+
+render(oldRender: Function)
+
 覆写 render。
 
 比如用于渲染之前做权限校验:
@@ -126,7 +144,10 @@ export function render(oldRender) {
 
 
 
-### onRouterCreated({router})
+### onRouterCreated
+
+onRouterCreated({router})
+
 生成router时触发。
 
 比如用于收集切换路由的记录：
