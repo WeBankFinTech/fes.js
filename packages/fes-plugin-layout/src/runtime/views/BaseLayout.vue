@@ -71,7 +71,7 @@
 import { ref, computed } from 'vue';
 import { useRoute } from '@@/core/coreExports';
 import Layout from 'ant-design-vue/lib/layout';
-import 'ant-design-vue/lib/layout/style';
+import 'ant-design-vue/lib/layout/style/css';
 import Menu from './Menu';
 import MultiTabProvider from './MultiTabProvider';
 import defaultLogo from '../assets/logo.png';

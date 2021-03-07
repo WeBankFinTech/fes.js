@@ -45,9 +45,9 @@ import { reactive, unref } from 'vue';
 import Tabs from 'ant-design-vue/lib/tabs';
 import Dropdown from 'ant-design-vue/lib/dropdown';
 import Menu from 'ant-design-vue/lib/menu';
-import 'ant-design-vue/lib/menu/style';
-import 'ant-design-vue/lib/dropdown/style';
-import 'ant-design-vue/lib/tabs/style';
+import 'ant-design-vue/lib/menu/style/css';
+import 'ant-design-vue/lib/dropdown/style/css';
+import 'ant-design-vue/lib/tabs/style/css';
 import { ReloadOutlined, MoreOutlined } from '@ant-design/icons-vue';
 import { useRouter, useRoute } from '@@/core/coreExports';
 

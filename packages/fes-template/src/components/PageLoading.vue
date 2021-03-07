@@ -5,7 +5,7 @@
 </template>
 <script>
 import Spin from 'ant-design-vue/lib/spin';
-import 'ant-design-vue/lib/spin/style';
+import 'ant-design-vue/lib/spin/style/css';
 
 export default {
     setup() {

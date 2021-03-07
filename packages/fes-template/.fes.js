@@ -24,7 +24,7 @@ export default {
     proxy: {
         '/v2': {
             'target': 'https://api.douban.com/',
-            'changeOrigin': true, 
+            'changeOrigin': true,
         },
     },
     layout: {
@@ -34,8 +34,10 @@ export default {
         navigation: 'mixin',
         menus: [{
             name: 'index',
+            icon: 'user'
         }, {
             name: 'onepiece',
+            icon: 'user',
             path: 'https://www.baidu.com'
         }, {
             name: 'store'

@@ -13,9 +13,9 @@
 <script>
 import { useRouter } from '@@/core/coreExports';
 import Result from 'ant-design-vue/lib/result';
-import 'ant-design-vue/lib/result/style';
+import 'ant-design-vue/lib/result/style/css';
 import Button from 'ant-design-vue/lib/button';
-import 'ant-design-vue/lib/button/style';
+import 'ant-design-vue/lib/button/style/css';
 
 export default {
     components: {

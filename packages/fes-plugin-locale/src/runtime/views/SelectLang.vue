@@ -19,8 +19,8 @@
 <script>
 import Dropdown from 'ant-design-vue/lib/dropdown';
 import Menu from 'ant-design-vue/lib/menu';
-import 'ant-design-vue/lib/dropdown/style';
-import 'ant-design-vue/lib/menu/style';
+import 'ant-design-vue/lib/dropdown/style/css';
+import 'ant-design-vue/lib/menu/style/css';
 import { GlobalOutlined } from '@ant-design/icons-vue';
 import { useI18n } from 'vue-i18n';
 import { computed } from 'vue';

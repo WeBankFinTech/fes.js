@@ -24,19 +24,20 @@
                                     <a-menu-item
                                         v-if="item2.access"
                                         :key="item2.path"
+                                        :title="item2.title"
                                     >
                                         {{item2.title}}
                                     </a-menu-item>
                                 </template>
                             </a-sub-menu>
-                            <a-menu-item v-else :key="item1.path">
+                            <a-menu-item v-else :key="item1.path" :title="item1.title">
                                 {{item1.title}}
                             </a-menu-item>
                         </template>
                     </template>
                 </a-sub-menu>
-                <a-menu-item v-else :key="item.path">
-                    <UserOutlined />
+                <a-menu-item v-else :key="item.path" :title="item.title">
+                    <MenuIcon v-if="item.icon" :icon="item.icon" />
                     <span>{{item.title}}</span>
                 </a-menu-item>
             </template>
@@ -48,10 +49,8 @@
 import { toRefs, computed } from 'vue';
 import { useRoute, useRouter } from '@@/core/coreExports';
 import Menu from 'ant-design-vue/lib/menu';
-import 'ant-design-vue/lib/menu/style';
-import {
-    UserOutlined
-} from '@ant-design/icons-vue';
+import 'ant-design-vue/lib/menu/style/css';
+import MenuIcon from './MenuIcon'
 import { addAccessTag } from '../helpers/pluginAccess';
 
 export default {
@@ -59,7 +58,7 @@ export default {
         [Menu.name]: Menu,
         [Menu.SubMenu.name]: Menu.SubMenu,
         [Menu.Item.name]: Menu.Item,
-        UserOutlined
+        MenuIcon
     },
     props: {
         menus: {
