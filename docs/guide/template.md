@@ -47,7 +47,7 @@ export default {
 <link rel="icon" type="image/x-icon" href="<%= webpackConfig.output.publicPath %>favicon.png" />
 ```
 
-除上述 `html-webpack-plugin` 三点之外，Fes.js 还把 `process.env` 中所有环境变量都添加到了模板作用域内：
+除上述 `html-webpack-plugin` 三点之外，Fes.js 还把 `process.env` 中的环境变量添加到模板作用域内：
 - `NODE_ENV`
 - `FES_ENV`
-- `.env` 文件中定义的以 `FES_APP_` 开头的变量
+- `.env` 文件中以 `FES_APP_` 开头的变量

@@ -13,25 +13,25 @@ v10.13.0
 npm i yarn -g
 ```
 
-## 安装模板
+## 创建项目
 
 这一章节会帮助你从头搭建一个简单的 Fes.js 前端应用。
 
 ##### 步骤1 创建工作空间     
-如果不存在，则创建
+如果工作空间不存在，则先创建：
 ```bash
 # 创建目录 workspace
 mkdir workspace
 # 进入目录 workspace
 cd workspace
 ```
-如果已存在工作空间，则直接进入
+如果工作空间已存在，则直接进入
 ```bash
 # 进入目录 workspace
 cd workspace
 ```
 
-##### 步骤2 创建模板
+##### 步骤2 在工作空间创建项目
 <CodeGroup>
   <CodeGroupItem title="YARN" active>
 
@@ -53,14 +53,19 @@ npx @fesjs/create-fes-app myapp
 </CodeGroup>
 
 
-如果项目目录 `workspace/myapp` 已经存在，则会提示目录已存在，你可以选择 `Overwrite` 删除目录后重新创建项目，也可以选择 `Merge` 使用模板文件覆盖当前目录文件。      
-<!-- ![目录已存在提示](/pickTemplateTip.png) -->
+如果项目文件夹 `workspace/myapp` 已经存在，会提示目录已存在：
+
 <img :src="$withBase('pickTemplateTip.png')" alt="目录已存在提示">
 
-如果项目目录 `workspace/myapp` 不存在，你会被提示选取一个 template。你可以选默认适用于中后台前端应用的 `PC` 类型，也可以选适用于移动端的 `H5` 类型。      
+你可以选择：
+- `Overwrite` 删除项目文件夹，重新创建项目。
+- `Merge` 保留原项目文件夹，存在相同文件则用模板文件覆盖当前目录文件。      
 
-<!-- ![选择模板类型](/pickTemplate.png) -->
+当选择 `Overwrite` 或者 `Merge` 或者项目目录 `workspace/myapp` 不存在，会提示选取一个 `template`：
 <img :src="$withBase('pickTemplate.png')" alt="选择模板类型">
+
+你可以选默认适用于中后台前端应用的 `PC` 类型，也可以选适用于移动端的 `H5` 类型。      
+
 
 ##### 步骤3 安装依赖
 <CodeGroup>
@@ -114,7 +119,6 @@ Starting the development server http://localhost:8080 ...
 npm run dev
 
 > fes dev
-
 Starting the development server http://localhost:8080 ...
 
 ✔ Webpack
@@ -129,7 +133,7 @@ Starting the development server http://localhost:8080 ...
 
 Fes.js 会在 [http://localhost:8080](http://localhost:8080) 启动一个热重载的开发服务器。当你修改你的 .vue 文件时，浏览器中的内容也会自动更新。
 
-<!-- ![home](/home.png) -->
+
 <img :src="$withBase('home.png')" alt="home">
 
 ## 部署发布
@@ -184,7 +188,7 @@ dist
 ```
 
 ### 本地验证
-发布之前，可以通过 [serve](https://github.com/vercel/serve) 做本地验证，验证结果应该跟执行 `dev` 的结果一样。
+发布之前，可以通过 [serve](https://github.com/vercel/serve) 做本地验证，验证结果应该跟执行 `fes dev` 的结果一样。
 
 
 ### 部署
