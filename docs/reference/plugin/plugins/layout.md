@@ -7,7 +7,7 @@
 - 主题，提供 `light`、`dark` 两种主题。
 - 默认实现对路由的 404、403 处理。
 - 搭配 [@fesjs/plugin-access](./access.html) 插件使用，可以完成对路由的权限控制。
-- 搭配 [@fesjs/plugin-loacle](./locale.html) 插件使用，提供切换语言的能力。
+- 搭配 [@fesjs/plugin-locale](./locale.html) 插件使用，提供切换语言的能力。
 - 支持自定义头部区域。
   
 - 可配置页面是否需要 layout。

@@ -48,9 +48,9 @@ export default (api) => {
             ...api.config.locale
         };
 
-        const loacleConfigFileBasePath = getLocaleFileBasePath();
+        const localeConfigFileBasePath = getLocaleFileBasePath();
 
-        const locales = getLocalesJSON(loacleConfigFileBasePath);
+        const locales = getLocalesJSON(localeConfigFileBasePath);
 
         api.writeTmpFile({
             path: absoluteFilePath,
