@@ -158,3 +158,6 @@ export function onRouterCreated({ router }) {
     });
 }
 ```
+
+## 更多配置项
+Fes.js 允许插件注册运行时配置，如果你使用插件，肯定会在插件里找到更多运行时的配置项。

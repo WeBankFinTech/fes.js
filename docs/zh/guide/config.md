@@ -54,7 +54,7 @@ export default {
     devServer: { port: 8080 }
 };
 ```
-::: tip
+::: warning
 `.fes.local.js` 是本地验证使用的临时配置，仅在 `fes dev` 时有效，请将其添加到 `.gitignore`，务必不要提交到 `git` 仓库中。
 :::
 
