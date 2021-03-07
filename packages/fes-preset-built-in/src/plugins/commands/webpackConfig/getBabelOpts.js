@@ -2,7 +2,7 @@ import {
     winPath
 } from '@umijs/utils';
 
-function getBableOpts({
+function getBabelOpts({
     cwd,
     targets,
     config,
@@ -48,7 +48,7 @@ function getBableOpts({
             ])
             : []),
         require.resolve('@vue/babel-plugin-jsx'),
-        ...(config.extraBabelPresets || [])
+        ...(config.extraBabelPlugins || [])
     ];
     return {
         babelrc: false,
@@ -77,7 +77,7 @@ export default async ({
     if (modifyBabelPresetOpts) {
         presetOpts = await modifyBabelPresetOpts(presetOpts);
     }
-    let babelOpts = getBableOpts({
+    let babelOpts = getBabelOpts({
         cwd,
         config,
         presetOpts,

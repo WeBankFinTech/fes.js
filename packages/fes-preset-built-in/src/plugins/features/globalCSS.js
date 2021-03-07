@@ -9,8 +9,7 @@ export default (api) => {
     const { absSrcPath = '', absTmpPath = '' } = paths;
     const files = [
         'global.css',
-        'global.less',
-        'global.stylus'
+        'global.less'
     ];
     const globalCSSFile = files
         .map(file => join(absSrcPath || '', file))

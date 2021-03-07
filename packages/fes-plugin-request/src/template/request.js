@@ -112,6 +112,11 @@ function createContext(userConfig) {
 }
 
 export const request = (url, data, options = {}) => {
+    if (typeof options === 'string') {
+        options = {
+            method: options
+        };
+    }
     if (!currentRequestInstance) {
         currentRequestInstance = getRequestInstance();
     }

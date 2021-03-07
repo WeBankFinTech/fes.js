@@ -3,7 +3,7 @@ import { existsSync } from 'fs';
 import Config from 'webpack-chain';
 import webpack from 'webpack';
 import createCssWebpackConfig from './css';
-import getBableOpts from './getBableOpts';
+import getBabelOpts from './getBabelOpts';
 import createVueWebpackConfig from './vue';
 import createDefineWebpackConfig from './define';
 import createMinimizerWebpackConfig from './minimizer';
@@ -155,7 +155,7 @@ export default async function getConfig({
         });
 
     const { targets, browserslist } = getTargetsAndBrowsersList({ config });
-    const babelOpts = await getBableOpts({
+    const babelOpts = await getBabelOpts({
         cwd,
         config,
         modifyBabelOpts,
