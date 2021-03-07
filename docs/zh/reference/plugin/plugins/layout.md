@@ -111,6 +111,8 @@ export default {
   - **path**：菜单的路径，可配置第三方地址。
   
   - **title**：菜单的标题。
+
+  - **icon**: 菜单的图标，只有一级标题展示图标，图标使用[antv icon](https://www.antdv.com/components/icon-cn/)，在这里使用组件type。
   
   - **children**：子菜单配置。
   
