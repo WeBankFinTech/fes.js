@@ -12,8 +12,8 @@ import {
 import { PluginType } from '../enums';
 
 const RE = {
-    [PluginType.plugin]: /^(@fesjs\/)?plugin-/,
-    [PluginType.preset]: /^(@fesjs\/)?preset-/
+    [PluginType.plugin]: /^(@fesjs\/|@webank\/fes-|fes-)?plugin-/,
+    [PluginType.preset]: /^(@fesjs\/|@webank\/fes-|fes-)?preset-/
 };
 
 export function isPluginOrPreset(type, name) {

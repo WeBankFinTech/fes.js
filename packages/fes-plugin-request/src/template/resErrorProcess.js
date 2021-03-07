@@ -5,7 +5,7 @@ export default async ({
     errorHandler = {},
     response
 }, next) => {
-    if (response && isObject(response.data) && response.data.code !== '0') {
+    if (response && isObject(response.data) && response.data.code && response.data.code !== '0') {
         errorHandler[response.data.code] && errorHandler[response.data.code](response);
     } else if (error) {
         if (error.type) {
