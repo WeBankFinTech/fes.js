@@ -113,8 +113,6 @@ Starting the development server http://localhost:8080 ...
 # 开发调试
 npm run dev
 
-
-> @fesjs/fes-template@2.0.0-alpha.1 dev /Users/harrywan/company/git/fes.js/packages/fes-template
 > fes dev
 
 Starting the development server http://localhost:8080 ...
@@ -161,7 +159,6 @@ $ fes build
 # 构建
 npm run build
 
-> @fesjs/fes-template@2.0.0-alpha.1 build /Users/harrywan/company/git/fes.js/packages/fes-template
 > fes build
 
 ✔ Webpack
