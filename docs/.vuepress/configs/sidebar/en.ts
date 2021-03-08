@@ -66,7 +66,8 @@ export const en: SidebarConfig = {
       isGroup: true,
       text: '插件开发',
       children: [
-        '/reference/plugin/api.md'
+        '/reference/plugin/dev/README.md',
+        '/reference/plugin/dev/api.md'
       ],
     },
   ],

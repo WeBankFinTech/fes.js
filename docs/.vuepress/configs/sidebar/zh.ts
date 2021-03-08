@@ -66,7 +66,8 @@ export const zh: SidebarConfig = {
       isGroup: true,
       text: '插件开发',
       children: [
-        '/zh/reference/plugin/api.md'
+        '/zh/reference/plugin/dev/README.md',
+        '/zh/reference/plugin/dev/api.md'
       ],
     },
   ],

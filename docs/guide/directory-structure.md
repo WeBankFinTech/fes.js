@@ -21,7 +21,7 @@ fes-template
 ### 根目录
 
 #### package.json
-包含插件和插件集，以 `@fesjs/preset-`、`@fesjs/plugin-`、`@webank/fes-preset-`、`@webank/fes-plugin-` `fes-preset-` 和 `fes-plugin-` 开头的依赖会被自动注册为插件或插件集。
+包含插件和插件集，以 `@fesjs/preset-`、`@fesjs/plugin-`、`@webank/fes-preset-`、`@webank/fes-plugin-`、`fes-preset-` 和 `fes-plugin-` 开头的依赖会被自动注册为插件或插件集。
 
 #### tsconfig.json
 解决 `@fesjs/fes` 和使用 `@` 的 API 提示
@@ -64,7 +64,7 @@ mock 数据的配置文件。
 不要提交 `.fes` 目录到 `git` 仓库，他们会在 `fes dev` 和 `fes build` 时被删除并重新生成。
 :::
 #### pages 目录
-所有路由组件存放在这里。
+所有路由组件文件存放在这里。
 
 #### app.js
 运行时配置文件，可以在这里扩展运行时的能力，比如修改路由等。
