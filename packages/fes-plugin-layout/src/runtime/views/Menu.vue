@@ -50,7 +50,7 @@ import { toRefs, computed } from 'vue';
 import { useRoute, useRouter } from '@@/core/coreExports';
 import Menu from 'ant-design-vue/lib/menu';
 import 'ant-design-vue/lib/menu/style/css';
-import MenuIcon from './MenuIcon'
+import MenuIcon from './MenuIcon';
 import { addAccessTag } from '../helpers/pluginAccess';
 
 export default {

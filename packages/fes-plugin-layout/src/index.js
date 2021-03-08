@@ -9,6 +9,8 @@ export default (api) => {
         utils: { Mustache }
     } = api;
 
+    const helper = require('./node/helper');
+
     api.describe({
         key: 'layout',
         config: {
@@ -25,7 +27,7 @@ export default (api) => {
 
     const absRuntimeFilePath = join(namespace, 'runtime.js');
 
-    api.onGenerateFiles(() => {
+    api.onGenerateFiles(async () => {
         const { name } = api.pkg;
 
         const HAS_LOCALE = api.hasPlugins(['@fesjs/plugin-locale']);
@@ -36,6 +38,25 @@ export default (api) => {
             footer: 'Created by Fes.js',
             ...(api.config.layout || {})
         };
+
+        // 路由信息
+        const routes = await api.getRoutes();
+        // 把路由的meta合并到menu配置中
+        userConfig.menus = helper.fillMenuByRoute(userConfig.menus, routes);
+
+        const icons = helper.getIconsFromMenu(userConfig.menus);
+
+        const iconsString = icons.map(
+            iconName => `import ${iconName} from '@ant-design/icons-vue/es/icons/${iconName}'`
+        );
+        api.writeTmpFile({
+            path: join(namespace, 'icons.js'),
+            content: `
+        ${iconsString.join(';\n')}
+        export default {
+            ${icons.join(',\n')}
+        }`
+        });
 
         api.writeTmpFile({
             path: absFilePath,

@@ -1,4 +1,4 @@
-export const noop = () => {};
+import * as allIcons from '@ant-design/icons-vue';
 
 const matchName = (config, name) => {
     let res = {};
@@ -21,7 +21,7 @@ const matchName = (config, name) => {
     return res;
 };
 
-export const fillMenuData = (menuConfig, routeConfig, dep = 0) => {
+export const fillMenuByRoute = (menuConfig, routeConfig, dep = 0) => {
     dep += 1;
     if (dep > 3) {
         throw new Error('[plugin-layout]: menu层级不能超出三层！');
@@ -39,11 +39,37 @@ export const fillMenuData = (menuConfig, routeConfig, dep = 0) => {
                     menu[prop] = pageConfig[prop];
                 }
             });
+            // 处理icon
+            if (menu.icon) {
+                const icon = menu.icon;
+                const iconName = `${icon.replace(icon[0], icon[0].toUpperCase())}Outlined`;
+                if (!allIcons[icon]) {
+                    menu.icon = iconName;
+                }
+            }
             if (menu.children && menu.children.length > 0) {
-                menu.children = fillMenuData(menu.children, routeConfig, dep);
+                menu.children = fillMenuByRoute(menu.children, routeConfig, dep);
             }
             arr.push(menu);
         });
     }
     return arr;
 };
+
+export function getIconsFromMenu(data) {
+    if (!Array.isArray(data)) {
+        return [];
+    }
+    let icons = [];
+    (data || []).forEach((item = { path: '/' }) => {
+        if (item.icon) {
+            const { icon } = item;
+            icons.push(icon);
+        }
+        if (item.children) {
+            icons = icons.concat(getIconsFromMenu(item.children));
+        }
+    });
+
+    return Array.from(new Set(icons));
+}
