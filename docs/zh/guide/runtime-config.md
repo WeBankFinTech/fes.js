@@ -127,20 +127,7 @@ render(oldRender: Function)
 
 覆写 render。
 
-比如用于渲染之前做权限校验:
-```js
-import { history } from 'umi';
-
-export function render(oldRender) {
-  fetch('/api/auth').then(auth => {
-    if (auth.isLogin) { oldRender() }
-    else { 
-      history.push('/login'); 
-      oldRender()
-    }
-  });
-}
-```
+比如用于渲染之前做权限校验。
 
 
 

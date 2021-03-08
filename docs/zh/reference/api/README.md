@@ -15,9 +15,9 @@ import { someApi  } from "@fesjs/fes"
 主要在插件里面使用，项目代码中一般用不到。
 :::
 
-运行时插件接口，是 Umi 内置的跑在浏览器里的一套插件体系。
+运行时插件接口，是 Fes.js 内置的跑在浏览器里的一套插件体系。
 ```js
-import { plugin, ApplyPluginsType } from 'umi';
+import { plugin, ApplyPluginsType } from '@fesjs/fes';
 
 // 注册插件
 plugin.register({

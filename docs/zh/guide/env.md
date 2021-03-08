@@ -8,10 +8,10 @@
 比如：
 ```bash
 # OS X, Linux
-PORT=3000 umi dev
+PORT=3000 fes dev
 
 # Windows (cmd.exe)
-set PORT=3000 && umi dev
+set PORT=3000 && fes dev
 ```
 如果要同时考虑 OS X 和 Windows，可借助三方工具 [cross-env](https://github.com/kentcdodds/cross-env)
 <CodeGroup>
@@ -19,7 +19,7 @@ set PORT=3000 && umi dev
 
 ```bash
 yarn add cross-env --dev
-cross-env PORT=3000 umi dev
+cross-env PORT=3000 fes dev
 ```
 
   </CodeGroupItem>
@@ -27,7 +27,7 @@ cross-env PORT=3000 umi dev
 
 ```bash
 npm i cross-env --save-dev
-cross-env PORT=3000 umi dev
+cross-env PORT=3000 fes dev
 ```
 
   </CodeGroupItem>
@@ -54,7 +54,7 @@ fes dev
 
 举个 🌰 ：
 ```bash
-FES_ENV=sit umi dev
+FES_ENV=sit fes dev
 ```
 如果存在 `.env.sit` 文件，则会将 `.env.sit` 的配置和 `.env` 做 `merge` 后形成最终配置。
 
