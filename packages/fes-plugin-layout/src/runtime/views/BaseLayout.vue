@@ -61,7 +61,7 @@
             </a-layout-footer>
         </a-layout>
     </a-layout>
-    <div v-else class="layout-content">
+    <div v-else class="content-wrapper">
         <MultiTabProvider v-if="multiTabs" />
         <router-view v-else></router-view>
     </div>
@@ -184,6 +184,15 @@ export default {
 </script>
 
 <style lang="less">
+.main-layout.main-layout-navigation-mixin{
+    .layout-sider{
+        .ant-layout-sider-trigger {
+            border-top: 1px solid #f0f0f0;
+        }
+    }
+}
+</style>
+<style lang="less" scoped>
 .main-layout {
     min-height: 100vh;
     &.main-layout-collapsed {
@@ -231,9 +240,6 @@ export default {
         .layout-sider {
             padding: 48px 0 0;
             box-shadow: 2px 0 8px 0 rgba(29,35,41,.05);
-            .ant-layout-sider-trigger {
-                border-top: 1px solid #f0f0f0;
-            }
         }
         .layout-header {
             padding-left: 24px;
@@ -321,7 +327,8 @@ export default {
             z-index: 10;
         }
     }
-    .layout-content {
+    .layout-content,
+    .content-wrapper {
         position: relative;
     }
     .layout-footer {
