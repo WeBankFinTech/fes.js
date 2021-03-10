@@ -1,3 +1,8 @@
+/**
+ * @copy 该文件代码大部分出自 umi，有需要请参考：
+ * https://github.com/umijs/umi/blob/master/packages/preset-built-in/src/plugins/commands/dev/watchPkg.ts
+ */
+
 import { join } from 'path';
 import { chokidar, winPath, lodash } from '@umijs/utils';
 import { existsSync, readFileSync } from 'fs';

@@ -1,3 +1,8 @@
+/**
+ * @copy 该文件代码大部分出自 umi，有需要请参考：
+ * https://github.com/umijs/umi/tree/master/packages/core
+ */
+
 import { existsSync } from 'fs';
 import { extname, join } from 'path';
 import {

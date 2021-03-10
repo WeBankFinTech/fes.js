@@ -1,3 +1,8 @@
+/**
+ * @copy 该文件代码大部分出自 umi，有需要请参考：
+ * https://github.com/umijs/umi/blob/master/packages/umi/src/forkedDev.ts
+ */
+
 import { chalk, yParser } from '@umijs/utils';
 import { Service } from './serviceWithBuiltIn';
 import getCwd from './utils/getCwd';
