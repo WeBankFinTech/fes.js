@@ -1,6 +1,6 @@
 {
   "name": "@fesjs/preset-built-in",
-  "version": "2.0.0-rc.4",
+  "version": "2.0.0-rc.5",
   "description": "@fesjs/preset-built-in",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -32,7 +32,7 @@
     "@babel/plugin-proposal-pipeline-operator": "^7.12.13",
     "@babel/plugin-transform-runtime": "^7.12.13",
     "@babel/preset-env": "^7.12.13",
-    "@fesjs/compiler": "^2.0.0-rc.4",
+    "@fesjs/compiler": "^2.0.0-rc.5",
     "@soda/friendly-errors-webpack-plugin": "^1.8.0",
     "@umijs/utils": "3.3.3",
     "@vue/babel-plugin-jsx": "^1.0.2",
