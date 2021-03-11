@@ -12,9 +12,6 @@ const matchName = (config, name) => {
             }
             if (item.children && item.children.length > 0) {
                 res = matchName(item.children, name);
-                if (res) {
-                    break;
-                }
             }
         }
     }
