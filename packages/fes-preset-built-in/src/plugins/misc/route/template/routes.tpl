@@ -33,3 +33,7 @@ export const createRouter = () => {
 
   return router;
 };
+
+export const getRouter = ()=>{
+  return router;
+}
