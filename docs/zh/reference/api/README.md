@@ -70,6 +70,15 @@ plugin.applyPlugins({
 
 Fes.js 路由基于 [Vue Router 4.0](https://next.router.vuejs.org/introduction.html)，想了解更多的同学可以看看官方文档。
 
+### getRouter
+返回当前 `router` 实例。
+```js
+import { getRouter } from "@fesjs/fes";
+
+const router = getRouter();
+router.push();
+```
+
 ### useRoute
 返回当前 `route` 实例，相当于在模板内使用 `$route`。必须在 `setup` 函数内调用。
 ```js

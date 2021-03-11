@@ -13,7 +13,14 @@
 - 可配置页面是否需要 layout。
 
 ## 布局类型
-默认是 `side`
+配置参数是 `navigation`, 内容默认是 `side`：
+```js
+export default {
+    layout: {
+        navigation: 'side
+    }
+}
+```
 
 ### side
 <!-- ![side](/side.png) -->
@@ -56,9 +63,20 @@ Fes.js 渲染路由时，如果路由元信息存在配置 `layout` 为 `false`�
 ```js
 export default {
     layout: {
+        // 标题
         title: "Fes.js",
+        // 底部文字
         footer: 'Created by MumbelFe',
+        // 是否开启 tabs
         multiTabs: false,
+        // 布局类型
+        navigation: 'side',
+        // 是否固定头部
+        fixedHeader: false,
+        // 是否固定sidebar
+        fixedSideBar: true,
+        // sidebar的宽度
+        sideWidth: 200,
         menus: [{
             name: 'index'
         }, {
@@ -70,6 +88,34 @@ export default {
         }]
     },
 ```
+
+### footer
+- **类型**：`String`
+  
+- **默认值**：`null`
+
+- **详情**：页面底部的文字。
+
+### navigation
+- **类型**：`String`
+  
+- **默认值**：`side`
+
+- **详情**：页面布局类型，可选有 `side`、 `top`、 `mixin` 
+
+### fixedHeader
+- **类型**：`Boolean`
+  
+- **默认值**：`false`
+
+- **详情**：是否固定头部，不跟随页面滚动。
+
+### fixedSideBar
+- **类型**：`Boolean`
+  
+- **默认值**：`true`
+
+- **详情**：是否固定sidebar，不跟随页面滚动。
 
 #### title
 - **类型**：`String`
