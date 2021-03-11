@@ -1,6 +1,6 @@
 {
   "name": "@fesjs/plugin-jest",
-  "version": "2.0.0-rc.3",
+  "version": "2.0.0-rc.4",
   "description": "@fesjs/plugin-jest",
   "main": "lib/index.js",
   "files": [
@@ -31,7 +31,7 @@
   },
   "dependencies": {
     "@babel/core": "7.11.6",
-    "@fesjs/compiler": "^2.0.0-rc.3",
+    "@fesjs/compiler": "^2.0.0-rc.4",
     "@umijs/babel-preset-umi": "3.2.24",
     "babel-core": "^7.0.0-bridge.0",
     "babel-jest": "^26.6.3",

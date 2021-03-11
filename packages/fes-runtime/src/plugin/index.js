@@ -1,3 +1,8 @@
+/**
+ * @copy 该文件代码大部分出自 umi，有需要请参考：
+ * https://github.com/umijs/umi/blob/master/packages/runtime/src/Plugin/Plugin.ts
+ */
+
 import { assert } from '../utils';
 
 function _compose({ fns, args }) {
