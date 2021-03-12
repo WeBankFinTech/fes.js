@@ -14,7 +14,7 @@ export function getRoutes() {
 }
 
 const ROUTER_BASE = '{{{ routerBase }}}';
-let router = null;
+export let router = null;
 export const createRouter = () => {
   if (router) {
       return router;
