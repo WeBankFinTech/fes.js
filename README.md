@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://github.com/WeBankFinTech/fes.js">
-    <img alt="fes.js" width="250" src="https://i.loli.net/2021/03/06/LjT4JiPKgkxCSHy.png">
+    <img alt="fes.js" width="250" src="https://i.loli.net/2021/03/12/Vb4LKc5gaHUfOwB.png">
   </a>
 </p>
 
