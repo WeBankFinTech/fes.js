@@ -1,6 +1,7 @@
 
 export default {
     test: 'test',
+    home: 'home',
     'navBar.lang': 'Languages',
     'layout.user.link.help': 'Help',
     'layout.user.link.privacy': 'Privacy',

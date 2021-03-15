@@ -34,7 +34,7 @@ export default {
         navigation: 'mixin',
         menus: [{
             name: 'index',
-            icon: 'user'
+            icon: '/wine-outline.svg'
         }, {
             name: 'onepiece',
             icon: 'user',

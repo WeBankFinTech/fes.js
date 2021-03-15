@@ -14,7 +14,7 @@
 <config>
 {
     "name": "index",
-    "title": "首页"
+    "title": "home"
 }
 </config>
 <script>

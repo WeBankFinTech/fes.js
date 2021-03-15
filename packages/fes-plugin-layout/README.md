@@ -5,7 +5,6 @@
 multi tabs： 是/否
 
 ## todo-list
-1. 菜单的国际化
 
 ### theme
 1. 主题light-白色

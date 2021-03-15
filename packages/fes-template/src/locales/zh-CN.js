@@ -1,6 +1,7 @@
 
 export default {
     test: '测试',
+    home: '首页',
     'navBar.lang': '语言',
     'layout.user.link.help': '帮助',
     'layout.user.link.privacy': '隐私',

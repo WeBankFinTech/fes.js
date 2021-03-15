@@ -39,9 +39,19 @@ export const fillMenuByRoute = (menuConfig, routeConfig, dep = 0) => {
             // 处理icon
             if (menu.icon) {
                 const icon = menu.icon;
-                const iconName = `${icon.replace(icon[0], icon[0].toUpperCase())}Outlined`;
-                if (!allIcons[icon]) {
-                    menu.icon = iconName;
+                const urlReg = /^((https?|ftp|file):\/\/)?([\da-z.-]+)\.([a-z.]{2,6})([/\w .-]*)*\/?$/;
+                if (!(urlReg.test(icon) || icon.includes('.svg'))) {
+                    if (!allIcons[icon]) {
+                        menu.icon = {
+                            type: 'icon',
+                            name: `${icon.replace(icon[0], icon[0].toUpperCase())}Outlined`
+                        };
+                    } else {
+                        menu.icon = {
+                            type: 'icon',
+                            name: icon
+                        };
+                    }
                 }
             }
             if (menu.children && menu.children.length > 0) {
@@ -61,7 +71,9 @@ export function getIconsFromMenu(data) {
     (data || []).forEach((item = { path: '/' }) => {
         if (item.icon) {
             const { icon } = item;
-            icons.push(icon);
+            if (icon && icon.type === 'icon') {
+                icons.push(icon.name);
+            }
         }
         if (item.children) {
             icons = icons.concat(getIconsFromMenu(item.children));

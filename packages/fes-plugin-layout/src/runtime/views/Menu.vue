@@ -7,7 +7,7 @@
     >
         <template v-for="(item, index) in fixedMenus" :key="index">
             <template v-if="item.access">
-                <a-sub-menu v-if="item.children" :title="item.title">
+                <a-sub-menu v-if="item.children" :title="transTitle(item.title)">
                     <template
                         v-for="(item1, index) in item.children"
                         :key="index"
@@ -15,7 +15,7 @@
                         <template v-if="item1.access">
                             <a-sub-menu
                                 v-if="item1.children"
-                                :title="item1.title"
+                                :title="transTitle(item1.title)"
                             >
                                 <template
                                     v-for="(item2, index) in item1.children"
@@ -24,21 +24,21 @@
                                     <a-menu-item
                                         v-if="item2.access"
                                         :key="item2.path"
-                                        :title="item2.title"
+                                        :title="transTitle(item2.title)"
                                     >
-                                        {{item2.title}}
+                                        {{transTitle(item2.title)}}
                                     </a-menu-item>
                                 </template>
                             </a-sub-menu>
-                            <a-menu-item v-else :key="item1.path" :title="item1.title">
-                                {{item1.title}}
+                            <a-menu-item v-else :key="item1.path" :title="transTitle(item1.title)">
+                                {{transTitle(item1.title)}}
                             </a-menu-item>
                         </template>
                     </template>
                 </a-sub-menu>
-                <a-menu-item v-else :key="item.path" :title="item.title">
+                <a-menu-item v-else :key="item.path" :title="transTitle(item.title)">
                     <MenuIcon v-if="item.icon" :icon="item.icon" />
-                    <span>{{item.title}}</span>
+                    <span>{{transTitle(item.title)}}</span>
                 </a-menu-item>
             </template>
         </template>
@@ -47,7 +47,7 @@
 
 <script>
 import { toRefs, computed } from 'vue';
-import { useRoute, useRouter } from '@@/core/coreExports';
+import { useRoute, useRouter, plugin } from '@@/core/coreExports';
 import Menu from 'ant-design-vue/lib/menu';
 import 'ant-design-vue/lib/menu/style/css';
 import MenuIcon from './MenuIcon';
@@ -73,6 +73,7 @@ export default {
         }
     },
     setup(props) {
+        const sharedLocale = plugin.getShared('locale');
         const { menus } = toRefs(props);
         const route = useRoute();
         const router = useRouter();
@@ -89,11 +90,19 @@ export default {
                 );
             }
         };
+        const transTitle = (name) => {
+            if (sharedLocale) {
+                const { t } = sharedLocale.useI18n();
+                return t(name);
+            }
+            return name;
+        };
         const selectedKeys = computed(() => [route.path]);
         return {
             selectedKeys,
             fixedMenus,
-            onMenuClick
+            onMenuClick,
+            transTitle
         };
     }
 };

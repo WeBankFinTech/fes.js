@@ -12,7 +12,7 @@ import SelectLang from "./views/SelectLang";
 
 {{ #SHARE }}
 // 共享出去
-plugin.share("locale", { SelectLang });
+plugin.share("locale", {useI18n, SelectLang });
 {{ /SHARE }}
 
 const locales = {{{REPLACE_LOCALES}}};
