@@ -1,6 +1,7 @@
 <script>
 
 import { ref, onBeforeMount } from 'vue';
+// eslint-disable-next-line import/extensions
 import Icons from '../icons';
 import { validateContent } from '../helpers/svg';
 
@@ -32,7 +33,7 @@ export default {
             }
             if (AText.value) {
                 return (
-                    <span className={'fes-layout-icon'} innerHTML={AText.value}>
+                    <span className={'fes-layout-icon anticon'} innerHTML={AText.value}>
                     </span>
                 );
             }
