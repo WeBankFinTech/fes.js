@@ -28,7 +28,7 @@ const _addAccessTag = (arr) => {
     }
 };
 
-export const addAccessTag = (menus) => {
+export const transform = (menus) => {
     const originData = unref(menus);
     _addAccessTag(originData);
     return originData;
