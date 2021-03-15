@@ -1,6 +1,6 @@
 import { existsSync, readFileSync } from 'fs';
 import { resolve } from 'path';
-import { chokidar, lodash } from '@umijs/utils';
+import { chokidar, lodash, parseRequireDeps } from '@umijs/utils';
 import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
 import mockjs from 'mockjs';
@@ -10,6 +10,24 @@ export default (api) => {
     let mockPrefix = '/'; // mock 过滤前缀
     let mockFile = ''; // mock 文件
     let loadMock = ''; // mock 对象
+
+    const registerBabel = (paths) => {
+        // support
+        // clear require cache and set babel register
+        const requireDeps = paths.reduce((memo, file) => {
+            memo = memo.concat(parseRequireDeps(file));
+            return memo;
+        }, []);
+        requireDeps.forEach((f) => {
+            if (require.cache[f]) {
+                delete require.cache[f];
+            }
+        });
+        api.babelRegister.setOnlyMap({
+            key: 'mock',
+            value: [...paths, ...requireDeps]
+        });
+    };
 
     api.describe({
         key: 'mock',
@@ -96,11 +114,14 @@ export default (api) => {
         }
         // require最新的 mock.js 文件
         try {
-            const projectMock = require(mockFile);
-            if (!lodash.isFunction(projectMock)) {
+            // register babel
+            registerBabel([mockFile]);
+            const _initFunction = require(mockFile);
+            const initFunction = _initFunction.default || _initFunction;
+            if (!lodash.isFunction(initFunction)) {
                 api.logger.info('mock.js should export Function'); return;
             }
-            projectMock({ cgiMock, mockjs, utils });
+            initFunction({ cgiMock, mockjs, utils });
         } catch (err) {
             api.logger.error('mock.js run fail!');
         }

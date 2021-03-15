@@ -9,6 +9,8 @@
 - 搭配 [@fesjs/plugin-access](./access.html) 插件使用，可以完成对路由的权限控制。
 - 搭配 [@fesjs/plugin-locale](./locale.html) 插件使用，提供切换语言的能力。
 - 支持自定义头部区域。
+- 菜单支持配置icon
+- 菜单标题支持国际化
   
 - 可配置页面是否需要 layout。
 
@@ -156,9 +158,21 @@ export default {
   
   - **path**：菜单的路径，可配置第三方地址。
   
-  - **title**：菜单的标题。
+  - **title**：菜单的标题，如果同时使用[国际化插件](./locale.md)，而且在 `locales` 中配置了 `title` ，则菜单的名称会根据语言自动切换。
 
-  - **icon**: 菜单的图标，只有一级标题展示图标，图标使用[antv icon](https://www.antdv.com/components/icon-cn/)，在这里使用组件type。
+  - **icon**: 菜单的图标，只有一级标题展示图标。
+    - 图标使用[antv icon](https://www.antdv.com/components/icon-cn/)，在这里使用组件type。
+```js
+{
+    name: "user"
+}
+```
+    - 图表使用本地或者远程svg图片。
+```js
+{
+    name: "/wine-outline.svg"
+}
+```
   
   - **children**：子菜单配置。
   

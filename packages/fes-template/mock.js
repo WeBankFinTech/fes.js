@@ -1,4 +1,4 @@
-module.exports = function ({ cgiMock, mockjs, utils }) {
+export default function ({ cgiMock, mockjs, utils }) {
     const { Random } = mockjs;
 
     // 测试 proxy 与 mock 用例集合
@@ -127,4 +127,4 @@ module.exports = function ({ cgiMock, mockjs, utils }) {
             msg: '文件上传成功'
         });
     });
-};
+}

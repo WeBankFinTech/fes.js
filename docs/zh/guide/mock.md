@@ -19,7 +19,7 @@ Fes.js 约定 `src/mock.js` 为 mock 文件。
 
 可以参考如下 🌰：
 ``` js
-module.exports = function ({ cgiMock, mockjs, utils }) {
+export default function ({ cgiMock, mockjs, utils }) {
     const { Random } = mockjs;
 
     // 测试 proxy 与 mock 用例集合
@@ -160,7 +160,7 @@ module.exports = function ({ cgiMock, mockjs, utils }) {
 
 比如：
 ```js
-module.exports = function ({ cgiMock, mockjs, utils }) {
+export default function ({ cgiMock, mockjs, utils }) {
     cgiMock('/random', mockjs.mock({
         'string|1-10': '★'
     }));
