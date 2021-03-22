@@ -78,9 +78,12 @@ export function genUpdate() {
 // 子应用生命周期钩子Unmount
 export function genUnmount(mountElementId) {
     return async (props) => {
-        const container = props?.container
-            ? props.container.querySelector(`#${mountElementId}`)
-            : document.getElementById(mountElementId);
+        let container;
+        try {
+            container = props?.container
+                ? props.container.querySelector(mountElementId)
+                : document.querySelector(mountElementId);
+        } catch (e) {}
         if (container && app) {
             app.unmount(container);
         }

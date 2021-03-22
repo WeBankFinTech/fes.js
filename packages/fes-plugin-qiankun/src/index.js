@@ -8,7 +8,7 @@ export default (api) => {
         config: {
             schema(joi) {
                 return joi.object().keys({
-                    mirco: joi.object(),
+                    micro: joi.object(),
                     main: joi.object()
                 });
             }
@@ -19,7 +19,7 @@ export default (api) => {
 
     api.registerPlugins([
         require.resolve('./main'),
-        require.resolve('./mirco')
+        require.resolve('./micro')
     ]);
 
     // const absRuntimeFilePath = join(namespace, 'runtime.js');

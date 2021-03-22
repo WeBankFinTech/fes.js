@@ -1,14 +1,15 @@
 import assert from 'assert';
+import address from 'address';
 import { lodash } from '@umijs/utils';
 import { readFileSync } from 'fs';
 import { join } from 'path';
 // import { defaultMircoRootId } from '../common';
 
-const namespace = 'plugin-qiankun/mirco';
+const namespace = 'plugin-qiankun/micro';
 
 export function isSlaveEnable(api) {
     return (
-        !!api.userConfig?.qiankun?.mirco
+        !!api.userConfig?.qiankun?.micro
       || lodash.isEqual(api.userConfig?.qiankun, {})
       || !!process.env.INITIAL_QIANKUN_MIRCO_OPTIONS
     );
@@ -27,15 +28,17 @@ export default function (api) {
     api.modifyPublicPathStr((publicPathStr) => {
         const { runtimePublicPath } = api.config;
         const qiankunConfig = api.config.qiankun || {};
-        if (!qiankunConfig || !qiankunConfig.mirco) {
+        if (!qiankunConfig || !qiankunConfig.micro) {
             return publicPathStr;
         }
         const { shouldNotModifyRuntimePublicPath } = qiankunConfig;
 
         if (runtimePublicPath === true && !shouldNotModifyRuntimePublicPath) {
-            return `window.__INJECTED_PUBLIC_PATH_BY_QIANKUN__ || "${
-                api.config.publicPath || '/'
-            }"`;
+            // 这里必须使用__INJECTED_PUBLIC_PATH_BY_QIANKUN__，因为绝对地址只在开发时生效。
+            // return `window.__INJECTED_PUBLIC_PATH_BY_QIANKUN__ || "${api.config.publicPath || '/'}"`;
+            const port = api.getPort();
+
+            return `//localhost:${port}${api.config.publicPath || '/'}`;
         }
 
         return publicPathStr;
@@ -47,8 +50,37 @@ export default function (api) {
         return config;
     });
 
+    const port = process.env.PORT;
+    // source-map 跨域设置
+    if (process.env.NODE_ENV === 'development' && port) {
+        const localHostname = process.env.USE_REMOTE_IP
+            ? address.ip()
+            : process.env.HOST || 'localhost';
+
+        const protocol = process.env.HTTPS ? 'https' : 'http';
+        // // 变更 webpack-dev-server websocket 默认监听地址
+        // process.env.SOCKET_SERVER = `${protocol}://${localHostname}:${port}/`;
+        api.chainWebpack((memo, { webpack }) => {
+            // 开启了 devSourceMap 配置，默认为 true
+            if (api.config.qiankun && api.config.qiankun.micro && api.config.qiankun.micro.devSourceMap !== false) {
+                // 禁用 devtool，启用 SourceMapDevToolPlugin
+                memo.devtool(false);
+                memo.plugin('source-map').use(webpack.SourceMapDevToolPlugin, [
+                    {
+                        // @ts-ignore
+                        namespace: api.pkg.name,
+                        append: `\n//# sourceMappingURL=${protocol}://${localHostname}:${port}/[url]`,
+                        filename: '[file].map'
+                    }
+                ]);
+            }
+            return memo;
+        });
+    }
+
     const absRuntimePath = join(namespace, 'runtime.js');
     const absLifeclesPath = join(namespace, 'lifecycles.js');
+    const absMicroOptionsPath = join(namespace, 'slaveOptions.js');
 
     api.onGenerateFiles(() => {
         api.writeTmpFile({
@@ -59,6 +91,15 @@ export default function (api) {
         api.writeTmpFile({
             path: absLifeclesPath,
             content: readFileSync(join(__dirname, 'runtime/lifecycles.tpl'), 'utf-8')
+        });
+
+        api.writeTmpFile({
+            path: absMicroOptionsPath,
+            content: `
+            let options = ${JSON.stringify((api.config.qiankun || {}).micro || {})};
+            export const getSlaveOptions = () => options;
+            export const setSlaveOptions = (newOpts) => options = ({ ...options, ...newOpts });
+            `
         });
     });
 

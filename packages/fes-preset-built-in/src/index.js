@@ -44,6 +44,7 @@ export default function () {
             require.resolve('./plugins/features/vueLoader'),
             require.resolve('./plugins/features/mock'),
             require.resolve('./plugins/features/dynamicImport'),
+            require.resolve('./plugins/features/runtimePublicPath'),
 
             // misc
             require.resolve('./plugins/misc/route'),
