@@ -29,8 +29,7 @@ export default function (api) {
         'modifyBabelPresetOpts',
         'chainWebpack',
         'addTmpGenerateWatcherPaths',
-        'modifyPublicPathStr',
-        'modifyHTML',
+        'modifyPublicPathStr'
     ].forEach((name) => {
         api.registerMethod({ name });
     });

@@ -1,6 +1,6 @@
-import { join } from 'path';
+// import { join } from 'path';
 
-const namespace = 'plugin-qiankun';
+// const namespace = 'plugin-qiankun';
 
 export default (api) => {
     api.describe({
@@ -15,12 +15,14 @@ export default (api) => {
         }
     });
 
+    api.addRuntimePluginKey(() => 'qiankun');
+
     api.registerPlugins([
         require.resolve('./main'),
         require.resolve('./mirco')
     ]);
 
-    const absRuntimeFilePath = join(namespace, 'runtime.js');
+    // const absRuntimeFilePath = join(namespace, 'runtime.js');
 
-    api.addRuntimePlugin(() => `@@/${absRuntimeFilePath}`);
+    // api.addRuntimePlugin(() => `@@/${absRuntimeFilePath}`);
 };

@@ -62,18 +62,15 @@ const getClientRender = (args = {}) => plugin.applyPlugins({
   args,
 });
 
-
-
-const beforeRenderConfig = plugin.applyPlugins({
-    key: "beforeRender",
-    type: ApplyPluginsType.modify,
-    initialValue: {
-        loading: null,
-        action: null
-    },
-});
-
 const beforeRender = async () => {
+    const beforeRenderConfig = plugin.applyPlugins({
+        key: "beforeRender",
+        type: ApplyPluginsType.modify,
+        initialValue: {
+            loading: null,
+            action: null
+        },
+    });
     let initialState = {};
     if (typeof beforeRenderConfig.action === "function") {
         const app = createApp(beforeRenderConfig.loading);
@@ -89,13 +86,16 @@ const beforeRender = async () => {
     return initialState;
 };
 
-const render = async () => {
+const completeClientRender = async () => {
     const initialState = await beforeRender();
     const clientRender = getClientRender({initialState});
-    clientRender();
+    const app = clientRender();
+    return app;
 };
 
-render();
+const app = completeClientRender();
+
+export default app;
 
 
 {{{ entryCode }}}
