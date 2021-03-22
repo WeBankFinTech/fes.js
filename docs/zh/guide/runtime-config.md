@@ -93,7 +93,7 @@ rootContainer(LastRootContainer, args)
 比如在可以包一层DIV：
 ```js
 export function rootContainer(container) {
-    return () => () => {
+    return () => {
         return (
             <div>
                 <RouterView></RouterView>
@@ -101,7 +101,6 @@ export function rootContainer(container) {
         )
   }
 }
-
 ```
 
 ### onAppCreated
