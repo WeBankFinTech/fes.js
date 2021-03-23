@@ -34,11 +34,9 @@ export default function (api) {
         const { shouldNotModifyRuntimePublicPath } = qiankunConfig;
 
         if (runtimePublicPath === true && !shouldNotModifyRuntimePublicPath) {
-            // 这里必须使用__INJECTED_PUBLIC_PATH_BY_QIANKUN__，因为绝对地址只在开发时生效。
-            // return `window.__INJECTED_PUBLIC_PATH_BY_QIANKUN__ || "${api.config.publicPath || '/'}"`;
-            const port = api.getPort();
-
-            return `//localhost:${port}${api.config.publicPath || '/'}`;
+            return `window.__INJECTED_PUBLIC_PATH_BY_QIANKUN__ || "${
+                api.config.publicPath || '/'
+            }"`;
         }
 
         return publicPathStr;
