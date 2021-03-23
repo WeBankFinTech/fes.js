@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://github.com/WeBankFinTech/fes.js">
-    <img alt="fes.js" width="250" src="https://i.loli.net/2020/08/31/FB6zZyPEW5cVDAC.jpg">
+    <img alt="fes.js" width="250" src="https://i.loli.net/2021/03/12/Vb4LKc5gaHUfOwB.png">
   </a>
 </p>
 
@@ -17,6 +17,10 @@
 - 在线体验 - [http://webank.gitee.io/fes-pro/](http://webank.gitee.io/fes-pro/)
 - 使用文档 - [https://webank.gitee.io/fes.js/](https://webank.gitee.io/fes.js/)
 - 更新日志 - [https://github.com/WeBankFinTech/fes.js/blob/master/CHANGELOG.md](https://github.com/WeBankFinTech/fes.js/blob/master/CHANGELOG.md)
+
+## 重大更新
+
+目前基于 Vue3 版本的 Fes.js 已进入 RC 阶段，详情请访问 [https://github.com/WeBankFinTech/fes.js/tree/vue3](https://github.com/WeBankFinTech/fes.js/tree/vue3)
 
 # 前言
 不管什么项目可能需要一个或者更多的管理台，管理台应用的内容一般是权限管理、增删改查、报表等业务逻辑相对固定的。但是大量的增删改查和接口联调非常耗费开发者时间，而且现在对管理台前端有了更高的要求，希望前端应用有美观而且统一的UI和一致的交互体验。     
