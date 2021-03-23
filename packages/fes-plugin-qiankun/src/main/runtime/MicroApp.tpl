@@ -4,14 +4,15 @@ import {
     watch,
     computed,
     onBeforeUnmount,
-    onMounted
-} from 'vue';
-import { loadMicroApp } from 'qiankun';
+    onMounted,
+} from "vue";
+import { loadMicroApp } from "qiankun";
+import mergeWith from "lodash/mergeWith";
 // eslint-disable-next-line import/extensions
-import { getMasterOptions } from './masterOptions';
+import { getMasterOptions } from "./masterOptions";
 
 function unmountMicroApp(microApp) {
-    if (microApp) {
+    if (microApp && microApp.mountPromise) {
         microApp.mountPromise.then(() => microApp.unmount());
     }
 }
@@ -20,8 +21,8 @@ export const MicroApp = defineComponent({
     props: {
         name: {
             type: String,
-            required: true
-        }
+            required: true,
+        },
     },
     setup(props) {
         const {
@@ -31,37 +32,48 @@ export const MicroApp = defineComponent({
             ...globalSettings
         } = getMasterOptions();
 
+        const {
+            name,
+            settings: settingsFromProps = {},
+            loader,
+            lifeCycles,
+            className,
+            ...propsFromParams
+        } = props;
+
         const containerRef = ref(null);
         const microAppRef = ref();
         const updatingPromise = ref();
         const updatingTimestamp = ref(Date.now());
 
-        const appConfigRef = computed(() => {
-            const _appConfig = apps.find(app => app.name === props.name);
-            if (!_appConfig) {
+        const getAppConfig = () => {
+            const appConfig = apps.find((app) => app.name === name);
+            if (!appConfig) {
                 throw new Error(
-                    `[@fesjs/plugin-qiankun]: Can not find the configuration of ${props.name} app!`
+                    `[@fesjs/plugin-qiankun]: Can not find the configuration of ${name} app!`
                 );
             }
-            return _appConfig;
-        });
+            return appConfig;
+        };
 
         const loadApp = () => {
-            const appConfig = appConfigRef.value;
+            const appConfig = getAppConfig();
+            const { name, entry, props: propsFromConfig = {} } = appConfig;
             // 加载新的
             microAppRef.value = loadMicroApp(
                 {
-                    name: appConfig.name,
-                    entry: appConfig.entry,
+                    name: name,
+                    entry: entry,
                     container: containerRef.value,
-                    props: { ...appConfig.props }
+                    props: { ...propsFromConfig, ...propsFromParams },
                 },
                 {
                     ...globalSettings,
-                    ...(props.settings || {}),
-                    globalLifeCycles,
-                    lifeCycles: props.lifeCycles
-                }
+                    ...settingsFromProps,
+                },
+                mergeWith({}, globalLifeCycles, lifeCycles, (v1, v2) =>
+                    concat(v1 ?? [], v2 ?? [])
+                )
             );
         };
 
@@ -73,7 +85,7 @@ export const MicroApp = defineComponent({
             unmountMicroApp(microAppRef.value);
         });
 
-        watch(appConfigRef, () => {
+        watch(props, () => {
             unmountMicroApp(microAppRef.value);
 
             loadApp();
@@ -81,7 +93,8 @@ export const MicroApp = defineComponent({
 
         watch(microAppRef, () => {
             const microApp = microAppRef.value;
-            const appConfig = appConfigRef.value;
+            const appConfig = getAppConfig();
+            const { props: propsFromConfig = {} } = appConfig;
             if (microApp) {
                 if (!updatingPromise.value) {
                     // 初始化 updatingPromise 为 microApp.mountPromise，从而确保后续更新是在应用 mount 完成之后
@@ -89,12 +102,13 @@ export const MicroApp = defineComponent({
                 } else {
                     // 确保 microApp.update 调用是跟组件状态变更顺序一致的，且后一个微应用更新必须等待前一个更新完成
                     updatingPromise.value = updatingPromise.value.then(() => {
-                        const canUpdate = app => app?.update && app.getStatus() === 'MOUNTED';
+                        const canUpdate = (app) =>
+                            app?.update && app.getStatus() === "MOUNTED";
                         if (canUpdate(microApp)) {
-                            if (process.env.NODE_ENV === 'development') {
+                            if (process.env.NODE_ENV === "development") {
                                 if (
-                                    Date.now() - updatingTimestamp.value
-                                    < 200
+                                    Date.now() - updatingTimestamp.value <
+                                    200
                                 ) {
                                     console.warn(
                                         `[@fesjs/plugin-qiankun] It seems like microApp ${props.name} is updating too many times in a short time(200ms), you may need to do some optimization to avoid the unnecessary re-rendering.`
@@ -102,7 +116,7 @@ export const MicroApp = defineComponent({
                                 }
 
                                 console.info(
-                                    `[@umijs/plugin-qiankun] MicroApp ${props.name} is updating with props: `,
+                                    `[@fesjs/plugin-qiankun] MicroApp ${props.name} is updating with props: `,
                                     props
                                 );
                                 updatingTimestamp.value = Date.now();
@@ -110,7 +124,8 @@ export const MicroApp = defineComponent({
 
                             // 返回 microApp.update 形成链式调用
                             return microApp.update({
-                                ...appConfig.props
+                                ...propsFromConfig,
+                                ...propsFromParams,
                             });
                         }
                     });
@@ -118,6 +133,6 @@ export const MicroApp = defineComponent({
             }
         });
 
-        return () => <div ref={containerRef} className={props.className}></div>;
-    }
+        return () => <div ref={containerRef} className={className}></div>;
+    },
 });

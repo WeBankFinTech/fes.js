@@ -29,7 +29,7 @@
   "dependencies": {
     "@umijs/utils": "3.3.3",
     "address": "^1.1.2",
-    "path-to-regexp": "^6.2.0",
+    "lodash": "^4.17.15",
     "qiankun": "2.3.4"
   },
   "peerDependencies": {

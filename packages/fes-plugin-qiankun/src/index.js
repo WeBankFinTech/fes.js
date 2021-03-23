@@ -1,7 +1,3 @@
-// import { join } from 'path';
-
-// const namespace = 'plugin-qiankun';
-
 export default (api) => {
     api.describe({
         key: 'qiankun',
@@ -21,8 +17,4 @@ export default (api) => {
         require.resolve('./main'),
         require.resolve('./micro')
     ]);
-
-    // const absRuntimeFilePath = join(namespace, 'runtime.js');
-
-    // api.addRuntimePlugin(() => `@@/${absRuntimeFilePath}`);
 };
