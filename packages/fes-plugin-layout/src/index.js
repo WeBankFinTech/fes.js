@@ -79,7 +79,6 @@ export default (api) => {
     api.addRuntimePlugin(() => `@@/${absRuntimeFilePath}`);
 
     // 把BaseLayout插入到路由配置中，作为根路由
-    // TODO: fes缺少修改路由API
     api.modifyRoutes(routes => [
         {
             path: '/',

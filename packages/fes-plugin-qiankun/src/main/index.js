@@ -1,6 +1,7 @@
 import { readFileSync } from 'fs';
 import { join } from 'path';
 import { defaultMainRootId, defaultHistoryType } from '../constants';
+import modifyRoutes from './modifyRoutes';
 
 const namespace = 'plugin-qiankun/main';
 
@@ -21,9 +22,12 @@ export default function (api) {
         mountElementId: defaultMainRootId
     }));
 
+    modifyRoutes({ api, namespace });
+
     const absMicroAppPath = join(namespace, 'MicroApp.js');
     const absRuntimePath = join(namespace, 'runtime.js');
     const absMasterOptionsPath = join(namespace, 'masterOptions.js');
+    const absGetMicroAppRouteCompPath = join(namespace, 'getMicroAppRouteComponent.js');
 
     api.onGenerateFiles(() => {
         api.writeTmpFile({
@@ -36,6 +40,10 @@ export default function (api) {
             content: readFileSync(join(__dirname, 'runtime/runtime.tpl'), 'utf-8')
         });
 
+        api.writeTmpFile({
+            path: absGetMicroAppRouteCompPath,
+            content: readFileSync(join(__dirname, 'runtime/getMicroAppRouteComponent.tpl'), 'utf-8')
+        });
 
         const { main: options } = api.config?.qiankun || {};
         const masterHistoryType = api.config?.router?.mode || defaultHistoryType;
@@ -58,6 +66,13 @@ export default function (api) {
         {
             specifiers: ['MicroApp'],
             source: absMicroAppPath
+        }
+    ]);
+
+    api.addPluginExports(() => [
+        {
+            specifiers: ['getMicroAppRouteComponent'],
+            source: absGetMicroAppRouteCompPath
         }
     ]);
 
