@@ -3,15 +3,14 @@ import address from 'address';
 import { lodash } from '@umijs/utils';
 import { readFileSync } from 'fs';
 import { join } from 'path';
-// import { defaultMircoRootId } from '../common';
 
 const namespace = 'plugin-qiankun/micro';
 
 export function isSlaveEnable(api) {
     return (
         !!api.userConfig?.qiankun?.micro
-      || lodash.isEqual(api.userConfig?.qiankun, {})
-      || !!process.env.INITIAL_QIANKUN_MIRCO_OPTIONS
+        || lodash.isEqual(api.userConfig?.qiankun, {})
+        || !!process.env.INITIAL_QIANKUN_MIRCO_OPTIONS
     );
 }
 
@@ -20,26 +19,28 @@ export default function (api) {
         enableBy: () => isSlaveEnable(api)
     });
 
-    api.modifyDefaultConfig(memo => ({
-        ...memo,
-        runtimePublicPath: true
-    }));
+    api.modifyDefaultConfig((memo) => {
+        const initialMicroOptions = {
+            devSourceMap: true,
+            ...JSON.parse(process.env.INITIAL_QIANKUN_MIRCO_OPTIONS || '{}'),
+            ...(memo.qiankun || {}).micro
+        };
+        const modifiedDefaultConfig = {
+            ...memo,
+            runtimePublicPath: true,
+            qiankun: {
+                ...memo.qiankun,
+                slave: initialMicroOptions
+            }
+        };
 
-    api.modifyPublicPathStr((publicPathStr) => {
-        const { runtimePublicPath } = api.config;
-        const qiankunConfig = api.config.qiankun || {};
-        if (!qiankunConfig || !qiankunConfig.micro) {
-            return publicPathStr;
+        const shouldNotModifyDefaultBase = api.userConfig.qiankun?.slave?.shouldNotModifyDefaultBase
+            ?? initialMicroOptions.shouldNotModifyDefaultBase;
+        if (!shouldNotModifyDefaultBase) {
+            modifiedDefaultConfig.base = `/${api.pkg.name}`;
         }
-        const { shouldNotModifyRuntimePublicPath } = qiankunConfig;
 
-        if (runtimePublicPath === true && !shouldNotModifyRuntimePublicPath) {
-            return `window.__INJECTED_PUBLIC_PATH_BY_QIANKUN__ || "${
-                api.config.publicPath || '/'
-            }"`;
-        }
-
-        return publicPathStr;
+        return modifiedDefaultConfig;
     });
 
     api.chainWebpack((config) => {
@@ -56,11 +57,14 @@ export default function (api) {
             : process.env.HOST || 'localhost';
 
         const protocol = process.env.HTTPS ? 'https' : 'http';
-        // // 变更 webpack-dev-server websocket 默认监听地址
-        // process.env.SOCKET_SERVER = `${protocol}://${localHostname}:${port}/`;
+        // TODO: 变更 webpack-dev-server websocket 默认监听地址
         api.chainWebpack((memo, { webpack }) => {
             // 开启了 devSourceMap 配置，默认为 true
-            if (api.config.qiankun && api.config.qiankun.micro && api.config.qiankun.micro.devSourceMap !== false) {
+            if (
+                api.config.qiankun
+                && api.config.qiankun.micro
+                && api.config.qiankun.micro.devSourceMap !== false
+            ) {
                 // 禁用 devtool，启用 SourceMapDevToolPlugin
                 memo.devtool(false);
                 memo.plugin('source-map').use(webpack.SourceMapDevToolPlugin, [
@@ -79,22 +83,43 @@ export default function (api) {
     const absRuntimePath = join(namespace, 'runtime.js');
     const absLifeclesPath = join(namespace, 'lifecycles.js');
     const absMicroOptionsPath = join(namespace, 'slaveOptions.js');
+    const absPublicPath = join(namespace, 'publicPath.js');
+
+    // 更改public path
+    api.addEntryImportsAhead(() => [{ source: `@@/${absPublicPath}` }]);
 
     api.onGenerateFiles(() => {
         api.writeTmpFile({
             path: absRuntimePath,
-            content: readFileSync(join(__dirname, 'runtime/runtime.tpl'), 'utf-8')
+            content: readFileSync(
+                join(__dirname, 'runtime/runtime.tpl'),
+                'utf-8'
+            )
         });
 
         api.writeTmpFile({
             path: absLifeclesPath,
-            content: readFileSync(join(__dirname, 'runtime/lifecycles.tpl'), 'utf-8')
+            content: readFileSync(
+                join(__dirname, 'runtime/lifecycles.tpl'),
+                'utf-8'
+            )
+        });
+
+        api.writeTmpFile({
+            path: absPublicPath,
+            content: `
+            if (window.__POWERED_BY_QIANKUN__) {
+                __webpack_public_path__ = window.__INJECTED_PUBLIC_PATH_BY_QIANKUN__;
+            }
+            `
         });
 
         api.writeTmpFile({
             path: absMicroOptionsPath,
             content: `
-            let options = ${JSON.stringify((api.config.qiankun || {}).micro || {})};
+            let options = ${JSON.stringify(
+        (api.config.qiankun || {}).micro || {}
+    )};
             export const getSlaveOptions = () => options;
             export const setSlaveOptions = (newOpts) => options = ({ ...options, ...newOpts });
             `
