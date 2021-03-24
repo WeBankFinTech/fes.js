@@ -13,12 +13,12 @@ export default async function createHtmlWebpackConfig({
     isProd
 }) {
     const htmlOptions = {
+        title: 'fes.js',
         filename: '[name].html',
         ...config.html,
-        templateParameters: resolveDefine(null, true)
+        templateParameters: resolveDefine(null, true),
+        mountElementId: config.mountElementId
     };
-    htmlOptions.title = htmlOptions.title || 'fes.js';
-
 
     if (isProd) {
         Object.assign(htmlOptions, {
