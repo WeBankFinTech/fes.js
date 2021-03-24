@@ -10,6 +10,9 @@ import { loadMicroApp } from "qiankun";
 import mergeWith from "lodash/mergeWith";
 // eslint-disable-next-line import/extensions
 import { getMasterOptions } from "./masterOptions";
+{{#HAS_PLUGIN_MODEL}}
+import { useModel } from '@@/core/pluginExports';
+{{/HAS_PLUGIN_MODEL}}
 
 function unmountMicroApp(microApp) {
     if (microApp && microApp.mountPromise) {
@@ -27,13 +30,21 @@ export const MicroApp = defineComponent({
         lifeCycles: Object,
         className: String,
     },
-    setup(props) {
+    setup(props, { attrs }) {
         const {
             masterHistoryType,
             apps = [],
             lifeCycles: globalLifeCycles,
             ...globalSettings
         } = getMasterOptions();
+
+{{#HAS_PLUGIN_MODEL}}
+        // 约定使用 src/models/qiankunStateForMicro 中的数据作为主应用透传给微应用的 props，优先级高于 propsFromConfig
+        const stateForSlave = useModel('{{{qiankunStateForMicroModelNamespace}}}');
+{{/HAS_PLUGIN_MODEL}}
+{{^HAS_PLUGIN_MODEL}}
+        const stateForSlave = reactive({});
+{{/HAS_PLUGIN_MODEL}}
 
         // 挂载节点
         const containerRef = ref(null);
@@ -59,16 +70,7 @@ export const MicroApp = defineComponent({
             return {};
         });
 
-        const propsFromParamsRef = computed(() => {
-            const {
-                name,
-                settings,
-                lifeCycles,
-                className,
-                ...propsFromParams
-            } = props;
-            return propsFromParams || {};
-        });
+        const propsFromParams = attrs;
 
         // 只有当name变化时才重新加载新的子应用
         const loadApp = () => {
@@ -82,7 +84,8 @@ export const MicroApp = defineComponent({
                     container: containerRef.value,
                     props: {
                         ...propsFromConfigRef.value,
-                        ...propsFromParamsRef.value,
+                        ...stateForSlave,
+                        ...propsFromParams,
                     },
                 },
                 {
@@ -130,7 +133,8 @@ export const MicroApp = defineComponent({
                                 // 返回 microApp.update 形成链式调用
                                 return microApp.update({
                                     ...propsFromConfigRef.value,
-                                    ...propsFromParamsRef.value,
+                                    ...stateForSlave,
+                                    ...propsFromParams,
                                 });
                             }
                         }
@@ -152,7 +156,9 @@ export const MicroApp = defineComponent({
             loadApp();
         });
 
-        watch([propsFromConfigRef, propsFromParamsRef], () => {
+        watch(()=>{
+            return {...{}, ...propsFromConfigRef.value, ...stateForSlave, ...propsFromParams}
+        }, () => {
             updateApp();
         });
 

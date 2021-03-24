@@ -1,6 +1,10 @@
-import { readFileSync } from 'fs';
+import { readFileSync, existsSync } from 'fs';
 import { join } from 'path';
-import { defaultMainRootId, defaultHistoryType } from '../constants';
+import {
+    defaultMainRootId,
+    defaultHistoryType,
+    qiankunStateForMicroModelNamespace
+} from '../constants';
 import modifyRoutes from './modifyRoutes';
 
 const namespace = 'plugin-qiankun/main';
@@ -8,11 +12,15 @@ const namespace = 'plugin-qiankun/main';
 export function isMasterEnable(api) {
     return (
         !!api.userConfig?.qiankun?.main
-      || !!process.env.INITIAL_QIANKUN_MAIN_OPTIONS
+        || !!process.env.INITIAL_QIANKUN_MAIN_OPTIONS
     );
 }
 
 export default function (api) {
+    const {
+        utils: { Mustache, winPath }
+    } = api;
+
     api.describe({
         enableBy: () => isMasterEnable(api)
     });
@@ -27,22 +35,47 @@ export default function (api) {
     const absMicroAppPath = join(namespace, 'MicroApp.js');
     const absRuntimePath = join(namespace, 'runtime.js');
     const absMasterOptionsPath = join(namespace, 'masterOptions.js');
-    const absGetMicroAppRouteCompPath = join(namespace, 'getMicroAppRouteComponent.js');
+    const absGetMicroAppRouteCompPath = join(
+        namespace,
+        'getMicroAppRouteComponent.js'
+    );
 
     api.onGenerateFiles(() => {
+        const HAS_PLUGIN_MODEL = api.hasPlugins(['@fesjs/plugin-model']);
         api.writeTmpFile({
             path: absMicroAppPath,
-            content: readFileSync(join(__dirname, 'runtime/MicroApp.tpl'), 'utf-8')
+            content: Mustache.render(
+                readFileSync(join(__dirname, 'runtime/MicroApp.tpl'), 'utf-8'),
+                {
+                    qiankunStateForMicroModelNamespace,
+                    HAS_PLUGIN_MODEL:
+                        HAS_PLUGIN_MODEL
+                        && existsSync(
+                            winPath(
+                                join(
+                                    api.paths.absSrcPath,
+                                    'models/qiankunStateForMicro.js'
+                                )
+                            )
+                        )
+                }
+            )
         });
 
         api.writeTmpFile({
             path: absRuntimePath,
-            content: readFileSync(join(__dirname, 'runtime/runtime.tpl'), 'utf-8')
+            content: readFileSync(
+                join(__dirname, 'runtime/runtime.tpl'),
+                'utf-8'
+            )
         });
 
         api.writeTmpFile({
             path: absGetMicroAppRouteCompPath,
-            content: readFileSync(join(__dirname, 'runtime/getMicroAppRouteComponent.tpl'), 'utf-8')
+            content: readFileSync(
+                join(__dirname, 'runtime/getMicroAppRouteComponent.tpl'),
+                'utf-8'
+            )
         });
 
         const { main: options } = api.config?.qiankun || {};
