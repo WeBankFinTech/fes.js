@@ -13,11 +13,20 @@ import { getMasterOptions } from "./masterOptions";
 {{#HAS_PLUGIN_MODEL}}
 import { useModel } from '@@/core/pluginExports';
 {{/HAS_PLUGIN_MODEL}}
+import { onBeforeRouteLeave } from "@@/core/coreExports";
 
-function unmountMicroApp(microApp) {
-    if (microApp && microApp.mountPromise) {
-        microApp.mountPromise.then(() => microApp.unmount());
+let unmountPromise;
+async function unmountMicroApp(microApp) {
+    if (microApp) {
+        if (microApp.mountPromise) {
+            await microApp.mountPromise;
+        }
+        if (!unmountPromise) {
+            unmountPromise = microApp.unmount();
+        }
+        return await unmountPromise;
     }
+    return Promise.resolve();
 }
 
 export const MicroApp = defineComponent({
@@ -154,6 +163,10 @@ export const MicroApp = defineComponent({
         watch(appConfigRef, () => {
             unmountMicroApp(microAppRef.value);
             loadApp();
+        });
+
+        onBeforeRouteLeave(async () => {
+            return await unmountMicroApp(microAppRef.value);
         });
 
         watch(()=>{
