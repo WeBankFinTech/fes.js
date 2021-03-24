@@ -1,4 +1,7 @@
 import { plugin, ApplyPluginsType } from '@@/core/coreExports';
+{{#HAS_PLUGIN_MODEL}}
+import { setModelState } from './qiankunModel';
+{{/HAS_PLUGIN_MODEL}}
 
 const defer = {};
 defer.promise = new Promise((resolve) => {
@@ -47,6 +50,9 @@ export function genMount() {
     return async (props) => {
         // props 有值时说明应用是通过 lifecycle 被主应用唤醒的，而不是独立运行时自己 mount
         if (typeof props !== 'undefined') {
+{{#HAS_PLUGIN_MODEL}}
+            setModelState(props);
+{{/HAS_PLUGIN_MODEL}}
             const slaveRuntime = getSlaveRuntime();
             if (slaveRuntime.mount) {
                 await slaveRuntime.mount(props);
@@ -68,6 +74,9 @@ export function genMount() {
 
 export function genUpdate() {
     return async (props) => {
+{{#HAS_PLUGIN_MODEL}}
+        setModelState(props);
+{{/HAS_PLUGIN_MODEL}}
         const slaveRuntime = await getSlaveRuntime();
         if (slaveRuntime.update) {
             await slaveRuntime.update(props);

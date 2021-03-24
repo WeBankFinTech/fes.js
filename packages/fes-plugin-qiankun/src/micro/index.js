@@ -3,6 +3,7 @@ import address from 'address';
 import { lodash } from '@umijs/utils';
 import { readFileSync } from 'fs';
 import { join } from 'path';
+import { qiankunStateFromMainModelNamespace } from '../constants';
 
 const namespace = 'plugin-qiankun/micro';
 
@@ -15,6 +16,10 @@ export function isSlaveEnable(api) {
 }
 
 export default function (api) {
+    const {
+        utils: { Mustache }
+    } = api;
+
     api.describe({
         enableBy: () => isSlaveEnable(api)
     });
@@ -84,11 +89,25 @@ export default function (api) {
     const absLifeclesPath = join(namespace, 'lifecycles.js');
     const absMicroOptionsPath = join(namespace, 'slaveOptions.js');
     const absPublicPath = join(namespace, 'publicPath.js');
+    const absModelPath = join(namespace, 'qiankunModel.js');
 
     // 更改public path
     api.addEntryImportsAhead(() => [{ source: `@@/${absPublicPath}` }]);
 
+    api.register({
+        key: 'addExtraModels',
+        fn: () => {
+            const HAS_PLUGIN_MODEL = api.hasPlugins(['@fesjs/plugin-model']);
+            return HAS_PLUGIN_MODEL ? [{
+                absPath: `@@/${absModelPath}`,
+                namespace: qiankunStateFromMainModelNamespace
+            }] : [];
+        }
+    });
+
     api.onGenerateFiles(() => {
+        const HAS_PLUGIN_MODEL = api.hasPlugins(['@fesjs/plugin-model']);
+
         api.writeTmpFile({
             path: absRuntimePath,
             content: readFileSync(
@@ -99,10 +118,12 @@ export default function (api) {
 
         api.writeTmpFile({
             path: absLifeclesPath,
-            content: readFileSync(
+            content: Mustache.render(readFileSync(
                 join(__dirname, 'runtime/lifecycles.tpl'),
                 'utf-8'
-            )
+            ), {
+                HAS_PLUGIN_MODEL
+            })
         });
 
         api.writeTmpFile({
@@ -110,6 +131,7 @@ export default function (api) {
             content: `
             if (window.__POWERED_BY_QIANKUN__) {
                 __webpack_public_path__ = window.__INJECTED_PUBLIC_PATH_BY_QIANKUN__;
+                window.public_path = window.__INJECTED_PUBLIC_PATH_BY_QIANKUN__;
             }
             `
         });
@@ -124,6 +146,13 @@ export default function (api) {
             export const setSlaveOptions = (newOpts) => options = ({ ...options, ...newOpts });
             `
         });
+
+        if (HAS_PLUGIN_MODEL) {
+            api.writeTmpFile({
+                path: absModelPath,
+                content: readFileSync(join(__dirname, 'runtime/qiankunModel.tpl'), 'utf-8')
+            });
+        }
     });
 
     api.addEntryImports(() => ({
