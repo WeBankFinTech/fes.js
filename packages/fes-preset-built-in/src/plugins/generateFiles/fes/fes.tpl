@@ -74,7 +74,7 @@ const beforeRender = async () => {
     let initialState = {};
     if (typeof beforeRenderConfig.action === "function") {
         const app = createApp(beforeRenderConfig.loading);
-        app.mount("#app");
+        app.mount('{{{ rootElement }}}');
         try {
             initialState = await beforeRenderConfig.action();
         } catch(e){
