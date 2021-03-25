@@ -2,7 +2,7 @@
 
 
 export default {
-    base: '/foo/',
+    base: '',
     define: {
         __DEV__: false
     },
@@ -12,7 +12,7 @@ export default {
     publicPath: '/',
     access: {
         roles: {
-            admin: ["/", "https://www.baidu.com"]
+            admin: ["/", "/store", "https://www.baidu.com"]
         }
     },
     request: {

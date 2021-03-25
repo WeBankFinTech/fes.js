@@ -3,9 +3,9 @@ export default (api) => {
     api.describe({
         key: 'base',
         config: {
-            default: '/',
+            default: '',
             schema(joi) {
-                return joi.string();
+                return joi.string().allow('');
             }
         }
     });

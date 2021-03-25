@@ -2,7 +2,7 @@
 
 
 export default {
-    base: '/foo/',
+    base: '',
     define: {
         __DEV__: false
     },

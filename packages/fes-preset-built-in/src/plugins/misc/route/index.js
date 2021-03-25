@@ -280,7 +280,7 @@ export default function (api) {
                 runtimePath,
                 routes,
                 config: api.config,
-                routerBase: api.config.base || '',
+                routerBase: api.config.base,
                 CREATE_HISTORY: historyType[api.config.router.mode] || 'createWebHashHistory'
             })
         });
