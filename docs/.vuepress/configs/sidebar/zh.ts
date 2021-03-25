@@ -60,6 +60,7 @@ export const zh: SidebarConfig = {
         '/zh/reference/plugin/plugins/model.md',
         '/zh/reference/plugin/plugins/request.md',
         '/zh/reference/plugin/plugins/vuex.md',
+        '/zh/reference/plugin/plugins/qiankun.md',
       ],
     },
     {
