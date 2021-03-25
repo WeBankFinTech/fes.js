@@ -16,7 +16,7 @@ function isPromise(obj) {
 
 
 let render = () => {};
-let app = null;
+let cacheAppPromise = null;
 let hasMountedAtLeastOnce = false;
 
 export default () => defer.promise;
@@ -40,7 +40,7 @@ export function genBootstrap(oldRender, appPromise) {
         }
         render = oldRender;
         if (isPromise(appPromise)) {
-            app = await appPromise;
+            cacheAppPromise = appPromise;
         }
     };
 }
@@ -63,7 +63,7 @@ export function genMount() {
         if (hasMountedAtLeastOnce) {
             const appPromise = render();
             if (isPromise(appPromise)) {
-                app = await appPromise;
+                cacheAppPromise = appPromise;
             }
         } else {
             defer.resolve();
@@ -93,7 +93,8 @@ export function genUnmount(mountElementId) {
                 ? props.container.querySelector(mountElementId)
                 : document.querySelector(mountElementId);
         } catch (e) {}
-        if (container && app) {
+        if (container && cacheAppPromise) {
+            const app = await cacheAppPromise;
             app.unmount(container);
         }
         const slaveRuntime = getSlaveRuntime();
