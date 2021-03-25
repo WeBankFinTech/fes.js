@@ -1,5 +1,6 @@
 <template>
     <div>{{fes}}</div>
+    <img :src="publicPath + 'logo.png'" />
 </template>
 <config>
 {
@@ -14,6 +15,7 @@ export default {
     setup() {
         const fes = ref('fes upgrade to vue3');
         return {
+            publicPath: process.env.BASE_URL,
             fes
         };
     }

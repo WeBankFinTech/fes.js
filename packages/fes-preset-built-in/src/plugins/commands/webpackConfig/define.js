@@ -7,6 +7,6 @@ export default function createDefineWebpackConfig({
 }) {
     webpackConfig.plugin('define')
         .use(webpack.DefinePlugin, [
-            resolveDefine({ define: config.define })
+            resolveDefine(config)
         ]);
 }

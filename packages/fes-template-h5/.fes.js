@@ -7,13 +7,13 @@ export default {
         // __VUE_OPTIONS_API__: true,
         // __VUE_PROD_DEVTOOLS__: false
     },
+    base: '/#/app/#',
+    publicPath: '/',
     request: {
-        dataField: 'fileTemplateList'
+        dataField: ''
     },
     html: {
-        options: {
-            title: '海贼王'
-        }
+        title: '拉夫德鲁'
     },
     extraPostCSSPlugins: [
         pxtoviewport({

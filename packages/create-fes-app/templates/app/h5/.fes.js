@@ -8,15 +8,10 @@ export default {
         // __VUE_PROD_DEVTOOLS__: false
     },
     request: {
-        dataField: 'fileTemplateList'
+        dataField: ''
     },
     html: {
-        options: {
-            title: '海贼王'
-        }
-    },
-    imageMinimizer: {
-        disable: false
+        title: '拉夫德鲁'
     },
     extraPostCSSPlugins: [
         pxtoviewport({

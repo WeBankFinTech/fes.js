@@ -10,6 +10,8 @@ export default function resolveDefine(opts = {}, raw) {
         }
     });
 
+    env.BASE_URL = opts.publicPath;
+
     if (raw) {
         return env;
     }

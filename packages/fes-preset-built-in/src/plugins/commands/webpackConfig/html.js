@@ -15,7 +15,7 @@ export default async function createHtmlWebpackConfig({
     const htmlOptions = {
         filename: '[name].html',
         ...config.html,
-        templateParameters: resolveDefine(null, true)
+        templateParameters: resolveDefine(config, true)
     };
     htmlOptions.title = htmlOptions.title || 'fes.js';
 
