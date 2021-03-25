@@ -20,9 +20,11 @@ export default {
 
 ### mode 
 创建历史记录的类型：
-- **h5**，对应 [createWebHistory](https://next.router.vuejs.org/zh/api/#createwebhistory)
+- **history**，对应 [createWebHistory](https://next.router.vuejs.org/zh/api/#createwebhistory)
 - **hash**，对应 [createWebHashHistory](https://next.router.vuejs.org/zh/api/#createWebHashHistory)
 - **memory**，对应 [createMemoryHistory](https://next.router.vuejs.org/zh/api/#createWebHashHistory)
+
+默认是`hash`模式。
 
 ## 约定式路由
 约定式路由也叫文件路由，就是不需要手写配置，文件系统即路由，通过目录和文件及其命名分析出路由配置。      

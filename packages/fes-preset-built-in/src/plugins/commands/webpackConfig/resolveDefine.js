@@ -1,6 +1,6 @@
 const prefixRE = /^FES_APP_/;
 
-const ENV_SHOULD_PASS = ['NODE_ENV', 'FES_ENV', 'HMR', 'SOCKET_SERVER', 'ERROR_OVERLAY'];
+const ENV_SHOULD_PASS = ['NODE_ENV', 'FES_ENV'];
 
 export default function resolveDefine(opts = {}, raw) {
     const env = {};

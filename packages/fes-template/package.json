@@ -55,6 +55,7 @@
     "@fesjs/plugin-jest": "^2.0.0-rc.0",
     "@fesjs/plugin-vuex": "^2.0.0-rc.0",
     "@fesjs/plugin-request": "^2.0.0-rc.0",
+    "@fesjs/plugin-qiankun": "^2.0.0-alpha.0",
     "ant-design-vue": "2.0.0",
     "vue": "^3.0.5",
     "vuex": "^4.0.0"

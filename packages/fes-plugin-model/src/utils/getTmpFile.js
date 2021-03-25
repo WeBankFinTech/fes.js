@@ -24,11 +24,11 @@ function getExtraImports(models = [], absSrcPath) {
         .map((ele) => {
             if (ele.exportName) {
                 return `import { ${ele.exportName} } from '${winPath(
-                    ele.importPath.replace(/'/g, "\\'"),
+                    ele.importPath.replace(/'/g, "\\'")
                 )}';`;
             }
             return `import ${ele.importName} from '${winPath(
-                ele.importPath.replace(/'/g, "\\'"),
+                ele.importPath.replace(/'/g, "\\'")
             )}';`;
         })
         .join(EOL);
@@ -37,7 +37,7 @@ function getExtraImports(models = [], absSrcPath) {
 export const getTmpFile = (
     files,
     extra = [],
-    absSrcPath,
+    absSrcPath
 ) => {
     const userImports = genImports(files);
     const userModels = getModels(files, absSrcPath);
