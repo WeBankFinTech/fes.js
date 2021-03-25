@@ -265,7 +265,7 @@ export default function (api) {
     const absRuntimeFilePath = join(namespace, 'runtime.js');
 
     const historyType = {
-        h5: 'createWebHistory',
+        history: 'createWebHistory',
         hash: 'createWebHashHistory',
         memory: 'createMemoryHistory'
     };

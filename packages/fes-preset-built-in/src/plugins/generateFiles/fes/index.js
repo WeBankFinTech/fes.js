@@ -26,7 +26,7 @@ export default function (api) {
                 enableTitle: api.config.title !== false,
                 defaultTitle: api.config.title || '',
                 runtimePath,
-                rootElement: api.config.mountElementId || '#app',
+                rootElement: `#${api.config.mountElementId || 'app'}`,
                 entryCode: (
                     await api.applyPlugins({
                         key: 'addEntryCode',

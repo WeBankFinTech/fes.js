@@ -66,7 +66,8 @@ export default async function getConfig({
     modifyBabelOpts,
     modifyBabelPresetOpts,
     chainWebpack,
-    headScripts
+    headScripts,
+    publicPath
 }) {
     const isDev = env === 'development';
     const isProd = env === 'production';
@@ -93,7 +94,7 @@ export default async function getConfig({
     // --------------- output -----------
     webpackConfig.output
         .path(absoluteOutput)
-        .publicPath(config.publicPath || '')
+        .publicPath(publicPath)
         .filename('[name].[contenthash:8].js')
         .chunkFilename('[name].[contenthash:8].chunk.js');
 

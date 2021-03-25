@@ -40,7 +40,7 @@ export const fillMenuByRoute = (menuConfig, routeConfig, dep = 0) => {
             if (menu.icon) {
                 const icon = menu.icon;
                 const urlReg = /^((https?|ftp|file):\/\/)?([\da-z.-]+)\.([a-z.]{2,6})([/\w .-]*)*\/?$/;
-                if (!(urlReg.test(icon) || icon.includes('.svg'))) {
+                if (typeof icon === 'string' && !((urlReg.test(icon) || icon.includes('.svg')))) {
                     if (!allIcons[icon]) {
                         menu.icon = {
                             type: 'icon',

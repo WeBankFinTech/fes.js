@@ -24,12 +24,12 @@ export default (api) => {
     function getAllModels() {
         const srcModelsPath = getModelsPath();
         return lodash.uniq([
-            ...getModels(srcModelsPath),
-            ...getModels(
-                paths.absPagesPath,
-                `**/${getModelDir()}/**/*.{js,jsx}`
-            ),
-            ...getModels(paths.absPagesPath, '**/*.model.{js,jsx}')
+            ...getModels(srcModelsPath)
+            // ...getModels(
+            //     paths.absPagesPath,
+            //     `**/${getModelDir()}/**/*.{js,jsx}`
+            // ),
+            // ...getModels(paths.absPagesPath, '**/*.model.{js,jsx}')
         ]);
     }
 
