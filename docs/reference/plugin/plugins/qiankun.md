@@ -162,7 +162,7 @@ export const qiankun = {
     },
     // 当 props 更新时触发
     async update(props){
-        console.log('app1 update,' props);
+        console.log('app1 update', props);
     },
     // 应用卸载之后触发
     async unmount(props) {
