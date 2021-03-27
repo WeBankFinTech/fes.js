@@ -47,16 +47,18 @@ Fes.js 是一个好用的前端应用解决方案。Fes.js 以 Vue 3.0 和路由
 
 ## 插件
 
-- @fesjs/plugin-access  提供对页面资源的权限控制能力
-- @fesjs/plugin-enums   数据字典
-- @fesjs/plugin-icon    `svg` 文件自动注册为组件
-- @fesjs/plugin-jest    基于 `Jest`，提供单元测试、覆盖测试能力
-- @fesjs/plugin-layout  简单的配置即可拥有布局，包括导航以及侧边栏
-- @fesjs/plugin-locale  基于 `Vue I18n`，提供国际化能力
-- @fesjs/plugin-model   简单的状态管理
-- @fesjs/plugin-qiankun 基于 `qiankun`，提供微服务能力
-- @fesjs/plugin-request 提供 `api` 请求能力
-- @fesjs/plugin-vuex    基于 `Vuex`, 提供状态管理台能力
+|  插件   | 介绍  | 
+|  ----  | ----  |
+| [@fesjs/plugin-access](https://winixt.gitee.io/fesjs/zh/reference/plugin/plugins/access.html)  | 提供对页面资源的权限控制能力 | 
+| [@fesjs/plugin-enums](https://winixt.gitee.io/fesjs/zh/reference/plugin/plugins/enums.html#%E4%BB%8B%E7%BB%8D)  | 提供统一的枚举存取及丰富的函数来处理枚举 | 
+| [@fesjs/plugin-icon](https://winixt.gitee.io/fesjs/zh/reference/plugin/plugins/icon.html#%E4%BB%8B%E7%BB%8D)  | svg 文件自动注册为组件 |  
+| [@fesjs/plugin-jest](https://winixt.gitee.io/fesjs/zh/reference/plugin/plugins/jest.html#%E5%90%AF%E7%94%A8%E6%96%B9%E5%BC%8F)  | 基于 `Jest`，提供单元测试、覆盖测试能力 | 
+| [ @fesjs/plugin-layout](https://winixt.gitee.io/fesjs/zh/reference/plugin/plugins/layout.html) |  简单的配置即可拥有布局，包括导航以及侧边栏 |
+| [@fesjs/plugin-locale](https://winixt.gitee.io/fesjs/zh/reference/plugin/plugins/locale.html#%E4%BB%8B%E7%BB%8D) |  基于 `Vue I18n`，提供国际化能力 |
+| [@fesjs/plugin-model](https://winixt.gitee.io/fesjs/zh/reference/plugin/plugins/model.html#%E4%BB%8B%E7%BB%8D) |  简易的数据管理方案 |
+| [@fesjs/plugin-request](https://winixt.gitee.io/fesjs/zh/reference/plugin/plugins/request.html#%E5%90%AF%E7%94%A8%E6%96%B9%E5%BC%8F) |  基于 `Axios` 封装的 request，内置防止重复请求、请求节流、错误处理等功能 |
+| [@fesjs/plugin-vuex](https://winixt.gitee.io/fesjs/zh/reference/plugin/plugins/vuex.html#%E5%90%AF%E7%94%A8%E6%96%B9%E5%BC%8F) |  基于 `Vuex`, 提供状态管理能力 |
+| [@fesjs/plugin-qiankun](https://winixt.gitee.io/fesjs/zh/reference/plugin/plugins/qiankun.html#%E4%BB%8B%E7%BB%8D) |  基于 `qiankun`，提供微服务能力 |
 
 ## 像数 1, 2, 3 一样容易
 使用 `yarn`：
