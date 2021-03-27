@@ -3,7 +3,7 @@ import { plugin } from '@@/core/coreExports';
 
 export function getRoutes() {
   const routes = {{{ routes }}};
-  
+
   plugin.applyPlugins({
     key: 'patchRoutes',
     type: ApplyPluginsType.event,
@@ -15,14 +15,15 @@ export function getRoutes() {
 
 const ROUTER_BASE = '{{{ routerBase }}}';
 let router = null;
+let history = null;
 export const createRouter = () => {
   if (router) {
-      return router;
+    return router;
   }
-  const history = {{{ CREATE_HISTORY }}}(ROUTER_BASE)
+  history = {{{ CREATE_HISTORY }}}(ROUTER_BASE)
   router = createVueRouter({
-      history,
-      routes: getRoutes()
+    history,
+    routes: getRoutes()
   });
 
   plugin.applyPlugins({
@@ -36,4 +37,8 @@ export const createRouter = () => {
 
 export const getRouter = ()=>{
   return router;
+}
+
+export const getHistory = ()=>{
+  return history;
 }
