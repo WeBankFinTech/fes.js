@@ -18,6 +18,8 @@ export function startDevServer({
         contentBase: webpackConfig.output.path,
         hot: true,
         host,
+        sockHost: host,
+        sockPort: port,
         proxy,
         compress: true,
         noInfo: true,
