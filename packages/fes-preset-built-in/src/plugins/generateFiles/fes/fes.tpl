@@ -27,7 +27,7 @@ const renderClient = (opts = {}) => {
 
     const app = createApp(rootContainer);
     app.provide("initialState", initialState);
-    
+
     plugin.applyPlugins({
         key: 'onAppCreated',
         type: ApplyPluginsType.event,
@@ -94,9 +94,6 @@ const completeClientRender = async () => {
 };
 
 const app = completeClientRender();
-
-export default app;
-
 
 {{{ entryCode }}}
 

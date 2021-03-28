@@ -165,7 +165,7 @@ export default function (api) {
         () => `
 export const bootstrap = qiankun_genBootstrap(completeClientRender, app);
 export const mount = qiankun_genMount('#${api.config.mountElementId}');
-export const unmount = qiankun_genUnmount('#${api.config.mountElementId}');
+export const unmount = qiankun_genUnmount();
 export const update = qiankun_genUpdate();
 
 if (!window.__POWERED_BY_QIANKUN__) {

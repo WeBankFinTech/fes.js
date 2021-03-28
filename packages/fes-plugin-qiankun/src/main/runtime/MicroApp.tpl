@@ -1,6 +1,7 @@
 import {
     defineComponent,
     ref,
+    reactive,
     watch,
     computed,
     onBeforeUnmount,
@@ -10,21 +11,17 @@ import { loadMicroApp } from "qiankun";
 import mergeWith from "lodash/mergeWith";
 // eslint-disable-next-line import/extensions
 import { getMasterOptions } from "./masterOptions";
-{{#HAS_PLUGIN_MODEL}}
-import { useModel } from '@@/core/pluginExports';
-{{/HAS_PLUGIN_MODEL}}
 import { onBeforeRouteLeave } from "@@/core/coreExports";
 
 let unmountPromise;
 async function unmountMicroApp(microApp) {
     if (microApp) {
-        if (microApp.mountPromise) {
-            await microApp.mountPromise;
-        }
-        if (!unmountPromise) {
-            unmountPromise = microApp.unmount();
-        }
-        return await unmountPromise;
+        return microApp.mountPromise.then(_microApp => {
+            // Now it is safe to call unmount
+            if(_microApp){
+                return _microApp.unmount()
+            }
+        })
     }
     return Promise.resolve();
 }
@@ -47,13 +44,7 @@ export const MicroApp = defineComponent({
             ...globalSettings
         } = getMasterOptions();
 
-{{#HAS_PLUGIN_MODEL}}
-        // 约定使用 src/models/qiankunStateForMicro 中的数据作为主应用透传给微应用的 props，优先级高于 propsFromConfig
-        const stateForSlave = useModel('{{{qiankunStateForMicroModelNamespace}}}');
-{{/HAS_PLUGIN_MODEL}}
-{{^HAS_PLUGIN_MODEL}}
         const stateForSlave = reactive({});
-{{/HAS_PLUGIN_MODEL}}
 
         // 挂载节点
         const containerRef = ref(null);

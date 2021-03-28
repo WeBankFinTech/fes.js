@@ -1,11 +1,12 @@
 import { MicroApp } from './MicroApp';
 
 export function getMicroAppRouteComponent({
+  key,
   appName,
   base,
   masterHistoryType,
   routeProps
 }) {
 
-  return <MicroApp base={base} masterHistoryType={masterHistoryType} name={appName} {...routeProps} />;
+  return <MicroApp key={key} base={base} masterHistoryType={masterHistoryType} name={appName} {...routeProps} />;
 }

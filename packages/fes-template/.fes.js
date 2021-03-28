@@ -2,7 +2,10 @@
 
 
 export default {
-    base: '',
+    // base: '',
+    qiankun: {
+        micro: {}
+    },
     define: {
         __DEV__: false
     },

@@ -46,7 +46,7 @@ export function genBootstrap(oldRender, appPromise) {
 }
 
 // 子应用生命周期钩子Mount
-export function genMount() {
+export function genMount(mountElementId) {
     return async (props) => {
         // props 有值时说明应用是通过 lifecycle 被主应用唤醒的，而不是独立运行时自己 mount
         if (typeof props !== 'undefined') {
@@ -85,17 +85,11 @@ export function genUpdate() {
 }
 
 // 子应用生命周期钩子Unmount
-export function genUnmount(mountElementId) {
+export function genUnmount() {
     return async (props) => {
-        let container;
-        try {
-            container = props?.container
-                ? props.container.querySelector(mountElementId)
-                : document.querySelector(mountElementId);
-        } catch (e) {}
-        if (container && cacheAppPromise) {
+        if (cacheAppPromise) {
             const app = await cacheAppPromise;
-            app.unmount(container);
+            app.unmount();
         }
         const slaveRuntime = getSlaveRuntime();
         if (slaveRuntime.unmount) {

@@ -7,7 +7,9 @@
     "lib"
   ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "npm-run-all --parallel start:*",
+    "start:master": "cd ./examples/main && fes dev",
+    "start:app1": "cd ./examples/app1 && fes dev"
   },
   "repository": {
     "type": "git",
@@ -31,6 +33,9 @@
     "address": "^1.1.2",
     "lodash": "^4.17.15",
     "qiankun": "2.3.4"
+  },
+  "devDependencies": {
+    "npm-run-all": "^4.1.5"
   },
   "peerDependencies": {
     "@webank/fes": "^2.0.0-rc.0",
