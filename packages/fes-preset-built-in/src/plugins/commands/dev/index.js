@@ -40,6 +40,7 @@ export default (api) => {
                 getBundleAndConfigs
             } = require('../buildDevUtils');
             const { delay } = require('@umijs/utils');
+            const createRouteMiddleware = require('./createRouteMiddleware').default;
             const generateFiles = require('../../../utils/generateFiles').default;
             const { watchPkg } = require('./watchPkg');
 
@@ -175,7 +176,7 @@ export default (api) => {
                 port,
                 proxy: api.config.proxy,
                 https: isHTTPS,
-                beforeMiddlewares,
+                beforeMiddlewares: [...beforeMiddlewares, createRouteMiddleware()],
                 afterMiddlewares: [...middlewares],
                 customerDevServerConfig: api.config.devServer
             });

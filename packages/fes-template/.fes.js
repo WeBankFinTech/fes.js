@@ -2,17 +2,16 @@
 
 
 export default {
-    // base: '',
-    qiankun: {
-        micro: {}
-    },
+    base: '/base/',
     define: {
         __DEV__: false
     },
     html: {
         title: '海贼王'
     },
-    publicPath: '/',
+    router: {
+        mode: 'history'
+    },
     access: {
         roles: {
             admin: ["/", "/store", "https://www.baidu.com"]
