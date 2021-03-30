@@ -12,10 +12,14 @@ export default (api) => {
                     dataField: joi
                         .string()
                         .pattern(/^[a-zA-Z]*$/)
+                        .allow(''),
+                    base: joi
+                        .string()
                         .allow('')
                 });
             },
             default: {
+                base: '',
                 dataField: ''
             }
         }
@@ -26,11 +30,12 @@ export default (api) => {
     const requestTemplate = readFileSync(join(__dirname, 'template', 'request.js'), 'utf-8');
     api.onGenerateFiles(() => {
         // 文件写出
-        const { dataField = '' } = api.config.request;
+        const { dataField = '', base = '' } = api.config.request;
         api.writeTmpFile({
             path: absoluteFilePath,
             content: requestTemplate
                 .replace('REPLACE_DATA_FIELD', JSON.stringify(dataField))
+                .replace('REPLACE_BASE', base || '')
         });
     });
 

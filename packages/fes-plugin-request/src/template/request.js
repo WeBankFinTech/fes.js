@@ -87,9 +87,15 @@ function getRequestInstance() {
     };
 }
 
+function handleApiPathBase(url, options = {}) {
+    if (options.base) {
+        return `${options.base}${url}`;
+    }
+    return `REPLACE_BASE${url}`;
+}
 
 function userConfigHandler(url, data, options = {}) {
-    options.url = url;
+    options.url = handleApiPathBase(url, options);
     options.method = (options.method || 'post').toUpperCase();
     if (checkHttpRequestHasBody(options.method)) {
         options.data = data;

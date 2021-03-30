@@ -20,6 +20,7 @@
 export default {
     request: {
         dataField: 'result',
+        base: '',
     },
 }
 ```
@@ -32,6 +33,14 @@ export default {
 
     `dataField` 对应接口统一格式中的数据字段，比如接口如果统一的规范是 `{ success: boolean, result: any}` ，那么就不需要配置，这样你通过 `useRequest` 消费的时候会生成一个默认的 `formatResult`，直接返回 `result` 中的数据，方便使用。如果你的后端接口不符合这个规范，可以自行配置 `dataField`。配置为 `''`（空字符串）的时候不做处理。
 
+
+#### base
+
+- 类型： `string`
+- 默认值： `''`
+- 详情：
+
+    `base` 接口前缀。 
 ### 运行时配置
 
 在 `app.js` 中进行运行时配置。
