@@ -88,6 +88,8 @@ function getRequestInstance() {
 }
 
 function handleApiPathBase(url, options = {}) {
+    if (url.startsWith('http')) return url;
+
     if (options.base) {
         return `${options.base}${url}`;
     }
