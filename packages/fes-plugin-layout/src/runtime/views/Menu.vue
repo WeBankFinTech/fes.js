@@ -7,19 +7,18 @@
     >
         <template v-for="(item, index) in fixedMenus" :key="index">
             <template v-if="item.access">
-                <a-sub-menu v-if="item.children" :title="item.title">
+                <a-sub-menu v-if="item.children" :key="index" :title="item.title">
                     <template
-                        v-for="(item1, index) in item.children"
-                        :key="index"
+                        v-for="(item1, index1) in item.children"
                     >
                         <template v-if="item1.access">
                             <a-sub-menu
                                 v-if="item1.children"
+                                :key="`${index}-${index1}`"
                                 :title="item1.title"
                             >
                                 <template
-                                    v-for="(item2, index) in item1.children"
-                                    :key="index"
+                                    v-for="(item2) in item1.children"
                                 >
                                     <a-menu-item
                                         v-if="item2.access"

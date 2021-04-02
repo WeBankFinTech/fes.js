@@ -1,63 +1,82 @@
 // .fes.js 只负责管理编译时配置，只能使用plain Object
 
-
 export default {
-    base: '/base/',
+    base: "/base/",
     define: {
-        __DEV__: false
+        __DEV__: false,
     },
     html: {
-        title: '海贼王'
+        title: "海贼王",
     },
     router: {
-        mode: 'history'
+        mode: "history",
     },
     access: {
         roles: {
-            admin: ["/", "/store", "https://www.baidu.com"]
-        }
+            admin: ["*"],
+        },
     },
     request: {
-        dataField: 'result'
+        dataField: "result",
     },
     mock: {
-        prefix: '/v2'
+        prefix: "/v2",
     },
     proxy: {
-        '/v2': {
-            'target': 'https://api.douban.com/',
-            'changeOrigin': true,
+        "/v2": {
+            target: "https://api.douban.com/",
+            changeOrigin: true,
         },
     },
     layout: {
         title: "Fes.js",
-        footer: 'Created by MumbelFe',
+        footer: "Created by MumbleFe",
         multiTabs: false,
-        navigation: 'mixin',
-        menus: [{
-            name: 'index',
-            icon: '/wine-outline.svg'
-        }, {
-            name: 'onepiece',
-            icon: 'user',
-            path: 'https://www.baidu.com'
-        }, {
-            name: 'store'
-        }, {
-            name: 'simpleList'
-        }]
+        navigation: "mixin",
+        menus: [
+            {
+                name: "index",
+                icon: "/wine-outline.svg",
+            },
+            {
+                name: "onepiece",
+                icon: "user",
+                path: "https://www.baidu.com",
+            },
+            {
+                // name: "abcd",
+                title: "abcd",
+                children: [
+                    {
+                        name: "store",
+                    },
+                ],
+            },
+            {
+                // name: "setting",
+                title: "setting",
+                children: [
+                    {
+                        name: "test",
+                    },
+                ],
+            },
+        ],
     },
     locale: {
-        legacy: true
+        legacy: true,
     },
     devServer: {
-        port: 8080
+        port: 8080,
     },
     enums: {
-        status: [['0', '无效的'], ['1', '有效的']]
+        status: [
+            ["0", "无效的"],
+            ["1", "有效的"],
+        ],
     },
     vuex: {
-        strict: true
+        strict: true,
     },
-    dynamicImport: true
+    dynamicImport: true,
 };
