@@ -76,9 +76,8 @@ export default function (api) {
             files.forEach((file) => {
                 const source = join(path, file);
                 const target = join(base, file);
-                const absPath = join(base, path);
-                if (!existsSync(dirname(absPath))) {
-                    api.utils.mkdirp.sync(dirname(absPath));
+                if (!existsSync(dirname(target))) {
+                    api.utils.mkdirp.sync(dirname(target));
                 }
                 if (statSync(source).isDirectory()) {
                     api.utils.mkdirp.sync(target);
