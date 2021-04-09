@@ -45,7 +45,9 @@ export default (api) => {
             val.forEach(callback);
         }
         if (lodash.isPlainObject(val)) {
-            Object.keys(val).forEach((key) => { callback(val[key], key); });
+            Object.keys(val).forEach((key) => {
+                callback(val[key], key);
+            });
         }
     }
 
@@ -67,9 +69,12 @@ export default (api) => {
             if (lodash.isPlainObject(newOption)) {
                 traversalHandler(newOption, (value, key) => {
                     if (key === 'headers') {
-                        traversalHandler(newOption.headers, (headervalue, headerkey) => {
-                            option.headers[headerkey] = newOption.headers[headerkey];
-                        });
+                        traversalHandler(
+                            newOption.headers,
+                            (headervalue, headerkey) => {
+                                option.headers[headerkey] = newOption.headers[headerkey];
+                            }
+                        );
                     } else {
                         option[key] = newOption[key];
                     }
@@ -102,11 +107,14 @@ export default (api) => {
 
         // mock打开情况下，配置的过滤前缀
         const mockPrefixTemp = api.config.mock.prefix || mockPrefix;
-        mockPrefix = mockPrefixTemp === mockPrefix ? mockPrefixTemp : `${mockPrefixTemp}/`;
+        mockPrefix = mockPrefixTemp === mockPrefix
+            ? mockPrefixTemp
+            : `${mockPrefixTemp}/`;
         // mock文件处理
         mockFile = parsePath('./mock.js');
         if (!existsSync(mockFile)) {
-            api.logger.info('mock.js File does not exist, please check'); return;
+            api.logger.info('mock.js File does not exist, please check');
+            return;
         }
         // 清除require的缓存，保证 mock 文件修改后拿到最新的 mock.js
         if (require.cache[mockFile]) {
@@ -119,7 +127,8 @@ export default (api) => {
             const _initFunction = require(mockFile);
             const initFunction = _initFunction.default || _initFunction;
             if (!lodash.isFunction(initFunction)) {
-                api.logger.info('mock.js should export Function'); return;
+                api.logger.info('mock.js should export Function');
+                return;
             }
             initFunction({ cgiMock, mockjs, utils });
         } catch (err) {
@@ -132,65 +141,72 @@ export default (api) => {
                 return next();
             }
             // 请求以 cgiMock.prefix 开头，匹配处理
-            const matchRequet = requestList.find(item => req.path.search(item.url) !== -1);
+            const matchRequet = requestList.find(
+                item => req.path.search(item.url) !== -1
+            );
             if (!matchRequet) {
                 return next();
             }
 
-            // set header
-            res.set(matchRequet.headers);
-            // set Content-Type
-            matchRequet.type && res.type(matchRequet.type);
-            // set status code
-            res.status(matchRequet.statusCode);
-            // set cookie
-            traversalHandler(matchRequet.cookies, (item) => {
-                const name = item.name;
-                const value = item.value;
-                delete item.name;
-                delete item.value;
-                res.cookie(name, value, item);
-            });
+            const sendData = () => {
+                // set header
+                res.set(matchRequet.headers);
+                // set Content-Type
+                matchRequet.type && res.type(matchRequet.type);
+                // set status code
+                res.status(matchRequet.statusCode);
+                // set cookie
+                traversalHandler(matchRequet.cookies, (item) => {
+                    const name = item.name;
+                    const value = item.value;
+                    delete item.name;
+                    delete item.value;
+                    res.cookie(name, value, item);
+                });
 
-            // do result
-            if (lodash.isFunction(matchRequet.result)) {
-                matchRequet.result(req, res);
-            } else if (
-                lodash.isArray(matchRequet.result) || lodash.isPlainObject(matchRequet.result)
-            ) {
-                !matchRequet.type && res.type('json');
-                res.json(matchRequet.result);
-            } else {
-                !matchRequet.type && res.type('text');
-                res.send(matchRequet.result.toString());
-            }
+                // do result
+                if (lodash.isFunction(matchRequet.result)) {
+                    matchRequet.result(req, res);
+                } else if (
+                    lodash.isArray(matchRequet.result)
+                    || lodash.isPlainObject(matchRequet.result)
+                ) {
+                    !matchRequet.type && res.type('json');
+                    res.json(matchRequet.result);
+                } else {
+                    !matchRequet.type && res.type('text');
+                    res.send(matchRequet.result.toString());
+                }
+            };
+
+            bodyParser.json({ strict: false })(req, res, () => {
+                bodyParser.urlencoded({ extended: true })(req, res, () => {
+                    cookieParser()(req, res, () => {
+                        sendData();
+                    });
+                });
+            });
         };
     };
 
     api.onStart(() => {
         // 获取mock配置: 是否打开
-        mockFlag = lodash.isPlainObject(api.config.mock) ? true : api.config.mock;
+        mockFlag = lodash.isPlainObject(api.config.mock)
+            ? true
+            : api.config.mock;
         if (!mockFlag) return;
 
         loadMock = createMock();
-        return chokidar.watch(mockFile, {
-            ignoreInitial: true
-        }).on('change', () => {
-            api.logger.info('mock.js changed，reload');
-            loadMock = createMock();
-        });
+        return chokidar
+            .watch(mockFile, {
+                ignoreInitial: true
+            })
+            .on('change', () => {
+                api.logger.info('mock.js changed，reload');
+                loadMock = createMock();
+            });
     });
 
-    api.addBeforeMiddlewares(() => {
-        if (!mockFlag) return [];
-        return [
-            bodyParser.json(),
-            bodyParser.urlencoded({
-                extended: false
-            }),
-            cookieParser()
-        ];
-    });
     api.addBeforeMiddlewares(() => (req, res, next) => {
         if (!mockFlag) return next();
         loadMock(req, res, next);

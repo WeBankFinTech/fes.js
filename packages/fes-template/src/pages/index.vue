@@ -92,14 +92,17 @@ export default {
             }).catch((err) => {
                 console.log(err);
             });
-            request('/v2/movie/in_theaters_mock').then((data) => {
+            request('/v2/movie/in_theaters_mock', { a: 1 }, 'get').then((data) => {
                 console.log(data);
             }).catch((err) => {
                 console.log(err);
             });
 
             console.log('测试 proxy!!');
-            request('/v2/movie/in_theaters_proxy').then((resp) => {
+            request('/v2/movie/in_theaters_proxy', { a: 1 }, {
+                method: 'get',
+                headers: { Accept: '*/*' }
+            }).then((resp) => {
                 console.log(resp);
             }).catch((err) => {
                 console.log(err);

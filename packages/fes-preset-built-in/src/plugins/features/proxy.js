@@ -4,11 +4,7 @@ export default (api) => {
         key: 'proxy',
         config: {
             onChange: () => {
-                const server = api.getServer();
-                if (server) {
-                    // refrest proxy service
-                    server.setupProxy(api.config.proxy, true);
-                }
+                // todo 重新执行proxy的逻辑
             },
             schema(joi) {
                 return joi.object();

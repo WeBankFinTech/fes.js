@@ -176,7 +176,7 @@ export default (api) => {
                 port,
                 proxy: api.config.proxy,
                 https: isHTTPS,
-                beforeMiddlewares: [...beforeMiddlewares, createRouteMiddleware()],
+                beforeMiddlewares: [...beforeMiddlewares, createRouteMiddleware(api)],
                 afterMiddlewares: [...middlewares],
                 customerDevServerConfig: api.config.devServer
             });
