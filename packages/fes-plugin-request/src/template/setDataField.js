@@ -1,10 +1,10 @@
 import { isObject } from './helpers';
 
 export default async (ctx, next) => {
-    const { dataField, response } = ctx;
-    if (response && isObject(response.data) && dataField) {
-        ctx.response._rawData = response.data;
-        ctx.response.data = response.data[dataField];
+    const dataField = ctx.config.dataField ?? ctx.dataField;
+    if (ctx.response && isObject(ctx.response.data) && dataField) {
+        ctx.response._rawData = ctx.response.data;
+        ctx.response.data = ctx.response.data[dataField];
     }
     await next();
 };

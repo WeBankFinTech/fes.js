@@ -28,7 +28,9 @@ export default {
         const clickIcon = () => {
             console.log('click Icon');
         };
-        const { loading, data } = useRequest('/api');
+        const { loading, data } = useRequest('/api', null, {
+            dataField: false
+        });
         return {
             loading,
             data,
