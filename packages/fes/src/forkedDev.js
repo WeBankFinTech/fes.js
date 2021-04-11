@@ -30,7 +30,6 @@ function onSignal(signal, service) {
 (async () => {
     try {
         process.env.NODE_ENV = 'development';
-        process.env.FES_ENV = args.mode || '';
         const service = new Service({
             cwd: getCwd(),
             pkg: getPkg(process.cwd()),

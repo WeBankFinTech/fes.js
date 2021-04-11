@@ -29,7 +29,6 @@ const args = yParser(rawArgv);
 (async () => {
     try {
         const command = args._[0];
-        process.env.FES_ENV = args.mode || '';
         if (command === 'dev') {
             const child = fork({
                 scriptPath: require.resolve('./forkedDev')

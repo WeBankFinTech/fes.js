@@ -4,6 +4,7 @@
   "description": "fes 移动端项目模版",
   "scripts": {
     "build": "fes build",
+    "prod": "FES_ENV=prod fes build",
     "dev": "fes dev"
   },
   "keywords": [
