@@ -59,11 +59,14 @@ export const request = {
     // 内部以 reponse.data.code === '0' 判断请求是否成功
     // 若使用其他字段判断，可以使用 responseDataAdaptor 对响应数据进行格式
     errorHandler: {
-        11199: (response) => {
+        11199(response) {
+            // 特殊 code 处理逻辑
+        },
+        404(error) {
 
         },
-        404: (error) => {
-
+        default(error) {
+            // 异常统一处理
         }
     },
     // 其他 axios 配置
