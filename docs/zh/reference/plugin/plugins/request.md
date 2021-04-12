@@ -65,8 +65,8 @@ export const request = {
         404(error) {
 
         },
-        commonAbnormalCodeHandler(response) {
-            // 非 0，且非 11199(前面已经配置过 11199) code 其他异常code处理逻辑
+        default(error) {
+            // 异常统一处理
         }
     },
     // 其他 axios 配置

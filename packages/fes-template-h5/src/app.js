@@ -1,10 +1,13 @@
 export const request = {
     errorHandler: {
+        111(responseData) {
+            console.log(responseData);
+        },
         404() {
             console.log('to 404 page');
         },
-        commonAbnormalCodeHandler(res) {
-            console.log(res.data.code);
+        default(error) {
+            console.log(error.response.data);
         }
     }
 };
