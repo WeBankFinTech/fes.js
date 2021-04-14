@@ -4,7 +4,7 @@ Mock 数据是前端开发过程中必不可少的一环，是分离前后端开
 
 ## 约定式 Mock 文件
 
-Fes.js 约定 `src/mock.js` 为 mock 文件。
+Fes.js 约定 `./mock.js` 为 mock 文件。
 
 比如：
 ```
