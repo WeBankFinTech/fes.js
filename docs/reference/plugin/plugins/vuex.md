@@ -49,6 +49,13 @@ store.getters[GETTER_TYPES.user.address]
 store.commit(MUTATION_TYPES.counter.increment)
 store.dispatch(ACTION_TYPES.user.login)
 ```
+
+```js
+import { MUTATION_TYPES, GETTER_TYPES, ACTION_TYPES, store } from '@fesjs/fes';
+store.getters[GETTER_TYPES.user.address]
+store.commit(MUTATION_TYPES.counter.increment)
+store.dispatch(ACTION_TYPES.user.login)
+```
 ## API
 ### MUTATION_TYPES
 * 类型 `Object`

@@ -1,8 +1,10 @@
 
 
-import { access as accessApi } from '@fesjs/fes';
+import { access as accessApi, store, GETTER_TYPES } from '@fesjs/fes';
 import PageLoading from '@/components/PageLoading';
 import UserCenter from '@/components/UserCenter';
+
+console.log(store.getters[GETTER_TYPES.user.address]);
 
 export const beforeRender = {
     loading: <PageLoading />,
