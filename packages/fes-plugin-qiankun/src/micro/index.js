@@ -155,6 +155,8 @@ export default function (api) {
         }
     });
 
+    api.addRuntimePlugin(() => `@@/${absRuntimePath}`);
+
     api.addEntryImports(() => ({
         source: `@@/${absLifeclesPath}`,
         specifier:

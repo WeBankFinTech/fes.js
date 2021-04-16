@@ -13,15 +13,12 @@ import mergeWith from "lodash/mergeWith";
 import { getMasterOptions } from "./masterOptions";
 import { onBeforeRouteLeave } from "@@/core/coreExports";
 
-let unmountPromise;
 async function unmountMicroApp(microApp) {
     if (microApp) {
-        return microApp.mountPromise.then(_microApp => {
-            // Now it is safe to call unmount
-            if(_microApp){
-                return _microApp.unmount()
-            }
-        })
+        const status = microApp.getStatus();
+        if(status === 'MOUNTED'){
+          await microApp.unmount();
+        }
     }
     return Promise.resolve();
 }

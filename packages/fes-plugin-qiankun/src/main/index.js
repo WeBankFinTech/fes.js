@@ -33,6 +33,7 @@ export default function (api) {
     modifyRoutes({ api, namespace });
 
     const absMicroAppPath = join(namespace, 'MicroApp.js');
+    const absMicroAppWithMemoHistoryPath = join(namespace, 'MicroAppWithMemoHistory.js');
     const absRuntimePath = join(namespace, 'runtime.js');
     const absMasterOptionsPath = join(namespace, 'masterOptions.js');
     const absGetMicroAppRouteCompPath = join(
@@ -58,6 +59,15 @@ export default function (api) {
                                 )
                             )
                         )
+                }
+            )
+        });
+
+        api.writeTmpFile({
+            path: absMicroAppWithMemoHistoryPath,
+            content: Mustache.render(
+                readFileSync(join(__dirname, 'runtime/MicroAppWithMemoHistory.tpl'), 'utf-8'),
+                {
                 }
             )
         });
@@ -99,6 +109,13 @@ export default function (api) {
         {
             specifiers: ['MicroApp'],
             source: absMicroAppPath
+        }
+    ]);
+
+    api.addPluginExports(() => [
+        {
+            specifiers: ['MicroAppWithMemoHistory'],
+            source: absMicroAppWithMemoHistoryPath
         }
     ]);
 
