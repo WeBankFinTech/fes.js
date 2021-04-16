@@ -54,7 +54,7 @@ export default (api) => {
 
     api.addPluginExports(() => [
         {
-            specifiers: ['MUTATION_TYPES', 'ACTION_TYPES', 'GETTER_TYPES'],
+            specifiers: ['MUTATION_TYPES', 'ACTION_TYPES', 'GETTER_TYPES', 'store'],
             source: absCoreFilePath
         }
     ]);
