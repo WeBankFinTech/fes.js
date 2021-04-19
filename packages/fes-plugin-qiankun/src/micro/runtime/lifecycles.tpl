@@ -1,4 +1,4 @@
-import { plugin, ApplyPluginsType, getRouter, getHistory } from '@@/core/coreExports';
+import { plugin, ApplyPluginsType, getRouter, getHistory, destroyRouter } from '@@/core/coreExports';
 {{#HAS_PLUGIN_MODEL}}
 import { setModelState } from './qiankunModel';
 {{/HAS_PLUGIN_MODEL}}
@@ -74,14 +74,10 @@ export function genMount(mountElementId) {
         clientRenderOptsStack.push(clientRenderOpts);
 
         if(props.url){
-            history.url = props.url;
+            history.url = props.url || '/';
         }
         if(props.onRouterInit){
             history.onRouterInit = props.onRouterInit;
-            const router = getRouter();
-            if(router){
-                history.onRouterInit(router);
-            }
         }
 
         // 第一次 mount 会自动触发 render，非第一次 mount 则需手动触发
@@ -118,6 +114,7 @@ export function genUnmount() {
             const app = await cacheAppPromise;
             app.unmount();
         }
+        destroyRouter();
         const slaveRuntime = getSlaveRuntime();
         if (slaveRuntime.unmount) {
             await slaveRuntime.unmount(props);

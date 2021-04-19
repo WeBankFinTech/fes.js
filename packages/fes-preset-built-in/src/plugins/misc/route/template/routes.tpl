@@ -40,9 +40,20 @@ export const createRouter = () => {
 };
 
 export const getRouter = ()=>{
-  return router;
+    if(!router){
+        console.warn(`[preset-build-in] router is null`)
+    }
+    return router;
 }
 
 export const getHistory = ()=>{
-  return history;
+    if(!history){
+        console.warn(`[preset-build-in] history is null`)
+    }
+    return history;
+}
+
+export const destroyRouter = ()=>{
+    router = null;
+    history = null;
 }
