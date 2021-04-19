@@ -1,4 +1,4 @@
-import { plugin, ApplyPluginsType } from '@@/core/coreExports';
+import { plugin, ApplyPluginsType, getRouter, getHistory, destroyRouter } from '@@/core/coreExports';
 {{#HAS_PLUGIN_MODEL}}
 import { setModelState } from './qiankunModel';
 {{/HAS_PLUGIN_MODEL}}
@@ -20,6 +20,10 @@ let cacheAppPromise = null;
 let hasMountedAtLeastOnce = false;
 
 export default () => defer.promise;
+
+export const clientRenderOptsStack = [];
+
+export const history = {};
 
 function getSlaveRuntime() {
     const config = plugin.applyPlugins({
@@ -59,6 +63,23 @@ export function genMount(mountElementId) {
             }
         }
 
+        // 更新 clientRender 配置
+        const clientRenderOpts = {
+            // 支持通过 props 注入 container 来限定子应用 mountElementId 的查找范围
+            // 避免多个子应用出现在同一主应用时出现 mount 冲突
+            rootElement:
+                props?.container?.querySelector(mountElementId) || mountElementId
+        };
+
+        clientRenderOptsStack.push(clientRenderOpts);
+
+        if(props.url){
+            history.url = props.url || '/';
+        }
+        if(props.onRouterInit){
+            history.onRouterInit = props.onRouterInit;
+        }
+
         // 第一次 mount 会自动触发 render，非第一次 mount 则需手动触发
         if (hasMountedAtLeastOnce) {
             const appPromise = render();
@@ -87,10 +108,13 @@ export function genUpdate() {
 // 子应用生命周期钩子Unmount
 export function genUnmount() {
     return async (props) => {
+        const history = getHistory();
+        history.destroy();
         if (cacheAppPromise) {
             const app = await cacheAppPromise;
             app.unmount();
         }
+        destroyRouter();
         const slaveRuntime = getSlaveRuntime();
         if (slaveRuntime.unmount) {
             await slaveRuntime.unmount(props);

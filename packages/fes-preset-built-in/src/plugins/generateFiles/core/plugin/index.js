@@ -18,6 +18,7 @@ export default function (api) {
             initialValue: [
                 // 初始化数据
                 'beforeRender',
+                // modify渲染工具
                 'modifyClientRenderOpts',
                 'rootContainer',
                 // app生成时触发
@@ -26,6 +27,8 @@ export default function (api) {
                 'render',
                 // 修改路由
                 'patchRoutes',
+                // 修改histror
+                'modifyHistroy',
                 // 生成router时触发
                 'onRouterCreated'
             ]
@@ -48,7 +51,7 @@ export default function (api) {
                 {
                     validKeys,
                     runtimePath
-                },
+                }
             )
         });
         api.writeTmpFile({
@@ -60,7 +63,7 @@ export default function (api) {
                         index,
                         path: winPath(plugin)
                     }))
-                },
+                }
             )
         });
     });

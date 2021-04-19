@@ -20,7 +20,11 @@ export const createRouter = () => {
   if (router) {
     return router;
   }
-  history = {{{ CREATE_HISTORY }}}(ROUTER_BASE)
+  history = plugin.applyPlugins({
+    key: 'modifyHistroy',
+    type: ApplyPluginsType.modify,
+    initialValue: {{{ CREATE_HISTORY }}}(ROUTER_BASE),
+  });
   router = createVueRouter({
     history,
     routes: getRoutes()
@@ -36,9 +40,20 @@ export const createRouter = () => {
 };
 
 export const getRouter = ()=>{
-  return router;
+    if(!router){
+        console.warn(`[preset-build-in] router is null`)
+    }
+    return router;
 }
 
 export const getHistory = ()=>{
-  return history;
+    if(!history){
+        console.warn(`[preset-build-in] history is null`)
+    }
+    return history;
+}
+
+export const destroyRouter = ()=>{
+    router = null;
+    history = null;
 }
