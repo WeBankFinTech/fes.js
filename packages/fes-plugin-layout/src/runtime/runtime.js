@@ -1,4 +1,5 @@
 import { plugin, ApplyPluginsType } from '@@/core/coreExports';
+// eslint-disable-next-line import/extensions
 import { access as accessApi } from '../plugin-access/core';
 import Exception404 from './views/404';
 import Exception403 from './views/403';
@@ -25,7 +26,7 @@ const handle = (type, router) => {
     }
 };
 
-export const access = {
+export const access = memo => ({
     unAccessHandler({
         router, to, from, next
     }) {
@@ -65,5 +66,6 @@ export const access = {
         }
         handle(404, router);
         next('/404');
-    }
-};
+    },
+    ...memo
+});
