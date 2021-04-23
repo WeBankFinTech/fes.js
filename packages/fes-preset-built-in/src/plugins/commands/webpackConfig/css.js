@@ -106,4 +106,14 @@ export default function createCssWebpackConfig({
                 sourceMap: config.devtool !== false
             }]);
     }
+
+    return (options) => {
+        createRules({
+            isDev,
+            config,
+            webpackConfig,
+            browserslist,
+            ...options
+        });
+    };
 }

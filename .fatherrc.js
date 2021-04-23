@@ -19,7 +19,8 @@ const headPkgs = [
     "fes-plugin-jest",
     "fes-plugin-vuex",
     "create-fes-app",
-    "fes-plugin-qiankun"
+    "fes-plugin-qiankun",
+    "fes-plugin-sass"
 ];
 const tailPkgs = [];
 // const otherPkgs = readdirSync(join(__dirname, 'packages')).filter(

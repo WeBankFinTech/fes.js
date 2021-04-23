@@ -204,7 +204,7 @@ export default async function getConfig({
         .options(babelOpts);
 
     // --------------- css -----------
-    createCssWebpackConfig({
+    const createCSSRule = createCssWebpackConfig({
         isDev,
         config,
         webpackConfig,
@@ -306,12 +306,14 @@ export default async function getConfig({
     // --------------- chainwebpack -----------
     if (chainWebpack) {
         await chainWebpack(webpackConfig, {
+            createCSSRule,
             webpack
         });
     }
     // 用户配置的 chainWebpack 优先级最高
     if (config.chainWebpack) {
         await config.chainWebpack(webpackConfig, {
+            createCSSRule,
             env,
             webpack
         });
