@@ -2,11 +2,10 @@
 
 
 export default {
-    base: '',
     define: {
         __DEV__: false
     },
-    publicPath: '/',
+    publicPath: './',
     access: {
         roles: {
             admin: ["/", "/onepiece"]
