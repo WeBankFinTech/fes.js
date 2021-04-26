@@ -51,6 +51,8 @@ export const request = {
     responseDataAdaptor: (data) => {
 
     },
+    // 关闭 response data 校验（只判断 xhr status）
+    closeResDataCheck: false,
     // 请求拦截器
     requestInterceptors: [],
     // 相应拦截器
