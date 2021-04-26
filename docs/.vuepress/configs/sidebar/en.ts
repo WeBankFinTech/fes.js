@@ -7,22 +7,22 @@ export const en: SidebarConfig = {
       text: '介绍',
       children: [
         '/guide/README.md',
-        '/guide/getting-started.md', 
+        '/guide/getting-started.md',
       ],
     },
     {
       isGroup: true,
       text: '基础',
       children: [
-        '/guide/directory-structure.md', 
-        '/guide/config.md', 
-        '/guide/runtime-config.md', 
-        '/guide/route.md', 
-        '/guide/plugin.md', 
-        '/guide/template.md', 
-        '/guide/mock.md', 
-        '/guide/env.md', 
-        '/guide/css.md', 
+        '/guide/directory-structure.md',
+        '/guide/config.md',
+        '/guide/runtime-config.md',
+        '/guide/route.md',
+        '/guide/plugin.md',
+        '/guide/template.md',
+        '/guide/mock.md',
+        '/guide/env.md',
+        '/guide/css.md',
       ]
     },
     {
@@ -61,6 +61,7 @@ export const en: SidebarConfig = {
         '/reference/plugin/plugins/request.md',
         '/reference/plugin/plugins/vuex.md',
         '/reference/plugin/plugins/qiankun.md',
+        '/reference/plugin/plugins/sass.md',
       ],
     },
     {
