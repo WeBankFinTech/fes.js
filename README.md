@@ -59,7 +59,7 @@ Fes.js 是一个好用的前端应用解决方案。Fes.js 以 Vue 3.0 和路由
 | [@fesjs/plugin-request](https://winixt.gitee.io/fesjs/zh/reference/plugin/plugins/request.html#%E5%90%AF%E7%94%A8%E6%96%B9%E5%BC%8F) |  基于 `Axios` 封装的 request，内置防止重复请求、请求节流、错误处理等功能 |
 | [@fesjs/plugin-vuex](https://winixt.gitee.io/fesjs/zh/reference/plugin/plugins/vuex.html#%E5%90%AF%E7%94%A8%E6%96%B9%E5%BC%8F) |  基于 `Vuex`, 提供状态管理能力 |
 | [@fesjs/plugin-qiankun](https://winixt.gitee.io/fesjs/zh/reference/plugin/plugins/qiankun.html#%E4%BB%8B%E7%BB%8D) |  基于 `qiankun`，提供微服务能力 |
-| [@fesjs/plugin-sass]((https://winixt.gitee.io/fesjs/zh/reference/plugin/plugins/sass.html#%E4%BB%8B%E7%BB%8D) ) |  样式支持sass |
+| [@fesjs/plugin-sass](https://winixt.gitee.io/fesjs/zh/reference/plugin/plugins/sass.html#%E4%BB%8B%E7%BB%8D) |  样式支持sass |
 
 ## 像数 1, 2, 3 一样容易
 使用 `yarn`：
