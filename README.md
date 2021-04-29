@@ -14,7 +14,6 @@
 
 </div>
 
-- 在线体验 - [http://webank.gitee.io/fes-pro/](http://webank.gitee.io/fes-pro/)
 - 使用文档 - [https://webank.gitee.io/fes.js/](https://webank.gitee.io/fes.js/)
 - 更新日志 - [https://github.com/WeBankFinTech/fes.js/blob/master/CHANGELOG.md](https://github.com/WeBankFinTech/fes.js/blob/master/CHANGELOG.md)
 

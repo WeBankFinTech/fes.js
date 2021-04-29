@@ -142,7 +142,8 @@ const success = function (response) {
         error.response = response;
         throw error;
     }
-    return result || {};
+    // eslint-disable-next-line no-undefined
+    return (result === undefined || result === null) || {};
 };
 
 const fail = function (error) {
@@ -173,6 +174,7 @@ const fail = function (error) {
     throw error;
 };
 
+// eslint-disable-next-line complexity
 const param = function (url, data, option) {
     const method = instance.defaults.method || 'post';
     if (util.isNull(url)) {
