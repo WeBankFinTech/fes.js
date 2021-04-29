@@ -1,6 +1,7 @@
 import { reactive, unref, computed, inject } from "vue";
 import createDirective from "./createDirective";
 import createComponent from "./createComponent";
+import isPlainObject from "lodash/isPlainObject";
 
 const accessKey = Symbol("plugin-access");
 
@@ -50,15 +51,20 @@ const setAccess = (accessIds) => {
     if (isPromise(accessIds)) {
         return _syncSetAccessIds(accessIds);
     }
+    if(isPlainObject(accessIds)){
+        if(accessIds.accessIds){
+            setAccess(accessIds.accessIds);
+        }
+        if(accessIds.roleId){
+            setRole(accessIds.roleId);
+        }
+        return
+    }
     if (!Array.isArray(accessIds)) {
-        throw new Error("[plugin-access]: argument to the setAccess() must be array or promise");
+        throw new Error("[plugin-access]: argument to the setAccess() must be array or promise or object");
     }
     state.currentAccessIds = accessIds;
 };
-
-const getAccess = () => {
-    return state.currentAccessIds.slice(0)
-}
 
 const _syncSetRoleId = (promise) => {
     rolePromiseList.push(promise);
@@ -143,7 +149,7 @@ export const access = {
     isDataReady,
     setRole,
     setAccess,
-    getAccess,
+    getAccess: getAllowAccessIds,
 };
 
 export const useAccess = (path) => {
