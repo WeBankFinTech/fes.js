@@ -1,6 +1,6 @@
 {
   "name": "@fesjs/plugin-access",
-  "version": "2.0.0-rc.1",
+  "version": "2.0.0-rc.20",
   "description": "@fesjs/plugin-access",
   "main": "lib/index.js",
   "files": [
