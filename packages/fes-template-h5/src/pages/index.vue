@@ -2,8 +2,6 @@
     <div class="onepiece">
         fes & 拉夫德鲁<br />
         <fes-icon :spin="true" class="one-icon" type="smile" @click="clickIcon" />
-        <div v-if="loading" class="loading">loading</div>
-        <div v-else class="data">{{data}}</div>
     </div>
 </template>
 <config>
@@ -14,7 +12,7 @@
 </config>
 <script>
 import { ref, onMounted } from 'vue';
-import { useRouter, useRequest } from '@fesjs/fes';
+import { useRouter, request } from '@fesjs/fes';
 
 export default {
     setup() {
@@ -28,12 +26,14 @@ export default {
         const clickIcon = () => {
             console.log('click Icon');
         };
-        const { loading, data } = useRequest('/api', null, {
+        request('/api', null, {
             dataField: false
+        }).then((res) => {
+            console.log(res);
+        }).catch((err) => {
+            console.error(err);
         });
         return {
-            loading,
-            data,
             fes,
             rotate,
             clickIcon

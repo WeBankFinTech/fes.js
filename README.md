@@ -59,6 +59,7 @@ Fes.js 是一个好用的前端应用解决方案。Fes.js 以 Vue 3.0 和路由
 | [@fesjs/plugin-request](https://winixt.gitee.io/fesjs/zh/reference/plugin/plugins/request.html#%E5%90%AF%E7%94%A8%E6%96%B9%E5%BC%8F) |  基于 `Axios` 封装的 request，内置防止重复请求、请求节流、错误处理等功能 |
 | [@fesjs/plugin-vuex](https://winixt.gitee.io/fesjs/zh/reference/plugin/plugins/vuex.html#%E5%90%AF%E7%94%A8%E6%96%B9%E5%BC%8F) |  基于 `Vuex`, 提供状态管理能力 |
 | [@fesjs/plugin-qiankun](https://winixt.gitee.io/fesjs/zh/reference/plugin/plugins/qiankun.html#%E4%BB%8B%E7%BB%8D) |  基于 `qiankun`，提供微服务能力 |
+| [@fesjs/plugin-sass](https://winixt.gitee.io/fesjs/zh/reference/plugin/plugins/sass.html#%E4%BB%8B%E7%BB%8D) |  样式支持sass |
 
 ## 像数 1, 2, 3 一样容易
 使用 `yarn`：
@@ -103,3 +104,16 @@ For bugs and feature requests, [please create an issue](https://github.com/WeBan
 3. Commit your changes: `git commit -am 'Add some feature'`
 4. Push to the branch: `git push origin my-new-feature`
 5. Submit a pull request :D
+
+
+## 社区活动
+
+### Fesjs 社区有奖征文活动
+
+为了 Fes.js 开源项目更好的运转，同时回馈开源社区，社区推出有奖征文活动！欢迎大家投递实践经验，给社区用户，更广泛的开发者提供借鉴。
+
+经验输出也可以帮助到你系统沉淀自有项目，梳理工作思路，也能够帮助你的技术博客做宣传。优秀的实践案例将有机会邀请参与项目社区技术会议分享，赶快来参与吧。
+请戳：https://mp.weixin.qq.com/s/nV4NG_OUUrdgtft8g_IW4g
+
+ 
+

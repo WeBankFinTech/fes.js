@@ -25,9 +25,10 @@ export default async (ctx, next) => {
     const {
         error,
         errorHandler = {},
-        response
+        response,
+        config
     } = ctx;
-    if (response && isObject(response.data)) {
+    if (!config.closeResDataCheck && response && isObject(response.data)) {
         const code = response.data.code;
         if (code !== '0') {
             handleAbnormalCode(errorHandler, code, response);
