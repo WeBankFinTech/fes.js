@@ -173,8 +173,8 @@ export default {
                 }
             } else {
                 // 只是子节点，选中的则默认选中
-                this.$set(obj, 'checked', node.checked || false);
-                this.$set(obj, 'childrenCheckedStatus', node.checked ? '2' : '0');
+                this.$set(obj, 'checked', node.selected || false);
+                this.$set(obj, 'childrenCheckedStatus', node.selected ? '2' : '0');
                 if (obj.selected) {
                     this.selectedNode = obj;
                 }
