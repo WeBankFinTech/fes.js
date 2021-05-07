@@ -143,7 +143,7 @@ const success = function (response) {
         throw error;
     }
     // eslint-disable-next-line no-undefined
-    return (result === undefined || result === null) || {};
+    return (result === undefined || result === null) ? {} : result;
 };
 
 const fail = function (error) {
