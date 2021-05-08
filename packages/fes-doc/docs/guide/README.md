@@ -5,6 +5,10 @@ title: 介绍
 
 Fast！ Easy！ Strong！
 
+
+## Vue3
+Fes.js 升级到Vue3.0，并且重构90%的代码，让Fes.js更容易扩展。文档地址[https://winixt.gitee.io/fesjs/zh/](https://winixt.gitee.io/fesjs/zh/)。
+
 ## 痛点
 
 不管啥产品出来，总会有一个对应的管理后台系统。管理后台系统呢，大致就是权限、查询、增删改这些东西，技术含量低。但是大量的查询、表单处理、接口又要耗费不少开发调试时间。
@@ -21,3 +25,4 @@ Fes是一整套解决方案。包含`fes-cli`、`fes-core`、`fes-ui`三部分�
 ## 愿景
 
 提效中后台开发，提供一系列基础能力，让开发只关注业务逻辑。
+
