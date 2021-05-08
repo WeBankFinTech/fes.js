@@ -230,12 +230,13 @@ this.FesApi.setImportant({
 ```js
 // 参数支持: function, [function, function]
 // 请求拦截
-const eject = api.setReqInterceptor(function (config) {
+const eject = this.FesApi.setReqInterceptor(function (config) {
      // do something
+     return config
 })
 
 // 取消请求拦截
-api.ejectReqInterceptor(eject);
+this.FesApi.ejectReqInterceptor(eject);
 ```
 
 ### setResInterceptor & ejectResInterceptor
@@ -243,14 +244,15 @@ api.ejectReqInterceptor(eject);
 ```js
 // 参数支持: function, [function, function]
 // 响应拦截
-const eject = api.setResInterceptor((response) => {
+const eject = this.FesApi.setResInterceptor((response) => {
      // do something
+    return response
 }, (error) => {
      // do somthing for error
 })
 
 // 取消响应拦截
-api.ejectResInterceptor(eject);
+this.FesApi.ejectResInterceptor(eject);
 ```
 
 ## FesFesx
