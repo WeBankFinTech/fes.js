@@ -12,10 +12,10 @@ function handleAbnormalCode(errorHandler = {}, code, response) {
 }
 
 function handleRequestError(errorHandler = {}, error) {
-    if (error.type) {
-        errorHandler[error.type] && errorHandler[error.type](error);
-    } else if (error.response) {
-        errorHandler[error.response.status] && errorHandler[error.response.status](error);
+    if (error.type && errorHandler[error.type]) {
+        errorHandler[error.type](error);
+    } else if (error.response && errorHandler[error.response.status]) {
+        errorHandler[error.response.status](error);
     } else if (errorHandler.default) {
         errorHandler.default(error);
     }

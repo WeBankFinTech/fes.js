@@ -13,10 +13,11 @@ export const request = {
         111(responseData) {
             console.log(responseData);
         },
-        404() {
-            console.log('to 404 page');
+        500() {
+            console.log('500 error');
         },
         default(error) {
+            console.log('default error');
             console.log(error);
         }
     }
