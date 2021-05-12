@@ -62,8 +62,11 @@ export default {
                 }
             ]
         });
-        console.log(roles);
-        console.log(enums.get('status', {
+        console.log('enums roles=>', roles);
+        console.log('enums roles[1]=>', enums.get('roles', '1'));
+        console.log('enums status[0]=> ', enums.get('status', 0));
+        console.log('enums status concat', enums.concat('status', [['3', '普通的']], { extend: [{ key: 'name', dir: 'value' }] }));
+        console.log('enums status get extend=>', enums.get('status', {
             extend: [
                 {
                     key: 'name',

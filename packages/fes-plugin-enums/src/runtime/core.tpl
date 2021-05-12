@@ -22,11 +22,11 @@ Object.keys(_ENUMS).forEach(key => {
 function get(name, key, opt = { dir: 'value', extend: []}) {
     if (Object.prototype.toString.call(key) === '[object Object]') { 
         opt = key
-        key = ''
+        key = null
     }
     let list = ENUMS[name] || []
     let value
-    if (key) {
+    if (key !== undefined && key !== null) {
         let res = list.filter(item => item.key === key)[0]
         if (!res) return key
         value = parseValueDir(res.value, opt.dir) || key
@@ -81,7 +81,7 @@ function concat(name, _enum, opt = { keyName: '', valueName: '', before: false, 
     } else {
         list = list.concat(partList)
     }
-    return readonly(format(list, extend))
+    return readonly(format(list, opt.extend))
 }
 
 /**
@@ -111,7 +111,7 @@ function format(_enum = [], extend = []) {
  * @param dir 
  */
 function parseValueDir(value, dir='value') {
-    if (!['object', 'function'].includes(typeof value) || !value || !dir) return value
+    if (!['object', 'function'].includes(typeof value) || !value || !dir || dir === 'value') return value
     if (dir.startsWith('[')) {
         let key = dir.slice(1, dir.indexOf(']'))
         return parseValueDir(value[key], dir.slice(dir.indexOf(']') + 1))
