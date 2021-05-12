@@ -94,24 +94,21 @@ const genRoutes = function (parentRoutes, path, parentRoutePath, config) {
             // 路由名称
             const routeName = getRouteName(parentRoutePath, fileName);
             const componentPath = getComponentPath(parentRoutePath, fileName, config);
+            const routeMeta = routeMetaBlock?.content ? JSON.parse(routeMetaBlock.content) : {};
+            const routeConfig = {
+                path: routePath,
+                component: componentPath,
+                name: routeMeta.name || routeName,
+                meta: routeMeta
+            };
             if (hasLayout) {
                 if (fileName === 'layout') {
                     layoutRoute.component = componentPath;
                 } else {
-                    layoutRoute.children.push({
-                        path: routePath,
-                        component: componentPath,
-                        name: routeName,
-                        meta: routeMetaBlock?.content ? JSON.parse(routeMetaBlock.content) : {}
-                    });
+                    layoutRoute.children.push(routeConfig);
                 }
             } else {
-                parentRoutes.push({
-                    path: routePath,
-                    component: componentPath,
-                    name: routeName,
-                    meta: routeMetaBlock?.content ? JSON.parse(routeMetaBlock.content) : {}
-                });
+                parentRoutes.push(routeConfig);
             }
         }
     });

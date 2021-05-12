@@ -7,6 +7,7 @@
 <config>
 {
     "title": "首页",
+    "name": "testIndex",
     "layout": "false"
 }
 </config>
