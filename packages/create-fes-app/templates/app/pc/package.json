@@ -43,21 +43,16 @@
     "access": "public"
   },
   "devDependencies": {
-    "@webank/eslint-config-webank": "0.2.10"
+    "@webank/eslint-config-webank": "0.3.0"
   },
   "dependencies": {
     "@fesjs/fes": "^2.0.0-rc.0",
     "@fesjs/plugin-access": "^2.0.0-rc.0",
     "@fesjs/plugin-layout": "^2.0.0-rc.0",
-    "@fesjs/plugin-locale": "^2.0.0-rc.0",
     "@fesjs/plugin-model": "^2.0.0-rc.0",
     "@fesjs/plugin-enums": "^2.0.0-rc.0",
-    "@fesjs/plugin-jest": "^2.0.0-rc.0",
-    "@fesjs/plugin-vuex": "^2.0.0-rc.0",
     "ant-design-vue": "^2.0.0",
-    "vue": "^3.0.5",
-    "vuex": "^4.0.0"
+    "vue": "^3.0.5"
   },
   "private": true
 }
- 
