@@ -165,7 +165,7 @@ export default function (api) {
 
     api.addEntryCode(
         () => `
-export const bootstrap = qiankun_genBootstrap(completeClientRender, app);
+export const bootstrap = qiankun_genBootstrap(clientRender, app);
 export const mount = qiankun_genMount('#${api.config.mountElementId}');
 export const unmount = qiankun_genUnmount();
 export const update = qiankun_genUpdate();

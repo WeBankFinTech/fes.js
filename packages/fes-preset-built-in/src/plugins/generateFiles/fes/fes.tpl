@@ -40,29 +40,7 @@ const renderClient = (opts = {}) => {
     return app;
 }
 
-const getClientRender = (args = {}) => plugin.applyPlugins({
-  key: 'render',
-  type: ApplyPluginsType.compose,
-  initialValue: () => {
-    const opts = plugin.applyPlugins({
-      key: 'modifyClientRenderOpts',
-      type: ApplyPluginsType.modify,
-      initialValue: {
-        initialState: args.initialState,
-        routes: args.routes || getRoutes(),
-        plugin,
-        rootElement: '{{{ rootElement }}}',
-{{#enableTitle}}
-        defaultTitle: `{{{ defaultTitle }}}`,
-{{/enableTitle}}
-      },
-    });
-    return renderClient(opts);
-  },
-  args,
-});
-
-const beforeRender = async () => {
+const beforeRender = async ({rootElement}) => {
     const beforeRenderConfig = plugin.applyPlugins({
         key: "beforeRender",
         type: ApplyPluginsType.modify,
@@ -74,7 +52,7 @@ const beforeRender = async () => {
     let initialState = {};
     if (typeof beforeRenderConfig.action === "function") {
         const app = createApp(beforeRenderConfig.loading);
-        app.mount('{{{ rootElement }}}');
+        app.mount(rootElement);
         try {
             initialState = await beforeRenderConfig.action();
         } catch(e){
@@ -86,14 +64,31 @@ const beforeRender = async () => {
     return initialState;
 };
 
-const completeClientRender = async () => {
-    const initialState = await beforeRender();
-    const clientRender = getClientRender({initialState});
-    const app = clientRender();
-    return app;
-};
+const getClientRender = (args = {}) => plugin.applyPlugins({
+  key: 'render',
+  type: ApplyPluginsType.compose,
+  initialValue: async () => {
+    const opts = plugin.applyPlugins({
+      key: 'modifyClientRenderOpts',
+      type: ApplyPluginsType.modify,
+      initialValue: {
+        routes: args.routes || getRoutes(),
+        plugin,
+        rootElement: '{{{ rootElement }}}',
+{{#enableTitle}}
+        defaultTitle: `{{{ defaultTitle }}}`,
+{{/enableTitle}}
+      },
+    });
+    const initialState = await beforeRender(opts); 
+    return renderClient({...opts, initialState});
+  },
+  args,
+});
 
-const app = completeClientRender();
+const clientRender = getClientRender();
+
+const app = clientRender();
 
 {{{ entryCode }}}
 
