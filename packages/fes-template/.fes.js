@@ -33,6 +33,7 @@ export default {
         footer: "Created by MumbleFe",
         multiTabs: false,
         navigation: "mixin",
+        theme: 'light',
         menus: [
             {
                 name: "index",

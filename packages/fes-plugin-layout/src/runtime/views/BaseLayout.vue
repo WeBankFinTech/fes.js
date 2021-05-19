@@ -3,7 +3,8 @@
         v-if="routeHasLayout"
         :class="[
             collapsed ? 'main-layout-collapsed' : '',
-            `main-layout-navigation-${navigation}`
+            `main-layout-navigation-${navigation}`,
+            `main-layout-theme-${siderTheme}`
         ]"
         class="main-layout"
     >
@@ -333,6 +334,22 @@ export default {
     }
     .layout-footer {
         text-align: center;
+    }
+    &.main-layout-theme-light{
+        .logo-name{
+            color: rgba(0, 0, 0, 0.65) !important;
+        }
+        &.main-layout-navigation-mixin{
+            .logo-name{
+                color: #fff !important;
+            }
+        }
+        &.main-layout-navigation-top{
+            .layout-header {
+                background: #fff;
+                color: rgba(0, 0, 0, 0.85);
+            }
+        }
     }
 }
 </style>

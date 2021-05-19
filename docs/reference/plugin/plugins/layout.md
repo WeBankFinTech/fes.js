@@ -31,6 +31,7 @@ export default {
 ### top
 <!-- ![top](/top.png) -->
 <img :src="$withBase('top.png')" alt="top">
+
 ### mixin
 <!-- ![mixin](/mixin.png) -->
 <img :src="$withBase('mixin.png')" alt="mixin">
@@ -69,6 +70,8 @@ export default {
         title: "Fes.js",
         // 底部文字
         footer: 'Created by MumbelFe',
+        // 主题light
+        theme: 'dark'
         // 是否开启 tabs
         multiTabs: false,
         // 布局类型
@@ -97,6 +100,13 @@ export default {
 - **默认值**：`null`
 
 - **详情**：页面底部的文字。
+
+### theme
+- **类型**：`String`
+  
+- **默认值**：`dark`
+
+- **详情**：主题，可选有 `dark`、`light`
 
 ### navigation
 - **类型**：`String`
