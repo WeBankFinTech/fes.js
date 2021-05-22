@@ -130,7 +130,7 @@ export default {
         change(e) {
             this.$emit('on-change', e);
             if (this.isIE(9)) return this.iePost(e);
-            const files = e.target.files;
+            const files = JSON.parse(JSON.stringify(e.target.files));
             const len = files.length;
             const validateArray = [];
             for (let i = 0; i < len; i++) {
