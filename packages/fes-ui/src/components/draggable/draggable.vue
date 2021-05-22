@@ -1,5 +1,5 @@
 <template>
-    <div class="draggable-container">
+    <div class="draggable-container" style="position: relative;">
         <DraggableItem v-for="(item, index) in value" :key="index" :index="index" :item="item">
             <slot :item="item" :index="index" />
         </DraggableItem>
@@ -77,6 +77,7 @@ export default {
         handlePress() {
             const nodes = this.manager.getOrderedRefs(this.collection);
             this.activeIndex = nodes.findIndex(node => node === this.activeNode);
+            this.containerRect = this.container.getBoundingClientRect();
             this.nodeRect = this.activeNode.getBoundingClientRect();
             this.width = this.nodeRect.width;
             this.height = this.nodeRect.height;
@@ -197,9 +198,9 @@ export default {
         },
         initHelper(cloneNode) {
             this.helper = this.container.appendChild(cloneNode);
-            this.helper.style.position = 'fixed';
-            this.helper.style.top = `${this.nodeRect.top}px`;
-            this.helper.style.left = `${this.nodeRect.left}px`;
+            this.helper.style.position = 'absolute';
+            this.helper.style.top = `${this.nodeRect.top - this.containerRect.top}px`;
+            this.helper.style.left = `${this.nodeRect.left - this.containerRect.left}px`;
             this.helper.style.width = `${this.width}px`;
             this.helper.style.height = `${this.height}px`;
         },

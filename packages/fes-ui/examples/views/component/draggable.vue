@@ -3,14 +3,18 @@
         <h1>Draggable 拖拽</h1>
         <h2>概述</h2>
         <p>拖拽改变列表数据时使用, 处理数据顺序问题069</p>
-    
+
         <h2>代码示例</h2>
         <Row class="panel">
             <Cell class="son-panel" span="12">
                 <div class="panel-case">
-                    <Draggable v-model="list" @on-sort-ready="dragready" @on-sort-end="dragend" class="category-draggable">
+                    <Draggable v-model="list" :disabled="disabled" @on-sort-ready="dragready" @on-sort-end="dragend" class="category-draggable">
                         <template slot-scope="{item, index}">
-                            <p>{{item.content}}</p>
+                           <Row>
+                                <Cell span="6"><Wb-input /> </Cell>
+                                <Cell span="6"><p>{{item.content}}</p></Cell>
+                            </Row>
+
                         </template>
                     </Draggable>
                 </div>
@@ -30,7 +34,7 @@
                 </div>
             </Cell>
         </Row>
-    
+
         <h2>API</h2>
         <h3>Draggable props</h3>
         <markdown2></markdown2>
@@ -89,11 +93,19 @@ export default {
     ready: function () {
     },
     methods: {
+        mouseover(){
+            console.log("mouseover")
+            this.disabled = true
+        },
+        mouseout(){
+            console.log("mouseout")
+            this.disabled = false
+        },
         dragready() {
-            console.log(this.disabled)
+            // console.log(this.disabled)
         },
         dragend() {
-            console.log('end')
+            // console.log('end')
         }
     }
 }
@@ -105,6 +117,6 @@ export default {
  .draggable-page .son-panel .example-item{
     padding: 10px 40px;
     border: 1px solid #eee;
-    margin: 0 0 20px 0; 
+    margin: 0 0 20px 0;
 }
 </style>

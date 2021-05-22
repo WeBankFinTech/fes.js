@@ -16,6 +16,7 @@
                         <Column prop="age" name="年龄" sort />
                         <Column prop="adr" name="地址" />
                         <Column prop="status" name="等级" />
+                        <Column name="状态" :component="component1"/>
                         <Column name="操作" :action="action" />
                     </Wb-table>
                     <Wb-button class="mt20" @click="getSelectedTr">获取选择的行</Wb-button>
@@ -229,26 +230,30 @@ export default {
                 age: 24,
                 date: new Date(2016, 9, 10),
                 adr: '北京市海淀区西一旗',
-                status: 1
+                status: 1,
+                open: true
             }, {
                 _selected: true,
                 name: '李晓红',
                 age: 26,
                 date: new Date(2016, 9, 11),
                 adr: '北京市海淀区西二旗',
-                status: 2
+                status: 2,
+                open: true
             }, {
                 name: '隔壁老王',
                 age: 22,
                 date: new Date(2016, 9, 12),
                 adr: '北京市海淀区西二旗',
-                status: 3
+                status: 3,
+                open: true
             }, {
                 name: '我爸是李刚',
                 age: 19,
                 date: new Date(2016, 9, 13),
                 adr: '北京市海淀区西二旗',
-                status: 4
+                status: 4,
+                open: true
             }],
             data3: [],
             action: [{
@@ -293,6 +298,45 @@ export default {
                         }, [this.tdData])
                     }
                     // template: "<Wb-Input :value='tdData' readonly>{{tdData}}</Wb-Input>"
+                })
+            },
+            component1: function (trData, tdData) {
+                return new Vue({
+                    data: function () {
+                        return {
+                            trData,
+                            tdData
+                        }
+                    },
+                    methods: {
+                        confirm(){
+                            return new Promise((resolve, reject)=>{
+                                this.$Message({
+                                    title: '标题', // 可以传入文本和domString
+                                    template: '是否啊啊啊啊啊？', // 可以传入文本和domString
+                                    buttons: [{ // 最多有两个, 第一条配置第一个button
+                                        text: '确定',
+                                        class: 'xx'
+                                    }, { // 配置第二个button
+                                        text: '放弃',
+                                        class: 'yy'
+                                    }]
+                                }).then(function (index) {
+                                    if (index == 0) {
+                                        resolve()
+                                    }
+                                })
+                            })
+                        }
+                    },
+                    render(h){
+                        return h("Wb-switch", {
+                            props: {
+                                value: this.trData.open,
+                                confirm: this.confirm
+                            }
+                        }, [this.tdData])
+                    }
                 })
             },
             trClass() {

@@ -115,6 +115,15 @@
                         <Wb-button type="primary" @click="open3">
                             增加高度
                         </Wb-button>
+                         <Draggable v-model="list" class="category-draggable">
+                            <template slot-scope="{item, index}">
+                            <Row>
+                                    <Cell span="6"><Wb-input /> </Cell>
+                                    <Cell span="6"><p>{{item.content}}</p></Cell>
+                                </Row>
+
+                            </template>
+                        </Draggable>
                         <div v-for="i in len" :key="i" style="height:300px;">
                             我是内容，我是内容
                         </div>
@@ -295,7 +304,21 @@ export default {
     },
     data: function () {
         return {
-            len: 1
+            len: 1,
+            list: [
+                {
+                    content: '序号一',
+                    key: 1
+                },
+                {
+                    content: '序号二',
+                    key: 2
+                },
+                {
+                    content: '序号三',
+                    key: 3
+                }
+            ]
         }
     },
     methods: {
