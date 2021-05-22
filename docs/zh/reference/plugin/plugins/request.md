@@ -65,7 +65,6 @@ export const request = {
             // 特殊 code 处理逻辑
         },
         404(error) {
-
         },
         default(error) {
             // 异常统一处理
@@ -75,6 +74,32 @@ export const request = {
     ...otherConfigs
 }
 ```
+
+#### skipErrorHandler
+
+- 类型： `boolean | string | number | array<string | number>`
+- 默认值： ``
+- 详情：
+
+    指定当前请求的某些错误状态不走 `errorHandler`，单独进行处理。如果设置为 `true`，当前请求的错误处理都不走 `errorHandler`。
+
+- 示列：
+
+```js
+import {request} from '@fesjs/fes';
+
+request('/api/login', null, {
+    skipErrorHandler: '110'
+}).then((res) => {
+    // do something
+}).catch((err) => {
+    // 这里处理 code 为 110 的异常
+    // 此时 errorHandler[110] 函数不会生效，也不会执行 errorHandler.default
+})
+```
+
+
+
 ## 使用
 
 ### 发起一个普通 post 请求

@@ -12,18 +12,13 @@
 }
 </config>
 <script>
-import { ref, onMounted } from 'vue';
-import { useRouter, request } from '@fesjs/fes';
+import { ref } from 'vue';
+import { request } from '@fesjs/fes';
 
 export default {
     setup() {
         const fes = ref('fes upgrade to vue3');
         const rotate = ref(90);
-        const router = useRouter();
-        onMounted(() => {
-            console.log(router);
-            console.log('mounted1!!');
-        });
         const clickIcon = () => {
             console.log('click Icon');
         };
@@ -58,20 +53,28 @@ export default {
         //     });
         // }, 3200);
 
+        // request('/api', null, {
+        //     cache: true
+        // }).then((res) => {
+        //     console.log(res);
+        // });
+        // request('/api', null, {
+        //     cache: true
+        // }).then((res) => {
+        //     console.log(res);
+        // });
+        // request('/api', null, {
+        //     cache: true
+        // }).then((res) => {
+        //     console.log(res);
+        // });
+
         request('/api', null, {
-            cache: true
+            // skipErrorHandler: [500]
         }).then((res) => {
             console.log(res);
-        });
-        request('/api', null, {
-            cache: true
-        }).then((res) => {
-            console.log(res);
-        });
-        request('/api', null, {
-            cache: true
-        }).then((res) => {
-            console.log(res);
+        }).catch((err) => {
+            console.log('inner error', err);
         });
         return {
             fes,

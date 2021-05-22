@@ -39,6 +39,7 @@ import {
 
 const CACHE_KEY_PREFIX = '__FES_REQUEST_CACHE:';
 const CACHE_TYPE = {
+    merge: 'merge', // merge 重复请求
     ram: 'ram',
     session: 'sessionStorage',
     local: 'localStorage'
@@ -175,6 +176,11 @@ function handleCachingQueueError(ctx, config) {
     }
 }
 
+/**
+ * TODO 添加一种 merge 类型
+ * merge 当期所有请求，按顺序发起请求，只要有一个成功，所有请求都成功，并且跳过后续的请求。否则所有请求都失败
+ * merge 错误提示
+ */
 
 export default async (ctx, next) => {
     const { config } = ctx;
@@ -200,11 +206,14 @@ export default async (ctx, next) => {
         const requestdata = checkHttpRequestHasBody(config.method) ? config.data : config.params;
         if (!ctx.error && ctx.response && canCache(requestdata) && canCache(ctx.response.data)) {
             handleCachingQueueSuccess(ctx, config, ctx.response.data);
-            setCacheData({
-                key: ctx.key,
-                data: ctx.response.data,
-                ...config.cache
-            });
+
+            if (config.cache.cacheType !== CACHE_TYPE.merge) {
+                setCacheData({
+                    key: ctx.key,
+                    data: ctx.response.data,
+                    ...config.cache
+                });
+            }
         } else {
             handleCachingQueueError(ctx, config);
         }
