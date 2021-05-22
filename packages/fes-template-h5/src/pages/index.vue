@@ -27,8 +27,49 @@ export default {
         const clickIcon = () => {
             console.log('click Icon');
         };
+        // request('/api', null, {
+        //     throttle: 3000,
+        //     cache: true
+        // }).then((res) => {
+        //     console.log(res);
+        // });
+
+        // setTimeout(() => {
+        //     request('/api', null, {
+        //         throttle: 3000,
+        //         cache: true
+        //     }).then((res) => {
+        //         console.log(res);
+        //     });
+        // }, 1000);
+
+        // setTimeout(() => {
+        //     request('/api', null, {
+        //         throttle: 3000,
+        //         cache: true
+        //     }).then((res) => {
+        //         console.log(res);
+        //     });
+        //     request('/api', null, {
+        //         throttle: 3000,
+        //         cache: true
+        //     }).then((res) => {
+        //         console.log(res);
+        //     });
+        // }, 3200);
+
         request('/api', null, {
-            dataField: false
+            cache: true
+        }).then((res) => {
+            console.log(res);
+        });
+        request('/api', null, {
+            cache: true
+        }).then((res) => {
+            console.log(res);
+        });
+        request('/api', null, {
+            cache: true
         }).then((res) => {
             console.log(res);
         });

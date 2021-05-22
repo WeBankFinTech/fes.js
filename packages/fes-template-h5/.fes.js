@@ -10,7 +10,7 @@ export default {
     publicPath: '/',
     request: {
         base: '/ras-mas',
-        dataField: ''
+        dataField: 'result'
     },
     html: {
         title: '拉夫德鲁'

@@ -40,7 +40,7 @@
     "access": "public"
   },
   "devDependencies": {
-    "@webank/eslint-config-webank": "0.2.10",
+    "@webank/eslint-config-webank": "0.3.0",
     "postcss-px-to-viewport": "1.1.1"
   },
   "dependencies": {

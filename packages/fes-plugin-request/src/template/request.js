@@ -67,9 +67,9 @@ function getRequestInstance() {
 
     scheduler.use(paramsProcess)
         .use(genRequestKey)
+        .use(cacheControl)
         .use(preventRepeatReq)
         .use(throttle)
-        .use(cacheControl)
         .use(axiosMiddleware)
         .use(resDataAdaptor)
         .use(resErrorProcess)

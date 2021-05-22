@@ -153,11 +153,14 @@ export default {
 
  配置额外的 babel 插件。
 
-比如：
-
+- 示例：
+```js
 export default {
-  extraBabelPlugins: ['babel-plugin-react-require'],
-};
+    extraBabelPlugins: [
+        ['import', { libraryName: 'ant-design-vue', libraryDirectory: 'es', style: 'css' }],
+    ],
+}
+```
 
 ## extraPostCSSPlugins
 
@@ -181,14 +184,7 @@ export default {
 - 默认值： `{}`
 - 详情：
 
-- 示例：
-```js
-export default {
-    extraBabelPlugins: [
-        ['import', { libraryName: 'ant-design-vue', libraryDirectory: 'es', style: 'css' }],
-    ],
-}
-```
+    设置 [less-loader 配置项](https://github.com/webpack-contrib/less-loader)。
 
 ## mock
 

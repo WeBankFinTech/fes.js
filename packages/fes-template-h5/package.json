@@ -41,10 +41,11 @@
     "access": "public"
   },
   "devDependencies": {
-    "@webank/eslint-config-webank": "0.2.10",
+    "@webank/eslint-config-webank": "0.3.0",
     "postcss-px-to-viewport": "1.1.1"
   },
   "dependencies": {
+    "debounce": "1.2.1",
     "@fesjs/fes": "^2.0.0-rc.0",
     "@fesjs/plugin-icon": "^2.0.0-rc.0",
     "@fesjs/plugin-request": "^2.0.0-rc.0",
