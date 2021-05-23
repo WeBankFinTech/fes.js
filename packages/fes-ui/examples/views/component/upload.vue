@@ -8,7 +8,7 @@
         <Row class="panel">
             <Cell class="son-panel" span="12">
                 <div class="panel-case">
-                    <Upload v-for="(item, index) in data" :max-size="10" :key="index" :accept="option.accept" :action="action">
+                    <Upload v-for="(item, index) in data" url="test" @on-fail="fail" :max-size="10" :key="index" :accept="option.accept" >
                         <!-- <Wb-button>点击上传{{ item.url }}</Wb-button> -->
                     </Upload>
                 </div>
@@ -133,10 +133,10 @@ export default {
     },
     methods: {
         sucess(file, result, arg) {
-                
+
         },
-        fail() {
-            console.log(arguments)
+        fail(files, status) {
+            console.log(files)
         }
     }
 }

@@ -133,8 +133,10 @@ export default {
             const files = e.target.files;
             const len = files.length;
             const validateArray = [];
+            const validateFiles = [];
             for (let i = 0; i < len; i++) {
                 const file = e.target.files[i];
+                validateFiles.push(file);
                 validateArray.push(this.validate(file));
             }
             Promise.all(validateArray).then(
@@ -159,12 +161,12 @@ export default {
                                 ) {
                                     try {
                                         const result = JSON.parse(xhr.responseText);
-                                        this.$emit('on-success', files, result);
+                                        this.$emit('on-success', validateFiles, result);
                                     } catch (e1) {
                                         console.error('响应格式不正确');
                                     }
                                 } else {
-                                    this.$emit('on-fail', files, xhr.status);
+                                    this.$emit('on-fail', validateFiles, xhr.status);
                                 }
                                 this.$refs.input.value = '';
                             }
@@ -179,7 +181,7 @@ export default {
                     if (this.action) {
                         this.action(false);
                     } else {
-                        this.$emit('on-fail', files, -1);
+                        this.$emit('on-fail', validateFiles, -1);
                     }
                 }
             );
