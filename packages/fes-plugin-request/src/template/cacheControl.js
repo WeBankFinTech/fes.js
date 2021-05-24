@@ -64,6 +64,9 @@ function setCacheData({
     data,
     cacheTime = 1000 * 60 * 3
 }) {
+    // merge 类型没有缓存
+    if (cacheType === CACHE_TYPE.merge) return;
+
     const _key = genInnerKey(key, cacheType);
 
     const currentCacheData = {
@@ -97,6 +100,9 @@ function isExpire({ expire, cacheTime }) {
 }
 
 function getCacheData({ key, cacheType = 'ram' }) {
+    // merge 类型没有缓存
+    if (cacheType === CACHE_TYPE.merge) return;
+
     const _key = genInnerKey(key, cacheType);
     if (cacheType !== CACHE_TYPE.ram) {
         const cacheInstance = window[CACHE_TYPE[cacheType]];
@@ -144,15 +150,14 @@ function handleCachingStart(ctx, config) {
 }
 
 // 有请求成功的
-function handleCachingQueueSuccess(ctx, config, data) {
+function handleCachingQueueSuccess(ctx, config) {
     // 移除首次缓存 flag
     const _key = genInnerKey(ctx.key, config.cache.cacheType);
     const queue = cachingQueue.get(_key);
     if (queue && queue.length > 0) {
         queue.forEach((resolve) => {
             resolve({
-                isSuccess: true,
-                data
+                response: ctx.response
             });
         });
     }
@@ -165,22 +170,25 @@ function handleCachingQueueError(ctx, config) {
     const _key = genInnerKey(ctx.key, config.cache.cacheType);
     const queue = cachingQueue.get(_key);
     if (queue && queue.length > 0) {
-        const firstResolve = queue.shift();
-        firstResolve({
-            isSuccess: false
-        });
-        cachingQueue.set(_key, queue);
+        // 非 merge 类型，进行队列重试，直到有一个请求成功，后面的全部成功
+        if (config.cache.cacheType !== CACHE_TYPE.merge) {
+            const firstResolve = queue.shift();
+            firstResolve();
+            cachingQueue.set(_key, queue);
+        } else {
+            queue.forEach((resolve) => {
+                resolve({
+                    error: ctx.error
+                });
+            });
+            cachingQueue.delete(_key);
+            cacheStartFlag.delete(_key);
+        }
     } else {
         cachingQueue.delete(_key);
         cacheStartFlag.delete(_key);
     }
 }
-
-/**
- * TODO 添加一种 merge 类型
- * merge 当期所有请求，按顺序发起请求，只要有一个成功，所有请求都成功，并且跳过后续的请求。否则所有请求都失败
- * merge 错误提示
- */
 
 export default async (ctx, next) => {
     const { config } = ctx;
@@ -193,10 +201,10 @@ export default async (ctx, next) => {
             return;
         }
         const result = await handleCachingStart(ctx, config);
-        if (result && result.isSuccess) {
-            ctx.response = {
-                data: result.data
-            };
+        if (result) {
+            Object.keys(result).forEach((key) => {
+                ctx[key] = result[key];
+            });
             return;
         }
     }
@@ -205,15 +213,13 @@ export default async (ctx, next) => {
     if (config.cache) {
         const requestdata = checkHttpRequestHasBody(config.method) ? config.data : config.params;
         if (!ctx.error && ctx.response && canCache(requestdata) && canCache(ctx.response.data)) {
-            handleCachingQueueSuccess(ctx, config, ctx.response.data);
+            handleCachingQueueSuccess(ctx, config);
 
-            if (config.cache.cacheType !== CACHE_TYPE.merge) {
-                setCacheData({
-                    key: ctx.key,
-                    data: ctx.response.data,
-                    ...config.cache
-                });
-            }
+            setCacheData({
+                key: ctx.key,
+                data: ctx.response.data,
+                ...config.cache
+            });
         } else {
             handleCachingQueueError(ctx, config);
         }

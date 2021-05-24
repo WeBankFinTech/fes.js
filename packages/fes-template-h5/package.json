@@ -42,7 +42,7 @@
   },
   "devDependencies": {
     "@webank/eslint-config-webank": "0.3.0",
-    "postcss-px-to-viewport": "1.1.1"
+    "@ttou/postcss-px-to-viewport": "1.1.4"
   },
   "dependencies": {
     "debounce": "1.2.1",

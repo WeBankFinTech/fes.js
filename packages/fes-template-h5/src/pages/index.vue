@@ -22,6 +22,9 @@ export default {
         const clickIcon = () => {
             console.log('click Icon');
         };
+        request('/api', null).then((res) => {
+            console.log(res);
+        });
         // request('/api', null, {
         //     throttle: 3000,
         //     cache: true
@@ -54,28 +57,34 @@ export default {
         // }, 3200);
 
         // request('/api', null, {
-        //     cache: true
+        //     cache: {
+        //         cacheType: 'merge'
+        //     }
         // }).then((res) => {
         //     console.log(res);
         // });
         // request('/api', null, {
-        //     cache: true
+        //     cache: {
+        //         cacheType: 'merge'
+        //     }
         // }).then((res) => {
         //     console.log(res);
         // });
         // request('/api', null, {
-        //     cache: true
+        //     cache: {
+        //         cacheType: 'merge'
+        //     }
         // }).then((res) => {
         //     console.log(res);
         // });
 
-        request('/api', null, {
-            // skipErrorHandler: [500]
-        }).then((res) => {
-            console.log(res);
-        }).catch((err) => {
-            console.log('inner error', err);
-        });
+        // request('/api', null, {
+        //     // skipErrorHandler: [500]
+        // }).then((res) => {
+        //     console.log(res);
+        // }).catch((err) => {
+        //     console.log('inner error', err);
+        // });
         return {
             fes,
             rotate,
