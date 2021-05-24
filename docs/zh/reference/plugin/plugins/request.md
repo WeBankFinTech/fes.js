@@ -117,6 +117,27 @@ request('/api/login', {
 })
 ```
 
+### merge 重复请求
+
+连续发送多个请求，会被合并成一个请求，不会报 `REPEAT` 接口错误。
+
+当发生 `REPEAT` 请求异常，并且确保自身代码合理的情况下，可以使用该配置。
+
+```js
+import {request} from '@fesjs/fes';
+
+request('/api/login', {
+    username: 'robby',
+    password: '123456'
+}, {
+    mergeRequest: true, // 在一个请求没有回来前，重复发送的请求会合并成一个请求
+}).then((res) => {
+    // do something
+}).catch((err) => {
+    // 处理异常
+})
+```
+
 ### 请求节流
 
 ```js
@@ -145,7 +166,7 @@ request('/api/login', {
 }, {
     cache: {
         cacheType: 'ram', // ram: 内存，session: sessionStorage，local：localStorage
-        cacheTime: 1000 * 60 * 3 // 缓存时间，默认3min
+        cacheTime: 1000 * 60 * 3 // 缓存时间：默认3min
     },
 }).then((res) => {
     // do something
@@ -155,6 +176,7 @@ request('/api/login', {
 ```
 
 若 `cache` 传 `true`，则默认使用 `ram` 缓存类型，缓存时间 3min。
+
 
 ### 结合 use 使用
 

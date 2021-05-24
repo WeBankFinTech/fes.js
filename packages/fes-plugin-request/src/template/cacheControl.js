@@ -39,7 +39,6 @@ import {
 
 const CACHE_KEY_PREFIX = '__FES_REQUEST_CACHE:';
 const CACHE_TYPE = {
-    merge: 'merge', // merge 重复请求
     ram: 'ram',
     session: 'sessionStorage',
     local: 'localStorage'
@@ -64,9 +63,6 @@ function setCacheData({
     data,
     cacheTime = 1000 * 60 * 3
 }) {
-    // merge 类型没有缓存
-    if (cacheType === CACHE_TYPE.merge) return;
-
     const _key = genInnerKey(key, cacheType);
 
     const currentCacheData = {
@@ -100,9 +96,6 @@ function isExpire({ expire, cacheTime }) {
 }
 
 function getCacheData({ key, cacheType = 'ram' }) {
-    // merge 类型没有缓存
-    if (cacheType === CACHE_TYPE.merge) return;
-
     const _key = genInnerKey(key, cacheType);
     if (cacheType !== CACHE_TYPE.ram) {
         const cacheInstance = window[CACHE_TYPE[cacheType]];
@@ -170,20 +163,9 @@ function handleCachingQueueError(ctx, config) {
     const _key = genInnerKey(ctx.key, config.cache.cacheType);
     const queue = cachingQueue.get(_key);
     if (queue && queue.length > 0) {
-        // 非 merge 类型，进行队列重试，直到有一个请求成功，后面的全部成功
-        if (config.cache.cacheType !== CACHE_TYPE.merge) {
-            const firstResolve = queue.shift();
-            firstResolve();
-            cachingQueue.set(_key, queue);
-        } else {
-            queue.forEach((resolve) => {
-                resolve({
-                    error: ctx.error
-                });
-            });
-            cachingQueue.delete(_key);
-            cacheStartFlag.delete(_key);
-        }
+        const firstResolve = queue.shift();
+        firstResolve();
+        cachingQueue.set(_key, queue);
     } else {
         cachingQueue.delete(_key);
         cacheStartFlag.delete(_key);
