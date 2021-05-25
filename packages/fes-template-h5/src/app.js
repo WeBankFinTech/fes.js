@@ -12,3 +12,7 @@ export const request = {
         }
     }
 };
+
+export function patchRoutes() {
+    console.log('patchRoutes');
+}

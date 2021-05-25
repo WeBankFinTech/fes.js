@@ -16,7 +16,7 @@ export function getRoutes() {
 const ROUTER_BASE = '{{{ routerBase }}}';
 let router = null;
 let history = null;
-export const createRouter = () => {
+export const createRouter = (routes) => {
   if (router) {
     return router;
   }
@@ -27,7 +27,7 @@ export const createRouter = () => {
   });
   router = createVueRouter({
     history,
-    routes: getRoutes()
+    routes
   });
 
   plugin.applyPlugins({
