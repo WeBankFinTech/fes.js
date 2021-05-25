@@ -5,8 +5,8 @@
 </template>
 <config>
 {
-    "name": "index",
-    "title": "home"
+    "name": "test",
+    "title": "test"
 }
 </config>
 <script>
