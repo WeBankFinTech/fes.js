@@ -38,9 +38,11 @@ function getSlaveRuntime() {
 // 子应用生命周期钩子Bootstrap
 export function genBootstrap(oldRender, appPromise) {
     return async (props) => {
-        const slaveRuntime = getSlaveRuntime();
-        if (slaveRuntime.bootstrap) {
-            await slaveRuntime.bootstrap(props);
+        if (typeof props !== 'undefined') {
+            const slaveRuntime = getSlaveRuntime();
+            if (slaveRuntime.bootstrap) {
+                await slaveRuntime.bootstrap(props);
+            }
         }
         render = oldRender;
         if (isPromise(appPromise)) {
@@ -61,23 +63,22 @@ export function genMount(mountElementId) {
             if (slaveRuntime.mount) {
                 await slaveRuntime.mount(props);
             }
-        }
+             // 更新 clientRender 配置
+            const clientRenderOpts = {
+                // 支持通过 props 注入 container 来限定子应用 mountElementId 的查找范围
+                // 避免多个子应用出现在同一主应用时出现 mount 冲突
+                rootElement:
+                    props?.container?.querySelector(mountElementId) || mountElementId
+            };
 
-        // 更新 clientRender 配置
-        const clientRenderOpts = {
-            // 支持通过 props 注入 container 来限定子应用 mountElementId 的查找范围
-            // 避免多个子应用出现在同一主应用时出现 mount 冲突
-            rootElement:
-                props?.container?.querySelector(mountElementId) || mountElementId
-        };
+            clientRenderOptsStack.push(clientRenderOpts);
 
-        clientRenderOptsStack.push(clientRenderOpts);
-
-        if(props.url){
-            history.url = props.url || '/';
-        }
-        if(props.onRouterInit){
-            history.onRouterInit = props.onRouterInit;
+            if(props.url){
+                history.url = props.url || '/';
+            }
+            if(props.onRouterInit){
+                history.onRouterInit = props.onRouterInit;
+            }
         }
 
         // 第一次 mount 会自动触发 render，非第一次 mount 则需手动触发

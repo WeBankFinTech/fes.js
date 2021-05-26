@@ -31,7 +31,7 @@ const renderClient = (opts = {}) => {
     plugin.applyPlugins({
         key: 'onAppCreated',
         type: ApplyPluginsType.event,
-        args: { app },
+        args: { app, routes },
     });
 
     if (rootElement) {
