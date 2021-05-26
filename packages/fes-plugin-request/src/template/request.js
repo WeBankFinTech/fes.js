@@ -88,7 +88,7 @@ function getRequestInstance() {
     };
 }
 
-// FEATURE 后续优化，使用 axios baseURL
+// DEPRECATED 废弃，使用 axios baseURL
 function handleApiPathBase(url, options = {}) {
     if (url.startsWith('http')) return url;
 

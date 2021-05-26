@@ -41,7 +41,7 @@
   },
   "devDependencies": {
     "@webank/eslint-config-webank": "0.3.0",
-    "postcss-px-to-viewport": "1.1.1"
+    "@ttou/postcss-px-to-viewport": "1.1.1"
   },
   "dependencies": {
     "@fesjs/fes": "^2.0.0-rc.0",
