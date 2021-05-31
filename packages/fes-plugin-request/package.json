@@ -1,6 +1,6 @@
 {
   "name": "@fesjs/plugin-request",
-  "version": "2.0.0-rc.26",
+  "version": "2.0.0-rc.27",
   "description": "@fesjs/plugin-request",
   "main": "lib/index.js",
   "files": [
@@ -31,7 +31,7 @@
     "vue": "^3.0.5"
   },
   "dependencies": {
-    "axios": "0.21.1",
-    "@fesjs/compiler": "^2.0.0-rc.5"
+    "@fesjs/compiler": "^2.0.0-rc.5",
+    "axios": "0.21.1"
   }
 }
