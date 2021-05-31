@@ -20,11 +20,15 @@ export const createRouter = (routes) => {
   if (router) {
     return router;
   }
-  history = plugin.applyPlugins({
-    key: 'modifyHistroy',
+  const createHistory = plugin.applyPlugins({
+    key: 'modifyCreateHistroy',
     type: ApplyPluginsType.modify,
-    initialValue: {{{ CREATE_HISTORY }}}(ROUTER_BASE),
+    args: {
+      base: ROUTER_BASE
+    },
+    initialValue: {{{ CREATE_HISTORY }}},
   });
+  history = createHistory(ROUTER_BASE)
   router = createVueRouter({
     history,
     routes

@@ -296,6 +296,12 @@ export default {
 
     配置 webpack 的 publicPath。当打包的时候，webpack 会在静态文件路径前面添加 `publicPath` 的值，当你需要修改静态文件地址时，比如使用 CDN 部署，把 `publicPath` 的值设为 CDN 的值就可以。
 
+## router
+
+- 类型： `object`
+- 默认值： `{ mode: 'hash' }`
+- 详情： 配置路由，具体请查看指南中关于路由的介绍
+
 ## singular
 - 类型： `boolean`
 - 默认值： `false`
