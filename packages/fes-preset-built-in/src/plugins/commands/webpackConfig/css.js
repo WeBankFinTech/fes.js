@@ -102,9 +102,7 @@ export default function createCssWebpackConfig({
     if (!isDev) {
         webpackConfig.optimization
             .minimizer('css')
-            .use(require.resolve('css-minimizer-webpack-plugin'), [{
-                sourceMap: config.devtool !== false
-            }]);
+            .use(require.resolve('css-minimizer-webpack-plugin'), [{}]);
     }
 
     return (options) => {
