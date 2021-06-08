@@ -80,4 +80,7 @@ export default {
         strict: true,
     },
     dynamicImport: true,
+    extraBabelPlugins: [
+        ['import', { libraryName: 'ant-design-vue', libraryDirectory: 'es', style: 'css' }, 'ant-design-vue'],
+    ]
 };
