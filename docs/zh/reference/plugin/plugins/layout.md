@@ -19,7 +19,7 @@
 ```js
 export default {
     layout: {
-        navigation: 'side
+        navigation: 'side'
     }
 }
 ```
