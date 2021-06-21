@@ -21,45 +21,62 @@ function createRules({
     options,
     browserslist
 }) {
+    function applyLoaders(rule, isCSSModules) {
+        if (isDev) {
+            rule.use('extra-css-loader')
+                .loader(require.resolve('style-loader'))
+                .options({
+                });
+        } else {
+            rule.use('extra-css-loader')
+                .loader(require('mini-css-extract-plugin').loader)
+                .options({
+                });
+        }
+
+        rule.use('css-loader')
+            .loader(require.resolve('css-loader'))
+            .options(
+                deepmerge(
+                    {
+                        importLoaders: 1,
+                        // https://webpack.js.org/loaders/css-loader/#onlylocals
+                        ...(isCSSModules
+                            ? {
+                                modules: {
+                                    localIdentName: '[local]___[hash:base64:5]'
+                                }
+                            }
+                            : {})
+                    },
+                    config.cssLoader || {}
+                )
+            );
+
+        rule.use('postcss-loader')
+            .loader(require.resolve('postcss-loader'))
+            .options(deepmerge({
+                postcssOptions: () => ({
+                    plugins: [
+                        // https://github.com/luisrudge/postcss-flexbugs-fixes
+                        require('postcss-flexbugs-fixes'),
+                        require('postcss-safe-parser'),
+                        [require('autoprefixer'), { ...config.autoprefixer, overrideBrowserslist: browserslist }],
+                        ...(config.extraPostCSSPlugins ? config.extraPostCSSPlugins : [])
+                    ]
+                })
+            }, config.postcssLoader || {}));
+
+        if (loader) {
+            rule.use(loader)
+                .loader(require.resolve(loader))
+                .options(options);
+        }
+    }
+
     const rule = webpackConfig.module.rule(lang).test(test);
-
-    if (isDev) {
-        rule.use('extra-css-loader')
-            .loader(require.resolve('style-loader'))
-            .options({
-            });
-    } else {
-        rule.use('extra-css-loader')
-            .loader(require('mini-css-extract-plugin').loader)
-            .options({
-            });
-    }
-
-    rule.use('css-loader')
-        .loader(require.resolve('css-loader'))
-        .options({
-            ...config.cssLoader
-        });
-
-    rule.use('postcss-loader')
-        .loader(require.resolve('postcss-loader'))
-        .options(deepmerge({
-            postcssOptions: () => ({
-                plugins: [
-                    // https://github.com/luisrudge/postcss-flexbugs-fixes
-                    require('postcss-flexbugs-fixes'),
-                    require('postcss-safe-parser'),
-                    [require('autoprefixer'), { ...config.autoprefixer, overrideBrowserslist: browserslist }],
-                    ...(config.extraPostCSSPlugins ? config.extraPostCSSPlugins : [])
-                ]
-            })
-        }, config.postcssLoader || {}));
-
-    if (loader) {
-        rule.use(loader)
-            .loader(require.resolve(loader))
-            .options(options);
-    }
+    applyLoaders(rule.oneOf('css-modules').resourceQuery(/module/), true);
+    applyLoaders(rule.oneOf('css'), false);
 }
 
 export default function createCssWebpackConfig({
@@ -102,9 +119,7 @@ export default function createCssWebpackConfig({
     if (!isDev) {
         webpackConfig.optimization
             .minimizer('css')
-            .use(require.resolve('css-minimizer-webpack-plugin'), [{
-                sourceMap: config.devtool !== false
-            }]);
+            .use(require.resolve('css-minimizer-webpack-plugin'), [{}]);
     }
 
     return (options) => {

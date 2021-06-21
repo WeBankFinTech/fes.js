@@ -1,4 +1,4 @@
-import { createMemoryHistory } from '@@/core/coreExports';
+import { createMemoryHistory, getHistory } from '@@/core/coreExports';
 import qiankunRender, { clientRenderOptsStack, history } from './lifecycles';
 
 
@@ -14,16 +14,18 @@ export function modifyClientRenderOpts(memo) {
     };
 }
 
-export function modifyHistroy(memo) {
+export function modifyCreateHistroy(memo) {
     if (history.url) {
-        const memoHistroy =  createMemoryHistory();
-        memoHistroy.push(history.url)
-        return memoHistroy
+        return createMemoryHistory
     }
     return memo;
 }
 
 export function onRouterCreated({ router }) {
+     if(history.url) {
+        const memoryHistory = getHistory();
+        memoryHistory.push(history.url)
+    }
     if(history.onRouterInit){
         history.onRouterInit(router)
     }

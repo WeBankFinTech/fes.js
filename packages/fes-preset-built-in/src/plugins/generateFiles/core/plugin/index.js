@@ -28,7 +28,7 @@ export default function (api) {
                 // 修改路由
                 'patchRoutes',
                 // 修改histror
-                'modifyHistroy',
+                'modifyCreateHistroy',
                 // 生成router时触发
                 'onRouterCreated'
             ]
