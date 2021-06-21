@@ -172,7 +172,7 @@ export default function ({ cgiMock, mockjs, utils }) {
 - utils.file(path)，从项目根目录根据path寻找文件，返回文件流。
 
 ## 配置 Mock
-详见配置 #mock。
+详见配置 [mock](../reference/config/#mock)。
 
 ## 关闭 Mock
 可以通过配置关闭。
