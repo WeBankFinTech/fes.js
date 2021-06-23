@@ -1,6 +1,6 @@
 {
   "name": "@fesjs/plugin-enums",
-  "version": "2.0.0-rc.22",
+  "version": "2.0.0",
   "description": "@fesjs/plugin-enums",
   "main": "lib/index.js",
   "files": [
