@@ -39,7 +39,7 @@ export default function (api) {
             try {
                 // clear output path before exec build
                 if (process.env.CLEAR_OUTPUT !== 'none') {
-                    if (paths.absOutputPath && existsSync(paths.absOutputPath || '')) {
+                    if (paths.absOutputPath && existsSync(paths.absOutputPath)) {
                         logger.debug(`Clear OutputPath: ${paths.absNodeModulesPath}`);
                         rimraf.sync(paths.absOutputPath);
                     }

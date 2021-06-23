@@ -163,7 +163,7 @@ const rank = function (routes) {
             rank(item.children);
         }
     });
-    routes = routes.sort((a, b) => b.count - a.count);
+    routes.sort((a, b) => b.count - a.count);
 };
 
 const getRoutes = function ({ config, absPagesPath }) {
