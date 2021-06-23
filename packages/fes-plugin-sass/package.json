@@ -31,6 +31,6 @@
     "sass-loader": "^11.0.1"
   },
   "peerDependencies": {
-    "@fesjs/fes": "^2.0.0-rc.0"
+    "@fesjs/fes": "^2.0.0"
   }
 }

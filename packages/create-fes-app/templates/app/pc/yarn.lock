@@ -1080,7 +1080,7 @@
     set-value "3.0.2"
     tapable "^2.2.0"
 
-"@fesjs/fes@^2.0.0-rc.0":
+"@fesjs/fes@^2.0.0":
   version "2.0.0-rc.22"
   resolved "https://registry.yarnpkg.com/@fesjs/fes/-/fes-2.0.0-rc.22.tgz#dd82e6bd0abd0da90e9adf952f6e661d61faef03"
   integrity sha512-udoJSozlZUPCKjhdRyNj8bDcqXSve9fJzu7flFYux6ZQYUQpQP6c4NI0wPqWoZ1bcW/Ntx0slvuMOP8TEcYSxw==
@@ -1091,26 +1091,26 @@
     "@umijs/utils" "3.3.3"
     resolve-cwd "^3.0.0"
 
-"@fesjs/plugin-access@^2.0.0-rc.0":
+"@fesjs/plugin-access@^2.0.0":
   version "2.0.0-rc.20"
   resolved "https://registry.yarnpkg.com/@fesjs/plugin-access/-/plugin-access-2.0.0-rc.20.tgz#6342e3b167973d874b1e6d044dd6703b86392b73"
   integrity sha512-vZe68gag4zAgzpWScUA8VIFCFTFYeVnK4Duwya9USero6Zh48V6NlzocQndLODt0xReeHnc5Et7suMA6Nq9WsA==
   dependencies:
     lodash "^4.17.15"
 
-"@fesjs/plugin-enums@^2.0.0-rc.0":
+"@fesjs/plugin-enums@^2.0.0":
   version "2.0.0-rc.22"
   resolved "https://registry.yarnpkg.com/@fesjs/plugin-enums/-/plugin-enums-2.0.0-rc.22.tgz#97a5f8d309d290e28227d06e6140a6230ff9d6bd"
   integrity sha512-KFMcbUi87vo1eBJ8xkuoBflZID6ez9fPh4YUwNWqhMERYOOJuJ5h2331ORZIOSU903iFbBfDE/tn+XpcCXUHbQ==
 
-"@fesjs/plugin-layout@^2.0.0-rc.0":
+"@fesjs/plugin-layout@^2.0.0":
   version "2.0.0-rc.18"
   resolved "https://registry.yarnpkg.com/@fesjs/plugin-layout/-/plugin-layout-2.0.0-rc.18.tgz#f24b05b063584ac0541bdd1553128cd18e661297"
   integrity sha512-az7q4c+EHydabqn9Ctx2vo19ERua882fqkTgYOH15ebl+g04duDDjeWsFnCKl8AofIBuJjb98IVNqs2qvNuG8w==
   dependencies:
     "@umijs/utils" "3.3.3"
 
-"@fesjs/plugin-model@^2.0.0-rc.0":
+"@fesjs/plugin-model@^2.0.0":
   version "2.0.0-rc.8"
   resolved "https://registry.yarnpkg.com/@fesjs/plugin-model/-/plugin-model-2.0.0-rc.8.tgz#ca61e696168c5698e3630212f602c3da99ca40b4"
   integrity sha512-4OVDutEYOmx6GLpjxbKlXug7MJjOhDa/4FBP5M5s+MMJsy+y7VdCHLn74/ZZuWalVmx7kNRl2niJNS2EVx3vyQ==
