@@ -1,6 +1,6 @@
 <template>
     <a-layout
-        v-if="routeHasLayout"
+        v-if="routeLayout"
         :class="[
             collapsed ? 'main-layout-collapsed' : '',
             `main-layout-navigation-${navigation}`,
@@ -8,7 +8,7 @@
         ]"
         class="main-layout"
     >
-        <template v-if="navigation !== 'top'">
+        <template v-if="navigation !== 'top' && routeLayout.side">
             <div v-if="fixedSideBar" :style="siderFixedStuffStyle" class="layout-sider-fixed-stuff"></div>
             <a-layout-sider
                 v-model:collapsed="collapsed"
@@ -20,7 +20,7 @@
                 :theme="siderTheme"
                 collapsible
             >
-                <div v-if="navigation !== 'mixin'" class="layout-logo">
+                <div v-if="navigation !== 'mixin' && routeLayout.logo" class="layout-logo">
                     <img :src="logo" class="logo-img" />
                     <h1 class="logo-name">{{title}}</h1>
                 </div>
@@ -28,19 +28,20 @@
             </a-layout-sider>
         </template>
         <a-layout class="child-layout">
-            <a-layout-header v-if="currentFixedHeader" class="layout-header">
+            <a-layout-header v-if="currentFixedHeader && routeLayout.top" class="layout-header">
             </a-layout-header>
             <a-layout-header
+                v-if="routeLayout.top"
                 :style="headerFixedStyle"
                 :class="[currentFixedHeader ? 'layout-header-fixed' : '']"
                 class="layout-header"
             >
-                <div v-if="navigation === 'mixin'" class="layout-logo">
+                <div v-if="navigation === 'mixin' && routeLayout.logo" class="layout-logo">
                     <img :src="logo" class="logo-img" />
                     <h1 class="logo-name">{{title}}</h1>
                 </div>
                 <template v-if="navigation === 'top'">
-                    <div class="layout-logo">
+                    <div v-if="routeLayout.logo" class="layout-logo">
                         <img :src="logo" class="logo-img" />
                         <h1 class="logo-name">{{title}}</h1>
                     </div>
@@ -135,9 +136,32 @@ export default {
     setup(props) {
         const collapsed = ref(false);
         const route = useRoute();
-        const routeHasLayout = computed(() => {
-            const _routeLayout = route.meta.layout;
-            return _routeLayout === undefined ? true : _routeLayout;
+        const routeLayoutDefault = {
+            side: true,
+            top: true,
+            logo: true
+        };
+        const routeLayout = computed(() => {
+            let config;
+            // meta 中 layout 默认为 true
+            const metaLayoutConfig = route.meta.layout === undefined ? true : route.meta.layout;
+            if (typeof metaLayoutConfig === 'boolean') {
+                config = metaLayoutConfig ? routeLayoutDefault : false;
+            } else if (typeof metaLayoutConfig === 'object') {
+                config = { ...routeLayoutDefault, ...metaLayoutConfig };
+            } else {
+                console.error('[plugin-layout]: meta layout must be object or boolean！');
+            }
+            // query 中 layout 默认为 false
+            const routeQueryLayoutConfig = route.query.layout && JSON.parse(route.query.layout);
+            if (typeof routeQueryLayoutConfig === 'boolean') {
+                config = routeQueryLayoutConfig ? routeLayoutDefault : false;
+            } else if (typeof routeQueryLayoutConfig === 'object') {
+                config = { ...config, ...routeQueryLayoutConfig };
+            } else if (routeQueryLayoutConfig !== undefined) {
+                console.error('[plugin-layout]: query layout must be object or boolean！');
+            }
+            return config;
         });
         const siderTheme = computed(() => {
             if (props.navigation === 'mixin') {
@@ -175,7 +199,7 @@ export default {
             siderTheme,
             currentFixedHeader,
             route,
-            routeHasLayout,
+            routeLayout,
             collapsed,
             siderFixedStuffStyle,
             headerFixedStyle

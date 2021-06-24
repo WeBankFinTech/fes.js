@@ -45,7 +45,7 @@ function modifyRoutesWithAttachMode({
 export default function modifyRoutes({ api, namespace }) {
     api.modifyRoutes((routes) => {
         const { router, base } = api.config;
-        const masterHistoryType = (router && router?.mode) || defaultHistoryType;
+        const masterHistoryType = (router && router.mode) || defaultHistoryType;
 
         modifyRoutesWithAttachMode({
             routes,

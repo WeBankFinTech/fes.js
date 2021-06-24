@@ -6,7 +6,7 @@ const matchName = (config, name) => {
         for (let i = 0; i < config.length; i++) {
             const item = config[i];
             if (item.meta && item.meta.name === name) {
-                res = item.meta || {};
+                res = item.meta;
                 res.path = item.path;
                 break;
             }
@@ -68,10 +68,10 @@ export function getIconsFromMenu(data) {
         return [];
     }
     let icons = [];
-    (data || []).forEach((item = { path: '/' }) => {
+    data.forEach((item = { path: '/' }) => {
         if (item.icon) {
             const { icon } = item;
-            if (icon && icon.type === 'icon') {
+            if (icon.type === 'icon') {
                 icons.push(icon.name);
             }
         }
