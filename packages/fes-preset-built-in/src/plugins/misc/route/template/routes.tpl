@@ -3,13 +3,6 @@ import { plugin } from '@@/core/coreExports';
 
 export function getRoutes() {
   const routes = {{{ routes }}};
-
-  plugin.applyPlugins({
-    key: 'patchRoutes',
-    type: ApplyPluginsType.event,
-    args: { routes },
-  });
-
   return routes;
 }
 
@@ -28,7 +21,13 @@ export const createRouter = (routes) => {
     },
     initialValue: {{{ CREATE_HISTORY }}},
   });
-  history = createHistory(ROUTER_BASE)
+  history = createHistory(ROUTER_BASE);
+  // 修改routes
+  plugin.applyPlugins({
+    key: 'patchRoutes',
+    type: ApplyPluginsType.event,
+    args: { routes },
+  });
   router = createVueRouter({
     history,
     routes
