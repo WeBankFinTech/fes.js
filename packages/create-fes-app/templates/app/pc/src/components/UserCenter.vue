@@ -1,5 +1,5 @@
 <template>
-    <div>{{initialState.userName}}</div>
+    <div class="right">{{initialState.userName}}</div>
 </template>
 <script>
 import { useModel } from '@fesjs/fes';
@@ -13,3 +13,9 @@ export default {
     }
 };
 </script>
+<style scope>
+.right {
+    text-align: right;
+    padding: 0 20px;
+}
+</style>
