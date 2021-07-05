@@ -20,7 +20,7 @@ export default {
     },
     layout: {
         title: "Fes.js",
-        footer: 'Created by MumbelFe',
+        footer: 'Created by MumbleFe',
         multiTabs: false,
         menus: [{
             name: 'index'
