@@ -2,6 +2,26 @@
 
 <!-- DO NOT CHANGE THESE COMMENTS - See .github/actions/trigger-github-release/update-changelog.js -->
 <!-- insert-new-changelog-here -->
+
+## [2.0.0](https://github.com/WeBankFinTech/fes/compare/v0.2.3...v2.0.0) (2021-07-01)
+
+### 🚀 New Feature
+发布2.0.0，重构90%以上的代码，以Vue 3.0和路由为基础，同时支持配置式路由和约定式路由，并以此进行功能扩展。匹配了覆盖编译时和运行时生命周期完善的插件体系，支持各种功能扩展和业务需求。
+
+支持插件如下：
+1. @fesjs/plugin-access	提供对页面资源的权限控制能力
+2. @fesjs/plugin-enums	提供统一的枚举存取及丰富的函数来处理枚举
+3. @fesjs/plugin-icon	svg 文件自动注册为组件
+4. @fesjs/plugin-jest	基于 Jest，提供单元测试、覆盖测试能力
+5. @fesjs/plugin-layout	简单的配置即可拥有布局，包括导航以及侧边栏
+6. @fesjs/plugin-locale	基于 Vue I18n，提供国际化能力
+7. @fesjs/plugin-model	简易的数据管理方案
+8. @fesjs/plugin-request	基于 Axios 封装的 request，内置防止重复请求、请求节流、错误处理等功能
+9. @fesjs/plugin-vuex	基于 Vuex, 提供状态管理能力
+10. @fesjs/plugin-qiankun	基于 qiankun，提供微服务能力
+11. @fesjs/plugin-sass	样式支持sass
+
+
 ## [0.2.3](https://github.com/WeBankFinTech/fes/compare/v0.2.2...v0.2.3) (2020-09-25)
 
 
