@@ -39,26 +39,6 @@ export function beforeRender(lastOpts) {
 };
 ```
 
-### patchRoutes
-
-patchRoutes({routes })
-
-
-修改路由。
-
-比如在最前面添加一个 /foo 路由：
-```
-export function patchRoutes({ routes }) {
-  routes.unshift({
-    path: '/foo',
-    component: require('@/extraRoutes/foo').default,
-  });
-}
-```
-:::tip
-直接修改 `routes`, 不需要返回
-:::
-
 ### modifyClientRenderOpts
 
 modifyClientRenderOpts(lastOpts)
@@ -102,6 +82,26 @@ export function rootContainer(container) {
   }
 }
 ```
+
+### patchRoutes
+
+patchRoutes({routes })
+
+
+修改路由。
+
+比如在最前面添加一个 /foo 路由：
+```
+export function patchRoutes({ routes }) {
+  routes.unshift({
+    path: '/foo',
+    component: require('@/extraRoutes/foo').default,
+  });
+}
+```
+:::tip
+直接修改 `routes`, 不需要返回
+:::
 
 ### onAppCreated
 
