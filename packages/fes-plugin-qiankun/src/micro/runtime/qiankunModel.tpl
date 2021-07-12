@@ -1,11 +1,10 @@
-
 import { reactive } from 'vue';
 
-let initState;
-const setModelState = (val) => {
-    initState = val;
+let initState = reactive({});
+const setModelState = (props) => {
+    Object.assign(initState, props)
 };
 
-export default () => reactive(initState);
+export default () => initState;
 
 export { setModelState };
