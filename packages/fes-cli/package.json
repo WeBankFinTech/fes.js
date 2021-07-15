@@ -79,7 +79,7 @@
         "mockjs": "^1.1.0",
         "morgan": "^1.2.2",
         "node-plus-string": "^1.0.1",
-        "node-sass": "^4.14.1",
+        "sass": "^1.35.2",
         "opn": "^4.0.2",
         "postcss": "^7.0.32",
         "postcss-loader": "^4.0.1",
