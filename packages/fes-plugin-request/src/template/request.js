@@ -163,7 +163,7 @@ function handleRequestError({
     }
 
     if (!skipObj[errorKey] && errorHandler[errorKey]) {
-        errorHandler[errorKey](error);
+        return errorHandler[errorKey](error);
     }
 }
 
@@ -179,11 +179,11 @@ export const request = (url, data, options = {}) => {
     const userConfig = userConfigHandler(url, data, options);
     const context = createContext(userConfig);
 
-    return currentRequestInstance.request(context).then(() => {
+    return currentRequestInstance.request(context).then(async () => {
         if (!context.error) {
             return context.config.useResonse ? context.response : context.response.data;
         }
-        handleRequestError(context);
+        await handleRequestError(context);
         return Promise.reject(context.error);
     });
 };
