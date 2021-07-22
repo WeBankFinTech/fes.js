@@ -1,25 +1,22 @@
 {
-  "name": "@fesjs/plugin-qiankun",
-  "version": "2.0.1",
-  "description": "@fesjs/plugin-qiankun",
+  "name": "@fesjs/plugin-monaco-editor",
+  "version": "2.0.0-rc.0",
+  "description": "@fesjs/plugin-monaco-editor",
   "main": "lib/index.js",
   "files": [
     "lib"
   ],
   "scripts": {
-    "start": "npm-run-all --parallel start:*",
-    "start:master": "cd ./examples/main && fes dev",
-    "start:app1": "cd ./examples/app1 && fes dev"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/WeBankFinTech/fes.js.git",
-    "directory": "packages/fes-plugin-qiankun"
+    "directory": "packages/fes-plugin-monaco-editor"
   },
   "keywords": [
     "fes"
   ],
-  "author": "michaelxxie、harrywan",
+  "author": "harrywan",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/WeBankFinTech/fes.js/issues"
@@ -30,12 +27,11 @@
   },
   "dependencies": {
     "@umijs/utils": "3.3.3",
-    "address": "^1.1.2",
     "lodash": "^4.17.15",
-    "qiankun": "^2.4.4"
+    "monaco-editor": "^0.20.0",
+    "monaco-editor-webpack-plugin": "^1.9.1"    
   },
   "devDependencies": {
-    "npm-run-all": "^4.1.5"
   },
   "peerDependencies": {
     "@webank/fes": "^2.0.0",

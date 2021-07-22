@@ -1,10 +1,7 @@
-import { readdirSync } from "fs";
-import { join } from "path";
-
 // utils must build before core
 // runtime must build before renderer-react
 
-const headPkgs = [
+const pkgs = [
     "fes-runtime",
     "fes-compiler",
     "fes",
@@ -20,19 +17,14 @@ const headPkgs = [
     "fes-plugin-vuex",
     "create-fes-app",
     "fes-plugin-qiankun",
-    "fes-plugin-sass"
+    "fes-plugin-sass",
+    "fes-plugin-monaco-editor"
 ];
-const tailPkgs = [];
-// const otherPkgs = readdirSync(join(__dirname, 'packages')).filter(
-//   (pkg) =>
-//     pkg.charAt(0) !== '.' && !headPkgs.includes(pkg) && !tailPkgs.includes(pkg),
-// );
 
-const otherPkgs = [];
 
 export default {
     target: "node",
     cjs: { type: "babel", lazy: false },
     disableTypeCheck: true,
-    pkgs: [...headPkgs, ...otherPkgs, ...tailPkgs],
+    pkgs,
 };
