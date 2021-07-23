@@ -1,13 +1,12 @@
 {
   "name": "@fesjs/plugin-monaco-editor",
-  "version": "2.0.0-beta.0",
+  "version": "2.0.0-beta.1",
   "description": "@fesjs/plugin-monaco-editor",
   "main": "lib/index.js",
   "files": [
     "lib"
   ],
-  "scripts": {
-  },
+  "scripts": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/WeBankFinTech/fes.js.git",
@@ -29,9 +28,7 @@
     "@umijs/utils": "3.3.3",
     "lodash": "^4.17.15",
     "monaco-editor": "^0.20.0",
-    "monaco-editor-webpack-plugin": "^1.9.1"    
-  },
-  "devDependencies": {
+    "monaco-editor-webpack-plugin": "^1.9.1"
   },
   "peerDependencies": {
     "@webank/fes": "^2.0.0",
