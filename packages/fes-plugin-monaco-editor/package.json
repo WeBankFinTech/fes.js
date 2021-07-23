@@ -1,6 +1,6 @@
 {
   "name": "@fesjs/plugin-monaco-editor",
-  "version": "2.0.0-rc.0",
+  "version": "2.0.0-beta.0",
   "description": "@fesjs/plugin-monaco-editor",
   "main": "lib/index.js",
   "files": [
