@@ -31,20 +31,16 @@
   "devDependencies": {
     "@commitlint/cli": "^11.0.0",
     "@commitlint/config-conventional": "^11.0.0",
-    "@vuepress/plugin-docsearch": "^2.0.0-alpha.18",
-    "@vuepress/plugin-pwa": "^2.0.0-alpha.18",
-    "@vuepress/plugin-pwa-popup": "^2.0.0-alpha.18",
-    "@vuepress/theme-vue": "^2.0.0-alpha.18",
+    "@vuepress/plugin-docsearch": "^2.0.0-beta.22",
+    "@vuepress/plugin-pwa": "^2.0.0-beta.22",
+    "@vuepress/plugin-pwa-popup": "^2.0.0-beta.22",
     "@webank/eslint-config-webank": "0.3.0",
     "commitizen": "^4.2.1",
     "cz-conventional-changelog": "^3.3.0",
-    "esbuild-loader": "^2.7.0",
-    "postcss-loader": "^5.0.0",
-    "postcss": "^8.0.0",
     "father-build": "^1.19.1",
     "husky": "^4.3.0",
     "lint-staged": "^10.4.0",
-    "vuepress": "^2.0.0-alpha.18"
+    "vuepress": "^2.0.0-beta.22"
   },
   "lint-staged": {
     "*.{js,jsx,vue,ts}": [

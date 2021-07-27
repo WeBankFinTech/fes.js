@@ -3,7 +3,7 @@ import type { SidebarConfig } from '@vuepress/theme-default'
 export const en: SidebarConfig = {
   '/guide/': [
     {
-      isGroup: true,
+      // isGroup: true,
       text: '介绍',
       children: [
         '/guide/README.md',
@@ -11,7 +11,7 @@ export const en: SidebarConfig = {
       ],
     },
     {
-      isGroup: true,
+      // isGroup: true,
       text: '基础',
       children: [
         '/guide/directory-structure.md',
@@ -26,7 +26,7 @@ export const en: SidebarConfig = {
       ]
     },
     {
-      isGroup: true,
+      // isGroup: true,
       text: '进阶',
       children: [
       ]
@@ -42,13 +42,13 @@ export const en: SidebarConfig = {
   ],
   '/reference/plugin/': [
     {
-      isGroup: true,
+      // isGroup: true,
       text: 'Presets',
       children: [
       ],
     },
     {
-      isGroup: true,
+      // isGroup: true,
       text: 'Plugins',
       children: [
         '/reference/plugin/plugins/access.md',
@@ -66,7 +66,7 @@ export const en: SidebarConfig = {
       ],
     },
     {
-      isGroup: true,
+      // isGroup: true,
       text: '插件开发',
       children: [
         '/reference/plugin/dev/README.md',
