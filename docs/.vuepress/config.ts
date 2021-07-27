@@ -5,7 +5,7 @@ import { navbar, sidebar } from './configs'
 const config: UserConfig<DefaultThemeOptions> = {
   base: '/fesjs/',
 
-  evergreen: process.env.NODE_ENV !== 'production',
+  // evergreen: process.env.NODE_ENV !== 'production',
 
   head: [['link', { rel: 'manifest', href: '/fesjs/manifest.webmanifest' }], ['link', { rel: 'icon', href: `/fesjs/logo.png` }]],
 
