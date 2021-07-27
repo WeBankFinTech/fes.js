@@ -136,6 +136,30 @@ export default {
 </script>
 ```
 
+####  使用 `<MicroAppWithMemoHistory />` 组件的方式
+如果我们的路由使用 `history` 模式，那么在使用乾坤时还算方便，主应用和子应用的路由根据base可以很方便的匹配起来，而且不存在冲突。但是当我们使用 `hash` 模式时，就问题很大，主应用和子应用的路由必须一样才可以匹配上，用起来贼不方便。而且不能在一个页面上同时加载多个子应用，路由存在冲突！这时候，`<MicroAppWithMemoHistory />` 出现了，完美解决上面的问题。
+
+
+`<MicroAppWithMemoHistory />` 相比 `<MicroApp />` ，需要多传入 `url` 参数，用于指定加载子应用什么路由页面。
+
+ ```vue
+<template>
+    <MicroApp :name="name" url="/" />
+</template>
+<script>
+import { MicroApp } from '@fesjs/fes';
+
+export default {
+    components: { MicroApp },
+    setup(){
+        const name = "app1"
+        return {
+            name
+        }
+    }
+}
+</script>
+```
 
 ## 子应用配置
 

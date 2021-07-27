@@ -14,12 +14,23 @@
   
 - 可配置页面是否需要 layout。
 
+## 启用方式
+在 `package.json` 中引入依赖：
+```json
+{
+    "dependencies": {
+        "@fesjs/fes": "^2.0.0",
+        "@fesjs/plugin-layout": "^2.0.0"
+    },
+}
+```
+
 ## 布局类型
-配置参数是 `navigation`, 内容默认是 `side`：
+配置参数是 `navigation`, 布局有三种类型 `side`、`mixin` 和 `top`， 默认是 `side`：
 ```js
 export default {
     layout: {
-        navigation: 'side
+        navigation: 'side'
     }
 }
 ```
@@ -36,28 +47,31 @@ export default {
 <!-- ![mixin](/mixin.png) -->
 <img :src="$withBase('mixin.png')" alt="mixin">
 
-## 启用方式
-在 `package.json` 中引入依赖：
-```json
-{
-    "dependencies": {
-        "@fesjs/fes": "^2.0.0",
-        "@fesjs/plugin-layout": "^2.0.0"
-    },
-}
-```
-
 ### 页面禁用布局
-Fes.js 渲染路由时，如果路由元信息存在配置 `layout` 为 `false`，则表示禁用此配置，用户只需要如下配置：
+布局是默认开启的，但是可能某些页面不需要展示布局样式，比如登录页面。我们只需要在页面的`.vue`中添加如下配置：
 ```vue
-<config>
+<config lang="json">
 {
     "layout": false
 }
 </config>
-<script>
-</script>
 ```
+如果只是不想展示`side`，则：
+<config lang="json">
+{
+    "layout": {
+        "side": false
+    }
+}
+</config>
+```
+`layout`的可选配置有：
+
+- **side**： 左侧区域
+  
+- **top**： 头部区域
+
+- **logo**：logo和标题区域。
 
 ## 配置
 
@@ -174,13 +188,13 @@ export default {
     - 图标使用[antv icon](https://www.antdv.com/components/icon-cn/)，在这里使用组件type。
 ```js
 {
-    name: "user"
+    icon: "user"
 }
 ```
-    - 图表使用本地或者远程svg图片。
+    - 图标使用本地或者远程svg图片。
 ```js
 {
-    name: "/wine-outline.svg"
+    icon: "/wine-outline.svg"
 }
 ```
   
@@ -201,7 +215,7 @@ export const layout = {
   
 - **默认值**：`null`
 
-- **详情**：布局的 Header 部位提供组件自定义功能。
+- **详情**：top的区域部分位置提供组件自定义功能。
 
 #### unAccessHandler
 - **类型**：`Function`

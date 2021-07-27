@@ -87,6 +87,6 @@ export default {
         ['import', { libraryName: 'ant-design-vue', libraryDirectory: 'es', style: 'css' }, 'ant-design-vue'],
     ],
     monacoEditor: {
-        // languages: ['javascript', 'typescript', 'html', 'json']
+        languages: ['javascript', 'typescript', 'html', 'json']
     }
 };
