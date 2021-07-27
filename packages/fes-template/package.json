@@ -57,6 +57,7 @@
     "@fesjs/plugin-request": "^2.0.0",
     "@fesjs/plugin-qiankun": "^2.0.0",
     "@fesjs/plugin-sass": "^2.0.0",
+    "@fesjs/plugin-monaco-editor": "^2.0.0-rc.0",
     "ant-design-vue": "2.0.0",
     "vue": "^3.0.5",
     "vuex": "^4.0.0"

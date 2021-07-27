@@ -1,7 +1,7 @@
 # 快速上手
 
 ## 依赖环境
-首先得有 [Node.js](https://nodejs.org/)，并确保 node 版本是 `10.13` 或以上。
+首先得有 [Node.js](https://nodejs.org/)，并确保 node 版本是 10.13 或以上。
 ```bash
 # 打印 node 版本
 node -v
