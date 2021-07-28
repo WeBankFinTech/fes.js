@@ -15,8 +15,8 @@
     "bin": {
         "fes": "./bin/fes.js"
     },
-    "main": "index.js",
-    "module": "dist/index.esm.js",
+    "main": "lib/index.js",
+    "module": "es/index.js",
     "author": "qlin",
     "repository": {
         "type": "git",

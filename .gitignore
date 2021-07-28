@@ -15,5 +15,6 @@ npm-debug.log
 /.changelog
 
 /packages/*/lib
+/packages/*/es
 /packages/*/dist
 package-lock.json
