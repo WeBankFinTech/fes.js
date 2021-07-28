@@ -5,7 +5,8 @@
   "main": "lib/index.js",
   "module": "es/index.js",
   "files": [
-    "dist"
+    "lib",
+    "es"
   ],
   "repository": {
     "type": "git",
