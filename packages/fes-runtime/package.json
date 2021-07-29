@@ -2,9 +2,11 @@
   "name": "@fesjs/runtime",
   "version": "2.0.0",
   "description": "@fesjs/runtime",
-  "main": "dist/index.js",
+  "main": "lib/index.js",
+  "module": "es/index.js",
   "files": [
-    "dist"
+    "lib",
+    "es"
   ],
   "repository": {
     "type": "git",
@@ -29,6 +31,5 @@
   },
   "dependencies": {
     "vue-router": "^4.0.1"
-  },
-  "module": "dist/index.esm.js"
+  }
 }
