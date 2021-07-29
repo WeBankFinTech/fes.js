@@ -124,7 +124,6 @@ function createContext(userConfig) {
 
 function getResponseCode(response) {
     if (response) {
-        if (response._rawData) return response._rawData.code;
         if (response.data) return response.data.code;
     }
     return null;
@@ -181,7 +180,7 @@ export const request = (url, data, options = {}) => {
 
     return currentRequestInstance.request(context).then(async () => {
         if (!context.error) {
-            return context.config.useResonse ? context.response : context.response.data;
+            return context.config.useResonse ? context.response : context.filterData || context.response.data;
         }
         await handleRequestError(context);
         return Promise.reject(context.error);

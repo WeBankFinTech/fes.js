@@ -7,8 +7,9 @@ export const request = {
             console.log('500 error');
         },
         default(error) {
-            console.log('default error');
             console.log(error);
+            const msg = error?.data?.msg || error?.msg;
+            console.log(msg);
         }
     }
 };
