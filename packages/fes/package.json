@@ -8,7 +8,6 @@
     },
     "files": [
         "lib",
-        "es",
         "bin",
         "types.d.ts"
     ],
@@ -16,7 +15,7 @@
         "fes": "./bin/fes.js"
     },
     "main": "lib/index.js",
-    "module": "es/index.js",
+    "module": "lib/index.js",
     "author": "qlin",
     "repository": {
         "type": "git",
