@@ -26,10 +26,10 @@ export default {
         // }).then((res) => {
         //     console.log(res);
         // });
-        request('/api', null, {
-        }).then((res) => {
-            console.log(res);
-        });
+        // request('/api', null, {
+        // }).then((res) => {
+        //     console.log(res);
+        // });
         // request('/api', null, {
         //     mergeRequest: true
         // }).then((res) => {
@@ -71,21 +71,21 @@ export default {
         //     });
         // }, 3200);
 
-        // request('/api', null, {
-        //     cache: true
-        // }).then((res) => {
-        //     console.log(res);
-        // });
-        // request('/api', null, {
-        //     cache: true
-        // }).then((res) => {
-        //     console.log(res);
-        // });
-        // request('/api', null, {
-        //     cache: true
-        // }).then((res) => {
-        //     console.log(res);
-        // });
+        request('/api', null, {
+            cache: true
+        }).then((res) => {
+            console.log(res);
+        });
+        request('/api', null, {
+            cache: true
+        }).then((res) => {
+            console.log(res);
+        });
+        request('/api', null, {
+            cache: true
+        }).then((res) => {
+            console.log(res);
+        });
 
         // request('/api', null, {
         //     // skipErrorHandler: [500]
