@@ -67,7 +67,6 @@ function getRequestInstance() {
 
     // 洋葱模型内部应该这是对数据的处理，避免有副作用调用
     scheduler
-        .use(setDataField) // 最外层进行数据格式化
         .use(paramsProcess)
         .use(genRequestKey)
         .use(cacheControl)
@@ -75,7 +74,8 @@ function getRequestInstance() {
         .use(throttle)
         .use(axiosMiddleware)
         .use(resDataAdaptor)
-        .use(resErrorProcess);
+        .use(resErrorProcess)
+        .use(setDataField);
 
     return {
         context: {
@@ -181,7 +181,7 @@ export const request = (url, data, options = {}) => {
 
     return currentRequestInstance.request(context).then(async () => {
         if (!context.error) {
-            return context.config.useResonse ? context.response : context.response.data;
+            return context.config.useResonse ? context.response : context.filterData || context.response.data;
         }
         await handleRequestError(context);
         return Promise.reject(context.error);

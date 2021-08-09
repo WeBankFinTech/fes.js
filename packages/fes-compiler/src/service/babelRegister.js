@@ -1,7 +1,7 @@
 import {
     lodash,
     winPath
-} from '@umijs/utils';
+} from '@fesjs/utils';
 
 
 export default class BabelRegister {

@@ -1,4 +1,4 @@
-import { lodash, winPath } from '@umijs/utils';
+import { lodash, winPath } from '@fesjs/utils';
 import assert from 'assert';
 import path from 'path';
 

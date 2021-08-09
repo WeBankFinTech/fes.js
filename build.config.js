@@ -18,7 +18,8 @@ module.exports = {
         'fes-plugin-sass',
         'fes-plugin-vuex',
         'fes-preset-built-in',
-        'fes-runtime'
+        'fes-runtime',
+        'fes-utils'
     ],
     copy: []
 };

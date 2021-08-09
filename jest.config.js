@@ -12,6 +12,7 @@ module.exports = {
         'node_modules'
     ],
     transformIgnorePatterns: [
-        'node_modules/(?!lodash-es)'
+        'node_modules/(?!lodash-es)',
+        'fes-template'
     ]
 };

@@ -6,7 +6,7 @@
 import {
     createDebug,
     chalk
-} from '@umijs/utils';
+} from '@fesjs/utils';
 import readline from 'readline';
 
 export default class Logger {

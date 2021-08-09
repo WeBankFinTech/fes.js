@@ -1,4 +1,4 @@
-import { Generator } from '@umijs/utils';
+import { Generator } from '@fesjs/utils';
 
 export default class AppGenerator extends Generator {
     constructor({
@@ -15,7 +15,7 @@ export default class AppGenerator extends Generator {
     async writing() {
         this.copyDirectory({
             context: {
-                version: require('../../package').version
+                version: require('../../package.json').version
             },
             path: this.path,
             target: this.targetDir

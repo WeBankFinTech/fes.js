@@ -1,4 +1,4 @@
-import { chalk, yParser } from '@umijs/utils';
+import { chalk, yParser } from '@fesjs/utils';
 import { existsSync } from 'fs';
 import { join } from 'path';
 

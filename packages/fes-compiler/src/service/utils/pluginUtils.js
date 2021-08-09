@@ -7,7 +7,7 @@ import {
     winPath,
     pkgUp,
     lodash
-} from '@umijs/utils';
+} from '@fesjs/utils';
 
 import { PluginType } from '../enums';
 

@@ -1,4 +1,4 @@
-import { chokidar, lodash, winPath } from '@umijs/utils';
+import { chokidar, lodash, winPath } from '@fesjs/utils';
 import { join } from 'path';
 
 export default async ({ api, watch }) => {

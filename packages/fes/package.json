@@ -41,7 +41,7 @@
         "@fesjs/compiler": "^2.0.0",
         "@fesjs/preset-built-in": "^2.0.1",
         "@fesjs/runtime": "^2.0.1",
-        "@umijs/utils": "3.3.3",
+        "@fesjs/utils": "^2.0.0",
         "resolve-cwd": "^3.0.0"
     },
     "engines": {

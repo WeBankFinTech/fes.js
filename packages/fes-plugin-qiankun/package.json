@@ -29,9 +29,9 @@
     "access": "public"
   },
   "dependencies": {
-    "@umijs/utils": "3.3.3",
+    "@fesjs/utils": "^2.0.0",
     "address": "^1.1.2",
-    "lodash": "^4.17.15",
+    "lodash-es": "^4.17.15",
     "qiankun": "^2.4.4"
   },
   "devDependencies": {

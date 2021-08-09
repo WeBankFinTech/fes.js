@@ -1,4 +1,4 @@
-import { deepmerge, lodash } from '@umijs/utils';
+import { deepmerge, lodash } from '@fesjs/utils';
 
 
 export default ({ defaultConfig, config }) => {

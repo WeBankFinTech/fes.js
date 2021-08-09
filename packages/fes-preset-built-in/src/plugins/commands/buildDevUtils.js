@@ -5,7 +5,7 @@
 
 import { join, resolve } from 'path';
 import { existsSync, readdirSync, readFileSync } from 'fs';
-import { rimraf, chalk } from '@umijs/utils';
+import { rimraf, chalk } from '@fesjs/utils';
 import zlib from 'zlib';
 import getConfig from './webpackConfig';
 
