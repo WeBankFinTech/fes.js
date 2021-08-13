@@ -36,7 +36,7 @@ const DEFAULT_EXCLUDE_NODE_MODULES = [
     'core-js',
     'echarts',
     '@babel/runtime',
-    'lodash',
+    'lodash-es',
     'webpack-dev-server',
     'ansi-html',
     'html-entities'

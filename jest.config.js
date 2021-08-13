@@ -1,18 +1,8 @@
 
 module.exports = {
-    moduleFileExtensions: [
-        'js',
-        'jsx',
-        'json'
-    ],
-    transform: {
-        '\\.[jt]sx?$': 'babel-jest'
-    },
-    moduleDirectories: [
-        'node_modules'
-    ],
-    transformIgnorePatterns: [
-        'node_modules/(?!lodash-es)',
-        'fes-template'
+    testPathIgnorePatterns: [
+        '/node_modules/',
+        'fes-template',
+        'fes-template-h5'
     ]
 };
