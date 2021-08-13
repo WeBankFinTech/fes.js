@@ -9,7 +9,7 @@
 // 根据 entry 进行代码块拆分
 // 根据 entry 将文件输出到不同的文件夹
 
-import deepmerge from 'deepmerge';
+import { deepmerge } from '@fesjs/utils';
 
 function createRules({
     isDev,

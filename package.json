@@ -10,11 +10,13 @@
   "scripts": {
     "clean": "lerna clean",
     "bootstrap": "lerna bootstrap",
-    "build": "father-build --watch",
+    "dev": "node scripts/build.js --watch",
+    "build": "node scripts/build.js",
     "ver": "lerna version --conventional-prerelease --no-changelog --no-commit-hooks --no-private",
-    "release": "father-build && lerna publish from-git",
+    "release": "node scripts/build.js && lerna publish from-git",
     "docs:dev": "vuepress dev docs --clean-cache",
     "docs:build": "vuepress build docs --clean-cache",
+    "test": "fes test",
     "lint": "eslint -c ./.eslintrc.js --ext .js,.jsx,.vue,.ts"
   },
   "license": "MIT",
@@ -26,23 +28,31 @@
     "strong"
   ],
   "dependencies": {
-    "lerna": "^3.22.1"
+    "lerna": "^4.0.0"
   },
   "devDependencies": {
+    "@babel/core": "^7.15.0",
+    "@babel/preset-env": "^7.15.0",
     "@commitlint/cli": "^11.0.0",
     "@commitlint/config-conventional": "^11.0.0",
+    "@fesjs/fes": "^2.0.0",
+    "@fesjs/plugin-jest": "^2.0.0",
     "@vuepress/plugin-docsearch": "^2.0.0-beta.22",
     "@vuepress/plugin-pwa": "^2.0.0-beta.22",
     "@vuepress/plugin-pwa-popup": "^2.0.0-beta.22",
     "@webank/eslint-config-webank": "0.3.0",
+    "chalk": "^4.1.2",
+    "chokidar": "^3.5.2",
     "commitizen": "^4.2.1",
     "cz-conventional-changelog": "^3.3.0",
-    "father-build": "^1.19.1",
+    "deepmerge": "^4.2.2",
+    "fs-extra": "^10.0.0",
     "husky": "^4.3.0",
     "lint-staged": "^10.4.0",
-    "postcss-loader": "^5.0.0",
     "postcss": "^8.0.0",
-    "vuepress": "^2.0.0-beta.22"
+    "postcss-loader": "^5.0.0",
+    "vuepress": "^2.0.0-beta.22",
+    "yargs-parser": "^20.2.9"
   },
   "lint-staged": {
     "*.{js,jsx,vue,ts}": [

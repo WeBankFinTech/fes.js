@@ -1,4 +1,4 @@
-import { lodash } from '@umijs/utils';
+import { lodash } from '@fesjs/utils';
 
 function funcToStr(obj) {
     if (typeof obj === 'function') return obj.toString();

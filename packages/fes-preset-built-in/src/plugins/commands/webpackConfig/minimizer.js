@@ -1,4 +1,4 @@
-import deepmerge from 'deepmerge';
+import { deepmerge } from '@fesjs/utils';
 
 const defaultTerserOptions = {
     compress: {

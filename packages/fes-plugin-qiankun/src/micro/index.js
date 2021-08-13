@@ -1,6 +1,6 @@
 import assert from 'assert';
 import address from 'address';
-import { lodash } from '@umijs/utils';
+import { lodash } from '@fesjs/utils';
 import { readFileSync } from 'fs';
 import { join } from 'path';
 import { qiankunStateFromMainModelNamespace } from '../constants';

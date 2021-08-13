@@ -1,4 +1,4 @@
-import { glob } from '@umijs/utils';
+import { glob } from '@fesjs/utils';
 import { join, basename } from 'path';
 
 export function getLocales(cwd) {

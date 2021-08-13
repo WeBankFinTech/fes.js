@@ -1,4 +1,4 @@
-import { glob } from '@umijs/utils';
+import { glob } from '@fesjs/utils';
 import { getValidFiles } from '.';
 
 export function getModels(cwd, pattern) {

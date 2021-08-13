@@ -1,6 +1,6 @@
 <template>
     <div class="onepiece">
-        fes & 拉夫德鲁<br />
+        fes h5 & 拉夫德鲁<br />
         <fes-icon :spin="true" class="one-icon" type="smile" @click="clickIcon" />
     </div>
 </template>
@@ -119,7 +119,7 @@ div {
     .hover();
 }
 .onepiece {
+    text-align: center;
     .hairline("top");
-    background: url('../images/male.png');
 }
 </style>

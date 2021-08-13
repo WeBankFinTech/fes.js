@@ -1,5 +1,5 @@
 import { EOL } from 'os';
-import { winPath } from '@umijs/utils';
+import { winPath } from '@fesjs/utils';
 import {
     genImports, genModels, genExtraModels
 } from './index';

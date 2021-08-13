@@ -1,4 +1,4 @@
-import { lodash } from '@umijs/utils';
+import { lodash } from '@fesjs/utils';
 import set from 'set-value';
 
 export function updateUserConfigWithKey({

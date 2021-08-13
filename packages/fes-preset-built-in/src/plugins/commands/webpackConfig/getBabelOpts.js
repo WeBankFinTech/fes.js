@@ -1,6 +1,6 @@
 import {
     winPath
-} from '@umijs/utils';
+} from '@fesjs/utils';
 
 function getBabelOpts({
     cwd,

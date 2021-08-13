@@ -3,7 +3,7 @@
  * https://github.com/umijs/umi/blob/master/packages/umi/src/forkedDev.ts
  */
 
-import { chalk, yParser } from '@umijs/utils';
+import { chalk, yParser } from '@fesjs/utils';
 import { Service } from './serviceWithBuiltIn';
 import getCwd from './utils/getCwd';
 import getPkg from './utils/getPkg';

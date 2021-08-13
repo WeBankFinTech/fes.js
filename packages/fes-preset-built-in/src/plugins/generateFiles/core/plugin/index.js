@@ -1,6 +1,6 @@
-import { readFileSync } from 'fs';
+import { readFileSync, existsSync } from 'fs';
 import { join } from 'path';
-import { getFile, winPath } from '@umijs/utils';
+import { winPath } from '@fesjs/utils';
 import { runtimePath } from '../../../../utils/constants';
 
 export default function (api) {
@@ -33,15 +33,12 @@ export default function (api) {
                 'onRouterCreated'
             ]
         });
+        const appPath = winPath(join(paths.absSrcPath, 'app.js'));
         const plugins = await api.applyPlugins({
             key: 'addRuntimePlugin',
             type: api.ApplyPluginsType.add,
             initialValue: [
-                getFile({
-                    base: paths.absSrcPath,
-                    fileNameWithoutExt: 'app',
-                    type: 'javascript'
-                })?.path
+                existsSync(appPath) && appPath
             ].filter(Boolean)
         });
         api.writeTmpFile({

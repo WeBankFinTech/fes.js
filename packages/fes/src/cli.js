@@ -1,4 +1,4 @@
-import { chalk, yParser, semver } from '@umijs/utils';
+import { chalk, yParser, semver } from '@fesjs/utils';
 import { Service } from './serviceWithBuiltIn';
 import fork from './utils/fork';
 import getCwd from './utils/getCwd';

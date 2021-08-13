@@ -39,7 +39,7 @@ export default (api) => {
                 cleanTmpPathExceptCache,
                 getBundleAndConfigs
             } = require('../buildDevUtils');
-            const { delay } = require('@umijs/utils');
+            const { delay } = require('@fesjs/utils');
             const createRouteMiddleware = require('./createRouteMiddleware').default;
             const generateFiles = require('../../../utils/generateFiles').default;
             const { watchPkg } = require('./watchPkg');

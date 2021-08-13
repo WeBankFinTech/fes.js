@@ -18,9 +18,7 @@ module.exports = {
         'no-undefined': 'off',
         'vue/valid-template-root': 'off'
     },
-    parserOptions: {
-        babelOptions: {
-            presets: ['@babel/preset-env']
-        }
+    env: {
+        jest: true
     }
 };

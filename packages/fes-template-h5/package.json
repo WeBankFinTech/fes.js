@@ -3,7 +3,6 @@
   "version": "2.0.0",
   "description": "fes 移动端项目模版",
   "scripts": {
-    "build": "fes build",
     "prod": "FES_ENV=prod fes build",
     "dev": "fes dev"
   },
@@ -45,7 +44,6 @@
     "@ttou/postcss-px-to-viewport": "1.1.4"
   },
   "dependencies": {
-    "debounce": "1.2.1",
     "@fesjs/fes": "^2.0.0",
     "@fesjs/plugin-icon": "^2.0.0",
     "@fesjs/plugin-request": "^2.0.0",
