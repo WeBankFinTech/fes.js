@@ -1,6 +1,6 @@
 {
   "name": "@fesjs/plugin-vuex",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "@fesjs/plugin-vuex",
   "main": "lib/index.js",
   "files": [
@@ -27,7 +27,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@fesjs/utils": "^2.0.0"
+    "@fesjs/utils": "^2.0.1"
   },
   "peerDependencies": {
     "@fesjs/fes": "^2.0.0",

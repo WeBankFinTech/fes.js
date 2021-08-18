@@ -1,6 +1,6 @@
 {
   "name": "@fesjs/utils",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "@fesjs/utils",
   "main": "lib/index.js",
   "files": [
@@ -29,8 +29,8 @@
     "chalk": "^4.1.2",
     "chokidar": "^3.5.2",
     "crequire": "^1.8.1",
-    "deepmerge": "^4.2.2",
     "debug": "^4.3.2",
+    "deepmerge": "^4.2.2",
     "glob": "^7.1.7",
     "lodash": "^4.17.21",
     "mkdirp": "^1.0.4",
