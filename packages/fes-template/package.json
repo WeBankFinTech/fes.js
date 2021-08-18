@@ -49,7 +49,7 @@
     "@fesjs/fes": "^2.0.0",
     "@fesjs/plugin-access": "^2.0.0",
     "@fesjs/plugin-layout": "^2.0.0",
-    "@fesjs/plugin-locale": "^2.0.0",
+    "@fesjs/plugin-locale": "^2.0.1",
     "@fesjs/plugin-model": "^2.0.0",
     "@fesjs/plugin-enums": "^2.0.0",
     "@fesjs/plugin-jest": "^2.0.0",

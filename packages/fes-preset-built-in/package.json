@@ -70,5 +70,8 @@
     "webpack-chain": "^6.5.1",
     "webpack-dev-server": "^3.11.2",
     "webpackbar": "^5.0.0-3"
+  },
+  "peerDependencies": {
+    "@vue/compiler-sfc": "^3.0.5"
   }
 }
