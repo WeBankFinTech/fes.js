@@ -1,6 +1,6 @@
 {
   "name": "@fesjs/compiler",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "@fesjs/compiler",
   "main": "lib/index.js",
   "files": [
@@ -26,7 +26,7 @@
   "dependencies": {
     "@babel/preset-env": "^7.15.0",
     "@babel/register": "^7.15.3",
-    "@fesjs/utils": "^2.0.1",
+    "@fesjs/utils": "^2.0.2",
     "commander": "^7.0.0",
     "dotenv": "8.2.0",
     "joi": "17.3.0",
