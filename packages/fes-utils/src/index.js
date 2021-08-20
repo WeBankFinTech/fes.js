@@ -15,6 +15,7 @@ import portfinder from 'portfinder';
 import resolve from 'resolve';
 import Mustache from 'mustache';
 
+import Generator from './Generator';
 import winPath from './winPath';
 import delay from './delay';
 import compatESModuleRequire from './compatESModuleRequire';
@@ -42,6 +43,7 @@ export {
 };
 
 export {
+    Generator,
     winPath,
     delay,
     compatESModuleRequire,

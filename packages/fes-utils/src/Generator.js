@@ -2,10 +2,11 @@ import {
     copyFileSync, readFileSync, statSync, writeFileSync
 } from 'fs';
 import { dirname, relative, join } from 'path';
-import {
-    chalk, mkdirp, Mustache, glob
-} from './index';
 
+import chalk from 'chalk';
+import mkdirp from 'mkdirp';
+import glob from 'glob';
+import Mustache from 'mustache';
 
 class Generator {
   cwd;
