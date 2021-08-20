@@ -5,6 +5,7 @@ import PageLoading from '@/components/PageLoading';
 import UserCenter from '@/components/UserCenter';
 
 console.log(store.getters[GETTER_TYPES.user.address]);
+console.log(process.env.FES_APP_PUBLISH_ERROR_PAGE);
 
 export const beforeRender = {
     loading: <PageLoading />,
@@ -12,7 +13,7 @@ export const beforeRender = {
         const { setRole } = accessApi;
         return new Promise((resolve) => {
             setTimeout(() => {
-                setRole('admin');
+                setRole('menuTest');
                 resolve({
                     userName: 'harrywan'
                 });
