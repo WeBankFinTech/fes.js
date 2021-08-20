@@ -14,6 +14,7 @@ export default {
     access: {
         roles: {
             admin: ["*"],
+            menuTest: ['/', '/onepiece', '/store'],
         },
     },
     request: {
@@ -45,7 +46,6 @@ export default {
                 path: "https://www.baidu.com",
             },
             {
-                // name: "abcd",
                 title: "abcd",
                 children: [
                     {
