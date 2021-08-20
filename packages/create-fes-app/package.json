@@ -1,6 +1,6 @@
 {
   "name": "@fesjs/create-fes-app",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "description": "create a app base on fes.js",
   "main": "lib/index.js",
   "files": [
@@ -30,7 +30,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@fesjs/utils": "^2.0.1",
+    "@fesjs/utils": "^2.0.2",
     "fs-extra": "^10.0.0",
     "inquirer": "^7.3.3",
     "readline": "^1.3.0",
