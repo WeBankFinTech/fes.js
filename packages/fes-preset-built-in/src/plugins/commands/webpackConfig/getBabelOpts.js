@@ -21,6 +21,16 @@ function getBabelOpts({
                 modules: false
             }
         ],
+        [
+            // FEATURE 实现类型安全检查
+            require('@babel/preset-typescript').default,
+            {
+                // https://babeljs.io/docs/en/babel-plugin-transform-typescript#impartial-namespace-support
+                allowNamespaces: true,
+                isTSX: true,
+                allExtensions: true
+            }
+        ],
         ...(config.extraBabelPresets || [])
     ];
     const plugins = [

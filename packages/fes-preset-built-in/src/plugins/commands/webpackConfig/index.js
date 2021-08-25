@@ -99,7 +99,7 @@ export default async function getConfig({
         .chunkFilename('[name].[contenthash:8].chunk.js');
 
     // --------------- resolve -----------
-    webpackConfig.resolve.extensions.merge(['.mjs', '.js', '.jsx', '.vue', '.json', '.wasm']);
+    webpackConfig.resolve.extensions.merge(['.mjs', '.js', '.jsx', '.vue', '.ts', '.tsx', '.json', '.wasm']);
 
     if (config.alias) {
         Object.keys(config.alias).forEach((key) => {
@@ -173,7 +173,7 @@ export default async function getConfig({
 
     webpackConfig.module
         .rule('js')
-        .test(/\.(js|mjs|jsx)$/)
+        .test(/\.(js|mjs|jsx|ts|tsx)$/)
         .exclude.add((filepath) => {
             // always transpile js in vue files
             if (/\.vue\.jsx?$/.test(filepath)) {
