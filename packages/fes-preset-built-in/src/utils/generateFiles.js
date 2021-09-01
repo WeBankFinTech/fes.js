@@ -20,6 +20,7 @@ export default async ({ api, watch }) => {
         watchers.forEach((watcher) => {
             watcher.close();
         });
+        watchers = [];
     }
 
     function createWatcher(path) {
