@@ -12,7 +12,7 @@ export default async ({ api, watch }) => {
         });
     }
 
-    const watchers = [];
+    let watchers = [];
 
     await generate();
 
