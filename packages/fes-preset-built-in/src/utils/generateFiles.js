@@ -34,6 +34,7 @@ export default async ({ api, watch }) => {
                 await generate();
             }, 100)
         );
+        watchers.push(watcher);
     }
 
     if (watch) {
