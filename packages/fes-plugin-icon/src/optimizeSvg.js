@@ -8,14 +8,14 @@ const presetDefault = [
         params: {
             overrides: {
                 sortAttrs: true,
-                removeDimensions: true,
-                // customize options
-                removeAttrs: {
-                    params: {
-                        attrs: '(stroke|fill|class)'
-                    }
-                }
+                removeDimensions: true
             }
+        }
+    },
+    {
+        name: 'removeAttrs',
+        params: {
+            attrs: '(fill|stroke|class)'
         }
     }
 ];
