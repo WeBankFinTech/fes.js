@@ -40,14 +40,15 @@
     "access": "public"
   },
   "devDependencies": {
-    "@webank/eslint-config-webank": "0.3.1",
+    "@vue/compiler-sfc": "^3.2.6",
+    "@webank/eslint-config-webank": "0.4.2",
     "@ttou/postcss-px-to-viewport": "1.1.1"
   },
   "dependencies": {
     "@fesjs/fes": "^2.0.0",
     "@fesjs/plugin-icon": "^2.0.0",
     "@fesjs/plugin-request": "^2.0.0",
-    "vue": "^3.0.5"
+    "vue": "^3.2.6"
   },
   "private": true
 }
