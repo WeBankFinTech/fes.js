@@ -17,7 +17,7 @@ export default (api) => {
         const vuePkg = require('vue/package.json');
         const vueCompilerPkg = require('@vue/compiler-sfc/package.json');
         if (
-            !semver.satisfies(vuePkg.version, vueCompilerPkg.version, { includePrerelease: true })
+            !semver.satisfies(vuePkg.version, `~${vueCompilerPkg.version.replace(/\d+$/, '0')}`, { includePrerelease: true })
         ) {
             console.log(
                 chalk.red(
