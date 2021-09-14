@@ -8,6 +8,9 @@
         <template v-for="(item, index) in fixedMenus" :key="index">
             <template v-if="item.access">
                 <a-sub-menu v-if="item.children" :key="index" :title="item.title">
+                    <template v-if="item.icon" #icon>
+                        <MenuIcon :icon="item.icon" />
+                    </template>
                     <template
                         v-for="(item1, index1) in item.children"
                     >
