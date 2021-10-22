@@ -17,9 +17,6 @@ module.exports = function createDevServer(port, defaultConfig) {
 
     const app = express();
 
-    // 初始化Mock数据
-    createMock(app);
-
     const compiler = webpack(defaultConfig);
 
     // devServer 自带支持，添加自定义插件。
@@ -43,6 +40,8 @@ module.exports = function createDevServer(port, defaultConfig) {
     }));
     app.use('/static', express.static('src/static'));
 
+    // 初始化Mock数据
+    createMock(app);
 
     opn(`http://localhost:${port}`);
 
