@@ -1,13 +1,18 @@
 export const request = {
     errorHandler: {
-        111(responseData) {
-            console.log(responseData);
+        111() {
+            console.log('root:111');
         },
-        404() {
-            console.log('to 404 page');
+        500() {
+            console.log('500 error');
         },
         default(error) {
-            console.log(error.response.data);
+            console.log('default error');
+            console.log(error);
         }
     }
 };
+
+export function patchRoutes() {
+    console.log('patchRoutes');
+}

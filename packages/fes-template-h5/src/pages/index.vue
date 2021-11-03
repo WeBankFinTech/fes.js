@@ -2,38 +2,96 @@
     <div class="onepiece">
         fes & 拉夫德鲁<br />
         <fes-icon :spin="true" class="one-icon" type="smile" @click="clickIcon" />
-        <div v-if="loading" class="loading">loading</div>
-        <div v-else class="data">{{data}}</div>
     </div>
 </template>
 <config>
 {
     "title": "首页",
+    "name": "testIndex",
     "layout": "false"
 }
 </config>
 <script>
-import { ref, onMounted } from 'vue';
-import { useRouter, useRequest } from '@fesjs/fes';
+import { ref } from 'vue';
+import { request } from '@fesjs/fes';
 
 export default {
     setup() {
         const fes = ref('fes upgrade to vue3');
         const rotate = ref(90);
-        const router = useRouter();
-        onMounted(() => {
-            console.log(router);
-            console.log('mounted1!!');
-        });
         const clickIcon = () => {
             console.log('click Icon');
         };
-        const { loading, data } = useRequest('/api', null, {
-            dataField: false
+        // request('/api', null, {
+        //     mergeRequest: true
+        // }).then((res) => {
+        //     console.log(res);
+        // });
+        // request('/api', null, {
+        //     mergeRequest: true
+        // }).then((res) => {
+        //     console.log(res);
+        // });
+        // request('/api', null, {
+        //     mergeRequest: true
+        // }).then((res) => {
+        //     console.log(res);
+        // });
+        // request('/api', null, {
+        //     throttle: 3000,
+        //     cache: true
+        // }).then((res) => {
+        //     console.log(res);
+        // });
+
+        // setTimeout(() => {
+        //     request('/api', null, {
+        //         throttle: 3000,
+        //         cache: true
+        //     }).then((res) => {
+        //         console.log(res);
+        //     });
+        // }, 1000);
+
+        // setTimeout(() => {
+        //     request('/api', null, {
+        //         throttle: 3000,
+        //         cache: true
+        //     }).then((res) => {
+        //         console.log(res);
+        //     });
+        //     request('/api', null, {
+        //         throttle: 3000,
+        //         cache: true
+        //     }).then((res) => {
+        //         console.log(res);
+        //     });
+        // }, 3200);
+
+        request('/api', null, {
+            cache: true
+        }).then((res) => {
+            console.log(res);
         });
+        request('/api', null, {
+            cache: true
+        }).then((res) => {
+            console.log(res);
+        });
+        request('/api', null, {
+            cache: true
+        }).then((res) => {
+            console.log(res);
+        });
+
+        // request('/api', null, {
+        //     // skipErrorHandler: [500]
+        // }).then((res) => {
+        //     console.log(res);
+        // }).catch((err) => {
+        //     console.log('inner error', err);
+        // });
         return {
-            loading,
-            data,
             fes,
             rotate,
             clickIcon

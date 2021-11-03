@@ -46,7 +46,7 @@ const CACHE_TYPE = {
 
 const CACHE_DATA_MAP = new Map();
 
-function genInnerKey(key, cacheType) {
+function genInnerKey(key, cacheType = 'ram') {
     if (cacheType !== CACHE_TYPE.ram) {
         return `${CACHE_KEY_PREFIX}${key}`;
     }
@@ -121,6 +121,57 @@ function getCacheData({ key, cacheType = 'ram' }) {
     }
 }
 
+// 存储缓存队列
+const cacheStartFlag = new Map();
+const cachingQueue = new Map();
+
+/**
+ * 等上一次请求结果
+ * 1. 如果上一次请求成功，直接使用上一次的请求结果
+ * 2. 如果上一次请求失败，重启本次请求
+ */
+function handleCachingStart(ctx, config) {
+    const _key = genInnerKey(ctx.key, config.cache.cacheType);
+    const caching = cacheStartFlag.get(_key);
+    if (caching) {
+        return new Promise((resolve) => {
+            const queue = cachingQueue.get(_key) || [];
+            cachingQueue.set(_key, queue.concat(resolve));
+        });
+    }
+    cacheStartFlag.set(_key, true);
+}
+
+// 有请求成功的
+function handleCachingQueueSuccess(ctx, config) {
+    // 移除首次缓存 flag
+    const _key = genInnerKey(ctx.key, config.cache.cacheType);
+    const queue = cachingQueue.get(_key);
+    if (queue && queue.length > 0) {
+        queue.forEach((resolve) => {
+            resolve({
+                response: ctx.response
+            });
+        });
+    }
+    cachingQueue.delete(_key);
+    cacheStartFlag.delete(_key);
+}
+
+// 处理请求失败
+function handleCachingQueueError(ctx, config) {
+    const _key = genInnerKey(ctx.key, config.cache.cacheType);
+    const queue = cachingQueue.get(_key);
+    if (queue && queue.length > 0) {
+        const firstResolve = queue.shift();
+        firstResolve();
+        cachingQueue.set(_key, queue);
+    } else {
+        cachingQueue.delete(_key);
+        cacheStartFlag.delete(_key);
+    }
+}
+
 export default async (ctx, next) => {
     const { config } = ctx;
     if (config.cache) {
@@ -131,17 +182,28 @@ export default async (ctx, next) => {
             };
             return;
         }
+        const result = await handleCachingStart(ctx, config);
+        if (result) {
+            Object.keys(result).forEach((key) => {
+                ctx[key] = result[key];
+            });
+            return;
+        }
     }
     await next();
 
     if (config.cache) {
         const requestdata = checkHttpRequestHasBody(config.method) ? config.data : config.params;
-        if (ctx.response && canCache(requestdata) && canCache(ctx.response.data)) {
+        if (!ctx.error && ctx.response && canCache(requestdata) && canCache(ctx.response.data)) {
+            handleCachingQueueSuccess(ctx, config);
+
             setCacheData({
                 key: ctx.key,
                 data: ctx.response.data,
                 ...config.cache
             });
+        } else {
+            handleCachingQueueError(ctx, config);
         }
     }
 };

@@ -3,31 +3,34 @@ import { plugin } from '@@/core/coreExports';
 
 export function getRoutes() {
   const routes = {{{ routes }}};
-
-  plugin.applyPlugins({
-    key: 'patchRoutes',
-    type: ApplyPluginsType.event,
-    args: { routes },
-  });
-
   return routes;
 }
 
 const ROUTER_BASE = '{{{ routerBase }}}';
 let router = null;
 let history = null;
-export const createRouter = () => {
+export const createRouter = (routes) => {
   if (router) {
     return router;
   }
-  history = plugin.applyPlugins({
-    key: 'modifyHistroy',
+  const createHistory = plugin.applyPlugins({
+    key: 'modifyCreateHistroy',
     type: ApplyPluginsType.modify,
-    initialValue: {{{ CREATE_HISTORY }}}(ROUTER_BASE),
+    args: {
+      base: ROUTER_BASE
+    },
+    initialValue: {{{ CREATE_HISTORY }}},
+  });
+  history = createHistory(ROUTER_BASE);
+  // 修改routes
+  plugin.applyPlugins({
+    key: 'patchRoutes',
+    type: ApplyPluginsType.event,
+    args: { routes },
   });
   router = createVueRouter({
     history,
-    routes: getRoutes()
+    routes
   });
 
   plugin.applyPlugins({

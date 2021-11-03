@@ -1,5 +1,5 @@
 // fes.config.js 只负责管理 cli 相关的配置
-import pxtoviewport from 'postcss-px-to-viewport';
+import pxtoviewport from '@ttou/postcss-px-to-viewport';
 
 
 export default {
@@ -10,7 +10,7 @@ export default {
     publicPath: '/',
     request: {
         base: '/ras-mas',
-        dataField: ''
+        dataField: 'result'
     },
     html: {
         title: '拉夫德鲁'

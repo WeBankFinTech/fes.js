@@ -1,5 +1,7 @@
 <template>
-    <div class="haizekuo">
+    <div :class="$style.red">
+        <a-input placeholder="请输入。。。" />
+        <a-button type="primary">Primary</a-button>
         <div>国际化 {{t("test")}}</div>
         fes & 拉夫德鲁 <br />
         <access :id="accessId"> accessOnepicess1 <input /> </access>
@@ -22,8 +24,16 @@ import { ref, onMounted } from 'vue';
 import {
     useAccess, useRouter, useI18n, locale, enums, request
 } from '@fesjs/fes';
+import { Button, Input } from 'ant-design-vue';
 
 export default {
+    components: {
+        [Button.name]: Button,
+        [Input.name]: Input,
+    },
+    mounted(){
+        console.log("$style:", this.$style)
+    },
     setup() {
         const fes = ref('fes upgrade to vue3');
         const accessOnepicess = useAccess('/onepiece1');
@@ -62,8 +72,11 @@ export default {
                 }
             ]
         });
-        console.log(roles);
-        console.log(enums.get('status', {
+        console.log('enums roles=>', roles);
+        console.log('enums roles[1]=>', enums.get('roles', '1'));
+        console.log('enums status[0]=> ', enums.get('status', 0));
+        console.log('enums status concat', enums.concat('status', [['3', '普通的']], { extend: [{ key: 'name', dir: 'value' }] }));
+        console.log('enums status get extend=>', enums.get('status', {
             extend: [
                 {
                     key: 'name',
@@ -120,8 +133,11 @@ export default {
 };
 </script>
 
-<style scoped>
-.haizekuo {
-    /* background: url('../images/icon.png'); */
+<style module>
+.red {
+  color: red;
+}
+.bold {
+  font-weight: bold;
 }
 </style>

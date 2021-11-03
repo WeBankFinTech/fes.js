@@ -43,10 +43,10 @@
     "access": "public"
   },
   "devDependencies": {
-    "@webank/eslint-config-webank": "0.2.10"
+    "@webank/eslint-config-webank": "0.3.0"
   },
   "dependencies": {
-    "@fesjs/fes": "^2.0.0-rc.0",
+    "@fesjs/fes": "^2.0.0",
     "vue": "^3.0.5",
     "ant-design-vue": "2.0.0"
   },

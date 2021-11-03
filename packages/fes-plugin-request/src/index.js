@@ -1,5 +1,8 @@
+import { Logger } from '@fesjs/compiler';
 import { readFileSync } from 'fs';
 import { join } from 'path';
+
+const logger = new Logger('fes:plugin-request');
 
 export default (api) => {
     api.addRuntimePluginKey(() => 'request');
@@ -31,6 +34,11 @@ export default (api) => {
     api.onGenerateFiles(() => {
         // 文件写出
         const { dataField = '', base = '' } = api.config.request;
+
+        if (base) {
+            // DEPRECATED
+            logger.warn('[DEPRECATED]: reqeust base 即将废弃，建议使用 axios baseURL代替：https://github.com/axios/axios');
+        }
         api.writeTmpFile({
             path: absoluteFilePath,
             content: requestTemplate

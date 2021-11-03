@@ -14,27 +14,6 @@
   
 - 可配置页面是否需要 layout。
 
-## 布局类型
-配置参数是 `navigation`, 内容默认是 `side`：
-```js
-export default {
-    layout: {
-        navigation: 'side
-    }
-}
-```
-
-### side
-<!-- ![side](/side.png) -->
-<img :src="$withBase('side.png')" alt="side">
-
-### top
-<!-- ![top](/top.png) -->
-<img :src="$withBase('top.png')" alt="top">
-### mixin
-<!-- ![mixin](/mixin.png) -->
-<img :src="$withBase('mixin.png')" alt="mixin">
-
 ## 启用方式
 在 `package.json` 中引入依赖：
 ```json
@@ -46,17 +25,53 @@ export default {
 }
 ```
 
+## 布局类型
+配置参数是 `navigation`, 布局有三种类型 `side`、`mixin` 和 `top`， 默认是 `side`：
+```js
+export default {
+    layout: {
+        navigation: 'side'
+    }
+}
+```
+
+### side
+<!-- ![side](/side.png) -->
+<img :src="$withBase('side.png')" alt="side">
+
+### top
+<!-- ![top](/top.png) -->
+<img :src="$withBase('top.png')" alt="top">
+
+### mixin
+<!-- ![mixin](/mixin.png) -->
+<img :src="$withBase('mixin.png')" alt="mixin">
+
 ### 页面禁用布局
-Fes.js 渲染路由时，如果路由元信息存在配置 `layout` 为 `false`，则表示禁用此配置，用户只需要如下配置：
+布局是默认开启的，但是可能某些页面不需要展示布局样式，比如登录页面。我们只需要在页面的`.vue`中添加如下配置：
 ```vue
-<config>
+<config lang="json">
 {
     "layout": false
 }
 </config>
-<script>
-</script>
 ```
+如果只是不想展示`side`，则：
+<config lang="json">
+{
+    "layout": {
+        "side": false
+    }
+}
+</config>
+```
+`layout`的可选配置有：
+
+- **side**： 左侧区域
+  
+- **top**： 头部区域
+
+- **logo**：logo和标题区域。
 
 ## 配置
 
@@ -69,6 +84,8 @@ export default {
         title: "Fes.js",
         // 底部文字
         footer: 'Created by MumbelFe',
+        // 主题light
+        theme: 'dark'
         // 是否开启 tabs
         multiTabs: false,
         // 布局类型
@@ -97,6 +114,13 @@ export default {
 - **默认值**：`null`
 
 - **详情**：页面底部的文字。
+
+### theme
+- **类型**：`String`
+  
+- **默认值**：`dark`
+
+- **详情**：主题，可选有 `dark`、`light`
 
 ### navigation
 - **类型**：`String`
@@ -164,13 +188,13 @@ export default {
     - 图标使用[antv icon](https://www.antdv.com/components/icon-cn/)，在这里使用组件type。
 ```js
 {
-    name: "user"
+    icon: "user"
 }
 ```
-    - 图表使用本地或者远程svg图片。
+    - 图标使用本地或者远程svg图片。
 ```js
 {
-    name: "/wine-outline.svg"
+    icon: "/wine-outline.svg"
 }
 ```
   
@@ -191,7 +215,7 @@ export const layout = {
   
 - **默认值**：`null`
 
-- **详情**：布局的 Header 部位提供组件自定义功能。
+- **详情**：top的区域部分位置提供组件自定义功能。
 
 #### unAccessHandler
 - **类型**：`Function`

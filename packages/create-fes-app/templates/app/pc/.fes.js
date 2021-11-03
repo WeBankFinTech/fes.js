@@ -2,9 +2,6 @@
 
 
 export default {
-    define: {
-        __DEV__: false
-    },
     publicPath: './',
     access: {
         roles: {
@@ -17,12 +14,7 @@ export default {
         multiTabs: false,
         menus: [{
             name: 'index'
-        }, {
-            name: 'onepiece'
         }]
-    },
-    locale: {
-        legacy: true
     },
     devServer: {
         port: 8000

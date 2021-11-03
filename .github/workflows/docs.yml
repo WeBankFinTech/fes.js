@@ -2,9 +2,9 @@ name: Deploy Docs
 on:
   push:
     branches:
-      - master
+      - vue3
     paths:
-      - 'packages/fes-doc/**/**'
+      - 'docs/**/**'
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
@@ -14,7 +14,7 @@ jobs:
     - name: Build and Deploy
       uses: JamesIves/github-pages-deploy-action@master
       env:
-        ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-        BRANCH: gh-pages
-        FOLDER: packages/fes-doc/docs/.vuepress/dist
-        BUILD_SCRIPT: cd packages/fes-doc && npm install && npm run build && cd ../../
+        ACCESS_TOKEN: ${{ secrets.QLIN_GITEE_TOKEN }}
+        BRANCH: master
+        FOLDER: docs/.vuepress/dist
+        BUILD_SCRIPT: npm install && npm run docs:build

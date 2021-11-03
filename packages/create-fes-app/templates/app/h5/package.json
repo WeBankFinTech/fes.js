@@ -1,6 +1,6 @@
 {
   "name": "@fesjs/template-h5",
-  "version": "2.0.0-rc.0",
+  "version": "2.0.0",
   "description": "fes 移动端项目模版",
   "scripts": {
     "build": "fes build",
@@ -40,13 +40,13 @@
     "access": "public"
   },
   "devDependencies": {
-    "@webank/eslint-config-webank": "0.2.10",
-    "postcss-px-to-viewport": "1.1.1"
+    "@webank/eslint-config-webank": "0.3.0",
+    "@ttou/postcss-px-to-viewport": "1.1.1"
   },
   "dependencies": {
-    "@fesjs/fes": "^2.0.0-rc.0",
-    "@fesjs/plugin-icon": "^2.0.0-rc.0",
-    "@fesjs/plugin-request": "^2.0.0-rc.0",
+    "@fesjs/fes": "^2.0.0",
+    "@fesjs/plugin-icon": "^2.0.0",
+    "@fesjs/plugin-request": "^2.0.0",
     "vue": "^3.0.5"
   },
   "private": true

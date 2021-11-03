@@ -35,6 +35,7 @@ export default {
         footer: "Created by MumbleFe",
         multiTabs: false,
         navigation: "mixin",
+        theme: 'light',
         menus: [
             {
                 name: "index",
@@ -81,4 +82,7 @@ export default {
         strict: true,
     },
     dynamicImport: true,
+    extraBabelPlugins: [
+        ['import', { libraryName: 'ant-design-vue', libraryDirectory: 'es', style: 'css' }, 'ant-design-vue'],
+    ]
 };

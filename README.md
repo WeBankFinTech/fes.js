@@ -104,3 +104,16 @@ For bugs and feature requests, [please create an issue](https://github.com/WeBan
 3. Commit your changes: `git commit -am 'Add some feature'`
 4. Push to the branch: `git push origin my-new-feature`
 5. Submit a pull request :D
+
+
+## 社区活动
+
+### Fesjs 社区有奖征文活动
+
+为了 Fes.js 开源项目更好的运转，同时回馈开源社区，社区推出有奖征文活动！欢迎大家投递实践经验，给社区用户，更广泛的开发者提供借鉴。
+
+经验输出也可以帮助到你系统沉淀自有项目，梳理工作思路，也能够帮助你的技术博客做宣传。优秀的实践案例将有机会邀请参与项目社区技术会议分享，赶快来参与吧。
+请戳：https://mp.weixin.qq.com/s/nV4NG_OUUrdgtft8g_IW4g
+
+ 
+

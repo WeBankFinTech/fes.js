@@ -65,11 +65,12 @@ function getRequestInstance() {
     addRequestInterceptors(instance, requestInterceptors);
     addResponseInterceptors(instance, responseInterceptors);
 
+    // 洋葱模型内部应该这是对数据的处理，避免有副作用调用
     scheduler.use(paramsProcess)
         .use(genRequestKey)
+        .use(cacheControl)
         .use(preventRepeatReq)
         .use(throttle)
-        .use(cacheControl)
         .use(axiosMiddleware)
         .use(resDataAdaptor)
         .use(resErrorProcess)
@@ -87,7 +88,7 @@ function getRequestInstance() {
     };
 }
 
-// FEATURE 后续优化，使用 axios baseURL
+// DEPRECATED 废弃，使用 axios baseURL
 function handleApiPathBase(url, options = {}) {
     if (url.startsWith('http')) return url;
 
@@ -120,6 +121,52 @@ function createContext(userConfig) {
     };
 }
 
+
+function getResponseCode(response) {
+    if (response) {
+        if (response._rawData) return response._rawData.code;
+        if (response.data) return response.data.code;
+    }
+    return null;
+}
+
+function skipErrorHandlerToObj(skipErrorHandler = []) {
+    if (!Array.isArray(skipErrorHandler)) {
+        skipErrorHandler = [skipErrorHandler];
+    }
+
+    return skipErrorHandler.reduce((acc, cur) => {
+        acc[cur] = true;
+        return acc;
+    }, {});
+}
+
+function handleRequestError({
+    errorHandler = {},
+    error,
+    response,
+    config
+}) {
+    // 跳过所有错误类型处理
+    if (config.skipErrorHandler === true) return;
+
+    const skipObj = skipErrorHandlerToObj(config.skipErrorHandler);
+    const resCode = getResponseCode(response);
+
+    let errorKey = 'default';
+    if (resCode && errorHandler[resCode]) {
+        errorKey = resCode;
+    } else if (error.type && errorHandler[error.type]) {
+        errorKey = error.type;
+    } else if (error.response && errorHandler[error.response.status]) {
+        errorKey = error.response.status;
+    }
+
+    if (!skipObj[errorKey] && errorHandler[errorKey]) {
+        return errorHandler[errorKey](error);
+    }
+}
+
 export const request = (url, data, options = {}) => {
     if (typeof options === 'string') {
         options = {
@@ -132,10 +179,11 @@ export const request = (url, data, options = {}) => {
     const userConfig = userConfigHandler(url, data, options);
     const context = createContext(userConfig);
 
-    return currentRequestInstance.request(context).then(() => {
+    return currentRequestInstance.request(context).then(async () => {
         if (!context.error) {
             return context.config.useResonse ? context.response : context.response.data;
         }
+        await handleRequestError(context);
         return Promise.reject(context.error);
     });
 };
