@@ -73,7 +73,7 @@ export async function getBundleAndConfigs({
     const bundleConfig = await api.applyPlugins({
         type: api.ApplyPluginsType.modify,
         key: 'modifyBundleConfig',
-        initialValue: await getConfig(getConfigOpts),
+        initialValue: await getConfig({ api, ...getConfigOpts }),
         args: {
         }
     });
