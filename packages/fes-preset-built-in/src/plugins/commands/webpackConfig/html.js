@@ -63,9 +63,9 @@ export default async function createHtmlWebpackConfig({
                     const _fileName = `${route.path.slice(1) || 'index'}.html`;
                     if (_fileName !== 'index.html') {
                         const _htmlOptions = {
-                            title: 'fes.js',
-                            filename: _fileName,
                             ...config.html,
+                            title: route?.meta?.title || config.html.title || 'fes.js',
+                            filename: _fileName,
                             templateParameters: resolveDefine(config, true),
                             mountElementId: config.mountElementId
                         };
