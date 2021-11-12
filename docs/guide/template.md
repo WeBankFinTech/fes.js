@@ -1,4 +1,4 @@
-# HTML模板
+# HTML和静态资源
 
 Fes.js 基于 [html-webpack-plugin](https://github.com/jantimon/html-webpack-plugin) 实现的模板功能，默认 HTML模板 是：
 ```html
@@ -51,3 +51,33 @@ export default {
 - `NODE_ENV`
 - `FES_ENV`
 - `.env` 文件中以 `FES_APP_` 开头的变量
+
+## 处理静态资源
+
+放置在 public 目录下或通过绝对路径被引用。这类资源将会直接被拷贝，而不会经过 webpack 的处理。
+
+### `public` 文件夹
+
+任何放置在 public 文件夹的静态资源都会被简单的复制，而不经过 webpack。你需要通过绝对路径来引用它们。
+
+* 在 public/index.html 或其它通过 html-webpack-plugin 用作模板的 HTML 文件中，你需要通过 <%= BASE_URL %> 设置链接前缀：
+
+```html
+<link rel="icon" href="<%= BASE_URL %>favicon.ico">
+```
+
+* 在模板中，你首先需要向你的组件传入基础 URL：
+
+```html
+setup() {
+  return {
+    publicPath: process.env.BASE_URL
+  }
+}
+```
+
+然后：
+
+```html
+<img :src="`${publicPath}my-image.png`">
+```

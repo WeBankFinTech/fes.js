@@ -13,9 +13,8 @@ import {
     cleanRequireCache,
     lodash,
     parseRequireDeps,
-    winPath,
-    getFile
-} from '@umijs/utils';
+    winPath
+} from '@fesjs/utils';
 import assert from 'assert';
 import joi from 'joi';
 import { ServiceStage } from '../service/enums';
@@ -181,20 +180,11 @@ export default class Config {
         // 潜在问题：
         // .local 和 .env 的配置必须有 configFile 才有效
         if (process.env.FES_ENV) {
-            const envConfigFileName = this.addAffix(
+            envConfigFile = this.addAffix(
                 configFile,
                 process.env.FES_ENV
             );
-            const fileNameWithoutExt = envConfigFileName.replace(
-                extname(envConfigFileName),
-                ''
-            );
-            envConfigFile = getFile({
-                base: this.cwd,
-                fileNameWithoutExt,
-                type: 'javascript'
-            }).filename;
-            if (!envConfigFile) {
+            if (!existsSync(join(this.cwd, envConfigFile))) {
                 throw new Error(
                     `get user config failed, ${envConfigFile} does not exist, but process.env.FES_ENV is set to ${process.env.FES_ENV}.`
                 );

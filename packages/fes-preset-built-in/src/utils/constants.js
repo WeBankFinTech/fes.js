@@ -1,4 +1,4 @@
-import { winPath } from '@umijs/utils';
+import { winPath } from '@fesjs/utils';
 import { dirname } from 'path';
 
 export const runtimePath = winPath(

@@ -7,7 +7,7 @@ import { EventEmitter } from 'events';
 import assert from 'assert';
 import { AsyncSeriesWaterfallHook } from 'tapable';
 import { existsSync } from 'fs';
-import { lodash, chalk } from '@umijs/utils';
+import { lodash, chalk } from '@fesjs/utils';
 import { Command, Option } from 'commander';
 import { resolvePresets, pathToObj, resolvePlugins } from './utils/pluginUtils';
 import loadDotEnv from './utils/loadDotEnv';
@@ -520,7 +520,6 @@ export default class Service extends EventEmitter {
 
     async runCommand({ rawArgv = {}, args = {} }) {
         assert(this.stage >= ServiceStage.init, 'service is not initialized.');
-
         Object.keys(this.commands).forEach((command) => {
             const commandOptionConfig = this.commands[command];
             const program = this.program;

@@ -1,4 +1,4 @@
-import { parser, winPath } from '@umijs/utils';
+import { parser, winPath } from '@fesjs/utils';
 import { readdirSync, readFileSync, statSync } from 'fs';
 import { join } from 'path';
 

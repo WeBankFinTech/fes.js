@@ -5,7 +5,7 @@
 
 import { join } from 'path';
 import { existsSync, statSync } from 'fs';
-import { lodash, winPath } from '@umijs/utils';
+import { lodash, winPath } from '@fesjs/utils';
 
 function isDirectoryAndExist(path) {
     return existsSync(path) && statSync(path).isDirectory();

@@ -16,6 +16,7 @@ export default {
     access: {
         roles: {
             admin: ["*"],
+            menuTest: ['/', '/onepiece', '/store'],
         },
     },
     request: {
@@ -47,7 +48,6 @@ export default {
                 path: "https://www.baidu.com",
             },
             {
-                // name: "abcd",
                 title: "abcd",
                 children: [
                     {
@@ -63,7 +63,10 @@ export default {
                         name: "test",
                     },
                 ],
-            },
+            },{
+                name: 'editor',
+                icon: "/wine-outline.svg"
+            }
         ],
     },
     locale: {
@@ -84,5 +87,8 @@ export default {
     dynamicImport: true,
     extraBabelPlugins: [
         ['import', { libraryName: 'ant-design-vue', libraryDirectory: 'es', style: 'css' }, 'ant-design-vue'],
-    ]
+    ],
+    monacoEditor: {
+        languages: ['javascript', 'typescript', 'html', 'json']
+    }
 };

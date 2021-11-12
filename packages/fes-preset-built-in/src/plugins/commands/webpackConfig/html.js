@@ -2,7 +2,7 @@ import { join, resolve } from 'path';
 import { existsSync } from 'fs';
 import {
     winPath
-} from '@umijs/utils';
+} from '@fesjs/utils';
 import resolveDefine from './resolveDefine';
 
 export default async function createHtmlWebpackConfig({

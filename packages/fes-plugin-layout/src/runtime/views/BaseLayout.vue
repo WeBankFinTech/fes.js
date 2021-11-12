@@ -64,8 +64,7 @@
         </a-layout>
     </a-layout>
     <div v-else class="content-wrapper">
-        <MultiTabProvider v-if="multiTabs" />
-        <router-view v-else></router-view>
+        <router-view></router-view>
     </div>
 </template>
 

@@ -5,8 +5,9 @@
         hide-add
         type="editable-card"
         @tabClick="switchPage"
+        @edit="onEdit"
     >
-        <a-tab-pane v-for="page in pageList" :key="page.path" closable>
+        <a-tab-pane v-for="page in pageList" :key="page.path" :closable="route.path !== page.path">
             <template #tab>
                 {{page.name}}
                 <ReloadOutlined
@@ -100,6 +101,13 @@ export default {
                 });
             }
         };
+        const onEdit = (targetKey, action) => {
+            if (action === 'remove') {
+                const selectedPage = findPage(targetKey);
+                const index = pageList.indexOf(selectedPage);
+                pageList.splice(index, 1);
+            }
+        };
         const reloadPage = (path) => {
             const selectedPage = findPage(path || unref(route.path));
             if (selectedPage) {
@@ -119,7 +127,6 @@ export default {
             return '';
         };
         const handlerMore = ({ key }) => {
-            console.log(key);
             switch (key) {
                 case 'closeOtherPage':
                     closeOtherPage();
@@ -136,7 +143,8 @@ export default {
             getPageKey,
             reloadPage,
             switchPage,
-            handlerMore
+            handlerMore,
+            onEdit
         };
     }
 };

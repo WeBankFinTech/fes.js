@@ -66,7 +66,8 @@ function getRequestInstance() {
     addResponseInterceptors(instance, responseInterceptors);
 
     // 洋葱模型内部应该这是对数据的处理，避免有副作用调用
-    scheduler.use(paramsProcess)
+    scheduler
+        .use(paramsProcess)
         .use(genRequestKey)
         .use(cacheControl)
         .use(preventRepeatReq)

@@ -8,9 +8,10 @@ import Spin from 'ant-design-vue/lib/spin';
 import 'ant-design-vue/lib/spin/style/css';
 
 export default {
+    components: { Spin },
     setup() {
         return {
-            Spin
+
         };
     }
 };

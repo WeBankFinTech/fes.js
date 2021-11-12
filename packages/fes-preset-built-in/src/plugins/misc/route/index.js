@@ -2,7 +2,7 @@ import { readdirSync, statSync, readFileSync } from 'fs';
 import {
     join, extname, posix, basename
 } from 'path';
-import { lodash } from '@umijs/utils';
+import { lodash } from '@fesjs/utils';
 import { parse } from '@vue/compiler-sfc';
 import { runtimePath } from '../../../utils/constants';
 

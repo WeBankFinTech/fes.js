@@ -1,7 +1,10 @@
 <template>
     <div class="onepiece">
-        fes & 拉夫德鲁<br />
+        fes h5 & 拉夫德鲁<br />
         <fes-icon :spin="true" class="one-icon" type="smile" @click="clickIcon" />
+        <HelloWorld />
+        <HelloTSX />
+        <helloTS />
     </div>
 </template>
 <config>
@@ -14,8 +17,16 @@
 <script>
 import { ref } from 'vue';
 import { request } from '@fesjs/fes';
+import HelloWorld from '@/components/helloWorld';
+import HelloTSX from '@/components/helloTSX';
+import helloTS from '@/components/helloTS';
 
 export default {
+    components: {
+        HelloWorld,
+        HelloTSX,
+        helloTS
+    },
     setup() {
         const fes = ref('fes upgrade to vue3');
         const rotate = ref(90);
@@ -23,7 +34,10 @@ export default {
             console.log('click Icon');
         };
         // request('/api', null, {
-        //     mergeRequest: true
+        // }).then((res) => {
+        //     console.log(res);
+        // });
+        // request('/api', null, {
         // }).then((res) => {
         //     console.log(res);
         // });
@@ -32,17 +46,17 @@ export default {
         // }).then((res) => {
         //     console.log(res);
         // });
-        // request('/api', null, {
-        //     mergeRequest: true
-        // }).then((res) => {
-        //     console.log(res);
-        // });
-        // request('/api', null, {
-        //     throttle: 3000,
-        //     cache: true
-        // }).then((res) => {
-        //     console.log(res);
-        // });
+        request('/api', null, {
+            mergeRequest: true
+        }).then((res) => {
+            console.log(res);
+        });
+        request('/api', null, {
+            throttle: 3000,
+            cache: true
+        }).then((res) => {
+            console.log(res);
+        });
 
         // setTimeout(() => {
         //     request('/api', null, {
@@ -68,21 +82,21 @@ export default {
         //     });
         // }, 3200);
 
-        request('/api', null, {
-            cache: true
-        }).then((res) => {
-            console.log(res);
-        });
-        request('/api', null, {
-            cache: true
-        }).then((res) => {
-            console.log(res);
-        });
-        request('/api', null, {
-            cache: true
-        }).then((res) => {
-            console.log(res);
-        });
+        // request('/api', null, {
+        //     cache: true
+        // }).then((res) => {
+        //     console.log(res);
+        // });
+        // request('/api', null, {
+        //     cache: true
+        // }).then((res) => {
+        //     console.log(res);
+        // });
+        // request('/api', null, {
+        //     cache: true
+        // }).then((res) => {
+        //     console.log(res);
+        // });
 
         // request('/api', null, {
         //     // skipErrorHandler: [500]
@@ -116,7 +130,7 @@ div {
     .hover();
 }
 .onepiece {
+    text-align: center;
     .hairline("top");
-    background: url('../images/male.png');
 }
 </style>

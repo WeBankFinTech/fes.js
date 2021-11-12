@@ -1,7 +1,10 @@
-const babelJest = require('babel-jest');
+const babelJest = require('babel-jest').default;
 
 module.exports = babelJest.createTransformer({
-    presets: [require.resolve('@umijs/babel-preset-umi/node')],
+    presets: [
+        ['@babel/preset-env', { targets: { node: 'current' } }]
+    ],
+    plugins: ['@vue/babel-plugin-jsx'],
     babelrc: false,
     configFile: false
 });

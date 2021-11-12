@@ -1,7 +1,7 @@
 import path from 'path';
 import { EOL } from 'os';
 import { readFileSync } from 'fs';
-import { parser, traverse, winPath } from '@umijs/utils';
+import { parser, traverse, winPath } from '@fesjs/utils';
 
 const getFileName = (name) => {
     const fileName = path.basename(name, path.extname(name));
@@ -119,7 +119,7 @@ export const genModels = (imports, absSrcPath) => {
 
         const use = [];
 
-        traverse.default(ast, {
+        traverse(ast, {
             enter(astPath) {
                 if (astPath.isIdentifier({ name: 'useModel' })) {
                     try {
@@ -167,7 +167,7 @@ export const isValidHook = (filePath) => {
     });
     let valid = false;
     let identifierName = '';
-    traverse.default(ast, {
+    traverse(ast, {
         enter(p) {
             if (p.isExportDefaultDeclaration()) {
                 const { type } = p.node.declaration;

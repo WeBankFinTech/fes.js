@@ -10,7 +10,7 @@ export default (api) => {
     } = api;
 
     api.chainWebpack((memo) => {
-        memo.resolve.alias.set('vue-i18n', 'vue-i18n/dist/vue-i18n.runtime.esm-bundler.js');
+        memo.resolve.alias.set('vue-i18n', 'vue-i18n/dist/vue-i18n.esm-bundler.js');
     });
 
     api.describe({

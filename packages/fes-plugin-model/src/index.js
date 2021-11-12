@@ -1,7 +1,7 @@
 
 import { readFileSync } from 'fs';
 import { join } from 'path';
-import { lodash, winPath } from '@umijs/utils';
+import { lodash, winPath } from '@fesjs/utils';
 import { getModels } from './utils/getModels';
 import { getTmpFile } from './utils/getTmpFile';
 

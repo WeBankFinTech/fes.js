@@ -3,7 +3,8 @@ import assert from 'assert';
 import { join } from 'path';
 import { existsSync } from 'fs';
 import { Logger } from '@fesjs/compiler';
-import { options as CliOptions } from 'jest-cli/build/cli/args';
+// jest-cli 不在暴露 options，维护一份本地的 options
+import { options as CliOptions } from './jestArgs';
 import createDefaultConfig from './createDefaultConfig';
 
 const logger = new Logger('fes:plugin-unit-jest');

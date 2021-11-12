@@ -1,6 +1,6 @@
 {
   "name": "@fesjs/plugin-layout",
-  "version": "2.0.0",
+  "version": "2.0.5",
   "description": "@fesjs/plugin-layout",
   "main": "lib/index.js",
   "files": [
@@ -27,12 +27,12 @@
     "access": "public"
   },
   "dependencies": {
-    "@umijs/utils": "3.3.3"
+    "@fesjs/utils": "^2.0.2"
   },
   "peerDependencies": {
-    "@ant-design/icons-vue": "^5.1.6",
+    "@ant-design/icons-vue": "^6.0.0",
     "@fesjs/fes": "^2.0.0",
-    "ant-design-vue": "2.0.0",
+    "ant-design-vue": "^2.2.0",
     "vue": "^3.0.5"
   }
 }
