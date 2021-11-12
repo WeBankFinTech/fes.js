@@ -9,7 +9,7 @@
 Fes.js 把页面、页面元素统一叫做资源，每个资源都有 `accessId`：
 - 页面的 `accessId` 默认是页面的路由 `path` 。比如页面 `pages/a.vue` 的路由 `path` 是 `/a`。当页面访问 `/a` 时会渲染当前页面，`/a` 也就是页面的 `accessId`。
   
-- 页面元素的 `accessId` 没有默认值，我们可以自定义。
+- 页面元素的 `accessId` 没有默认值，由我们自定义。
 ```vue
 <template>
     <access :id="accessId"> accessOnepicess1 <input /> </access>
@@ -26,11 +26,39 @@ export default {
 </script>
 ```
 
+
+### 匹配规则
+
+#### 全等匹配
+资源的匹配规则默认是使用全等匹配，比如页面 `pages/a.vue` 对应路由 `path` 是 `/a`，则 `/a` 就是页面的资源ID。如果我们设置：
+```js
+access.setAccess(['/a'])
+```
+由于权限列表中包含`/a`，则表示拥有此页面权限。
+
+#### 模糊匹配
+页面`@id.vue`会映射为动态路由`/:id`，想匹配此页面有两种办法：
+- **access.setAccess(['/:id'])**
+- **access.setAccess(['/*'])**
+
+第二种是模糊匹配，`*`表示任意路径。比如角色`admin`需要全部权限，则可以：
+```js
+export default {
+    access: {
+        roles: {
+            admin: ["*"]
+        }
+    }
+}
+```
+
+
 ### 角色
-Fes.js 用角色定义一组资源。当访问 Fes.js 应用时，使用插件提供的 API 设置用户的角色，角色对应的资源才可见，非角色对应的资源不可见。
+通常我们会用角色来控制权限，相应的Fes.js 用角色定义一组资源。当访问 Fes.js 应用时，使用插件提供的 API 设置用户的角色，角色对应的资源才可见，非角色对应的资源不可见。
 
 
-当然有时候业务比较复杂，角色不能在前端应用中预先定义，而是用户自定义的，储存在数据库中。不要怕！插件也提供粒度更细的 API 来控制当前用户能访问的资源。
+当然有时候业务比较复杂，角色对应的权限是动态的。不要怕！插件提供粒度更细的 API 来设置当前用户能访问的资源。
+
 
 ## 启用方式
 在 `package.json` 中引入依赖：
@@ -157,7 +185,6 @@ import { access } from '@fesjs/fes';
 console.log(access.isDataReady())
 ```
 
-
 #### access.setRole
 - **类型**：函数
   
@@ -220,10 +247,10 @@ export default {
 </script>
 ```
 ### v-access
-在指令 `v-access` 中传入 `accessId`，则当 `accessId` 拥有权限时渲染DOM，当没有权限时隐藏此DOM。
+在指令 `v-access` 中传入 `accessId`，则当 `accessId` 拥有权限时显示DOM，当没有权限时隐藏此DOM。
 ```vue
 <template>
-    <div v-access="accessId"> accessOnepicess2 </div>
+    <div v-access="accessId"> accessOnepicess </div>
 </template>
 <script>
 export default {
@@ -240,7 +267,7 @@ export default {
 组件 `Access` 中传入 `accessId`，则当 `accessId` 拥有权限时渲染此组件，当没有权限时隐藏此组件。
 ```vue
 <template>
-    <access :id="accessId"> accessOnepicess1 <input /> </access>
+    <access :id="accessId"> accessOnepicess </access>
 </template>
 <script>
 export default {

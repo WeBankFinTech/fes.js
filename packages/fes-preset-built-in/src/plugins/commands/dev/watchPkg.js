@@ -4,7 +4,7 @@
  */
 
 import { join } from 'path';
-import { chokidar, winPath, lodash } from '@umijs/utils';
+import { chokidar, winPath, lodash } from '@fesjs/utils';
 import { existsSync, readFileSync } from 'fs';
 import { isPluginOrPreset, PluginType } from '@fesjs/compiler';
 

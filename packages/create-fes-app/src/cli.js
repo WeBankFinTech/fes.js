@@ -1,4 +1,4 @@
-import { chalk, yParser } from '@umijs/utils';
+import { chalk, yParser } from '@fesjs/utils';
 import { existsSync } from 'fs';
 import { join } from 'path';
 
@@ -15,7 +15,7 @@ const args = yParser(process.argv.slice(2), {
 });
 
 if (args._.length > 1) {
-    console.log(chalk.yellow('\n Info: You provided more than one argument. The first one will be used as the app\'s name, the rest are ignored.'));
+    console.log(chalk.yellow('\n Warning: You provided more than one argument. The first one will be used as the app\'s name, the rest are ignored.'));
 }
 
 if (args.version && !args._[0]) {

@@ -1,3 +1,5 @@
+简体中文 | [English](./README.en-US.md)
+
 <p align="center">
   <a href="https://github.com/WeBankFinTech/fes.js">
     <img alt="fes.js" width="250" src="https://i.loli.net/2021/03/12/Vb4LKc5gaHUfOwB.png">
@@ -32,7 +34,7 @@
 
 
 ## Fes.js 是什么？
-Fes.js 是一个好用的前端应用解决方案。Fes.js 以 Vue 3.0 和路由为基础，同时支持配置式路由和约定式路由，并以此进行功能扩展。配以覆盖编译时和运行时生命周期完善的插件体系，支持各种功能扩展和业务需求。     
+Fes.js 是一个优秀的前端应用解决方案。Fes.js 以 Vue 3.0 和路由为基础，同时支持配置式路由和约定式路由，并以此进行功能扩展。配以覆盖编译时和运行时生命周期完善的插件体系，支持各种功能扩展和业务需求。     
 
 它主要具备以下功能：
 - 🚀  __快速__ ，内置了路由、开发、构建等，并且提供测试、布局、权限、国际化、状态管理、API请求、数据字典、SvgIcon等插件，可以满足大部分日常开发需求。  
@@ -60,6 +62,7 @@ Fes.js 是一个好用的前端应用解决方案。Fes.js 以 Vue 3.0 和路由
 | [@fesjs/plugin-vuex](https://winixt.gitee.io/fesjs/zh/reference/plugin/plugins/vuex.html#%E5%90%AF%E7%94%A8%E6%96%B9%E5%BC%8F) |  基于 `Vuex`, 提供状态管理能力 |
 | [@fesjs/plugin-qiankun](https://winixt.gitee.io/fesjs/zh/reference/plugin/plugins/qiankun.html#%E4%BB%8B%E7%BB%8D) |  基于 `qiankun`，提供微服务能力 |
 | [@fesjs/plugin-sass](https://winixt.gitee.io/fesjs/zh/reference/plugin/plugins/sass.html#%E4%BB%8B%E7%BB%8D) |  样式支持sass |
+| [@fesjs/plugin-monaco-editor](https://winixt.gitee.io/fesjs/zh/reference/plugin/plugins/editor.html#%E4%BB%8B%E7%BB%8D) | 提供代码编辑器能力，  基于`monaco-editor`（VS Code使用的代码编辑器） |
 
 ## 像数 1, 2, 3 一样容易
 使用 `yarn`：
@@ -93,18 +96,17 @@ npm run dev
 | [@fesjs/fes.js/issues](https://github.com/WeBankFinTech/fes.js/issues) | <img src="https://i.loli.net/2020/09/11/2XhKtPZd6NFVbDE.png" width="250" /> | <img src="https://i.loli.net/2020/09/16/sxwr62CKhmYOUyV.jpg" height="250"/> |
 
 
-## Contributing
+## 参与共建
 
-Pull requests and stars are always welcome.
+我们非常欢迎社区同学能提交PR：
 
-For bugs and feature requests, [please create an issue](https://github.com/WeBankFinTech/fes.js/issues).
+1. fork项目!
+2. 创建你的功能分支: `git checkout -b my-new-feature`
+3. 本地提交新代码: `git commit -am 'Add some feature'`
+4. 推送本地到服务器分支: `git push origin my-new-feature`
+5. 创建一个PR
 
-1. Fork it!
-2. Create your feature branch: `git checkout -b my-new-feature`
-3. Commit your changes: `git commit -am 'Add some feature'`
-4. Push to the branch: `git push origin my-new-feature`
-5. Submit a pull request :D
-
+如果是发现Bug或者期望添加新功能，请提交[issue](https://github.com/WeBankFinTech/fes.js/issues)。
 
 ## 社区活动
 

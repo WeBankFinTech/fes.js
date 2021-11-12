@@ -1,4 +1,4 @@
-import { chokidar, lodash, winPath } from '@umijs/utils';
+import { chokidar, lodash, winPath } from '@fesjs/utils';
 import { join } from 'path';
 
 export default async ({ api, watch }) => {
@@ -12,7 +12,7 @@ export default async ({ api, watch }) => {
         });
     }
 
-    const watchers = [];
+    let watchers = [];
 
     await generate();
 
@@ -20,6 +20,7 @@ export default async ({ api, watch }) => {
         watchers.forEach((watcher) => {
             watcher.close();
         });
+        watchers = [];
     }
 
     function createWatcher(path) {
@@ -34,6 +35,7 @@ export default async ({ api, watch }) => {
                 await generate();
             }, 100)
         );
+        watchers.push(watcher);
     }
 
     if (watch) {

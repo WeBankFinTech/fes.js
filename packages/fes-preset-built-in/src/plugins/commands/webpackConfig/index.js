@@ -36,7 +36,7 @@ const DEFAULT_EXCLUDE_NODE_MODULES = [
     'core-js',
     'echarts',
     '@babel/runtime',
-    'lodash',
+    'lodash-es',
     'webpack-dev-server',
     'ansi-html',
     'html-entities'
@@ -100,7 +100,7 @@ export default async function getConfig({
         .chunkFilename('[name].[contenthash:8].chunk.js');
 
     // --------------- resolve -----------
-    webpackConfig.resolve.extensions.merge(['.mjs', '.js', '.jsx', '.vue', '.json', '.wasm']);
+    webpackConfig.resolve.extensions.merge(['.mjs', '.js', '.jsx', '.vue', '.ts', '.tsx', '.json', '.wasm']);
 
     if (config.alias) {
         Object.keys(config.alias).forEach((key) => {
@@ -174,7 +174,7 @@ export default async function getConfig({
 
     webpackConfig.module
         .rule('js')
-        .test(/\.(js|mjs|jsx)$/)
+        .test(/\.(js|mjs|jsx|ts|tsx)$/)
         .exclude.add((filepath) => {
             // always transpile js in vue files
             if (/\.vue\.jsx?$/.test(filepath)) {
@@ -187,22 +187,24 @@ export default async function getConfig({
         .loader(require.resolve('babel-loader'))
         .options(babelOpts);
 
-    // 为了避免第三方依赖包编译不充分导致线上问题，默认对 node_modules 也进行全编译
-    const transpileDepRegex = genTranspileDepRegex(config.nodeModulesTransform.exclude);
-    webpackConfig.module
-        .rule('js-in-node_modules')
-        .test(/\.(js|mjs)$/)
-        .include.add(/node_modules/).end()
-        .exclude.add((filepath) => {
-            if (transpileDepRegex && transpileDepRegex.test(filepath)) {
-                return true;
-            }
+    // 为了避免第三方依赖包编译不充分导致线上问题，默认对 node_modules 也进行全编译，只在生产构建的时候进行
+    if (isProd) {
+        const transpileDepRegex = genTranspileDepRegex(config.nodeModulesTransform.exclude);
+        webpackConfig.module
+            .rule('js-in-node_modules')
+            .test(/\.(js|mjs)$/)
+            .include.add(/node_modules/).end()
+            .exclude.add((filepath) => {
+                if (transpileDepRegex && transpileDepRegex.test(filepath)) {
+                    return true;
+                }
 
-            return false;
-        }).end()
-        .use('babel-loader')
-        .loader(require.resolve('babel-loader'))
-        .options(babelOpts);
+                return false;
+            }).end()
+            .use('babel-loader')
+            .loader(require.resolve('babel-loader'))
+            .options(babelOpts);
+    }
 
     // --------------- css -----------
     const createCSSRule = createCssWebpackConfig({

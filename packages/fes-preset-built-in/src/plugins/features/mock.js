@@ -1,6 +1,6 @@
 import { existsSync, readFileSync } from 'fs';
 import { resolve } from 'path';
-import { chokidar, lodash, parseRequireDeps } from '@umijs/utils';
+import { chokidar, lodash, parseRequireDeps } from '@fesjs/utils';
 import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
 import mockjs from 'mockjs';

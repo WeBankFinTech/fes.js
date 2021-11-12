@@ -46,7 +46,8 @@ export default async (ctx, next) => {
         if (requestMap.get(ctx.key) && !ctx.config.mergeRequest) {
             ctx.error = {
                 type: 'REPEAT',
-                msg: '重复请求'
+                msg: '重复请求',
+                config: ctx.config
             };
             return;
         }

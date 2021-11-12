@@ -1,4 +1,4 @@
-# @fesjs/plugin-access
+# @fesjs/plugin-sass
 
 
 

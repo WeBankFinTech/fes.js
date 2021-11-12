@@ -7,13 +7,13 @@ import {
     winPath,
     pkgUp,
     lodash
-} from '@umijs/utils';
+} from '@fesjs/utils';
 
 import { PluginType } from '../enums';
 
 const RE = {
-    [PluginType.plugin]: /^(@fesjs\/|@webank\/fes-|fes-)?plugin-/,
-    [PluginType.preset]: /^(@fesjs\/|@webank\/fes-|fes-)?preset-/
+    [PluginType.plugin]: /^(@fesjs\/|@webank\/fes-|fes-)plugin-/,
+    [PluginType.preset]: /^(@fesjs\/|@webank\/fes-|fes-)preset-/
 };
 
 export function isPluginOrPreset(type, name) {

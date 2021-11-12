@@ -4,7 +4,7 @@
  */
 
 import assert from 'assert';
-import * as utils from '@umijs/utils';
+import * as utils from '@fesjs/utils';
 import { isValidPlugin, pathToObj } from './utils/pluginUtils';
 import { EnableBy, PluginType, ServiceStage } from './enums';
 import Logger from '../logger';

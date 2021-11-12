@@ -52,7 +52,7 @@ npx @fesjs/create-fes-app myapp
 # 安装依赖
 npm install 
 
-# 运行
+# 运行  
 npm run dev
 ```
 

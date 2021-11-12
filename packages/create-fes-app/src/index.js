@@ -1,5 +1,5 @@
 import path from 'path';
-import { chalk } from '@umijs/utils';
+import { chalk } from '@fesjs/utils';
 import validateProjectName from 'validate-npm-package-name';
 import fs from 'fs-extra';
 import inquirer from 'inquirer';
@@ -27,7 +27,7 @@ export default async ({ cwd, args }) => {
         });
         throw new Error('Process exited');
     }
-    if (fs.existsSync(targetDir) && !args.merge) {
+    if (fs.pathExistsSync(targetDir) && !args.merge) {
         if (args.force) {
             await fs.remove(targetDir);
         } else if (inCurrent) {

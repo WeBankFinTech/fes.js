@@ -8,7 +8,7 @@ import {
     onMounted,
 } from "vue";
 import { loadMicroApp } from "qiankun";
-import mergeWith from "lodash/mergeWith";
+import {mergeWith} from "lodash-es";
 // eslint-disable-next-line import/extensions
 import { getMasterOptions } from "./masterOptions";
 import { onBeforeRouteLeave } from "@@/core/coreExports";

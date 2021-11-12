@@ -57,6 +57,7 @@ export default {
 </config>
 ```
 如果只是不想展示`side`，则：
+```
 <config lang="json">
 {
     "layout": {

@@ -1,6 +1,6 @@
 import { readFileSync } from 'fs';
 import { join } from 'path';
-import { winPath } from '@umijs/utils';
+import { winPath } from '@fesjs/utils';
 import { parseStore } from './helper';
 
 const namespace = 'plugin-vuex';

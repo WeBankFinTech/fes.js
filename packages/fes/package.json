@@ -1,6 +1,6 @@
 {
     "name": "@fesjs/fes",
-    "version": "2.0.1",
+    "version": "2.0.7",
     "description": "一个好用的前端管理台快速开发框架",
     "preferGlobal": true,
     "scripts": {
@@ -8,15 +8,14 @@
     },
     "files": [
         "lib",
-        "dist",
         "bin",
         "types.d.ts"
     ],
     "bin": {
         "fes": "./bin/fes.js"
     },
-    "main": "index.js",
-    "module": "dist/index.esm.js",
+    "main": "lib/index.js",
+    "module": "lib/index.js",
     "author": "qlin",
     "repository": {
         "type": "git",
@@ -39,10 +38,10 @@
         "strong"
     ],
     "dependencies": {
-        "@fesjs/compiler": "^2.0.0",
-        "@fesjs/preset-built-in": "^2.0.1",
-        "@fesjs/runtime": "^2.0.0",
-        "@umijs/utils": "3.3.3",
+        "@fesjs/compiler": "^2.0.2",
+        "@fesjs/preset-built-in": "^2.0.6",
+        "@fesjs/runtime": "^2.0.2",
+        "@fesjs/utils": "^2.0.2",
         "resolve-cwd": "^3.0.0"
     },
     "engines": {

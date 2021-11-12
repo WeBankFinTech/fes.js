@@ -126,6 +126,10 @@ render(oldRender: Function)
 
 覆写 render。
 
+比如用于渲染之前做权限校验。
+
+
+
 ### onRouterCreated
 
 onRouterCreated({router})
