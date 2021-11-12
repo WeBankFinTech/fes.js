@@ -45,7 +45,9 @@ export default function () {
             require.resolve('./plugins/features/mock'),
             require.resolve('./plugins/features/dynamicImport'),
             require.resolve('./plugins/features/runtimePublicPath'),
+            require.resolve('./plugins/features/exportStatic'),
             require.resolve('./plugins/features/checkVuePackage'),
+
 
             // misc
             require.resolve('./plugins/misc/route'),

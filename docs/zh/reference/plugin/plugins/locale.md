@@ -45,7 +45,7 @@ export default {
 };
 ```
 ```js
-// src/locales/zh-CN.js
+// src/locales/en-US.js
 export default {
     menu: {
         interface: 'interface'
