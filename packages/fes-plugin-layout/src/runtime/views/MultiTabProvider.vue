@@ -9,7 +9,7 @@
     >
         <a-tab-pane v-for="page in pageList" :key="page.path" :closable="route.path !== page.path">
             <template #tab>
-                {{page.name}}
+                {{page.title}}
                 <ReloadOutlined
                     v-show="route.path === page.path"
                     class="layout-tabs-close-icon"
@@ -75,6 +75,7 @@ export default {
                     params: unref(route.params)
                 },
                 name: unref(route.meta).name,
+                title: unref(route.meta).title,
                 key: getKey()
             }
         ]);
@@ -85,6 +86,7 @@ export default {
                     path: to.path,
                     route: to,
                     name: to.meta.name,
+                    title: to.meta.title,
                     key: getKey()
                 });
             }
