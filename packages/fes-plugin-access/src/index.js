@@ -1,5 +1,6 @@
 import { readFileSync } from 'fs';
 import { join } from 'path';
+import { resolvePkg } from '@fesjs/utils';
 
 const namespace = 'plugin-access';
 
@@ -32,7 +33,8 @@ export default (api) => {
             content: Mustache.render(
                 readFileSync(join(__dirname, 'runtime/core.tpl'), 'utf-8'),
                 {
-                    REPLACE_ROLES: JSON.stringify(roles)
+                    REPLACE_ROLES: JSON.stringify(roles),
+                    lodashPath: resolvePkg('lodash-es')
                 }
             )
         });

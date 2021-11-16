@@ -7,8 +7,8 @@ import {
     onBeforeUnmount,
     onMounted,
 } from "vue";
-import { loadMicroApp } from "qiankun";
-import {mergeWith} from "lodash-es";
+import { loadMicroApp } from "{{{QIANKUN}}}";
+import {mergeWith} from "{{{LODASH_ES}}}";
 // eslint-disable-next-line import/extensions
 import { getMasterOptions } from "./masterOptions";
 import { onBeforeRouteLeave } from "@@/core/coreExports";
