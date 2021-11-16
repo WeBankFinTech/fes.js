@@ -1,5 +1,6 @@
 import { readFileSync } from 'fs';
 import { join } from 'path';
+import { resolvePkg } from '@fesjs/utils';
 import { getLocalesJSON } from './utils';
 
 const namespace = 'plugin-locale';
@@ -64,7 +65,8 @@ export default (api) => {
                         legacy: userConfig.legacy
                     }, null, 2),
                     BASE_NAVIGATOR: userConfig.baseNavigator,
-                    SHARE: userConfig.share
+                    SHARE: userConfig.share,
+                    VUE_I18N_PATH: resolvePkg('vue-i18n')
                 }
             )
         });
