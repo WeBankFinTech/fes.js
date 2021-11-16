@@ -10,10 +10,6 @@ export default (api) => {
         utils: { Mustache }
     } = api;
 
-    api.chainWebpack((memo) => {
-        memo.resolve.alias.set('vue-i18n', 'vue-i18n/dist/vue-i18n.esm-bundler.js');
-    });
-
     api.describe({
         key: 'locale',
         config: {
