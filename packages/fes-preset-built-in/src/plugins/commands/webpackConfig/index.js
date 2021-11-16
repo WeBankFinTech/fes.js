@@ -59,6 +59,7 @@ function genTranspileDepRegex(exclude) {
 
 
 export default async function getConfig({
+    api,
     cwd,
     config,
     env,
@@ -221,6 +222,7 @@ export default async function getConfig({
 
     // --------------- html -----------
     const { publicCopyIgnore } = await createHtmlWebpackConfig({
+        api,
         cwd,
         config,
         webpackConfig,
