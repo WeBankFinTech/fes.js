@@ -1,7 +1,7 @@
 import { reactive, unref, computed, inject } from "vue";
 import createDirective from "./createDirective";
 import createComponent from "./createComponent";
-import {isPlainObject} from "lodash-es";
+import {isPlainObject} from "{{{ lodashPath }}}";
 
 const accessKey = Symbol("plugin-access");
 

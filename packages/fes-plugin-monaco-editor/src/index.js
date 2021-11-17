@@ -1,5 +1,6 @@
 import { readFileSync } from 'fs';
 import { join } from 'path';
+import { resolvePkg } from '@fesjs/utils';
 
 const namespace = 'plugin-monaco-editor';
 
@@ -30,6 +31,7 @@ export default (api) => {
     const absRuntimeFilePath = join(namespace, 'runtime.js');
 
     const absLoaderFilePath = join(namespace, 'loader.js');
+    const absEditorFilePath = join(namespace, 'editor.vue');
 
     api.onGenerateFiles(() => {
         // 文件写出
@@ -52,7 +54,20 @@ export default (api) => {
         api.writeTmpFile({
             path: absLoaderFilePath,
             content: Mustache.render(
-                readFileSync(join(__dirname, 'runtime/loader.tpl'), 'utf-8')
+                readFileSync(join(__dirname, 'runtime/loader.tpl'), 'utf-8'),
+                {
+                    MONACO_EDITOR: resolvePkg('monaco-editor')
+                }
+            )
+        });
+
+        api.writeTmpFile({
+            path: absEditorFilePath,
+            content: Mustache.render(
+                readFileSync(join(__dirname, 'runtime/editor.tpl'), 'utf-8'),
+                {
+                    LODASH_ES: resolvePkg('lodash-es')
+                }
             )
         });
 

@@ -31,6 +31,7 @@
     "vue": "^3.0.5"
   },
   "dependencies": {
+    "@fesjs/utils": "^2.0.2",
     "@fesjs/compiler": "^2.0.2",
     "axios": "0.21.1"
   }

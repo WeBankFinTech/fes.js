@@ -1,4 +1,4 @@
-import * as monaco from 'monaco-editor';
+import * as monaco from '{{{ MONACO_EDITOR }}}';
 import defaultTheme from './theme/default';
 
 // 默认主题

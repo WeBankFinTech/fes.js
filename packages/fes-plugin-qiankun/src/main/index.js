@@ -1,5 +1,6 @@
 import { readFileSync, existsSync } from 'fs';
 import { join } from 'path';
+import { resolvePkg } from '@fesjs/utils';
 import {
     defaultMainRootId,
     defaultHistoryType,
@@ -58,7 +59,9 @@ export default function (api) {
                                     'models/qiankunStateForMicro.js'
                                 )
                             )
-                        )
+                        ),
+                    QIANKUN: resolvePkg('qiankun'),
+                    LODASH_ES: resolvePkg('lodash-es')
                 }
             )
         });

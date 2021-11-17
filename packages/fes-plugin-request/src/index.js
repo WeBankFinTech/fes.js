@@ -1,6 +1,7 @@
 import { Logger } from '@fesjs/compiler';
 import { readFileSync } from 'fs';
 import { join } from 'path';
+import { resolvePkg } from '@fesjs/utils';
 
 const logger = new Logger('fes:plugin-request');
 
@@ -44,6 +45,7 @@ export default (api) => {
             content: requestTemplate
                 .replace('REPLACE_DATA_FIELD', JSON.stringify(dataField))
                 .replace('REPLACE_BASE', base || '')
+                .replace('AXIOS_PATH', resolvePkg('axios'))
         });
     });
 

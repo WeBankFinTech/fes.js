@@ -1,6 +1,7 @@
 import { readFileSync } from 'fs';
 import { join } from 'path';
 import generateExports from '../../../../utils/generateExports';
+import { runtimePath } from '../../../../utils/constants';
 
 export default function (api) {
     api.onGenerateFiles(async () => {
@@ -21,7 +22,7 @@ export default function (api) {
         const tpl = readFileSync(join(__dirname, './coreExports.tpl'), 'utf-8');
         api.writeTmpFile({
             path: absoluteFilePath,
-            content: tpl.replace('CORE_EXPORTS', content)
+            content: tpl.replace('CORE_EXPORTS', content).replace('RUNTIME_PATH', runtimePath)
         });
     });
 }
