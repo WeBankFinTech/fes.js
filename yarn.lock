@@ -13664,10 +13664,10 @@ wildcard@^2.0.0:
   resolved "http://10.107.103.115:8001/wildcard/download/wildcard-2.0.0.tgz#a77d20e5200c6faaac979e4b3aadc7b3dd7f8fec"
   integrity sha1-p30g5SAMb6qsl55LOq3Hs91/j+w=
 
-windicss-webpack-plugin@^1.5.6:
-  version "1.5.6"
-  resolved "https://registry.npmjs.org/windicss-webpack-plugin/-/windicss-webpack-plugin-1.5.6.tgz#451333bac64d3d0b229d4a58c70f5f66249acefd"
-  integrity sha512-Wap3bvaNlIFKkJugaeVMqV1ICMDfSmwernYkYrRftK/ZJXP7/pkVvdXu5DDvFIlRVXjhlJlltIlFb1UNJn84sA==
+windicss-webpack-plugin@^1.5.8:
+  version "1.5.8"
+  resolved "https://registry.npmjs.org/windicss-webpack-plugin/-/windicss-webpack-plugin-1.5.8.tgz#3682db188eccc9ba410ab9906fe427ccc9478fac"
+  integrity sha512-T4T/lg22KDw/imms7hcRYrSE8t5OpQRx6JkuFXCITW7AoO6KyaiBJSua3tf6gQpA0OluX99mMrt2quEBKGShvQ==
   dependencies:
     "@windicss/plugin-utils" "^1.5.1"
     debug "^4.3.2"
