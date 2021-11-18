@@ -27,6 +27,7 @@
     "access": "public"
   },
   "dependencies": {
+    "@fesjs/utils": "^2.0.2",
     "lodash-es": "^4.17.15"
   },
   "peerDependencies": {

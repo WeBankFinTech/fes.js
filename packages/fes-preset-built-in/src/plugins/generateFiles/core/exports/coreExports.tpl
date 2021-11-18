@@ -12,6 +12,6 @@ export {
     createRouter,
     Plugin,
     ApplyPluginsType
-} from '@fesjs/runtime';
+} from 'RUNTIME_PATH';
 
 CORE_EXPORTS

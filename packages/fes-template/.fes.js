@@ -2,7 +2,6 @@
 
 export default {
     exportStatic: {},
-    base: "/base/",
     define: {
         __DEV__: false,
     },
