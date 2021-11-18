@@ -5,11 +5,20 @@ import { isURLSearchParams } from './helpers';
  *      一个请求同时包含 data | params 参数的设计本身不合理
  *      不对这种情况进行兼容
  */
-export default async function genRequestKey(ctx, next) {
-    const { url, data, method } = ctx.config;
+
+const getQueryString = (data) => {
     if (isURLSearchParams(data)) {
-        ctx.key = `${url}${data.toString()}${method}`;
+        return data.toString();
     }
-    ctx.key = `${url}${JSON.stringify(data)}${method}`;
+    return data ? JSON.stringify(data) : '';
+};
+
+export default async function genRequestKey(ctx, next) {
+    const {
+        url, data, params, method
+    } = ctx.config;
+
+    ctx.key = `${url}${getQueryString(data)}${getQueryString(params)}${method}`;
+
     await next();
 }
