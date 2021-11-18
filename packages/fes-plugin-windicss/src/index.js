@@ -1,9 +1,11 @@
 
 import WindiCSSWebpackPlugin from 'windicss-webpack-plugin';
+import { resolve } from 'path';
+
 
 export default (api) => {
     api.describe({
-        key: 'windi',
+        key: 'windicss',
         config: {
             default: {}
         }
@@ -12,7 +14,12 @@ export default (api) => {
     api.addEntryImportsAhead(() => [{ source: 'windi.css' }]);
 
     api.chainWebpack((memo) => {
-        memo.plugin('windicss').before('vue-loader-plugin').use(WindiCSSWebpackPlugin);
+        memo.plugin('windicss').before('vue-loader-plugin').use(WindiCSSWebpackPlugin, [
+            {
+                config: resolve(__dirname, '../windi.config.js'),
+                ...api.config.windicss
+            }
+        ]);
         return memo;
     });
 };
