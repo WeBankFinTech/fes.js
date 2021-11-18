@@ -1,6 +1,6 @@
 {
   "name": "@fesjs/preset-built-in",
-  "version": "2.0.6",
+  "version": "2.0.7",
   "description": "@fesjs/preset-built-in",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -33,8 +33,8 @@
     "@babel/plugin-transform-runtime": "^7.12.13",
     "@babel/preset-env": "^7.12.13",
     "@babel/preset-typescript": "^7.15.0",
-    "@fesjs/compiler": "^2.0.2",
-    "@fesjs/utils": "^2.0.2",
+    "@fesjs/compiler": "^2.0.3",
+    "@fesjs/utils": "^2.0.3",
     "@soda/friendly-errors-webpack-plugin": "^1.8.0",
     "@vue/babel-plugin-jsx": "^1.0.2",
     "autoprefixer": "^10.2.4",
