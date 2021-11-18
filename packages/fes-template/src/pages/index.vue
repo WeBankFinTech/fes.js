@@ -2,7 +2,7 @@
     <div :class="$style.red">
         <a-input placeholder="请输入。。。" />
         <a-button type="primary">Primary</a-button>
-        <div>国际化 {{t("test")}}</div>
+        <div class="m-2">国际化 {{t("test")}}</div>
         fes & 拉夫德鲁 <br />
         <access :id="accessId"> accessOnepicess1 <input /> </access>
         <div v-access="accessId"> accessOnepicess2 <input /> </div>
@@ -29,10 +29,7 @@ import { Button, Input } from 'ant-design-vue';
 export default {
     components: {
         [Button.name]: Button,
-        [Input.name]: Input,
-    },
-    mounted(){
-        console.log("$style:", this.$style)
+        [Input.name]: Input
     },
     setup() {
         const fes = ref('fes upgrade to vue3');
@@ -129,6 +126,9 @@ export default {
             enumsGet: enums.get,
             roles
         };
+    },
+    mounted() {
+        console.log('$style:', this.$style);
     }
 };
 </script>

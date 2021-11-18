@@ -61,6 +61,7 @@ export const en: SidebarConfig = {
         '/reference/plugin/plugins/request.md',
         '/reference/plugin/plugins/vuex.md',
         '/reference/plugin/plugins/qiankun.md',
+        '/reference/plugin/plugins/windicss.md',
         '/reference/plugin/plugins/sass.md',
         '/reference/plugin/plugins/editor.md',
       ],
