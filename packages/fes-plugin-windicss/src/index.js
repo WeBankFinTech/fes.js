@@ -14,7 +14,7 @@ export default (api) => {
     api.addEntryImportsAhead(() => [{ source: 'windi.css' }]);
 
     api.chainWebpack((memo) => {
-        memo.plugin('windicss').before('vue-loader-plugin').use(WindiCSSWebpackPlugin, [
+        memo.plugin('windicss').use(WindiCSSWebpackPlugin, [
             {
                 config: resolve(__dirname, '../windi.config.js'),
                 ...api.config.windicss
