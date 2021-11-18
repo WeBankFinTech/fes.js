@@ -46,17 +46,37 @@ export default {
         // }).then((res) => {
         //     console.log(res);
         // });
-        request('/api', null, {
-            mergeRequest: true
-        }).then((res) => {
-            console.log(res);
-        });
-        request('/api', null, {
-            throttle: 3000,
-            cache: true
-        }).then((res) => {
-            console.log(res);
-        });
+        // request('/api', null, {
+        //     mergeRequest: true
+        // }).then((res) => {
+        //     console.log(res);
+        // });
+        // request('/api', null, {
+        //     throttle: 3000,
+        //     cache: true
+        // }).then((res) => {
+        //     console.log(res);
+        // });
+
+        const get = (id) => {
+            request('/get/api', { id }, {
+                method: 'get'
+            });
+        };
+
+        const post = (id) => {
+            request('/get/api', { id }, {
+            });
+        };
+
+        get(1);
+        get(2);
+        get(3);
+
+        post(1);
+        post(2);
+        post(3);
+
 
         // setTimeout(() => {
         //     request('/api', null, {

@@ -16,6 +16,6 @@ export default function createVueWebpackConfig({
         .end();
 
     webpackConfig
-        .plugin('vue-loader')
+        .plugin('vue-loader-plugin')
         .use(require('vue-loader').VueLoaderPlugin);
 }
