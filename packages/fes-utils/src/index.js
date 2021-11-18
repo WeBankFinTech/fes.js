@@ -18,6 +18,7 @@ import Mustache from 'mustache';
 import Generator from './Generator';
 import winPath from './winPath';
 import delay from './delay';
+import resolvePkg from './resolvePkg';
 import compatESModuleRequire from './compatESModuleRequire';
 import cleanRequireCache from './cleanRequireCache';
 import parseRequireDeps from './parseRequireDeps';
@@ -49,5 +50,6 @@ export {
     compatESModuleRequire,
     cleanRequireCache,
     parseRequireDeps,
-    mergeConfig
+    mergeConfig,
+    resolvePkg
 };
