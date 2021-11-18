@@ -18,6 +18,7 @@ module.exports = {
         'fes-plugin-sass',
         'fes-plugin-vuex',
         'fes-preset-built-in',
+        'fes-plugin-windicss',
         'fes-runtime',
         'fes-utils'
     ],
