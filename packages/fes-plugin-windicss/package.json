@@ -1,0 +1,35 @@
+{
+  "name": "@fesjs/plugin-windicss",
+  "version": "2.0.0",
+  "description": "@fesjs/plugin-windicss",
+  "main": "lib/index.js",
+  "files": [
+    "lib"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WeBankFinTech/fes.js.git",
+    "directory": "packages/fes-plugin-windicss"
+  },
+  "keywords": [
+    "fes"
+  ],
+  "author": "qlin",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/WeBankFinTech/fes.js/issues"
+  },
+  "homepage": "https://github.com/WeBankFinTech/fes.js#readme",
+  "publishConfig": {
+    "access": "public"
+  },
+  "peerDependencies": {
+    "vue": "^3.0.5"
+  },
+  "dependencies": {
+    "windicss-webpack-plugin": "^1.5.8"
+  }
+}
