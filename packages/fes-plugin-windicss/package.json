@@ -1,6 +1,6 @@
 {
   "name": "@fesjs/plugin-windicss",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "@fesjs/plugin-windicss",
   "main": "lib/index.js",
   "files": [
