@@ -7,9 +7,13 @@
         @tabClick="switchPage"
         @edit="onEdit"
     >
-        <a-tab-pane v-for="page in pageList" :key="page.path" :closable="route.path !== page.path">
+        <a-tab-pane
+            v-for="page in pageList"
+            :key="page.path"
+            :closable="route.path !== page.path"
+        >
             <template #tab>
-                {{page.name}}
+                {{page.title}}
                 <ReloadOutlined
                     v-show="route.path === page.path"
                     class="layout-tabs-close-icon"
@@ -42,7 +46,9 @@
     </router-view>
 </template>
 <script>
-import { reactive, unref } from 'vue';
+import {
+    computed, onMounted, reactive, unref, ref
+} from 'vue';
 import Tabs from 'ant-design-vue/lib/tabs';
 import Dropdown from 'ant-design-vue/lib/dropdown';
 import Menu from 'ant-design-vue/lib/menu';
@@ -51,6 +57,7 @@ import 'ant-design-vue/lib/dropdown/style/css';
 import 'ant-design-vue/lib/tabs/style/css';
 import { ReloadOutlined, MoreOutlined } from '@ant-design/icons-vue';
 import { useRouter, useRoute } from '@@/core/coreExports';
+import { transTitle } from '../helpers/pluginLocale';
 
 let i = 0;
 const getKey = () => ++i;
@@ -67,26 +74,28 @@ export default {
     setup() {
         const route = useRoute();
         const router = useRouter();
-        const pageList = reactive([
-            {
-                path: unref(route.path),
-                route: {
-                    query: unref(route.query),
-                    params: unref(route.params)
-                },
-                name: unref(route.meta).name,
+        const pageList = ref([]);
+
+        const createPage = (route) => {
+            const title = route.meta.title;
+            return {
+                path: route.path,
+                route,
+                name: route.meta.name,
+                title: computed(() => transTitle(title)),
                 key: getKey()
-            }
-        ]);
-        const findPage = path => pageList.find(item => unref(item.path) === unref(path));
+            };
+        };
+
+        const findPage = path => pageList.value.find(item => unref(item.path) === unref(path));
+
+        onMounted(() => {
+            pageList.value = [createPage(route)];
+        });
+
         router.beforeEach((to) => {
             if (!findPage(to.path)) {
-                pageList.push({
-                    path: to.path,
-                    route: to,
-                    name: to.meta.name,
-                    key: getKey()
-                });
+                pageList.value = [...pageList.value, createPage(to)];
             }
             return true;
         });
@@ -104,8 +113,10 @@ export default {
         const onEdit = (targetKey, action) => {
             if (action === 'remove') {
                 const selectedPage = findPage(targetKey);
-                const index = pageList.indexOf(selectedPage);
-                pageList.splice(index, 1);
+                const list = [...pageList.value];
+                const index = list.indexOf(selectedPage);
+                list.splice(index, 1);
+                pageList.value = list;
             }
         };
         const reloadPage = (path) => {
@@ -116,8 +127,7 @@ export default {
         };
         const closeOtherPage = (path) => {
             const selectedPage = findPage(path || unref(route.path));
-            pageList.length = 0;
-            pageList.push(selectedPage);
+            pageList.value = [selectedPage];
         };
         const getPageKey = (_route) => {
             const selectedPage = findPage(_route.path);

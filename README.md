@@ -63,6 +63,8 @@ Fes.js 是一个优秀的前端应用解决方案。Fes.js 以 Vue 3.0 和路由
 | [@fesjs/plugin-qiankun](https://winixt.gitee.io/fesjs/zh/reference/plugin/plugins/qiankun.html#%E4%BB%8B%E7%BB%8D) |  基于 `qiankun`，提供微服务能力 |
 | [@fesjs/plugin-sass](https://winixt.gitee.io/fesjs/zh/reference/plugin/plugins/sass.html#%E4%BB%8B%E7%BB%8D) |  样式支持sass |
 | [@fesjs/plugin-monaco-editor](https://winixt.gitee.io/fesjs/zh/reference/plugin/plugins/editor.html#%E4%BB%8B%E7%BB%8D) | 提供代码编辑器能力，  基于`monaco-editor`（VS Code使用的代码编辑器） |
+| [@fesjs/plugin-windicss](https://winixt.gitee.io/fesjs/zh/reference/plugin/plugins/windicss.html) | 基于 `windicss`，提供原子化 CSS 能力 |
+
 
 ## 像数 1, 2, 3 一样容易
 使用 `yarn`：
