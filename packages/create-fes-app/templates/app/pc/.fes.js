@@ -5,12 +5,13 @@ export default {
     publicPath: './',
     access: {
         roles: {
-            admin: ["/", "/onepiece"]
+            admin: ["*"],
+            manager: ["/"]
         }
     },
     layout: {
         title: "Fes.js",
-        footer: 'Created by MumbelFe',
+        footer: 'Created by MumbleFe',
         multiTabs: false,
         menus: [{
             name: 'index'

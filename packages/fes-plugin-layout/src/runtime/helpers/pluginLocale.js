@@ -2,7 +2,7 @@ import { unref, computed } from 'vue';
 import { plugin } from '@@/core/coreExports';
 
 
-const transTitle = (name) => {
+export const transTitle = (name) => {
     const sharedLocale = plugin.getShared('locale');
     if (sharedLocale) {
         const { t } = sharedLocale.useI18n();
