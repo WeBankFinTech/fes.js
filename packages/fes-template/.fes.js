@@ -33,7 +33,7 @@ export default {
     layout: {
         title: "Fes.js",
         footer: "Created by MumbleFe",
-        multiTabs: false,
+        multiTabs: true,
         navigation: "mixin",
         theme: 'light',
         menus: [
