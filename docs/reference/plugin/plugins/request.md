@@ -41,7 +41,10 @@ export default {
 
     `base` 接口前缀。 
 
-⚠️警告，这个字段将在下个版本废弃，推荐使用 [axios baseURL](https://github.com/axios/axios)。
+::: warning 即将废弃
+这个字段将在下个版本废弃，推荐使用 [axios baseURL](https://github.com/axios/axios)。
+:::
+
 ### 运行时配置
 
 在 `app.js` 中进行运行时配置。
@@ -139,22 +142,12 @@ request('/api/login', {
 })
 ```
 
-### 请求节流
+### 请求节流(即将废弃)
 
-```js
-import {request} from '@fesjs/fes';
 
-request('/api/login', {
-    username: 'robby',
-    password: '123456'
-}, {
-    throttle: 1000, // 1 秒内只能发起一次请求
-}).then((res) => {
-    // do something
-}).catch((err) => {
-    // 处理异常
-})
-```
+::: warning 即将废弃
+因为 request 的请求总会有一个 promise 结果，要么成功，要么失败，和防抖、节流的语义不一致，防抖、节流只是函数的不执行
+:::
 
 ### 请求缓存
 
