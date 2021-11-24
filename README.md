@@ -1,7 +1,7 @@
 简体中文 | [English](./README.en-US.md)
 
 <p align="center">
-  <a href="./">
+  <a href="/">
     <img alt="fes.js" width="250" src="https://i.loli.net/2021/03/12/Vb4LKc5gaHUfOwB.png">
   </a>
 </p>
