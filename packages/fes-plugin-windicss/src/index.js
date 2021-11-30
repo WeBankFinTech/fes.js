@@ -7,6 +7,9 @@ export default (api) => {
     api.describe({
         key: 'windicss',
         config: {
+            schema(joi) {
+                return joi.object();
+            },
             default: {}
         }
     });
