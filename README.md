@@ -1,7 +1,7 @@
 简体中文 | [English](./README.en-US.md)
 
 <p align="center">
-  <a href="https://github.com/WeBankFinTech/fes.js">
+  <a href="../../">
     <img alt="fes.js" width="250" src="https://i.loli.net/2021/03/12/Vb4LKc5gaHUfOwB.png">
   </a>
 </p>
@@ -10,14 +10,14 @@
 
 一个优秀的前端解决方案
 
-[![GitHub issues](https://img.shields.io/github/issues/WeBankFinTech/fes.js.svg?style=flat-square)](https://github.com/WeBankFinTech/fes.js/issues)
+[![GitHub issues](https://img.shields.io/github/issues/WeBankFinTech/fes.js.svg?style=flat-square)](../../issues)
 [![MIT](https://img.shields.io/dub/l/vibe-d.svg?style=flat-square)](http://opensource.org/licenses/MIT)
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](https://github.com/WeBankFinTech/fes.js/pulls)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](../../pulls)
 
 </div>
 
 - 使用文档 - [https://winixt.gitee.io/fesjs/zh/](https://winixt.gitee.io/fesjs/zh/)
-- 更新日志 - [https://github.com/WeBankFinTech/fes.js/blob/master/CHANGELOG.md](https://github.com/WeBankFinTech/fes.js/blob/master/CHANGELOG.md)
+- 更新日志 - [CHANGELOG.md](./CHANGELOG.md)
 
 # 痛点
 在开发一个前端项目之前，我们可能需要做如下准备工作：
@@ -34,7 +34,7 @@
 
 
 ## Fes.js 是什么？
-Fes.js 是一个优秀的前端应用解决方案。Fes.js 以 Vue 3.0 和路由为基础，同时支持配置式路由和约定式路由，并以此进行功能扩展。配以覆盖编译时和运行时生命周期完善的插件体系，支持各种功能扩展和业务需求。     
+Fes.js 是一个好用的前端应用解决方案。提供覆盖编译构建到代码运行的每个生命周期的插件体系，支持各种功能扩展和业务需求。以 路由为基础，同时支持配置式路由和约定式路由，保证路由的功能完备。整体上以约定、配置化、组件化的设计思想，让用户仅仅关心用组件搭建页面内容。基于Vue.js3.0，充分利用Vue丰富的生态。技术曲线平缓，上手也简单。在经过多个项目中打磨后趋于稳定。     
 
 它主要具备以下功能：
 - 🚀  __快速__ ，内置了路由、开发、构建等，并且提供测试、布局、权限、国际化、状态管理、API请求、数据字典、SvgIcon等插件，可以满足大部分日常开发需求。  
@@ -95,7 +95,7 @@ npm run dev
 
 | Github Issue  | 微信群 | Fes.js开源运营小助手 |
 | --- | --- | --- |
-| [@fesjs/fes.js/issues](https://github.com/WeBankFinTech/fes.js/issues) | <img src="https://i.loli.net/2020/09/11/2XhKtPZd6NFVbDE.png" width="250" /> | <img src="https://i.loli.net/2020/09/16/sxwr62CKhmYOUyV.jpg" height="250"/> |
+| [@fesjs/fes.js/issues](../../issues) | <img src="https://i.loli.net/2020/09/11/2XhKtPZd6NFVbDE.png" width="250" /> | <img src="https://i.loli.net/2020/09/16/sxwr62CKhmYOUyV.jpg" height="250"/> |
 
 
 ## 参与共建
@@ -108,7 +108,7 @@ npm run dev
 4. 推送本地到服务器分支: `git push origin my-new-feature`
 5. 创建一个PR
 
-如果是发现Bug或者期望添加新功能，请提交[issue](https://github.com/WeBankFinTech/fes.js/issues)。
+如果是发现Bug或者期望添加新功能，请提交[issue](../../issues)。
 
 ## 社区活动
 

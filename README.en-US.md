@@ -2,7 +2,7 @@ English | [简体中文](./README.md)
 
 
 <p align="center">
-  <a href="https://github.com/WeBankFinTech/fes.js">
+  <a href="../../">
     <img alt="fes.js" width="250" src="https://i.loli.net/2021/03/12/Vb4LKc5gaHUfOwB.png">
   </a>
 </p>
@@ -11,14 +11,14 @@ English | [简体中文](./README.md)
 
 An excellent front-end solution
 
-[![GitHub issues](https://img.shields.io/github/issues/WeBankFinTech/fes.js.svg?style=flat-square)](https://github.com/WeBankFinTech/fes.js/issues)
+[![GitHub issues](https://img.shields.io/github/issues/WeBankFinTech/fes.js.svg?style=flat-square)](../../issues)
 [![MIT](https://img.shields.io/dub/l/vibe-d.svg?style=flat-square)](http://opensource.org/licenses/MIT)
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](https://github.com/WeBankFinTech/fes.js/pulls)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](../../pulls)
 
 </div>
 
 - document - [https://winixt.gitee.io/fesjs/zh/](https://winixt.gitee.io/fesjs/zh/)
-- changelog - [https://github.com/WeBankFinTech/fes.js/blob/master/CHANGELOG.md](https://github.com/WeBankFinTech/fes.js/blob/master/CHANGELOG.md)
+- changelog - [CHANGELOG.md](./CHANGELOG.md)
 
 # Pain points
 Before developing a front-end project, we may need to do the following preparations：
@@ -94,14 +94,14 @@ npm run dev
 
 | Github Issue  | WeChat group | Fes.js开源运营小助手 |
 | --- | --- | --- |
-| [@fesjs/fes.js/issues](https://github.com/WeBankFinTech/fes.js/issues) | <img src="https://i.loli.net/2020/09/11/2XhKtPZd6NFVbDE.png" width="250" /> | <img src="https://i.loli.net/2020/09/16/sxwr62CKhmYOUyV.jpg" height="250"/> |
+| [@fesjs/fes.js/issues](../../issues) | <img src="https://i.loli.net/2020/09/11/2XhKtPZd6NFVbDE.png" width="250" /> | <img src="https://i.loli.net/2020/09/16/sxwr62CKhmYOUyV.jpg" height="250"/> |
 
 
 ## Contributing
 
 Pull requests and stars are always welcome.
 
-For bugs and feature requests, [please create an issue](https://github.com/WeBankFinTech/fes.js/issues).
+For bugs and feature requests, [please create an issue](../../issues).
 
 1. Fork it!
 2. Create your feature branch: `git checkout -b my-new-feature`
