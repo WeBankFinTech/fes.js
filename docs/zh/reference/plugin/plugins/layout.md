@@ -179,7 +179,7 @@ export default {
 
 - **详情**：菜单配置，子项具体配置如下：
   
-  - **name**：菜单的名称。通过匹配 `name` 和路由元信息 [meta](http://localhost:8080/zh/guide/route.html#%E6%89%A9%E5%B1%95%E8%B7%AF%E7%94%B1%E5%85%83%E4%BF%A1%E6%81%AF) 中的 `name`，把菜单和路由关联起来，然后使用路由元信息补充菜单配置，比如 `title`、`path` 等。
+  - **name**：菜单的名称。通过匹配 `name` 和路由元信息 [meta](../../../guide/route.md#扩展路由元信息) 中的 `name`，把菜单和路由关联起来，然后使用路由元信息补充菜单配置，比如 `title`、`path` 等。
   
   - **path**：菜单的路径，可配置第三方地址。
   
