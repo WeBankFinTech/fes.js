@@ -59,7 +59,7 @@ export const request = {
     closeResDataCheck: false,
     // 请求拦截器
     requestInterceptors: [],
-    // 相应拦截器
+    // 响应拦截器
     responseInterceptors: [],
     // 错误处理
     // 内部以 reponse.data.code === '0' 判断请求是否成功
