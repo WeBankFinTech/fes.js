@@ -53,7 +53,8 @@ export default {
 export const request = {
     // 格式化 response.data (只有 response.data 类型为 object 才会调用)
     responseDataAdaptor: (data) => {
-
+        data.code = data.code === '200' ? '0' : data.code;
+        return data;
     },
     // 关闭 response data 校验（只判断 xhr status）
     closeResDataCheck: false,
