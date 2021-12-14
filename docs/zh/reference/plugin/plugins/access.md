@@ -195,7 +195,7 @@ console.log(access.isDataReady())
     - Promise，Promise resolve 的结果应对应着 `roles` 配置对象中的 `key`。
 ```js
 import { access } from '@fesjs/fes';
-access.setRole(['admin'])
+access.setRole('admin')
 ```
 
 #### access.setAccess
