@@ -53,6 +53,46 @@ export default {
 </script>
 ```
 
+### @@initialState
+在`beforeRender`的返回的内容会写入`@@initialState`
+```js
+export const beforeRender = {
+    loading: <PageLoading />,
+    action() {
+        const { setRole } = access;
+        return new Promise((resolve) => {
+            setTimeout(() => {
+                setRole('admin');
+                // 初始化应用的全局状态，可以通过 useModel('@@initialState') 获取，具体用法看@/components/UserCenter 文件
+                resolve({
+                    userName: 'harrywan'
+                });
+            }, 1000);
+        });
+    }
+};
+````
+然后我们可以在其他组件中使用：
+```vue
+<template>
+    <div class="right">{{initialState.userName}}</div>
+</template>
+<script>
+import { useModel } from '@fesjs/fes';
+
+export default {
+    setup() {
+        const initialState = useModel('@@initialState');
+        return {
+            initialState
+        };
+    }
+};
+</script>
+<style scope>
+</style>
+```
+
 
 ## API
 
