@@ -4,7 +4,10 @@ import {
 } from 'path';
 import { lodash } from '@fesjs/utils';
 import { parse } from '@vue/compiler-sfc';
+import { Logger } from '@fesjs/compiler';
 import { runtimePath } from '../../../utils/constants';
+
+const logger = new Logger('fes:router');
 
 //   pages
 //  ├── index.vue         # 根路由页面 路径 /
@@ -18,7 +21,7 @@ import { runtimePath } from '../../../utils/constants';
 
 const isProcessFile = function (path) {
     const ext = extname(path);
-    return statSync(path).isFile() && ['.vue'].includes(ext);
+    return statSync(path).isFile() && ['.vue', '.jsx'].includes(ext);
 };
 
 const isProcessDirectory = function (path, item) {
@@ -68,6 +71,8 @@ const getRoutePath = function (parentRoutePath, fileName) {
     return posix.join(parentRoutePath, fileName);
 };
 
+let cacheGenRoutes = {};
+
 // TODO 约定 layout 目录作为布局文件夹，
 const genRoutes = function (parentRoutes, path, parentRoutePath, config) {
     const dirList = readdirSync(path);
@@ -91,6 +96,12 @@ const genRoutes = function (parentRoutes, path, parentRoutePath, config) {
             const fileName = basename(item, ext);
             // 路由的path
             const routePath = getRoutePath(parentRoutePath, fileName);
+            if (cacheGenRoutes[routePath]) {
+                logger.warn(`[WARNING]: The file path: ${routePath}(.jsx/.vue) conflict in router，will only use ${routePath}.jsx，please remove one of.`);
+                return;
+            }
+            cacheGenRoutes[routePath] = true;
+
             // 路由名称
             const routeName = getRouteName(parentRoutePath, fileName);
             const componentPath = getComponentPath(parentRoutePath, fileName, config);
@@ -172,6 +183,7 @@ const getRoutes = function ({ config, absPagesPath }) {
     if (configRoutes && configRoutes.length > 0) return configRoutes;
 
     const routes = [];
+    cacheGenRoutes = {};
     genRoutes(routes, absPagesPath, '/', config);
     rank(routes);
     return routes;
