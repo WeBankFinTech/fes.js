@@ -4,14 +4,9 @@ import { optimize } from 'svgo';
 
 const presetDefault = [
     {
-        name: 'preset-default',
-        params: {
-            overrides: {
-                sortAttrs: true,
-                removeDimensions: true
-            }
-        }
+        name: 'preset-default'
     },
+    'cleanupListOfValues',
     {
         name: 'removeAttrs',
         params: {
