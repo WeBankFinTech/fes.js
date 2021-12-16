@@ -70,7 +70,7 @@
 
 <script>
 import { ref, computed } from 'vue';
-import { useRoute } from '@@/core/coreExports';
+import { useRoute, plugin, ApplyPluginsType } from '@@/core/coreExports';
 import Layout from 'ant-design-vue/lib/layout';
 import 'ant-design-vue/lib/layout/style/css';
 import Menu from './Menu';
@@ -135,26 +135,30 @@ export default {
     setup(props) {
         const collapsed = ref(false);
         const route = useRoute();
-        const routeLayoutDefault = {
-            side: true,
-            top: true,
-            logo: true
-        };
+        const runtimeConfig = plugin.applyPlugins({
+            key: 'layout',
+            type: ApplyPluginsType.modify,
+            initialValue: {
+                side: true,
+                top: true,
+                logo: true
+            }
+        });
         const routeLayout = computed(() => {
             let config;
             // meta 中 layout 默认为 true
             const metaLayoutConfig = route.meta.layout === undefined ? true : route.meta.layout;
             if (typeof metaLayoutConfig === 'boolean') {
-                config = metaLayoutConfig ? routeLayoutDefault : false;
+                config = metaLayoutConfig ? runtimeConfig : false;
             } else if (typeof metaLayoutConfig === 'object') {
-                config = { ...routeLayoutDefault, ...metaLayoutConfig };
+                config = { ...runtimeConfig, ...metaLayoutConfig };
             } else {
                 console.error('[plugin-layout]: meta layout must be object or boolean！');
             }
             // query 中 layout 默认为 false
             const routeQueryLayoutConfig = route.query.layout && JSON.parse(route.query.layout);
             if (typeof routeQueryLayoutConfig === 'boolean') {
-                config = routeQueryLayoutConfig ? routeLayoutDefault : false;
+                config = routeQueryLayoutConfig ? runtimeConfig : false;
             } else if (typeof routeQueryLayoutConfig === 'object') {
                 config = { ...config, ...routeQueryLayoutConfig };
             } else if (routeQueryLayoutConfig !== undefined) {
