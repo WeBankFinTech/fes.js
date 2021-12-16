@@ -109,35 +109,35 @@ export default {
     },
 ```
 
-### footer
+#### footer
 - **类型**：`String`
   
 - **默认值**：`null`
 
 - **详情**：页面底部的文字。
 
-### theme
+#### theme
 - **类型**：`String`
   
 - **默认值**：`dark`
 
 - **详情**：主题，可选有 `dark`、`light`
 
-### navigation
+#### navigation
 - **类型**：`String`
   
 - **默认值**：`side`
 
 - **详情**：页面布局类型，可选有 `side`、 `top`、 `mixin` 
 
-### fixedHeader
+#### fixedHeader
 - **类型**：`Boolean`
   
 - **默认值**：`false`
 
 - **详情**：是否固定头部，不跟随页面滚动。
 
-### fixedSideBar
+#### fixedSideBar
 - **类型**：`Boolean`
   
 - **默认值**：`true`
@@ -211,6 +211,28 @@ export const layout = {
 };
 
 ```
+
+#### top
+- **类型**：`String`
+  
+- **默认值**：`true`
+
+- **详情**：是否显示 top 区域。
+
+#### side
+- **类型**：`String`
+  
+- **默认值**：`true`
+
+- **详情**：是否显示 side 区域。
+
+#### top
+- **类型**：`String`
+  
+- **默认值**：`true`
+
+- **详情**：是否显示 top 区域。
+
 #### customHeader
 - **类型**：Vue Component
   
