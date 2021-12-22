@@ -3,7 +3,7 @@ English | [简体中文](./README.md)
 
 <p align="center">
   <a href="../../">
-    <img alt="fes.js" width="250" src="https://i.loli.net/2021/03/12/Vb4LKc5gaHUfOwB.png">
+    <img alt="fes.js" width="250" src="./images/fes-logo.png">
   </a>
 </p>
 

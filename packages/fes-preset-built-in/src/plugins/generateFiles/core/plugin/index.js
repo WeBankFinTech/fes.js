@@ -3,6 +3,16 @@ import { join } from 'path';
 import { winPath } from '@fesjs/utils';
 import { runtimePath } from '../../../../utils/constants';
 
+function getAppPath(absSrcPath) {
+    for (const suffix of ['.js', '.ts', '.jsm']) {
+        const p = winPath(join(absSrcPath, `app${suffix}`));
+        if (existsSync(p)) {
+            return p;
+        }
+    }
+    return null;
+}
+
 export default function (api) {
     const {
         paths,
@@ -33,12 +43,11 @@ export default function (api) {
                 'onRouterCreated'
             ]
         });
-        const appPath = winPath(join(paths.absSrcPath, 'app.js'));
         const plugins = await api.applyPlugins({
             key: 'addRuntimePlugin',
             type: api.ApplyPluginsType.add,
             initialValue: [
-                existsSync(appPath) && appPath
+                getAppPath(paths.absSrcPath)
             ].filter(Boolean)
         });
         api.writeTmpFile({
