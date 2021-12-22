@@ -44,9 +44,8 @@ export default async ({ api, watch }) => {
             type: api.ApplyPluginsType.add,
             initialValue: [
                 paths.absPagesPath,
-                // 貌似没用到
-                // join(paths.absSrcPath, api.config?.singular ? 'layout' : 'layouts'),
-                join(paths.absSrcPath, 'app.js')
+                join(paths.absSrcPath, 'app.js'),
+                join(paths.absSrcPath, 'app.ts')
             ]
         });
         lodash
