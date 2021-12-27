@@ -1,17 +1,9 @@
-import { readFileSync, existsSync } from 'fs';
+import { readFileSync } from 'fs';
 import { join } from 'path';
 import { winPath } from '@fesjs/utils';
 import { runtimePath } from '../../../../utils/constants';
+import { getAppPath } from '../../../../utils/getAppEntryPath';
 
-function getAppPath(absSrcPath) {
-    for (const suffix of ['.js', '.ts', '.jsm']) {
-        const p = winPath(join(absSrcPath, `app${suffix}`));
-        if (existsSync(p)) {
-            return p;
-        }
-    }
-    return null;
-}
 
 export default function (api) {
     const {
