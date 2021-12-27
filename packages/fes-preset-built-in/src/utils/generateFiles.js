@@ -1,5 +1,5 @@
 import { chokidar, lodash, winPath } from '@fesjs/utils';
-import { join } from 'path';
+import { getAppPath } from './getAppEntryPath';
 
 export default async ({ api, watch }) => {
     const { paths } = api;
@@ -44,8 +44,7 @@ export default async ({ api, watch }) => {
             type: api.ApplyPluginsType.add,
             initialValue: [
                 paths.absPagesPath,
-                join(paths.absSrcPath, 'app.js'),
-                join(paths.absSrcPath, 'app.ts')
+                getAppPath(paths.absSrcPath)
             ]
         });
         lodash
