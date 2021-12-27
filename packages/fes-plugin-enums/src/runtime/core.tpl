@@ -10,17 +10,17 @@ Object.keys(_ENUMS).forEach(key => {
 /**
  * 获取枚举键值，如不传key，则返回name的枚举数组
  * @param {string} name 枚举名称
- * @param {string} key 枚举键名称
+ * @param {string} [key] 枚举键名称
  * @param {{
  *  dir: string
  *  extend: Array<{
  *      key:string
  *      dir:string
  *      transfer: Function
- * }>}} opt 配置项
+ * }>}} [opt] 配置项
  */
 function get(name, key, opt = { dir: 'value', extend: []}) {
-    if (Object.prototype.toString.call(key) === '[object Object]') { 
+    if (Object.prototype.toString.call(key) === '[object Object]') {
         opt = key
         key = null
     }
@@ -33,7 +33,7 @@ function get(name, key, opt = { dir: 'value', extend: []}) {
     } else {
         value = format(list, opt.extend)
     }
-    return typeof value === 'object' ? readonly(value) : value 
+    return typeof value === 'object' ? readonly(value) : value
 }
 
 /**
@@ -86,7 +86,7 @@ function concat(name, _enum, opt = { keyName: '', valueName: '', before: false, 
 
 /**
  * 格式化枚举
- * @param {Array} _enum 枚举数组 
+ * @param {Array} _enum 枚举数组
  * @param {Array<{key:string, dir:string, transfer: Function}>} extend 格式化规则
  */
 function format(_enum = [], extend = []) {
@@ -108,7 +108,7 @@ function format(_enum = [], extend = []) {
 /**
  * 根据dir解析value的属性值
  * @param value
- * @param dir 
+ * @param dir
  */
 function parseValueDir(value, dir='value') {
     if (!['object', 'function'].includes(typeof value) || !value || !dir || dir === 'value') return value
