@@ -1,5 +1,5 @@
 <template>
-    <div class="onepiece">
+    <div class="onepiece m-10px">
         fes h5 & 拉夫德鲁<br />
         <fes-icon :spin="true" class="one-icon" type="smile" @click="clickIcon" />
         <HelloWorld />

@@ -31,7 +31,6 @@
     "vue": "^3.0.5"
   },
   "dependencies": {
-    "qs": "^6.10.2",
     "windicss-webpack-plugin": "^1.6.0"
   }
 }

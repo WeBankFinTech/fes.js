@@ -1,4 +1,4 @@
-// import webpack from 'webpack';
+import qs from 'qs';
 
 export default function createVueWebpackConfig({
     config,
@@ -14,6 +14,16 @@ export default function createVueWebpackConfig({
             ...(config.vueLoader || {})
         })
         .end();
+
+    webpackConfig.module
+        .rule('vue-custom')
+        .resourceQuery((query) => {
+            if (!query) {
+                return false;
+            }
+            const parsed = qs.parse(query.slice(1));
+            return parsed.vue != null;
+        }).use('vue-custom-loader').loader(require.resolve('./pitcher'));
 
     webpackConfig
         .plugin('vue-loader-plugin')
