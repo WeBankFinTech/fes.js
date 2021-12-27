@@ -1,7 +1,7 @@
 <template>
     <a-result status="403" title="403" sub-title="对不起，您没有权限访问此页面。">
         <template #extra>
-            <a-button type="primary" @click="click">上一页</a-button>
+            <f-button type="primary" @click="click">上一页</f-button>
         </template>
     </a-result>
 </template>
@@ -14,13 +14,12 @@
 import { useRouter } from '@@/core/coreExports';
 import Result from 'ant-design-vue/lib/result';
 import 'ant-design-vue/lib/result/style/css';
-import Button from 'ant-design-vue/lib/button';
-import 'ant-design-vue/lib/button/style/css';
+import { FButton } from '@fesjs/fes-design';
 
 export default {
     components: {
         [Result.name]: Result,
-        [Button.name]: Button
+        FButton
     },
     setup() {
         const router = useRouter();

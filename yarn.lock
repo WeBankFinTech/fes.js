@@ -1142,6 +1142,13 @@
   dependencies:
     regenerator-runtime "^0.13.4"
 
+"@babel/runtime@^7.16.3":
+  version "7.16.5"
+  resolved "https://registry.npmmirror.com/@babel/runtime/download/@babel/runtime-7.16.5.tgz#7f3e34bf8bdbbadf03fbb7b1ea0d929569c9487a"
+  integrity sha512-TXWihFIS3Pyv5hzR7j6ihmeLkZfrXGxAr5UfSl8CHf+6q/wpiYDkUau0czckpYG8QmnCIuPpdLtuA9VmuGGyMA==
+  dependencies:
+    regenerator-runtime "^0.13.4"
+
 "@babel/template@^7.0.0", "@babel/template@^7.14.5", "@babel/template@^7.3.3":
   version "7.14.5"
   resolved "http://10.107.103.115:8001/@babel/template/download/@babel/template-7.14.5.tgz#a9bc9d8b33354ff6e55a9c60d1109200a68974f4"
@@ -1392,6 +1399,21 @@
     js-yaml "^3.13.1"
     minimatch "^3.0.4"
     strip-json-comments "^3.1.1"
+
+"@fesjs/fes-design@^0.1.2":
+  version "0.1.2"
+  resolved "https://registry.npmmirror.com/@fesjs/fes-design/download/@fesjs/fes-design-0.1.2.tgz#be1751561f10585bbb95de72e8863072112f640a"
+  integrity sha512-JIUd2uIC0O2E2JCUCm1pxT4ZSQg0z1+rFmtN0zS7OO0usZDKN0T/LSnivDc3K7QSAGMTeOYTgQCb6bLqf8jAfQ==
+  dependencies:
+    "@babel/runtime" "^7.16.3"
+    "@juggle/resize-observer" "^3.3.1"
+    "@popperjs/core" "^2.4.0"
+    "@vue/shared" "^3.2.19"
+    "@vueuse/core" "^6.7.5"
+    async-validator "^4.0.1"
+    lodash-es "^4.17.21"
+    normalize-wheel "^1.0.1"
+    stickybits "^3.7.9"
 
 "@hapi/hoek@^9.0.0":
   version "9.2.0"
@@ -1664,6 +1686,11 @@
     "@types/node" "*"
     "@types/yargs" "^16.0.0"
     chalk "^4.0.0"
+
+"@juggle/resize-observer@^3.3.1":
+  version "3.3.1"
+  resolved "https://registry.npmmirror.com/@juggle/resize-observer/download/@juggle/resize-observer-3.3.1.tgz#b50a781709c81e10701004214340f25475a171a0"
+  integrity sha1-tQp4FwnIHhBwEAQhQ0DyVHWhcaA=
 
 "@lerna/add@4.0.0":
   version "4.0.0"
@@ -2526,6 +2553,11 @@
   resolved "http://10.107.103.115:8001/@polka/url/download/@polka/url-1.0.0-next.17.tgz#25fdbdfd282c2f86ddf3fcefbd98be99cd2627e2"
   integrity sha1-Jf29/SgsL4bd8/zvvZi+mc0mJ+I=
 
+"@popperjs/core@^2.4.0":
+  version "2.11.0"
+  resolved "https://registry.npmmirror.com/@popperjs/core/download/@popperjs/core-2.11.0.tgz#6734f8ebc106a0860dff7f92bf90df193f0935d7"
+  integrity sha512-zrsUxjLOKAzdewIDRWy9nsV1GQsKBCWaGwsZQlCgr6/q+vjyZhFgqedLfFBuI9anTPEUT4APq9Mu0SZBTzIcGQ==
+
 "@rollup/plugin-babel@^5.2.0":
   version "5.3.0"
   resolved "http://10.107.103.115:8001/@rollup/plugin-babel/download/@rollup/plugin-babel-5.3.0.tgz#9cb1c5146ddd6a4968ad96f209c50c62f92f9879"
@@ -3070,6 +3102,11 @@
   resolved "http://10.107.103.115:8001/@vue/shared/download/@vue/shared-3.2.2.tgz#6104185ebd57af5a14ac51c1f491b2205fc24054"
   integrity sha1-YQQYXr1Xr1oUrFHB9JGyIF/CQFQ=
 
+"@vue/shared@^3.2.19":
+  version "3.2.26"
+  resolved "https://registry.npmmirror.com/@vue/shared/download/@vue/shared-3.2.26.tgz#7acd1621783571b9a82eca1f041b4a0a983481d9"
+  integrity sha512-vPV6Cq+NIWbH5pZu+V+2QHE9y1qfuTq49uNWw4f7FDEeZaDU2H2cx5jcUZOAKW7qTrUS4k6qZPbMy1x4N96nbA==
+
 "@vuepress/bundler-webpack@2.0.0-beta.24":
   version "2.0.0-beta.24"
   resolved "http://10.107.103.115:8001/@vuepress/bundler-webpack/download/@vuepress/bundler-webpack-2.0.0-beta.24.tgz#61fd0860568d68ddd9111edb5cc82dfecd3c12d4"
@@ -3342,10 +3379,25 @@
     "@vueuse/shared" "6.0.0-beta.3"
     vue-demi "*"
 
+"@vueuse/core@^6.7.5":
+  version "6.9.2"
+  resolved "https://registry.npmmirror.com/@vueuse/core/download/@vueuse/core-6.9.2.tgz#76b16d01f33cf367dd1a2d7f2e31d106443ceb8a"
+  integrity sha512-FRwl4ccSFuHZBHLGgS9TMv/+Dd6XFaL4o9nph2qtgQIV+z29RBFokw08XjHfykiENRzB01MjYHJ7iRUnsIFQXg==
+  dependencies:
+    "@vueuse/shared" "6.9.2"
+    vue-demi "*"
+
 "@vueuse/shared@6.0.0-beta.3":
   version "6.0.0-beta.3"
   resolved "http://10.107.103.115:8001/@vueuse/shared/download/@vueuse/shared-6.0.0-beta.3.tgz#2e52a1e573983d3b806054948b0eca01ced7c504"
   integrity sha1-LlKh5XOYPTuAYFSUiw7KAc7XxQQ=
+  dependencies:
+    vue-demi "*"
+
+"@vueuse/shared@6.9.2":
+  version "6.9.2"
+  resolved "https://registry.npmmirror.com/@vueuse/shared/download/@vueuse/shared-6.9.2.tgz#97e4369fa7262ebc96fe1d6e210268f30b037005"
+  integrity sha512-lAiMh6XROs0kSKVd0Yb/6GKoQMxC1fYrFDi6opvQWISPtcqRNluRrQxLUZ3WTI78ovtoKRLktjhkFAtydcfFDg==
   dependencies:
     vue-demi "*"
 
@@ -3948,6 +4000,11 @@ async-validator@^3.3.0:
   version "3.5.2"
   resolved "http://10.107.103.115:8001/async-validator/download/async-validator-3.5.2.tgz#68e866a96824e8b2694ff7a831c1a25c44d5e500"
   integrity sha1-aOhmqWgk6LJpT/eoMcGiXETV5QA=
+
+async-validator@^4.0.1:
+  version "4.0.7"
+  resolved "https://registry.npmmirror.com/async-validator/download/async-validator-4.0.7.tgz?cache=0&sync_timestamp=1634529502627&other_urls=https%3A%2F%2Fregistry.npmmirror.com%2Fasync-validator%2Fdownload%2Fasync-validator-4.0.7.tgz#034a0fd2103a6b2ebf010da75183bec299247afe"
+  integrity sha1-A0oP0hA6ay6/AQ2nUYO+wpkkev4=
 
 async@^2.6.2:
   version "2.6.3"
@@ -8911,7 +8968,7 @@ locate-path@^6.0.0:
   dependencies:
     p-locate "^5.0.0"
 
-lodash-es@^4.17.15:
+lodash-es@^4.17.15, lodash-es@^4.17.21:
   version "4.17.21"
   resolved "http://10.107.103.115:8001/lodash-es/download/lodash-es-4.17.21.tgz#43e626c46e6591b7750beb2b50117390c609e3ee"
   integrity sha1-Q+YmxG5lkbd1C+srUBFzkMYJ4+4=
@@ -9786,6 +9843,11 @@ normalize-url@^6.0.1, normalize-url@^6.1.0:
   version "6.1.0"
   resolved "http://10.107.103.115:8001/normalize-url/download/normalize-url-6.1.0.tgz#40d0885b535deffe3f3147bec877d05fe4c5668a"
   integrity sha1-QNCIW1Nd7/4/MUe+yHfQX+TFZoo=
+
+normalize-wheel@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.npmmirror.com/normalize-wheel/download/normalize-wheel-1.0.1.tgz#aec886affdb045070d856447df62ecf86146ec45"
+  integrity sha1-rsiGr/2wRQcNhWRH32Ls+GFG7EU=
 
 npm-bundled@^1.1.1:
   version "1.1.2"
@@ -12268,6 +12330,11 @@ std-env@^2.2.1:
   integrity sha1-ZtSkpNUiQkLtjkP11lz6kJUhbu4=
   dependencies:
     ci-info "^3.0.0"
+
+stickybits@^3.7.9:
+  version "3.7.9"
+  resolved "https://registry.npmmirror.com/stickybits/download/stickybits-3.7.9.tgz#0e469ffb960e1e661bd308ba4da370dc439902bf"
+  integrity sha1-Dkaf+5YOHmYb0wi6TaNw3EOZAr8=
 
 strict-uri-encode@^2.0.0:
   version "2.0.0"

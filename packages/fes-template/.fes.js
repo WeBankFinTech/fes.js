@@ -34,8 +34,8 @@ export default {
         title: "Fes.js",
         footer: "Created by MumbleFe",
         multiTabs: true,
-        navigation: "mixin",
-        theme: 'light',
+        navigation: "side",
+        theme: 'dark',
         menus: [
             {
                 name: "index",
@@ -55,7 +55,7 @@ export default {
                 ],
             },
             {
-                // name: "setting",
+                name: "setting",
                 title: "setting",
                 children: [
                     {
