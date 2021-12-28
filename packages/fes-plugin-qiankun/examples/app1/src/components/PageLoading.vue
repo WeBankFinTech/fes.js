@@ -1,14 +1,15 @@
 <template>
     <div class="page-loading">
-        <Spin size="large" />
+        <f-spin size="large" stroke="#5384ff" />
     </div>
 </template>
 <script>
-import Spin from 'ant-design-vue/lib/spin';
-import 'ant-design-vue/lib/spin/style/css';
+import { FSpin } from '@fesjs/fes-design';
 
 export default {
-    components: { Spin },
+    components: {
+        FSpin
+    },
     setup() {
         return {
         };

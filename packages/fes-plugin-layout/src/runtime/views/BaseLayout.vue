@@ -21,7 +21,16 @@
                     :inverted="theme === 'dark'"
                 />
             </f-aside>
-            <f-layout>
+            <f-layout
+                :fixed="fixedSideBar"
+                :style="{
+                    left: fixedSideBar
+                        ? collapsed
+                            ? '48px'
+                            : `${sideWidth}px`
+                        : 'auto'
+                }"
+            >
                 <f-header
                     v-if="routeLayout.top"
                     class="layout-header"
@@ -34,13 +43,18 @@
                         <slot name="locale"></slot>
                     </template>
                 </f-header>
-                <f-main class="layout-main">
-                    <MultiTabProvider v-if="multiTabs" />
-                    <router-view v-else></router-view>
-                </f-main>
-                <f-footer v-if="footer" class="layout-footer">
-                    {{footer}}
-                </f-footer>
+                <f-layout
+                    :embedded="!multiTabs"
+                    :fixed="currentFixedHeader"
+                    :style="{ top: currentFixedHeader ? '54px' : 'auto' }"
+                >
+                    <f-main class="layout-main">
+                        <MultiTabProvider :multiTabs="multiTabs" />
+                    </f-main>
+                    <f-footer v-if="footer" class="layout-footer">
+                        {{footer}}
+                    </f-footer>
+                </f-layout>
             </f-layout>
         </template>
         <template v-if="navigation === 'top'">
@@ -67,19 +81,25 @@
                     <slot name="locale"></slot>
                 </template>
             </f-header>
-            <f-main class="layout-main">
-                <MultiTabProvider v-if="multiTabs" />
-                <router-view v-else></router-view>
-            </f-main>
-            <f-footer v-if="footer" class="layout-footer">
-                {{footer}}
-            </f-footer>
+            <f-layout
+                :embedded="!multiTabs"
+                :fixed="currentFixedHeader"
+                :style="{ top: currentFixedHeader ? '54px' : 'auto' }"
+            >
+                <f-main class="layout-main">
+                    <MultiTabProvider :multiTabs="multiTabs" />
+                </f-main>
+                <f-footer v-if="footer" class="layout-footer">
+                    {{footer}}
+                </f-footer>
+            </f-layout>
         </template>
         <template v-if="navigation === 'mixin'">
             <f-header
                 v-if="routeLayout.top"
                 class="layout-header"
                 :fixed="currentFixedHeader"
+                :inverted="theme === 'dark'"
             >
                 <div v-if="routeLayout.logo" class="layout-logo">
                     <img :src="logo" class="logo-img" />
@@ -92,13 +112,15 @@
                     <slot name="locale"></slot>
                 </template>
             </f-header>
-            <f-layout>
+            <f-layout
+                :fixed="currentFixedHeader"
+                :style="{ top: currentFixedHeader ? '54px' : 'auto' }"
+            >
                 <f-aside
                     v-if="routeLayout.side"
                     v-model:collapsed="collapsed"
                     :fixed="fixedSideBar"
                     collapsible
-                    :inverted="theme === 'dark'"
                     class="layout-aside"
                 >
                     <Menu
@@ -106,13 +128,21 @@
                         :menus="menus"
                         :collapsed="collapsed"
                         mode="vertical"
-                        :inverted="theme === 'dark'"
                     />
                 </f-aside>
-                <f-layout>
+                <f-layout
+                    :embedded="!multiTabs"
+                    :fixed="fixedSideBar"
+                    :style="{
+                        left: fixedSideBar
+                            ? collapsed
+                                ? '48px'
+                                : `${sideWidth}px`
+                            : 'auto'
+                    }"
+                >
                     <f-main class="layout-main">
-                        <MultiTabProvider v-if="multiTabs" />
-                        <router-view v-else></router-view>
+                        <MultiTabProvider :multiTabs="multiTabs" />
                     </f-main>
                     <f-footer v-if="footer" class="layout-footer">
                         {{footer}}
@@ -121,9 +151,7 @@
             </f-layout>
         </template>
     </f-layout>
-    <div v-else class="content-wrapper">
-        <router-view></router-view>
-    </div>
+    <router-view v-else></router-view>
 </template>
 
 <script>
@@ -232,65 +260,30 @@ export default {
         const currentFixedHeader = computed(
             () => props.fixedHeader || props.navigation === 'mixin'
         );
-        const asideFixedStyle = computed(() => {
-            if (
-                routeLayout.value.top
-                && props.navigation === 'mixin'
-                && props.fixedSideBar
-            ) {
-                return {
-                    top: '54px'
-                };
-            }
-            return {};
-        });
-
-        // const sideTheme = computed(() => {
-        //     if (props.navigation === 'mixin') {
-        //         return 'light';
-        //     }
-        //     return props.theme;
-        // });
-
-        // const headerFixedStyle = computed(() => {
-        //     if (!currentFixedHeader.value) {
-        //         return {};
-        //     }
-        //     if (props.navigation === 'side') {
-        //         return {
-        //             left: `${props.sideWidth}px`,
-        //             width: `calc(100% - ${props.sideWidth}px)`
-        //         };
-        //     }
-        //     return {
-        //         left: 0,
-        //         width: '100%'
-        //     };
-        // });
         return {
             route,
             routeLayout,
             collapsed,
-            currentFixedHeader,
-            asideFixedStyle
-            // sideTheme,
-            // currentFixedHeader,
-            // siderFixedStuffStyle,
-            // headerFixedStyle
+            currentFixedHeader
         };
     }
 };
 </script>
 <style lang="less" scoped>
 .main-layout {
-    min-height: 100vh;
+    height: 100vh;
     .layout-header {
         display: flex;
+        box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
+        z-index: 1;
+        .layout-menu {
+            border-bottom: none;
+        }
         .layout-logo {
             display: flex;
+            margin: 0 24px;
             justify-content: flex-start;
             align-items: center;
-            min-width: 165px;
             height: 100%;
             overflow: hidden;
             transition: all 0.3s;
@@ -311,6 +304,8 @@ export default {
         }
     }
     .fes-layout-aside {
+        z-index: 1;
+        box-shadow: 2px 0 8px 0 rgba(29, 35, 41, 5%);
         .layout-logo {
             height: 32px;
             margin: 16px;
@@ -318,7 +313,7 @@ export default {
             justify-content: flex-start;
             align-items: center;
             .logo-img {
-                height: 32px;
+                height: 36px;
                 width: auto;
             }
             .logo-name {
@@ -335,6 +330,10 @@ export default {
         &.is-collapsed {
             .layout-logo {
                 justify-content: center;
+                .logo-img {
+                    width: 40px;
+                    height: auto;
+                }
                 .logo-name {
                     display: none;
                 }
@@ -342,11 +341,8 @@ export default {
         }
     }
     .layout-footer {
+        padding: 16px;
         text-align: center;
     }
-}
-
-.content-wrapper {
-    position: relative;
 }
 </style>

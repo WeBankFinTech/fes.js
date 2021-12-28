@@ -1,53 +1,56 @@
 <template>
-    <a-tabs
-        :activeKey="route.path"
-        class="layout-content-tabs"
-        hide-add
-        type="editable-card"
-        @tabClick="switchPage"
-        @edit="onEdit"
-    >
-        <a-tab-pane
-            v-for="page in pageList"
-            :key="page.path"
-            :closable="route.path !== page.path"
+    <template v-if="multiTabs">
+        <a-tabs
+            :activeKey="route.path"
+            class="layout-content-tabs"
+            hide-add
+            type="editable-card"
+            @tabClick="switchPage"
+            @edit="onEdit"
         >
-            <template #tab>
-                {{page.title}}
-                <ReloadOutlined
-                    v-show="route.path === page.path"
-                    class="layout-tabs-close-icon"
-                    @click="reloadPage(page.path)"
-                />
-            </template>
-        </a-tab-pane>
-        <template #tabBarExtraContent>
-            <a-dropdown>
-                <div class="layout-tabs-more-icon">
-                    <MoreOutlined />
-                </div>
-                <template #overlay>
-                    <a-menu @click="handlerMore">
-                        <a-menu-item key="closeOtherPage">
-                            <a href="javascript:;">关闭其他</a>
-                        </a-menu-item>
-                        <a-menu-item key="reloadPage">
-                            <a href="javascript:;">刷新当前页</a>
-                        </a-menu-item>
-                    </a-menu>
+            <a-tab-pane
+                v-for="page in pageList"
+                :key="page.path"
+                :closable="route.path !== page.path"
+            >
+                <template #tab>
+                    {{page.title}}
+                    <ReloadOutlined
+                        v-show="route.path === page.path"
+                        class="layout-tabs-close-icon"
+                        @click="reloadPage(page.path)"
+                    />
                 </template>
-            </a-dropdown>
-        </template>
-    </a-tabs>
-    <router-view v-slot="{ Component, route }">
-        <keep-alive>
-            <component :is="Component" :key="getPageKey(route)" />
-        </keep-alive>
-    </router-view>
+            </a-tab-pane>
+            <template #tabBarExtraContent>
+                <a-dropdown>
+                    <div class="layout-tabs-more-icon">
+                        <MoreOutlined />
+                    </div>
+                    <template #overlay>
+                        <a-menu @click="handlerMore">
+                            <a-menu-item key="closeOtherPage">
+                                <a href="javascript:;">关闭其他</a>
+                            </a-menu-item>
+                            <a-menu-item key="reloadPage">
+                                <a href="javascript:;">刷新当前页</a>
+                            </a-menu-item>
+                        </a-menu>
+                    </template>
+                </a-dropdown>
+            </template>
+        </a-tabs>
+        <router-view v-slot="{ Component, route }">
+            <keep-alive>
+                <component :is="Component" :key="getPageKey(route)" />
+            </keep-alive>
+        </router-view>
+    </template>
+    <router-view v-else></router-view>
 </template>
 <script>
 import {
-    computed, onMounted, reactive, unref, ref
+    computed, onMounted, unref, ref
 } from 'vue';
 import Tabs from 'ant-design-vue/lib/tabs';
 import Dropdown from 'ant-design-vue/lib/dropdown';
@@ -71,17 +74,20 @@ export default {
         ReloadOutlined,
         MoreOutlined
     },
+    props: {
+        multiTabs: Boolean
+    },
     setup() {
         const route = useRoute();
         const router = useRouter();
         const pageList = ref([]);
 
-        const createPage = (route) => {
-            const title = route.meta.title;
+        const createPage = (_route) => {
+            const title = _route.meta.title;
             return {
-                path: route.path,
-                route,
-                name: route.meta.name,
+                path: _route.path,
+                route: _route,
+                name: _route.meta.name,
                 title: computed(() => transTitle(title)),
                 key: getKey()
             };

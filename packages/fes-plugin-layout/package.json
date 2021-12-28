@@ -33,7 +33,7 @@
     "@ant-design/icons-vue": "^6.0.0",
     "ant-design-vue": "^2.2.0",
     "@fesjs/fes": "^2.0.0",
-    "@fesjs/fes-design": "^0.1.2",
+    "@fesjs/fes-design": "^0.1.7",
     "vue": "^3.0.5"
   }
 }

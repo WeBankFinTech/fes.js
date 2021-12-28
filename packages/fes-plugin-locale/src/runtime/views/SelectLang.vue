@@ -1,5 +1,5 @@
 <template>
-    <FTooltip v-model="isOpened">
+    <FTooltip v-model="isOpened" popperClass="lang-popper" mode="popover">
         <div class="lang-icon">
             <GlobalOutlined />
         </div>
@@ -61,8 +61,13 @@ export default {
     }
 };
 </script>
-
+<style>
+.fes-tooltip.fes-tooltip-popover.lang-popper {
+    padding: 0;
+}
+</style>
 <style lang="less" scoped>
+
 .lang-icon {
     margin: 0 8px;
     padding: 0 4px;
@@ -70,6 +75,7 @@ export default {
 }
 .lang-container {
     width: 180px;
+    background: #ffffff;
     .lang-option {
         display: flex;
         align-items: center;

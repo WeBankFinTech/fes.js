@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="page">
         home
     </div>
 </template>
@@ -20,5 +20,8 @@ export default {
 };
 </script>
 
-<style module>
+<style>
+.page {
+    min-height: 100vh;
+}
 </style>

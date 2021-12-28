@@ -59,7 +59,7 @@
     "@fesjs/plugin-sass": "^2.0.0",
     "@fesjs/plugin-monaco-editor": "^2.0.0-beta.0",
     "@fesjs/plugin-windicss": "^2.0.0",
-    "@fesjs/fes-design": "^0.1.2",
+    "@fesjs/fes-design": "^0.1.7",
     "ant-design-vue": "^2.2.0",
     "vue": "^3.0.5",
     "vuex": "^4.0.0"
