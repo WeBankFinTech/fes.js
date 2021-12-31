@@ -1,4 +1,3 @@
-import * as allIcons from '@ant-design/icons-vue';
 
 const matchName = (config, name) => {
     let res = {};
@@ -41,17 +40,10 @@ export const fillMenuByRoute = (menuConfig, routeConfig, dep = 0) => {
                 const icon = menu.icon;
                 const urlReg = /^((https?|ftp|file):\/\/)?([\da-z.-]+)\.([a-z.]{2,6})([/\w .-]*)*\/?$/;
                 if (typeof icon === 'string' && !((urlReg.test(icon) || icon.includes('.svg')))) {
-                    if (!allIcons[icon]) {
-                        menu.icon = {
-                            type: 'icon',
-                            name: `${icon.replace(icon[0], icon[0].toUpperCase())}Outlined`
-                        };
-                    } else {
-                        menu.icon = {
-                            type: 'icon',
-                            name: icon
-                        };
-                    }
+                    menu.icon = {
+                        type: 'icon',
+                        name: icon
+                    };
                 }
             }
             if (menu.children && menu.children.length > 0) {

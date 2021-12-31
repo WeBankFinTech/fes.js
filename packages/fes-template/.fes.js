@@ -33,8 +33,8 @@ export default {
     layout: {
         title: "Fes.js",
         footer: "Created by MumbleFe",
-        multiTabs: true,
-        navigation: "top",
+        multiTabs: false,
+        navigation: "side",
         theme: 'dark',
         menus: [
             {
@@ -43,7 +43,7 @@ export default {
             },
             {
                 name: "onepiece",
-                icon: "user",
+                icon: "UserOutlined",
                 path: "https://www.baidu.com",
             },
             {
@@ -84,9 +84,6 @@ export default {
         strict: true,
     },
     dynamicImport: true,
-    extraBabelPlugins: [
-        ['import', { libraryName: 'ant-design-vue', libraryDirectory: 'es', style: 'css' }, 'ant-design-vue'],
-    ],
     monacoEditor: {
         languages: ['javascript', 'typescript', 'html', 'json']
     }

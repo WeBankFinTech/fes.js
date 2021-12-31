@@ -1,16 +1,18 @@
 <template>
     <template v-if="multiTabs">
-        <a-tabs
-            :activeKey="route.path"
+        <FTabs
+            :modelValue="route.path"
+            closable
+            :tabsPadding="24"
+            type="card"
             class="layout-content-tabs"
-            hide-add
-            type="editable-card"
-            @tabClick="switchPage"
-            @edit="onEdit"
+            @close="handleCloseTab"
+            @update:modelValue="switchPage"
         >
-            <a-tab-pane
+            <FTabPane
                 v-for="page in pageList"
                 :key="page.path"
+                :value="page.path"
                 :closable="route.path !== page.path"
             >
                 <template #tab>
@@ -21,25 +23,13 @@
                         @click="reloadPage(page.path)"
                     />
                 </template>
-            </a-tab-pane>
-            <template #tabBarExtraContent>
-                <a-dropdown>
-                    <div class="layout-tabs-more-icon">
-                        <MoreOutlined />
-                    </div>
-                    <template #overlay>
-                        <a-menu @click="handlerMore">
-                            <a-menu-item key="closeOtherPage">
-                                <a href="javascript:;">关闭其他</a>
-                            </a-menu-item>
-                            <a-menu-item key="reloadPage">
-                                <a href="javascript:;">刷新当前页</a>
-                            </a-menu-item>
-                        </a-menu>
-                    </template>
-                </a-dropdown>
+            </FTabPane>
+            <template #suffix>
+                <FDropdown arrow :options="actions" @click="handlerMore">
+                    <MoreOutlined />
+                </FDropdown>
             </template>
-        </a-tabs>
+        </FTabs>
         <router-view v-slot="{ Component, route }">
             <keep-alive>
                 <component :is="Component" :key="getPageKey(route)" />
@@ -52,13 +42,8 @@
 import {
     computed, onMounted, unref, ref
 } from 'vue';
-import Tabs from 'ant-design-vue/lib/tabs';
-import Dropdown from 'ant-design-vue/lib/dropdown';
-import Menu from 'ant-design-vue/lib/menu';
-import 'ant-design-vue/lib/menu/style/css';
-import 'ant-design-vue/lib/dropdown/style/css';
-import 'ant-design-vue/lib/tabs/style/css';
-import { ReloadOutlined, MoreOutlined } from '@ant-design/icons-vue';
+import { FTabs, FTabPane, FDropdown } from '@fesjs/fes-design';
+import { ReloadOutlined, MoreOutlined } from '@fesjs/fes-design/icon';
 import { useRouter, useRoute } from '@@/core/coreExports';
 import { transTitle } from '../helpers/pluginLocale';
 
@@ -66,11 +51,9 @@ let i = 0;
 const getKey = () => ++i;
 export default {
     components: {
-        [Dropdown.name]: Dropdown,
-        [Menu.name]: Menu,
-        [Menu.Item.name]: Menu.Item,
-        [Tabs.name]: Tabs,
-        [Tabs.TabPane.name]: Tabs.TabPane,
+        FTabs,
+        FTabPane,
+        FDropdown,
         ReloadOutlined,
         MoreOutlined
     },
@@ -81,6 +64,16 @@ export default {
         const route = useRoute();
         const router = useRouter();
         const pageList = ref([]);
+        const actions = [
+            {
+                value: 'closeOtherPage',
+                label: '关闭其他'
+            },
+            {
+                value: 'reloadPage',
+                label: '刷新当前页'
+            }
+        ];
 
         const createPage = (_route) => {
             const title = _route.meta.title;
@@ -116,14 +109,12 @@ export default {
                 });
             }
         };
-        const onEdit = (targetKey, action) => {
-            if (action === 'remove') {
-                const selectedPage = findPage(targetKey);
-                const list = [...pageList.value];
-                const index = list.indexOf(selectedPage);
-                list.splice(index, 1);
-                pageList.value = list;
-            }
+        const handleCloseTab = (targetKey) => {
+            const selectedPage = findPage(targetKey);
+            const list = [...pageList.value];
+            const index = list.indexOf(selectedPage);
+            list.splice(index, 1);
+            pageList.value = list;
         };
         const reloadPage = (path) => {
             const selectedPage = findPage(path || unref(route.path));
@@ -142,7 +133,7 @@ export default {
             }
             return '';
         };
-        const handlerMore = ({ key }) => {
+        const handlerMore = (key) => {
             switch (key) {
                 case 'closeOtherPage':
                     closeOtherPage();
@@ -160,7 +151,8 @@ export default {
             reloadPage,
             switchPage,
             handlerMore,
-            onEdit
+            handleCloseTab,
+            actions
         };
     }
 };
@@ -169,28 +161,22 @@ export default {
 .layout-content-tabs {
     background: rgb(255, 255, 255);
     margin: 0px;
-    padding-top: 6px;
+    padding: 8px 0;
     width: 100%;
-    .ant-tabs-nav-container {
-        padding-left: 16px;
+    .fes-tabs-tab-label {
+        align-items: center;
+    }
+    .fes-tabs-tab-pane-wrapper {
+        display: none;
+    }
+    .fes-tabs-nav-suffix {
+        display: flex;
+        flex-direction: row-reverse;
+        align-items: center;
+        padding: 8px 16px;
     }
     .layout-tabs-close-icon {
-        vertical-align: middle;
-        color: rgba(0, 0, 0, 0.45);
-        font-size: 12px;
         margin-left: 6px;
-        margin-top: -2px;
-        &:hover {
-            color: rgba(0, 0, 0, 0.8);
-        }
-    }
-    .layout-tabs-more-icon {
-        margin-right: 8px;
-        padding: 0 4px;
-        color: rgba(0, 0, 0, 0.45);
-        &:hover {
-            color: rgba(0, 0, 0, 0.8);
-        }
     }
 }
 </style>
