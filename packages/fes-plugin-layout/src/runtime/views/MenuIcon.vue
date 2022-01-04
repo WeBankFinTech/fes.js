@@ -33,7 +33,7 @@ export default {
             if (AText.value) {
                 return (
                     <span
-                        className={'fes-layout-icon'}
+                        class={'fes-layout-icon'}
                         innerHTML={AText.value}
                     ></span>
                 );
