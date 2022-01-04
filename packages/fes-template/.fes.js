@@ -15,7 +15,7 @@ export default {
     access: {
         roles: {
             admin: ['*'],
-            menuTest: ['/']
+            menuTest: ['/','/menuTest']
         }
     },
     request: {
@@ -34,7 +34,7 @@ export default {
         title: 'Fes.js',
         footer: 'Created by MumbleFE',
         multiTabs: false,
-        navigation: 'side',
+        navigation: 'mixin',
         theme: 'dark',
         menus: [
             {
@@ -53,6 +53,22 @@ export default {
                 icon: 'UserOutlined',
                 path: 'https://www.baidu.com'
             },
+            {
+                title: '菜单权限测试', 
+                children: [
+                    {
+                        title: '子菜单',
+                        path: '/menuTest',
+                    },
+                    {
+                        title: '子菜单a',
+                        path: '/menuTest/a'
+                    },
+                ]
+            }, 
+            {
+                name: 'cssModule'
+            }
         ]
     },
     locale: {

@@ -1,14 +1,8 @@
 <template>
     <div class="page">
-        home
+        menuTest-index
     </div>
 </template>
-<config>
-{
-    "name": "index",
-    "title": "$home"
-}
-</config>
 <script>
 export default {
     components: {
@@ -22,5 +16,6 @@ export default {
 
 <style>
 .page {
+    min-height: 100vh;
 }
 </style>

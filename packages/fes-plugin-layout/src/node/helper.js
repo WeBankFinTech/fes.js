@@ -20,7 +20,7 @@ const matchName = (config, name) => {
 export const fillMenuByRoute = (menuConfig, routeConfig, dep = 0) => {
     dep += 1;
     if (dep > 3) {
-        throw new Error('[plugin-layout]: menu层级不能超出三层！');
+        console.warn('[plugin-layout]: 菜单层级最好不要超出三层！');
     }
     const arr = [];
     if (Array.isArray(menuConfig) && Array.isArray(routeConfig)) {

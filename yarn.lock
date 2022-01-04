@@ -1411,10 +1411,10 @@
     minimatch "^3.0.4"
     strip-json-comments "^3.1.1"
 
-"@fesjs/fes-design@^0.1.9":
-  version "0.1.9"
-  resolved "https://registry.npmmirror.com/@fesjs/fes-design/download/@fesjs/fes-design-0.1.9.tgz#19847f3de343a2cb0f1d77a1df72e0d5c1a7690d"
-  integrity sha512-Z5iE935IeonVw5D1H3Yd/OgUGxT9kpa126bJUL9I/zXRtRzilAhR8N0/Vv1/IASKmEDHdt4plMy8YpFNlfjQVg==
+"@fesjs/fes-design@^0.1.10":
+  version "0.1.10"
+  resolved "https://registry.npmmirror.com/@fesjs/fes-design/download/@fesjs/fes-design-0.1.10.tgz#b7caaec676fcd1b2f86f5626b8b575f8d899b0c8"
+  integrity sha512-VEt3gA6ExM7WRhXE1k98Ufgee8h9tTL6nqJOItqHPB0jEcakW5z/r0tSByJND4es7zthwMUihHBzccwvjOVBCQ==
   dependencies:
     "@babel/runtime" "^7.16.3"
     "@juggle/resize-observer" "^3.3.1"

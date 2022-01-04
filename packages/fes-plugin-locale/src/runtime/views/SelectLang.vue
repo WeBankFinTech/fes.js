@@ -1,7 +1,7 @@
 <template>
     <FTooltip v-model="isOpened" popperClass="lang-popper" mode="popover">
         <div class="lang-icon">
-            <SettingOutlined />
+            <LanguageOutlined />
         </div>
         <template #content>
             <FScrollbar height="274" class="lang-container">
@@ -24,7 +24,7 @@
 
 <script>
 import { FTooltip, FScrollbar } from '@fesjs/fes-design';
-import { SettingOutlined } from '@fesjs/fes-design/icon';
+import { LanguageOutlined } from '@fesjs/fes-design/icon';
 import { useI18n } from 'vue-i18n';
 import { computed, ref } from 'vue';
 import langUConfigMap from '../langUConfigMap';
@@ -33,7 +33,7 @@ export default {
     components: {
         FTooltip,
         FScrollbar,
-        SettingOutlined
+        LanguageOutlined
     },
     setup() {
         const { messages, locale } = useI18n();
@@ -69,6 +69,8 @@ export default {
 <style lang="less" scoped>
 
 .lang-icon {
+    display: flex;
+    align-items: center;
     margin: 0 8px;
     padding: 0 4px;
     cursor: pointer;
