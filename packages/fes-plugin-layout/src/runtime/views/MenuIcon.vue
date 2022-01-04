@@ -1,5 +1,4 @@
 <script>
-
 import { ref, onBeforeMount } from 'vue';
 // eslint-disable-next-line import/extensions
 import Icons from '../icons';
@@ -33,8 +32,10 @@ export default {
             }
             if (AText.value) {
                 return (
-                    <span className={'fes-layout-icon anticon'} innerHTML={AText.value}>
-                    </span>
+                    <span
+                        class={'fes-layout-icon'}
+                        innerHTML={AText.value}
+                    ></span>
                 );
             }
             return null;
@@ -43,7 +44,7 @@ export default {
 };
 </script>
 <style>
-.fes-layout-icon{
+.fes-layout-icon {
     display: inline-block;
     color: inherit;
     font-style: normal;
@@ -54,8 +55,6 @@ export default {
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     min-width: 14px;
-    margin-right: 10px;
     font-size: 14px;
-    transition: font-size 0.15s cubic-bezier(0.215, 0.61, 0.355, 1), margin 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
 }
 </style>

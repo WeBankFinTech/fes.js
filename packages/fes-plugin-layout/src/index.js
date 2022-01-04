@@ -47,7 +47,7 @@ export default (api) => {
         const icons = helper.getIconsFromMenu(userConfig.menus);
 
         const iconsString = icons.map(
-            iconName => `import ${iconName} from '@ant-design/icons-vue/es/icons/${iconName}'`
+            iconName => `import { ${iconName} } from '@fesjs/fes-design/icon'`
         );
         api.writeTmpFile({
             path: join(namespace, 'icons.js'),

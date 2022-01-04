@@ -2,11 +2,10 @@ import { reactive, defineComponent } from "vue";
 import { plugin, ApplyPluginsType } from "@@/core/coreExports";
 import BaseLayout from "./views/BaseLayout.vue";
 
-const userConfig = reactive({{{REPLACE_USER_CONFIG}}});
-
 const Layout = defineComponent({
     name: 'Layout',
     setup(){
+        const userConfig = reactive({{{REPLACE_USER_CONFIG}}});
         const runtimeConfig = plugin.applyPlugins({
             key: "layout",
             type: ApplyPluginsType.modify,
