@@ -9,15 +9,13 @@ export default {
     },
     layout: {
         title: "Fes.js",
-        footer: 'Created by MumbelFe',
+        footer: 'Created by MumbleFE',
         multiTabs: false,
         navigation: 'mixin',
         menus: [{
             name: 'index',
-            icon: 'user'
         }, {
             title: "子应用1",
-            icon: 'user',
             children: [{
                 name: 'app1-index'
             },{

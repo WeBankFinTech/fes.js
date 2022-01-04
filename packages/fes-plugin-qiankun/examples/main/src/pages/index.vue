@@ -1,11 +1,17 @@
 <template>
     <div>
         main
-        <a-tabs v-model:activeKey="activeKey">
-            <a-tab-pane key="1" tab="Tab 1"><MicroAppWithMemoHistory key="1" name="app1" url="/app1" /></a-tab-pane>
-            <a-tab-pane key="2" tab="Tab 2"><MicroAppWithMemoHistory key="2" name="app1" url="/app1/test" /></a-tab-pane>
-            <a-tab-pane key="3" tab="Tab 3">Content of Tab Pane 3</a-tab-pane>
-        </a-tabs>
+        <FTabs v-model="activeKey">
+            <FTabPane name="Tab 1" value="1">
+                <MicroAppWithMemoHistory key="1" name="app1" url="/app1" />
+            </FTabPane>
+            <FTabPane name="Tab 2" value="2">
+                <MicroAppWithMemoHistory key="2" name="app1" url="/app1/test" />
+            </FTabPane>
+            <FTabPane name="Tab 3" value="3">
+                Content of Tab Pane 3
+            </FTabPane>
+        </FTabs>
     </div>
 </template>
 <config>
@@ -17,9 +23,10 @@
 <script>
 import { ref, onMounted } from 'vue';
 import { MicroAppWithMemoHistory } from '@fesjs/fes';
+import { FTabPane, FTabs } from '@fesjs/fes-design';
 
 export default {
-    components: { MicroAppWithMemoHistory },
+    components: { FTabs, FTabPane, MicroAppWithMemoHistory },
     setup() {
         const url = ref('/app1/test');
         onMounted(() => {

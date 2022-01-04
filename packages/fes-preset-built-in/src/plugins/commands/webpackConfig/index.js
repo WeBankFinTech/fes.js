@@ -32,7 +32,6 @@ const DEFAULT_EXCLUDE_NODE_MODULES = [
     'vue',
     'vuex',
     'vue-router',
-    'ant-design-vue',
     'core-js',
     'echarts',
     '@babel/runtime',

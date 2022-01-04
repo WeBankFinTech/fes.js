@@ -1,4 +1,4 @@
-import { unref, computed } from 'vue';
+import { computed, ref } from 'vue';
 // eslint-disable-next-line
 import { useAccess } from '../../plugin-access/core';
 
@@ -9,32 +9,26 @@ if (!useAccess) {
 }
 
 export const hasAccessByMenuItem = (item) => {
-    let res;
-    if (item.path && (!item.children || item.children.length === 0)) {
-        res = useAccess(item.path);
-    } else if (item.children && item.children.length > 0) {
-        res = computed(() => item.children.some((child) => {
+    const hasChild = item.children && item.children.length;
+    if (item.path && !hasChild) {
+        return useAccess(item.path);
+    }
+    if (hasChild) {
+        return computed(() => item.children.some((child) => {
             const rst = hasAccessByMenuItem(child);
             return rst && rst.value;
         }));
     }
-    return res;
+    return ref(true);
 };
 
-const _addAccessTag = (arr) => {
-    if (Array.isArray(arr)) {
-        arr.forEach((item) => {
-            item.access = hasAccessByMenuItem(item);
-            if (item.children && item.children.length > 0) {
-                _addAccessTag(item.children);
-            }
-        });
+export const transform = menus => menus.map((menu) => {
+    const hasAccess = hasAccessByMenuItem(menu);
+    if (!hasAccess.value) {
+        return false;
     }
-};
-
-export const transform = (menus) => {
-    const originData = unref(menus);
-    _addAccessTag(originData);
-
-    return originData;
-};
+    if (menu.children) {
+        menu.children = transform(menu.children);
+    }
+    return menu;
+}).filter(Boolean);
