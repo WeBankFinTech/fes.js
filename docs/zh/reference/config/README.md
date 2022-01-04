@@ -24,6 +24,39 @@ export default {
 ```
 然后 `import('main')`，实际上是 `import('src/assets/styles/main')`。
 
+## analyze
+- 类型： `object`
+- 默认值： 
+```js
+{
+    analyzerMode: process.env.ANALYZE_MODE || 'server',
+    analyzerPort: process.env.ANALYZE_PORT || 8888,
+    openAnalyzer: process.env.ANALYZE_OPEN !== 'none',
+    // generate stats file while ANALYZE_DUMP exist
+    generateStatsFile: !!process.env.ANALYZE_DUMP,
+    statsFilename: process.env.ANALYZE_DUMP || 'stats.json',
+    logLevel: process.env.ANALYZE_LOG_LEVEL || 'info',
+    defaultSizes: 'parsed' // stat  // gzip
+}
+```
+- 详情：  
+
+    构建结果分析，当配置 `process.env.ANALYZE` 时开启，例如执行`ANALYZE=1 fes build`
+
+## autoprefixer
+- 类型： `object`
+- 默认值： 
+```js
+{
+    flexbox: 'no-2009'
+}
+```
+- 详情：  
+
+    [postcss autoprefixer 插件](https://github.com/postcss/autoprefixer#options) 配置。
+
+
+
 ## base
 
 - 类型： `string`
@@ -31,6 +64,9 @@ export default {
 - 详情：  
 
     设置路由前缀，通常用于部署到非根目录。比如你有路由 `/pageA`、`/pageB`，然后设置了 `base` 为 `/manage/`，那么就可以通过 `/manage/pageA`、`/manage/pageB` 访问到它们。
+
+
+
 
 ## chainWebpack
 
@@ -126,6 +162,34 @@ export default {
 - 详情：
 
     路由是否按需加载
+
+
+## exportStatic
+
+- 类型： `object`
+- 默认值： `{}`
+- 详情：
+
+配置 `html` 的输出形式，默认只输出 `index.html`。
+
+如果开启 `exportStatic`，则会针对每个路由输出 `html` 文件。
+
+比如以下路由，
+```
+/
+/users
+/list
+```
+不开启 `exportStatic` 时，输出，
+```
+- index.html
+```
+设置 `exportStatic: {}` 后，输出，
+```
+- index.html
+- users.html
+- list.html
+```
 ## externals
 
 - 类型：`object`
@@ -151,7 +215,7 @@ export default {
 - 默认值： `[]`
 - 详情：  
 
- 配置额外的 babel 插件。
+ 配置额外的 `babel` 插件。
 
 - 示例：
 ```js
@@ -162,6 +226,15 @@ export default {
 }
 ```
 
+## extraBabelPresets
+
+- 类型： `array`
+- 默认值： `[]`
+- 详情：  
+
+ 配置额外的 `babel` 插件集。
+
+
 ## extraPostCSSPlugins
 
 - 类型： `array`
@@ -169,6 +242,13 @@ export default {
 - 详情：  
 
     设置额外的 [postcss 插件](https://github.com/postcss/postcss/blob/master/docs/plugins.md)。
+
+## html
+- 类型： `object`
+- 默认值： `{}`
+- 详情：  
+
+    设置[html-webpack-plugin](https://github.com/jantimon/html-webpack-plugin#options)。
 
 ## inlineLimit
 
@@ -288,9 +368,9 @@ export default {
 ```
 然后访问 `/v2/movie/in_theaters_proxy` 就能访问到 [http://api.douban.com/v2/movie/in_theaters_proxy](http://api.douban.com/v2/movie/in_theaters_proxy) 的数据。
 
-## publicpath
+## publicPath
 
-- 类型： `publicPath`
+- 类型： `string`
 - 默认值： `/`
 - 详情：
 
@@ -300,7 +380,9 @@ export default {
 
 - 类型： `object`
 - 默认值： `{ mode: 'hash' }`
-- 详情： 配置路由，具体请查看指南中关于路由的介绍
+- 详情： 
+
+    配置路由，具体请查看指南中关于路由的介绍
 
 ## singular
 - 类型： `boolean`
@@ -361,3 +443,10 @@ const defaultTerserOptions = {
 - 详情：
 
     配置 [压缩器 terser 的配置项](https://github.com/terser/terser#minify-options)
+
+## vueLoader
+- 类型： `object`
+- 默认值：`{}`
+- 详情：
+
+    配置 [Vue Loader](https://vue-loader.vuejs.org/zh/options.html)

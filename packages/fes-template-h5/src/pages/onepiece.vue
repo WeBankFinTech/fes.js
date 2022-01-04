@@ -1,5 +1,5 @@
 <template>
-    <div>{{fes}}</div>
+    <div class="m-10px">{{fes}}</div>
     <img :src="publicPath + 'logo.png'" />
 </template>
 <config>

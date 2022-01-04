@@ -1,41 +1,42 @@
 <template>
-    <a-dropdown>
-        <div class="lang-icon"><GlobalOutlined /></div>
-        <template #overlay>
-            <a-menu :selectedKeys="selectedKeys" @click="handleClick">
-                <a-menu-item
+    <FTooltip v-model="isOpened" popperClass="lang-popper" mode="popover">
+        <div class="lang-icon">
+            <LanguageOutlined />
+        </div>
+        <template #content>
+            <FScrollbar height="274" class="lang-container">
+                <div
                     v-for="item in configs"
                     :key="item.lang"
-                    class="lang-item"
+                    :class="[
+                        'lang-option',
+                        item.lang === locale && 'is-selected'
+                    ]"
+                    @click="handleSelect(item)"
                 >
-                    <span class="lang-item-icon">{{item.icon}}</span>
-                    <span class="lang-item-label">{{item.label}}</span>
-                </a-menu-item>
-            </a-menu>
+                    <span>{{item.icon}}</span>
+                    <span>{{item.label}}</span>
+                </div>
+            </FScrollbar>
         </template>
-    </a-dropdown>
+    </FTooltip>
 </template>
 
 <script>
-import Dropdown from 'ant-design-vue/lib/dropdown';
-import Menu from 'ant-design-vue/lib/menu';
-import 'ant-design-vue/lib/dropdown/style/css';
-import 'ant-design-vue/lib/menu/style/css';
-import { GlobalOutlined } from '@ant-design/icons-vue';
+import { FTooltip, FScrollbar } from '@fesjs/fes-design';
+import { LanguageOutlined } from '@fesjs/fes-design/icon';
 import { useI18n } from 'vue-i18n';
-import { computed } from 'vue';
+import { computed, ref } from 'vue';
 import langUConfigMap from '../langUConfigMap';
 
 export default {
     components: {
-        [Dropdown.name]: Dropdown,
-        [Menu.name]: Menu,
-        [Menu.Item.name]: Menu.Item,
-        GlobalOutlined
+        FTooltip,
+        FScrollbar,
+        LanguageOutlined
     },
     setup() {
         const { messages, locale } = useI18n();
-        const selectedKeys = computed(() => [locale.value]);
         const configs = computed(() => {
             const arr = [];
             Object.keys(messages.value)
@@ -45,30 +46,54 @@ export default {
                 });
             return arr;
         });
-        const handleClick = ({ key }) => {
-            locale.value = key;
-            window.localStorage.setItem('fes_locale', key);
+        const isOpened = ref(false);
+        const handleSelect = ({ lang }) => {
+            locale.value = lang;
+            isOpened.value = false;
+            window.localStorage.setItem('fes_locale', lang);
         };
         return {
-            handleClick,
-            selectedKeys,
-            configs
+            handleSelect,
+            locale,
+            configs,
+            isOpened
         };
     }
 };
 </script>
+<style>
+.fes-tooltip.fes-tooltip-popover.lang-popper {
+    padding: 0;
+}
+</style>
+<style lang="less" scoped>
 
-<style lang="less">
 .lang-icon {
+    display: flex;
+    align-items: center;
     margin: 0 8px;
     padding: 0 4px;
     cursor: pointer;
 }
-.lang-item {
-    display: flex;
-    align-items: center;
-    .lang-item-label {
-        margin-left: 8px;
+.lang-container {
+    width: 180px;
+    background: #ffffff;
+    .lang-option {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 32px;
+        padding: 0 8px;
+        color: #0f1222;
+        line-height: 32px;
+        background: #ffffff;
+        cursor: pointer;
+        transition: all 0.2s cubic-bezier(0.9, 0, 0.3, 0.7);
+        &:hover,
+        &.is-selected {
+            color: #5384ff;
+            background: #f5f8ff;
+        }
     }
 }
 </style>

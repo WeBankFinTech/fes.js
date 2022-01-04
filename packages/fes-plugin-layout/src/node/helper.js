@@ -1,4 +1,3 @@
-import * as allIcons from '@ant-design/icons-vue';
 
 const matchName = (config, name) => {
     let res = {};
@@ -21,7 +20,7 @@ const matchName = (config, name) => {
 export const fillMenuByRoute = (menuConfig, routeConfig, dep = 0) => {
     dep += 1;
     if (dep > 3) {
-        throw new Error('[plugin-layout]: menu层级不能超出三层！');
+        console.warn('[plugin-layout]: 菜单层级最好不要超出三层！');
     }
     const arr = [];
     if (Array.isArray(menuConfig) && Array.isArray(routeConfig)) {
@@ -41,17 +40,10 @@ export const fillMenuByRoute = (menuConfig, routeConfig, dep = 0) => {
                 const icon = menu.icon;
                 const urlReg = /^((https?|ftp|file):\/\/)?([\da-z.-]+)\.([a-z.]{2,6})([/\w .-]*)*\/?$/;
                 if (typeof icon === 'string' && !((urlReg.test(icon) || icon.includes('.svg')))) {
-                    if (!allIcons[icon]) {
-                        menu.icon = {
-                            type: 'icon',
-                            name: `${icon.replace(icon[0], icon[0].toUpperCase())}Outlined`
-                        };
-                    } else {
-                        menu.icon = {
-                            type: 'icon',
-                            name: icon
-                        };
-                    }
+                    menu.icon = {
+                        type: 'icon',
+                        name: icon
+                    };
                 }
             }
             if (menu.children && menu.children.length > 0) {

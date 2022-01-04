@@ -1,7 +1,6 @@
 
 import WindiCSSWebpackPlugin from 'windicss-webpack-plugin';
 import { resolve } from 'path';
-import qs from 'qs';
 
 export default (api) => {
     api.describe({
@@ -23,15 +22,6 @@ export default (api) => {
                 ...api.config.windicss
             }
         ]);
-        memo.module
-            .rule('vue-custom')
-            .resourceQuery((query) => {
-                if (!query) {
-                    return false;
-                }
-                const parsed = qs.parse(query.slice(1));
-                return parsed.vue != null;
-            }).use('vue-custom-loader').loader(require.resolve('./pitcher'));
         return memo;
     });
 };

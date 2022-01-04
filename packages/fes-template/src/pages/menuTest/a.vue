@@ -1,11 +1,12 @@
 <template>
-    <div style="padding: 32px;">
-        hello world
+    <div class="page">
+        menuTest-a
     </div>
 </template>
-
 <script>
 export default {
+    components: {
+    },
     setup() {
         return {
         };
@@ -13,9 +14,8 @@ export default {
 };
 </script>
 
-<config>
-{
-    "name": "index",
-    "title": "首页"
+<style>
+.page {
+    min-height: 100vh;
 }
-</config>
+</style>

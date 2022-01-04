@@ -12,7 +12,6 @@ export default function (api) {
         'addCoreExports',
         'addRuntimePluginKey',
         'addRuntimePlugin',
-        'addDevScripts',
         'addEntryImportsAhead',
         'addEntryImports',
         'addEntryCodeAhead',

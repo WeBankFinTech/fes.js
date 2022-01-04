@@ -31,7 +31,6 @@ export const MicroApp = defineComponent({
         },
         settings: Object,
         lifeCycles: Object,
-        className: String,
     },
     setup(props, { attrs }) {
         const {
@@ -163,6 +162,6 @@ export const MicroApp = defineComponent({
             updateApp();
         });
 
-        return () => <div ref={containerRef} className={props.className}></div>;
+        return () => <div ref={containerRef}></div>;
     },
 });
