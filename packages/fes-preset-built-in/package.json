@@ -73,6 +73,7 @@
     "webpackbar": "^5.0.0-3"
   },
   "peerDependencies": {
-    "@vue/compiler-sfc": "^3.0.5"
+    "@vue/compiler-sfc": "^3.0.5",
+    "core-js": "^3.8.3"
   }
 }
