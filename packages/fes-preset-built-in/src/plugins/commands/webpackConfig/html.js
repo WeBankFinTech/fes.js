@@ -34,7 +34,6 @@ export default async function createHtmlWebpackConfig({
         });
     }
 
-    const multiPageConfig = config.html.pages;
     const htmlPath = join(cwd, 'public/index.html');
     const defaultHtmlPath = resolve(__dirname, 'index-default.html');
     const publicCopyIgnore = [];
@@ -46,13 +45,9 @@ export default async function createHtmlWebpackConfig({
 
     publicCopyIgnore.push(winPath(htmlOptions.template));
 
-    if (!multiPageConfig) {
-        webpackConfig
-            .plugin('html')
-            .use(require.resolve('html-webpack-plugin'), [htmlOptions]);
-    } else {
-        // TODO 支持多页
-    }
+    webpackConfig
+        .plugin('html')
+        .use(require.resolve('html-webpack-plugin'), [htmlOptions]);
 
     // 如果需要导出html，则根据路由生成对应的html文件
     if (config.exportStatic) {
