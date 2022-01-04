@@ -12,6 +12,7 @@ export default {
     layout: {
         title: "Fes.js",
         footer: 'Created by MumbleFE',
+        navigation: 'mixin',
         multiTabs: false,
         menus: [{
             name: 'index'
