@@ -11,7 +11,7 @@
 <config>
 {
     "name": "editor",
-    "title": "monaco-editor"
+    "title": "$editor"
 }
 </config>
 <script>

@@ -1,7 +1,7 @@
 import { watch } from 'vue';
 
 const cache = new WeakMap();
-const setDispaly = (el, access) => {
+const setDisplay = (el, access) => {
     if (access.value) {
         el.style.display = el._display;
     } else {
@@ -15,9 +15,9 @@ export default function createDirective(useAccess) {
             ctx.watch = (path) => {
                 el._display = el._display || el.style.display;
                 const access = useAccess(path);
-                setDispaly(el, access);
+                setDisplay(el, access);
                 return watch(access, () => {
-                    setDispaly(el, access);
+                    setDisplay(el, access);
                 });
             };
             cache.set(el, ctx);

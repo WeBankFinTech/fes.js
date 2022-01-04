@@ -84,7 +84,7 @@ export default {
         // 标题
         title: "Fes.js",
         // 底部文字
-        footer: 'Created by MumbelFe',
+        footer: 'Created by MumbleFE',
         // 主题light
         theme: 'dark'
         // 是否开启 tabs
@@ -183,13 +183,13 @@ export default {
   
   - **path**：菜单的路径，可配置第三方地址。
   
-  - **title**：菜单的标题，如果同时使用[国际化插件](./locale.md)，而且在 `locales` 中配置了 `title` ，则菜单的名称会根据语言自动切换。
+  - **title**：菜单的标题，如果同时使用[国际化插件](./locale.md)，而且`title`的值以`$`开头，则使用`$`后面的内容去匹配语言设置。
 
   - **icon**: 菜单的图标，只有一级标题展示图标。
-    - 图标使用[antv icon](https://www.antdv.com/components/icon-cn/)，在这里使用组件type。
+    - 图标使用[fes-design icon](https://fes-design-4gvn317r3b6bfe17-1254145788.ap-shanghai.app.tcloudbase.com/zh/components/icon.html)，在这里使用组件名称。
 ```js
 {
-    icon: "user"
+    icon: "AppstoreOutlined"
 }
 ```
     - 图标使用本地或者远程svg图片。

@@ -1,10 +1,13 @@
 import { plugin } from '@@/core/coreExports';
 
 export const transTitle = (name) => {
+    if (!/^\$\S+$/.test(name)) {
+        return name;
+    }
     const sharedLocale = plugin.getShared('locale');
     if (sharedLocale) {
         const { t } = sharedLocale.useI18n();
-        return t(name);
+        return t(name.slice(1));
     }
     return name;
 };
@@ -13,7 +16,6 @@ export const transTitle = (name) => {
 export const transform = menus => menus.map((menu) => {
     const copy = {
         ...menu,
-        _label: menu.label,
         label: transTitle(menu.label)
     };
     if (menu.children) {

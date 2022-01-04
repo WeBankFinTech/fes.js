@@ -6,7 +6,7 @@
 <config>
 {
     "name": "index",
-    "title": "home"
+    "title": "$home"
 }
 </config>
 <script>
