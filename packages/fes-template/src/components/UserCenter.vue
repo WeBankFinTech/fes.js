@@ -1,5 +1,5 @@
 <template>
-    <div>{{initialState.userName}}</div>
+    <div class="user-center">{{initialState.userName}}</div>
 </template>
 <script>
 import { useModel } from '@fesjs/fes';
@@ -13,3 +13,8 @@ export default {
     }
 };
 </script>
+<style lang="less">
+.user-center {
+    text-align: right;
+}
+</style>

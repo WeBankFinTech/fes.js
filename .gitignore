@@ -5,6 +5,7 @@
 .history
 .cache
 .temp
+.hound
 dist
 *.log
 node_modules

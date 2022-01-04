@@ -1,6 +1,6 @@
 {
   "name": "@fesjs/preset-built-in",
-  "version": "2.0.10",
+  "version": "2.0.12",
   "description": "@fesjs/preset-built-in",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -61,6 +61,7 @@
     "postcss-flexbugs-fixes": "^5.0.2",
     "postcss-loader": "^4.2.0",
     "postcss-safe-parser": "^5.0.2",
+    "qs": "^6.10.2",
     "raw-loader": "^4.0.2",
     "style-loader": "^2.0.0",
     "url-loader": "^4.1.1",

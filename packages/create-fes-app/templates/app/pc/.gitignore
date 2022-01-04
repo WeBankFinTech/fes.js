@@ -9,4 +9,4 @@
 /src/.fes
 /src/.fes-production
 /src/.fes-test
-/.env.local
+.env.local

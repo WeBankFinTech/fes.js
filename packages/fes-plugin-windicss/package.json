@@ -1,6 +1,6 @@
 {
   "name": "@fesjs/plugin-windicss",
-  "version": "2.0.4",
+  "version": "2.0.5",
   "description": "@fesjs/plugin-windicss",
   "main": "lib/index.js",
   "files": [
@@ -31,7 +31,6 @@
     "vue": "^3.0.5"
   },
   "dependencies": {
-    "qs": "^6.10.2",
     "windicss-webpack-plugin": "^1.6.0"
   }
 }
