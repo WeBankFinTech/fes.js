@@ -82,6 +82,7 @@ export default async function getConfig({
     // --------------- cache -----------
     webpackConfig.cache({
         type: 'filesystem',
+        version: require('../../../../package.json').version,
         cacheDirectory: join(cwd, '.cache/webpack')
     });
 
