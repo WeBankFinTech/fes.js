@@ -1,6 +1,6 @@
 <template>
     <f-menu
-        :modelValue="route.path"
+        :modelValue="activePath"
         :inverted="inverted"
         :mode="mode"
         :options="fixedMenus"
@@ -15,6 +15,7 @@ import { useRoute, useRouter } from '@@/core/coreExports';
 import MenuIcon from './MenuIcon';
 import { transform as transformByAccess } from '../helpers/pluginAccess';
 import { transform as transformByLocale } from '../helpers/pluginLocale';
+import { flatNodes } from '../helpers/utils';
 
 export default {
     components: {
@@ -56,6 +57,23 @@ export default {
             return copy;
         });
         const fixedMenus = computed(() => transformByLocale(transformByAccess(transform(props.menus))));
+        const menus = computed(() => flatNodes(fixedMenus.value));
+        const activePath = computed(() => {
+            const matchMenus = menus.value.filter((menu) => {
+                const match = menu.match;
+                if (!match || !Array.isArray(match)) {
+                    return false;
+                }
+                return match.some((str) => {
+                    const reg = new RegExp(str);
+                    return reg.test(route.path);
+                });
+            });
+            if (matchMenus.length === 0) {
+                return route.path;
+            }
+            return matchMenus[0].path;
+        });
         const onMenuClick = (e) => {
             const path = e.value;
             if (/^https?:\/\//.test(path)) {
@@ -69,7 +87,7 @@ export default {
             }
         };
         return {
-            route,
+            activePath,
             fixedMenus,
             onMenuClick
         };
