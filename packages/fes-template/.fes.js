@@ -10,7 +10,7 @@ export default {
         title: '海贼王'
     },
     router: {
-        mode: 'history'
+        mode: 'hash'
     },
     access: {
         roles: {
@@ -39,7 +39,8 @@ export default {
         menus: [
             {
                 name: 'index',
-                icon: '/wine-outline.svg'
+                icon: '/wine-outline.svg',
+                match: ['/route/*']
             },
             {
                 name: 'store'
