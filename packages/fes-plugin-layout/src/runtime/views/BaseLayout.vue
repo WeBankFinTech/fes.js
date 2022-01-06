@@ -2,7 +2,7 @@
     <f-layout v-if="routeLayout" class="main-layout">
         <template v-if="navigation === 'side'">
             <f-aside
-                v-if="routeLayout.side"
+                v-if="routeLayout.sidebar"
                 v-model:collapsed="collapsed"
                 :fixed="fixedSideBar"
                 class="layout-aside"
@@ -32,7 +32,7 @@
                 }"
             >
                 <f-header
-                    v-if="routeLayout.top"
+                    v-if="routeLayout.header"
                     class="layout-header"
                     :fixed="currentFixedHeader"
                 >
@@ -59,7 +59,7 @@
         </template>
         <template v-if="navigation === 'top'">
             <f-header
-                v-if="routeLayout.top"
+                v-if="routeLayout.header"
                 class="layout-header"
                 :inverted="theme === 'dark'"
                 :fixed="currentFixedHeader"
@@ -96,7 +96,7 @@
         </template>
         <template v-if="navigation === 'mixin'">
             <f-header
-                v-if="routeLayout.top"
+                v-if="routeLayout.header"
                 class="layout-header"
                 :fixed="currentFixedHeader"
                 :inverted="theme === 'dark'"
@@ -117,7 +117,7 @@
                 :style="{ top: currentFixedHeader ? '54px' : 'auto' }"
             >
                 <f-aside
-                    v-if="routeLayout.side"
+                    v-if="routeLayout.sidebar"
                     v-model:collapsed="collapsed"
                     :fixed="fixedSideBar"
                     collapsible
@@ -226,8 +226,8 @@ export default {
             key: 'layout',
             type: ApplyPluginsType.modify,
             initialValue: {
-                side: true,
-                top: true,
+                sidebar: true,
+                header: true,
                 logo: true
             }
         });
