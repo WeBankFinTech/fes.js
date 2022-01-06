@@ -450,3 +450,7 @@ const defaultTerserOptions = {
 - 详情：
 
     配置 [Vue Loader](https://vue-loader.vuejs.org/zh/options.html)
+
+
+## 更多配置项
+Fes.js 允许插件注册配置，如果你使用插件，肯定会在插件里找到更多配置项。

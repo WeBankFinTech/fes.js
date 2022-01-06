@@ -20,8 +20,6 @@ export default function (api) {
         'addHTMLHeadScripts',
         'addMiddlewares',
         'modifyRoutes',
-        'modifyBundler',
-        'modifyBundleImplementor',
         'modifyBundleConfigOpts',
         'modifyBundleConfig',
         'modifyBabelOpts',

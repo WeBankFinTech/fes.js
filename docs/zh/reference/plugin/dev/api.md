@@ -61,6 +61,40 @@ process.env
 - `enableBy` 为启用方式，默认是注册启用，可更改为 `api.EnableBy.config`，还可以用自定义函数的方式决定其启用时机（动态生效）
 
 
+### register
+为 api.applyPlugins 注册可供其使用的 hook。
+
+用法：**register({ key: string, fn: Function, pluginId?: string, before?: string, stage?: number })**
+
+参数：
+- key：唯一id
+- fn：hook函数，当执行`api.applyPlugins`时，此函数被执行。
+- pluginId：插件id，如果配置了插件id，则只有此插件未被禁用时，才会执行。
+
+```js
+// 可同步
+api.register({
+  key: 'foo',
+  fn() {
+    return 'a';
+  },
+});
+
+// 可异步
+api.register({
+  key: 'foo',
+  async fn() {
+    await delay(100);
+    return 'b';
+  },
+});
+```
+
+注意：
+- fn 支持同步和异步，异步通过 Promise，返回值为 Promise 即为异步
+- fn 里的内容需结合 `api.appyPlugins` 的 `type` 参数来看,如果是 `api.ApplyPluginsType.add`，需有返回值，这些返回值最终会被合成一个数组。如果是 `api.ApplyPluginsType.modify`，需对第一个参数做修改，并返回它，它会作为下个hook的参数。 如果是 `api.ApplyPluginsType.event`，无需返回值
+- stage 和 before 都是用于调整执行顺序的，参考 tapable
+- stage 默认是 0，设为 -1 或更少会提前执行，设为 1 或更多会后置执行
 
 ### applyPlugins
 
@@ -69,10 +103,10 @@ process.env
 用法：**applyPlugins({ key: string, type: api.ApplyPluginsType, initialValue?: any, args?: any })**
 
 参数：
-- key
-- type， hook的类型。
-- initialValue， 初始值。
-- args，参数，hook函数执行时，args会作为参数传入。
+- key：唯一id
+- type：hook的类型。
+- initialValue：初始值。
+- args：参数，hook函数执行时，args会作为参数传入。
 
 例如：
 ```js
@@ -91,6 +125,38 @@ console.log(foo); // ['a', 'b']
 - compose，用于合并执行多个函数，函数可决定前序函数的执行时机
 - modify，用于修改值
 - event，用于执行事件，前面没有依赖关系
+
+### registerMethod
+
+往 `api` 上注册方法。如果有提供 `fn`，则执行 `fn` 定义的函数。
+
+用法：**registerMethod({ name: string, fn?: Function, exitsError?: boolean })**
+
+例如：
+```js
+ api.registerMethod({
+    name: 'writeTmpFile',
+    fn({
+        path,
+        content
+    }) {
+        assert(
+            api.stage >= api.ServiceStage.pluginReady,
+            'api.writeTmpFile() should not execute in register stage.'
+        );
+        const absPath = join(api.paths.absTmpPath, path);
+        api.utils.mkdirp.sync(dirname(absPath));
+        if (!existsSync(absPath) || readFileSync(absPath, 'utf-8') !== content) {
+            writeFileSync(absPath, content, 'utf-8');
+        }
+    }
+});
+```
+然后在插件中可以使用：
+```js
+api.writeTmpFile()
+```
+
 
 ### registerCommand
 
@@ -136,33 +202,6 @@ api.registerCommand({
 当项目引入此插件后，使用：
 ```bash
 fes webpack
-```
-
-### registerMethod
-
-往 `api` 上注册方法。可以是 `api.register()` 的快捷使用方式，便于调用；也可以不是，如果有提供 `fn`，则执行 `fn` 定义的函数。
-
-用法：**registerMethod({ name: string, fn?: Function, exitsError?: boolean })**
-
-例如：
-```js
- api.registerMethod({
-    name: 'writeTmpFile',
-    fn({
-        path,
-        content
-    }) {
-        assert(
-            api.stage >= api.ServiceStage.pluginReady,
-            'api.writeTmpFile() should not execute in register stage.'
-        );
-        const absPath = join(api.paths.absTmpPath, path);
-        api.utils.mkdirp.sync(dirname(absPath));
-        if (!existsSync(absPath) || readFileSync(absPath, 'utf-8') !== content) {
-            writeFileSync(absPath, content, 'utf-8');
-        }
-    }
-});
 ```
 
 ### registerPresets
@@ -225,18 +264,22 @@ api.hasPlugins(['@fesjs/preset-xxx']);
 如果在注册阶段使用，只能判断在他之前是否有注册某个插件集。
 :::
 
+### skipPlugins
+声明哪些插件需要被禁用，参数为插件 id 的数组。
+
+用法：**hasPresets(presetIds: string[])**
+
+例如：
+```js
+// 禁用 plugin-model 插件
+api.skipPlugins(['@fesjs/plugin-model']);
+```
+
 ## 扩展方法
 
 通过 api.registerMethod() 扩展的方法。
 
-### onStart
-在命令注册函数执行前触发。可以使用 config 和 paths。
 
-### onExit
-dev 退出时触发。
-
-### onGenerateFiles
-生成临时文件，触发时机在 webpack 编译之前。
 
 ### addPluginExports
 把插件需要导出的运行时 API 写入`@fesjs/fes`。
@@ -253,8 +296,23 @@ api.addPluginExports(() => [
 import { access, useAccess } from '@fesjs/fes';
 ```
 
+### addCoreExports
+提供给其他插件运行时需要的 API。
+```js
+api.addCoreExports(() => [
+    {
+        specifiers: ['getRoutes', 'getRouter', 'getHistory', 'destroyRouter'],
+        source: absCoreFilePath
+    }
+]);
+```
+使用：
+```js
+import { getHistory, destroyRouter } from '@@/core/coreExports';
+```
+
 ### addRuntimePlugin
-添加运行时插件，返回值格式为表示文件路径的字符串。Fes.js 会把
+添加运行时插件，返回值格式为表示文件路径的字符串。
 
 例如：
 ```js
@@ -262,11 +320,21 @@ api.addRuntimePlugin(() => join(__dirname, './runtime'));
 ```
 
 ### addRuntimePluginKey
-添加运行时插件的 key，返回值格式为字符串。
+添加插件提供的运行时配置的 key，返回值格式为字符串。
 
 例如：
 ```js
 api.addRuntimePluginKey(() => 'some');
+```
+则用户可以：
+```js
+// app.js
+const some = function(){
+    return {
+
+    }
+}
+
 ```
 
 ### addEntryImportsAhead
@@ -314,6 +382,22 @@ api.addEntryCode(() => {
 })
 ```
 
+### addHTMLHeadScripts
+在 HTML 头部添加脚本。
+
+例如：
+```js
+api.addHTMLHeadScripts(() => {
+  return [
+    {
+      content: '',
+      src: '',
+      // ...attrs
+    },
+  ];
+});
+```
+
 ### addBeforeMiddlewares
 添加在 `webpack compiler` 中间件之前的中间件，返回值格式为 `express` 中间件。
 
@@ -332,6 +416,67 @@ api.addBeforeMiddlewares(() => {
 
 ### addMiddlewares
 添加在 `webpack compiler` 中间件之后的中间件，返回值格式为 `express` 中间件。
+
+
+
+### addTmpGenerateWatcherPaths
+添加重新生成临时文件的监听路径。
+
+例如：
+```js
+api.addTmpGenerateWatcherPaths(() => [
+    './app.js',
+]);
+```
+
+### chainWebpack
+通过 [webpack-chain] 的方式修改 webpack 配置。
+
+例如：
+```js
+api.chainWebpack((memo) => {
+    memo.resolve.alias.set('vue-i18n', 'vue-i18n/dist/vue-i18n.esm-bundler.js');
+});
+```
+
+### copyTmpFiles
+批量写临时文件。
+
+例如：
+```js
+ api.copyTmpFiles({
+    namespace,
+    path: join(__dirname, 'runtime'),
+    ignore: ['.tpl']
+});
+```
+
+参数：
+
+- namespace：复制到临时文件夹下的目标目录
+- path：需要复制的文件目录
+- ignore：需要排除的文件
+
+::: tip
+不能在注册阶段使用，通常放在 api.onGenerateFiles() 里，这样能在需要时重新生成临时文件
+临时文件的写入做了缓存处理，如果内容一致，不会做写的操作，以减少触发 `webpack` 的重新编译
+:::
+
+
+### getPort
+获取端口号，dev 时有效。
+
+### getHostname
+获取 hostname，dev 时有效。
+
+### getServer
+获取 devServer，dev 时有效。
+
+### getRoutes
+获取 `api.modifyRoutes` 修改过后的路由信息。
+
+### getRoutesJSON
+获取格式化后的路由信息
 
 ### modifyRoutes
 
@@ -410,6 +555,18 @@ api.modifyBabelPresetOpts(opts => {
 修改 paths 对象。
 
 
+### modifyDefaultConfig
+修改默认配置。
+例如：
+```js
+api.modifyDefaultConfig((memo) => {
+  return {
+    ...memo,
+    ...defaultOptions,
+  };
+});
+```
+
 ### modifyConfig
 修改最终配置。
 
@@ -424,25 +581,30 @@ api.modifyConfig((memo) => {
 
 ```
 
-### chainWebpack
-通过 [webpack-chain] 的方式修改 webpack 配置。
+### modifyPublicPathStr
+修改 publicPath 字符串。
 
 例如：
 ```js
-api.chainWebpack((memo) => {
-    memo.resolve.alias.set('vue-i18n', 'vue-i18n/dist/vue-i18n.esm-bundler.js');
+api.modifyPublicPathStr(() => {
+  return api.config.publicPath || '/';
 });
 ```
 
-### addTmpGenerateWatcherPaths
-添加重新临时文件生成的监听路径。
+### onPluginReady
+在插件初始化完成触发。在 onStart 之前，此时还没有 config 和 paths，他们尚未解析好。
 
-例如：
-```js
-api.addTmpGenerateWatcherPaths(() => [
-    './app.js',
-]);
-```
+### onStart
+在命令注册函数执行前触发。可以使用 config 和 paths。
+
+### onExit
+dev 退出时触发。
+
+### onGenerateFiles
+生成临时文件，触发时机在 webpack 编译之前。
+
+### restartServer
+重启 devServer，dev 时有效。
 
 ### writeTmpFile
 写临时文件。
@@ -470,25 +632,3 @@ api.writeTmpFile({
 临时文件的写入做了缓存处理，如果内容一致，不会做写的操作，以减少触发 webpack 的重新编译
 :::
 
-### copyTmpFiles
-批量写临时文件。
-
-例如：
-```js
- api.copyTmpFiles({
-    namespace,
-    path: join(__dirname, 'runtime'),
-    ignore: ['.tpl']
-});
-```
-
-参数：
-
-- namespace：复制到临时文件夹下的目标目录
-- path：需要复制的文件目录
-- ignore：需要排除的文件
-
-::: tip
-不能在注册阶段使用，通常放在 api.onGenerateFiles() 里，这样能在需要时重新生成临时文件
-临时文件的写入做了缓存处理，如果内容一致，不会做写的操作，以减少触发 `webpack` 的重新编译
-:::
