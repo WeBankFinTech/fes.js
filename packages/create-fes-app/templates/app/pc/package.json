@@ -53,7 +53,8 @@
     "@fesjs/plugin-model": "^2.0.0",
     "@fesjs/plugin-enums": "^2.0.0",
     "@fesjs/fes-design": "^0.1.10",
-    "vue": "^3.2.6"
+    "vue": "^3.2.6",
+    "core-js": "^3.8.3"
   },
   "private": true
 }

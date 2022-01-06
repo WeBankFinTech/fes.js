@@ -56,21 +56,21 @@ export default {
 }
 </config>
 ```
-如果只是不想展示`side`，则：
+如果只是不想展示`sidebar`，则：
 ```
 <config lang="json">
 {
     "layout": {
-        "side": false
+        "sidebar": false
     }
 }
 </config>
 ```
 `layout`的可选配置有：
 
-- **side**： 左侧区域
+- **sidebar**： 左侧区域，从v4.0.0开始，之前名称叫`side`
   
-- **top**： 头部区域
+- **header**： 头部区域,，从v4.0.0开始，之前名称叫`top`
 
 - **logo**：logo和标题区域。
 
@@ -182,6 +182,15 @@ export default {
   - **name**：菜单的名称。通过匹配 `name` 和路由元信息 [meta](../../../guide/route.md#扩展路由元信息) 中的 `name`，把菜单和路由关联起来，然后使用路由元信息补充菜单配置，比如 `title`、`path` 等。
   
   - **path**：菜单的路径，可配置第三方地址。
+
+  - **match**：额外匹配的路径，当前路由命中匹配规则时，此菜单高亮。 (v4.0.0+）
+
+```
+{
+    path: '/product',
+    match: ['/product/*', '/product/create']
+}
+```
   
   - **title**：菜单的标题，如果同时使用[国际化插件](./locale.md)，而且`title`的值以`$`开头，则使用`$`后面的内容去匹配语言设置。
 

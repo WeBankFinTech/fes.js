@@ -1,7 +1,7 @@
 // .fes.js 只负责管理编译时配置，只能使用plain Object
 
 export default {
-    // exportStatic: {},  
+    // exportStatic: {},
     define: {
         __DEV__: false
     },
@@ -10,12 +10,12 @@ export default {
         title: '海贼王'
     },
     router: {
-        mode: 'history'
+        mode: 'hash'
     },
     access: {
         roles: {
             admin: ['*'],
-            menuTest: ['/','/menuTest']
+            menuTest: ['/', '/menuTest']
         }
     },
     request: {
@@ -39,7 +39,8 @@ export default {
         menus: [
             {
                 name: 'index',
-                icon: '/wine-outline.svg'
+                icon: '/wine-outline.svg',
+                match: ['/route/*']
             },
             {
                 name: 'store'
@@ -54,18 +55,21 @@ export default {
                 path: 'https://www.baidu.com'
             },
             {
-                title: '菜单权限测试', 
+                name: 'mock'
+            },
+            {
+                title: '菜单权限测试',
                 children: [
                     {
                         title: '子菜单',
-                        path: '/menuTest',
+                        path: '/menuTest'
                     },
                     {
                         title: '子菜单a',
                         path: '/menuTest/a'
-                    },
+                    }
                 ]
-            }, 
+            },
             {
                 name: 'cssModule'
             }

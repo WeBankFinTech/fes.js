@@ -1,6 +1,6 @@
 {
   "name": "@fesjs/preset-built-in",
-  "version": "2.0.12",
+  "version": "2.0.14",
   "description": "@fesjs/preset-built-in",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -73,6 +73,7 @@
     "webpackbar": "^5.0.0-3"
   },
   "peerDependencies": {
-    "@vue/compiler-sfc": "^3.0.5"
+    "@vue/compiler-sfc": "^3.0.5",
+    "core-js": "^3.8.3"
   }
 }
