@@ -1426,6 +1426,13 @@
     normalize-wheel "^1.0.1"
     stickybits "^3.7.9"
 
+"@fesjs/plugin-layout@^3.0.0":
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/@fesjs/plugin-layout/-/plugin-layout-3.0.0.tgz#51d5706ab59b0c03bbd9e9d3e3983b68840c5549"
+  integrity sha512-tdLbiQpfCp6zOaekmjYPIir9d0QaOu4+88FZZ4bj8STjOP2iMsqxuc8P5hyL0tjZjrpUNmepYmkAAaKWcQMnXg==
+  dependencies:
+    "@fesjs/utils" "^2.0.3"
+
 "@gar/promisify@^1.0.1":
   version "1.1.2"
   resolved "https://registry.npmmirror.com/@gar/promisify/download/@gar/promisify-1.1.2.tgz#30aa825f11d438671d585bd44e7fd564535fc210"
