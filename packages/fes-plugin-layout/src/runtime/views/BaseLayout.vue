@@ -5,6 +5,7 @@
                 v-if="routeLayout.sidebar"
                 v-model:collapsed="collapsed"
                 :fixed="fixedSideBar"
+                :width="`${sideWidth}px`"
                 class="layout-aside"
                 collapsible
                 :inverted="theme === 'dark'"
@@ -33,6 +34,7 @@
             >
                 <f-header
                     v-if="routeLayout.header"
+                    ref="headerRef"
                     class="layout-header"
                     :fixed="currentFixedHeader"
                 >
@@ -46,7 +48,7 @@
                 <f-layout
                     :embedded="!multiTabs"
                     :fixed="currentFixedHeader"
-                    :style="{ top: currentFixedHeader ? '54px' : 'auto' }"
+                    :style="{ top: currentFixedHeader ? `${headerHeightRef}px` : 'auto' }"
                 >
                     <f-main class="layout-main">
                         <MultiTabProvider :multiTabs="multiTabs" />
@@ -60,6 +62,7 @@
         <template v-if="navigation === 'top'">
             <f-header
                 v-if="routeLayout.header"
+                ref="headerRef"
                 class="layout-header"
                 :inverted="theme === 'dark'"
                 :fixed="currentFixedHeader"
@@ -84,7 +87,7 @@
             <f-layout
                 :embedded="!multiTabs"
                 :fixed="currentFixedHeader"
-                :style="{ top: currentFixedHeader ? '54px' : 'auto' }"
+                :style="{ top: currentFixedHeader ? `${headerHeightRef}px` : 'auto' }"
             >
                 <f-main class="layout-main">
                     <MultiTabProvider :multiTabs="multiTabs" />
@@ -97,6 +100,7 @@
         <template v-if="navigation === 'mixin'">
             <f-header
                 v-if="routeLayout.header"
+                ref="headerRef"
                 class="layout-header"
                 :fixed="currentFixedHeader"
                 :inverted="theme === 'dark'"
@@ -114,12 +118,13 @@
             </f-header>
             <f-layout
                 :fixed="currentFixedHeader"
-                :style="{ top: currentFixedHeader ? '54px' : 'auto' }"
+                :style="{ top: currentFixedHeader ? `${headerHeightRef}px` : 'auto' }"
             >
                 <f-aside
                     v-if="routeLayout.sidebar"
                     v-model:collapsed="collapsed"
                     :fixed="fixedSideBar"
+                    :width="`${sideWidth}px`"
                     collapsible
                     class="layout-aside"
                 >
@@ -155,7 +160,7 @@
 </template>
 
 <script>
-import { ref, computed } from 'vue';
+import { ref, computed, onMounted } from 'vue';
 import { useRoute, plugin, ApplyPluginsType } from '@@/core/coreExports';
 import {
     FLayout, FAside, FMain, FFooter, FHeader
@@ -220,6 +225,15 @@ export default {
         footer: String
     },
     setup(props) {
+        const headerRef = ref();
+        const headerHeightRef = ref(0);
+
+        onMounted(() => {
+            if (headerRef.value) {
+                headerHeightRef.value = headerRef.value.$el.offsetHeight;
+            }
+        });
+
         const collapsed = ref(false);
         const route = useRoute();
         const runtimeConfig = plugin.applyPlugins({
@@ -261,6 +275,8 @@ export default {
             () => props.fixedHeader || props.navigation === 'mixin'
         );
         return {
+            headerRef,
+            headerHeightRef,
             route,
             routeLayout,
             collapsed,
