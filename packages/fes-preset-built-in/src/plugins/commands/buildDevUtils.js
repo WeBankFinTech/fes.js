@@ -61,7 +61,6 @@ export async function getBundleAndConfigs({
                 type: api.ApplyPluginsType.modify,
                 initialValue: api.config.publicPath || '',
                 args: {
-                    // route: args.route
                 }
             })
 
