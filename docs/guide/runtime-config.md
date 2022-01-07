@@ -1,9 +1,44 @@
 # 运行时配置
 
-运行时配置和配置的区别是他跑在浏览器端，基于此，我们可以在这里写函数、`import` 浏览器端依赖等等，注意不要引入 `node` 依赖。
+Fes.js 约定 `src/app.js` 为运行时配置文件。运行时配置和配置的区别是他跑在浏览器端，因此我们可以在这里写函数、引入浏览器端依赖项等等，注意不要引入 node 端依赖项。
 
-## 配置方式
-约定 `src/app.js` 为运行时配置。运行时配置的类型有三种，具体查看[applypluginstype](../reference/api/#applypluginstype)。
+## 运行时为啥需要配置？
+
+Fes.js 框架跟传统开发模式不一样。传统开发模式中用户编写 entry 文件，而 Fes.js 中 entry 文件由框架生成，用户就不必要编写胶水代码。内置插件和其他插件提供的一些运行时功能提供用户或者其他插件自定义。
+
+例如：
+
+plugin-acess插件定义运行时配置项：
+```js
+api.addRuntimePluginKey(() => 'access');
+```
+plugin-acess插件读取配置项：
+```js
+const runtimeConfig = plugin.applyPlugins({
+    key: 'access',
+    type: ApplyPluginsType.modify,
+    initialValue: {}
+});
+```
+
+而用户则只需要配置：
+```js
+// app.js
+export const access = memo => ({
+    ...memo
+    unAccessHandler({
+        router, to, from, next
+    }) {
+        // 处理逻辑
+    },
+    noFoundHandler({
+        router, to, from, next
+    }) {
+        // 处理逻辑
+    },
+});
+
+```
 
 ## 配置项
 
