@@ -70,7 +70,7 @@ export default {
 
 - **sidebar**： 左侧区域，从v4.0.0开始，之前名称叫`side`
   
-- **header**： 头部区域,，从v4.0.0开始，之前名称叫`top`
+- **header**： 头部区域，从v4.0.0开始，之前名称叫`top`
 
 - **logo**：logo和标题区域。
 
@@ -221,26 +221,26 @@ export const layout = {
 
 ```
 
-#### top
+#### header
 - **类型**：`String`
   
 - **默认值**：`true`
 
-- **详情**：是否显示 top 区域。
+- **详情**：是否显示 header 区域。
 
-#### side
+#### sidebar
 - **类型**：`String`
   
 - **默认值**：`true`
 
-- **详情**：是否显示 side 区域。
+- **详情**：是否显示 sidebar 区域。
 
-#### top
+#### logo
 - **类型**：`String`
   
 - **默认值**：`true`
 
-- **详情**：是否显示 top 区域。
+- **详情**：是否显示 logo 区域。
 
 #### customHeader
 - **类型**：Vue Component
