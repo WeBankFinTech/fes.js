@@ -182,7 +182,7 @@ export const request = (url, data, options = {}) => {
 
     return currentRequestInstance.request(context).then(async () => {
         if (!context.error) {
-            return context.config.useResonse ? context.response : context.response.data;
+            return context.config.useResponse ? context.response : context.response.data;
         }
         await handleRequestError(context);
         return Promise.reject(context.error);
