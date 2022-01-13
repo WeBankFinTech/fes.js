@@ -65,16 +65,19 @@ export default {
         };
 
         const post = (id) => {
-            request('/get/api', { id }, {
+            request('/api', { id }, {
+                responseType: 'blob'
+            }).then((data) => {
+                console.log(data);
             });
         };
 
         get(1);
-        get(2);
-        get(3);
+        // get(2);
+        // get(3);
 
-        post(1);
-        post(2);
+        // post(1);
+        // post(2);
         post(3);
 
 
