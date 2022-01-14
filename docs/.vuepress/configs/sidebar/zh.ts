@@ -17,18 +17,20 @@ export const zh: SidebarConfig = {
         '/zh/guide/directory-structure.md',
         '/zh/guide/config.md',
         '/zh/guide/runtime-config.md',
+        '/zh/guide/env.md',
         '/zh/guide/route.md',
         '/zh/guide/plugin.md',
         '/zh/guide/template.md',
         '/zh/guide/mock.md',
-        '/zh/guide/env.md',
-        '/zh/guide/css.md',
       ]
     },
     {
       // isGroup: true,
-      text: '进阶',
+      text: '样式和资源文件',
       children: [
+        '/zh/guide/image.md',
+        '/zh/guide/css.md',
+        '/zh/guide/public.md',
       ]
     },
     "/zh/guide/contributing.md",
@@ -41,12 +43,7 @@ export const zh: SidebarConfig = {
     '/zh/reference/api/README.md'
   ],
   '/zh/reference/plugin/': [
-    {
-      // isGroup: true,
-      text: 'Presets',
-      children: [
-      ],
-    },
+    '/zh/reference/plugin/README.md',
     {
       // isGroup: true,
       text: 'Plugins',

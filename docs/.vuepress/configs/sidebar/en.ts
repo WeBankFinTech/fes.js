@@ -17,18 +17,20 @@ export const en: SidebarConfig = {
         '/guide/directory-structure.md',
         '/guide/config.md',
         '/guide/runtime-config.md',
+        '/guide/env.md',
         '/guide/route.md',
         '/guide/plugin.md',
         '/guide/template.md',
         '/guide/mock.md',
-        '/guide/env.md',
-        '/guide/css.md',
       ]
     },
     {
       // isGroup: true,
-      text: '进阶',
+      text: '样式和资源文件',
       children: [
+        '/guide/image.md',
+        '/guide/css.md',
+        '/guide/public.md',
       ]
     },
     "/guide/contributing.md",
@@ -41,12 +43,7 @@ export const en: SidebarConfig = {
     '/reference/api/README.md'
   ],
   '/reference/plugin/': [
-    {
-      // isGroup: true,
-      text: 'Presets',
-      children: [
-      ],
-    },
+    '/reference/plugin/README.md',
     {
       // isGroup: true,
       text: 'Plugins',
