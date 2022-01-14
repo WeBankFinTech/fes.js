@@ -31,7 +31,7 @@ export const zh: NavbarConfig = [
       },
       {
         text: 'v1 文档',
-        link: 'https://webank.gitee.io/fes.js-v0/',
+        link: 'https://webank.gitee.io/fes.js/',
       },
     ],
   },
