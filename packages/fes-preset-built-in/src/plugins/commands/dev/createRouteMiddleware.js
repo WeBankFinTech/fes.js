@@ -2,7 +2,7 @@
 import { extname, join } from 'path';
 import historyFallback from 'connect-history-api-fallback';
 
-const ASSET_EXTNAMES = ['.ico', '.png', '.jpg', '.jpeg', '.gif', '.svg'];
+const ASSET_EXT_NAMES = ['.ico', '.png', '.jpg', '.jpeg', '.gif', '.svg'];
 
 export default api => (req, res, next) => {
     const proxyConfig = api.config.proxy;
@@ -12,7 +12,7 @@ export default api => (req, res, next) => {
     if (req.path === '/favicon.ico') {
         return res.sendFile(join(__dirname, 'fes.png'));
     }
-    if (ASSET_EXTNAMES.includes(extname(req.path))) {
+    if (ASSET_EXT_NAMES.includes(extname(req.path))) {
         return next();
     }
     const history = historyFallback();
