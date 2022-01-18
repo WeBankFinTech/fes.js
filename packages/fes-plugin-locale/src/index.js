@@ -41,7 +41,6 @@ export default (api) => {
             fallbackLocale: 'zh-CN', // set fallback locale
             legacy: true,
             baseNavigator: true, // 开启浏览器语言检测
-            share: true, // 用户是否需要手动改变语言
             ...api.config.locale
         };
 
@@ -61,7 +60,6 @@ export default (api) => {
                         legacy: userConfig.legacy
                     }, null, 2),
                     BASE_NAVIGATOR: userConfig.baseNavigator,
-                    SHARE: userConfig.share,
                     VUE_I18N_PATH: resolvePkg('vue-i18n')
                 }
             )

@@ -45,7 +45,7 @@ export default {
 };
 ```
 ```js
-// src/locales/zh-CN.js
+// src/locales/en-US.js
 export default {
     menu: {
         interface: 'interface'
@@ -76,7 +76,7 @@ export default {
         locale: 'zh-CN', // default locale
         fallbackLocale: 'zh-CN', // set fallback locale
         baseNavigator: true, // 开启浏览器语言检测
-        share: true, // 用户是否需要手动改变语言
+        legacy: true, // 用户是否需要 Legacy API 模式
     }
 } 
 ```
@@ -105,18 +105,12 @@ export default {
 
 默认情况下，当前语言环境的识别按照：`localStorage` 中 `fes_locale` 值 > 浏览器检测 > `default` 设置的默认语言 > `zh-CN` 中文。
 
-#### share
+#### legacy
 - **类型**：`Boolean`
   
 - **默认值**：`true`
 
-- **详情**：是否共享API，共享语言选择器 `{ SelectLang } `，其他插件可以获取到共享内容。
-  
-比如：
-```js
-import { plugin } from "@@/core/coreExports";
-const localeShared = plugin.getShared("locale");
-```
+- **详情**：用户是否需要 Legacy API 模式
 
 
 ### 运行时配置

@@ -10,10 +10,8 @@ import { createI18n, useI18n } from '{{{ VUE_I18N_PATH }}}';
 import { plugin, ApplyPluginsType } from "@@/core/coreExports";
 import SelectLang from "./views/SelectLang";
 
-{{ #SHARE }}
 // 共享出去
 plugin.share("locale", {useI18n, SelectLang });
-{{ /SHARE }}
 
 const locales = {{{REPLACE_LOCALES}}};
 
