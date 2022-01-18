@@ -5,7 +5,7 @@
 // locales目录下以语言简称为子文件下存放配置信息
 // 其他插件可以运行时修改配置
 // 所有插件使用一个语言和配置
-import { isRef } from 'vue';
+import { isRef, unref } from 'vue';
 import { createI18n, useI18n } from '{{{ VUE_I18N_PATH }}}';
 import { plugin, ApplyPluginsType } from "@@/core/coreExports";
 import SelectLang from "./views/SelectLang";
@@ -52,7 +52,7 @@ const i18n = createI18n({
     messages,
 });
 
-window.localStorage.setItem("fes_locale", i18n.global.locale);
+window.localStorage.setItem("fes_locale", unref(i18n.global.locale));
 const setLocale = ({ locale }) => {
     if (isRef(i18n.global.locale)) {
         i18n.global.locale.value = locale;
@@ -73,9 +73,7 @@ const addLocale = ({ locale, messages }) => {
 
 const getAllLocales = () => {
     return Object.keys(
-        isRef(i18n.global.messages)
-            ? i18n.global.messages.value
-            : i18n.global.messages
+        unref(i18n.global.messages)
     ).sort();
 };
 
