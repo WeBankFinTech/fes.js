@@ -28,6 +28,7 @@ import { LanguageOutlined } from '@fesjs/fes-design/icon';
 import { useI18n } from 'vue-i18n';
 import { computed, ref } from 'vue';
 import langUConfigMap from '../langUConfigMap';
+import { locale as _locale } from '../core';
 
 export default {
     components: {
@@ -50,7 +51,7 @@ export default {
         const handleSelect = ({ lang }) => {
             locale.value = lang;
             isOpened.value = false;
-            window.localStorage.setItem('fes_locale', lang);
+            _locale.setLocale({ locale: lang });
         };
         return {
             handleSelect,
