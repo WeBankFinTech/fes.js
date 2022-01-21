@@ -288,6 +288,9 @@ export default {
 <style lang="less" scoped>
 .main-layout {
     height: 100vh;
+    .layout-main {
+        z-index: 0;
+    }
     .layout-header {
         display: flex;
         box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
