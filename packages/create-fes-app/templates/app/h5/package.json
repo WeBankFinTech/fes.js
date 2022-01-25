@@ -41,7 +41,7 @@
   },
   "devDependencies": {
     "@vue/compiler-sfc": "^3.2.6",
-    "@webank/eslint-config-webank": "0.4.2",
+    "@webank/eslint-config-webank": "^1.0.2",
     "@ttou/postcss-px-to-viewport": "1.1.1"
   },
   "dependencies": {
