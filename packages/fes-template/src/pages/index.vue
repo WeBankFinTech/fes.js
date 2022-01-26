@@ -1,17 +1,16 @@
 <template>
     <div class="page">
         home
+        <FButton class="m-2">Button</FButton>
     </div>
 </template>
-<config>
-{
-    "name": "index",
-    "title": "$home"
-}
-</config>
+
 <script>
+import { FButton } from '@fesjs/fes-design';
+
 export default {
     components: {
+        FButton
     },
     setup() {
         return {
@@ -24,3 +23,10 @@ export default {
 .page {
 }
 </style>
+
+<config>
+{
+    "name": "index",
+    "title": "$home"
+}
+</config>

@@ -20,7 +20,7 @@ function getTargetsAndBrowsersList({ config }) {
         }, {});
 
     const browserslist = targets.browsers
-      || Object.keys(targets).map(key => `${key} >= ${targets[key] === true ? '0' : targets[key]}`);
+        || Object.keys(targets).map(key => `${key} >= ${targets[key] === true ? '0' : targets[key]}`);
 
     return {
         targets,
