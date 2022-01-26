@@ -13,15 +13,31 @@ export default (api) => {
         }
     });
 
-    api.addEntryImportsAhead(() => [{ source: 'windi.css' }]);
+    api.addEntryImportsAhead(() => [{ source: 'windi-base.css' }, { source: 'windi-components.css' }, { source: 'windi-utilities.css' }]);
 
-    api.chainWebpack((memo) => {
+    api.chainWebpack((memo, { createCSSRule }) => {
         memo.plugin('windicss').use(WindiCSSWebpackPlugin, [
             {
                 config: resolve(__dirname, '../windi.config.js'),
                 ...api.config.windicss
             }
         ]);
+        if (api.env === 'development') {
+            memo.module.rule('css').test((path) => {
+                if (path.endsWith('windi-utilities.css')) {
+                    return false;
+                }
+                return /\.css$/.test(path);
+            });
+            createCSSRule({
+                lang: 'windicss',
+                test: /windi-utilities.css$/,
+                styleLoaderOption: {
+                    insert: 'body'
+                }
+            });
+        }
+
         return memo;
     });
 };
