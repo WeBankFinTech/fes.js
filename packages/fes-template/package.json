@@ -48,7 +48,7 @@
   "dependencies": {
     "@fesjs/fes": "^2.0.0",
     "@fesjs/plugin-access": "^2.0.0",
-    "@fesjs/plugin-layout": "^3.0.0",
+    "@fesjs/plugin-layout": "^4.0.0",
     "@fesjs/plugin-locale": "^3.0.0",
     "@fesjs/plugin-model": "^2.0.0",
     "@fesjs/plugin-enums": "^2.0.0",
@@ -59,9 +59,11 @@
     "@fesjs/plugin-sass": "^2.0.0",
     "@fesjs/plugin-monaco-editor": "^2.0.0-beta.0",
     "@fesjs/plugin-windicss": "^2.0.0",
-    "@fesjs/fes-design": "^0.1.10",
+    "@fesjs/plugin-pinia": "^2.0.0",
+    "@fesjs/fes-design": "^0.2.10",
     "vue": "^3.0.5",
-    "vuex": "^4.0.0"
+    "vuex": "^4.0.0",
+    "pinia": "^2.0.11"
   },
   "private": true
 }

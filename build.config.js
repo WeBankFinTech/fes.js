@@ -17,6 +17,7 @@ module.exports = {
         'fes-plugin-request',
         'fes-plugin-sass',
         'fes-plugin-vuex',
+        'fes-plugin-pinia',
         'fes-preset-built-in',
         'fes-plugin-windicss',
         'fes-runtime',

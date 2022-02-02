@@ -61,6 +61,7 @@ export const zh: SidebarConfig = {
         '/zh/reference/plugin/plugins/windicss.md',
         '/zh/reference/plugin/plugins/sass.md',
         '/zh/reference/plugin/plugins/editor.md',
+        '/zh/reference/plugin/plugins/pinia.md',
       ],
     },
     {

@@ -72,6 +72,9 @@ export default {
             },
             {
                 name: 'cssModule'
+            },
+            {
+                name: 'pinia'
             }
         ]
     },
