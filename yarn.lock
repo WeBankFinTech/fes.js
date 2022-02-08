@@ -1453,27 +1453,23 @@
     minimatch "^3.0.4"
     strip-json-comments "^3.1.1"
 
-"@fesjs/fes-design@^0.1.10":
-  version "0.1.10"
-  resolved "https://registry.npmmirror.com/@fesjs/fes-design/download/@fesjs/fes-design-0.1.10.tgz#b7caaec676fcd1b2f86f5626b8b575f8d899b0c8"
-  integrity sha512-VEt3gA6ExM7WRhXE1k98Ufgee8h9tTL6nqJOItqHPB0jEcakW5z/r0tSByJND4es7zthwMUihHBzccwvjOVBCQ==
+"@fesjs/fes-design@^0.2.10":
+  version "0.2.11"
+  resolved "https://registry.npmmirror.com/@fesjs/fes-design/-/fes-design-0.2.11.tgz#b0b7857e8122e787206ba0166f6c7b894a323b28"
+  integrity sha512-kunu3gOHsDied7XT57btH7WkhyAe4WNvKHoSsFzYlMmvT3wIW9RlYlmebD8e7SRCq12Ule1F+7YdYHDf/w6v/A==
   dependencies:
     "@babel/runtime" "^7.16.3"
     "@juggle/resize-observer" "^3.3.1"
     "@popperjs/core" "^2.4.0"
+    "@types/lodash-es" "^4.17.5"
+    "@types/normalize-wheel" "^1.0.0"
     "@vue/shared" "^3.2.19"
     "@vueuse/core" "^6.7.5"
     async-validator "^4.0.1"
+    csstype "^3.0.10"
     lodash-es "^4.17.21"
     normalize-wheel "^1.0.1"
     stickybits "^3.7.9"
-
-"@fesjs/plugin-layout@^3.0.0":
-  version "3.0.0"
-  resolved "https://registry.npmmirror.com/@fesjs/plugin-layout/download/@fesjs/plugin-layout-3.0.0.tgz#51d5706ab59b0c03bbd9e9d3e3983b68840c5549"
-  integrity sha512-tdLbiQpfCp6zOaekmjYPIir9d0QaOu4+88FZZ4bj8STjOP2iMsqxuc8P5hyL0tjZjrpUNmepYmkAAaKWcQMnXg==
-  dependencies:
-    "@fesjs/utils" "^2.0.3"
 
 "@gar/promisify@^1.0.1":
   version "1.1.2"
@@ -2885,6 +2881,18 @@
   resolved "https://registry.npmmirror.com/@types/linkify-it/download/@types/linkify-it-3.0.2.tgz#fd2cd2edbaa7eaac7e7f3c1748b52a19143846c9"
   integrity sha1-/SzS7bqn6qx+fzwXSLUqGRQ4Rsk=
 
+"@types/lodash-es@^4.17.5":
+  version "4.17.5"
+  resolved "https://registry.npmmirror.com/@types/lodash-es/-/lodash-es-4.17.5.tgz#1c3fdd16849d84aea43890b1c60da379fb501353"
+  integrity sha512-SHBoI8/0aoMQWAgUHMQ599VM6ZiSKg8sh/0cFqqlQQMyY9uEplc0ULU5yQNzcvdR4ZKa0ey8+vFmahuRbOCT1A==
+  dependencies:
+    "@types/lodash" "*"
+
+"@types/lodash@*":
+  version "4.14.178"
+  resolved "https://registry.npmmirror.com/@types/lodash/-/lodash-4.14.178.tgz#341f6d2247db528d4a13ddbb374bcdc80406f4f8"
+  integrity sha512-0d5Wd09ItQWH1qFbEyQ7oTQ3GZrMfth5JkbN3EvTKLXcHLRDSXeLnlvlOn0wvxVIwK5o2M8JzP/OWz7T3NRsbw==
+
 "@types/markdown-it@^12.2.3":
   version "12.2.3"
   resolved "https://registry.npmmirror.com/@types/markdown-it/download/@types/markdown-it-12.2.3.tgz#0d6f6e5e413f8daaa26522904597be3d6cd93b51"
@@ -2922,6 +2930,11 @@
   version "2.4.1"
   resolved "https://registry.npmmirror.com/@types/normalize-package-data/download/@types/normalize-package-data-2.4.1.tgz?cache=0&sync_timestamp=1637268453735&other_urls=https%3A%2F%2Fregistry.npmmirror.com%2F%40types%2Fnormalize-package-data%2Fdownload%2F%40types%2Fnormalize-package-data-2.4.1.tgz#d3357479a0fdfdd5907fe67e17e0a85c906e1301"
   integrity sha1-0zV0eaD9/dWQf+Z+F+CoXJBuEwE=
+
+"@types/normalize-wheel@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.npmmirror.com/@types/normalize-wheel/-/normalize-wheel-1.0.0.tgz#d973b53557dc59c6136b5b737ae930e9218cb452"
+  integrity sha512-SzWYVzP7Q8w4/976Gi3a6+J/8/VNTq6AW7wDafXorr1MYTxyZqJTbUvwQt1hiG3PXyFUMIKr+s6q3+MLz2c/TQ==
 
 "@types/parse-json@^4.0.0":
   version "4.0.0"
@@ -3063,7 +3076,7 @@
     "@vue/compiler-dom" "3.2.27"
     "@vue/shared" "3.2.27"
 
-"@vue/devtools-api@^6.0.0-beta.11", "@vue/devtools-api@^6.0.0-beta.18", "@vue/devtools-api@^6.0.0-beta.7":
+"@vue/devtools-api@^6.0.0-beta.11", "@vue/devtools-api@^6.0.0-beta.18", "@vue/devtools-api@^6.0.0-beta.21", "@vue/devtools-api@^6.0.0-beta.7":
   version "6.0.0-beta.21.1"
   resolved "https://registry.npmmirror.com/@vue/devtools-api/download/@vue/devtools-api-6.0.0-beta.21.1.tgz#f1410f53c42aa67fa3b01ca7bdba891f69d7bc97"
   integrity sha512-FqC4s3pm35qGVeXRGOjTsRzlkJjrBLriDS9YXbflHLsfA9FrcKzIyWnLXoNm+/7930E8rRakXuAc2QkC50swAw==
@@ -5297,7 +5310,7 @@ csstype@^2.6.8:
   resolved "https://registry.npmmirror.com/csstype/download/csstype-2.6.19.tgz?cache=0&sync_timestamp=1637224539572&other_urls=https%3A%2F%2Fregistry.npmmirror.com%2Fcsstype%2Fdownload%2Fcsstype-2.6.19.tgz#feeb5aae89020bb389e1f63669a5ed490e391caa"
   integrity sha512-ZVxXaNy28/k3kJg0Fou5MiYpp88j7H9hLZp8PDC3jV0WFjfH5E9xHb56L0W59cPbKbcHXeP4qyT8PrHp8t6LcQ==
 
-csstype@^3.0.2:
+csstype@^3.0.10, csstype@^3.0.2:
   version "3.0.10"
   resolved "https://registry.npmmirror.com/csstype/download/csstype-3.0.10.tgz?cache=0&sync_timestamp=1637224539572&other_urls=https%3A%2F%2Fregistry.npmmirror.com%2Fcsstype%2Fdownload%2Fcsstype-3.0.10.tgz#2ad3a7bed70f35b965707c092e5f30b327c290e5"
   integrity sha512-2u44ZG2OcNUO9HDp/Jl8C07x6pU/eTR3ncV91SiK3dhG9TWvRVsCoJw14Ckx5DgWkzGA3waZWO3d7pgqpUI/XA==
@@ -10356,6 +10369,14 @@ pify@^5.0.0:
   version "5.0.0"
   resolved "https://registry.npmmirror.com/pify/download/pify-5.0.0.tgz#1f5eca3f5e87ebec28cc6d54a0e4aaf00acc127f"
   integrity sha1-H17KP16H6+wozG1UoOSq8ArMEn8=
+
+pinia@^2.0.11:
+  version "2.0.11"
+  resolved "https://registry.npmmirror.com/pinia/-/pinia-2.0.11.tgz#ff03c714f5e5f16207280a4fc2eab01f3701ee2b"
+  integrity sha512-JzcmnMqu28PNWOjDgEDK6fTrIzX8eQZKPPKvu/fpHdpXARUj1xeVdFi3YFIMOWswqaBd589cpmAMdSSTryI9iw==
+  dependencies:
+    "@vue/devtools-api" "^6.0.0-beta.21"
+    vue-demi "*"
 
 pinkie-promise@^2.0.0:
   version "2.0.1"

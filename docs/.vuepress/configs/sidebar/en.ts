@@ -61,6 +61,7 @@ export const en: SidebarConfig = {
         '/reference/plugin/plugins/windicss.md',
         '/reference/plugin/plugins/sass.md',
         '/reference/plugin/plugins/editor.md',
+        '/reference/plugin/plugins/pinia.md',
       ],
     },
     {

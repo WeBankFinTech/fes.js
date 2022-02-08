@@ -4,7 +4,7 @@
 
 增强vuex，导出所有的`mutations`、`actions`和`getter`的事件类型，编辑器提示
 
-约定模式，module和plugin定义放在sotres目录下，文件名包含plugin被解析为插件，无需额外配置，定义即可用。
+约定模式，module和plugin定义放在stores目录下，文件名包含plugin被解析为插件，无需额外配置，定义即可用。
 ```
 └── src
     ├── pages

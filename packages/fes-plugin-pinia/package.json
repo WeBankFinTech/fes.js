@@ -1,0 +1,37 @@
+{
+  "name": "@fesjs/plugin-pinia",
+  "version": "2.0.0",
+  "description": "@fesjs/plugin-pinia",
+  "main": "lib/index.js",
+  "files": [
+    "lib"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WeBankFinTech/fes.js.git",
+    "directory": "packages/fes-plugin-pinia"
+  },
+  "keywords": [
+    "fes"
+  ],
+  "author": "harrywan",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/WeBankFinTech/fes.js/issues"
+  },
+  "homepage": "https://github.com/WeBankFinTech/fes.js#readme",
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@fesjs/utils": "^2.0.3"
+  },
+  "peerDependencies": {
+    "@fesjs/fes": "^2.0.0",
+    "vue": "^3.0.5",
+    "pinia": "^2.0.11"
+  }
+}
