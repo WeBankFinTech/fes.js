@@ -11,7 +11,7 @@ export default {
     publicPath: '/',
     devServer: {
         port: 8080
-    }
+    },
     mock: {
         prefix: '/v2'
     },
@@ -47,7 +47,7 @@ export default { mock: false };
 // .fes.local.js
 export default { 
     mock: true,
-    dvServer: { port: 8080 }
+    devServer: { port: 8080 }
 };
 ```
 最终的配置是：
@@ -72,7 +72,7 @@ export default { mock: false };
 // .fes.uat.js
 export default { 
     mock: true,
-    dvServer: { port: 8080 }
+    devServer: { port: 8080 }
 };
 ```
 当我们运行：
