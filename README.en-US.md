@@ -64,6 +64,7 @@ It mainly has the following functions:
 | [@fesjs/plugin-qiankun](https://winixt.gitee.io/fesjs/zh/reference/plugin/plugins/qiankun.html#%E4%BB%8B%E7%BB%8D) |  Based on `qiankun`, provide microservice capabilities |
 | [@fesjs/plugin-sass](https://winixt.gitee.io/fesjs/zh/reference/plugin/plugins/sass.html#%E4%BB%8B%E7%BB%8D) |  Style support sass |
 | [@fesjs/plugin-monaco-editor](https://winixt.gitee.io/fesjs/zh/reference/plugin/plugins/editor.html#%E4%BB%8B%E7%BB%8D) | Provide code editor capability, based on `monaco-editor` (code editor used by VS Code) |
+| [@fesjs/plugin-pinia](https://winixt.gitee.io/fesjs/zh/reference/plugin/plugins/pinia.html) | pinia，状态处理 |
 
 ## As easy as counting 1, 2, 3
 use `yarn`：
