@@ -60,7 +60,7 @@
     "@fesjs/plugin-monaco-editor": "^2.0.0-beta.0",
     "@fesjs/plugin-windicss": "^2.0.0",
     "@fesjs/plugin-pinia": "^2.0.0",
-    "@fesjs/fes-design": "^0.2.10",
+    "@fesjs/fes-design": "^0.3.3",
     "vue": "^3.0.5",
     "vuex": "^4.0.0",
     "pinia": "^2.0.11"
