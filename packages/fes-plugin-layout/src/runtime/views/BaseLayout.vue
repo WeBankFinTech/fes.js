@@ -3,7 +3,7 @@
         <template v-if="navigation === 'side'">
             <f-aside
                 v-if="routeLayout.sidebar"
-                v-model:collapsed="collapsed"
+                v-model:collapsed="collapsedRef"
                 :fixed="fixedSideBar"
                 :width="`${sideWidth}px`"
                 class="layout-aside"
@@ -17,26 +17,20 @@
                 <Menu
                     class="layout-menu"
                     :menus="menus"
-                    :collapsed="collapsed"
+                    :collapsed="collapsedRef"
                     mode="vertical"
                     :inverted="theme === 'dark'"
                 />
             </f-aside>
             <f-layout
                 :fixed="fixedSideBar"
-                :style="{
-                    left: fixedSideBar
-                        ? collapsed
-                            ? '48px'
-                            : `${sideWidth}px`
-                        : 'auto'
-                }"
+                :style="sideStyleRef"
             >
                 <f-header
                     v-if="routeLayout.header"
                     ref="headerRef"
                     class="layout-header"
-                    :fixed="currentFixedHeader"
+                    :fixed="currentFixedHeaderRef"
                 >
                     <div class="layout-header-custom">
                         <slot name="customHeader"></slot>
@@ -47,8 +41,8 @@
                 </f-header>
                 <f-layout
                     :embedded="!multiTabs"
-                    :fixed="currentFixedHeader"
-                    :style="{ top: currentFixedHeader ? `${headerHeightRef}px` : 'auto' }"
+                    :fixed="currentFixedHeaderRef"
+                    :style="headerStyleRef"
                 >
                     <f-main class="layout-main">
                         <MultiTabProvider :multiTabs="multiTabs" />
@@ -65,7 +59,7 @@
                 ref="headerRef"
                 class="layout-header"
                 :inverted="theme === 'dark'"
-                :fixed="currentFixedHeader"
+                :fixed="currentFixedHeaderRef"
             >
                 <div v-if="routeLayout.logo" class="layout-logo">
                     <img :src="logo" class="logo-img" />
@@ -86,8 +80,8 @@
             </f-header>
             <f-layout
                 :embedded="!multiTabs"
-                :fixed="currentFixedHeader"
-                :style="{ top: currentFixedHeader ? `${headerHeightRef}px` : 'auto' }"
+                :fixed="currentFixedHeaderRef"
+                :style="headerStyleRef"
             >
                 <f-main class="layout-main">
                     <MultiTabProvider :multiTabs="multiTabs" />
@@ -102,7 +96,7 @@
                 v-if="routeLayout.header"
                 ref="headerRef"
                 class="layout-header"
-                :fixed="currentFixedHeader"
+                :fixed="currentFixedHeaderRef"
                 :inverted="theme === 'dark'"
             >
                 <div v-if="routeLayout.logo" class="layout-logo">
@@ -116,13 +110,10 @@
                     <slot name="locale"></slot>
                 </template>
             </f-header>
-            <f-layout
-                :fixed="currentFixedHeader"
-                :style="{ top: currentFixedHeader ? `${headerHeightRef}px` : 'auto' }"
-            >
+            <f-layout :fixed="currentFixedHeaderRef" :style="headerStyleRef">
                 <f-aside
                     v-if="routeLayout.sidebar"
-                    v-model:collapsed="collapsed"
+                    v-model:collapsed="collapsedRef"
                     :fixed="fixedSideBar"
                     :width="`${sideWidth}px`"
                     collapsible
@@ -131,20 +122,14 @@
                     <Menu
                         class="layout-menu"
                         :menus="menus"
-                        :collapsed="collapsed"
+                        :collapsed="collapsedRef"
                         mode="vertical"
                     />
                 </f-aside>
                 <f-layout
                     :embedded="!multiTabs"
                     :fixed="fixedSideBar"
-                    :style="{
-                        left: fixedSideBar
-                            ? collapsed
-                                ? '48px'
-                                : `${sideWidth}px`
-                            : 'auto'
-                    }"
+                    :style="sideStyleRef"
                 >
                     <f-main class="layout-main">
                         <MultiTabProvider :multiTabs="multiTabs" />
@@ -234,7 +219,7 @@ export default {
             }
         });
 
-        const collapsed = ref(false);
+        const collapsedRef = ref(false);
         const route = useRoute();
         const runtimeConfig = plugin.applyPlugins({
             key: 'layout',
@@ -271,16 +256,24 @@ export default {
             }
             return config;
         });
-        const currentFixedHeader = computed(
+        const currentFixedHeaderRef = computed(
             () => props.fixedHeader || props.navigation === 'mixin'
         );
+        const headerStyleRef = computed(() => (currentFixedHeaderRef.value ? { top: `${headerHeightRef.value}px` } : {}));
+        const sideStyleRef = computed(() => (props.fixedSideBar
+            ? {
+                left: collapsedRef.value ? '48px' : `${props.sideWidth}px`
+            }
+            : {}));
         return {
             headerRef,
             headerHeightRef,
             route,
             routeLayout,
-            collapsed,
-            currentFixedHeader
+            collapsedRef,
+            currentFixedHeaderRef,
+            headerStyleRef,
+            sideStyleRef
         };
     }
 };
