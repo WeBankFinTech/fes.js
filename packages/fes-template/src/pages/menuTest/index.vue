@@ -3,6 +3,11 @@
         menuTest-index
     </div>
 </template>
+<config>
+{
+    "title": "menuTest"
+}
+</config>
 <script>
 export default {
     components: {

@@ -34,7 +34,7 @@ export default {
         title: 'Fes.js',
         footer: 'Created by MumbleFE',
         multiTabs: false,
-        navigation: 'mixin',
+        navigation: 'side',
         theme: 'dark',
         menus: [
             {
@@ -64,10 +64,6 @@ export default {
                         title: '子菜单',
                         path: '/menuTest'
                     },
-                    {
-                        title: '子菜单a',
-                        path: '/menuTest/a'
-                    }
                 ]
             },
             {
