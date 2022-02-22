@@ -1453,10 +1453,10 @@
     minimatch "^3.0.4"
     strip-json-comments "^3.1.1"
 
-"@fesjs/fes-design@^0.2.10":
-  version "0.2.11"
-  resolved "https://registry.npmmirror.com/@fesjs/fes-design/-/fes-design-0.2.11.tgz#b0b7857e8122e787206ba0166f6c7b894a323b28"
-  integrity sha512-kunu3gOHsDied7XT57btH7WkhyAe4WNvKHoSsFzYlMmvT3wIW9RlYlmebD8e7SRCq12Ule1F+7YdYHDf/w6v/A==
+"@fesjs/fes-design@^0.3.3":
+  version "0.3.3"
+  resolved "https://registry.npmmirror.com/@fesjs/fes-design/-/fes-design-0.3.3.tgz#c78a1ec37869de7e12ae94468fbb0fb04e0d6a81"
+  integrity sha512-wSbgMzsBILHhHhUV8EqYBLJYn3r0chO7jCx0dpIEDHxGmve8yUL3G23saJLFKF28P/GUEHr5u4iUf8b05+sgNg==
   dependencies:
     "@babel/runtime" "^7.16.3"
     "@juggle/resize-observer" "^3.3.1"

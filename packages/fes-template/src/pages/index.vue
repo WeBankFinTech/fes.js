@@ -21,6 +21,7 @@ export default {
 
 <style>
 .page {
+    height: 1000px;
 }
 </style>
 
