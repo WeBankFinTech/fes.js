@@ -177,7 +177,7 @@ export default async function getConfig({
         .test(/\.(js|mjs|jsx|ts|tsx)$/)
         .exclude.add((filepath) => {
             // always transpile js in vue files
-            if (/\.vue\.jsx?$/.test(filepath)) {
+            if (/(\.vue|\.jsx)$/.test(filepath)) {
                 return false;
             }
             // Don't transpile node_modules
