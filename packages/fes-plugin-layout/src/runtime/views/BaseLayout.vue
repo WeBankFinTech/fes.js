@@ -259,12 +259,12 @@ export default {
         const currentFixedHeaderRef = computed(
             () => props.fixedHeader || props.navigation === 'mixin'
         );
-        const headerStyleRef = computed(() => (currentFixedHeaderRef.value ? { top: `${headerHeightRef.value}px` } : {}));
+        const headerStyleRef = computed(() => (currentFixedHeaderRef.value ? { top: `${headerHeightRef.value}px` } : null));
         const sideStyleRef = computed(() => (props.fixedSideBar
             ? {
                 left: collapsedRef.value ? '48px' : `${props.sideWidth}px`
             }
-            : {}));
+            : null));
         return {
             headerRef,
             headerHeightRef,
