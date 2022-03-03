@@ -27,6 +27,9 @@
 import fesConfig from '../../config';
 import left from './left.vue';
 
+const defaultHeader = fesConfig.FesHeader === undefined ? false : fesConfig.FesHeader;
+const defaultLeft = fesConfig.FesLeft === undefined ? true : fesConfig.FesLeft;
+
 export default {
     components: {
         left
@@ -36,8 +39,8 @@ export default {
             mode: fesConfig.mode,
             theme: fesConfig.theme,
             leftHidden: false,
-            header: false,
-            left: true,
+            header: defaultHeader,
+            left: defaultLeft,
             animate: false
         };
     },
