@@ -15,7 +15,6 @@ const util = require('./util');
 
 const router = express.Router();
 
-
 // 根据参数个数获取配置
 function getOption(arg) {
     const len = arg.length;
@@ -144,9 +143,6 @@ const createMock = function () {
         });
         proxy.on('error', (e) => {
             log.error(e);
-        });
-        proxy.on('proxyReq', (proxyReq) => {
-            proxyReq.setHeader('Host', url.parse(host).host);
         });
         process.nextTick(() => {
             router.use((req, res) => {
