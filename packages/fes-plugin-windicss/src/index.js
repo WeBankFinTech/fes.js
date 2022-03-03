@@ -1,6 +1,5 @@
 
 import WindiCSSWebpackPlugin from 'windicss-webpack-plugin';
-import { resolve } from 'path';
 
 export default (api) => {
     api.describe({
@@ -16,10 +15,19 @@ export default (api) => {
     api.addEntryImportsAhead(() => [{ source: 'windi-base.css' }, { source: 'windi-components.css' }, { source: 'windi-utilities.css' }]);
 
     api.chainWebpack((memo, { createCSSRule }) => {
+        const { config, ...otherOption } = api.config.windicss;
         memo.plugin('windicss').use(WindiCSSWebpackPlugin, [
             {
-                config: resolve(__dirname, '../windi.config.js'),
-                ...api.config.windicss
+                config: {
+                    extract: {
+                        // A common use case is scanning files from the root directory
+                        include: ['**/*.{vue,jsx,js,ts,tsx}'],
+                        // if you are excluding files, make sure you always include node_modules and .git
+                        exclude: ['node_modules', '.git', 'dist']
+                    },
+                    ...config
+                },
+                ...otherOption
             }
         ]);
         if (api.env === 'development') {
