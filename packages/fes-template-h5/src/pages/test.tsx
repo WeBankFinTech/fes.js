@@ -1,7 +1,7 @@
 import { defineRouteMeta, useRoute } from '@fesjs/fes';
 import { defineComponent } from 'vue';
 
-export const meta = defineRouteMeta({
+defineRouteMeta({
     title: 'test',
     name: 'test'
 })

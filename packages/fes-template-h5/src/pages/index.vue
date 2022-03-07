@@ -19,7 +19,7 @@ import HelloWorld from '@/components/helloWorld';
 import HelloTSX from '@/components/helloTSX';
 import helloTS from '@/components/helloTS';
 
-export const meta = defineRouteMeta({
+defineRouteMeta({
     title: '首页',
     name: 'testIndex',
     layout: false
