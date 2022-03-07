@@ -1,25 +1,29 @@
 <template>
     <div class="onepiece m-10px text-green">
         fes h5 & 拉夫德鲁<br />
-        <fes-icon :spin="true" class="one-icon" type="smile" @click="clickIcon" />
+        <fes-icon
+            :spin="true"
+            class="one-icon"
+            type="smile"
+            @click="clickIcon"
+        />
         <HelloWorld />
         <HelloTSX />
         <helloTS />
     </div>
 </template>
-<config>
-{
-    "title": "首页",
-    "name": "testIndex",
-    "layout": "false"
-}
-</config>
 <script>
 import { ref } from 'vue';
-import { request } from '@fesjs/fes';
+import { request, defineRouteMeta, useRoute } from '@fesjs/fes';
 import HelloWorld from '@/components/helloWorld';
 import HelloTSX from '@/components/helloTSX';
 import helloTS from '@/components/helloTS';
+
+export const meta = defineRouteMeta({
+    title: '首页',
+    name: 'testIndex',
+    layout: false
+});
 
 export default {
     components: {
@@ -33,6 +37,7 @@ export default {
         const clickIcon = () => {
             console.log('click Icon');
         };
+        console.log(useRoute());
         // request('/api', null, {
         // }).then((res) => {
         //     console.log(res);
@@ -59,15 +64,23 @@ export default {
         // });
 
         const get = (id) => {
-            request('/get/api', { id }, {
-                method: 'get'
-            });
+            request(
+                '/get/api',
+                { id },
+                {
+                    method: 'get'
+                }
+            );
         };
 
         const post = (id) => {
-            request('/api', { id }, {
-                responseType: 'blob'
-            }).then((data) => {
+            request(
+                '/api',
+                { id },
+                {
+                    responseType: 'blob'
+                }
+            ).then((data) => {
                 console.log(data);
             });
         };
@@ -79,7 +92,6 @@ export default {
         // post(1);
         // post(2);
         post(3);
-
 
         // setTimeout(() => {
         //     request('/api', null, {
@@ -138,8 +150,8 @@ export default {
 </script>
 
 <style lang="less" scoped>
-@import "~@/styles/mixins/hairline";
-@import "~@/styles/mixins/hover";
+@import '~@/styles/mixins/hairline';
+@import '~@/styles/mixins/hover';
 
 div {
     padding: 20px;
@@ -154,6 +166,6 @@ div {
 }
 .onepiece {
     text-align: center;
-    .hairline("top");
+    .hairline('top');
 }
 </style>

@@ -2,7 +2,7 @@ import { readdirSync, statSync, readFileSync } from 'fs';
 import {
     join, extname, posix, basename
 } from 'path';
-import { lodash, parser, generator } from '@fesjs/utils';
+import { lodash, parser } from '@fesjs/utils';
 import { parse } from '@vue/compiler-sfc';
 import { Logger } from '@fesjs/compiler';
 import { runtimePath } from '../../../utils/constants';
@@ -102,7 +102,7 @@ const genRoutes = function (parentRoutes, path, parentRoutePath, config) {
             const routeName = getRouteName(parentRoutePath, fileName);
             const componentPath = getComponentPath(parentRoutePath, fileName, config);
 
-            const content = readFileSync(component, 'utf-8');
+            let content = readFileSync(component, 'utf-8');
             let routeMeta = {};
             if (ext === '.vue') {
                 const { descriptor } = parse(content);
@@ -111,23 +111,27 @@ const genRoutes = function (parentRoutes, path, parentRoutePath, config) {
                 );
                 routeMeta = routeMetaBlock?.content ? JSON.parse(routeMetaBlock.content) : {};
             }
-            if (ext === '.jsx' || ext === '.tsx') {
+            let importMeta = '';
+            if (ext === '.vue' || ext === '.jsx' || ext === '.tsx') {
+                if (ext === '.vue') {
+                    const { descriptor } = parse(content);
+                    content = descriptor.script.content;
+                }
                 const ast = parser.parse(content, {
                     sourceType: 'module',
                     plugins: ['jsx', 'typescript']
                 });
-                const defineRouteExpression = ast.program.body.filter(expression => expression.type === 'ExpressionStatement' && expression.expression.type === 'CallExpression' && expression.expression.callee.name === 'defineRoute')[0];
-                if (defineRouteExpression) {
-                    const argument = generator(defineRouteExpression.expression.arguments[0]);
-                    routeMeta = JSON.parse(argument.code.replace(/'/g, '"').replace(/(\S+):/g, (global, m1) => `"${m1}":`));
+                const defineRouteMetaExpression = ast.program.body.filter(expression => expression.type === 'ExportNamedDeclaration' && expression.declaration.type === 'VariableDeclaration' && expression.declaration.declarations[0].id.name === 'meta')[0];
+                if (defineRouteMetaExpression) {
+                    importMeta = `require('${componentPath}').meta`;
                 }
             }
 
             const routeConfig = {
                 path: routePath,
                 component: componentPath,
-                name: routeMeta.name || routeName,
-                meta: routeMeta
+                name: (importMeta ? `${importMeta}.name` : routeMeta.name) || routeName,
+                meta: importMeta || routeMeta
             };
             if (hasLayout) {
                 if (fileName === 'layout') {
@@ -237,6 +241,14 @@ const getRoutesJSON = function ({ routes, config }) {
             /"component": ("(.+?)")/g,
             (global, m1, m2) => `"component": ${m2.replace(/\^/g, '"')}`
         )
+        .replace(
+            /"name": "require(.+?)"/g,
+            (global, m1) => `"name": require${m1}`
+        )
+        .replace(
+            /"meta": "require(.+?)"/g,
+            (global, m1) => `"meta": require${m1}`
+        )
         .replace(/\\r\\n/g, '\r\n')
         .replace(/\\n/g, '\r\n');
 };
@@ -319,7 +331,7 @@ export default function (api) {
 
     api.addCoreExports(() => [
         {
-            specifiers: ['getRoutes', 'getRouter', 'getHistory', 'destroyRouter', 'defineRoute'],
+            specifiers: ['getRoutes', 'getRouter', 'getHistory', 'destroyRouter', 'defineRouteMeta'],
             source: absCoreFilePath
         }
     ]);
