@@ -5,7 +5,7 @@
 <config>
 {
     "title": "onepiece",
-    "layout": "true"
+    "layout": true
 }
 </config>
 <script>

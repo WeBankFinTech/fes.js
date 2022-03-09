@@ -8,6 +8,7 @@ import glob from 'glob';
 import createDebug from 'debug';
 import * as parser from '@babel/parser';
 import traverse from '@babel/traverse';
+import generator from '@babel/generator';
 import rimraf from 'rimraf';
 import mkdirp from 'mkdirp';
 import pkgUp from 'pkg-up';
@@ -40,7 +41,8 @@ export {
     traverse,
     pkgUp,
     portfinder,
-    resolve
+    resolve,
+    generator
 };
 
 export {
