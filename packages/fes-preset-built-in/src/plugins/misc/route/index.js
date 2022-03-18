@@ -2,7 +2,7 @@ import { readdirSync, statSync, readFileSync } from 'fs';
 import {
     join, extname, posix, basename
 } from 'path';
-import { lodash } from '@fesjs/utils';
+import { lodash, parser, generator } from '@fesjs/utils';
 import { parse } from '@vue/compiler-sfc';
 import { Logger } from '@fesjs/compiler';
 import { runtimePath } from '../../../utils/constants';
@@ -21,7 +21,7 @@ const logger = new Logger('fes:router');
 
 const isProcessFile = function (path) {
     const ext = extname(path);
-    return statSync(path).isFile() && ['.vue', '.jsx'].includes(ext);
+    return statSync(path).isFile() && ['.vue', '.jsx', '.tsx'].includes(ext);
 };
 
 const isProcessDirectory = function (path, item) {
@@ -71,6 +71,19 @@ const getRoutePath = function (parentRoutePath, fileName) {
     return posix.join(parentRoutePath, fileName);
 };
 
+function getRouteMeta(content) {
+    const ast = parser.parse(content, {
+        sourceType: 'module',
+        plugins: ['jsx', 'typescript']
+    });
+    const defineRouteExpression = ast.program.body.filter(expression => expression.type === 'ExpressionStatement' && expression.expression.type === 'CallExpression' && expression.expression.callee.name === 'defineRouteMeta')[0];
+    if (defineRouteExpression) {
+        const argument = generator(defineRouteExpression.expression.arguments[0]);
+        return JSON.parse(argument.code.replace(/'/g, '"').replace(/(\S+):/g, (global, m1) => `"${m1}":`));
+    }
+    return null;
+}
+
 let cacheGenRoutes = {};
 
 // TODO 约定 layout 目录作为布局文件夹，
@@ -88,16 +101,12 @@ const genRoutes = function (parentRoutes, path, parentRoutePath, config) {
         // 文件或者目录的绝对路径
         const component = join(path, item);
         if (isProcessFile(component)) {
-            const { descriptor } = parse(readFileSync(component, 'utf-8'));
-            const routeMetaBlock = descriptor.customBlocks.find(
-                b => b.type === 'config'
-            );
             const ext = extname(item);
             const fileName = basename(item, ext);
             // 路由的path
             const routePath = getRoutePath(parentRoutePath, fileName);
             if (cacheGenRoutes[routePath]) {
-                logger.warn(`[WARNING]: The file path: ${routePath}(.jsx/.vue) conflict in router，will only use ${routePath}.jsx，please remove one of.`);
+                logger.warn(`[WARNING]: The file path: ${routePath}(.jsx/.tsx/.vue) conflict in router，will only use ${routePath}.tsx or ${routePath}.jsx，please remove one of.`);
                 return;
             }
             cacheGenRoutes[routePath] = true;
@@ -105,7 +114,24 @@ const genRoutes = function (parentRoutes, path, parentRoutePath, config) {
             // 路由名称
             const routeName = getRouteName(parentRoutePath, fileName);
             const componentPath = getComponentPath(parentRoutePath, fileName, config);
-            const routeMeta = routeMetaBlock?.content ? JSON.parse(routeMetaBlock.content) : {};
+
+            let content = readFileSync(component, 'utf-8');
+            let routeMeta = {};
+            if (ext === '.vue') {
+                const { descriptor } = parse(content);
+                const routeMetaBlock = descriptor.customBlocks.find(
+                    b => b.type === 'config'
+                );
+                routeMeta = routeMetaBlock?.content ? JSON.parse(routeMetaBlock.content) : {};
+                if (descriptor.script) {
+                    content = descriptor.script.content;
+                    routeMeta = getRouteMeta(content) || routeMeta;
+                }
+            }
+            if (ext === '.jsx' || ext === '.tsx') {
+                routeMeta = getRouteMeta(content) || {};
+            }
+
             const routeConfig = {
                 path: routePath,
                 component: componentPath,
@@ -302,7 +328,7 @@ export default function (api) {
 
     api.addCoreExports(() => [
         {
-            specifiers: ['getRoutes', 'getRouter', 'getHistory', 'destroyRouter'],
+            specifiers: ['getRoutes', 'getRouter', 'getHistory', 'destroyRouter', 'defineRouteMeta'],
             source: absCoreFilePath
         }
     ]);
