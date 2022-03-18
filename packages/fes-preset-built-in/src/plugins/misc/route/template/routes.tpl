@@ -60,3 +60,7 @@ export const destroyRouter = ()=>{
     router = null;
     history = null;
 }
+
+export const defineRouteMeta = (param)=>{
+    return param
+}
