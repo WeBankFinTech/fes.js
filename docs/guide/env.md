@@ -113,6 +113,11 @@ ANALYZE=1 fes build
 ### ANALYZE_PORT
 默认是`8888`
 
+### CLEAR_OUTPUT
+仅仅在 `build` 时生效。如果设置为 `none`，就不会在构建前清除 `Output` 文件内容。
+
+### RM_TMPDIR
+仅仅在 `build` 时生效。如果设置为 `none`，就不会在构建后清除 `.fes` 临时文件内容。
 
 ## process.env
 运行时配置需要以 `FES_APP_` 开头，比如在 `.env` 中配置：
