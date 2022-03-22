@@ -184,6 +184,10 @@ const router = new VueRouter({
   ]
 })
 ```
+
+<CodeGroup>
+  <CodeGroupItem title="vue" active>
+
 在 Fes.js 里约定在 `.vue`单文件组件中的 `config`区块 为 `meta` 配置。如果 `pages/a.vue` 中有如下配置：
 ```vue
 <config>
@@ -193,6 +197,34 @@ const router = new VueRouter({
 }
 </config>
 ```
+
+  </CodeGroupItem>
+
+  <CodeGroupItem title="jsx">
+
+```jsx
+import { defineRouteMeta, useRoute } from '@fesjs/fes';
+defineRouteMeta({
+    name: "store",
+    title: "vuex测试"
+})
+```
+
+  </CodeGroupItem>
+    <CodeGroupItem title="tsx">
+
+```tsx
+import { defineRouteMeta, useRoute } from '@fesjs/fes';
+defineRouteMeta({
+    name: "store",
+    title: "vuex测试"
+})
+```
+
+  </CodeGroupItem>
+</CodeGroup>
+
+
 则编译后的路由配置为：
 ```js{5-8}
 [
