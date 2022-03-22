@@ -1,6 +1,6 @@
 {
   "name": "@fesjs/plugin-jest",
-  "version": "2.0.4",
+  "version": "2.0.5",
   "description": "@fesjs/plugin-jest",
   "main": "lib/index.js",
   "files": [
@@ -31,7 +31,7 @@
   },
   "dependencies": {
     "@babel/preset-env": "^7.15.0",
-    "@fesjs/compiler": "^2.0.4",
+    "@fesjs/compiler": "^2.0.5",
     "@vue/babel-plugin-jsx": "^1.0.6",
     "babel-jest": "^27.0.6",
     "jest": "^27.0.6",
