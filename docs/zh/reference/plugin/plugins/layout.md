@@ -76,6 +76,16 @@ export default {
 
 ## 配置
 
+### keep-alive
+从 4.0.7 开始支持配置路由页面缓存：
+```
+<config lang="json">
+{
+    "keep-alive": true
+}
+</config>
+```
+
 ### 编译时配置
 在 `.fes.js` 中配置：
 ```js

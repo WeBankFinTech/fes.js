@@ -36,7 +36,14 @@
             </keep-alive>
         </router-view>
     </template>
-    <router-view v-else></router-view>
+    <router-view v-else v-slot="{ Component, route }">
+        <keep-alive :include="keepAlivePages">
+            <component
+                :is="getComponent(Component, route)"
+                :key="getPageKey(route)"
+            />
+        </keep-alive>
+    </router-view>
 </template>
 <script>
 import {
@@ -144,6 +151,22 @@ export default {
                 default:
             }
         };
+        const keepAlivePages = ref([]);
+        const getComponent = (Component, _route) => {
+            if (_route.meta['keep-alive']) {
+                const name = _route.meta?.name || _route.name;
+                if (name) {
+                    // 修改组件的 name
+                    Component.type.name = name;
+                    // 缓存的关键是组件name在keep-alive的include列表
+                    if (!keepAlivePages.value.includes(name)) {
+                        keepAlivePages.value = [...keepAlivePages.value, name];
+                    }
+                }
+            }
+
+            return Component;
+        };
         return {
             route,
             pageList,
@@ -152,7 +175,9 @@ export default {
             switchPage,
             handlerMore,
             handleCloseTab,
-            actions
+            actions,
+            getComponent,
+            keepAlivePages
         };
     }
 };
