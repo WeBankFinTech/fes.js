@@ -40,7 +40,7 @@
     "@vuepress/plugin-docsearch": "2.0.0-beta.28",
     "@vuepress/plugin-pwa": "2.0.0-beta.28",
     "@vuepress/plugin-pwa-popup": "2.0.0-beta.28",
-    "@webank/eslint-config-webank": "0.3.1",
+    "@webank/eslint-config-webank": "^1.2.0",
     "chalk": "^4.1.2",
     "chokidar": "^3.5.2",
     "commitizen": "^4.2.1",
@@ -56,7 +56,7 @@
   },
   "lint-staged": {
     "*.{js,jsx,vue,ts}": [
-      "eslint --format=codeframe"
+      "eslint"
     ]
   },
   "husky": {

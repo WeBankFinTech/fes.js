@@ -1,7 +1,5 @@
 import { readdirSync, statSync, readFileSync } from 'fs';
-import {
-    join, extname, posix, basename
-} from 'path';
+import { join, extname, posix, basename } from 'path';
 import { lodash, parser, generator } from '@fesjs/utils';
 import { parse } from '@vue/compiler-sfc';
 import { Logger } from '@fesjs/compiler';
@@ -43,16 +41,13 @@ const checkHasLayout = function (path) {
 
 const getRouteName = function (parentRoutePath, fileName) {
     const routeName = posix.join(parentRoutePath, fileName);
-    return routeName
-        .slice(1)
-        .replace(/\//g, '_')
-        .replace(/@/g, '_')
-        .replace(/\*/g, 'FUZZYMATCH');
+    return routeName.slice(1).replace(/\//g, '_').replace(/@/g, '_').replace(/\*/g, 'FUZZYMATCH');
 };
 
+const getPagePathPrefix = (config) => `@/${config.singular ? 'page' : 'pages'}`;
+
 const getComponentPath = function (parentRoutePath, fileName, config) {
-    const pagesName = config.singular ? 'page' : 'pages';
-    return posix.join(`@/${pagesName}/`, parentRoutePath, fileName);
+    return posix.join(`${getPagePathPrefix(config)}/`, parentRoutePath, fileName);
 };
 
 const getRoutePath = function (parentRoutePath, fileName) {
@@ -74,9 +69,14 @@ const getRoutePath = function (parentRoutePath, fileName) {
 function getRouteMeta(content) {
     const ast = parser.parse(content, {
         sourceType: 'module',
-        plugins: ['jsx', 'typescript']
+        plugins: ['jsx', 'typescript'],
     });
-    const defineRouteExpression = ast.program.body.filter(expression => expression.type === 'ExpressionStatement' && expression.expression.type === 'CallExpression' && expression.expression.callee.name === 'defineRouteMeta')[0];
+    const defineRouteExpression = ast.program.body.filter(
+        (expression) =>
+            expression.type === 'ExpressionStatement' &&
+            expression.expression.type === 'CallExpression' &&
+            expression.expression.callee.name === 'defineRouteMeta',
+    )[0];
     if (defineRouteExpression) {
         const argument = generator(defineRouteExpression.expression.arguments[0]);
         return JSON.parse(argument.code.replace(/'/g, '"').replace(/(\S+):/g, (global, m1) => `"${m1}":`));
@@ -91,7 +91,7 @@ const genRoutes = function (parentRoutes, path, parentRoutePath, config) {
     const dirList = readdirSync(path);
     const hasLayout = checkHasLayout(path);
     const layoutRoute = {
-        children: []
+        children: [],
     };
     if (hasLayout) {
         layoutRoute.path = parentRoutePath;
@@ -106,22 +106,22 @@ const genRoutes = function (parentRoutes, path, parentRoutePath, config) {
             // 路由的path
             const routePath = getRoutePath(parentRoutePath, fileName);
             if (cacheGenRoutes[routePath]) {
-                logger.warn(`[WARNING]: The file path: ${routePath}(.jsx/.tsx/.vue) conflict in router，will only use ${routePath}.tsx or ${routePath}.jsx，please remove one of.`);
+                logger.warn(
+                    `[WARNING]: The file path: ${routePath}(.jsx/.tsx/.vue) conflict in router，will only use ${routePath}.tsx or ${routePath}.jsx，please remove one of.`,
+                );
                 return;
             }
             cacheGenRoutes[routePath] = true;
 
             // 路由名称
             const routeName = getRouteName(parentRoutePath, fileName);
-            const componentPath = getComponentPath(parentRoutePath, fileName, config);
+            const componentPath = getComponentPath(parentRoutePath, ext === '.vue' ? `${fileName}${ext}` : fileName, config);
 
             let content = readFileSync(component, 'utf-8');
             let routeMeta = {};
             if (ext === '.vue') {
                 const { descriptor } = parse(content);
-                const routeMetaBlock = descriptor.customBlocks.find(
-                    b => b.type === 'config'
-                );
+                const routeMetaBlock = descriptor.customBlocks.find((b) => b.type === 'config');
                 routeMeta = routeMetaBlock?.content ? JSON.parse(routeMetaBlock.content) : {};
                 if (descriptor.script) {
                     content = descriptor.script.content;
@@ -136,7 +136,7 @@ const genRoutes = function (parentRoutes, path, parentRoutePath, config) {
                 path: routePath,
                 component: componentPath,
                 name: routeMeta.name || routeName,
-                meta: routeMeta
+                meta: routeMeta,
             };
             if (hasLayout) {
                 if (fileName === 'layout') {
@@ -215,17 +215,21 @@ const getRoutes = function ({ config, absPagesPath }) {
     return routes;
 };
 
+function genComponentName(component, config) {
+    return lodash.camelCase(component.replace(getPagePathPrefix(config), '').replace('.vue', ''));
+}
+
+function isFunctionComponent(component) {
+    // eslint-disable-next-line
+    return (
+        /^\((.+)?\)(\s+)?=>/.test(component)
+        || /^function([^(]+)?\(([^)]+)?\)([^{]+)?{/.test(component)
+    );
+}
+
 const getRoutesJSON = function ({ routes, config }) {
     // 因为要往 routes 里加无用的信息，所以必须 deep clone 一下，避免污染
     const clonedRoutes = lodash.cloneDeep(routes);
-
-    function isFunctionComponent(component) {
-        // eslint-disable-next-line
-        return (
-            /^\((.+)?\)(\s+)?=>/.test(component)
-            || /^function([^(]+)?\(([^)]+)?\)([^{]+)?{/.test(component)
-        );
-    }
 
     function replacer(key, value) {
         switch (key) {
@@ -235,36 +239,51 @@ const getRoutesJSON = function ({ routes, config }) {
                     // TODO 针对目录进行 chunk 划分，import(/* webpackChunkName: "group-user" */ './UserDetails.vue')
                     return `() => import('${value}')`;
                 }
-                return `require('${value}').default`;
+                return genComponentName(value, config);
             default:
                 return value;
         }
     }
 
     return JSON.stringify(clonedRoutes, replacer, 2)
-        .replace(
-            /"component": ("(.+?)")/g,
-            (global, m1, m2) => `"component": ${m2.replace(/\^/g, '"')}`
-        )
+        .replace(/"component": ("(.+?)")/g, (global, m1, m2) => `"component": ${m2.replace(/\^/g, '"')}`)
         .replace(/\\r\\n/g, '\r\n')
         .replace(/\\n/g, '\r\n');
 };
+
+function genComponentImportExpression(routes, config) {
+    if (config.dynamicImport) {
+        return [];
+    }
+
+    const result = [];
+    for (const routeConfig of routes) {
+        if (routeConfig.children) {
+            result.push(...genComponentImportExpression(routeConfig.children, config));
+        }
+
+        if (routeConfig.component && !isFunctionComponent(routeConfig.component)) {
+            result.push(`import ${genComponentName(routeConfig.component, config)} from '${routeConfig.component}';`);
+        }
+    }
+
+    return result;
+}
 
 export default function (api) {
     api.describe({
         key: 'router',
         config: {
             schema(joi) {
-                return joi
-                    .object({
-                        routes: joi.array(),
-                        mode: joi.string()
-                    });
+                return joi.object({
+                    routes: joi.array(),
+                    mode: joi.string(),
+                });
             },
             default: {
-                mode: 'hash'
-            }
-        }
+                mode: 'hash',
+            },
+        },
     });
 
     api.registerMethod({
@@ -275,22 +294,21 @@ export default function (api) {
                 type: api.ApplyPluginsType.modify,
                 initialValue: getRoutes({
                     config: api.config,
-                    absPagesPath: api.paths.absPagesPath
-                })
+                    absPagesPath: api.paths.absPagesPath,
+                }),
             });
-        }
+        },
     });
 
     api.registerMethod({
         name: 'getRoutesJSON',
-        async fn() {
-            const routes = await api.getRoutes();
-            return getRoutesJSON({ routes, config: api.config });
-        }
+        async fn(routes) {
+            return getRoutesJSON({ routes: await (routes || api.getRoutes()), config: api.config });
+        },
     });
 
     const {
-        utils: { Mustache }
+        utils: { Mustache },
     } = api;
 
     const namespace = 'core/routes';
@@ -302,35 +320,36 @@ export default function (api) {
     const historyType = {
         history: 'createWebHistory',
         hash: 'createWebHashHistory',
-        memory: 'createMemoryHistory'
+        memory: 'createMemoryHistory',
     };
 
     api.onGenerateFiles(async () => {
         const routesTpl = readFileSync(join(__dirname, 'template/routes.tpl'), 'utf-8');
-        const routes = await api.getRoutesJSON();
+        const routes = await api.getRoutes();
 
         api.writeTmpFile({
             path: absCoreFilePath,
             content: Mustache.render(routesTpl, {
                 runtimePath,
-                routes,
+                COMPONENTS_IMPORT: genComponentImportExpression(routes, api.config).join('\n'),
+                routes: await api.getRoutesJSON(),
                 config: api.config,
                 routerBase: api.config.base,
-                CREATE_HISTORY: historyType[api.config.router.mode] || 'createWebHashHistory'
-            })
+                CREATE_HISTORY: historyType[api.config.router.mode] || 'createWebHashHistory',
+            }),
         });
 
         api.writeTmpFile({
             path: absRuntimeFilePath,
-            content: readFileSync(join(__dirname, 'template/runtime.tpl'), 'utf-8')
+            content: readFileSync(join(__dirname, 'template/runtime.tpl'), 'utf-8'),
         });
     });
 
     api.addCoreExports(() => [
         {
             specifiers: ['getRoutes', 'getRouter', 'getHistory', 'destroyRouter', 'defineRouteMeta'],
-            source: absCoreFilePath
-        }
+            source: absCoreFilePath,
+        },
     ]);
 
     api.addRuntimePlugin(() => `@@/${absRuntimeFilePath}`);
