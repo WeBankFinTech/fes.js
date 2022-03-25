@@ -9,7 +9,6 @@ export default {
     },
     publicPath: '/',
     request: {
-        base: '/ras-mas',
         dataField: 'result'
     },
     html: {
@@ -35,15 +34,15 @@ export default {
     devServer: {
         port: 8000
     },
-    windicss: {
-        config: {
-            theme: {
-                extend: {
-                    colors: {
-                        green: '#7cb305'
-                    }
-                }
-            }
-        }
-    }
+    // windicss: {
+    //     config: {
+    //         theme: {
+    //             extend: {
+    //                 colors: {
+    //                     green: '#7cb305'
+    //                 }
+    //             }
+    //         }
+    //     }
+    // }
 };

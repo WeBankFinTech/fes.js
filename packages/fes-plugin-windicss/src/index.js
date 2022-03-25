@@ -1,4 +1,3 @@
-
 import WindiCSSWebpackPlugin from 'windicss-webpack-plugin';
 
 export default (api) => {
@@ -8,8 +7,8 @@ export default (api) => {
             schema(joi) {
                 return joi.object();
             },
-            default: {}
-        }
+            default: {},
+        },
     });
 
     api.addEntryImportsAhead(() => [{ source: 'windi-base.css' }, { source: 'windi-components.css' }, { source: 'windi-utilities.css' }]);
@@ -23,12 +22,12 @@ export default (api) => {
                         // A common use case is scanning files from the root directory
                         include: ['**/*.{vue,jsx,js,ts,tsx}'],
                         // if you are excluding files, make sure you always include node_modules and .git
-                        exclude: ['node_modules', '.git', 'dist']
+                        exclude: ['node_modules', '.git', 'dist', '.fes'],
                     },
-                    ...config
+                    ...config,
                 },
-                ...otherOption
-            }
+                ...otherOption,
+            },
         ]);
         if (api.env === 'development') {
             memo.module.rule('css').test((path) => {
@@ -41,8 +40,8 @@ export default (api) => {
                 lang: 'windicss',
                 test: /windi-utilities.css$/,
                 styleLoaderOption: {
-                    insert: 'body'
-                }
+                    insert: 'body',
+                },
             });
         }
 

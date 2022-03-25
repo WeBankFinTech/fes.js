@@ -42,9 +42,6 @@
   "publishConfig": {
     "access": "public"
   },
-  "devDependencies": {
-    "@webank/eslint-config-webank": "0.3.1"
-  },
   "dependencies": {
     "@fesjs/fes": "^2.0.0",
     "@fesjs/plugin-access": "^2.0.0",

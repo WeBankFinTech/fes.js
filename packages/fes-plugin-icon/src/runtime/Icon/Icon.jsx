@@ -1,9 +1,8 @@
-<script>
 import { computed } from 'vue';
 // eslint-disable-next-line
 import icons from '../icons';
 
-const noop = () => { };
+const noop = () => {};
 
 export default {
     name: 'FesIcon',
@@ -17,25 +16,21 @@ export default {
             }
             return tabIndex;
         });
-        const svgStyle = computed(() => (props.rotate
-            ? {
-                msTransform: `rotate(${props.rotate}deg)`,
-                transform: `rotate(${props.rotate}deg)`
-            }
-            : null));
+        const svgStyle = computed(() =>
+            props.rotate
+                ? {
+                      msTransform: `rotate(${props.rotate}deg)`,
+                      transform: `rotate(${props.rotate}deg)`,
+                  }
+                : null,
+        );
         const svgCls = computed(() => ({
-            'inner-icon--spin': !!props.spin || props.type === 'loading'
+            'inner-icon--spin': !!props.spin || props.type === 'loading',
         }));
         return () => (
-            <span
-                tabIndex={iconTabIndex.value}
-                role="img"
-                class="inner-icon"
-                onClick={attrs.onClick || noop}
-            >
+            <span tabIndex={iconTabIndex.value} role="img" class="inner-icon" onClick={attrs.onClick || noop}>
                 <CurrentIcon.value class={svgCls.value} style={svgStyle.value} />
             </span>
         );
-    }
+    },
 };
-</script>

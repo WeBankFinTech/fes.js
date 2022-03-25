@@ -2,12 +2,13 @@
 import {
     createApp,
     reactive,
-    defineComponent
 } from 'vue';
 import { plugin } from './core/plugin';
 import './core/pluginRegister';
 import { ApplyPluginsType } from '{{{ runtimePath }}}';
 import { getRoutes } from './core/routes/routes';
+
+import DefaultContainer from './defaultContainer';
 
 {{{ imports }}}
 
@@ -18,7 +19,7 @@ const renderClient = (opts = {}) => {
     const rootContainer = plugin.applyPlugins({
         type: ApplyPluginsType.modify,
         key: 'rootContainer',
-        initialValue: defineComponent(() => () => (<RouterView></RouterView>)),
+        initialValue: DefaultContainer,
         args: {
             routes: routes,
             plugin: plugin

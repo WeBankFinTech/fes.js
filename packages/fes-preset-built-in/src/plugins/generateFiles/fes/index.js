@@ -15,7 +15,7 @@ export function importsToStr(imports) {
 
 export default function (api) {
     const {
-        utils: { Mustache }
+        utils: { Mustache },
     } = api;
 
     api.onGenerateFiles(async () => {
@@ -31,31 +31,37 @@ export default function (api) {
                     await api.applyPlugins({
                         key: 'addEntryCode',
                         type: api.ApplyPluginsType.add,
-                        initialValue: []
+                        initialValue: [],
                     })
                 ).join('\r\n'),
                 entryCodeAhead: (
                     await api.applyPlugins({
                         key: 'addEntryCodeAhead',
                         type: api.ApplyPluginsType.add,
-                        initialValue: []
+                        initialValue: [],
                     })
                 ).join('\r\n'),
                 importsAhead: importsToStr(
                     await api.applyPlugins({
                         key: 'addEntryImportsAhead',
                         type: api.ApplyPluginsType.add,
-                        initialValue: []
-                    })
+                        initialValue: [],
+                    }),
                 ).join('\r\n'),
                 imports: importsToStr(
                     await api.applyPlugins({
                         key: 'addEntryImports',
                         type: api.ApplyPluginsType.add,
-                        initialValue: []
-                    })
-                ).join('\r\n')
-            })
+                        initialValue: [],
+                    }),
+                ).join('\r\n'),
+            }),
+        });
+
+        const defaultContainerName = 'defaultContainer';
+        api.writeTmpFile({
+            path: `${defaultContainerName}.jsx`,
+            content: readFileSync(join(__dirname, `./${defaultContainerName}.tpl`), 'utf-8'),
         });
     });
 }

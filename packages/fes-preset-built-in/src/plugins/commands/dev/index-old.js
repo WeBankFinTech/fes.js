@@ -2,11 +2,6 @@
  * @copy 该文件代码大部分出自 umi，有需要请参考：
  * https://github.com/umijs/umi/blob/master/packages/preset-built-in/src/plugins/commands/dev/dev.ts
  */
-import { createServer } from 'vite';
-import vue from '@vitejs/plugin-vue';
-import vueJsx from '@vitejs/plugin-vue-jsx';
-import { viteCommonjs } from '@originjs/vite-plugin-commonjs';
-import SFCConfigBlockPlugin from './SFCConfigBlockPlugin';
 
 const assert = require('assert');
 
@@ -43,7 +38,9 @@ export default (api) => {
             },
         ],
         async fn({ args = {} }) {
-            const { cleanTmpPathExceptCache } = require('../buildDevUtils');
+            const { cleanTmpPathExceptCache, getBundleAndConfigs } = require('../buildDevUtils');
+            const { delay } = require('@fesjs/utils');
+            const createRouteMiddleware = require('./createRouteMiddleware').default;
             const generateFiles = require('../../../utils/generateFiles').default;
             const { watchPkg } = require('./watchPkg');
 
@@ -59,7 +56,9 @@ export default (api) => {
             });
 
             // enable https
-            // const isHTTPS = process.env.HTTPS || args.https;
+            const isHTTPS = process.env.HTTPS || args.https;
+
+            console.log(chalk.cyan(`Starting the development server ${isHTTPS ? 'https' : 'http'}://${hostname}:${port} ...`));
 
             cleanTmpPathExceptCache({
                 absTmpPath: paths.absTmpPath,
@@ -136,51 +135,37 @@ export default (api) => {
                 unwatchs.push(unwatchConfig);
             }
 
-            server = await createServer({
-                mode: 'development',
-                plugins: [vue(), SFCConfigBlockPlugin, vueJsx(), viteCommonjs()],
-                configFile: false,
-                resolve: {
-                    alias: {
-                        '@': paths.absSrcPath,
-                        '@@': paths.absTmpPath,
-                    },
-                },
-                server: {
-                    port: 8000,
-                },
-            });
-            await server.listen();
-
-            server.printUrls();
+            // delay dev server 启动，避免重复 compile
+            // https://github.com/webpack/watchpack/issues/25
+            // https://github.com/yessky/webpack-mild-compile
+            await delay(500);
 
             // dev
-            // const { bundleConfig } = await getBundleAndConfigs({ api });
+            const { bundleConfig } = await getBundleAndConfigs({ api });
 
-            // const beforeMiddlewares = await api.applyPlugins({
-            //     key: 'addBeforeMiddlewares',
-            //     type: api.ApplyPluginsType.add,
-            //     initialValue: [],
-            //     args: {}
-            // });
-            // const middlewares = await api.applyPlugins({
-            //     key: 'addMiddlewares',
-            //     type: api.ApplyPluginsType.add,
-            //     initialValue: [],
-            //     args: {}
-            // });
-            // const { startDevServer } = require('./devServer');
-            // server = startDevServer({
-            //     webpackConfig: bundleConfig,
-            //     host: hostname,
-            //     port,
-            //     proxy: api.config.proxy,
-            //     https: isHTTPS,
-            //     beforeMiddlewares: [...beforeMiddlewares, createRouteMiddleware(api)],
-            //     afterMiddlewares: [...middlewares],
-            //     customerDevServerConfig: api.config.devServer
-            // });
-
+            const beforeMiddlewares = await api.applyPlugins({
+                key: 'addBeforeMiddlewares',
+                type: api.ApplyPluginsType.add,
+                initialValue: [],
+                args: {},
+            });
+            const middlewares = await api.applyPlugins({
+                key: 'addMiddlewares',
+                type: api.ApplyPluginsType.add,
+                initialValue: [],
+                args: {},
+            });
+            const { startDevServer } = require('./devServer');
+            server = startDevServer({
+                webpackConfig: bundleConfig,
+                host: hostname,
+                port,
+                proxy: api.config.proxy,
+                https: isHTTPS,
+                beforeMiddlewares: [...beforeMiddlewares, createRouteMiddleware(api)],
+                afterMiddlewares: [...middlewares],
+                customerDevServerConfig: api.config.devServer,
+            });
             return {
                 destroy,
             };

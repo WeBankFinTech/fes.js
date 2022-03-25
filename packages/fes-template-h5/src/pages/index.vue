@@ -1,12 +1,7 @@
 <template>
     <div class="onepiece m-10px text-green">
         fes h5 & 拉夫德鲁<br />
-        <fes-icon
-            :spin="true"
-            class="one-icon"
-            type="smile"
-            @click="clickIcon"
-        />
+        <fes-icon :spin="true" class="one-icon" type="smile" @click="clickIcon" />
         <HelloWorld />
         <HelloTSX />
         <helloTS />
@@ -15,21 +10,21 @@
 <script>
 import { ref } from 'vue';
 import { request, defineRouteMeta, useRoute } from '@fesjs/fes';
-import HelloWorld from '@/components/helloWorld';
-import HelloTSX from '@/components/helloTSX';
-import helloTS from '@/components/helloTS';
+import HelloWorld from '@/components/helloWorld.vue';
+import HelloTSX from '@/components/helloTSX.vue';
+import helloTS from '@/components/helloTS.vue';
 
 defineRouteMeta({
     title: '首页',
     name: 'testIndex',
-    layout: false
+    layout: false,
 });
 
 export default {
     components: {
         HelloWorld,
         HelloTSX,
-        helloTS
+        helloTS,
     },
     setup() {
         const fes = ref('fes upgrade to vue3');
@@ -68,8 +63,8 @@ export default {
                 '/get/api',
                 { id },
                 {
-                    method: 'get'
-                }
+                    method: 'get',
+                },
             );
         };
 
@@ -78,8 +73,8 @@ export default {
                 '/api',
                 { id },
                 {
-                    responseType: 'blob'
-                }
+                    responseType: 'blob',
+                },
             ).then((data) => {
                 console.log(data);
             });
@@ -143,15 +138,15 @@ export default {
         return {
             fes,
             rotate,
-            clickIcon
+            clickIcon,
         };
-    }
+    },
 };
 </script>
 
 <style lang="less" scoped>
-@import '~@/styles/mixins/hairline';
-@import '~@/styles/mixins/hover';
+@import '@/styles/mixins/hairline';
+@import '@/styles/mixins/hover';
 
 div {
     padding: 20px;
