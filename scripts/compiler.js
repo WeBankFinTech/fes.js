@@ -3,7 +3,6 @@
 
 const babel = require('@babel/core');
 
-
 function transform(code, options) {
     const result = babel.transformSync(code, options);
     return result.code;
@@ -12,11 +11,14 @@ function transform(code, options) {
 function transformNodeCode(code) {
     return transform(code, {
         presets: [
-            ['@babel/preset-env', {
-                modules: 'cjs',
-                targets: { node: '12' }
-            }]
-        ]
+            [
+                '@babel/preset-env',
+                {
+                    modules: 'cjs',
+                    targets: { node: '12' },
+                },
+            ],
+        ],
     });
 }
 
@@ -25,12 +27,15 @@ function transformBrowserCode(code) {
     // 因此这里不对 polyfill 进行处理，避免全局污染
     return transform(code, {
         presets: [
-            ['@babel/preset-env', {
-                modules: false,
-                useBuiltIns: false,
-                targets: { chrome: '51' }
-            }]
-        ]
+            [
+                '@babel/preset-env',
+                {
+                    modules: false,
+                    useBuiltIns: false,
+                    targets: { chrome: '51' },
+                },
+            ],
+        ],
     });
 }
 
@@ -43,6 +48,5 @@ function compiler(code, config) {
     }
     throw new Error(`config target error: ${config.target}, only can use 'node' and 'browser'`);
 }
-
 
 module.exports = compiler;

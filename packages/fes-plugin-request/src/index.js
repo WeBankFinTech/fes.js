@@ -17,16 +17,14 @@ export default (api) => {
                         .string()
                         .pattern(/^[a-zA-Z]*$/)
                         .allow(''),
-                    base: joi
-                        .string()
-                        .allow('')
+                    base: joi.string().allow(''),
                 });
             },
             default: {
                 base: '',
-                dataField: ''
-            }
-        }
+                dataField: '',
+            },
+        },
     });
 
     const namespace = 'plugin-request';
@@ -40,12 +38,13 @@ export default (api) => {
             // DEPRECATED
             logger.warn('[DEPRECATED]: reqeust base 即将废弃，建议使用 axios baseURL代替：https://github.com/axios/axios');
         }
+
         api.writeTmpFile({
             path: absoluteFilePath,
             content: requestTemplate
                 .replace('REPLACE_DATA_FIELD', JSON.stringify(dataField))
                 .replace('REPLACE_BASE', base || '')
-                .replace('AXIOS_PATH', resolvePkg('axios'))
+                .replace('AXIOS_PATH', resolvePkg('axios')),
         });
     });
 
@@ -56,14 +55,14 @@ export default (api) => {
         api.copyTmpFiles({
             namespace,
             path: join(__dirname, 'template'),
-            ignore: ['request.js']
+            ignore: ['request.js'],
         });
     });
 
     api.addPluginExports(() => [
         {
             exportAll: true,
-            source: absoluteFilePath
-        }
+            source: absoluteFilePath,
+        },
     ]);
 };

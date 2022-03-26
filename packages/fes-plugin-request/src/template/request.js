@@ -2,10 +2,7 @@ import axios from 'AXIOS_PATH';
 import { ApplyPluginsType, plugin } from '@fesjs/fes';
 import { ref } from 'vue';
 import scheduler from './scheduler';
-import {
-    checkHttpRequestHasBody,
-    isFunction
-} from './helpers';
+import { checkHttpRequestHasBody, isFunction } from './helpers';
 
 import setDataField from './setDataField';
 import paramsProcess from './paramsProcess';
@@ -53,13 +50,16 @@ function getRequestInstance() {
     } = plugin.applyPlugins({
         key: 'request',
         type: ApplyPluginsType.modify,
-        initialValue: {}
+        initialValue: {},
     });
 
-    const defaultConfig = Object.assign({
-        timeout: 10000,
-        withCredentials: true
-    }, otherConfigs);
+    const defaultConfig = Object.assign(
+        {
+            timeout: 10000,
+            withCredentials: true,
+        },
+        otherConfigs,
+    );
     const instance = axios.create(defaultConfig);
 
     addRequestInterceptors(instance, requestInterceptors);
@@ -83,9 +83,9 @@ function getRequestInstance() {
             defaultConfig,
             dataField: REPLACE_DATA_FIELD, // eslint-disable-line
             responseDataAdaptor,
-            errorHandler
+            errorHandler,
         },
-        request: scheduler.compose()
+        request: scheduler.compose(),
     };
 }
 
@@ -117,11 +117,10 @@ function createContext(userConfig) {
         ...currentRequestInstance.context,
         config: {
             ...currentRequestInstance.context.defaultConfig,
-            ...userConfig
-        }
+            ...userConfig,
+        },
     };
 }
-
 
 function getResponseCode(response) {
     if (response) {
@@ -142,12 +141,7 @@ function skipErrorHandlerToObj(skipErrorHandler = []) {
     }, {});
 }
 
-function handleRequestError({
-    errorHandler = {},
-    error,
-    response,
-    config
-}) {
+function handleRequestError({ errorHandler = {}, error, response, config }) {
     // 跳过所有错误类型处理
     if (config.skipErrorHandler === true) return;
 
@@ -171,7 +165,7 @@ function handleRequestError({
 export const request = (url, data, options = {}) => {
     if (typeof options === 'string') {
         options = {
-            method: options
+            method: options,
         };
     }
     if (!currentRequestInstance) {
@@ -203,16 +197,19 @@ export const useRequest = (url, data, options = {}) => {
     } else {
         promise = request(url, data, options);
     }
-    promise.then((res) => {
-        dataRef.value = res;
-    }).catch((error) => {
-        errorRef.value = error;
-    }).finally(() => {
-        loadingRef.value = false;
-    });
+    promise
+        .then((res) => {
+            dataRef.value = res;
+        })
+        .catch((error) => {
+            errorRef.value = error;
+        })
+        .finally(() => {
+            loadingRef.value = false;
+        });
     return {
         loading: loadingRef,
         error: errorRef,
-        data: dataRef
+        data: dataRef,
     };
 };

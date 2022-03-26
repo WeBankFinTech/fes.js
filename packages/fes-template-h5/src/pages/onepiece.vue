@@ -1,5 +1,5 @@
 <template>
-    <div class="m-10px">{{fes}}</div>
+    <div class="m-10px">{{ fes }}</div>
     <img :src="publicPath + 'logo.png'" />
 </template>
 <config>
@@ -16,8 +16,8 @@ export default {
         const fes = ref('fes upgrade to vue3');
         return {
             publicPath: process.env.BASE_URL,
-            fes
+            fes,
         };
-    }
+    },
 };
 </script>
