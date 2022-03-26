@@ -1,4 +1,3 @@
-
 module.exports = {
     // 需要编译的包
     pkgs: [
@@ -21,7 +20,8 @@ module.exports = {
         'fes-preset-built-in',
         'fes-plugin-windicss',
         'fes-runtime',
-        'fes-utils'
+        'fes-utils',
+        'fes-build-webpack',
     ],
-    copy: []
+    copy: [],
 };

@@ -24,6 +24,8 @@ import compatESModuleRequire from './compatESModuleRequire';
 import cleanRequireCache from './cleanRequireCache';
 import parseRequireDeps from './parseRequireDeps';
 import mergeConfig from './mergeConfig';
+import getAppEntryPath from './getAppEntryPath';
+import generateFiles from './generateFiles';
 
 export {
     chalk,
@@ -42,16 +44,7 @@ export {
     pkgUp,
     portfinder,
     resolve,
-    generator
+    generator,
 };
 
-export {
-    Generator,
-    winPath,
-    delay,
-    compatESModuleRequire,
-    cleanRequireCache,
-    parseRequireDeps,
-    mergeConfig,
-    resolvePkg
-};
+export { Generator, winPath, delay, compatESModuleRequire, cleanRequireCache, parseRequireDeps, mergeConfig, resolvePkg, generateFiles, getAppEntryPath };
