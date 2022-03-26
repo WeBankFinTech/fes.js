@@ -1,19 +1,11 @@
-import {
-    dirname, join, basename, relative, extname
-} from 'path';
-import {
-    compatESModuleRequire,
-    resolve,
-    winPath,
-    pkgUp,
-    lodash
-} from '@fesjs/utils';
+import { dirname, join, basename, relative, extname } from 'path';
+import { compatESModuleRequire, resolve, winPath, pkgUp, lodash } from '@fesjs/utils';
 
 import { PluginType } from '../enums';
 
 const RE = {
     [PluginType.plugin]: /^(@fesjs\/|@webank\/fes-|fes-)plugin-/,
-    [PluginType.preset]: /^(@fesjs\/|@webank\/fes-|fes-)preset-/
+    [PluginType.preset]: /^(@fesjs\/|@webank\/fes-|fes-)preset-/,
 };
 
 export function isPluginOrPreset(type, name) {
@@ -25,25 +17,36 @@ export function isPluginOrPreset(type, name) {
     return re.test(name);
 }
 
+function filterPluginAndPreset(type, pkg) {
+    return Object.keys(pkg.devDependencies || {})
+        .concat(Object.keys(pkg.dependencies || {}))
+        .filter(isPluginOrPreset.bind(null, type));
+}
+
+function filterBuilder(pkg) {
+    return Object.keys(pkg.devDependencies || {})
+        .concat(Object.keys(pkg.dependencies || {}))
+        .filter((name) => /^@fesjs\/build-/.test(name));
+}
+
 export function getPluginsOrPresets(type, opts) {
     const upperCaseType = type.toUpperCase();
     return [
-        // dependencies
         // opts
-        ...((opts[type === PluginType.preset ? 'presets' : 'plugins']) || []),
+        ...(opts[type === PluginType.preset ? 'presets' : 'plugins'] || []),
         // env
         ...(process.env[`FES_${upperCaseType}S`] || '').split(',').filter(Boolean),
-        ...Object.keys(opts.pkg.devDependencies || {})
-            .concat(Object.keys(opts.pkg.dependencies || {}))
-            .filter(isPluginOrPreset.bind(null, type)),
+        ...filterPluginAndPreset(type, opts.pkg),
+        // 构建只允许是 presets
+        ...(type === PluginType.preset ? filterBuilder(opts.pkg) : []),
         // user config
-        ...((opts[
-            type === PluginType.preset ? 'userConfigPresets' : 'userConfigPlugins'
-        ]) || [])
-    ].map(path => resolve.sync(path, {
-        basedir: opts.cwd,
-        extensions: ['.js', '.ts']
-    }));
+        ...(opts[type === PluginType.preset ? 'userConfigPresets' : 'userConfigPlugins'] || []),
+    ].map((path) =>
+        resolve.sync(path, {
+            basedir: opts.cwd,
+            extensions: ['.js', '.ts'],
+        }),
+    );
 }
 
 // e.g.
@@ -52,7 +55,7 @@ export function getPluginsOrPresets(type, opts) {
 function nameToKey(name) {
     return name
         .split('.')
-        .map(part => lodash.camelCase(part))
+        .map((part) => lodash.camelCase(part))
         .join('.');
 }
 
@@ -70,8 +73,7 @@ export function pathToObj({ path, type, cwd }) {
     if (pkgJSONPath) {
         // eslint-disable-next-line
         pkg = require(pkgJSONPath);
-        isPkgPlugin = winPath(join(dirname(pkgJSONPath), pkg.main || 'index.js'))
-            === winPath(path);
+        isPkgPlugin = winPath(join(dirname(pkgJSONPath), pkg.main || 'index.js')) === winPath(path);
     }
 
     let id;
@@ -87,9 +89,7 @@ export function pathToObj({ path, type, cwd }) {
     id = id.replace('@fesjs/preset-built-in/lib/plugins', '@@');
     id = id.replace(/\.js$/, '');
 
-    const key = isPkgPlugin
-        ? pkgNameToKey(pkg.name, type)
-        : nameToKey(basename(path, extname(path)));
+    const key = isPkgPlugin ? pkgNameToKey(pkg.name, type) : nameToKey(basename(path, extname(path)));
 
     return {
         id,
@@ -106,28 +106,32 @@ export function pathToObj({ path, type, cwd }) {
                 throw new Error(`Register ${path} failed, since ${e.message}`);
             }
         },
-        defaultConfig: null
+        defaultConfig: null,
     };
 }
 
 export function resolvePresets(opts) {
     const type = PluginType.preset;
     const presets = [...getPluginsOrPresets(type, opts)];
-    return presets.map(path => pathToObj({
-        type,
-        path,
-        cwd: opts.cwd
-    }));
+    return presets.map((path) =>
+        pathToObj({
+            type,
+            path,
+            cwd: opts.cwd,
+        }),
+    );
 }
 
 export function resolvePlugins(opts) {
     const type = PluginType.plugin;
     const plugins = getPluginsOrPresets(type, opts);
-    return plugins.map(path => pathToObj({
-        path,
-        type,
-        cwd: opts.cwd
-    }));
+    return plugins.map((path) =>
+        pathToObj({
+            path,
+            type,
+            cwd: opts.cwd,
+        }),
+    );
 }
 
 export function isValidPlugin(plugin) {

@@ -1,4 +1,3 @@
-
 export default (api) => {
     api.describe({
         key: 'proxy',
@@ -8,7 +7,7 @@ export default (api) => {
             },
             schema(joi) {
                 return joi.object();
-            }
-        }
+            },
+        },
     });
 };

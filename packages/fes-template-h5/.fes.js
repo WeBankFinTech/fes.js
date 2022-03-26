@@ -34,15 +34,15 @@ export default {
     devServer: {
         port: 8000
     },
-    // windicss: {
-    //     config: {
-    //         theme: {
-    //             extend: {
-    //                 colors: {
-    //                     green: '#7cb305'
-    //                 }
-    //             }
-    //         }
-    //     }
-    // }
+    windicss: {
+        config: {
+            theme: {
+                extend: {
+                    colors: {
+                        green: '#7cb305'
+                    }
+                }
+            }
+        }
+    }
 };

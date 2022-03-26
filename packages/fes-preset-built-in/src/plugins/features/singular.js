@@ -4,9 +4,8 @@ export default (api) => {
         config: {
             default: false,
             schema(joi) {
-                return joi
-                    .boolean();
-            }
-        }
+                return joi.boolean();
+            },
+        },
     });
 };
