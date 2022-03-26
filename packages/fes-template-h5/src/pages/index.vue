@@ -3,16 +3,12 @@
         fes h5 & 拉夫德鲁<br />
         <fes-icon :spin="true" class="one-icon" type="smile" @click="clickIcon" />
         <HelloWorld />
-        <HelloTSX />
-        <helloTS />
     </div>
 </template>
 <script>
 import { ref } from 'vue';
 import { request, defineRouteMeta, useRoute } from '@fesjs/fes';
 import HelloWorld from '@/components/helloWorld.vue';
-import HelloTSX from '@/components/helloTSX.vue';
-import helloTS from '@/components/helloTS.vue';
 
 defineRouteMeta({
     title: '首页',
@@ -23,8 +19,6 @@ defineRouteMeta({
 export default {
     components: {
         HelloWorld,
-        HelloTSX,
-        helloTS,
     },
     setup() {
         const fes = ref('fes upgrade to vue3');

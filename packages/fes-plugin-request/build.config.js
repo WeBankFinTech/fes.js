@@ -1,4 +1,3 @@
-
 module.exports = {
-    copy: ['template']
+    copy: ['template'],
 };

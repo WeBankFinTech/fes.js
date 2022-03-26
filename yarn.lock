@@ -2591,13 +2591,6 @@
   dependencies:
     "@octokit/openapi-types" "^11.2.0"
 
-"@originjs/vite-plugin-commonjs@^1.0.3":
-  version "1.0.3"
-  resolved "https://registry.npmmirror.com/@originjs/vite-plugin-commonjs/-/vite-plugin-commonjs-1.0.3.tgz#2e3fb11ec78847da9422b79c103953f94d667f09"
-  integrity sha512-KuEXeGPptM2lyxdIEJ4R11+5ztipHoE7hy8ClZt3PYaOVQ/pyngd2alaSrPnwyFeOW1UagRBaQ752aA1dTMdOQ==
-  dependencies:
-    esbuild "^0.14.14"
-
 "@polka/url@^1.0.0-next.20":
   version "1.0.0-next.21"
   resolved "https://registry.npmmirror.com/@polka/url/-/url-1.0.0-next.21.tgz#5de5a2385a35309427f6011992b544514d559aa1"

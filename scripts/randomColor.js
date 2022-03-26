@@ -14,7 +14,7 @@ const colors = [
     'yellowBright',
     'blueBright',
     'magentaBright',
-    'cyanBright'
+    'cyanBright',
 ];
 
 let index = 0;

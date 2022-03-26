@@ -1,5 +1,5 @@
 import { createRouter as createVueRouter, {{{ CREATE_HISTORY }}}, ApplyPluginsType } from '{{{ runtimePath }}}';
-import { plugin } from '@@/core/coreExports';
+import { plugin } from '../plugin';
 
 {{{ COMPONENTS_IMPORT }}}
 
@@ -61,8 +61,4 @@ export const getHistory = ()=>{
 export const destroyRouter = ()=>{
     router = null;
     history = null;
-}
-
-export const defineRouteMeta = (param)=>{
-    return param
 }

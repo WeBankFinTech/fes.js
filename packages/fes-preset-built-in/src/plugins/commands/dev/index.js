@@ -5,7 +5,6 @@
 import { createServer } from 'vite';
 import vue from '@vitejs/plugin-vue';
 import vueJsx from '@vitejs/plugin-vue-jsx';
-import { viteCommonjs } from '@originjs/vite-plugin-commonjs';
 import SFCConfigBlockPlugin from './SFCConfigBlockPlugin';
 
 const assert = require('assert');
@@ -138,13 +137,17 @@ export default (api) => {
 
             server = await createServer({
                 mode: 'development',
-                plugins: [vue(), SFCConfigBlockPlugin, vueJsx(), viteCommonjs()],
+                plugins: [vue(), SFCConfigBlockPlugin, vueJsx()],
                 configFile: false,
                 resolve: {
                     alias: {
                         '@': paths.absSrcPath,
                         '@@': paths.absTmpPath,
+                        '@fesInner': '/',
                     },
+                },
+                optimizeDeps: {
+                    // exclude: ['@fesjs/fes'],
                 },
                 server: {
                     port: 8000,
