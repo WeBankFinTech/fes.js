@@ -34,5 +34,6 @@
     "@fesjs/compiler": "^2.0.5",
     "@fesjs/utils": "^2.0.4",
     "axios": "0.21.1"
-  }
+  },
+  "typings": "./types.d.ts"
 }

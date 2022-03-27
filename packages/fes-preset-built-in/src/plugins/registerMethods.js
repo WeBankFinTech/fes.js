@@ -14,16 +14,21 @@ export default function (api) {
         'addEntryImports',
         'addEntryCodeAhead',
         'addEntryCode',
+        'modifyRoutes',
+
+        'addRuntimeType',
+        'addBuildType',
+
+        'addTmpGenerateWatcherPaths',
+
         'addBeforeMiddlewares',
         'addHTMLHeadScripts',
         'addMiddlewares',
-        'modifyRoutes',
         'modifyBundleConfigOpts',
         'modifyBundleConfig',
         'modifyBabelOpts',
         'modifyBabelPresetOpts',
         'chainWebpack',
-        'addTmpGenerateWatcherPaths',
         'modifyPublicPathStr',
     ].forEach((name) => {
         api.registerMethod({ name });
