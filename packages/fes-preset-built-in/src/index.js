@@ -9,6 +9,7 @@ export default function () {
             require.resolve('./plugins/generateFiles/core/exports/coreExports'),
             require.resolve('./plugins/generateFiles/core/exports/pluginExports'),
             require.resolve('./plugins/generateFiles/fes'),
+            require.resolve('./plugins/generateFiles/genType'),
 
             // bundle configs
             require.resolve('./plugins/features/base'),

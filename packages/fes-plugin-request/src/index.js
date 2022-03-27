@@ -2,6 +2,7 @@ import { Logger } from '@fesjs/compiler';
 import { readFileSync } from 'fs';
 import { join } from 'path';
 import { resolvePkg } from '@fesjs/utils';
+import { name } from '../package.json';
 
 const logger = new Logger('fes:plugin-request');
 
@@ -65,4 +66,14 @@ export default (api) => {
             source: absoluteFilePath,
         },
     ]);
+
+    api.addRuntimeType(() => ({
+        source: name,
+        specifier: ['RequestRuntimeConfig'],
+    }));
+
+    api.addBuildType(() => ({
+        source: name,
+        specifier: ['RequestBuildConfig'],
+    }));
 };

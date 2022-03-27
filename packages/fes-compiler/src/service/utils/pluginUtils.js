@@ -1,7 +1,10 @@
 import { dirname, join, basename, relative, extname } from 'path';
 import { compatESModuleRequire, resolve, winPath, pkgUp, lodash } from '@fesjs/utils';
+import Logger from '../../logger';
 
 import { PluginType } from '../enums';
+
+const logger = new Logger('fes:compiler');
 
 const RE = {
     [PluginType.plugin]: /^(@fesjs\/|@webank\/fes-|fes-)plugin-/,
@@ -24,9 +27,15 @@ function filterPluginAndPreset(type, pkg) {
 }
 
 function filterBuilder(pkg) {
-    return Object.keys(pkg.devDependencies || {})
+    const builders = Object.keys(pkg.devDependencies || {})
         .concat(Object.keys(pkg.dependencies || {}))
         .filter((name) => /^@fesjs\/build-/.test(name));
+
+    if (builders.length > 1) {
+        logger.warn(`检测到您使用了多个个 builder: ${builders}，当前生效的是 ${builders[0]}, 请保留一个`);
+    }
+
+    return builders.slice(0, 1);
 }
 
 export function getPluginsOrPresets(type, opts) {
