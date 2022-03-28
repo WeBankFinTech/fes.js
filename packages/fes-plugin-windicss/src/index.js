@@ -1,4 +1,5 @@
 import WindiCSSWebpackPlugin from 'windicss-webpack-plugin';
+import { name } from '../package.json';
 
 export default (api) => {
     api.describe({
@@ -47,4 +48,9 @@ export default (api) => {
 
         return memo;
     });
+
+    api.addBuildType(() => ({
+        source: name,
+        specifier: ['WindicssBuildConfig'],
+    }));
 };
