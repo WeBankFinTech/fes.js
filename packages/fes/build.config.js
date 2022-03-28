@@ -1,4 +1,3 @@
-
 module.exports = {
-    copy: ['index.js']
+    copy: ['index.js'],
 };
