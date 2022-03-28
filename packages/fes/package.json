@@ -42,6 +42,7 @@
         "@fesjs/preset-built-in": "^2.0.22",
         "@fesjs/runtime": "^2.0.2",
         "@fesjs/utils": "^2.0.4",
+        "pirates": "^4.0.5",
         "resolve-cwd": "^3.0.0",
         "vue-router": "^4.0.1"
     },

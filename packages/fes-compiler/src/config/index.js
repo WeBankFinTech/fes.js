@@ -5,23 +5,11 @@
 
 import { existsSync } from 'fs';
 import { extname, join } from 'path';
-import {
-    chalk,
-    chokidar,
-    compatESModuleRequire,
-    deepmerge,
-    cleanRequireCache,
-    lodash,
-    parseRequireDeps,
-    winPath
-} from '@fesjs/utils';
+import { chalk, chokidar, compatESModuleRequire, deepmerge, cleanRequireCache, lodash, parseRequireDeps, winPath } from '@fesjs/utils';
 import assert from 'assert';
 import joi from 'joi';
 import { ServiceStage } from '../service/enums';
-import {
-    getUserConfigWithKey,
-    updateUserConfigWithKey
-} from './utils/configUtils';
+import { getUserConfigWithKey, updateUserConfigWithKey } from './utils/configUtils';
 import isEqual from './utils/isEqual';
 import mergeDefault from './utils/mergeDefault';
 
@@ -60,17 +48,12 @@ export default class Config {
     }
 
     getConfig({ defaultConfig }) {
-        assert(
-            this.service.stage >= ServiceStage.pluginReady,
-            'Config.getConfig() failed, it should not be executed before plugin is ready.'
-        );
+        assert(this.service.stage >= ServiceStage.pluginReady, 'Config.getConfig() failed, it should not be executed before plugin is ready.');
 
         const userConfig = this.getUserConfig();
         // 用于提示用户哪些 key 是未定义的
         // TODO: 考虑不排除 false 的 key
-        const userConfigKeys = Object.keys(userConfig).filter(
-            key => userConfig[key] !== false
-        );
+        const userConfigKeys = Object.keys(userConfig).filter((key) => userConfig[key] !== false);
 
         // get config
         const pluginIds = Object.keys(this.service.plugins);
@@ -81,22 +64,17 @@ export default class Config {
 
             const value = getUserConfigWithKey({
                 key,
-                userConfig
+                userConfig,
             });
             // 不校验 false 的值，此时已禁用插件
             if (value === false) return;
 
             // do validate
             const schema = config.schema(joi);
-            assert(
-                joi.isSchema(schema),
-                `schema return from plugin ${pluginId} is not valid schema.`
-            );
+            assert(joi.isSchema(schema), `schema return from plugin ${pluginId} is not valid schema.`);
             const { error } = schema.validate(value);
             if (error) {
-                const e = new Error(
-                    `Validate config "${key}" failed, ${error.message}`
-                );
+                const e = new Error(`Validate config "${key}" failed, ${error.message}`);
                 e.stack = error.stack;
                 throw e;
             }
@@ -111,21 +89,19 @@ export default class Config {
             if (key in defaultConfig) {
                 const newValue = mergeDefault({
                     defaultConfig: defaultConfig[key],
-                    config: value
+                    config: value,
                 });
                 updateUserConfigWithKey({
                     key,
                     value: newValue,
-                    userConfig
+                    userConfig,
                 });
             }
         });
 
         if (userConfigKeys.length) {
             const keys = userConfigKeys.length > 1 ? 'keys' : 'key';
-            throw new Error(
-                `Invalid config ${keys}: ${userConfigKeys.join(', ')}`
-            );
+            throw new Error(`Invalid config ${keys}: ${userConfigKeys.join(', ')}`);
         }
 
         return userConfig;
@@ -143,7 +119,7 @@ export default class Config {
             requireDeps.forEach(cleanRequireCache);
             this.service.babelRegister.setOnlyMap({
                 key: 'config',
-                value: requireDeps
+                value: requireDeps,
             });
 
             // require config and merge
@@ -173,31 +149,22 @@ export default class Config {
 
     getConfigFile() {
         // TODO: support custom config file
-        let configFile = CONFIG_FILES.find(f => existsSync(join(this.cwd, f)));
+        let configFile = CONFIG_FILES.find((f) => existsSync(join(this.cwd, f)));
         if (!configFile) return [];
         configFile = winPath(configFile);
         let envConfigFile;
         // 潜在问题：
         // .local 和 .env 的配置必须有 configFile 才有效
         if (process.env.FES_ENV) {
-            envConfigFile = this.addAffix(
-                configFile,
-                process.env.FES_ENV
-            );
+            envConfigFile = this.addAffix(configFile, process.env.FES_ENV);
             if (!existsSync(join(this.cwd, envConfigFile))) {
-                throw new Error(
-                    `get user config failed, ${envConfigFile} does not exist, but process.env.FES_ENV is set to ${process.env.FES_ENV}.`
-                );
+                throw new Error(`get user config failed, ${envConfigFile} does not exist, but process.env.FES_ENV is set to ${process.env.FES_ENV}.`);
             }
         }
-        const files = [
-            configFile,
-            envConfigFile,
-            this.localConfig && this.addAffix(configFile, 'local')
-        ]
-            .filter(f => !!f)
-            .map(f => join(this.cwd, f))
-            .filter(f => existsSync(f));
+        const files = [configFile, envConfigFile, this.localConfig && this.addAffix(configFile, 'local')]
+            .filter((f) => !!f)
+            .map((f) => join(this.cwd, f))
+            .filter((f) => existsSync(f));
         return files;
     }
 
@@ -221,7 +188,7 @@ export default class Config {
                 }
                 return memo;
             }, [])
-            .filter(f => !f.startsWith(configDir));
+            .filter((f) => !f.startsWith(configDir));
 
         return [configDir].concat(files);
     }
@@ -231,7 +198,7 @@ export default class Config {
         let userConfig = opts.userConfig;
         const watcher = chokidar.watch(paths, {
             ignoreInitial: true,
-            cwd: this.cwd
+            cwd: this.cwd,
         });
         watcher.on('all', (event, path) => {
             console.log(chalk.green(`[${event}] ${path}`));
@@ -252,12 +219,9 @@ export default class Config {
                 if (!isEqual(newUserConfig[key], userConfig[key])) {
                     const changed = {
                         key,
-                        pluginId
+                        pluginId,
                     };
-                    if (
-                        newUserConfig[key] === false
-                        || userConfig[key] === false
-                    ) {
+                    if (newUserConfig[key] === false || userConfig[key] === false) {
                         pluginChanged.push(changed);
                     } else {
                         valueChanged.push(changed);
@@ -269,7 +233,7 @@ export default class Config {
                 opts.onChange({
                     userConfig: newUserConfig,
                     pluginChanged,
-                    valueChanged
+                    valueChanged,
                 });
             }
             userConfig = newUserConfig;

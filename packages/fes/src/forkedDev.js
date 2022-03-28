@@ -8,6 +8,7 @@ import { Service } from './serviceWithBuiltIn';
 import getCwd from './utils/getCwd';
 import getPkg from './utils/getPkg';
 import fesPkg from '../package.json';
+import { hackFesInBuild } from './hackFesInBuild';
 
 const args = yParser(process.argv.slice(2));
 
@@ -21,8 +22,8 @@ function onSignal(signal, service) {
         key: 'onExit',
         type: service.ApplyPluginsType.event,
         args: {
-            signal
-        }
+            signal,
+        },
     });
     process.exit(0);
 }
@@ -30,16 +31,16 @@ function onSignal(signal, service) {
 (async () => {
     try {
         process.env.NODE_ENV = 'development';
+        hackFesInBuild();
         const service = new Service({
             cwd: getCwd(),
             pkg: getPkg(process.cwd()),
-            fesPkg
+            fesPkg,
         });
         await service.run({
             name: 'dev',
-            args
+            args,
         });
-
 
         // kill(2) Ctrl-C
         process.once('SIGINT', () => onSignal('SIGINT', service));

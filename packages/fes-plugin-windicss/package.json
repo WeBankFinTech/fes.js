@@ -32,5 +32,6 @@
   },
   "dependencies": {
     "windicss-webpack-plugin": "^1.6.0"
-  }
+  },
+  "typings": "./types.d.ts"
 }
