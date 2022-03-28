@@ -49,8 +49,8 @@ export default (api) => {
         return memo;
     });
 
-    api.addBuildType(() => ({
+    api.addConfigType(() => ({
         source: name,
-        specifier: ['WindicssBuildConfig'],
+        build: ['WindicssBuildConfig'],
     }));
 };
