@@ -6,7 +6,7 @@ const namespace = 'plugin-layout';
 
 export default (api) => {
     const {
-        utils: { Mustache }
+        utils: { Mustache },
     } = api;
 
     const helper = require('./node/helper');
@@ -17,8 +17,8 @@ export default (api) => {
             schema(joi) {
                 return joi.object();
             },
-            onChange: api.ConfigChangeType.regenerateTmpFiles
-        }
+            onChange: api.ConfigChangeType.regenerateTmpFiles,
+        },
     });
 
     api.addRuntimePluginKey(() => 'layout');
@@ -36,7 +36,7 @@ export default (api) => {
         const userConfig = {
             title: name,
             footer: 'Created by Fes.js',
-            ...(api.config.layout || {})
+            ...(api.config.layout || {}),
         };
 
         // 路由信息
@@ -46,46 +46,39 @@ export default (api) => {
 
         const icons = helper.getIconsFromMenu(userConfig.menus);
 
-        const iconsString = icons.map(
-            iconName => `import { ${iconName} } from '@fesjs/fes-design/icon'`
-        );
+        const iconsString = icons.map((iconName) => `import { ${iconName} } from '@fesjs/fes-design/icon'`);
         api.writeTmpFile({
             path: join(namespace, 'icons.js'),
             content: `
         ${iconsString.join(';\n')}
         export default {
             ${icons.join(',\n')}
-        }`
+        }`,
         });
 
         api.writeTmpFile({
             path: absFilePath,
-            content: Mustache.render(
-                readFileSync(join(__dirname, 'runtime/index.tpl'), 'utf-8'),
-                {
-                    REPLACE_USER_CONFIG: JSON.stringify(userConfig),
-                    HAS_LOCALE
-                }
-            )
+            content: Mustache.render(readFileSync(join(__dirname, 'runtime/index.tpl'), 'utf-8'), {
+                REPLACE_USER_CONFIG: JSON.stringify(userConfig),
+                HAS_LOCALE,
+            }),
         });
 
         api.copyTmpFiles({
             namespace,
             path: join(__dirname, 'runtime'),
-            ignore: ['.tpl']
+            ignore: ['.tpl'],
         });
     });
 
     api.addRuntimePlugin(() => `@@/${absRuntimeFilePath}`);
 
     // 把BaseLayout插入到路由配置中，作为根路由
-    api.modifyRoutes(routes => [
+    api.modifyRoutes((routes) => [
         {
             path: '/',
-            component: winPath(
-                join(api.paths.absTmpPath || '', absFilePath)
-            ),
-            children: routes
-        }
+            component: winPath(join(api.paths.absTmpPath || '', absFilePath)),
+            children: routes,
+        },
     ]);
 };

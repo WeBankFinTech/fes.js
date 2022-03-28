@@ -1,4 +1,3 @@
-
 import { readFileSync } from 'fs';
 import { join } from 'path';
 import { lodash, winPath } from '@fesjs/utils';
@@ -10,7 +9,7 @@ const namespace = 'plugin-model';
 export default (api) => {
     const {
         paths,
-        utils: { Mustache }
+        utils: { Mustache },
     } = api;
 
     function getModelDir() {
@@ -24,7 +23,7 @@ export default (api) => {
     function getAllModels() {
         const srcModelsPath = getModelsPath();
         return lodash.uniq([
-            ...getModels(srcModelsPath)
+            ...getModels(srcModelsPath),
             // ...getModels(
             //     paths.absPagesPath,
             //     `**/${getModelDir()}/**/*.{js,jsx}`
@@ -35,14 +34,16 @@ export default (api) => {
 
     const absCoreFilePath = join(namespace, 'core.js');
     const absRuntimeFilePath = join(namespace, 'runtime.js');
-    const absInitlaStateFilePath = join(namespace, 'models/initialState.js');
+    const absInitialStateFilePath = join(namespace, 'models/initialState.js');
 
     api.register({
         key: 'addExtraModels',
-        fn: () => [{
-            absPath: winPath(join(paths.absTmpPath, absInitlaStateFilePath)),
-            namespace: '@@initialState'
-        }]
+        fn: () => [
+            {
+                absPath: winPath(join(paths.absTmpPath, absInitialStateFilePath)),
+                namespace: '@@initialState',
+            },
+        ],
     });
 
     api.onGenerateFiles(async () => {
@@ -51,7 +52,7 @@ export default (api) => {
         const additionalModels = await api.applyPlugins({
             key: 'addExtraModels',
             type: api.ApplyPluginsType.add,
-            initialValue: []
+            initialValue: [],
         });
 
         const tmpFiles = getTmpFile(files, additionalModels, paths.absSrcPath);
@@ -59,28 +60,26 @@ export default (api) => {
         api.writeTmpFile({
             path: absCoreFilePath,
             content: Mustache.render(readFileSync(join(__dirname, 'runtime/core.tpl'), 'utf-8'), {
-                ...tmpFiles
-            })
+                ...tmpFiles,
+            }),
         });
 
         api.writeTmpFile({
             path: absRuntimeFilePath,
-            content: Mustache.render(readFileSync(join(__dirname, 'runtime/runtime.tpl'), 'utf-8'), {
-            })
+            content: Mustache.render(readFileSync(join(__dirname, 'runtime/runtime.tpl'), 'utf-8'), {}),
         });
 
         api.writeTmpFile({
-            path: absInitlaStateFilePath,
-            content: Mustache.render(readFileSync(join(__dirname, 'runtime/models/initialState.tpl'), 'utf-8'), {
-            })
+            path: absInitialStateFilePath,
+            content: Mustache.render(readFileSync(join(__dirname, 'runtime/models/initialState.tpl'), 'utf-8'), {}),
         });
     });
 
     api.addPluginExports(() => [
         {
             specifiers: ['useModel'],
-            source: absCoreFilePath
-        }
+            source: absCoreFilePath,
+        },
     ]);
 
     api.addRuntimePlugin(() => `@@/${absRuntimeFilePath}`);

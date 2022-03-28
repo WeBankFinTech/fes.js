@@ -6,12 +6,15 @@ export function onRouterCreated({ router }) {
         const runtimeConfig = plugin.applyPlugins({
             key: 'access',
             type: ApplyPluginsType.modify,
-            initialValue: {}
+            initialValue: {},
         });
         if (to.matched.length === 0) {
             if (runtimeConfig.noFoundHandler && typeof runtimeConfig.noFoundHandler === 'function') {
                 return runtimeConfig.noFoundHandler({
-                    router, to, from, next
+                    router,
+                    to,
+                    from,
+                    next,
                 });
             }
         }
@@ -27,7 +30,10 @@ export function onRouterCreated({ router }) {
         }
         if (runtimeConfig.unAccessHandler && typeof runtimeConfig.unAccessHandler === 'function') {
             return runtimeConfig.unAccessHandler({
-                router, to, from, next
+                router,
+                to,
+                from,
+                next,
             });
         }
         next(false);
