@@ -1,8 +1,8 @@
 // fes.config.js 只负责管理 cli 相关的配置
 import pxtoviewport from '@ttou/postcss-px-to-viewport';
+import { defineBuildConfig } from '@fesjs/fes';
 
-
-export default {
+export default defineBuildConfig({
     define: {
         // __VUE_OPTIONS_API__: true,
         // __VUE_PROD_DEVTOOLS__: false
@@ -45,4 +45,5 @@ export default {
             }
         }
     }
-};
+});
+
