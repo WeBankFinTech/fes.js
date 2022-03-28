@@ -7,7 +7,7 @@ const namespace = 'plugin-locale';
 
 export default (api) => {
     const {
-        utils: { Mustache }
+        utils: { Mustache },
     } = api;
 
     api.describe({
@@ -17,8 +17,8 @@ export default (api) => {
                 return joi.object();
             },
             default: {},
-            onChange: api.ConfigChangeType.regenerateTmpFiles
-        }
+            onChange: api.ConfigChangeType.regenerateTmpFiles,
+        },
     });
 
     api.addRuntimePluginKey(() => 'locale');
@@ -41,7 +41,7 @@ export default (api) => {
             fallbackLocale: 'zh-CN', // set fallback locale
             legacy: true,
             baseNavigator: true, // 开启浏览器语言检测
-            ...api.config.locale
+            ...api.config.locale,
         };
 
         const localeConfigFileBasePath = getLocaleFileBasePath();
@@ -50,33 +50,34 @@ export default (api) => {
 
         api.writeTmpFile({
             path: absoluteFilePath,
-            content: Mustache.render(
-                readFileSync(join(__dirname, 'runtime/core.tpl'), 'utf-8'),
-                {
-                    REPLACE_LOCALES: locales,
-                    REPLACE_DEFAULT_OPTIONS: JSON.stringify({
+            content: Mustache.render(readFileSync(join(__dirname, 'runtime/core.tpl'), 'utf-8'), {
+                REPLACE_LOCALES: locales,
+                REPLACE_DEFAULT_OPTIONS: JSON.stringify(
+                    {
                         locale: userConfig.locale,
                         fallbackLocale: userConfig.fallbackLocale,
-                        legacy: userConfig.legacy
-                    }, null, 2),
-                    BASE_NAVIGATOR: userConfig.baseNavigator,
-                    VUE_I18N_PATH: resolvePkg('vue-i18n')
-                }
-            )
+                        legacy: userConfig.legacy,
+                    },
+                    null,
+                    2,
+                ),
+                BASE_NAVIGATOR: userConfig.baseNavigator,
+                VUE_I18N_PATH: resolvePkg('vue-i18n'),
+            }),
         });
 
         api.copyTmpFiles({
             namespace,
             path: join(__dirname, 'runtime'),
-            ignore: ['.tpl']
+            ignore: ['.tpl'],
         });
     });
 
     api.addPluginExports(() => [
         {
             specifiers: ['useI18n', 'locale'],
-            source: absoluteFilePath
-        }
+            source: absoluteFilePath,
+        },
     ]);
 
     api.addRuntimePlugin(() => `@@/${absRuntimeFilePath}`);

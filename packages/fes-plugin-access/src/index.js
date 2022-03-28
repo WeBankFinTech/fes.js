@@ -6,18 +6,18 @@ const namespace = 'plugin-access';
 
 export default (api) => {
     const {
-        utils: { Mustache }
+        utils: { Mustache },
     } = api;
 
     api.describe({
         config: {
             schema(joi) {
                 return joi.object({
-                    roles: joi.object()
+                    roles: joi.object(),
                 });
             },
-            default: {}
-        }
+            default: {},
+        },
     });
 
     const absoluteFilePath = join(namespace, 'core.js');
@@ -30,27 +30,24 @@ export default (api) => {
 
         api.writeTmpFile({
             path: absoluteFilePath,
-            content: Mustache.render(
-                readFileSync(join(__dirname, 'runtime/core.tpl'), 'utf-8'),
-                {
-                    REPLACE_ROLES: JSON.stringify(roles),
-                    lodashPath: resolvePkg('lodash-es')
-                }
-            )
+            content: Mustache.render(readFileSync(join(__dirname, 'runtime/core.tpl'), 'utf-8'), {
+                REPLACE_ROLES: JSON.stringify(roles),
+                lodashPath: resolvePkg('lodash-es'),
+            }),
         });
 
         api.copyTmpFiles({
             namespace,
             path: join(__dirname, 'runtime'),
-            ignore: ['.tpl']
+            ignore: ['.tpl'],
         });
     });
 
     api.addPluginExports(() => [
         {
             specifiers: ['access', 'useAccess'],
-            source: absoluteFilePath
-        }
+            source: absoluteFilePath,
+        },
     ]);
 
     api.addRuntimePluginKey(() => 'access');
