@@ -2,6 +2,7 @@ import { Component, DefineComponent, App } from 'vue';
 import { RouteRecordRaw, Router } from 'vue-router';
 import { Plugin } from '@fesjs/runtime';
 import { PluginRuntimeConfig } from '@@/runtime';
+import { PluginBuildConfig } from '@@/build';
 
 // @ts-ignore
 export * from '@@/core/coreExports';
@@ -42,4 +43,24 @@ interface InnerRuntimeConfig {
 }
 
 export function defineRuntimeConfig(config: InnerRuntimeConfig & PluginRuntimeConfig): InnerRuntimeConfig & PluginRuntimeConfig;
+
+
+interface InnerBuildConfig {
+    base: string;
+    dynamicImport: boolean;
+    mock: boolean | {
+        prefix: string;
+    };
+    mountElementId: string;
+    plugins: string[];
+    proxy: {
+        [apiPrefix: string]: {
+            target: string;
+            changeOrigin?: boolean;
+        }
+    };
+    singular: boolean;
+}
+
+export function defineBuildConfig(config: InnerBuildConfig & PluginBuildConfig ): InnerBuildConfig & PluginBuildConfig;
 
