@@ -1,4 +1,5 @@
 import { plugin, ApplyPluginsType } from '@@/core/coreExports';
+// eslint-disable-next-line import/extensions
 import { access, install } from './core';
 
 export function onRouterCreated({ router }) {
