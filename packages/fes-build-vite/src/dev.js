@@ -3,18 +3,13 @@ import vue from '@vitejs/plugin-vue';
 import vueJsx from '@vitejs/plugin-vue-jsx';
 import SFCConfigBlockPlugin from './SFCConfigBlockPlugin';
 
-const assert = require('assert');
-
 export default (api) => {
     const {
-        env,
         paths,
         utils: { chalk },
     } = api;
 
     const unwatchs = [];
-    let port;
-    let hostname;
     let server;
 
     function destroy() {
@@ -60,30 +55,6 @@ export default (api) => {
             return {
                 destroy,
             };
-        },
-    });
-
-    api.registerMethod({
-        name: 'getPort',
-        fn() {
-            assert(env === 'development', 'api.getPort() is only valid in development.');
-            return port;
-        },
-    });
-
-    api.registerMethod({
-        name: 'getHostname',
-        fn() {
-            assert(env === 'development', 'api.getHostname() is only valid in development.');
-            return hostname;
-        },
-    });
-
-    api.registerMethod({
-        name: 'getServer',
-        fn() {
-            assert(env === 'development', 'api.getServer() is only valid in development.');
-            return server;
         },
     });
 

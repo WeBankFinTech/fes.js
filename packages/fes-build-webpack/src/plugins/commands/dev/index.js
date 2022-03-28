@@ -3,11 +3,8 @@
  * https://github.com/umijs/umi/blob/master/packages/preset-built-in/src/plugins/commands/dev/dev.ts
  */
 
-const assert = require('assert');
-
 export default (api) => {
     const {
-        env,
         paths,
         utils: { chalk, portfinder, generateFiles },
     } = api;
@@ -162,30 +159,6 @@ export default (api) => {
             return {
                 destroy,
             };
-        },
-    });
-
-    api.registerMethod({
-        name: 'getPort',
-        fn() {
-            assert(env === 'development', 'api.getPort() is only valid in development.');
-            return port;
-        },
-    });
-
-    api.registerMethod({
-        name: 'getHostname',
-        fn() {
-            assert(env === 'development', 'api.getHostname() is only valid in development.');
-            return hostname;
-        },
-    });
-
-    api.registerMethod({
-        name: 'getServer',
-        fn() {
-            assert(env === 'development', 'api.getServer() is only valid in development.');
-            return server;
         },
     });
 
