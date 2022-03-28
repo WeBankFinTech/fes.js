@@ -26,7 +26,7 @@ function filterPluginAndPreset(type, pkg) {
         .filter(isPluginOrPreset.bind(null, type));
 }
 
-function filterBuilder(pkg) {
+export function filterBuilder(pkg) {
     const builders = Object.keys(pkg.devDependencies || {})
         .concat(Object.keys(pkg.dependencies || {}))
         .filter((name) => /^@fesjs\/build-/.test(name));

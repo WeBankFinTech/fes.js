@@ -1,7 +1,7 @@
 import { Logger } from '@fesjs/compiler';
 import { readFileSync } from 'fs';
 import { join } from 'path';
-import { resolvePkg } from '@fesjs/utils';
+import { resolveInnerDep } from '@fesjs/utils';
 import { name } from '../package.json';
 
 const logger = new Logger('fes:plugin-request');
@@ -45,7 +45,7 @@ export default (api) => {
             content: requestTemplate
                 .replace('REPLACE_DATA_FIELD', JSON.stringify(dataField))
                 .replace('REPLACE_BASE', base || '')
-                .replace('AXIOS_PATH', resolvePkg('axios')),
+                .replace('AXIOS_PATH', resolveInnerDep('axios', api.builder)),
         });
     });
 
@@ -67,13 +67,9 @@ export default (api) => {
         },
     ]);
 
-    api.addRuntimeType(() => ({
+    api.addConfigType(() => ({
         source: name,
-        specifier: ['RequestRuntimeConfig'],
-    }));
-
-    api.addBuildType(() => ({
-        source: name,
-        specifier: ['RequestBuildConfig'],
+        runtime: ['RequestRuntimeConfig'],
+        build: ['RequestBuildConfig'],
     }));
 };
