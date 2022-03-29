@@ -1,6 +1,7 @@
 import { readFileSync } from 'fs';
 import { join } from 'path';
-import { resolvePkg } from '@fesjs/utils';
+import { resolveInnerDep } from '@fesjs/utils';
+import { name } from '../package.json';
 
 const namespace = 'plugin-monaco-editor';
 
@@ -47,14 +48,14 @@ export default (api) => {
         api.writeTmpFile({
             path: absLoaderFilePath,
             content: Mustache.render(readFileSync(join(__dirname, 'runtime/loader.tpl'), 'utf-8'), {
-                MONACO_EDITOR: resolvePkg('monaco-editor'),
+                MONACO_EDITOR: resolveInnerDep('monaco-editor', api.builder),
             }),
         });
 
         api.writeTmpFile({
             path: absEditorFilePath,
             content: Mustache.render(readFileSync(join(__dirname, 'runtime/editor.tpl'), 'utf-8'), {
-                LODASH_ES: resolvePkg('lodash-es'),
+                LODASH_ES: resolveInnerDep('lodash-es', api.builder),
             }),
         });
 
@@ -80,4 +81,9 @@ export default (api) => {
         webpackConfig.plugin('monaco-editor').use(require('monaco-editor-webpack-plugin'), [api.config?.monacoEditor || {}]);
         return webpackConfig;
     });
+
+    api.addConfigType(() => ({
+        source: name,
+        build: ['MonacoEditorBuildConfig'],
+    }));
 };

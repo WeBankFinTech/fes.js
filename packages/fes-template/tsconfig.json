@@ -31,7 +31,8 @@
     "config/**/*",
     ".eslintrc.js",
     ".stylelintrc.js",
-    ".prettierrc.js"
+    ".prettierrc.js",
+    "src/.fes/configType.d.ts"
   ],
   "exclude": ["node_modules", "build", "dist", "scripts", "src/.fes/*", "webpack", "jest"]
 }

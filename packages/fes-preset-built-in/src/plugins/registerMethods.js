@@ -16,8 +16,7 @@ export default function (api) {
         'addEntryCode',
         'modifyRoutes',
 
-        'addRuntimeType',
-        'addBuildType',
+        'addConfigType',
 
         'addTmpGenerateWatcherPaths',
 

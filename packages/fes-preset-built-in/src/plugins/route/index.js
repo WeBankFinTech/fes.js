@@ -86,7 +86,6 @@ function getRouteMeta(content) {
 
 let cacheGenRoutes = {};
 
-// TODO 约定 layout 目录作为布局文件夹，
 const genRoutes = function (parentRoutes, path, parentRoutePath, config) {
     const dirList = readdirSync(path);
     const hasLayout = checkHasLayout(path);
@@ -231,44 +230,32 @@ const getRoutesJSON = function ({ routes, config }) {
     // 因为要往 routes 里加无用的信息，所以必须 deep clone 一下，避免污染
     const clonedRoutes = lodash.cloneDeep(routes);
 
+    const importList = [];
+
     function replacer(key, value) {
-        switch (key) {
-            case 'component':
-                if (isFunctionComponent(value)) return value;
-                if (config.dynamicImport) {
-                    // TODO 针对目录进行 chunk 划分，import(/* webpackChunkName: "group-user" */ './UserDetails.vue')
-                    return `() => import('${value}')`;
-                }
-                return genComponentName(value, config);
-            default:
-                return value;
+        if (key !== 'component') {
+            return value;
         }
+        if (isFunctionComponent(value)) return value;
+        if (config.dynamicImport) {
+            // TODO 针对目录进行 chunk 划分，import(/* webpackChunkName: "group-user" */ './UserDetails.vue')
+            return `() => import('${value}')`;
+        }
+        const componentName = genComponentName(value, config);
+        importList.push(`import ${componentName} from '${value}'`);
+        return componentName;
     }
 
-    return JSON.stringify(clonedRoutes, replacer, 2)
+    const routesJSON = JSON.stringify(clonedRoutes, replacer, 2)
         .replace(/"component": ("(.+?)")/g, (global, m1, m2) => `"component": ${m2.replace(/\^/g, '"')}`)
         .replace(/\\r\\n/g, '\r\n')
         .replace(/\\n/g, '\r\n');
+
+    return {
+        importList,
+        routesJSON,
+    };
 };
-
-function genComponentImportExpression(routes, config) {
-    if (config.dynamicImport) {
-        return [];
-    }
-
-    const result = [];
-    for (const routeConfig of routes) {
-        if (routeConfig.children) {
-            result.push(...genComponentImportExpression(routeConfig.children, config));
-        }
-
-        if (routeConfig.component && !isFunctionComponent(routeConfig.component)) {
-            result.push(`import ${genComponentName(routeConfig.component, config)} from '${routeConfig.component}';`);
-        }
-    }
-
-    return result;
-}
 
 export default function (api) {
     api.describe({
@@ -326,12 +313,12 @@ export default function (api) {
 
     api.onGenerateFiles(async () => {
         const routesTpl = readFileSync(join(__dirname, 'template/routes.tpl'), 'utf-8');
-        const routes = await api.getRoutes();
+        const routes = await api.getRoutesJSON();
         api.writeTmpFile({
             path: absCoreFilePath,
             content: Mustache.render(routesTpl, {
-                COMPONENTS_IMPORT: genComponentImportExpression(routes, api.config).join('\n'),
-                routes: await api.getRoutesJSON(),
+                COMPONENTS_IMPORT: routes.importList.join('\n'),
+                routes: routes.routesJSON,
             }),
         });
 

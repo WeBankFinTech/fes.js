@@ -1,7 +1,8 @@
 import { readFileSync } from 'fs';
 import { join } from 'path';
-import { resolvePkg } from '@fesjs/utils';
+import { resolveInnerDep } from '@fesjs/utils';
 import { getLocalesJSON } from './utils';
+import { name } from '../package.json';
 
 const namespace = 'plugin-locale';
 
@@ -62,7 +63,7 @@ export default (api) => {
                     2,
                 ),
                 BASE_NAVIGATOR: userConfig.baseNavigator,
-                VUE_I18N_PATH: resolvePkg('vue-i18n'),
+                VUE_I18N_PATH: resolveInnerDep('vue-i18n', api.builder),
             }),
         });
 
@@ -81,4 +82,9 @@ export default (api) => {
     ]);
 
     api.addRuntimePlugin(() => `@@/${absRuntimeFilePath}`);
+
+    api.addConfigType(() => ({
+        source: name,
+        build: ['LocalBuildConfig'],
+    }));
 };
