@@ -25,8 +25,10 @@ import compatESModuleRequire from './compatESModuleRequire';
 import cleanRequireCache from './cleanRequireCache';
 import parseRequireDeps from './parseRequireDeps';
 import mergeConfig from './mergeConfig';
-import getAppEntryPath from './getAppEntryPath';
-import generateFiles from './generateFiles';
+import getAppPath from './getAppPath';
+import getPort from './getPort';
+import changePort from './changePort';
+import getHostName from './getHostName';
 
 export {
     chalk,
@@ -58,6 +60,8 @@ export {
     mergeConfig,
     resolvePkg,
     resolveInnerDep,
-    generateFiles,
-    getAppEntryPath,
+    getAppPath,
+    getPort,
+    changePort,
+    getHostName,
 };

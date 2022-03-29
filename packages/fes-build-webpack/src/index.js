@@ -1,6 +1,9 @@
 export default function () {
     return {
         plugins: [
+            // register methods
+            require.resolve('./plugins/registerMethods'),
+
             // bundle configs
             require.resolve('./plugins/features/alias'),
             require.resolve('./plugins/features/analyze'),
