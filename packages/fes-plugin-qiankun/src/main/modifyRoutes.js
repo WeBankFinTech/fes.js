@@ -2,12 +2,15 @@ import { defaultHistoryType } from '../constants';
 
 function getMicroApp(options) {
     const { key, microAppName, masterHistoryType, base, namespace, ...normalizedRouteProps } = options;
-    return `(() => {
-const { getMicroAppRouteComponent } = require('@@/${namespace}/getMicroAppRouteComponent');
-return getMicroAppRouteComponent({key: '${key}', appName: '${microAppName}', base: '${base}', masterHistoryType: '${masterHistoryType}', routeProps: ${JSON.stringify(
+    return `() => {
+return new Promise((resolve)=>{
+    import('@@/${namespace}/getMicroAppRouteComponent').then(({ getMicroAppRouteComponent })=>{
+        resolve(getMicroAppRouteComponent({ key: '${key}', appName: '${microAppName}', base: '${base}', masterHistoryType: '${masterHistoryType}', routeProps: ${JSON.stringify(
         normalizedRouteProps,
-    )} })
-})()`;
+    )}  }))
+    })
+})
+}`;
 }
 
 function modifyRoutesWithAttachMode({ routes, masterHistoryType, base, namespace }) {

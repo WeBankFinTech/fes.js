@@ -29,19 +29,19 @@
     }
   },
   "include": [
+    "*.js",
+    ".fes.js",
     "src/**/*",
-    "tests/**/*",
-    "test/**/*",
-    "__test__/**/*",
     "typings/**/*",
     "config/**/*",
-    "src/.fes/runtime.d.ts"
+    "src/.fes/configType.d.ts"
   ],
   "exclude": [
     "build",
     "dist",
     "scripts",
     "webpack",
-    "jest"
+    "jest",
+    "node_modules"
   ]
 }

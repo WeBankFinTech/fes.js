@@ -1,22 +1,19 @@
-
-import {
-    defineComponent, isRef, watch
-} from 'vue';
+import { defineComponent, watch } from 'vue';
+// eslint-disable-next-line import/extensions
 import { MicroApp } from './MicroApp';
-
 
 export const MicroAppWithMemoHistory = defineComponent({
     components: {
-        MicroApp
+        MicroApp,
     },
     props: {
         name: {
             type: String,
-            required: true
+            required: true,
         },
         settings: Object,
         lifeCycles: Object,
-        url: String
+        url: String,
     },
     setup(props, { attrs }) {
         let microRouter;
@@ -24,9 +21,12 @@ export const MicroAppWithMemoHistory = defineComponent({
             microRouter = router;
             microRouter.push(props.url);
         };
-        watch(()=>props.url, () => {
-            microRouter.push(props.url);
-        });
+        watch(
+            () => props.url,
+            () => {
+                microRouter.push(props.url);
+            },
+        );
         return () => <MicroApp onRouterInit={onRouterInit} {...props} {...attrs}></MicroApp>;
-    }
+    },
 });

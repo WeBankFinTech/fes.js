@@ -1,3 +1,5 @@
+import { name } from '../package.json';
+
 export default (api) => {
     api.describe({
         key: 'qiankun',
@@ -14,4 +16,9 @@ export default (api) => {
     api.addRuntimePluginKey(() => 'qiankun');
 
     api.registerPlugins([require.resolve('./main'), require.resolve('./micro')]);
+
+    api.addConfigType(() => ({
+        source: name,
+        build: ['QiankunBuildConfig'],
+    }));
 };

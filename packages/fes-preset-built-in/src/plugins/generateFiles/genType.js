@@ -1,17 +1,14 @@
 function importsToStr(imports) {
     return imports.map((imp) => {
-        const { source, specifier } = imp;
-        if (specifier) {
-            return `import {${specifier.join(', ')}} from '${source}';`;
-        }
-        return '';
+        const { source, build = [], runtime = [] } = imp;
+        return `import {${build.concat(runtime).join(', ')}} from '${source}';`;
     });
 }
 
-function genTypeContent(name, imports) {
+function genTypeContent(imports) {
     return {
-        TYP_NAME: name,
-        TYPES: imports.reduce((previousValue, currentValue) => previousValue.concat(currentValue.specifier || []), []).join(' & '),
+        RUNTIME_TYPES: imports.reduce((previousValue, currentValue) => previousValue.concat(currentValue.runtime || []), []).join(' & '),
+        BUILD_TYPES: imports.reduce((previousValue, currentValue) => previousValue.concat(currentValue.build || []), []).join(' & '),
         imports: importsToStr(imports).join('\n'),
     };
 }
@@ -22,31 +19,20 @@ export default function (api) {
     } = api;
 
     api.onGenerateFiles(async () => {
-        const runtimeTypeName = 'PluginRuntimeConfig';
-        const buildTypeName = 'PluginBuildConfig';
         const typeTpl = `
 {{{ imports }}}
 
-export type {{{TYP_NAME}}} = {{{TYPES}}}
+export type PluginRuntimeConfig = {{{RUNTIME_TYPES}}};
+export type PluginBuildConfig = {{{BUILD_TYPES}}};
 `;
-        const runtimeImportSources = await api.applyPlugins({
-            key: 'addRuntimeType',
+        const importSources = await api.applyPlugins({
+            key: 'addConfigType',
             type: api.ApplyPluginsType.add,
             initialValue: [],
         });
         api.writeTmpFile({
-            path: 'runtime.d.ts',
-            content: Mustache.render(typeTpl, genTypeContent(runtimeTypeName, runtimeImportSources)),
-        });
-
-        const buildImportSources = await api.applyPlugins({
-            key: 'addBuildType',
-            type: api.ApplyPluginsType.add,
-            initialValue: [],
-        });
-        api.writeTmpFile({
-            path: 'build.d.ts',
-            content: Mustache.render(typeTpl, genTypeContent(buildTypeName, buildImportSources)),
+            path: 'configType.d.ts',
+            content: Mustache.render(typeTpl, genTypeContent(importSources)),
         });
     });
 }

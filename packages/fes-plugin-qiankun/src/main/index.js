@@ -1,6 +1,6 @@
 import { readFileSync, existsSync } from 'fs';
 import { join } from 'path';
-import { resolvePkg } from '@fesjs/utils';
+import { resolveInnerDep } from '@fesjs/utils';
 import { defaultMainRootId, defaultHistoryType, qiankunStateForMicroModelNamespace } from '../constants';
 import modifyRoutes from './modifyRoutes';
 
@@ -39,14 +39,9 @@ export default function (api) {
             content: Mustache.render(readFileSync(join(__dirname, 'runtime/MicroApp.tpl'), 'utf-8'), {
                 qiankunStateForMicroModelNamespace,
                 HAS_PLUGIN_MODEL: HAS_PLUGIN_MODEL && existsSync(winPath(join(api.paths.absSrcPath, 'models/qiankunStateForMicro.js'))),
-                QIANKUN: resolvePkg('qiankun'),
-                LODASH_ES: resolvePkg('lodash-es'),
+                QIANKUN: resolveInnerDep('qiankun', api.builder),
+                LODASH_ES: resolveInnerDep('lodash-es', api.builder),
             }),
-        });
-
-        api.writeTmpFile({
-            path: absMicroAppWithMemoHistoryPath,
-            content: Mustache.render(readFileSync(join(__dirname, 'runtime/MicroAppWithMemoHistory.tpl'), 'utf-8'), {}),
         });
 
         api.writeTmpFile({
@@ -54,9 +49,10 @@ export default function (api) {
             content: readFileSync(join(__dirname, 'runtime/runtime.tpl'), 'utf-8'),
         });
 
-        api.writeTmpFile({
-            path: absGetMicroAppRouteCompPath,
-            content: readFileSync(join(__dirname, 'runtime/getMicroAppRouteComponent.tpl'), 'utf-8'),
+        api.copyTmpFiles({
+            namespace,
+            path: join(__dirname, 'runtime'),
+            ignore: ['.tpl'],
         });
 
         const { main: options } = api.config?.qiankun || {};

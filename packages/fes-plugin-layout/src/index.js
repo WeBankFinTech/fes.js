@@ -1,6 +1,7 @@
 import { readFileSync } from 'fs';
 import { join } from 'path';
 import { winPath } from '@fesjs/utils';
+import { name } from '../package.json';
 
 const namespace = 'plugin-layout';
 
@@ -28,13 +29,11 @@ export default (api) => {
     const absRuntimeFilePath = join(namespace, 'runtime.js');
 
     api.onGenerateFiles(async () => {
-        const { name } = api.pkg;
-
         const HAS_LOCALE = api.hasPlugins(['@fesjs/plugin-locale']);
 
         // .fes配置
         const userConfig = {
-            title: name,
+            title: api.pkg.name,
             footer: 'Created by Fes.js',
             ...(api.config.layout || {}),
         };
@@ -81,4 +80,10 @@ export default (api) => {
             children: routes,
         },
     ]);
+
+    api.addConfigType(() => ({
+        source: name,
+        runtime: ['LayoutRuntimeConfig'],
+        build: ['LayoutBuildConfig'],
+    }));
 };

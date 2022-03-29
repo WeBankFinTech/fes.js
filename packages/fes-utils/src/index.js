@@ -20,6 +20,7 @@ import Generator from './Generator';
 import winPath from './winPath';
 import delay from './delay';
 import resolvePkg from './resolvePkg';
+import resolveInnerDep from './resolveInnerDep';
 import compatESModuleRequire from './compatESModuleRequire';
 import cleanRequireCache from './cleanRequireCache';
 import parseRequireDeps from './parseRequireDeps';
@@ -47,4 +48,16 @@ export {
     generator,
 };
 
-export { Generator, winPath, delay, compatESModuleRequire, cleanRequireCache, parseRequireDeps, mergeConfig, resolvePkg, generateFiles, getAppEntryPath };
+export {
+    Generator,
+    winPath,
+    delay,
+    compatESModuleRequire,
+    cleanRequireCache,
+    parseRequireDeps,
+    mergeConfig,
+    resolvePkg,
+    resolveInnerDep,
+    generateFiles,
+    getAppEntryPath,
+};
