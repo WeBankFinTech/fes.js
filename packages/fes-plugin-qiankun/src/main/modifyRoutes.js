@@ -1,18 +1,16 @@
 import { defaultHistoryType } from '../constants';
 
 function getMicroApp(options) {
-    const {
-        key, microAppName, masterHistoryType, base, namespace, ...normalizedRouteProps
-    } = options;
+    const { key, microAppName, masterHistoryType, base, namespace, ...normalizedRouteProps } = options;
     return `(() => {
 const { getMicroAppRouteComponent } = require('@@/${namespace}/getMicroAppRouteComponent');
-return getMicroAppRouteComponent({key: '${key}', appName: '${microAppName}', base: '${base}', masterHistoryType: '${masterHistoryType}', routeProps: ${JSON.stringify(normalizedRouteProps)} })
+return getMicroAppRouteComponent({key: '${key}', appName: '${microAppName}', base: '${base}', masterHistoryType: '${masterHistoryType}', routeProps: ${JSON.stringify(
+        normalizedRouteProps,
+    )} })
 })()`;
 }
 
-function modifyRoutesWithAttachMode({
-    routes, masterHistoryType, base, namespace
-}) {
+function modifyRoutesWithAttachMode({ routes, masterHistoryType, base, namespace }) {
     const patchRoutes = (_routes) => {
         if (_routes.length) {
             _routes.forEach((route) => {
@@ -22,7 +20,7 @@ function modifyRoutesWithAttachMode({
                         microAppName: route.meta.microApp,
                         masterHistoryType,
                         base,
-                        namespace
+                        namespace,
                     });
                 }
                 if (route.children?.length) {
@@ -30,7 +28,7 @@ function modifyRoutesWithAttachMode({
                         routes: route.children,
                         masterHistoryType,
                         base,
-                        namespace
+                        namespace,
                     });
                 }
             });
@@ -51,7 +49,7 @@ export default function modifyRoutes({ api, namespace }) {
             routes,
             masterHistoryType,
             base: base || '/',
-            namespace
+            namespace,
         });
 
         return routes;

@@ -41,5 +41,6 @@
     "@fesjs/fes": "^2.0.0",
     "@fesjs/fes-design": "^0.1.10",
     "vue": "^3.0.5"
-  }
+  },
+  "typings": "./types.d.ts"
 }

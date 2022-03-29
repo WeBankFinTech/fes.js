@@ -5,16 +5,13 @@ export default (api) => {
             schema(joi) {
                 return joi.object().keys({
                     micro: joi.object(),
-                    main: joi.object()
+                    main: joi.object(),
                 });
-            }
-        }
+            },
+        },
     });
 
     api.addRuntimePluginKey(() => 'qiankun');
 
-    api.registerPlugins([
-        require.resolve('./main'),
-        require.resolve('./micro')
-    ]);
+    api.registerPlugins([require.resolve('./main'), require.resolve('./micro')]);
 };
