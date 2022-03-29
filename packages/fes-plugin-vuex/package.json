@@ -33,5 +33,6 @@
     "@fesjs/fes": "^2.0.0",
     "vue": "^3.0.5",
     "vuex": "^4.0.0"
-  }
+  },
+  "typings": "./types.d.ts"
 }

@@ -1,11 +1,12 @@
 import { readFileSync } from 'fs';
 import { join } from 'path';
+import { name } from '../package.json';
 
 const namespace = 'plugin-enums';
 
 export default (api) => {
     const {
-        utils: { Mustache }
+        utils: { Mustache },
     } = api;
 
     api.describe({
@@ -14,8 +15,8 @@ export default (api) => {
             schema(joi) {
                 return joi.object();
             },
-            onChange: api.ConfigChangeType.regenerateTmpFiles
-        }
+            onChange: api.ConfigChangeType.regenerateTmpFiles,
+        },
     });
 
     const absoluteFilePath = join(namespace, 'core.js');
@@ -24,25 +25,27 @@ export default (api) => {
         const enums = api.config.enums || {};
         api.writeTmpFile({
             path: absoluteFilePath,
-            content: Mustache.render(
-                readFileSync(join(__dirname, 'runtime/core.tpl'), 'utf-8'),
-                {
-                    REPLACE_ENUMS: JSON.stringify(enums)
-                }
-            )
+            content: Mustache.render(readFileSync(join(__dirname, 'runtime/core.tpl'), 'utf-8'), {
+                REPLACE_ENUMS: JSON.stringify(enums),
+            }),
         });
 
         api.copyTmpFiles({
             namespace,
             path: join(__dirname, 'runtime'),
-            ignore: ['.tpl']
+            ignore: ['.tpl'],
         });
     });
 
     api.addPluginExports(() => [
         {
             specifiers: ['enums'],
-            source: absoluteFilePath
-        }
+            source: absoluteFilePath,
+        },
     ]);
+
+    api.addConfigType(() => ({
+        source: name,
+        build: ['EnumsBuildConfig'],
+    }));
 };
