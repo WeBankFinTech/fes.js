@@ -4,7 +4,7 @@
  */
 
 import { join, resolve } from 'path';
-import { existsSync, readdirSync, readFileSync } from 'fs';
+import { existsSync, readFileSync } from 'fs';
 import { rimraf, chalk } from '@fesjs/utils';
 import zlib from 'zlib';
 import getConfig from './webpackConfig';
@@ -75,11 +75,7 @@ export async function getBundleAndConfigs({ api }) {
 }
 
 export function cleanTmpPathExceptCache({ absTmpPath }) {
-    if (!existsSync(absTmpPath)) return;
-    readdirSync(absTmpPath).forEach((file) => {
-        if (file === '.cache') return;
-        rimraf.sync(join(absTmpPath, file));
-    });
+    rimraf.sync(absTmpPath);
 }
 
 // These sizes are pretty large. We'll warn for bundles exceeding them.

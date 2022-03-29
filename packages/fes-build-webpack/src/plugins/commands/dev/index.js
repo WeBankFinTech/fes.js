@@ -6,7 +6,7 @@
 export default (api) => {
     const {
         paths,
-        utils: { chalk, portfinder, generateFiles },
+        utils: { chalk, getPort, getHostName, changePort },
     } = api;
 
     const unwatchs = [];
@@ -37,18 +37,12 @@ export default (api) => {
         async fn({ args = {} }) {
             const { cleanTmpPathExceptCache, getBundleAndConfigs } = require('../buildDevUtils');
             const createRouteMiddleware = require('./createRouteMiddleware').default;
-            const { watchPkg } = require('./watchPkg');
 
-            const defaultPort = process.env.PORT || args.port || api.config.devServer?.port;
-            port = await portfinder.getPortPromise({
-                port: defaultPort ? parseInt(String(defaultPort), 10) : 8000,
-            });
-            hostname = process.env.HOST || api.config.devServer?.host || 'localhost';
+            console.log(args.port || api.config.devServer?.port);
+            port = await getPort(args.port || api.config.devServer?.port);
+            changePort(port);
 
-            process.send({
-                type: 'UPDATE_PORT',
-                port,
-            });
+            hostname = getHostName(api.config.devServer?.host);
 
             // enable https
             const isHTTPS = process.env.HTTPS || args.https;
@@ -58,77 +52,13 @@ export default (api) => {
             cleanTmpPathExceptCache({
                 absTmpPath: paths.absTmpPath,
             });
-            const watch = process.env.WATCH !== 'none';
 
-            // generate files
-            const unwatchGenerateFiles = await generateFiles({
-                api,
-                watch,
+            await api.applyPlugins({
+                key: 'onGenerateFiles',
+                type: api.ApplyPluginsType.event,
             });
-            if (unwatchGenerateFiles) unwatchs.push(unwatchGenerateFiles);
 
-            if (watch) {
-                // watch pkg changes
-                const unwatchPkg = watchPkg({
-                    cwd: api.cwd,
-                    onChange() {
-                        console.log();
-                        api.logger.info('Plugins in package.json changed.');
-                        api.restartServer();
-                    },
-                });
-                unwatchs.push(unwatchPkg);
-
-                // watch config change
-                const unwatchConfig = api.service.configInstance.watch({
-                    userConfig: api.service.userConfig,
-                    onChange: async ({ pluginChanged, valueChanged }) => {
-                        if (pluginChanged.length) {
-                            console.log();
-                            api.logger.info(`Plugins of ${pluginChanged.map((p) => p.key).join(', ')} changed.`);
-                            api.restartServer();
-                        }
-                        if (valueChanged.length) {
-                            let reload = false;
-                            let regenerateTmpFiles = false;
-                            const fns = [];
-                            const reloadConfigs = [];
-                            valueChanged.forEach(({ key, pluginId }) => {
-                                const { onChange } = api.service.plugins[pluginId].config || {};
-                                if (onChange === api.ConfigChangeType.regenerateTmpFiles) {
-                                    regenerateTmpFiles = true;
-                                }
-                                if (!onChange || onChange === api.ConfigChangeType.reload) {
-                                    reload = true;
-                                    reloadConfigs.push(key);
-                                }
-                                if (typeof onChange === 'function') {
-                                    fns.push(onChange);
-                                }
-                            });
-
-                            if (reload) {
-                                console.log();
-                                api.logger.info(`Config ${reloadConfigs.join(', ')} changed.`);
-                                api.restartServer();
-                            } else {
-                                api.service.userConfig = api.service.configInstance.getUserConfig();
-
-                                await api.setConfig();
-
-                                if (regenerateTmpFiles) {
-                                    await generateFiles({
-                                        api,
-                                    });
-                                } else {
-                                    fns.forEach((fn) => fn());
-                                }
-                            }
-                        }
-                    },
-                });
-                unwatchs.push(unwatchConfig);
-            }
+            api.startWatch();
 
             // dev
             const { bundleConfig } = await getBundleAndConfigs({ api });

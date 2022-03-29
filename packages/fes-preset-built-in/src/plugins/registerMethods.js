@@ -1,6 +1,7 @@
 import assert from 'assert';
 import { dirname, join } from 'path';
 import { existsSync, statSync, readFileSync, writeFileSync, copyFileSync } from 'fs';
+import { startWatch } from './watch/watchMode';
 
 export default function (api) {
     [
@@ -21,14 +22,6 @@ export default function (api) {
         'addTmpGenerateWatcherPaths',
 
         'addBeforeMiddlewares',
-        'addHTMLHeadScripts',
-        'addMiddlewares',
-        'modifyBundleConfigOpts',
-        'modifyBundleConfig',
-        'modifyBabelOpts',
-        'modifyBabelPresetOpts',
-        'chainWebpack',
-        'modifyPublicPathStr',
     ].forEach((name) => {
         api.registerMethod({ name });
     });
@@ -71,6 +64,13 @@ export default function (api) {
                     copyFileSync(source, target);
                 }
             });
+        },
+    });
+
+    api.registerMethod({
+        name: 'startWatch',
+        fn() {
+            startWatch(api);
         },
     });
 }

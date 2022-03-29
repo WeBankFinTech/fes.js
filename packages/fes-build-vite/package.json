@@ -1,9 +1,8 @@
 {
   "name": "@fesjs/build-vite",
-  "version": "2.0.22",
+  "version": "1.0.0",
   "description": "@fesjs/build-vite",
   "main": "lib/index.js",
-  "types": "lib/index.d.ts",
   "files": [
     "lib"
   ],

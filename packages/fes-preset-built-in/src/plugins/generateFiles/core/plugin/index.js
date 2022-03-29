@@ -6,7 +6,7 @@ import { runtimePath } from '../../../../utils/constants';
 export default function (api) {
     const {
         paths,
-        utils: { Mustache, getAppEntryPath },
+        utils: { Mustache, getAppPath },
     } = api;
 
     const absoluteFilePath = 'core/plugin.js';
@@ -36,7 +36,7 @@ export default function (api) {
         const plugins = await api.applyPlugins({
             key: 'addRuntimePlugin',
             type: api.ApplyPluginsType.add,
-            initialValue: [getAppEntryPath(paths.absSrcPath)].filter(Boolean),
+            initialValue: [getAppPath(paths.absSrcPath)].filter(Boolean),
         });
         api.writeTmpFile({
             path: absoluteFilePath,

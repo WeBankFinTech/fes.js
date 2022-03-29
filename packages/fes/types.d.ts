@@ -1,5 +1,6 @@
 import { Component, DefineComponent, App } from 'vue';
 import { RouteRecordRaw, Router } from 'vue-router';
+// @ts-ignore
 import { Plugin } from '@fesjs/runtime';
 // @ts-ignore
 import type { PluginRuntimeConfig, PluginBuildConfig } from '@@/configType';

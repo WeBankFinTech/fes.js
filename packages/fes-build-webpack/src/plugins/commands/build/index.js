@@ -12,7 +12,7 @@ const logger = new Logger('fes:build-webpack');
 export default function (api) {
     const {
         paths,
-        utils: { rimraf, generateFiles },
+        utils: { rimraf },
     } = api;
 
     api.registerCommand({
@@ -27,7 +27,10 @@ export default function (api) {
             });
 
             // generate files
-            await generateFiles({ api, watch: false });
+            await api.applyPlugins({
+                key: 'onGenerateFiles',
+                type: api.ApplyPluginsType.event,
+            });
 
             // build
             const { bundleConfig } = await getBundleAndConfigs({ api });
