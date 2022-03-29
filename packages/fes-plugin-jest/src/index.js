@@ -1,4 +1,3 @@
-
 import assert from 'assert';
 import { join } from 'path';
 import { existsSync } from 'fs';
@@ -28,7 +27,10 @@ function getCommandOptiton() {
 }
 
 export default function (api) {
-    const { utils: { mergeConfig }, cwd } = api;
+    const {
+        utils: { mergeConfig },
+        cwd,
+    } = api;
 
     api.registerCommand({
         command: 'test',
@@ -55,11 +57,7 @@ export default function (api) {
 
             // Merge configs
             // user config and args config could have value function for modification
-            const config = mergeConfig(
-                createDefaultConfig(cwd, args),
-                packageJestConfig,
-                userJestConfig
-            );
+            const config = mergeConfig(createDefaultConfig(cwd, args), packageJestConfig, userJestConfig);
             args.debug && logger.log(`final config: ${JSON.stringify(config)}`);
 
             // Generate jest options
@@ -85,14 +83,14 @@ export default function (api) {
                     // 必须是单独的 config 配置，值为 string，否则不生效
                     // @ts-ignore
                     config: JSON.stringify(config),
-                    ...argsConfig
+                    ...argsConfig,
                 },
-                [cwd]
+                [cwd],
             );
             args.debug && logger.log(result);
 
             // Throw error when run failed
             assert(result.results.success, 'Test with jest failed');
-        }
+        },
     });
 }
