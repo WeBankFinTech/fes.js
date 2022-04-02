@@ -28,7 +28,6 @@ export default function (api) {
         };
         const modifiedDefaultConfig = {
             ...memo,
-            runtimePublicPath: true,
             qiankun: {
                 ...memo.qiankun,
                 slave: initialMicroOptions,
@@ -86,15 +85,15 @@ export default function (api) {
     api.register({
         key: 'addExtraModels',
         fn: () => {
-            const HAS_PLUGIN_MODEL = api.hasPlugins(['@fesjs/plugin-model']);
-            return HAS_PLUGIN_MODEL
-                ? [
-                      {
-                          absPath: `@@/${absModelPath}`,
-                          namespace: qiankunStateFromMainModelNamespace,
-                      },
-                  ]
-                : [];
+            if (api.hasPlugins(['@fesjs/plugin-model'])) {
+                return [
+                    {
+                        absPath: `@@/${absModelPath}`,
+                        namespace: qiankunStateFromMainModelNamespace,
+                    },
+                ];
+            }
+            return [];
         },
     });
 

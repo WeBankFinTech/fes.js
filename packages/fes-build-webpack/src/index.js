@@ -25,7 +25,6 @@ export default function () {
             require.resolve('./plugins/features/outputPath'),
             require.resolve('./plugins/features/postcssLoader'),
             require.resolve('./plugins/features/publicPath'),
-            require.resolve('./plugins/features/runtimePublicPath'),
             require.resolve('./plugins/features/targets'),
             require.resolve('./plugins/features/terserOptions'),
             require.resolve('./plugins/features/nodeModulesTransform'),

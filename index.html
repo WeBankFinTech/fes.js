@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function request(options) {
+            const xhr = new XMLHttpRequest();
+            xhr.timeout = 3000;
+            if (options.type === 'GET') {
+                xhr.open(options.type, options.url, options.async || true);
+                xhr.send(null);
+            } else if (options.type === 'POST') {
+                xhr.open(options.type, options.url, options.async || true);
+                xhr.setRequestHeader('Content-Type', 'application/json');
+                xhr.send(JSON.stringify(options.data || {}));
+            }
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4) {
+                    console.log(xhr.status);
+                    console.log(xhr.responseText);
+                    if (xhr.status == 200) {
+                        options.successed(xhr.responseText);
+                    } else if (options.failed) {
+                        options.failed(xhr);
+                    } else {
+                    }
+                }
+            };
+            xhr.ontimeout = function () { };
+        }
+
+        request({
+            type: 'GET',
+            url: 'https://tctp.test.webankcdn.net/pmbank-caas/PRD/DCP/c/msgH5Img/msgH5Img',
+            successed(content) {
+                console.log(content);
+            },
+            failed(xhr) {
+                console.log(xhr);
+            },
+        });
+
+        fetch('https://tctp.test.webankcdn.net/pmbank-caas/PRD/DCP/c/msgH5Img/msgH5Img', {
+            mode: 'cors',
+            credentials: 'omit',
+        })
+            .then((res) => console.log(res, res.json(), res.text()))
+            .then((data) => {
+                console.log(data);
+            });
+    </script>
+</body>
+
+</html>
