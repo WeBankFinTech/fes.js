@@ -22,6 +22,7 @@ module.exports = {
         'fes-runtime',
         'fes-utils',
         'fes-build-webpack',
+        'fes-build-vite',
     ],
     copy: [],
 };
