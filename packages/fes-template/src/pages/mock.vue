@@ -1,7 +1,5 @@
 <template>
-    <div>
-        mock and proxy
-    </div>
+    <div>mock and proxy</div>
 </template>
 <config>
 {
@@ -37,8 +35,8 @@ request(
     { a: 1 },
     {
         method: 'get',
-        headers: { Accept: '*/*' }
-    }
+        headers: { Accept: '*/*' },
+    },
 )
     .then((resp) => {
         console.log(resp);

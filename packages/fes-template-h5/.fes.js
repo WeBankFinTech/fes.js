@@ -3,9 +3,11 @@ import pxtoviewport from '@ttou/postcss-px-to-viewport';
 import { defineBuildConfig } from '@fesjs/fes';
 
 export default defineBuildConfig({
-    define: {
-        // __VUE_OPTIONS_API__: true,
-        // __VUE_PROD_DEVTOOLS__: false
+    proxy: {
+        '/v2': {
+            'target': 'https://api.douban.com/',
+            'changeOrigin': true,
+        }
     },
     publicPath: '/',
     request: {

@@ -22,6 +22,7 @@ export default function (api) {
         'addTmpGenerateWatcherPaths',
 
         'addBeforeMiddlewares',
+        'addMiddlewares',
     ].forEach((name) => {
         api.registerMethod({ name });
     });
