@@ -29,6 +29,8 @@ import getAppPath from './getAppPath';
 import getPort from './getPort';
 import changePort from './changePort';
 import getHostName from './getHostName';
+import resolveRuntimeEnv from './resolveRuntimeEnv';
+import stringifyObjValue from './stringifyObjValue';
 
 export {
     chalk,
@@ -64,4 +66,6 @@ export {
     getPort,
     changePort,
     getHostName,
+    resolveRuntimeEnv,
+    stringifyObjValue,
 };

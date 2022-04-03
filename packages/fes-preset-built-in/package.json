@@ -28,8 +28,11 @@
     "@fesjs/compiler": "^2.0.5",
     "@fesjs/utils": "^2.0.4",
     "body-parser": "^1.19.0",
+    "connect-history-api-fallback": "^1.6.0",
+    "cookie": "^0.4.2",
     "cookie-parser": "^1.4.5",
     "envinfo": "^7.7.3",
+    "mime": "^3.0.0",
     "mockjs": "^1.1.0"
   },
   "peerDependencies": {

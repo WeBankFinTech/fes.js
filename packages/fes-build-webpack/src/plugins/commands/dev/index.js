@@ -36,9 +36,7 @@ export default (api) => {
         ],
         async fn({ args = {} }) {
             const { cleanTmpPathExceptCache, getBundleAndConfigs } = require('../buildDevUtils');
-            const createRouteMiddleware = require('./createRouteMiddleware').default;
 
-            console.log(args.port || api.config.devServer?.port);
             port = await getPort(args.port || api.config.devServer?.port);
             changePort(port);
 
@@ -82,7 +80,7 @@ export default (api) => {
                 port,
                 proxy: api.config.proxy,
                 https: isHTTPS,
-                beforeMiddlewares: [...beforeMiddlewares, createRouteMiddleware(api)],
+                beforeMiddlewares: [...beforeMiddlewares],
                 afterMiddlewares: [...middlewares],
                 customerDevServerConfig: api.config.devServer,
             });

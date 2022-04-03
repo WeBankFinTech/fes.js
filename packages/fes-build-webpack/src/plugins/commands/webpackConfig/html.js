@@ -1,14 +1,13 @@
 import { join, resolve } from 'path';
 import { existsSync } from 'fs';
-import { winPath } from '@fesjs/utils';
-import resolveDefine from './resolveDefine';
+import { winPath, resolveRuntimeEnv } from '@fesjs/utils';
 
-export default async function createHtmlWebpackConfig({ api, cwd, config, webpackConfig, headScripts, isProd }) {
+export default async function createHtmlWebpackConfig({ api, cwd, config, webpackConfig, headScripts, isProd, publicPath }) {
     const htmlOptions = {
         title: 'fes.js',
         filename: '[name].html',
         ...config.html,
-        templateParameters: resolveDefine(config, true),
+        templateParameters: resolveRuntimeEnv(publicPath),
         mountElementId: config.mountElementId,
     };
 
@@ -48,7 +47,7 @@ export default async function createHtmlWebpackConfig({ api, cwd, config, webpac
                             ...config.html,
                             title: route?.meta?.title || config.html.title || 'fes.js',
                             filename: _fileName,
-                            templateParameters: resolveDefine(config, true),
+                            templateParameters: resolveRuntimeEnv(publicPath),
                             mountElementId: config.mountElementId,
                         };
                         webpackConfig.plugin(_fileName).use(require.resolve('html-webpack-plugin'), [_htmlOptions]);

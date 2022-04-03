@@ -26,31 +26,11 @@ export default {
         const clickIcon = () => {
             console.log('click Icon');
         };
+        console.log(process.env.NODE_ENV, process.env.HELLO);
         console.log(useRoute());
-        // request('/api', null, {
-        // }).then((res) => {
-        //     console.log(res);
-        // });
-        // request('/api', null, {
-        // }).then((res) => {
-        //     console.log(res);
-        // });
-        // request('/api', null, {
-        //     mergeRequest: true
-        // }).then((res) => {
-        //     console.log(res);
-        // });
-        // request('/api', null, {
-        //     mergeRequest: true
-        // }).then((res) => {
-        //     console.log(res);
-        // });
-        // request('/api', null, {
-        //     throttle: 3000,
-        //     cache: true
-        // }).then((res) => {
-        //     console.log(res);
-        // });
+        request('/v2/movie/in_theaters_proxy', (res) => {
+            console.log(res);
+        });
 
         const get = (id) => {
             request(
@@ -74,61 +54,9 @@ export default {
             });
         };
 
-        get(1);
-        // get(2);
-        // get(3);
+        // get(1);
+        // post(3);
 
-        // post(1);
-        // post(2);
-        post(3);
-
-        // setTimeout(() => {
-        //     request('/api', null, {
-        //         throttle: 3000,
-        //         cache: true
-        //     }).then((res) => {
-        //         console.log(res);
-        //     });
-        // }, 1000);
-
-        // setTimeout(() => {
-        //     request('/api', null, {
-        //         throttle: 3000,
-        //         cache: true
-        //     }).then((res) => {
-        //         console.log(res);
-        //     });
-        //     request('/api', null, {
-        //         throttle: 3000,
-        //         cache: true
-        //     }).then((res) => {
-        //         console.log(res);
-        //     });
-        // }, 3200);
-
-        // request('/api', null, {
-        //     cache: true
-        // }).then((res) => {
-        //     console.log(res);
-        // });
-        // request('/api', null, {
-        //     cache: true
-        // }).then((res) => {
-        //     console.log(res);
-        // });
-        // request('/api', null, {
-        //     cache: true
-        // }).then((res) => {
-        //     console.log(res);
-        // });
-
-        // request('/api', null, {
-        //     // skipErrorHandler: [500]
-        // }).then((res) => {
-        //     console.log(res);
-        // }).catch((err) => {
-        //     console.log('inner error', err);
-        // });
         return {
             fes,
             rotate,

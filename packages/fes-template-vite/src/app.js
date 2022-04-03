@@ -11,8 +11,6 @@ export default defineRuntimeConfig({
             },
             default(error) {
                 console.log(error);
-                const msg = error?.data?.msg || error?.msg;
-                console.log(msg);
             },
         },
     },

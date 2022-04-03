@@ -214,6 +214,7 @@ export default async function getConfig({ api, cwd, config, env, entry = {}, mod
         webpackConfig,
         headScripts,
         isProd,
+        publicPath,
     });
 
     // --------------- copy -----------
@@ -256,6 +257,7 @@ export default async function getConfig({ api, cwd, config, env, entry = {}, mod
     // --------------- define -----------
     createDefineWebpackConfig({
         config,
+        publicPath,
         webpackConfig,
     });
 

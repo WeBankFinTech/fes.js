@@ -1,7 +1,6 @@
 export default function (api) {
     [
         'addHTMLHeadScripts',
-        'addMiddlewares',
         'modifyBundleConfigOpts',
         'modifyBundleConfig',
         'modifyBabelOpts',
