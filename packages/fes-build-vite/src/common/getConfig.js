@@ -12,10 +12,11 @@ export function getInnerCommonConfig(api) {
     const { deepmerge } = api.utils;
     const { server, build, define, base, ...otherViteOption } = api.config.viteOption;
 
-    const publicPath = base || api.config.publicPath;
+    const publicPath = base || api.config.publicPath || '/';
 
     return deepmerge(
         {
+            base: publicPath,
             configFile: false,
             define: getDefine(api, publicPath),
             cacheDir: join(api.cwd, '.cache'),
