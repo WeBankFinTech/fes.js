@@ -29,7 +29,7 @@
   ],
   "dependencies": {
     "lerna": "^4.0.0",
-    "vuepress": "2.0.0-beta.28"
+    "vuepress": "^2.0.0-beta.37"
   },
   "devDependencies": {
     "@babel/core": "^7.15.0",
@@ -38,9 +38,9 @@
     "@commitlint/config-conventional": "^11.0.0",
     "@fesjs/fes": "^2.0.0",
     "@fesjs/plugin-jest": "^2.0.0",
-    "@vuepress/plugin-docsearch": "2.0.0-beta.28",
-    "@vuepress/plugin-pwa": "2.0.0-beta.28",
-    "@vuepress/plugin-pwa-popup": "2.0.0-beta.28",
+    "@vuepress/plugin-docsearch": "^2.0.0-beta.37",
+    "@vuepress/plugin-pwa": "^2.0.0-beta.37",
+    "@vuepress/plugin-pwa-popup": "^2.0.0-beta.37",
     "@webank/eslint-config-webank": "^1.2.0",
     "chalk": "^4.1.2",
     "chokidar": "^3.5.2",

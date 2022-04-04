@@ -30,6 +30,7 @@ export default async (api) => {
             ],
             build: {
                 ...build,
+                terserOptions: build.terserOptions || api.config.terserOptions,
                 target: build.target || 'es2015',
                 outDir: build.outDir || api.config.outputPath || 'dist',
                 assetsInlineLimit: build.assetsInlineLimit || api.config.inlineLimit || 8192,
