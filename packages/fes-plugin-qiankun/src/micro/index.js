@@ -36,7 +36,7 @@ export default function (api) {
 
         const shouldNotModifyDefaultBase = api.userConfig.qiankun?.slave?.shouldNotModifyDefaultBase ?? initialMicroOptions.shouldNotModifyDefaultBase;
         if (!shouldNotModifyDefaultBase) {
-            modifiedDefaultConfig.base = `/${api.pkg.name}`;
+            modifiedDefaultConfig.router.base = `/${api.pkg.name}`;
         }
 
         return modifiedDefaultConfig;

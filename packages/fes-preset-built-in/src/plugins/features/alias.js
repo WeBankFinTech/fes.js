@@ -1,11 +1,11 @@
 export default (api) => {
     api.describe({
-        key: 'base',
+        key: 'alias',
         config: {
-            default: '',
             schema(joi) {
-                return joi.string().allow('');
+                return joi.object();
             },
+            default: {},
         },
     });
 };

@@ -263,6 +263,7 @@ export default function (api) {
         config: {
             schema(joi) {
                 return joi.object({
+                    base: joi.string(),
                     routes: joi.array(),
                     mode: joi.string(),
                 });
@@ -328,7 +329,7 @@ export default function (api) {
             content: Mustache.render(routeExportsTpl, {
                 runtimePath,
                 config: api.config,
-                routerBase: api.config.base,
+                routerBase: api.config.router?.base,
                 CREATE_HISTORY: historyType[api.config.router.mode] || 'createWebHashHistory',
             }),
         });
