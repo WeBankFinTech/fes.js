@@ -6,7 +6,7 @@ export const zh: NavbarConfig = [
     link: '/zh/guide/',
   },
   {
-    text: '配置',
+    text: '编译时配置',
     link: '/zh/reference/config/',
   },
   {
