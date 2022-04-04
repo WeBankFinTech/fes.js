@@ -5,11 +5,8 @@ import { createHtmlPlugin } from 'vite-plugin-html';
 import SFCConfigBlockPlugin from './SFCConfigBlockPlugin';
 import getDefine from './getDefine';
 
-// TODO
-// * 如何处理 html (改 mountId or title 等)（比较麻烦，晚点再看看有无更好的方案）
-
 export function getInnerCommonConfig(api) {
-    const { deepmerge } = api.utils;
+    const { deepmerge, resolveRuntimeEnv } = api.utils;
     const { server, build, define, base, ...otherViteOption } = api.config.viteOption;
 
     const publicPath = base || api.config.publicPath || '/';
@@ -27,10 +24,10 @@ export function getInnerCommonConfig(api) {
                 createHtmlPlugin({
                     minify: true,
                     entry: join(api.paths.absTmpPath, 'fes.js'),
-                    template: 'public/index.html',
+                    template: 'index.html',
                     inject: {
                         data: {
-                            title: 'Fes.js',
+                            ...resolveRuntimeEnv(publicPath),
                             mountElementId: api.config.mountElementId,
                         },
                     },

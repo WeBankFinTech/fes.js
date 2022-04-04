@@ -31,6 +31,7 @@ import changePort from './changePort';
 import getHostName from './getHostName';
 import resolveRuntimeEnv from './resolveRuntimeEnv';
 import stringifyObjValue from './stringifyObjValue';
+import getTargetsAndBrowsersList from './getTargetsAndBrowsersList';
 
 export {
     chalk,
@@ -68,4 +69,5 @@ export {
     getHostName,
     resolveRuntimeEnv,
     stringifyObjValue,
+    getTargetsAndBrowsersList,
 };

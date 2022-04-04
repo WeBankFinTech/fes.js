@@ -1,4 +1,3 @@
-// TODO 其他 API
 export {
     useRoute,
     useRouter,
@@ -10,7 +9,7 @@ export {
     createWebHashHistory,
     createWebHistory,
     createMemoryHistory,
-    createRouter
+    createRouter,
 } from 'vue-router';
 
 export { default as Plugin, ApplyPluginsType } from './plugin';

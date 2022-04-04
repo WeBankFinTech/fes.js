@@ -167,8 +167,6 @@ export function printFileSizes(stats, dir) {
     console.log(`${ui.toString()}\n\n  ${chalk.gray('Images and other types of assets omitted.')}\n`);
 
     if (orderedAssets?.some((asset) => asset.suggested)) {
-        // We'll warn for bundles exceeding them.
-        // TODO: use umi docs
         console.log();
         console.log(chalk.yellow('The bundle size is significantly larger than recommended.'));
         console.log(chalk.yellow('Consider reducing it with code splitting'));

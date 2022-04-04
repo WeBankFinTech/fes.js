@@ -21,6 +21,7 @@ export default function () {
             require.resolve('./plugins/features/plugins'),
             require.resolve('./plugins/features/proxy'),
             require.resolve('./plugins/features/singular'),
+            require.resolve('./plugins/features/targets'),
 
             // route
             require.resolve('./plugins/route'),

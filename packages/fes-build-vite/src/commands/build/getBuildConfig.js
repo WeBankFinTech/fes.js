@@ -1,29 +1,47 @@
+import legacy from '@vitejs/plugin-legacy';
 import { getInnerCommonConfig } from '../../common/getConfig';
 
-/**
- * polyfill： @vitejs/plugin-legacy
- * 确认 css 最终构建实现 autoprefixer postcss-safe-parser postcss-flexbugs-fixes
- */
-
 export default async (api) => {
-    const { deepmerge } = api.utils;
+    const { deepmerge, getTargetsAndBrowsersList } = api.utils;
 
     const { build = {} } = api.config.viteOption;
+    const { browserslist } = getTargetsAndBrowsersList({ config: api.config });
 
-    return deepmerge(
+    const bundleConfig = deepmerge(
         {
             mode: 'production',
             css: {
                 postcss: {
-                    plugins: [require('postcss-flexbugs-fixes'), require('postcss-safe-parser'), [require('autoprefixer'), {}]],
+                    plugins: [
+                        require('postcss-flexbugs-fixes'),
+                        require('postcss-safe-parser'),
+                        require('autoprefixer')({
+                            ...api.config.autoprefixer,
+                            overrideBrowserslist: browserslist,
+                        }),
+                    ],
                 },
             },
+            plugins: [
+                legacy({
+                    targets: browserslist,
+                    ...api.config.viteLegacy,
+                }),
+            ],
             build: {
                 ...build,
+                target: build.target || 'es2015',
                 outDir: build.outDir || api.config.outputPath || 'dist',
                 assetsInlineLimit: build.assetsInlineLimit || api.config.inlineLimit || 8192,
             },
         },
         getInnerCommonConfig(api),
     );
+
+    return api.applyPlugins({
+        type: api.ApplyPluginsType.modify,
+        key: 'modifyBundleConfig',
+        initialValue: bundleConfig,
+        args: {},
+    });
 };

@@ -3,11 +3,6 @@ import getDevConfig from './getDevConfig';
 
 /**
  * TODO
-
- *
- * analyze: rollup-plugin-visualizer
- *
- * 其他插件如何对内部配置进行修改
  *
  * 共享 webpack 和 vite 的部分配置，降低熟悉 vite 的成本
  */
