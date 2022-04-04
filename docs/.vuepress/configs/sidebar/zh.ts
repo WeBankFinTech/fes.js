@@ -15,6 +15,7 @@ export const zh: SidebarConfig = {
       text: '基础',
       children: [
         '/zh/guide/directory-structure.md',
+        '/zh/guide/builder.md',
         '/zh/guide/config.md',
         '/zh/guide/runtime-config.md',
         '/zh/guide/env.md',

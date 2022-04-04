@@ -208,7 +208,7 @@ export default {
 -   默认值： `/`
 -   详情：
 
-    配置 webpack 的 publicPath。当打包的时候，webpack 会在静态文件路径前面添加 `publicPath` 的值，当你需要修改静态文件地址时，比如使用 CDN 部署，把 `publicPath` 的值设为 CDN 的值就可以。
+    静态资源 publicPath。当打包的时候在静态文件路径前面添加 `publicPath` 的值，当你需要修改静态文件地址时，比如使用 CDN 部署，把 `publicPath` 的值设为 CDN 的值就可以。
 
 ### router
 
@@ -282,7 +282,7 @@ const defaultTerserOptions = {
 
     配置 [压缩器 terser 的配置项](https://github.com/terser/terser#minify-options)
 
-## webpack 构建专属配置
+## webpack 专属配置
 
 ### analyze
 
