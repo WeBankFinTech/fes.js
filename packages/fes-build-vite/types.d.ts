@@ -6,9 +6,9 @@ import {createHtmlPlugin} from 'vite-plugin-html'
 
 
 export interface ViteBuildConfig {
-    viteOption: UserConfig;
-    viteVuePlugin: Options;
-    viteVueJsx: Parameters<typeof createPlugin>[0];
-    viteLegacy: PolyfillOptions;
-    viteHtml: Parameters<typeof createHtmlPlugin>[0]
+    viteOption?: UserConfig;
+    viteVuePlugin?: Options;
+    viteVueJsx?: Parameters<typeof createPlugin>[0];
+    viteLegacy?: PolyfillOptions;
+    viteHtml?: Parameters<typeof createHtmlPlugin>[0]
 }

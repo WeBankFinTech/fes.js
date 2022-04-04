@@ -57,7 +57,7 @@ export default function (api) {
 
         const { main: options } = api.config?.qiankun || {};
         const masterHistoryType = api.config?.router?.mode || defaultHistoryType;
-        const base = api.config.base;
+        const base = api.config.router?.base;
         api.writeTmpFile({
             path: absMasterOptionsPath,
             content: `

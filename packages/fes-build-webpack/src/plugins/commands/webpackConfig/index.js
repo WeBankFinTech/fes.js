@@ -38,6 +38,17 @@ function genTranspileDepRegex(exclude) {
     return deps.length ? new RegExp(deps.join('|')) : null;
 }
 
+function handleAlias({ api, webpackConfig }) {
+    const config = api.config;
+    if (config.alias) {
+        Object.keys(config.alias).forEach((key) => {
+            webpackConfig.resolve.alias.set(key, config.alias[key]);
+        });
+    }
+    webpackConfig.resolve.alias.set('@', api.paths.absSrcPath);
+    webpackConfig.resolve.alias.set('@@', api.paths.absTmpPath);
+}
+
 export default async function getConfig({ api, cwd, config, env, entry = {}, modifyBabelOpts, modifyBabelPresetOpts, chainWebpack, headScripts, publicPath }) {
     const isDev = env === 'development';
     const isProd = env === 'production';
@@ -68,11 +79,7 @@ export default async function getConfig({ api, cwd, config, env, entry = {}, mod
     // --------------- resolve -----------
     webpackConfig.resolve.extensions.merge(['.mjs', '.js', '.jsx', '.vue', '.ts', '.tsx', '.json', '.wasm']);
 
-    if (config.alias) {
-        Object.keys(config.alias).forEach((key) => {
-            webpackConfig.resolve.alias.set(key, config.alias[key]);
-        });
-    }
+    handleAlias({ api, webpackConfig });
 
     // --------------- module -----------
     webpackConfig.module
