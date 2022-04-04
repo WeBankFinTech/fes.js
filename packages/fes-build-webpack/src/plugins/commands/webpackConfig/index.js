@@ -9,24 +9,6 @@ import createDefineWebpackConfig from './define';
 import createMinimizerWebpackConfig from './minimizer';
 import createHtmlWebpackConfig from './html';
 
-function getTargetsAndBrowsersList({ config }) {
-    let targets = config.targets || {};
-
-    targets = Object.keys(targets)
-        .filter((key) => targets[key] !== false)
-        .reduce((memo, key) => {
-            memo[key] = targets[key];
-            return memo;
-        }, {});
-
-    const browserslist = targets.browsers || Object.keys(targets).map((key) => `${key} >= ${targets[key] === true ? '0' : targets[key]}`);
-
-    return {
-        targets,
-        browserslist,
-    };
-}
-
 const DEFAULT_EXCLUDE_NODE_MODULES = [
     'vue',
     'vuex',
@@ -139,7 +121,7 @@ export default async function getConfig({ api, cwd, config, env, entry = {}, mod
             esModule: false,
         });
 
-    const { targets, browserslist } = getTargetsAndBrowsersList({ config });
+    const { targets, browserslist } = api.utils.getTargetsAndBrowsersList({ config });
     const babelOpts = await getBabelOpts({
         cwd,
         config,

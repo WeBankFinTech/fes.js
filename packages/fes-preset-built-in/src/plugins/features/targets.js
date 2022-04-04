@@ -3,11 +3,10 @@ export default (api) => {
         key: 'targets',
         config: {
             default: {
-                chrome: 49,
-                firefox: 64,
-                safari: 10,
+                chrome: 56,
+                firefox: 67,
+                safari: 10.4,
                 edge: 13,
-                ios: 10,
             },
             schema(joi) {
                 return joi.object();

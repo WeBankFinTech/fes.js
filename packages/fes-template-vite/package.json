@@ -4,7 +4,8 @@
   "description": "fes vite 构建模版",
   "scripts": {
     "prod": "FES_ENV=prod fes build",
-    "dev": "fes dev"
+    "dev": "fes dev",
+    "analyze": "ANALYZE=1 fes build"
   },
   "keywords": [
     "管理端",

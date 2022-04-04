@@ -24,12 +24,13 @@ export default async (api, args) => {
         args: {},
     });
 
-    return deepmerge(
+    const bundleConfig = deepmerge(
         {
             mode: 'development',
             plugins: [viteMiddlewarePlugin(beforeMiddlewares, middlewares)],
             server: {
                 ...server,
+                proxy: server?.proxy || api.config.proxy,
                 port,
                 host: hostname,
                 https: process.env.HTTPS || args.https,
@@ -37,4 +38,11 @@ export default async (api, args) => {
         },
         getInnerCommonConfig(api),
     );
+
+    return api.applyPlugins({
+        type: api.ApplyPluginsType.modify,
+        key: 'modifyBundleConfig',
+        initialValue: bundleConfig,
+        args: {},
+    });
 };

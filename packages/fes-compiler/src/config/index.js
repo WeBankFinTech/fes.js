@@ -15,8 +15,6 @@ import mergeDefault from './utils/mergeDefault';
 
 const CONFIG_FILES = ['.fes.js'];
 
-// TODO:
-// 1. custom config file
 export default class Config {
     cwd;
 
