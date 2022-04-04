@@ -8,7 +8,7 @@ const defaultKey = 'default';
 
 {{#plugins}}
   plugin.register({
-    apply: Plugin_{{{ index }}}[defaultKey] ? Plugin_{{{ index }}}[defaultKey] : Plugin_{{{ index }}},
+    apply: {...Plugin_{{{ index }}}[defaultKey], ...Plugin_{{{ index }}}},
     path: '{{{ path }}}',
   });
 {{/plugins}}

@@ -15,6 +15,7 @@ export const en: SidebarConfig = {
       text: '基础',
       children: [
         '/guide/directory-structure.md',
+        '/guide/builder.md',
         '/guide/config.md',
         '/guide/runtime-config.md',
         '/guide/env.md',

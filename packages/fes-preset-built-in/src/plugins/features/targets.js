@@ -5,7 +5,7 @@ export default (api) => {
             default: {
                 chrome: 56,
                 firefox: 67,
-                safari: 10.4,
+                safari: 10,
                 edge: 13,
             },
             schema(joi) {
