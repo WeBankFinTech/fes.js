@@ -213,7 +213,7 @@ export default {
 ### router
 
 -   类型： `object`
--   默认值： `{ mode: 'hash' }`
+-   默认值： `{ mode: 'hash', base: '/' }`
 -   详情：
 
     配置路由，具体请查看指南中关于路由的介绍
@@ -281,6 +281,13 @@ const defaultTerserOptions = {
 -   详情：
 
     配置 [压缩器 terser 的配置项](https://github.com/terser/terser#minify-options)
+
+### title
+
+-   类型： `string`
+-   详情：
+
+    html 页面标题
 
 ## webpack 专属配置
 

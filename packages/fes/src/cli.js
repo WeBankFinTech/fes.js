@@ -17,7 +17,6 @@ function checkNodeVersion(wanted, id) {
 
 checkNodeVersion(requiredVersion, '@fesjs/fes');
 
-// process.argv: [node, fes.js, command, args]
 const rawArgv = process.argv.slice(2);
 const args = yParser(rawArgv);
 

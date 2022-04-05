@@ -107,6 +107,7 @@ interface InnerBuildConfig {
     singular?: boolean;
     targets?: object;
     terserOptions?: object;
+    title?: string;
 }
 
 export function defineBuildConfig(config: InnerBuildConfig & PluginBuildConfig ): InnerBuildConfig & PluginBuildConfig;

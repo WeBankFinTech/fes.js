@@ -3588,7 +3588,7 @@
     jiti "^1.13.0"
     windicss "^3.5.1"
 
-"@windicss/plugin-utils@^1.8.2":
+"@windicss/plugin-utils@1.8.3", "@windicss/plugin-utils@^1.8.2":
   version "1.8.3"
   resolved "https://registry.npmmirror.com/@windicss/plugin-utils/-/plugin-utils-1.8.3.tgz#cec2bdc7703357de348e4512d61c7bd7802b049a"
   integrity sha512-emlMeDt73uNV1ZofLTDogcxqL9aZ5uIRYkjeHlrWiaDozFbX6Jc+a6eRo9Ieaar3JUryl6AnecTPHAiFDl4IXg==
@@ -8925,6 +8925,11 @@ klona@^2.0.4:
   resolved "https://registry.npmmirror.com/klona/-/klona-2.0.5.tgz#d166574d90076395d9963aa7a928fabb8d76afbc"
   integrity sha512-pJiBpiXMbt7dkzXe8Ghj/u4FfXOOa98fPW+bihOJ4SjnoijweJrNThJfd3ifXpXhREjpoF2mZVH1GfS9LV3kHQ==
 
+kolorist@^1.5.1:
+  version "1.5.1"
+  resolved "https://registry.npmmirror.com/kolorist/-/kolorist-1.5.1.tgz#c3d66dc4fabde4f6b7faa6efda84c00491f9e52b"
+  integrity sha512-lxpCM3HTvquGxKGzHeknB/sUjuVoUElLlfYnXZT73K8geR9jQbroGlSCFBax9/0mpGoD3kzcMLnOlGQPJJNyqQ==
+
 lerna@^4.0.0:
   version "4.0.0"
   resolved "https://registry.npmmirror.com/lerna/-/lerna-4.0.0.tgz#b139d685d50ea0ca1be87713a7c2f44a5b678e9e"
@@ -13388,6 +13393,16 @@ vite-plugin-html@^3.2.0:
     html-minifier-terser "^6.1.0"
     node-html-parser "^5.3.3"
     pathe "^0.2.0"
+
+vite-plugin-windicss@^1.8.3:
+  version "1.8.3"
+  resolved "https://registry.npmmirror.com/vite-plugin-windicss/-/vite-plugin-windicss-1.8.3.tgz#d5fe923ad60f5d80f153a4fae5f837d56caa25cb"
+  integrity sha512-RIw2GD6H6cKNE8wZXVOBs4L1uTicVS0FaAkeqXvy1oyuXLC4SXmvnzEuoK0+qFuWJjW0ECNwE8eU+ZZhzNQKUg==
+  dependencies:
+    "@windicss/plugin-utils" "1.8.3"
+    debug "^4.3.3"
+    kolorist "^1.5.1"
+    windicss "^3.5.1"
 
 vite@^2.8.6:
   version "2.9.1"

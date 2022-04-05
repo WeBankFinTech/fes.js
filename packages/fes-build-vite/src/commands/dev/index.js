@@ -1,12 +1,6 @@
 import { createServer } from 'vite';
 import getDevConfig from './getDevConfig';
 
-/**
- * TODO
- *
- * 共享 webpack 和 vite 的部分配置，降低熟悉 vite 的成本
- */
-
 export default (api) => {
     const {
         paths,

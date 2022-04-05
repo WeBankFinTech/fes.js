@@ -2,7 +2,7 @@ import { extname } from 'path';
 import historyFallback from 'connect-history-api-fallback';
 
 const ASSET_EXT_NAMES = ['.ico', '.png', '.jpg', '.jpeg', '.gif', '.svg'];
-const SKIP_PATHS_PREFIX = ['/@vite', '/@id'];
+const SKIP_PATHS_PREFIX = ['/@'];
 
 const proxyMiddleware = (api) => (req, res, next) => {
     const proxyConfig = api.config.proxy;
@@ -15,6 +15,7 @@ const proxyMiddleware = (api) => (req, res, next) => {
     if (ASSET_EXT_NAMES.includes(extname(req.url))) {
         return next();
     }
+
     const history = historyFallback();
     history(req, res, next);
 };
