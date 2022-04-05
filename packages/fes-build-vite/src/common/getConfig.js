@@ -28,6 +28,7 @@ export function getInnerCommonConfig(api) {
                     inject: {
                         data: {
                             ...resolveRuntimeEnv(publicPath),
+                            title: api.config.title || 'Fes.js',
                             mountElementId: api.config.mountElementId,
                         },
                     },

@@ -4,11 +4,13 @@ import { winPath, resolveRuntimeEnv } from '@fesjs/utils';
 
 export default async function createHtmlWebpackConfig({ api, cwd, config, webpackConfig, headScripts, isProd, publicPath }) {
     const htmlOptions = {
-        title: 'fes.js',
         filename: '[name].html',
         ...config.html,
-        templateParameters: resolveRuntimeEnv(publicPath),
-        mountElementId: config.mountElementId,
+        templateParameters: {
+            title: config.html?.title || api.config.title || 'Fes.js',
+            ...resolveRuntimeEnv(publicPath),
+            mountElementId: config.mountElementId,
+        },
     };
 
     if (isProd) {
@@ -24,7 +26,7 @@ export default async function createHtmlWebpackConfig({ api, cwd, config, webpac
         });
     }
 
-    const htmlPath = join(cwd, 'public/index.html');
+    const htmlPath = join(cwd, 'index.html');
     const defaultHtmlPath = resolve(__dirname, 'index-default.html');
     const publicCopyIgnore = [];
 
@@ -45,10 +47,12 @@ export default async function createHtmlWebpackConfig({ api, cwd, config, webpac
                     if (_fileName !== 'index.html') {
                         const _htmlOptions = {
                             ...config.html,
-                            title: route?.meta?.title || config.html.title || 'fes.js',
                             filename: _fileName,
-                            templateParameters: resolveRuntimeEnv(publicPath),
-                            mountElementId: config.mountElementId,
+                            templateParameters: {
+                                title: route?.meta?.title || config.html.title || api.config.title || 'fes.js',
+                                ...resolveRuntimeEnv(publicPath),
+                                mountElementId: config.mountElementId,
+                            },
                         };
                         webpackConfig.plugin(_fileName).use(require.resolve('html-webpack-plugin'), [_htmlOptions]);
                     }

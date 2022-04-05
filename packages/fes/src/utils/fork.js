@@ -1,15 +1,11 @@
-import {
-    fork
-} from 'child_process';
+import { fork } from 'child_process';
 
 const usedPorts = [];
 let CURRENT_PORT;
 
-export default function start({
-    scriptPath
-}) {
+export default function start({ scriptPath }) {
     const execArgv = process.execArgv.slice(0);
-    const inspectArgvIndex = execArgv.findIndex(argv => argv.includes('--inspect-brk'),);
+    const inspectArgvIndex = execArgv.findIndex((argv) => argv.includes('--inspect-brk'));
 
     if (inspectArgvIndex > -1) {
         const inspectArgv = execArgv[inspectArgvIndex];
@@ -39,7 +35,7 @@ export default function start({
     }
 
     const child = fork(scriptPath, process.argv.slice(2), {
-        execArgv
+        execArgv,
     });
 
     child.on('message', (data) => {
@@ -47,7 +43,7 @@ export default function start({
         if (type === 'RESTART') {
             child.kill();
             start({
-                scriptPath
+                scriptPath,
             });
         } else if (type === 'UPDATE_PORT') {
             // set current used port

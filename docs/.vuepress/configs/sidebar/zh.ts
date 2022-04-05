@@ -23,6 +23,7 @@ export const zh: SidebarConfig = {
         '/zh/guide/plugin.md',
         '/zh/guide/template.md',
         '/zh/guide/mock.md',
+        '/zh/guide/upgrade2.1.md',
       ]
     },
     {

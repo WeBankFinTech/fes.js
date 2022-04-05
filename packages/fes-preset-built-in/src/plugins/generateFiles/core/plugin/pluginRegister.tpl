@@ -3,12 +3,22 @@ import { plugin } from './plugin';
 import * as Plugin_{{{ index }}} from '{{{ path }}}';
 {{/plugins}}
 
-// 避免编译警告
-const defaultKey = 'default';
+function handleDefaultExport(pluginExports) {
+  // 避免编译警告
+  const defaultKey = 'default';
+  if (pluginExports[defaultKey]) {
+    const {default: defaultExport, ...otherExports} = pluginExports;
+    return {
+      ...defaultExport,
+      ...otherExports
+    }
+  }
+  return pluginExports;
+}
 
 {{#plugins}}
   plugin.register({
-    apply: {...Plugin_{{{ index }}}[defaultKey], ...Plugin_{{{ index }}}},
+    apply: handleDefaultExport(Plugin_{{{ index }}}),
     path: '{{{ path }}}',
   });
 {{/plugins}}
