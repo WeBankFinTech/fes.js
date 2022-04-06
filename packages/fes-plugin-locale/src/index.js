@@ -1,6 +1,5 @@
 import { readFileSync } from 'fs';
 import { join } from 'path';
-import { resolveInnerDep } from '@fesjs/utils';
 import { getLocalesJSON } from './utils';
 import { name } from '../package.json';
 
@@ -63,7 +62,7 @@ export default (api) => {
                     2,
                 ),
                 BASE_NAVIGATOR: userConfig.baseNavigator,
-                VUE_I18N_PATH: resolveInnerDep('vue-i18n', api.builder),
+                VUE_I18N_PATH: 'vue-i18n',
             }),
         });
 
