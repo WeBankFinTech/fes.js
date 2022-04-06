@@ -1,6 +1,5 @@
 import { readFileSync, existsSync } from 'fs';
 import { join } from 'path';
-import { resolveInnerDep } from '@fesjs/utils';
 import { defaultMainRootId, defaultHistoryType, qiankunStateForMicroModelNamespace } from '../constants';
 import modifyRoutes from './modifyRoutes';
 
@@ -39,8 +38,8 @@ export default function (api) {
             content: Mustache.render(readFileSync(join(__dirname, 'runtime/MicroApp.tpl'), 'utf-8'), {
                 qiankunStateForMicroModelNamespace,
                 HAS_PLUGIN_MODEL: HAS_PLUGIN_MODEL && existsSync(winPath(join(api.paths.absSrcPath, 'models/qiankunStateForMicro.js'))),
-                QIANKUN: resolveInnerDep('qiankun', api.builder),
-                LODASH_ES: resolveInnerDep('lodash-es', api.builder),
+                QIANKUN: 'qiankun',
+                LODASH_ES: 'lodash-es',
             }),
         });
 

@@ -1,6 +1,5 @@
 import { readFileSync } from 'fs';
 import { join } from 'path';
-import { resolveInnerDep } from '@fesjs/utils';
 import { name } from '../package.json';
 
 const namespace = 'plugin-monaco-editor';
@@ -48,14 +47,14 @@ export default (api) => {
         api.writeTmpFile({
             path: absLoaderFilePath,
             content: Mustache.render(readFileSync(join(__dirname, 'runtime/loader.tpl'), 'utf-8'), {
-                MONACO_EDITOR: resolveInnerDep('monaco-editor', api.builder),
+                MONACO_EDITOR: 'monaco-editor',
             }),
         });
 
         api.writeTmpFile({
             path: absEditorFilePath,
             content: Mustache.render(readFileSync(join(__dirname, 'runtime/editor.tpl'), 'utf-8'), {
-                LODASH_ES: resolveInnerDep('lodash-es', api.builder),
+                LODASH_ES: 'lodash-es',
             }),
         });
 

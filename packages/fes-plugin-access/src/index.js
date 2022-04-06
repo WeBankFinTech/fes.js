@@ -1,6 +1,5 @@
 import { readFileSync } from 'fs';
 import { join } from 'path';
-import { resolveInnerDep } from '@fesjs/utils';
 import { name } from '../package.json';
 
 const namespace = 'plugin-access';
@@ -33,7 +32,7 @@ export default (api) => {
             path: absoluteFilePath,
             content: Mustache.render(readFileSync(join(__dirname, 'runtime/core.tpl'), 'utf-8'), {
                 REPLACE_ROLES: JSON.stringify(roles),
-                lodashPath: resolveInnerDep('lodash-es', api.builder),
+                lodashPath: 'lodash-es',
             }),
         });
 
