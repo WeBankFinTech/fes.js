@@ -48,6 +48,7 @@
     "@fesjs/fes": "^2.0.0",
     "@fesjs/plugin-icon": "^2.0.0",
     "@fesjs/plugin-request": "^2.0.0",
+    "@fesjs/build-webpack": "^1.0.0",
     "vue": "^3.2.6",
     "core-js": "^3.8.3"
   },
