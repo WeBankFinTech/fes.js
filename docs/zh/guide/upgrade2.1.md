@@ -19,4 +19,11 @@
 2. 将 Webpack 相关的配置换成 Vite，具体可查看[配置](../reference/config)。
 3. 将 html 模版文件从 `public/index.html` 挪到项目根目录，如果有相应的 [html-webpack-plugin](https://github.com/jantimon/html-webpack-plugin) 配置，需要改成 [vite-plugin-html](https://github.com/vbenjs/vite-plugin-html) 的写法。
 4. 将 `require` 等 Vite 不支持的代码，改写成 Vite 支持的方式。
-5. 由于需要兼容 Vite 写法，相关插件也做了相关调整，因此依赖的插件都需要升级最新的版本。如果用了 [@fesjs/plugin-sass](../reference/plugin/plugins/sass.html) 插件，直接移除，手动安装 `sass` 依赖即可。
+
+## 插件
+
+如果使用 Webpack 构建，插件是向后兼容的。如果是使用 Vite 构建，大部分插件也是向后兼容的，需要处理的插件有：
+
+-   [@fesjs/plugin-qiankun](../reference/plugins/qiankun) 需要升级到 `2.1.x` 版本。
+-   [@fesjs/plugin-windicss](../reference/plugins/windicss) 需要升级到 `2.1.x` 版本。
+-   [@fesjs/plugin-sass](../reference/plugins/sass) 直接移除，再安装 `sass` 包即可。

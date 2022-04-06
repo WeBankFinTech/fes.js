@@ -52,7 +52,8 @@
     "@fesjs/plugin-layout": "^4.0.0",
     "@fesjs/plugin-model": "^2.0.0",
     "@fesjs/plugin-enums": "^2.0.0",
-    "@fesjs/fes-design": "^0.3.0",
+    "@fesjs/fes-design": "^0.4.0",
+    "@fesjs/build-webpack": "^1.0.0",
     "vue": "^3.2.6",
     "core-js": "^3.8.3"
   },
