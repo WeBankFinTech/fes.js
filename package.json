@@ -1,6 +1,6 @@
 {
   "name": "fes.js",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "一个好用的前端管理台快速开发框架",
   "preferGlobal": true,
   "private": true,
@@ -8,16 +8,14 @@
     "packages/*"
   ],
   "scripts": {
-    "clean": "lerna clean",
-    "bootstrap": "lerna bootstrap",
     "dev": "node scripts/build.js --watch",
     "build": "node scripts/build.js",
-    "ver": "lerna version --conventional-prerelease --no-changelog --no-commit-hooks --no-private",
-    "release": "node scripts/build.js && lerna publish from-git",
+    "release": "node scripts/release.mjs",
     "docs:dev": "vuepress dev docs --clean-cache",
     "docs:build": "vuepress build docs --clean-cache",
     "test": "fes test",
-    "lint": "eslint -c ./.eslintrc.js --ext .js,.jsx,.vue,.ts"
+    "lint": "eslint -c ./.eslintrc.js --ext .js,.jsx,.vue,.ts",
+    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s"
   },
   "license": "MIT",
   "keywords": [
@@ -28,7 +26,12 @@
     "strong"
   ],
   "dependencies": {
-    "lerna": "^4.0.0",
+    "chalk": "^5.0.1",
+    "conventional-changelog-cli": "^2.2.2",
+    "enquirer": "^2.3.6",
+    "execa": "^6.1.0",
+    "minimist": "^1.2.6",
+    "semver": "^7.3.6",
     "vuepress": "^2.0.0-beta.37"
   },
   "devDependencies": {
@@ -42,7 +45,6 @@
     "@vuepress/plugin-pwa": "^2.0.0-beta.37",
     "@vuepress/plugin-pwa-popup": "^2.0.0-beta.37",
     "@webank/eslint-config-webank": "^1.2.0",
-    "chalk": "^4.1.2",
     "chokidar": "^3.5.2",
     "commitizen": "^4.2.1",
     "cz-conventional-changelog": "^3.3.0",
