@@ -1,0 +1,37 @@
+{
+  "name": "@fesjs/plugin-watermark",
+  "version": "2.0.0",
+  "description": "@fesjs/plugin-watermark",
+  "main": "lib/index.js",
+  "files": [
+    "lib"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WeBankFinTech/fes.js.git",
+    "directory": "packages/fes-plugin-watermark"
+  },
+  "keywords": [
+    "fes"
+  ],
+  "author": "harrywan",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/WeBankFinTech/fes.js/issues"
+  },
+  "homepage": "https://github.com/WeBankFinTech/fes.js#readme",
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@fesjs/utils": "^2.0.4",
+    "lodash-es": "^4.17.15"
+  },
+  "peerDependencies": {
+    "@fesjs/fes": "^2.0.0",
+    "vue": "^3.0.5"
+  }
+}
