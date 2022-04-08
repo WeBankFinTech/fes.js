@@ -36,6 +36,7 @@ export default (api) => {
         ],
         async fn({ args = {} }) {
             const { cleanTmpPathExceptCache, getBundleAndConfigs } = require('../buildDevUtils');
+            const connectHistoryMiddleware = require('./connectHistoryMiddleware').default;
 
             port = await getPort(args.port || api.config.devServer?.port);
             changePort(port);
@@ -80,7 +81,7 @@ export default (api) => {
                 port,
                 proxy: api.config.proxy,
                 https: isHTTPS,
-                beforeMiddlewares: [...beforeMiddlewares],
+                beforeMiddlewares: [connectHistoryMiddleware(api), ...beforeMiddlewares],
                 afterMiddlewares: [...middlewares],
                 customerDevServerConfig: api.config.devServer,
             });
