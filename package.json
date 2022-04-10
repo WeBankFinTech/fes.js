@@ -8,8 +8,8 @@
     "packages/*"
   ],
   "scripts": {
-    "dev": "node scripts/build.js --watch",
-    "build": "node scripts/build.js",
+    "dev": "node scripts/build.mjs --watch",
+    "build": "node scripts/build.mjs",
     "release": "node scripts/release.mjs",
     "docs:dev": "vuepress dev docs --clean-cache",
     "docs:build": "vuepress build docs --clean-cache",
