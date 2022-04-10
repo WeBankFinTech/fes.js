@@ -281,8 +281,6 @@ export default async function getConfig({ api, cwd, config, env, entry = {}, mod
     // --------------- 构建输出 ----------
     webpackConfig.plugin('progress').use(require.resolve('webpackbar'));
 
-    webpackConfig.plugin('friendly-errors').use(require('@soda/friendly-errors-webpack-plugin'));
-
     // --------------- chainwebpack -----------
     if (chainWebpack) {
         await chainWebpack(webpackConfig, {

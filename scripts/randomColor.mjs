@@ -1,5 +1,5 @@
 /* eslint import/no-extraneous-dependencies: 0 */
-const chalk = require('chalk');
+import chalk from 'chalk';
 
 const colors = [
     'red',
@@ -20,7 +20,7 @@ const colors = [
 let index = 0;
 const cache = {};
 
-module.exports = function (pkg) {
+export default function (pkg) {
     if (!cache[pkg]) {
         const color = colors[index];
         const str = chalk[color].bold(pkg);
@@ -32,4 +32,4 @@ module.exports = function (pkg) {
         }
     }
     return cache[pkg];
-};
+}

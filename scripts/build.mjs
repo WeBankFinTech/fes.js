@@ -1,16 +1,20 @@
+/* eslint-disable import/extensions */
 // 关闭 import 规则
 /* eslint import/no-extraneous-dependencies: 0 */
 
-const fs = require('fs');
-const fse = require('fs-extra');
-const path = require('path');
-const merge = require('deepmerge');
-const chokidar = require('chokidar');
-const chalk = require('chalk');
-const argv = require('yargs-parser')(process.argv.slice(2));
+import path from 'path';
+import fs from 'fs';
+import fse from 'fs-extra';
+import chalk from 'chalk';
+import merge from 'deepmerge';
+import chokidar from 'chokidar';
+import yargsParser from 'yargs-parser';
+import compiler from './compiler.mjs';
+import randomColor from './randomColor.mjs';
 
-const compiler = require('./compiler');
-const randomColor = require('./randomColor');
+import buildConfig from '../build.config.js';
+
+const argv = yargsParser(process.argv.slice(2));
 
 const ESM_OUTPUT_DIR = 'es';
 const NODE_CJS_OUTPUT_DIR = 'lib';
@@ -54,16 +58,16 @@ function getOutputPath(config, pkgName) {
 
 function getGlobalConfig() {
     if (fs.existsSync(GLOBAL_CONFIG_PATH)) {
-        const userConfig = require(GLOBAL_CONFIG_PATH);
-        return merge(DEFAULT_CONFIG, userConfig);
+        return merge(DEFAULT_CONFIG, buildConfig);
     }
     return DEFAULT_CONFIG;
 }
 
-function getPkgConfig(config, pkgName) {
+async function getPkgConfig(config, pkgName) {
     const pkgConfigPath = path.join(getPkgPath(pkgName), CONFIG_FILE_NAME);
     if (fs.existsSync(pkgConfigPath)) {
-        return merge(config, require(pkgConfigPath));
+        const content = await import(pkgConfigPath);
+        return merge(config, content.default);
     }
 
     return config;
@@ -150,11 +154,11 @@ function watchFile(dir, outputDir, config, log) {
 }
 
 function compilerPkgs(pkgs, globalConfig) {
-    pkgs.forEach((pkgName) => {
+    pkgs.forEach(async (pkgName) => {
         const sourceCodeDir = getPkgSourcePath(pkgName);
         if (fs.existsSync(sourceCodeDir)) {
             const log = genLog(pkgName);
-            const config = getPkgConfig(globalConfig, pkgName);
+            const config = await getPkgConfig(globalConfig, pkgName);
             const outputDir = getOutputPath(config, pkgName);
 
             cleanBeforeCompilerResult(pkgName, log);

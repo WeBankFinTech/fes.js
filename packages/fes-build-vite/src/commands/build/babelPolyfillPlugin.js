@@ -3,7 +3,7 @@ import { transformSync } from '@babel/core';
 const DEFAULT_FILTER = /\.[jt]sx?$/;
 
 export default (config) => ({
-    name: 'vite-pligin:babel-polyfill',
+    name: 'vite-plugin:babel-polyfill',
     transform(code, id) {
         const [filepath] = id.split('?');
         if (DEFAULT_FILTER.test(id) || DEFAULT_FILTER.test(filepath)) {

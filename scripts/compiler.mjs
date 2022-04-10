@@ -1,10 +1,10 @@
 // 关闭 import 规则
 /* eslint import/no-extraneous-dependencies: 0 */
 
-const babel = require('@babel/core');
+import { transformSync } from '@babel/core';
 
 function transform(code, options) {
-    const result = babel.transformSync(code, options);
+    const result = transformSync(code, options);
     return result.code;
 }
 
@@ -39,7 +39,7 @@ function transformBrowserCode(code) {
     });
 }
 
-function compiler(code, config) {
+export default function compiler(code, config) {
     if (!config.target || config.target === 'node') {
         return transformNodeCode(code);
     }
@@ -48,5 +48,3 @@ function compiler(code, config) {
     }
     throw new Error(`config target error: ${config.target}, only can use 'node' and 'browser'`);
 }
-
-module.exports = compiler;
