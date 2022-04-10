@@ -45,11 +45,12 @@
     "@vue/compiler-sfc": "^3.2.2"
   },
   "dependencies": {
+    "@fesjs/build-vite": "^1.0.0",
     "@fesjs/fes": "^2.0.0",
     "@fesjs/plugin-icon": "^2.0.0",
     "@fesjs/plugin-request": "^2.0.0",
     "@fesjs/plugin-windicss": "^2.0.8",
-    "@fesjs/build-vite": "^1.0.0",
+    "core-js": "^3.21.1",
     "vue": "^3.2.2"
   },
   "private": true
