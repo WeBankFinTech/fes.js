@@ -7,12 +7,18 @@
 
 <script>
 import { FButton } from '@fesjs/fes-design';
+import { useModel } from '@fesjs/fes';
 
 export default {
     components: {
         FButton
     },
     setup() {
+        const initialState = useModel('@@initialState');
+        setTimeout(() => {
+            initialState.userName = '1';
+        }, 1000);
+        console.log('index.vue');
         return {
         };
     }
