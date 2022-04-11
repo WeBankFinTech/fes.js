@@ -74,7 +74,11 @@ export default async function getConfig({ api, cwd, config, env, entry = {}, mod
     });
 
     // --------------- output -----------
-    webpackConfig.output.path(absoluteOutput).publicPath(publicPath).filename('[name].[contenthash:8].js').chunkFilename('[name].[contenthash:8].chunk.js');
+    webpackConfig.output
+        .path(absoluteOutput)
+        .publicPath(publicPath || '/')
+        .filename('[name].[contenthash:8].js')
+        .chunkFilename('[name].[contenthash:8].chunk.js');
 
     // --------------- resolve -----------
     webpackConfig.resolve.extensions.merge(['.mjs', '.js', '.jsx', '.vue', '.ts', '.tsx', '.json', '.wasm']);
@@ -85,48 +89,27 @@ export default async function getConfig({ api, cwd, config, env, entry = {}, mod
     webpackConfig.module
         .rule('image')
         .test(/\.(png|jpe?g|gif|webp|ico)(\?.*)?$/)
-        .use('url-loader')
-        .loader(require.resolve('url-loader'))
-        .options({
-            limit: config.inlineLimit || 8192,
-            esModule: false,
-            fallback: {
-                loader: require.resolve('file-loader'),
-                options: {
-                    name: 'static/[name].[hash:8].[ext]',
-                    esModule: false,
-                },
+        .type('asset')
+        .parser({
+            dataUrlCondition: {
+                maxSize: config.inlineLimit || 8 * 1024,
             },
         });
 
     webpackConfig.module
         .rule('svg')
         .test(/\.(svg)(\?.*)?$/)
-        .use('file-loader')
-        .loader(require.resolve('file-loader'))
-        .options({
-            name: 'static/[name].[hash:8].[ext]',
-            esModule: false,
-        });
+        .type('asset/resource');
 
     webpackConfig.module
         .rule('fonts')
         .test(/\.(eot|woff|woff2|ttf)(\?.*)?$/)
-        .use('file-loader')
-        .loader(require.resolve('file-loader'))
-        .options({
-            name: 'static/[name].[hash:8].[ext]',
-            esModule: false,
-        });
+        .type('asset/resource');
 
     webpackConfig.module
-        .rule('raw')
+        .rule('text-file')
         .test(/\.(txt|text|md)$/)
-        .use('raw-loader')
-        .loader(require.resolve('raw-loader'))
-        .options({
-            esModule: false,
-        });
+        .type('asset/source');
 
     const { targets, browserslist } = api.utils.getTargetsAndBrowsersList({ config });
     const babelOpts = await getBabelOpts({
@@ -294,5 +277,15 @@ export default async function getConfig({ api, cwd, config, env, entry = {}, mod
         });
     }
 
-    return webpackConfig.toConfig();
+    const memo = webpackConfig.toConfig();
+    memo.infrastructureLogging = {
+        ...memo.infrastructureLogging,
+        level: 'verbose',
+    };
+    memo.output = {
+        ...memo.output,
+        assetModuleFilename: 'static/[name][hash:8][ext]',
+    };
+
+    return memo;
 }

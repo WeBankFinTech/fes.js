@@ -2,7 +2,6 @@
 
 
 export default {
-    publicPath: './',
     access: {
         roles: {
             admin: ["*"],
