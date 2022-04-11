@@ -1,5 +1,5 @@
 <template>
-    <div class="onepiece m-10px text-green">
+    <div class="onepiece m-10px text-yellow-700">
         fes h5 & 拉夫德鲁<br />
         <fes-icon :spin="true" class="one-icon" type="smile" @click="clickIcon" />
         <HelloWorld />
@@ -24,7 +24,7 @@ export default {
         const fes = ref('fes upgrade to vue3');
         const rotate = ref(90);
         const clickIcon = () => {
-            console.log('click Icon');
+            console.log('click icon');
         };
         console.log(process.env.NODE_ENV, process.env.HELLO);
         console.log(useRoute());

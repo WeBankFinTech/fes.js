@@ -278,9 +278,6 @@ export default async function getConfig({ api, cwd, config, env, entry = {}, mod
         webpackConfig,
     });
 
-    // --------------- 构建输出 ----------
-    webpackConfig.plugin('progress').use(require.resolve('webpackbar'));
-
     // --------------- chainwebpack -----------
     if (chainWebpack) {
         await chainWebpack(webpackConfig, {

@@ -35,17 +35,6 @@ export default defineBuildConfig({
     ],
     devServer: {
         port: 8000
-    },
-    windicss: {
-        config: {
-            theme: {
-                extend: {
-                    colors: {
-                        green: '#7cb305'
-                    }
-                }
-            }
-        }
-    },
+    }
 });
 
