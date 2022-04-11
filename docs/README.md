@@ -4,10 +4,10 @@ title: 首页
 heroImage: /logo.png
 actions:
   - text: 快速上手
-    link: /zh/guide/getting-started.html
+    link: /guide/getting-started.html
     type: primary
   - text: 项目简介
-    link: /zh/guide/
+    link: /guide/
     type: secondary
 features:
   - title: Fast
@@ -52,7 +52,7 @@ npx @fesjs/create-fes-app myapp
 # 安装依赖
 npm install 
 
-# 运行  
+# 运行
 npm run dev
 ```
 
