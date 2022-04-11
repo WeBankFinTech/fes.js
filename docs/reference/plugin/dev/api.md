@@ -420,7 +420,7 @@ api.addBeforeMiddlewares(() => {
 
 
 ### addTmpGenerateWatcherPaths
-添加重新临时文件生成的监听路径。
+添加重新生成临时文件的监听路径。
 
 例如：
 ```js

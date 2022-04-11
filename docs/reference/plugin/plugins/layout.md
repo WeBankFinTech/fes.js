@@ -277,7 +277,7 @@ export const layout = layoutConfig => ({
 
 :::tip
 在运行时配置菜单中的icon，需要传组件本身，而不是组件的名称。
-:::tip
+:::
 
 
 #### header
