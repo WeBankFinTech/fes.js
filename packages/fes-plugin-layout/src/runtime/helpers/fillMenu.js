@@ -10,6 +10,9 @@ const getMetaByName = (config, name) => {
             }
             if (item.children && item.children.length > 0) {
                 res = getMetaByName(item.children, name);
+                if (res.path) {
+                    break;
+                }
             }
         }
     }
