@@ -280,7 +280,6 @@ export default async function getConfig({ api, cwd, config, env, entry = {}, mod
     const memo = webpackConfig.toConfig();
     memo.infrastructureLogging = {
         ...memo.infrastructureLogging,
-        level: 'verbose',
     };
     memo.output = {
         ...memo.output,

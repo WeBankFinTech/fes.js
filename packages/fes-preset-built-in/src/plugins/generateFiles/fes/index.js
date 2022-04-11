@@ -61,7 +61,9 @@ export default function (api) {
         const defaultContainerName = 'defaultContainer';
         api.writeTmpFile({
             path: `${defaultContainerName}.jsx`,
-            content: readFileSync(join(__dirname, `./${defaultContainerName}.tpl`), 'utf-8'),
+            content: Mustache.render(readFileSync(join(__dirname, `./${defaultContainerName}.tpl`), 'utf-8'), {
+                runtimePath,
+            }),
         });
     });
 }
