@@ -72,7 +72,10 @@ export default {
             {
                 name: 'pinia'
             }
-        ]
+        ],
+        menuConfig: {
+            defaultExpandAll: false
+        }
     },
     locale: {
         legacy: true

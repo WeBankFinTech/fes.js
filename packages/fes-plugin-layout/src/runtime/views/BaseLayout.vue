@@ -20,6 +20,9 @@
                     :collapsed="collapsedRef"
                     mode="vertical"
                     :inverted="theme === 'dark'"
+                    :expandedKeys="menuConfig?.expandedKeys"
+                    :defaultExpandAll="menuConfig?.defaultExpandAll"
+                    :accordion="menuConfig?.accordion"
                 />
             </f-aside>
             <f-layout
@@ -70,6 +73,9 @@
                     :menus="menus"
                     mode="horizontal"
                     :inverted="theme === 'dark'"
+                    :expandedKeys="menuConfig?.expandedKeys"
+                    :defaultExpandAll="menuConfig?.defaultExpandAll"
+                    :accordion="menuConfig?.accordion"
                 />
                 <div class="layout-header-custom">
                     <slot name="customHeader"></slot>
@@ -124,6 +130,9 @@
                         :menus="menus"
                         :collapsed="collapsedRef"
                         mode="vertical"
+                        :expandedKeys="menuConfig?.expandedKeys"
+                        :defaultExpandAll="menuConfig?.defaultExpandAll"
+                        :accordion="menuConfig?.accordion"
                     />
                 </f-aside>
                 <f-layout
@@ -208,7 +217,10 @@ export default {
             type: Number,
             default: 200
         },
-        footer: String
+        footer: String,
+        menuConfig: {
+            type: Object
+        }
     },
     setup(props) {
         const headerRef = ref();

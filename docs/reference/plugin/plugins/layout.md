@@ -20,7 +20,7 @@
 {
     "dependencies": {
         "@fesjs/fes": "^2.0.0",
-        "@fesjs/plugin-layout": "^2.0.0"
+        "@fesjs/plugin-layout": "^4.0.0"
     },
 }
 ```
@@ -115,7 +115,12 @@ export default {
             name: 'store'
         }, {
             name: 'simpleList'
-        }]
+        }],
+        menuConfig: {
+            defaultExpandAll: false,
+            expandedKeys: [],
+            accordion: false
+        }
     },
 ```
 
@@ -219,7 +224,19 @@ export default {
 ```
   
   - **children**：子菜单配置。
+
+#### menusConfig
+- **类型**：`Object`
   
+- **默认值**：`{}`
+
+- **详情**：菜单的配置：
+  
+  - **defaultExpandAll**：是否默认展开全部菜单。
+  
+  - **expandedKeys**：配置默认展开的菜单，需要传子项是菜单路径的数组。
+
+  - **accordion**：是否只保持一个子菜单的展开。
   
 ### 运行时配置
 在 `app.js` 中配置：
@@ -230,6 +247,38 @@ export const layout = {
 };
 
 ```
+
+#### menus
+- **类型**：`(defaultMenus: [] )=> Ref | []`
+  
+- **详情**：运行时修改菜单，入参是默认菜单配置（.fes.js中的menu配置），需要返回一个`Ref`或者数组。
+
+```js
+import { ClusterOutlined } from '@fesjs/fes-design/icon'
+export const layout = layoutConfig => ({
+    ...layoutConfig,
+    customHeader: <UserCenter />,
+    menus: (defaultMenuData) => {
+        const menusRef = ref(defaultMenuData);
+        watch(() => layoutConfig.initialState.userName, () => {
+            menusRef.value = [{
+                name: 'store',
+                icon: <ClusterOutlined />
+            }];
+        });
+        return menusRef;
+    }
+});
+
+```
+`layoutConfig.initialState` 是 `beforeRender.action`执行后创建的应用初始状态数据。         
+
+如果菜单需要根据某些状态动态改变，则返回`Ref`，否则只需要返回数组。
+
+:::tip
+在运行时配置菜单中的icon，需要传组件本身，而不是组件的名称。
+:::tip
+
 
 #### header
 - **类型**：`String`
