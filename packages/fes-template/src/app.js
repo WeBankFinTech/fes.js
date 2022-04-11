@@ -24,6 +24,17 @@ export const beforeRender = {
     }
 };
 
-export const layout = {
-    customHeader: <UserCenter />
+export const layout = (initialValue) => {
+    console.log('layout runtime');
+    return {
+        ...initialValue,
+        customHeader: <UserCenter />,
+        menus: {
+            request: async (defaultMenuData) => {
+                console.log(defaultMenuData);
+                console.log(initialValue.initialState);
+                return defaultMenuData;
+            }
+        }
+    };
 };

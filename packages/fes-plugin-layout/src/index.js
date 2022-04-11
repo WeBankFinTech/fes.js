@@ -32,6 +32,9 @@ export default (api) => {
 
         const HAS_LOCALE = api.hasPlugins(['@fesjs/plugin-locale']);
 
+        // 路由信息
+        const routes = await api.getRoutes();
+
         // .fes配置
         const userConfig = {
             title: name,
@@ -39,14 +42,13 @@ export default (api) => {
             ...(api.config.layout || {})
         };
 
-        // 路由信息
-        const routes = await api.getRoutes();
         // 把路由的meta合并到menu配置中
-        userConfig.menus = helper.fillMenuByRoute(userConfig.menus, routes);
+        const menus = helper.fillMenuByRoute(userConfig.menus, routes);
+        delete userConfig.menus;
 
-        const icons = helper.getIconsFromMenu(userConfig.menus);
+        const iconNames = helper.getIconNamesFromMenu(menus);
 
-        const iconsString = icons.map(
+        const iconsString = iconNames.map(
             iconName => `import { ${iconName} } from '@fesjs/fes-design/icon'`
         );
         api.writeTmpFile({
@@ -54,7 +56,7 @@ export default (api) => {
             content: `
         ${iconsString.join(';\n')}
         export default {
-            ${icons.join(',\n')}
+            ${iconNames.join(',\n')}
         }`
         });
 
@@ -64,6 +66,7 @@ export default (api) => {
                 readFileSync(join(__dirname, 'runtime/index.tpl'), 'utf-8'),
                 {
                     REPLACE_USER_CONFIG: JSON.stringify(userConfig),
+                    MENUS: JSON.stringify(menus),
                     HAS_LOCALE
                 }
             )

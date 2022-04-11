@@ -1,34 +1,47 @@
 <script>
-import { ref, onBeforeMount } from 'vue';
+import { ref, onBeforeMount, isVNode } from 'vue';
 // eslint-disable-next-line import/extensions
 import Icons from '../icons';
 import { validateContent } from '../helpers/svg';
+
+const urlReg = /^((https?|ftp|file):\/\/)?([\da-z.-]+)\.([a-z.]{2,6})([/\w .-]*)*\/?$/;
+const isUrlResource = name => urlReg.test(name) || name.includes('.svg');
 
 export default {
     props: {
         icon: [String, Object]
     },
     setup(props) {
-        const AIcon = ref(null);
+        const AIconComponent = ref(null);
         const AText = ref(null);
+        const AVNode = ref(null);
 
         onBeforeMount(() => {
-            if (props.icon && props.icon.type === 'icon') {
-                AIcon.value = Icons[props.icon.name];
+            if (typeof props.icon === 'string') {
+                if (isUrlResource(props.icon)) {
+                    fetch(props.icon).then((rsp) => {
+                        if (rsp.ok) {
+                            return rsp.text().then((svgContent) => {
+                                AText.value = validateContent(svgContent);
+                            });
+                        }
+                    });
+                } else {
+                    AIconComponent.value = Icons[props.icon];
+                }
+            } else if (isVNode(props.icon)) {
+                AVNode.value = props.icon;
             } else {
-                fetch(props.icon).then((rsp) => {
-                    if (rsp.ok) {
-                        return rsp.text().then((svgContent) => {
-                            AText.value = validateContent(svgContent);
-                        });
-                    }
-                });
+                console.log(props.icon);
             }
         });
 
         return () => {
-            if (AIcon.value) {
-                return <AIcon.value />;
+            if (AVNode.value) {
+                return AVNode.value;
+            }
+            if (AIconComponent.value) {
+                return <AIconComponent.value />;
             }
             if (AText.value) {
                 return (

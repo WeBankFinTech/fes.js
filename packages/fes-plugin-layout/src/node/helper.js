@@ -1,5 +1,4 @@
-
-const matchName = (config, name) => {
+const getMetaByName = (config, name) => {
     let res = {};
     if (Array.isArray(config)) {
         for (let i = 0; i < config.length; i++) {
@@ -10,7 +9,7 @@ const matchName = (config, name) => {
                 break;
             }
             if (item.children && item.children.length > 0) {
-                res = matchName(item.children, name);
+                res = getMetaByName(item.children, name);
             }
         }
     }
@@ -27,27 +26,27 @@ export const fillMenuByRoute = (menuConfig, routeConfig, dep = 0) => {
         menuConfig.forEach((menu) => {
             const pageConfig = {};
             if (menu.name) {
-                Object.assign(pageConfig, matchName(routeConfig, menu.name));
+                Object.assign(
+                    pageConfig,
+                    getMetaByName(routeConfig, menu.name)
+                );
             }
             // menu的配置优先级高，当menu存在配置时，忽略页面的配置
             Object.keys(pageConfig).forEach((prop) => {
-                if (menu[prop] === undefined || menu[prop] === null || menu[prop] === '') {
+                if (
+                    menu[prop] === undefined
+                    || menu[prop] === null
+                    || menu[prop] === ''
+                ) {
                     menu[prop] = pageConfig[prop];
                 }
             });
-            // 处理icon
-            if (menu.icon) {
-                const icon = menu.icon;
-                const urlReg = /^((https?|ftp|file):\/\/)?([\da-z.-]+)\.([a-z.]{2,6})([/\w .-]*)*\/?$/;
-                if (typeof icon === 'string' && !((urlReg.test(icon) || icon.includes('.svg')))) {
-                    menu.icon = {
-                        type: 'icon',
-                        name: icon
-                    };
-                }
-            }
             if (menu.children && menu.children.length > 0) {
-                menu.children = fillMenuByRoute(menu.children, routeConfig, dep);
+                menu.children = fillMenuByRoute(
+                    menu.children,
+                    routeConfig,
+                    dep
+                );
             }
             arr.push(menu);
         });
@@ -55,7 +54,7 @@ export const fillMenuByRoute = (menuConfig, routeConfig, dep = 0) => {
     return arr;
 };
 
-export function getIconsFromMenu(data) {
+export function getIconNamesFromMenu(data) {
     if (!Array.isArray(data)) {
         return [];
     }
@@ -63,12 +62,19 @@ export function getIconsFromMenu(data) {
     data.forEach((item = { path: '/' }) => {
         if (item.icon) {
             const { icon } = item;
-            if (icon.type === 'icon') {
-                icons.push(icon.name);
+            // 处理icon
+            if (icon) {
+                const urlReg = /^((https?|ftp|file):\/\/)?([\da-z.-]+)\.([a-z.]{2,6})([/\w .-]*)*\/?$/;
+                if (
+                    typeof icon === 'string'
+                    && !(urlReg.test(icon) || icon.includes('.svg'))
+                ) {
+                    icons.push(icon);
+                }
             }
         }
         if (item.children) {
-            icons = icons.concat(getIconsFromMenu(item.children));
+            icons = icons.concat(getIconNamesFromMenu(item.children));
         }
     });
 
