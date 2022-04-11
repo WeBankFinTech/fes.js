@@ -24,6 +24,7 @@ export default {
         MonacoEditor
     },
     setup() {
+        console.log('editor.vue');
         const editorRef = ref();
         const json = ref('');
         const language = ref('json');

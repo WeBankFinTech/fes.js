@@ -38,17 +38,12 @@
     </template>
     <router-view v-else v-slot="{ Component, route }">
         <keep-alive :include="keepAlivePages">
-            <component
-                :is="getComponent(Component, route)"
-                :key="getPageKey(route)"
-            />
+            <component :is="getComponent(Component, route)" />
         </keep-alive>
     </router-view>
 </template>
 <script>
-import {
-    computed, onMounted, unref, ref
-} from 'vue';
+import { computed, unref, ref } from 'vue';
 import { FTabs, FTabPane, FDropdown } from '@fesjs/fes-design';
 import { ReloadOutlined, MoreOutlined } from '@fesjs/fes-design/icon';
 import { useRouter, useRoute } from '@@/core/coreExports';
@@ -68,20 +63,6 @@ export default {
         multiTabs: Boolean
     },
     setup() {
-        const route = useRoute();
-        const router = useRouter();
-        const pageList = ref([]);
-        const actions = [
-            {
-                value: 'closeOtherPage',
-                label: '关闭其他'
-            },
-            {
-                value: 'reloadPage',
-                label: '刷新当前页'
-            }
-        ];
-
         const createPage = (_route) => {
             const title = _route.meta.title;
             return {
@@ -93,11 +74,21 @@ export default {
             };
         };
 
-        const findPage = path => pageList.value.find(item => unref(item.path) === unref(path));
+        const route = useRoute();
+        const router = useRouter();
+        const pageList = ref([createPage(route)]);
+        const actions = [
+            {
+                value: 'closeOtherPage',
+                label: '关闭其他'
+            },
+            {
+                value: 'reloadPage',
+                label: '刷新当前页'
+            }
+        ];
 
-        onMounted(() => {
-            pageList.value = [createPage(route)];
-        });
+        const findPage = path => pageList.value.find(item => unref(item.path) === unref(path));
 
         router.beforeEach((to) => {
             if (!findPage(to.path)) {

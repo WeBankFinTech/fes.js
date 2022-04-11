@@ -1,8 +1,8 @@
-import { plugin, ApplyPluginsType } from '@@/core/coreExports';
 // eslint-disable-next-line import/extensions
 import { access as accessApi } from '../plugin-access/core';
 import Exception404 from './views/404';
 import Exception403 from './views/403';
+import getRuntimeConfig from './helpers/getRuntimeConfig';
 
 if (!accessApi) {
     throw new Error(
@@ -30,11 +30,7 @@ export const access = memo => ({
     unAccessHandler({
         router, to, from, next
     }) {
-        const runtimeConfig = plugin.applyPlugins({
-            key: 'layout',
-            type: ApplyPluginsType.modify,
-            initialValue: {}
-        });
+        const runtimeConfig = getRuntimeConfig();
         if (runtimeConfig.unAccessHandler && typeof runtimeConfig.unAccessHandler === 'function') {
             return runtimeConfig.unAccessHandler({
                 router, to, from, next
@@ -50,11 +46,7 @@ export const access = memo => ({
     noFoundHandler({
         router, to, from, next
     }) {
-        const runtimeConfig = plugin.applyPlugins({
-            key: 'layout',
-            type: ApplyPluginsType.modify,
-            initialValue: {}
-        });
+        const runtimeConfig = getRuntimeConfig();
         if (runtimeConfig.noFoundHandler && typeof runtimeConfig.noFoundHandler === 'function') {
             return runtimeConfig.noFoundHandler({
                 router, to, from, next

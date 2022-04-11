@@ -14,7 +14,6 @@ export default {
     setup(props) {
         const AIconComponent = ref(null);
         const AText = ref(null);
-        const AVNode = ref(null);
 
         onBeforeMount(() => {
             if (typeof props.icon === 'string') {
@@ -29,16 +28,12 @@ export default {
                 } else {
                     AIconComponent.value = Icons[props.icon];
                 }
-            } else if (isVNode(props.icon)) {
-                AVNode.value = props.icon;
-            } else {
-                console.log(props.icon);
             }
         });
 
         return () => {
-            if (AVNode.value) {
-                return AVNode.value;
+            if (isVNode(props.icon)) {
+                return props.icon;
             }
             if (AIconComponent.value) {
                 return <AIconComponent.value />;

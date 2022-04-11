@@ -146,13 +146,14 @@
 
 <script>
 import { ref, computed, onMounted } from 'vue';
-import { useRoute, plugin, ApplyPluginsType } from '@@/core/coreExports';
+import { useRoute } from '@@/core/coreExports';
 import {
     FLayout, FAside, FMain, FFooter, FHeader
 } from '@fesjs/fes-design';
 import Menu from './Menu';
 import MultiTabProvider from './MultiTabProvider';
 import defaultLogo from '../assets/logo.png';
+import getRuntimeConfig from '../helpers/getRuntimeConfig';
 
 export default {
     components: {
@@ -221,15 +222,7 @@ export default {
 
         const collapsedRef = ref(false);
         const route = useRoute();
-        const runtimeConfig = plugin.applyPlugins({
-            key: 'layout',
-            type: ApplyPluginsType.modify,
-            initialValue: {
-                sidebar: true,
-                header: true,
-                logo: true
-            }
-        });
+        const runtimeConfig = getRuntimeConfig();
         const routeLayout = computed(() => {
             let config;
             // meta 中 layout 默认为 true
