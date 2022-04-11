@@ -4,6 +4,7 @@ import { access as accessApi, pinia } from '@fesjs/fes';
 import PageLoading from '@/components/PageLoading';
 import UserCenter from '@/components/UserCenter';
 import { useStore } from '@/store/main';
+import { ref } from 'vue';
 
 export const beforeRender = {
     loading: <PageLoading />,
@@ -24,6 +25,16 @@ export const beforeRender = {
     }
 };
 
-export const layout = {
-    customHeader: <UserCenter />
-};
+export const layout = initialValue => ({
+    ...initialValue,
+    customHeader: <UserCenter />,
+    menus: (defaultMenuData) => {
+        const menusRef = ref(defaultMenuData);
+        // watch(() => initialValue.initialState.userName, () => {
+        //     menusRef.value = [{
+        //         name: 'store'
+        //     }];
+        // });
+        return menusRef;
+    }
+});
