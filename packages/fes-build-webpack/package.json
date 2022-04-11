@@ -59,11 +59,10 @@
     "style-loader": "^2.0.0",
     "url-loader": "^4.1.1",
     "vue-loader": "^16.1.2",
-    "webpack": "^5.24.2",
+    "webpack": "^5.69.0",
     "webpack-bundle-analyzer": "^4.4.0",
     "webpack-chain": "^6.5.1",
-    "webpack-dev-server": "^3.11.2",
-    "webpackbar": "^5.0.0-3"
+    "webpack-dev-server": "^4.8.1"
   },
   "peerDependencies": {
     "@vue/compiler-sfc": "^3.0.5",

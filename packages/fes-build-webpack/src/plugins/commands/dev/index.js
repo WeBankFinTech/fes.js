@@ -9,11 +9,11 @@ export default (api) => {
     let hostname;
     let server;
 
-    function destroy() {
+    async function destroy() {
         for (const unwatch of unwatchs) {
             unwatch();
         }
-        server?.close();
+        await server?.stop();
     }
 
     api.registerCommand({
@@ -39,9 +39,7 @@ export default (api) => {
             hostname = getHostName(api.config.devServer?.host);
 
             // enable https
-            const isHTTPS = process.env.HTTPS || args.https;
-
-            console.log(chalk.cyan(`Starting the development server ${isHTTPS ? 'https' : 'http'}://${hostname}:${port} ...`));
+            const isHTTPS = process.env.HTTPS || args.https || api.config.devServer?.https;
 
             cleanTmpPathExceptCache({
                 absTmpPath: paths.absTmpPath,

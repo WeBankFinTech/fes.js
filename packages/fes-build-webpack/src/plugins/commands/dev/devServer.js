@@ -1,46 +1,42 @@
 import WebpackDevServer from 'webpack-dev-server';
 import webpack from 'webpack';
-import fs from 'fs';
-import path from 'path';
 
 export function startDevServer({ webpackConfig, host, port, proxy, https, beforeMiddlewares, afterMiddlewares, customerDevServerConfig }) {
     const options = {
-        contentBase: webpackConfig.output.path,
         hot: true,
+        port,
         host,
-        sockHost: host,
-        sockPort: port,
         proxy,
-        compress: true,
-        noInfo: true,
-        disableHostCheck: true,
-        clientLogLevel: 'silent',
-        stats: 'errors-only',
-        before: (app) => {
-            beforeMiddlewares.forEach((middleware) => {
-                app.use(middleware);
-            });
+        allowedHosts: 'all',
+        static: {
+            // contentBase: webpackConfig.output.path,
         },
-        after: (app) => {
-            afterMiddlewares.forEach((middleware) => {
-                app.use(middleware);
-            });
+        server: https ? 'https' : 'http',
+        client: {
+            logging: 'error',
+            webSocketURL: {
+                hostname: host,
+                port,
+            },
+        },
+        devMiddleware: {
+            stats: 'errors-only',
+        },
+        setupMiddlewares(middlewares) {
+            middlewares.unshift(...beforeMiddlewares);
+            middlewares.push(...afterMiddlewares);
+
+            return middlewares;
         },
         headers: {
             'access-control-allow-origin': '*',
         },
         ...(customerDevServerConfig || {}),
     };
-    if (https) {
-        options.https = true;
-        options.key = fs.readFileSync(path.resolve(__dirname, './cert/key.pem'));
-        options.cert = fs.readFileSync(path.resolve(__dirname, './cert/cert.pem'));
-    }
-    WebpackDevServer.addDevServerEntrypoints(webpackConfig, options);
     const compiler = webpack(webpackConfig);
-    const server = new WebpackDevServer(compiler, options);
+    const server = new WebpackDevServer(options, compiler);
 
-    server.listen(port, host, (err) => {
+    server.startCallback((err) => {
         if (err) {
             console.error(err);
         }
