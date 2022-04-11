@@ -5,7 +5,6 @@ export default {
     define: {
         __DEV__: false
     },
-    publicPath: './',
     html: {
         title: '海贼王'
     },
