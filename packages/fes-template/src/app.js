@@ -19,7 +19,7 @@ export const beforeRender = {
                 resolve({
                     userName: '李雷'
                 });
-                createWatermark({ content: '李雷李雷李雷李雷' });
+                createWatermark({ content: '万纯(harrywan)' });
             }, 1000);
         });
     }
