@@ -211,6 +211,15 @@
     eslint-visitor-keys "^2.1.0"
     semver "^6.3.0"
 
+"@babel/generator@^7.15.0":
+  version "7.17.9"
+  resolved "https://registry.npmmirror.com/@babel/generator/-/generator-7.17.9.tgz#f4af9fd38fa8de143c29fce3f71852406fc1e2fc"
+  integrity sha512-rAdDousTwxbIxbz5I7GEQ3lUip+xVCXooZNbsydCWs3xA7ZsYOv+CFRdzGxRX78BmQHu9B1Eso59AOZQOJDEdQ==
+  dependencies:
+    "@babel/types" "^7.17.0"
+    jsesc "^2.5.1"
+    source-map "^0.5.0"
+
 "@babel/generator@^7.16.7", "@babel/generator@^7.16.8", "@babel/generator@^7.7.2":
   version "7.16.8"
   resolved "https://registry.npmmirror.com/@babel/generator/download/@babel/generator-7.16.8.tgz#359d44d966b8cd059d543250ce79596f792f2ebe"
@@ -1214,6 +1223,14 @@
     "@babel/helper-validator-identifier" "^7.16.7"
     to-fast-properties "^2.0.0"
 
+"@babel/types@^7.17.0":
+  version "7.17.0"
+  resolved "https://registry.npmmirror.com/@babel/types/-/types-7.17.0.tgz#a826e368bccb6b3d84acd76acad5c0d87342390b"
+  integrity sha512-TmKSNO4D5rzhL5bjWFcVHHLETzfQ/AmbKpKPOSjlP0WoHZ6L911fgoOKY4Alp/emzG4cHJdyN49zpgkbXFEHHw==
+  dependencies:
+    "@babel/helper-validator-identifier" "^7.16.7"
+    to-fast-properties "^2.0.0"
+
 "@bcoe/v8-coverage@^0.2.3":
   version "0.2.3"
   resolved "https://registry.npmmirror.com/@bcoe/v8-coverage/download/@bcoe/v8-coverage-0.2.3.tgz#75a2e8b51cb758a7553d6804a5932d7aace75c39"
@@ -1453,14 +1470,14 @@
     minimatch "^3.0.4"
     strip-json-comments "^3.1.1"
 
-"@fesjs/fes-design@^0.3.3":
-  version "0.3.3"
-  resolved "https://registry.npmmirror.com/@fesjs/fes-design/-/fes-design-0.3.3.tgz#c78a1ec37869de7e12ae94468fbb0fb04e0d6a81"
-  integrity sha512-wSbgMzsBILHhHhUV8EqYBLJYn3r0chO7jCx0dpIEDHxGmve8yUL3G23saJLFKF28P/GUEHr5u4iUf8b05+sgNg==
+"@fesjs/fes-design@^0.4.0":
+  version "0.4.3"
+  resolved "https://registry.npmmirror.com/@fesjs/fes-design/-/fes-design-0.4.3.tgz#d0e8fae0cbfe854ff3fbb89d243f224c4b7f55be"
+  integrity sha512-ld9upMh5ROUWyRG7xp5twdgT/7xaCPwMc+Y/SPH2325jreOHr7UeUFSb03Oi+M8iXSJ9FytHCXpHSNuBSWqg2A==
   dependencies:
     "@babel/runtime" "^7.16.3"
+    "@floating-ui/dom" "^0.4.2"
     "@juggle/resize-observer" "^3.3.1"
-    "@popperjs/core" "^2.4.0"
     "@types/lodash-es" "^4.17.5"
     "@types/normalize-wheel" "^1.0.0"
     "@vue/shared" "^3.2.19"
@@ -1470,6 +1487,18 @@
     lodash-es "^4.17.21"
     normalize-wheel "^1.0.1"
     stickybits "^3.7.9"
+
+"@floating-ui/core@^0.6.1":
+  version "0.6.1"
+  resolved "https://registry.npmmirror.com/@floating-ui/core/-/core-0.6.1.tgz#aed861a1b6dbebadf14a9dd829ba67f4f3ae795c"
+  integrity sha512-Y30eVMcZva8o84c0HcXAtDO4BEzPJMvF6+B7x7urL2xbAqVsGJhojOyHLaoQHQYjb6OkqRq5kO+zeySycQwKqg==
+
+"@floating-ui/dom@^0.4.2":
+  version "0.4.4"
+  resolved "https://registry.npmmirror.com/@floating-ui/dom/-/dom-0.4.4.tgz#e0919d23e40bcc84ce2ebe1b9701b211f2d84b3c"
+  integrity sha512-0Ulu3B/dqQplUUSqnTx0foSrlYuMN+GTtlJWvNJwt6Fr7/PqmlR/Y08o6/+bxDWr6p3roBJRaQ51MDZsNmEhhw==
+  dependencies:
+    "@floating-ui/core" "^0.6.1"
 
 "@gar/promisify@^1.0.1":
   version "1.1.2"
@@ -2620,11 +2649,6 @@
   version "1.0.0-next.21"
   resolved "https://registry.npmmirror.com/@polka/url/download/@polka/url-1.0.0-next.21.tgz#5de5a2385a35309427f6011992b544514d559aa1"
   integrity sha1-XeWiOFo1MJQn9gEZkrVEUU1VmqE=
-
-"@popperjs/core@^2.4.0":
-  version "2.11.2"
-  resolved "https://registry.npmmirror.com/@popperjs/core/download/@popperjs/core-2.11.2.tgz#830beaec4b4091a9e9398ac50f865ddea52186b9"
-  integrity sha512-92FRmppjjqz29VMJ2dn+xdyXZBrMlE42AV6Kq6BwjWV7CNUW1hs2FtxSNLQE+gJhaZ6AAmYuO9y8dshhcBl7vA==
 
 "@rollup/plugin-babel@^5.2.0":
   version "5.3.0"
