@@ -33,6 +33,11 @@ export const zh: NavbarConfig = [
         text: 'v1 文档',
         link: 'https://webank.gitee.io/fes.js/',
       },
+      {
+        text: 'fes-design',
+        link:
+          'http://fes-design.mumblefe.cn/',
+      },
     ],
   },
 ]
