@@ -39,7 +39,6 @@ export function getInnerCommonConfig(api) {
                     ...api.config.alias,
                     '@': api.paths.absSrcPath,
                     '@@': api.paths.absTmpPath,
-                    [api.builder.innerDepPrefix]: '/',
                 },
             },
         },

@@ -92,7 +92,6 @@ export default class Service extends EventEmitter {
         const builderPkgPath = filterBuilder(this.pkg);
         this.builder = {
             isVite: (builderPkgPath[0] || '').includes('build-vite'),
-            innerDepPrefix: '@fesInner',
         };
 
         assert(existsSync(this.cwd), `cwd ${this.cwd} does not exist.`);

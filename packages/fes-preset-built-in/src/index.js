@@ -3,6 +3,7 @@ export default function () {
         plugins: [
             // register methods
             require.resolve('./plugins/registerMethods'),
+            require.resolve('./plugins/registerType'),
 
             // generate files
             require.resolve('./plugins/generateFiles/core/plugin'),

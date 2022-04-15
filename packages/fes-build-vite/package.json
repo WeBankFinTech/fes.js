@@ -40,5 +40,6 @@
   "peerDependencies": {
     "@vue/compiler-sfc": "^3.0.5",
     "core-js": "^3.21.1"
-  }
+  },
+  "typings": "./types.d.ts"
 }

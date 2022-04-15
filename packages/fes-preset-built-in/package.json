@@ -36,5 +36,6 @@
   },
   "peerDependencies": {
     "@vue/compiler-sfc": "^3.0.5"
-  }
+  },
+  "typings": "./types.d.ts"
 }
