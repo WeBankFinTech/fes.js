@@ -40,6 +40,8 @@ function getPkgPath(pkgName) {
 }
 
 function genShortPath(filePath) {
+    // 处理 windows 的路径
+    filePath = filePath.replace(/\\/g, '/');
     const codePath = filePath.split(`/${SOURCE_DIR}/`)[1];
     return `${SOURCE_DIR}/${codePath}`;
 }
