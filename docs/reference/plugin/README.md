@@ -17,6 +17,7 @@
 | [@fesjs/plugin-monaco-editor](./plugins/editor.md) | 提供代码编辑器能力，  基于`monaco-editor`（VS Code使用的代码编辑器） |
 | [@fesjs/plugin-windicss](./plugins/windicss.md) | 基于 `windicss`，提供原子化 CSS 能力 |
 | [@fesjs/plugin-pinia](./plugins/pinia.md) | 基于 `pinia`，提供状态管理 |
+| [@fesjs/plugin-watermark](./plugins/watermark.md) | 水印 |
 
 ## 架构
 

@@ -14,9 +14,7 @@
 }
 ```
 
-## 配置
-
-### 编译时配置
+## 编译时配置
 
 ```js
 export default {
@@ -26,7 +24,7 @@ export default {
 }
 ```
 
-#### disabled
+### disabled
 
 是否禁用水印，默认是`false`。
 

@@ -69,9 +69,7 @@ export default {
 }
 ```
 
-## 配置
-
-### 编译时配置
+## 编译时配置
 在执行 `fes dev` 或者 `fes build` 时，通过此配置生成运行时的代码，在配置文件`.fes.js` 中配置：
 ```js
 export default {
@@ -83,7 +81,7 @@ export default {
 }
 ```
 
-#### roles
+### roles
 - **类型**：对象
   
 - **默认值**：`{}`
@@ -93,10 +91,10 @@ export default {
   角色预定义列表。`key` 是角色 Id ，`value`是角色 Id 对应的资源列表。
 
 
-### 运行时配置
+## 运行时配置
 在 `app.js` 中配置
 
-#### unAccessHandler
+### unAccessHandler
 - **类型**：`Function`
   
 - **默认值**：`null`
@@ -128,7 +126,7 @@ export const access = {
 
 ```
 
-#### noFoundHandler
+### noFoundHandler
 - **类型**：`Function`
   
 - **默认值**：`null`
