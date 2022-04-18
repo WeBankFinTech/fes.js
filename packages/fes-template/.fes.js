@@ -12,6 +12,9 @@ export default {
     router: {
         mode: 'hash'
     },
+    watermark: {
+        disabled: false
+    },
     access: {
         roles: {
             admin: ['*'],

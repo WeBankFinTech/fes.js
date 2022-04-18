@@ -1,6 +1,6 @@
 
 
-import { access as accessApi, pinia } from '@fesjs/fes';
+import { access as accessApi, pinia, createWatermark } from '@fesjs/fes';
 import PageLoading from '@/components/PageLoading';
 import UserCenter from '@/components/UserCenter';
 import { useStore } from '@/store/main';
@@ -20,6 +20,7 @@ export const beforeRender = {
                 resolve({
                     userName: '李雷'
                 });
+                createWatermark({ content: '万纯(harrywan)' });
             }, 1000);
         });
     }
