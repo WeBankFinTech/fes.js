@@ -81,7 +81,7 @@ fes-template
     "@fesjs/plugin-sass": "^2.0.0",
     "@fesjs/plugin-monaco-editor": "^2.0.0-beta.0",
     "@fesjs/plugin-windicss": "^2.0.0",
-    "@fesjs/fes-design": "^0.1.10",
+    "@fesjs/fes-design": "^0.4.0",
     "vue": "^3.0.5",
     "vuex": "^4.0.0"
   },

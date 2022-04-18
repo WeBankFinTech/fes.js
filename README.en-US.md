@@ -17,7 +17,7 @@ An excellent front-end solution
 
 </div>
 
-- document - [https://winixt.gitee.io/fesjs/zh/](https://winixt.gitee.io/fesjs/zh/)
+- document - [http://fesjs.mumblefe.cn/](http://fesjs.mumblefe.cn/)
 - changelog - [CHANGELOG.md](./CHANGELOG.md)
 
 # Pain points
@@ -52,19 +52,20 @@ It mainly has the following functions:
 
 |  plugin   | introduce  | 
 |  ----  | ----  |
-| [@fesjs/plugin-access](https://winixt.gitee.io/fesjs/zh/reference/plugin/plugins/access.html)  | Provides the ability to control the permissions of page resources | 
-| [@fesjs/plugin-enums](https://winixt.gitee.io/fesjs/zh/reference/plugin/plugins/enums.html#%E4%BB%8B%E7%BB%8D)  | Provide unified enumeration access and rich functions to handle enumeration | 
-| [@fesjs/plugin-icon](https://winixt.gitee.io/fesjs/zh/reference/plugin/plugins/icon.html#%E4%BB%8B%E7%BB%8D)  | svg file is automatically registered as a component |  
-| [@fesjs/plugin-jest](https://winixt.gitee.io/fesjs/zh/reference/plugin/plugins/jest.html#%E5%90%AF%E7%94%A8%E6%96%B9%E5%BC%8F)  | Based on `Jest`, provide unit testing and coverage testing capabilities | 
-| [ @fesjs/plugin-layout](https://winixt.gitee.io/fesjs/zh/reference/plugin/plugins/layout.html) |  Simple configuration to have a layout, including navigation and sidebar |
-| [@fesjs/plugin-locale](https://winixt.gitee.io/fesjs/zh/reference/plugin/plugins/locale.html#%E4%BB%8B%E7%BB%8D) |  Based on `Vue I18n`, providing internationalization capabilities |
-| [@fesjs/plugin-model](https://winixt.gitee.io/fesjs/zh/reference/plugin/plugins/model.html#%E4%BB%8B%E7%BB%8D) |  Simple data management solution |
-| [@fesjs/plugin-request](https://winixt.gitee.io/fesjs/zh/reference/plugin/plugins/request.html#%E5%90%AF%E7%94%A8%E6%96%B9%E5%BC%8F) |  Based on the request encapsulated by `Axios`, built-in functions such as preventing repeated requests, request throttling, and error handling |
-| [@fesjs/plugin-vuex](https://winixt.gitee.io/fesjs/zh/reference/plugin/plugins/vuex.html#%E5%90%AF%E7%94%A8%E6%96%B9%E5%BC%8F) |  Based on `Vuex`, provide state management capabilities |
-| [@fesjs/plugin-qiankun](https://winixt.gitee.io/fesjs/zh/reference/plugin/plugins/qiankun.html#%E4%BB%8B%E7%BB%8D) |  Based on `qiankun`, provide microservice capabilities |
-| [@fesjs/plugin-sass](https://winixt.gitee.io/fesjs/zh/reference/plugin/plugins/sass.html#%E4%BB%8B%E7%BB%8D) |  Style support sass |
-| [@fesjs/plugin-monaco-editor](https://winixt.gitee.io/fesjs/zh/reference/plugin/plugins/editor.html#%E4%BB%8B%E7%BB%8D) | Provide code editor capability, based on `monaco-editor` (code editor used by VS Code) |
-| [@fesjs/plugin-pinia](https://winixt.gitee.io/fesjs/zh/reference/plugin/plugins/pinia.html) | pinia，状态处理 |
+| [@fesjs/plugin-access](http://fesjs.mumblefe.cn/reference/plugin/plugins/access.html)  | Provides the ability to control the permissions of page resources | 
+| [@fesjs/plugin-enums](http://fesjs.mumblefe.cn/reference/plugin/plugins/enums.html#%E4%BB%8B%E7%BB%8D)  | Provide unified enumeration access and rich functions to handle enumeration | 
+| [@fesjs/plugin-icon](http://fesjs.mumblefe.cn/reference/plugin/plugins/icon.html#%E4%BB%8B%E7%BB%8D)  | svg file is automatically registered as a component |  
+| [@fesjs/plugin-jest](http://fesjs.mumblefe.cn/reference/plugin/plugins/jest.html#%E5%90%AF%E7%94%A8%E6%96%B9%E5%BC%8F)  | Based on `Jest`, provide unit testing and coverage testing capabilities | 
+| [ @fesjs/plugin-layout](http://fesjs.mumblefe.cn/reference/plugin/plugins/layout.html) |  Simple configuration to have a layout, including navigation and sidebar |
+| [@fesjs/plugin-locale](http://fesjs.mumblefe.cn/reference/plugin/plugins/locale.html#%E4%BB%8B%E7%BB%8D) |  Based on `Vue I18n`, providing internationalization capabilities |
+| [@fesjs/plugin-model](http://fesjs.mumblefe.cn/reference/plugin/plugins/model.html#%E4%BB%8B%E7%BB%8D) |  Simple data management solution |
+| [@fesjs/plugin-request](http://fesjs.mumblefe.cn/reference/plugin/plugins/request.html#%E5%90%AF%E7%94%A8%E6%96%B9%E5%BC%8F) |  Based on the request encapsulated by `Axios`, built-in functions such as preventing repeated requests, request throttling, and error handling |
+| [@fesjs/plugin-vuex](http://fesjs.mumblefe.cn/reference/plugin/plugins/vuex.html#%E5%90%AF%E7%94%A8%E6%96%B9%E5%BC%8F) |  Based on `Vuex`, provide state management capabilities |
+| [@fesjs/plugin-qiankun](http://fesjs.mumblefe.cn/reference/plugin/plugins/qiankun.html#%E4%BB%8B%E7%BB%8D) |  Based on `qiankun`, provide microservice capabilities |
+| [@fesjs/plugin-sass](http://fesjs.mumblefe.cn/reference/plugin/plugins/sass.html#%E4%BB%8B%E7%BB%8D) |  Style support sass |
+| [@fesjs/plugin-monaco-editor](http://fesjs.mumblefe.cn/reference/plugin/plugins/editor.html#%E4%BB%8B%E7%BB%8D) | Provide code editor capability, based on `monaco-editor` (code editor used by VS Code) |
+| [@fesjs/plugin-pinia](http://fesjs.mumblefe.cn/reference/plugin/plugins/pinia.html) | state manager |
+| [@fesjs/plugin-watermark](http://fesjs.mumblefe.cn/reference/plugin/plugins/watermark.html) | watermark |
 
 ## As easy as counting 1, 2, 3
 use `yarn`：
