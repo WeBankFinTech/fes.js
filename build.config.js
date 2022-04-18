@@ -20,6 +20,7 @@ module.exports = {
         'fes-plugin-pinia',
         'fes-preset-built-in',
         'fes-plugin-windicss',
+        'fes-plugin-watermark',
         'fes-runtime',
         'fes-utils'
     ],
