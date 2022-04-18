@@ -1,23 +1,3 @@
-简体中文 | [English](./README.en-US.md)
-
-<p align="center">
-  <a href="../../">
-    <img alt="fes.js" width="250" src="./images/fes-logo.png">
-  </a>
-</p>
-
-<div align="center">
-
-一个优秀的前端解决方案
-
-[![GitHub issues](https://img.shields.io/github/issues/WeBankFinTech/fes.js.svg?style=flat-square)](../../issues)
-[![MIT](https://img.shields.io/dub/l/vibe-d.svg?style=flat-square)](http://opensource.org/licenses/MIT)
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](../../pulls)
-
-</div>
-
-- 使用文档 - [http://fesjs.mumblefe.cn/](http://fesjs.mumblefe.cn/)
-- 更新日志 - [CHANGELOG.md](./CHANGELOG.md)
 
 # 痛点
 在开发一个前端项目之前，我们可能需要做如下准备工作：
