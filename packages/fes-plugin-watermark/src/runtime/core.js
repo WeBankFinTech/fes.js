@@ -44,6 +44,10 @@ export function createWatermark({
     zIndex = 99999,
     timestamp = 'YYYY-MM-DD hh:mm'
 } = {}) {
+    // eslint-disable-next-line no-undef
+    if (WATERMARK_DISABLED) {
+        return;
+    }
     const param = {
         container,
         width,
