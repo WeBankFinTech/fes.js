@@ -38,7 +38,7 @@ export function createWatermark({
     textAlign = 'center',
     textBaseline = 'middle',
     font = '16px Microsoft Yahei',
-    fillStyle = 'rgba(184, 184, 184, 0.15)',
+    fillStyle = 'rgba(184, 184, 184, 0.2)',
     content = '请勿外传',
     rotate = '45',
     zIndex = 99999,
@@ -77,12 +77,12 @@ export function createWatermark({
     let __wm = document.querySelector('.__wm');
     const watermarkDiv = __wm || document.createElement('div');
     const styleStr = `
-    position: absolute;
+    position: fixed;
     user-select: none;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
+    width: 100vw;
+    height: 100vh;
     z-index: ${zIndex};
     pointer-events: none !important;
     background-repeat: repeat;
@@ -92,7 +92,6 @@ export function createWatermark({
     watermarkDiv.classList.add('__wm');
 
     if (!__wm) {
-        container.style.position = 'relative';
         container.insertBefore(watermarkDiv, container.firstChild);
     }
 
@@ -117,15 +116,14 @@ export function createWatermark({
 
     if (timestamp) {
         let timeout = 1000 * 60 * 60 * 24;
-        if (timestamp.includes('h') || timestamp.includes('H')) {
-            timeout = 1000 * 60 * 60;
-        }
-        if (timestamp.includes('m')) {
-            timeout = 1000 * 60;
-        }
         if (timestamp.includes('s')) {
             timeout = 1000;
+        } else if (timestamp.includes('m')) {
+            timeout = 1000 * 60;
+        } else if (timestamp.includes('h') || timestamp.includes('H')) {
+            timeout = 1000 * 60 * 60;
         }
+
         setTimeout(() => {
             // 触发MutationObserver
             watermarkDiv.style.bottom = '0';
