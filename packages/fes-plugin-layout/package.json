@@ -1,6 +1,6 @@
 {
   "name": "@fesjs/plugin-layout",
-  "version": "4.0.7",
+  "version": "4.0.8",
   "description": "@fesjs/plugin-layout",
   "main": "lib/index.js",
   "files": [
@@ -31,7 +31,7 @@
   },
   "peerDependencies": {
     "@fesjs/fes": "^2.0.0",
-    "@fesjs/fes-design": "^0.3.3",
+    "@fesjs/fes-design": "^0.4.0",
     "vue": "^3.0.5"
   }
 }

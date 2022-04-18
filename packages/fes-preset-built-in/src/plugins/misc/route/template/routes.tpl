@@ -1,5 +1,5 @@
 import { createRouter as createVueRouter, {{{ CREATE_HISTORY }}}, ApplyPluginsType } from '{{{ runtimePath }}}';
-import { plugin } from '@@/core/coreExports';
+import { plugin } from '@@/core/plugin';
 
 export function getRoutes() {
   const routes = {{{ routes }}};

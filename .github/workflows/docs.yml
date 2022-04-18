@@ -14,11 +14,18 @@ jobs:
       uses: actions/checkout@v2.3.1
     
     - name: Install and Build 🔧 # This example project is built using npm and outputs the result to the 'build' folder. Replace with the commands required to build your project, or remove this step entirely if your site is pre-built.
-      run: npm install && npm run docs:build
+      run: yarn && yarn docs:build
 
-    - name: Build and Deploy
-      uses: JamesIves/github-pages-deploy-action@4.1.1
-      with:
-          branch: master # The branch the action should deploy to.
-          folder: docs/.vuepress/dist # The folder the action should deploy.
-          token: ${{ secrets.QLIN_GITEE_TOKEN }}
+    - name: Deploy
+      uses: easingthemes/ssh-deploy@main
+      env:
+        # 本地.ssh文件下的私钥id_rsa，存在secrets的TOKEN中
+        SSH_PRIVATE_KEY: ${{ secrets.HARRYWAN_PRIVATE_KEY }} 
+        # 源目录，相对于$GITHUB_WORKSPACE根目录的路径
+        SOURCE: docs/.vuepress/dist/
+        # 服务器域名
+        REMOTE_HOST: ${{ secrets.TX_IP }}
+        # 腾讯云默认用户名为root
+        REMOTE_USER: root 
+        # 目标目录
+        TARGET: /data/web-packages/p/fesjs

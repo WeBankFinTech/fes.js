@@ -4,10 +4,10 @@ title: 首页
 heroImage: /logo.png
 actions:
   - text: 快速上手
-    link: /zh/guide/getting-started.html
+    link: /guide/getting-started.html
     type: primary
   - text: 项目简介
-    link: /zh/guide/
+    link: /guide/
     type: secondary
 features:
   - title: Fast
@@ -52,7 +52,7 @@ npx @fesjs/create-fes-app myapp
 # 安装依赖
 npm install 
 
-# 运行  
+# 运行
 npm run dev
 ```
 
@@ -64,4 +64,7 @@ npm run dev
 | Github Issue  | 微信群 | Fes.js开源运营小助手 |
 | --- | --- | --- |
 | [@fesjs/fes.js/issues](https://github.com/WeBankFinTech/fes.js/issues) | <img src="https://i.loli.net/2020/09/11/2XhKtPZd6NFVbDE.png" width="250" /> | <img src="https://i.loli.net/2020/09/16/sxwr62CKhmYOUyV.jpg" height="250"/> |
+
+
+
 

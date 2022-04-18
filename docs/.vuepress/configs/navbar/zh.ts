@@ -3,23 +3,23 @@ import type { NavbarConfig } from '@vuepress/theme-default'
 export const zh: NavbarConfig = [
   {
     text: '指南',
-    link: '/zh/guide/',
+    link: '/guide/',
   },
   {
     text: '配置',
-    link: '/zh/reference/config/',
+    link: '/reference/config/',
   },
   {
     text: 'API',
-    link: '/zh/reference/api/',
+    link: '/reference/api/',
   },
   {
     text: '插件',
-    link: '/zh/reference/plugin/',
+    link: '/reference/plugin/',
   },
   {
     text: 'CLI',
-    link: '/zh/reference/cli/',
+    link: '/reference/cli/',
   },
   {
     text: '了解更多',
@@ -32,6 +32,11 @@ export const zh: NavbarConfig = [
       {
         text: 'v1 文档',
         link: 'https://webank.gitee.io/fes.js/',
+      },
+      {
+        text: 'fes-design',
+        link:
+          'http://fes-design.mumblefe.cn/',
       },
     ],
   },

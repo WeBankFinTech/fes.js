@@ -28,6 +28,7 @@ import { MUTATION_TYPES, GETTER_TYPES, ACTION_TYPES } from '@fesjs/fes';
 
 export default {
     setup() {
+        console.log('store.vue');
         const store = useStore();
         console.log('store==>', store);
         const disabled = ref(false);
