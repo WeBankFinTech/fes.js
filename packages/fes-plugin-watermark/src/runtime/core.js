@@ -37,12 +37,12 @@ export function createWatermark({
     height = '300px',
     textAlign = 'center',
     textBaseline = 'middle',
-    font = '16px Microsoft Yahei',
-    fillStyle = 'rgba(184, 184, 184, 0.2)',
+    font = '14px Microsoft Yahei',
+    fillStyle = 'rgba(184, 184, 184, 0.3)',
     content = '请勿外传',
-    rotate = '45',
+    rotate = '25',
     zIndex = 99999,
-    timestamp = 'YYYY-MM-DD hh:mm'
+    timestamp = 'YYYY-MM-DD HH:mm'
 } = {}) {
     // eslint-disable-next-line no-undef
     if (WATERMARK_DISABLED) {
@@ -73,9 +73,14 @@ export function createWatermark({
     ctx.translate(parseFloat(width) / 2, parseFloat(height) / 2);
     ctx.rotate(-(Math.PI / 180) * rotate);
     ctx.fillText(
-        `${content}${timestamp ? ` ${timeFormat(new Date(), timestamp)}` : ''}`,
+        `${content}`,
         0,
         0
+    );
+    timestamp && ctx.fillText(
+        `${timeFormat(new Date(), timestamp)}`,
+        0,
+        20
     );
 
     let __wm = document.querySelector('.__wm');
