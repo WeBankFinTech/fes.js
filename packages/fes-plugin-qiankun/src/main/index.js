@@ -2,7 +2,6 @@ import { readFileSync, existsSync } from 'fs';
 import { join } from 'path';
 import { resolvePkg } from '@fesjs/utils';
 import {
-    defaultMainRootId,
     defaultHistoryType,
     qiankunStateForMicroModelNamespace
 } from '../constants';
@@ -25,11 +24,6 @@ export default function (api) {
     api.describe({
         enableBy: () => isMasterEnable(api)
     });
-
-    api.modifyDefaultConfig(config => ({
-        ...config,
-        mountElementId: defaultMainRootId
-    }));
 
     modifyRoutes({ api, namespace });
 
