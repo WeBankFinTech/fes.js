@@ -110,11 +110,7 @@ export function genUpdate() {
 export function genUnmount() {
     return async (props) => {
         const history = getHistory();
-        history.destroy();
-        if (cacheAppPromise) {
-            const app = await cacheAppPromise;
-            app.unmount();
-        }
+        history.destroy();  // 会触发app.unmount
         destroyRouter();
         const slaveRuntime = getSlaveRuntime();
         if (slaveRuntime.unmount) {

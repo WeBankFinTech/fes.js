@@ -11,26 +11,26 @@ import { loadMicroApp } from "{{{QIANKUN}}}";
 import {mergeWith} from "{{{LODASH_ES}}}";
 // eslint-disable-next-line import/extensions
 import { getMasterOptions } from "./masterOptions";
-import { onBeforeRouteLeave } from "@@/core/coreExports";
 
-async function unmountMicroApp(microApp) {
-    if (microApp) {
-        const status = microApp.getStatus();
-        if(status === 'MOUNTED'){
-          await microApp.unmount();
-        }
+function unmountMicroApp(microApp) {
+    if (!microApp) {
+        return;
     }
-    return Promise.resolve();
+    const status = microApp.getStatus();
+    if (status === 'MOUNTED') {
+        microApp.unmount();
+    }
 }
 
 export const MicroApp = defineComponent({
     props: {
         name: {
             type: String,
-            required: true,
+            required: true
         },
         settings: Object,
-        lifeCycles: Object,
+        props: Object,
+        lifeCycles: Object
     },
     setup(props, { attrs }) {
         const {
@@ -39,8 +39,6 @@ export const MicroApp = defineComponent({
             lifeCycles: globalLifeCycles,
             ...globalSettings
         } = getMasterOptions();
-
-        const stateForSlave = reactive({});
 
         // 挂载节点
         const containerRef = ref(null);
@@ -68,6 +66,14 @@ export const MicroApp = defineComponent({
 
         const propsFromParams = attrs;
 
+        const propsConfigRef = computed(() => {
+            return {
+                ...propsFromConfigRef.value,
+                ...props.props,
+                ...propsFromParams
+            };
+        });
+
         // 只有当name变化时才重新加载新的子应用
         const loadApp = () => {
             const appConfig = appConfigRef.value;
@@ -75,21 +81,21 @@ export const MicroApp = defineComponent({
             // 加载新的
             microAppRef.value = loadMicroApp(
                 {
-                    name: name,
+                    // 保证唯一
+                    name: `${name}_${Date.now()}`,
                     entry: entry,
                     container: containerRef.value,
-                    props: {
-                        ...propsFromConfigRef.value,
-                        ...stateForSlave,
-                        ...propsFromParams,
-                    },
+                    props: propsConfigRef.value
                 },
                 {
                     ...globalSettings,
-                    ...(props.settings || {}),
+                    ...(props.settings || {})
                 },
-                mergeWith({}, globalLifeCycles || {}, props.lifeCycles || {}, (v1, v2) =>
-                    concat(v1 ?? [], v2 ?? [])
+                mergeWith(
+                    {},
+                    globalLifeCycles || {},
+                    props.lifeCycles || {},
+                    (v1, v2) => concat(v1 ?? [], v2 ?? [])
                 )
             );
         };
@@ -106,9 +112,9 @@ export const MicroApp = defineComponent({
                     updatingPromiseRef.value = updatingPromiseRef.value.then(
                         () => {
                             const canUpdate = (app) =>
-                                app?.update && app.getStatus() === "MOUNTED";
+                                app?.update && app.getStatus() === 'MOUNTED';
                             if (canUpdate(microApp)) {
-                                if (process.env.NODE_ENV === "development") {
+                                if (process.env.NODE_ENV === 'development') {
                                     if (
                                         Date.now() -
                                             updatingTimestampRef.value <
@@ -127,11 +133,7 @@ export const MicroApp = defineComponent({
                                 }
 
                                 // 返回 microApp.update 形成链式调用
-                                return microApp.update({
-                                    ...propsFromConfigRef.value,
-                                    ...stateForSlave,
-                                    ...propsFromParams,
-                                });
+                                return microApp.update(propsConfigRef.value);
                             }
                         }
                     );
@@ -152,16 +154,10 @@ export const MicroApp = defineComponent({
             loadApp();
         });
 
-        onBeforeRouteLeave(async () => {
-            return await unmountMicroApp(microAppRef.value);
-        });
-
-        watch(()=>{
-            return {...{}, ...propsFromConfigRef.value, ...stateForSlave, ...propsFromParams}
-        }, () => {
+        watch(propsConfigRef, () => {
             updateApp();
         });
 
         return () => <div ref={containerRef}></div>;
-    },
+    }
 });
