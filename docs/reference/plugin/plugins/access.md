@@ -4,10 +4,10 @@
 对于前端应用来说，权限就是页面、页面元素是否可见。
 
 ### 资源
-Fes.js 把页面、页面元素统一叫做资源，每个资源都有 `accessId`：
-- 页面的 `accessId` 默认是页面的路由 `path` 。比如页面 `pages/a.vue` 的路由 `path` 是 `/a`。当页面访问 `/a` 时会渲染当前页面，`/a` 也就是页面的 `accessId`。
+Fes.js 把页面、页面元素统一叫做资源，用资源 ID 来识别区分他们：
+- 页面的资源 ID 默认是页面的路由 `path` 。比如页面 `pages/a.vue` 的路由 `path` 是 `/a`。当页面访问 `/a` 时会渲染当前页面，`/a` 也就是页面的 `accessId`。
   
-- 页面元素的 `accessId` 没有默认值，由我们自定义。
+- 页面元素的资源 ID 没有默认值，需要自定义。
 ```vue
 <template>
     <access :id="accessId"> accessOnepicess1 <input /> </access>

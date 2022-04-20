@@ -15,6 +15,7 @@ export const MicroAppWithMemoHistory = defineComponent({
             required: true
         },
         settings: Object,
+        props: Object,
         lifeCycles: Object,
         url: String
     },
