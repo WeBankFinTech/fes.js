@@ -54,15 +54,15 @@ createWatermark({ content: '我是水印' });
 ```js
 {
     container = document.body,
-    width = '300px',
-    height = '300px',
+    width = 300,
+    height = 300,
     textAlign = 'center',
     textBaseline = 'middle',
     fontSize = '14px',
     fontFamily = 'Microsoft Yahei',
     fillStyle = 'rgba(184, 184, 184, 0.3)',
     content = '请勿外传',
-    rotate = '25',
+    rotate = 25,
     zIndex = 99999,
     timestamp = 'YYYY-MM-DD HH:mm'
 }

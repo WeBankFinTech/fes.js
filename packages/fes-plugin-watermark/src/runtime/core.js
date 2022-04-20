@@ -33,15 +33,15 @@ function timeFormat(date, format = 'YYYY-MM-DD') {
 // canvas 实现 watermark
 export function createWatermark({
     container = document.body,
-    width = '300px',
-    height = '300px',
+    width = 300,
+    height = 300,
     textAlign = 'center',
     textBaseline = 'middle',
     fontSize = '14px',
     fontFamily = 'Microsoft Yahei',
     fillStyle = 'rgba(184, 184, 184, 0.3)',
     content = '请勿外传',
-    rotate = '25',
+    rotate = 25,
     zIndex = 99999,
     timestamp = 'YYYY-MM-DD HH:mm'
 } = {}) {
@@ -64,15 +64,15 @@ export function createWatermark({
         timestamp
     };
     const canvas = document.createElement('canvas');
-    canvas.setAttribute('width', width);
-    canvas.setAttribute('height', height);
+    canvas.setAttribute('width', `${width}px`);
+    canvas.setAttribute('height', `${height}px`);
 
     const ctx = canvas.getContext('2d');
     ctx.textAlign = textAlign;
     ctx.textBaseline = textBaseline;
     ctx.font = `${fontSize} ${fontFamily}`;
     ctx.fillStyle = fillStyle;
-    ctx.translate(parseInt(width) / 2, parseInt(height) / 2);
+    ctx.translate(width / 2, height / 2);
     ctx.rotate(-(Math.PI / 180) * rotate);
     ctx.fillText(
         `${content}`,
