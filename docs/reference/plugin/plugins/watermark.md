@@ -58,12 +58,13 @@ createWatermark({ content: '我是水印' });
     height = '300px',
     textAlign = 'center',
     textBaseline = 'middle',
-    font = '16px Microsoft Yahei',
-    fillStyle = 'rgba(184, 184, 184, 0.2)',
+    fontSize = '14px',
+    fontFamily = 'Microsoft Yahei',
+    fillStyle = 'rgba(184, 184, 184, 0.3)',
     content = '请勿外传',
-    rotate = '45',
+    rotate = '25',
     zIndex = 99999,
-    timestamp = 'YYYY-MM-DD hh:mm'
+    timestamp = 'YYYY-MM-DD HH:mm'
 }
 ```
 

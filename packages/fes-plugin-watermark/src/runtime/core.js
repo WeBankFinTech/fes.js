@@ -37,7 +37,8 @@ export function createWatermark({
     height = '300px',
     textAlign = 'center',
     textBaseline = 'middle',
-    font = '14px Microsoft Yahei',
+    fontSize = '14px',
+    fontFamily = 'Microsoft Yahei',
     fillStyle = 'rgba(184, 184, 184, 0.3)',
     content = '请勿外传',
     rotate = '25',
@@ -54,7 +55,8 @@ export function createWatermark({
         height,
         textAlign,
         textBaseline,
-        font,
+        fontSize,
+        fontFamily,
         fillStyle,
         content,
         rotate,
@@ -68,9 +70,9 @@ export function createWatermark({
     const ctx = canvas.getContext('2d');
     ctx.textAlign = textAlign;
     ctx.textBaseline = textBaseline;
-    ctx.font = font;
+    ctx.font = `${fontSize} ${fontFamily}`;
     ctx.fillStyle = fillStyle;
-    ctx.translate(parseFloat(width) / 2, parseFloat(height) / 2);
+    ctx.translate(parseInt(width) / 2, parseInt(height) / 2);
     ctx.rotate(-(Math.PI / 180) * rotate);
     ctx.fillText(
         `${content}`,
@@ -80,7 +82,7 @@ export function createWatermark({
     timestamp && ctx.fillText(
         `${timeFormat(new Date(), timestamp)}`,
         0,
-        20
+        parseInt(fontSize) + 5
     );
 
     let __wm = document.querySelector('.__wm');
