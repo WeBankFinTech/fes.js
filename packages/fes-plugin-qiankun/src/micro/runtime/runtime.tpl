@@ -14,7 +14,7 @@ export function modifyClientRenderOpts(memo) {
     };
 }
 
-export function modifyCreateHistroy(memo) {
+export function modifyCreateHistory(memo) {
     if (history.url) {
         return createMemoryHistory
     }
