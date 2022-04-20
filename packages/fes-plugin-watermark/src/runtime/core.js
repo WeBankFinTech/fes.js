@@ -33,16 +33,17 @@ function timeFormat(date, format = 'YYYY-MM-DD') {
 // canvas 实现 watermark
 export function createWatermark({
     container = document.body,
-    width = '300px',
-    height = '300px',
+    width = 300,
+    height = 300,
     textAlign = 'center',
     textBaseline = 'middle',
-    font = '16px Microsoft Yahei',
-    fillStyle = 'rgba(184, 184, 184, 0.2)',
+    fontSize = '14px',
+    fontFamily = 'Microsoft Yahei',
+    fillStyle = 'rgba(184, 184, 184, 0.3)',
     content = '请勿外传',
-    rotate = '45',
+    rotate = 25,
     zIndex = 99999,
-    timestamp = 'YYYY-MM-DD hh:mm'
+    timestamp = 'YYYY-MM-DD HH:mm'
 } = {}) {
     // eslint-disable-next-line no-undef
     if (WATERMARK_DISABLED) {
@@ -54,7 +55,8 @@ export function createWatermark({
         height,
         textAlign,
         textBaseline,
-        font,
+        fontSize,
+        fontFamily,
         fillStyle,
         content,
         rotate,
@@ -62,20 +64,25 @@ export function createWatermark({
         timestamp
     };
     const canvas = document.createElement('canvas');
-    canvas.setAttribute('width', width);
-    canvas.setAttribute('height', height);
+    canvas.setAttribute('width', `${width}px`);
+    canvas.setAttribute('height', `${height}px`);
 
     const ctx = canvas.getContext('2d');
     ctx.textAlign = textAlign;
     ctx.textBaseline = textBaseline;
-    ctx.font = font;
+    ctx.font = `${fontSize} ${fontFamily}`;
     ctx.fillStyle = fillStyle;
-    ctx.translate(parseFloat(width) / 2, parseFloat(height) / 2);
+    ctx.translate(width / 2, height / 2);
     ctx.rotate(-(Math.PI / 180) * rotate);
     ctx.fillText(
-        `${content}${timestamp ? ` ${timeFormat(new Date(), timestamp)}` : ''}`,
+        `${content}`,
         0,
         0
+    );
+    timestamp && ctx.fillText(
+        `${timeFormat(new Date(), timestamp)}`,
+        0,
+        parseInt(fontSize) + 5
     );
 
     let __wm = document.querySelector('.__wm');
