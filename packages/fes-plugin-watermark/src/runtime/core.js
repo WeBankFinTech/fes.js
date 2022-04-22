@@ -92,8 +92,8 @@ export function createWatermark({
     user-select: none;
     top: 0;
     left: 0;
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    height: 100%;
     z-index: ${zIndex};
     pointer-events: none !important;
     background-repeat: repeat;
