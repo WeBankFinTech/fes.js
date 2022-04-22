@@ -88,7 +88,7 @@ export function createWatermark({
     let __wm = document.querySelector('.__wm');
     const watermarkDiv = __wm || document.createElement('div');
     const styleStr = `
-    position: fixed;
+    position: ${container === document.body ? 'fixed' : 'absolute'};
     user-select: none;
     top: 0;
     left: 0;
