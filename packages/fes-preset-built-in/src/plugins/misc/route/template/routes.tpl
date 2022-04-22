@@ -14,7 +14,7 @@ export const createRouter = (routes) => {
     return router;
   }
   const createHistory = plugin.applyPlugins({
-    key: 'modifyCreateHistroy',
+    key: 'modifyCreateHistory',
     type: ApplyPluginsType.modify,
     args: {
       base: ROUTER_BASE

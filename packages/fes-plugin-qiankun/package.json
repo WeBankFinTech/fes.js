@@ -1,6 +1,6 @@
 {
   "name": "@fesjs/plugin-qiankun",
-  "version": "2.0.11",
+  "version": "2.0.12",
   "description": "@fesjs/plugin-qiankun",
   "main": "lib/index.js",
   "files": [
@@ -32,7 +32,7 @@
     "@fesjs/utils": "^2.0.4",
     "address": "^1.1.2",
     "lodash-es": "^4.17.15",
-    "qiankun": "^2.4.4"
+    "qiankun": "^2.7.0"
   },
   "devDependencies": {
     "npm-run-all": "^4.1.5"

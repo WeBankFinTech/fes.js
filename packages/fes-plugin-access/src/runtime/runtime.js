@@ -1,4 +1,5 @@
 import { plugin, ApplyPluginsType } from '@@/core/coreExports';
+// eslint-disable-next-line import/extensions
 import { access, install } from './core';
 
 export function onRouterCreated({ router }) {
@@ -9,25 +10,35 @@ export function onRouterCreated({ router }) {
             initialValue: {}
         });
         if (to.matched.length === 0) {
-            if (runtimeConfig.noFoundHandler && typeof runtimeConfig.noFoundHandler === 'function') {
+            if (
+                runtimeConfig.noFoundHandler
+                && typeof runtimeConfig.noFoundHandler === 'function'
+            ) {
                 return runtimeConfig.noFoundHandler({
-                    router, to, from, next
+                    router,
+                    to,
+                    from,
+                    next
                 });
             }
+            return next(false);
         }
-        let path;
-        if (to.matched.length === 1) {
-            path = to.matched[0].path;
-        } else {
-            path = to.path;
-        }
-        const canRoute = await access.hasAccess(path);
+        // path是匹配路由的path，不是页面hash
+        const canRoute = await access.hasAccess(
+            to.matched[to.matched.length - 1].path
+        );
         if (canRoute) {
             return next();
         }
-        if (runtimeConfig.unAccessHandler && typeof runtimeConfig.unAccessHandler === 'function') {
+        if (
+            runtimeConfig.unAccessHandler
+            && typeof runtimeConfig.unAccessHandler === 'function'
+        ) {
             return runtimeConfig.unAccessHandler({
-                router, to, from, next
+                router,
+                to,
+                from,
+                next
             });
         }
         next(false);
