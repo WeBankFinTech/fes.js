@@ -88,12 +88,12 @@ export function createWatermark({
     let __wm = document.querySelector('.__wm');
     const watermarkDiv = __wm || document.createElement('div');
     const styleStr = `
-    position: fixed;
+    position: ${container === document.body ? 'fixed' : 'absolute'};
     user-select: none;
     top: 0;
     left: 0;
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    height: 100%;
     z-index: ${zIndex};
     pointer-events: none !important;
     background-repeat: repeat;
