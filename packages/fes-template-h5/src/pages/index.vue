@@ -38,108 +38,17 @@ export default {
             console.log('click Icon');
         };
         console.log(useRoute());
-        // request('/api', null, {
-        // }).then((res) => {
-        //     console.log(res);
-        // });
-        // request('/api', null, {
-        // }).then((res) => {
-        //     console.log(res);
-        // });
-        // request('/api', null, {
-        //     mergeRequest: true
-        // }).then((res) => {
-        //     console.log(res);
-        // });
-        // request('/api', null, {
-        //     mergeRequest: true
-        // }).then((res) => {
-        //     console.log(res);
-        // });
-        // request('/api', null, {
-        //     throttle: 3000,
-        //     cache: true
-        // }).then((res) => {
-        //     console.log(res);
-        // });
 
-        const get = (id) => {
-            request(
-                '/get/api',
-                { id },
-                {
-                    method: 'get'
-                }
-            );
-        };
-
-        const post = (id) => {
-            request(
-                '/api',
-                { id },
-                {
-                    responseType: 'blob'
-                }
-            ).then((data) => {
-                console.log(data);
+        const get = () => {
+            request('/api', null, {
+                skipErrorHandler: '123'
+            }).catch((err) => {
+                console.log('skip error', err);
             });
         };
 
         get(1);
-        // get(2);
-        // get(3);
 
-        // post(1);
-        // post(2);
-        post(3);
-
-        // setTimeout(() => {
-        //     request('/api', null, {
-        //         throttle: 3000,
-        //         cache: true
-        //     }).then((res) => {
-        //         console.log(res);
-        //     });
-        // }, 1000);
-
-        // setTimeout(() => {
-        //     request('/api', null, {
-        //         throttle: 3000,
-        //         cache: true
-        //     }).then((res) => {
-        //         console.log(res);
-        //     });
-        //     request('/api', null, {
-        //         throttle: 3000,
-        //         cache: true
-        //     }).then((res) => {
-        //         console.log(res);
-        //     });
-        // }, 3200);
-
-        // request('/api', null, {
-        //     cache: true
-        // }).then((res) => {
-        //     console.log(res);
-        // });
-        // request('/api', null, {
-        //     cache: true
-        // }).then((res) => {
-        //     console.log(res);
-        // });
-        // request('/api', null, {
-        //     cache: true
-        // }).then((res) => {
-        //     console.log(res);
-        // });
-
-        // request('/api', null, {
-        //     // skipErrorHandler: [500]
-        // }).then((res) => {
-        //     console.log(res);
-        // }).catch((err) => {
-        //     console.log('inner error', err);
-        // });
         return {
             fes,
             rotate,
