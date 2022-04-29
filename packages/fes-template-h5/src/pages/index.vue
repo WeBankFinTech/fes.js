@@ -41,7 +41,7 @@ export default {
 
         const get = () => {
             request('/api', null, {
-                skipErrorHandler: '123'
+                skipErrorHandler: ['500']
             }).catch((err) => {
                 console.log('skip error', err);
             });

@@ -168,8 +168,11 @@ function handleRequestError({
     const errorKey = getErrorKey(error, response);
 
     if (!isSkipErrorHandler(config, errorKey)) {
-        const errorHandlerFn = errorHandler[errorKey || 'default'];
-        errorHandlerFn && errorHandlerFn(error, response);
+        if (isFunction(errorHandler[errorKey])) {
+            errorHandler[errorKey](error, response);
+        } else if (isFunction(errorHandler.default)) {
+            errorHandler.default(error, response);
+        }
     }
 }
 
