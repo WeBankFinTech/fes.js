@@ -40,6 +40,7 @@
     "@vuepress/plugin-docsearch": "2.0.0-beta.28",
     "@vuepress/plugin-pwa": "2.0.0-beta.28",
     "@vuepress/plugin-pwa-popup": "2.0.0-beta.28",
+    "@vuepress/bundler-webpack": "2.0.0-beta.28",
     "@webank/eslint-config-webank": "0.3.1",
     "chalk": "^4.1.2",
     "chokidar": "^3.5.2",
