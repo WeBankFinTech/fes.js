@@ -3,6 +3,9 @@ import type { DefaultThemeOptions } from '@vuepress/theme-default'
 import { navbar, sidebar } from './configs'
 
 const config: UserConfig<DefaultThemeOptions> = {
+
+  bundler: '@vuepress/webpack',
+
   base: '/',
 
   // evergreen: process.env.NODE_ENV !== 'production',
