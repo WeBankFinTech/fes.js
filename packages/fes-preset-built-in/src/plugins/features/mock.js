@@ -1,13 +1,9 @@
 import { existsSync, readFileSync } from 'fs';
 import { resolve } from 'path';
 import { chokidar, lodash, parseRequireDeps } from '@fesjs/utils';
-import bodyParser from 'body-parser';
-import cookieParser from 'cookie-parser';
-import cookie from 'cookie';
-import mockjs from 'mockjs';
-import mime from 'mime';
 
 function getContentType(type) {
+    const mime = require('mime');
     return type.indexOf('/') === -1 ? mime.getType(type) : type;
 }
 
@@ -22,7 +18,7 @@ function setCookie(res, name, value, opts = {}) {
     if (opts.path == null) {
         opts.path = '/';
     }
-
+    const cookie = require('cookie');
     res.setHeader('Set-Cookie', cookie.serialize(name, String(val), opts));
 }
 
@@ -146,12 +142,16 @@ export default (api) => {
                 api.logger.info('mock.js should export Function');
                 return;
             }
+            const mockjs = require('mockjs');
             initFunction({ cgiMock, mockjs, utils });
         } catch (err) {
             api.logger.error('mock.js run fail!');
         }
 
-        return (req, res, next) => {
+        const express = require('express');
+        const app = express();
+
+        app.use((req, res, next) => {
             // 如果请求不是以 cgiMock.prefix 开头，直接 next
             if (!req.url.startsWith(mockPrefix)) {
                 return next();
@@ -194,14 +194,10 @@ export default (api) => {
                 }
             };
 
-            bodyParser.json({ strict: false })(req, res, () => {
-                bodyParser.urlencoded({ extended: true })(req, res, () => {
-                    cookieParser()(req, res, () => {
-                        sendData();
-                    });
-                });
-            });
-        };
+            sendData();
+        });
+
+        return app;
     };
 
     api.onStart(() => {
