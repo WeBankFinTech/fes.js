@@ -2,26 +2,6 @@ import { existsSync, readFileSync } from 'fs';
 import { resolve } from 'path';
 import { chokidar, lodash, parseRequireDeps } from '@fesjs/utils';
 
-function getContentType(type) {
-    const mime = require('mime');
-    return type.indexOf('/') === -1 ? mime.getType(type) : type;
-}
-
-function setCookie(res, name, value, opts = {}) {
-    const val = typeof value === 'object' ? `j:${JSON.stringify(value)}` : String(value);
-
-    if ('maxAge' in opts) {
-        opts.expires = new Date(Date.now() + opts.maxAge);
-        opts.maxAge /= 1000;
-    }
-
-    if (opts.path == null) {
-        opts.path = '/';
-    }
-    const cookie = require('cookie');
-    res.setHeader('Set-Cookie', cookie.serialize(name, String(val), opts));
-}
-
 export default (api) => {
     let mockFlag = false; // mock 开关flag
     let mockPrefix = '/'; // mock 过滤前缀
@@ -153,44 +133,39 @@ export default (api) => {
 
         app.use((req, res, next) => {
             // 如果请求不是以 cgiMock.prefix 开头，直接 next
-            if (!req.url.startsWith(mockPrefix)) {
+            if (!req.path.startsWith(mockPrefix)) {
                 return next();
             }
             // 请求以 cgiMock.prefix 开头，匹配处理
-            const matchRequet = requestList.find((item) => req.url.search(item.url) !== -1);
+            const matchRequet = requestList.find((item) => req.path.search(item.url) !== -1);
             if (!matchRequet) {
                 return next();
             }
 
             const sendData = () => {
-                if (matchRequet.headers) {
-                    for (const [key, value] of Object.entries(matchRequet.headers)) {
-                        res.setHeader(key, value);
-                    }
-                }
-                if (matchRequet.type) {
-                    res.setHeader('Content-Type', getContentType(matchRequet.type));
-                }
+                // set header
+                res.set(matchRequet.headers);
+                // set Content-Type
+                matchRequet.type && res.type(matchRequet.type);
                 // set status code
-                res.statusCode = matchRequet.statusCode;
+                res.status(matchRequet.statusCode);
                 // set cookie
                 traversalHandler(matchRequet.cookies, (item) => {
                     const name = item.name;
                     const value = item.value;
                     delete item.name;
                     delete item.value;
-                    setCookie(res, name, value, item);
+                    res.cookie(name, value, item);
                 });
-
                 // do result
                 if (lodash.isFunction(matchRequet.result)) {
                     matchRequet.result(req, res);
                 } else if (lodash.isArray(matchRequet.result) || lodash.isPlainObject(matchRequet.result)) {
-                    !matchRequet.type && res.setHeader('Content-Type', getContentType('json'));
-                    res.end(JSON.stringify(matchRequet.result));
+                    !matchRequet.type && res.type('json');
+                    res.json(matchRequet.result);
                 } else {
-                    !matchRequet.type && res.setHeader('Content-Type', getContentType('text'));
-                    res.end(matchRequet.result.toString());
+                    !matchRequet.type && res.type('text');
+                    res.send(matchRequet.result.toString());
                 }
             };
 
