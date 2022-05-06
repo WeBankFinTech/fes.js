@@ -25,11 +25,11 @@ export default function (api) {
 
     modifyRoutes({ api, namespace });
 
-    const absMicroAppPath = join(namespace, 'MicroApp.js');
-    const absMicroAppWithMemoHistoryPath = join(namespace, 'MicroAppWithMemoHistory.js');
+    const absMicroAppPath = join(namespace, 'MicroApp.jsx');
+    const absMicroAppWithMemoHistoryPath = join(namespace, 'MicroAppWithMemoHistory.jsx');
     const absRuntimePath = join(namespace, 'runtime.js');
     const absMasterOptionsPath = join(namespace, 'masterOptions.js');
-    const absGetMicroAppRouteCompPath = join(namespace, 'getMicroAppRouteComponent.js');
+    const absGetMicroAppRouteCompPath = join(namespace, 'getMicroAppRouteComponent.jsx');
 
     api.onGenerateFiles(() => {
         const HAS_PLUGIN_MODEL = api.hasPlugins(['@fesjs/plugin-model']);

@@ -1,5 +1,4 @@
 import assert from 'assert';
-import address from 'address';
 import { lodash } from '@fesjs/utils';
 import { readFileSync } from 'fs';
 import { join } from 'path';
@@ -42,39 +41,8 @@ export default function (api) {
         return modifiedDefaultConfig;
     });
 
-    api.chainWebpack((config) => {
-        assert(api.pkg.name, 'You should have name in package.json');
-        config.output.libraryTarget('umd').library(`${api.pkg.name}-[name]`);
-        return config;
-    });
-
-    const port = process.env.PORT;
-    // source-map 跨域设置
-    if (process.env.NODE_ENV === 'development' && port) {
-        const localHostname = process.env.USE_REMOTE_IP ? address.ip() : process.env.HOST || 'localhost';
-
-        const protocol = process.env.HTTPS ? 'https' : 'http';
-        // TODO: 变更 webpack-dev-server websocket 默认监听地址
-        api.chainWebpack((memo, { webpack }) => {
-            // 开启了 devSourceMap 配置，默认为 true
-            if (api.config.qiankun && api.config.qiankun.micro && api.config.qiankun.micro.devSourceMap !== false) {
-                // 禁用 devtool，启用 SourceMapDevToolPlugin
-                memo.devtool(false);
-                memo.plugin('source-map').use(webpack.SourceMapDevToolPlugin, [
-                    {
-                        // @ts-ignore
-                        namespace: api.pkg.name,
-                        append: `\n//# sourceMappingURL=${protocol}://${localHostname}:${port}/[url]`,
-                        filename: '[file].map',
-                    },
-                ]);
-            }
-            return memo;
-        });
-    }
-
     const absRuntimePath = join(namespace, 'runtime.js');
-    const absLifeclesPath = join(namespace, 'lifecycles.js');
+    const absLifecyclesPath = join(namespace, 'lifecycles.js');
     const absMicroOptionsPath = join(namespace, 'slaveOptions.js');
     const absPublicPath = join(namespace, 'publicPath.js');
     const absModelPath = join(namespace, 'qiankunModel.js');
@@ -106,7 +74,7 @@ export default function (api) {
         });
 
         api.writeTmpFile({
-            path: absLifeclesPath,
+            path: absLifecyclesPath,
             content: Mustache.render(readFileSync(join(__dirname, 'runtime/lifecycles.tpl'), 'utf-8'), {
                 HAS_PLUGIN_MODEL,
             }),
@@ -141,8 +109,14 @@ export default function (api) {
 
     api.addRuntimePlugin(() => `@@/${absRuntimePath}`);
 
+    api.chainWebpack((config) => {
+        assert(api.pkg.name, 'You should have name in package.json');
+        config.output.libraryTarget('umd').library(`${api.pkg.name}-[name]`);
+        return config;
+    });
+
     api.addEntryImports(() => ({
-        source: `@@/${absLifeclesPath}`,
+        source: `@@/${absLifecyclesPath}`,
         specifier: '{ genMount as qiankun_genMount, genBootstrap as qiankun_genBootstrap, genUnmount as qiankun_genUnmount, genUpdate as qiankun_genUpdate  }',
     }));
 
