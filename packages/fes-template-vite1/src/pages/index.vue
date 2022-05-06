@@ -1,6 +1,6 @@
 <template>
     <div class="page">
-        home
+        home222
         <FButton class="m-2">Button</FButton>
     </div>
 </template>

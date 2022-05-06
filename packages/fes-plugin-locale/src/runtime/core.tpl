@@ -8,12 +8,22 @@
 import { isRef, unref } from 'vue';
 import { createI18n, useI18n } from '{{{ VUE_I18N_PATH }}}';
 import { plugin, ApplyPluginsType } from "@@/core/coreExports";
-import SelectLang from "./views/SelectLang";
+import SelectLang from "./views/SelectLang.vue";
+{{#REPLACE_LOCALES}}
+import {{importName}} from "{{{path}}}";
+{{/REPLACE_LOCALES}}
 
 // 共享出去
 plugin.share("locale", {useI18n, SelectLang });
 
-const locales = {{{REPLACE_LOCALES}}};
+const locales = [
+{{#REPLACE_LOCALES}}
+{
+    locale: "{{locale}}",
+    message: {{importName}}
+},
+{{/REPLACE_LOCALES}}
+];
 
 const defaultOptions = {{{REPLACE_DEFAULT_OPTIONS}}};
 

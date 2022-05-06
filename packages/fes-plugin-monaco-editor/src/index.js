@@ -26,9 +26,7 @@ export default (api) => {
     });
 
     const absoluteFilePath = join(namespace, 'core.js');
-
     const absRuntimeFilePath = join(namespace, 'runtime.js');
-
     const absLoaderFilePath = join(namespace, 'loader.js');
     const absEditorFilePath = join(namespace, 'editor.vue');
 
@@ -76,10 +74,18 @@ export default (api) => {
 
     api.addRuntimePlugin(() => `@@/${absRuntimeFilePath}`);
 
-    api.chainWebpack((webpackConfig) => {
-        webpackConfig.plugin('monaco-editor').use(require('monaco-editor-webpack-plugin'), [api.config?.monacoEditor || {}]);
-        return webpackConfig;
-    });
+    if (api.builder.isVite) {
+        api.modifyBundleConfig((config) => {
+            const monacoEditorPlugin = require('vite-plugin-monaco-editor').default;
+            config?.plugins?.push(monacoEditorPlugin(api.config?.monacoEditor || {}));
+        });
+        //
+    } else {
+        api.chainWebpack((webpackConfig) => {
+            webpackConfig.plugin('monaco-editor').use(require('monaco-editor-webpack-plugin'), [api.config?.monacoEditor || {}]);
+            return webpackConfig;
+        });
+    }
 
     api.addConfigType(() => ({
         source: name,

@@ -28,7 +28,8 @@
     "@fesjs/utils": "^2.0.4",
     "lodash-es": "^4.17.15",
     "monaco-editor": "^0.20.0",
-    "monaco-editor-webpack-plugin": "^1.9.1"
+    "monaco-editor-webpack-plugin": "^1.9.1",
+    "vite-plugin-monaco-editor": "^1.0.10"
   },
   "peerDependencies": {
     "@fesjs/fes": "^2.0.0",

@@ -24,7 +24,7 @@ export default (api) => {
 
     api.addRuntimePluginKey(() => 'layout');
 
-    const absFilePath = join(namespace, 'index.js');
+    const absFilePath = join(namespace, 'index.jsx');
 
     const absRuntimeFilePath = join(namespace, 'runtime.js');
 

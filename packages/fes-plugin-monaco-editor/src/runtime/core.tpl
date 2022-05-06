@@ -1,4 +1,4 @@
-import Editor from './editor';
+import Editor from './editor.vue';
 import _monaco from './loader';
 
 export const MonacoEditor = Editor;
