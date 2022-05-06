@@ -2,7 +2,7 @@
 
 # dependencies
 /node_modules
-
+/coverage
 
 # fes
 /src/.fes

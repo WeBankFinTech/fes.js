@@ -2,7 +2,5 @@
 
 
 export default {
-    request: {
-        base: '/api'
-    }
+    publicPath: 'https://gw.alipayobjects.com/'
 };
