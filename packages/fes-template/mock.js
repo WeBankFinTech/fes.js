@@ -3,33 +3,39 @@ export default function ({ cgiMock, mockjs, utils }) {
 
     // 测试 proxy 与 mock 用例集合
     cgiMock('/movie/in_theaters_mock', (req, res) => {
-        res.send(JSON.stringify({
-            code: '0',
-            msg: '',
-            result: {
-                text: 'movie:  movie/in_theaters_mock ~~~~~'
-            }
-        }));
+        res.send(
+            JSON.stringify({
+                code: '0',
+                msg: '',
+                result: {
+                    text: 'movie:  movie/in_theaters_mock ~~~~~',
+                },
+            }),
+        );
     });
     cgiMock('/movie/test_mock', (req, res) => {
-        res.send(JSON.stringify({
-            code: '0',
-            msg: '',
-            result: {
-                text: 'mock:  movie/test_mock'
-            }
-        }));
+        res.send(
+            JSON.stringify({
+                code: '0',
+                msg: '',
+                result: {
+                    text: 'mock:  movie/test_mock',
+                },
+            }),
+        );
     });
 
     // 测试用例: mock.js change，重现请求，需要能拉最新的数据
     cgiMock('/watchtest', (req, res) => {
-        res.send(JSON.stringify({
-            code: '0',
-            msg: '',
-            result: {
-                text: '通过 register 测试 mock watch: 初始状态'
-            }
-        }));
+        res.send(
+            JSON.stringify({
+                code: '0',
+                msg: '',
+                result: {
+                    text: '通过 register 测试 mock watch: 初始状态',
+                },
+            }),
+        );
     });
 
     // 返回一个数字
@@ -40,17 +46,23 @@ export default function ({ cgiMock, mockjs, utils }) {
     cgiMock({
         url: '/json',
         result: {
-            code: '400101', msg: "不合法的请求:Missing cookie 'wb_app_id' for method parameter of type String", transactionTime: '20170309171146', success: false
-        }
+            code: '400101',
+            msg: "不合法的请求:Missing cookie 'wb_app_id' for method parameter of type String",
+            transactionTime: '20170309171146',
+            success: false,
+        },
     });
 
     // 利用 mock.js 产生随机文本
     cgiMock('/text', Random.cparagraph());
 
     // 返回一个字符串 利用 mock.js 产生随机字符
-    cgiMock('/random', mockjs.mock({
-        'string|1-10': '★'
-    }));
+    cgiMock(
+        '/random',
+        mockjs.mock({
+            'string|1-10': '★',
+        }),
+    );
 
     // 正则匹配url, 返回一个字符串
     cgiMock(/\/abc|\/xyz/, 'regexp test!');
@@ -77,20 +89,21 @@ export default function ({ cgiMock, mockjs, utils }) {
         headers: {
             'Content-Type': 'text/plain',
             'Content-Length': '123',
-            ETag: '12345'
+            ETag: '12345',
         },
         cookies: [
             {
-                name: 'myname', value: 'kwan', maxAge: 900000, httpOnly: true
-            }
-        ]
+                name: 'myname',
+                value: 'kwan',
+                maxAge: 900000,
+                httpOnly: true,
+            },
+        ],
     });
 
     // 携带参数的请求
     cgiMock('/v2/audit/list', (req, res) => {
-        const {
-            currentPage, pageSize, isAudited
-        } = req.body;
+        const { currentPage, pageSize, isAudited } = req.body;
         res.send({
             code: '0',
             msg: '',
@@ -114,9 +127,9 @@ export default function ({ cgiMock, mockjs, utils }) {
                     handleTag: '已采纳',
                     postType: 'voice',
                     postStatus: isAudited ? 'pass' : 'auditing',
-                    auditStatus: 'audit1'
-                }))
-            }
+                    auditStatus: 'audit1',
+                })),
+            },
         });
     });
 
@@ -124,7 +137,7 @@ export default function ({ cgiMock, mockjs, utils }) {
     cgiMock('/v2/upload', (req, res) => {
         res.send({
             code: '0',
-            msg: '文件上传成功'
+            msg: '文件上传成功',
         });
     });
 }

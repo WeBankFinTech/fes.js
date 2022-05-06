@@ -3,10 +3,7 @@
  * https://github.com/umijs/umi/tree/master/packages/core
  */
 
-import {
-    createDebug,
-    chalk
-} from '@fesjs/utils';
+import { createDebug, chalk } from '@fesjs/utils';
 import readline from 'readline';
 
 export default class Logger {
@@ -52,9 +49,7 @@ export default class Logger {
     }
 
     formatTiming(timing) {
-        return timing < 60 * 1000
-            ? `${Math.round(timing / 10) / 100}s`
-            : `${Math.round(timing / 600) / 100}m`;
+        return timing < 60 * 1000 ? `${Math.round(timing / 10) / 100}s` : `${Math.round(timing / 600) / 100}m`;
     }
 
     profile(id, message) {
@@ -66,9 +61,7 @@ export default class Logger {
             const timeEnd = this.profilers[id];
             delete this.profilers[id];
             process.stderr.write(`${this.PROFILE} `);
-            msg = `${this.PROFILE} ${chalk.cyan(
-                `└ ${namespace}`
-            )} Completed in ${this.formatTiming(time - timeEnd)}`;
+            msg = `${this.PROFILE} ${chalk.cyan(`└ ${namespace}`)} Completed in ${this.formatTiming(time - timeEnd)}`;
             console.log(msg);
         } else {
             msg = `${this.PROFILE} ${chalk.cyan(`┌ ${namespace}`)} ${message || ''}`;

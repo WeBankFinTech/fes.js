@@ -16,11 +16,8 @@ export default function (api) {
         'addEntryCodeAhead',
         'addEntryCode',
         'modifyRoutes',
-
         'addConfigType',
-
         'addTmpGenerateWatcherPaths',
-
         'addBeforeMiddlewares',
         'addMiddlewares',
     ].forEach((name) => {
