@@ -4,7 +4,7 @@ import viteMiddlewarePlugin from './viteMiddlewarePlugin';
 export default async (api, args) => {
     const { deepmerge, getPort, changePort, getHostName } = api.utils;
 
-    const port = await getPort(args.port || api.config.viteOption.server?.port);
+    const port = await getPort(process.env.PORT || args.port || api.config.viteOption.server?.port);
     changePort(port);
 
     const hostname = getHostName(api.config.viteOption.server?.host);

@@ -4,13 +4,7 @@ import webpack from 'webpack';
 export function startDevServer({ webpackConfig, host, port, proxy, https, beforeMiddlewares, afterMiddlewares, customerDevServerConfig }) {
     const options = {
         hot: true,
-        port,
-        host,
-        proxy,
         allowedHosts: 'all',
-        static: {
-            // contentBase: webpackConfig.output.path,
-        },
         server: https ? 'https' : 'http',
         client: {
             logging: 'error',
@@ -32,6 +26,9 @@ export function startDevServer({ webpackConfig, host, port, proxy, https, before
             'access-control-allow-origin': '*',
         },
         ...(customerDevServerConfig || {}),
+        port,
+        host,
+        proxy,
     };
     const compiler = webpack(webpackConfig);
     const server = new WebpackDevServer(options, compiler);
@@ -41,5 +38,6 @@ export function startDevServer({ webpackConfig, host, port, proxy, https, before
             console.error(err);
         }
     });
+
     return server;
 }

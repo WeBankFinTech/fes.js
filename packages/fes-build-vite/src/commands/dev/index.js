@@ -34,7 +34,7 @@ export default (api) => {
                 type: api.ApplyPluginsType.event,
             });
 
-            api.startWatch();
+            await api.startWatch();
 
             server = await createServer(await getDevConfig(api, args));
             await server.listen();

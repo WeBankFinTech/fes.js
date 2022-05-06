@@ -47,7 +47,7 @@ export async function startWatch(api) {
     if (process.env.WATCH === 'none') return;
 
     let unwatchs = [];
-    const destroy = () => {
+    const restartServer = () => {
         for (const unwatch of unwatchs) {
             unwatch();
         }
@@ -65,7 +65,7 @@ export async function startWatch(api) {
         onChange() {
             console.log();
             api.logger.info('Plugins in package.json changed.');
-            destroy();
+            restartServer();
         },
     });
     unwatchs.push(unwatchPkg);
@@ -77,7 +77,7 @@ export async function startWatch(api) {
             if (pluginChanged.length) {
                 console.log();
                 api.logger.info(`Plugins of ${pluginChanged.map((p) => p.key).join(', ')} changed.`);
-                destroy();
+                restartServer();
             }
             if (valueChanged.length) {
                 let reload = false;
@@ -101,7 +101,7 @@ export async function startWatch(api) {
                 if (reload) {
                     console.log();
                     api.logger.info(`Config ${reloadConfigs.join(', ')} changed.`);
-                    destroy();
+                    restartServer();
                 } else {
                     api.service.userConfig = api.service.configInstance.getUserConfig();
 

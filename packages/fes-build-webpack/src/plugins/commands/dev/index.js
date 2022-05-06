@@ -1,18 +1,18 @@
+import { Logger } from '@fesjs/compiler';
+
+const logger = new Logger('fes:build-webpack');
+
 export default (api) => {
     const {
         paths,
         utils: { chalk, getPort, getHostName, changePort },
     } = api;
 
-    const unwatchs = [];
     let port;
     let hostname;
     let server;
 
     async function destroy() {
-        for (const unwatch of unwatchs) {
-            unwatch();
-        }
         await server?.stop();
     }
 
@@ -33,7 +33,8 @@ export default (api) => {
             const { cleanTmpPathExceptCache, getBundleAndConfigs } = require('../buildDevUtils');
             const connectHistoryMiddleware = require('./connectHistoryMiddleware').default;
 
-            port = await getPort(args.port || api.config.devServer?.port);
+            port = await getPort(process.env.PORT || args.port || api.config.devServer?.port);
+
             changePort(port);
 
             hostname = getHostName(api.config.devServer?.host);
@@ -50,7 +51,7 @@ export default (api) => {
                 type: api.ApplyPluginsType.event,
             });
 
-            api.startWatch();
+            await api.startWatch();
 
             // dev
             const { bundleConfig } = await getBundleAndConfigs({ api });
@@ -67,6 +68,7 @@ export default (api) => {
                 initialValue: [],
                 args: {},
             });
+
             const { startDevServer } = require('./devServer');
             server = startDevServer({
                 webpackConfig: bundleConfig,
@@ -78,6 +80,7 @@ export default (api) => {
                 afterMiddlewares: [...middlewares],
                 customerDevServerConfig: api.config.devServer,
             });
+
             return {
                 destroy,
             };
@@ -87,7 +90,7 @@ export default (api) => {
     api.registerMethod({
         name: 'restartServer',
         fn() {
-            console.log(chalk.gray('Try to restart dev server...'));
+            logger.info(chalk.gray('Try to restart dev server...'));
             destroy();
             process.send({
                 type: 'RESTART',
