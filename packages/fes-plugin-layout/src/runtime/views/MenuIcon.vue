@@ -1,4 +1,4 @@
-<script>
+<script lang="jsx">
 import { ref, onBeforeMount } from 'vue';
 // eslint-disable-next-line import/extensions
 import Icons from '../icons';
@@ -6,7 +6,7 @@ import { validateContent } from '../helpers/svg';
 
 export default {
     props: {
-        icon: [String, Object]
+        icon: [String, Object],
     },
     setup(props) {
         const AIcon = ref(null);
@@ -31,16 +31,11 @@ export default {
                 return <AIcon.value />;
             }
             if (AText.value) {
-                return (
-                    <span
-                        class={'fes-layout-icon'}
-                        innerHTML={AText.value}
-                    ></span>
-                );
+                return <span class={'fes-layout-icon'} innerHTML={AText.value}></span>;
             }
             return null;
         };
-    }
+    },
 };
 </script>
 <style>

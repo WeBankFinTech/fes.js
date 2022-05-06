@@ -12,26 +12,12 @@
             >
                 <div v-if="routeLayout.logo" class="layout-logo">
                     <img :src="logo" class="logo-img" />
-                    <div class="logo-name">{{title}}</div>
+                    <div class="logo-name">{{ title }}</div>
                 </div>
-                <Menu
-                    class="layout-menu"
-                    :menus="menus"
-                    :collapsed="collapsedRef"
-                    mode="vertical"
-                    :inverted="theme === 'dark'"
-                />
+                <Menu class="layout-menu" :menus="menus" :collapsed="collapsedRef" mode="vertical" :inverted="theme === 'dark'" />
             </f-aside>
-            <f-layout
-                :fixed="fixedSideBar"
-                :style="sideStyleRef"
-            >
-                <f-header
-                    v-if="routeLayout.header"
-                    ref="headerRef"
-                    class="layout-header"
-                    :fixed="currentFixedHeaderRef"
-                >
+            <f-layout :fixed="fixedSideBar" :style="sideStyleRef">
+                <f-header v-if="routeLayout.header" ref="headerRef" class="layout-header" :fixed="currentFixedHeaderRef">
                     <div class="layout-header-custom">
                         <slot name="customHeader"></slot>
                     </div>
@@ -39,38 +25,23 @@
                         <slot name="locale"></slot>
                     </template>
                 </f-header>
-                <f-layout
-                    :embedded="!multiTabs"
-                    :fixed="currentFixedHeaderRef"
-                    :style="headerStyleRef"
-                >
+                <f-layout :embedded="!multiTabs" :fixed="currentFixedHeaderRef" :style="headerStyleRef">
                     <f-main class="layout-main">
                         <MultiTabProvider :multiTabs="multiTabs" />
                     </f-main>
                     <f-footer v-if="footer" class="layout-footer">
-                        {{footer}}
+                        {{ footer }}
                     </f-footer>
                 </f-layout>
             </f-layout>
         </template>
         <template v-if="navigation === 'top'">
-            <f-header
-                v-if="routeLayout.header"
-                ref="headerRef"
-                class="layout-header"
-                :inverted="theme === 'dark'"
-                :fixed="currentFixedHeaderRef"
-            >
+            <f-header v-if="routeLayout.header" ref="headerRef" class="layout-header" :inverted="theme === 'dark'" :fixed="currentFixedHeaderRef">
                 <div v-if="routeLayout.logo" class="layout-logo">
                     <img :src="logo" class="logo-img" />
-                    <div class="logo-name">{{title}}</div>
+                    <div class="logo-name">{{ title }}</div>
                 </div>
-                <Menu
-                    class="layout-menu"
-                    :menus="menus"
-                    mode="horizontal"
-                    :inverted="theme === 'dark'"
-                />
+                <Menu class="layout-menu" :menus="menus" mode="horizontal" :inverted="theme === 'dark'" />
                 <div class="layout-header-custom">
                     <slot name="customHeader"></slot>
                 </div>
@@ -78,30 +49,20 @@
                     <slot name="locale"></slot>
                 </template>
             </f-header>
-            <f-layout
-                :embedded="!multiTabs"
-                :fixed="currentFixedHeaderRef"
-                :style="headerStyleRef"
-            >
+            <f-layout :embedded="!multiTabs" :fixed="currentFixedHeaderRef" :style="headerStyleRef">
                 <f-main class="layout-main">
                     <MultiTabProvider :multiTabs="multiTabs" />
                 </f-main>
                 <f-footer v-if="footer" class="layout-footer">
-                    {{footer}}
+                    {{ footer }}
                 </f-footer>
             </f-layout>
         </template>
         <template v-if="navigation === 'mixin'">
-            <f-header
-                v-if="routeLayout.header"
-                ref="headerRef"
-                class="layout-header"
-                :fixed="currentFixedHeaderRef"
-                :inverted="theme === 'dark'"
-            >
+            <f-header v-if="routeLayout.header" ref="headerRef" class="layout-header" :fixed="currentFixedHeaderRef" :inverted="theme === 'dark'">
                 <div v-if="routeLayout.logo" class="layout-logo">
                     <img :src="logo" class="logo-img" />
-                    <div class="logo-name">{{title}}</div>
+                    <div class="logo-name">{{ title }}</div>
                 </div>
                 <div class="layout-header-custom">
                     <slot name="customHeader"></slot>
@@ -119,23 +80,14 @@
                     collapsible
                     class="layout-aside"
                 >
-                    <Menu
-                        class="layout-menu"
-                        :menus="menus"
-                        :collapsed="collapsedRef"
-                        mode="vertical"
-                    />
+                    <Menu class="layout-menu" :menus="menus" :collapsed="collapsedRef" mode="vertical" />
                 </f-aside>
-                <f-layout
-                    :embedded="!multiTabs"
-                    :fixed="fixedSideBar"
-                    :style="sideStyleRef"
-                >
+                <f-layout :embedded="!multiTabs" :fixed="fixedSideBar" :style="sideStyleRef">
                     <f-main class="layout-main">
                         <MultiTabProvider :multiTabs="multiTabs" />
                     </f-main>
                     <f-footer v-if="footer" class="layout-footer">
-                        {{footer}}
+                        {{ footer }}
                     </f-footer>
                 </f-layout>
             </f-layout>
@@ -147,11 +99,9 @@
 <script>
 import { ref, computed, onMounted } from 'vue';
 import { useRoute, plugin, ApplyPluginsType } from '@@/core/coreExports';
-import {
-    FLayout, FAside, FMain, FFooter, FHeader
-} from '@fesjs/fes-design';
-import Menu from './Menu';
-import MultiTabProvider from './MultiTabProvider';
+import { FLayout, FAside, FMain, FFooter, FHeader } from '@fesjs/fes-design';
+import Menu from './Menu.vue';
+import MultiTabProvider from './MultiTabProvider.vue';
 import defaultLogo from '../assets/logo.png';
 
 export default {
@@ -162,52 +112,52 @@ export default {
         FFooter,
         FHeader,
         Menu,
-        MultiTabProvider
+        MultiTabProvider,
     },
     props: {
         menus: {
             type: Array,
             default() {
                 return [];
-            }
+            },
         },
         title: {
             type: String,
-            default: ''
+            default: '',
         },
         locale: {
             type: Boolean,
-            default: false
+            default: false,
         },
         logo: {
             type: String,
-            default: defaultLogo
+            default: defaultLogo,
         },
         theme: {
             type: String,
-            default: 'dark' // light、dark
+            default: 'dark', // light、dark
         },
         navigation: {
             type: String,
-            default: 'side' // side 左右（上/下）、 top 上/下、 mixin 上/下（左/右）
+            default: 'side', // side 左右（上/下）、 top 上/下、 mixin 上/下（左/右）
         },
         fixedHeader: {
             type: Boolean,
-            default: false
+            default: false,
         },
         fixedSideBar: {
             type: Boolean,
-            default: true
+            default: true,
         },
         multiTabs: {
             type: Boolean,
-            default: false
+            default: false,
         },
         sideWidth: {
             type: Number,
-            default: 200
+            default: 200,
         },
-        footer: String
+        footer: String,
     },
     setup(props) {
         const headerRef = ref();
@@ -227,8 +177,8 @@ export default {
             initialValue: {
                 sidebar: true,
                 header: true,
-                logo: true
-            }
+                logo: true,
+            },
         });
         const routeLayout = computed(() => {
             let config;
@@ -239,9 +189,7 @@ export default {
             } else if (typeof metaLayoutConfig === 'object') {
                 config = { ...runtimeConfig, ...metaLayoutConfig };
             } else {
-                console.error(
-                    '[plugin-layout]: meta layout must be object or boolean！'
-                );
+                console.error('[plugin-layout]: meta layout must be object or boolean！');
             }
             // query 中 layout 默认为 false
             const routeQueryLayoutConfig = route.query.layout && JSON.parse(route.query.layout);
@@ -250,21 +198,19 @@ export default {
             } else if (typeof routeQueryLayoutConfig === 'object') {
                 config = { ...config, ...routeQueryLayoutConfig };
             } else if (routeQueryLayoutConfig !== undefined) {
-                console.error(
-                    '[plugin-layout]: query layout must be object or boolean！'
-                );
+                console.error('[plugin-layout]: query layout must be object or boolean！');
             }
             return config;
         });
-        const currentFixedHeaderRef = computed(
-            () => props.fixedHeader || props.navigation === 'mixin'
-        );
+        const currentFixedHeaderRef = computed(() => props.fixedHeader || props.navigation === 'mixin');
         const headerStyleRef = computed(() => (currentFixedHeaderRef.value ? { top: `${headerHeightRef.value}px` } : null));
-        const sideStyleRef = computed(() => (props.fixedSideBar
-            ? {
-                left: collapsedRef.value ? '48px' : `${props.sideWidth}px`
-            }
-            : null));
+        const sideStyleRef = computed(() =>
+            props.fixedSideBar
+                ? {
+                    left: collapsedRef.value ? '48px' : `${props.sideWidth}px`,
+                }
+                : null,
+        );
         return {
             headerRef,
             headerHeightRef,
@@ -273,9 +219,9 @@ export default {
             collapsedRef,
             currentFixedHeaderRef,
             headerStyleRef,
-            sideStyleRef
+            sideStyleRef,
         };
-    }
+    },
 };
 </script>
 <style lang="less" scoped>

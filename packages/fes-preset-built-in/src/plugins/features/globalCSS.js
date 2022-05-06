@@ -13,5 +13,5 @@ export default (api) => {
         .filter((file) => existsSync(file))
         .slice(0, 1);
 
-    api.addEntryCodeAhead(() => `${globalCSSFile.map((file) => `require('${winPath(relative(absTmpPath, file))}');`).join('')}`);
+    api.addEntryCodeAhead(() => `${globalCSSFile.map((file) => `import '${winPath(relative(absTmpPath, file))}';`).join('')}`);
 };

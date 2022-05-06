@@ -1,61 +1,57 @@
 <template>
-    <f-menu
-        :modelValue="activePath"
-        :inverted="inverted"
-        :mode="mode"
-        :options="fixedMenus"
-        @select="onMenuClick"
-    ></f-menu>
+    <f-menu :modelValue="activePath" :inverted="inverted" :mode="mode" :options="fixedMenus" @select="onMenuClick"></f-menu>
 </template>
 
 <script>
 import { computed, h } from 'vue';
 import { FMenu } from '@fesjs/fes-design';
 import { useRoute, useRouter } from '@@/core/coreExports';
-import MenuIcon from './MenuIcon';
+import MenuIcon from './MenuIcon.vue';
 import { transform as transformByAccess } from '../helpers/pluginAccess';
 import { transform as transformByLocale } from '../helpers/pluginLocale';
 import { flatNodes } from '../helpers/utils';
 
 export default {
     components: {
-        FMenu
+        FMenu,
     },
     props: {
         menus: {
             type: Array,
             default() {
                 return [];
-            }
+            },
         },
         mode: {
             type: String,
-            default: 'vertical'
+            default: 'vertical',
         },
         inverted: {
             type: Boolean,
-            default: false
-        }
+            default: false,
+        },
     },
     setup(props) {
         const route = useRoute();
         const router = useRouter();
-        const transform = menus => menus.map((menu) => {
-            const copy = {
-                ...menu,
-                label: menu.title,
-                value: menu.path
-            };
-            if (menu.icon) {
-                copy.icon = () => h(MenuIcon, {
-                    icon: menu.icon
-                });
-            }
-            if (menu.children) {
-                copy.children = transform(menu.children);
-            }
-            return copy;
-        });
+        const transform = (menus) =>
+            menus.map((menu) => {
+                const copy = {
+                    ...menu,
+                    label: menu.title,
+                    value: menu.path,
+                };
+                if (menu.icon) {
+                    copy.icon = () =>
+                        h(MenuIcon, {
+                            icon: menu.icon,
+                        });
+                }
+                if (menu.children) {
+                    copy.children = transform(menu.children);
+                }
+                return copy;
+            });
         const fixedMenus = computed(() => transformByLocale(transformByAccess(transform(props.menus))));
         const menus = computed(() => flatNodes(fixedMenus.value));
         const activePath = computed(() => {
@@ -81,16 +77,14 @@ export default {
             } else if (/^\//.test(path)) {
                 router.push(path);
             } else {
-                console.warn(
-                    '[plugin-layout]: 菜单的path只能使以http(s)开头的网址或者路由地址'
-                );
+                console.warn('[plugin-layout]: 菜单的path只能使以http(s)开头的网址或者路由地址');
             }
         };
         return {
             activePath,
             fixedMenus,
-            onMenuClick
+            onMenuClick,
         };
-    }
+    },
 };
 </script>

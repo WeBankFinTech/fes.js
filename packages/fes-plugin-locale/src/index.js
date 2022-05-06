@@ -1,6 +1,5 @@
 import { readFileSync } from 'fs';
 import { join } from 'path';
-import { getLocalesJSON } from './utils';
 import { name } from '../package.json';
 
 const namespace = 'plugin-locale';
@@ -20,6 +19,8 @@ export default (api) => {
             onChange: api.ConfigChangeType.regenerateTmpFiles,
         },
     });
+
+    const { getLocales } = require('./utils');
 
     api.addRuntimePluginKey(() => 'locale');
 
@@ -46,7 +47,7 @@ export default (api) => {
 
         const localeConfigFileBasePath = getLocaleFileBasePath();
 
-        const locales = getLocalesJSON(localeConfigFileBasePath);
+        const locales = getLocales(localeConfigFileBasePath);
 
         api.writeTmpFile({
             path: absoluteFilePath,

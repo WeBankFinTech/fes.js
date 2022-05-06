@@ -1,8 +1,5 @@
-
 export default (api) => {
-    const {
-        utils
-    } = api;
+    const { utils } = api;
 
     api.describe({
         key: 'sass',
@@ -13,25 +10,29 @@ export default (api) => {
                     sassOptions: joi.object(),
                     prependData: joi.alternatives(joi.string(), joi.func()),
                     sourceMap: joi.boolean(),
-                    webpackImporter: joi.boolean()
+                    webpackImporter: joi.boolean(),
                 });
             },
-            default: {}
-        }
+            default: {},
+        },
     });
 
-    api.chainWebpack((memo, { createCSSRule }) => {
-        createCSSRule({
-            lang: 'sass',
-            test: /\.(sass|scss)(\?.*)?$/,
-            loader: require.resolve('sass-loader'),
-            options: utils.deepmerge(
-                {
-                    implementation: require('sass')
-                },
-                api.config.sass || {}
-            )
+    if (api.builder.isVite) {
+        // vite 不需要处理
+    } else {
+        api.chainWebpack((memo, { createCSSRule }) => {
+            createCSSRule({
+                lang: 'sass',
+                test: /\.(sass|scss)(\?.*)?$/,
+                loader: require.resolve('sass-loader'),
+                options: utils.deepmerge(
+                    {
+                        implementation: require('sass'),
+                    },
+                    api.config.sass || {},
+                ),
+            });
+            return memo;
         });
-        return memo;
-    });
+    }
 };
