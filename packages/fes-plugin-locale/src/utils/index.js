@@ -1,4 +1,4 @@
-import { glob } from '@fesjs/utils';
+import { glob, winPath } from '@fesjs/utils';
 import { join, basename } from 'path';
 
 export function getLocales(cwd) {
@@ -13,7 +13,8 @@ export function getLocales(cwd) {
             return {
                 importName,
                 locale,
-                path: join(cwd, fileName),
+                // import语法的路径，必须处理win
+                path: winPath(join(cwd, fileName)),
             };
         });
 

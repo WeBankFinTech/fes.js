@@ -23,7 +23,8 @@ export function getInnerCommonConfig(api) {
                 vueJsx(api.config.viteVueJsx || {}),
                 createHtmlPlugin({
                     minify: true,
-                    entry: join(api.paths.absTmpPath, 'fes.js'),
+                    // 使用绝对地址在win下会提示没有权限
+                    entry: `src/${api.paths.tmpDir}/fes.js`,
                     template: 'index.html',
                     inject: {
                         data: {
