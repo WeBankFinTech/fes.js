@@ -68,7 +68,7 @@ function getGlobalConfig() {
 async function getPkgConfig(config, pkgName) {
     const pkgConfigPath = path.join(getPkgPath(pkgName), CONFIG_FILE_NAME);
     if (fs.existsSync(pkgConfigPath)) {
-        const content = await import(pkgConfigPath);
+        const content = await import(process.platform === 'win32' ? `file://${pkgConfigPath}` : pkgConfigPath);
         return merge(config, content.default);
     }
 
