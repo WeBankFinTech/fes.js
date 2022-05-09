@@ -45,7 +45,7 @@
     "cliui": "7.0.4",
     "connect-history-api-fallback": "^1.6.0",
     "cookie-parser": "^1.4.5",
-    "copy-webpack-plugin": "^7.0.0",
+    "copy-webpack-plugin": "^10.2.4",
     "core-js": "^3.8.3",
     "css-loader": "^5.0.1",
     "css-minimizer-webpack-plugin": "^3.0.0",
