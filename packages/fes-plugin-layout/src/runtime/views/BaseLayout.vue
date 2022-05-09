@@ -319,6 +319,9 @@ export default {
         .layout-header-custom {
             flex: 1;
         }
+        .layout-menu {
+            width: auto;
+        }
     }
     .fes-layout-aside {
         z-index: 1;
