@@ -9,10 +9,34 @@ const Layout = defineComponent({
     setup() {
         const userConfig = {{{REPLACE_USER_CONFIG}}};
         const runtimeConfig = getRuntimeConfig();
+        const {
+            menus,
+            customHeader,
+            menuConfig,
+            // 非 BaseLayout需要的
+            initialState,
+            sidebar,
+            header,
+            logo,
+            // 跟logo冲突，换个名字
+            logoUrl,
+            ...otherConfig
+        } = runtimeConfig;
+        if (logoUrl) {
+            userConfig.logo = logoUrl;
+        }
+        if (menuConfig && typeof menuConfig === 'object') {
+            Object.assign(userConfig.menuConfig, menuConfig);
+        }
+        Object.keys(otherConfig).forEach((p) => {
+            if (otherConfig[p] !== undefined) {
+                userConfig[p] = otherConfig[p];
+            }
+        });
         let menusRef = ref(userConfig.menus);
         // 如果运行时配置了menus，则需要处理
-        if (runtimeConfig.menus && typeof runtimeConfig.menus === 'function') {
-            menusRef = ref(runtimeConfig.menus(userConfig.menus));
+        if (menus && typeof menus === 'function') {
+            menusRef = ref(menus(userConfig.menus));
         }
         // 把路由的meta合并到menu配置中
         const filledMenuRef = computed(() => {
@@ -41,8 +65,8 @@ const Layout = defineComponent({
             };
             return (
                 <BaseLayout
-                    locale={localeShared ? true : false}
                     {...userConfig}
+                    locale={localeShared ? true : false}
                     menus={filledMenuRef.value}
                     v-slots={slots}
                 ></BaseLayout>
