@@ -43,19 +43,12 @@ export default {
 ### createWatermark
 
 创建水印功能，通过 `@fesjs/fes` 导入 API：
-```js
-import { createWatermark } from '@fesjs/fes'
-
-createWatermark({ content: '我是水印' });
-```
-
-若需要动态关闭和重新打开水印，则：
 
 ```js
-const { close, open } = createWatermark({ content: '我是水印' });
+import { createWatermark, destroyWatermark } from '@fesjs/fes';
 
-close(); // 关闭水印
-open(); // 重新打开水印
+createWatermark({ content: '我是水印' }); // 生成水印
+destroyWatermark(); // 销毁水印
 ```
 
 默认参数是：

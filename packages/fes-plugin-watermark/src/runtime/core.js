@@ -30,14 +30,11 @@ function timeFormat(date, format = 'YYYY-MM-DD') {
     return format.replace(/Y+|M+|D+|H+|h+|m+|s+|S+|Q/g, str => String(map[str]));
 }
 
-let _wmEnable = true; // 开关控制
+let param = null; // 配置项
 let _wmMo = null; // MutationObserver
 let _wmTimer = null; // timestamp
 
-function _close(param) {
-    // 开关关闭
-    _wmEnable = false;
-
+function _destroyWatermark() {
     // 监听器关闭
     _wmMo && _wmMo.disconnect();
     _wmMo = null;
@@ -46,18 +43,8 @@ function _close(param) {
 
     // 删除水印元素
     const __wm = document.querySelector('.__wm');
-    __wm && param.container.removeChild(__wm);
-}
-function _open(param) {
-    // 避免重复触发
-    _close(param);
-
-    // 开关打开
-    _wmEnable = true;
-
-    // 生成水印
-    // eslint-disable-next-line no-use-before-define
-    createWatermark(param);
+    __wm && param && param.container.removeChild(__wm);
+    param = null;
 }
 
 // canvas 实现 watermark
@@ -79,10 +66,11 @@ export function createWatermark({
     if (WATERMARK_DISABLED) {
         return;
     }
-    if (!_wmEnable) {
-        return;
-    }
-    const param = {
+
+    // 为避免多次调用 createWatermark 触发重复监听，这里先执行销毁水印操作
+    _destroyWatermark();
+
+    param = {
         container,
         width,
         height,
@@ -169,13 +157,13 @@ export function createWatermark({
         }
 
         _wmTimer = window.setTimeout(() => {
-            // 触发MutationObserver
+            // 触发 MutationObserver
             watermarkDiv.style.bottom = '0';
         }, timeout);
     }
+}
 
-    return {
-        close: () => _close(param),
-        open: () => _open(param)
-    };
+// 销毁水印
+export function destroyWatermark() {
+    _destroyWatermark();
 }
