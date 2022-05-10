@@ -35,6 +35,7 @@ let _wmTimer = null; // timestamp
 
 function _createWatermark(param) {
     const {
+        content,
         container,
         width,
         height,
@@ -43,7 +44,6 @@ function _createWatermark(param) {
         fontSize,
         fontFamily,
         fillStyle,
-        content,
         rotate,
         zIndex,
         timestamp
@@ -140,6 +140,7 @@ export function destroyWatermark() {
 
 // canvas 实现 watermark
 export function createWatermark({
+    content = '请勿外传',
     container = document.body,
     width = 300,
     height = 300,
@@ -148,7 +149,6 @@ export function createWatermark({
     fontSize = '14px',
     fontFamily = 'Microsoft Yahei',
     fillStyle = 'rgba(184, 184, 184, 0.3)',
-    content = '请勿外传',
     rotate = 25,
     zIndex = 99999,
     timestamp = 'YYYY-MM-DD HH:mm'
@@ -162,6 +162,7 @@ export function createWatermark({
     destroyWatermark();
 
     _createWatermark({
+        content,
         container,
         width,
         height,
@@ -170,7 +171,6 @@ export function createWatermark({
         fontSize,
         fontFamily,
         fillStyle,
-        content,
         rotate,
         zIndex,
         timestamp
