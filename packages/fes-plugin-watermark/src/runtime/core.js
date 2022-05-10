@@ -30,6 +30,21 @@ function timeFormat(date, format = 'YYYY-MM-DD') {
     return format.replace(/Y+|M+|D+|H+|h+|m+|s+|S+|Q/g, str => String(map[str]));
 }
 
+const defaultOption = {
+    content: '请勿外传',
+    container: document.body,
+    width: 300,
+    height: 300,
+    textAlign: 'center',
+    textBaseline: 'middle',
+    fontSize: '14px',
+    fontFamily: 'Microsoft Yahei',
+    fillStyle: 'rgba(184, 184, 184, 0.3)',
+    rotate: 25,
+    zIndex: 99999,
+    timestamp: 'YYYY-MM-DD HH:mm'
+};
+
 let _wmMo = null; // MutationObserver
 let _wmTimer = null; // timestamp
 
@@ -139,20 +154,7 @@ export function destroyWatermark() {
 }
 
 // canvas 实现 watermark
-export function createWatermark({
-    content = '请勿外传',
-    container = document.body,
-    width = 300,
-    height = 300,
-    textAlign = 'center',
-    textBaseline = 'middle',
-    fontSize = '14px',
-    fontFamily = 'Microsoft Yahei',
-    fillStyle = 'rgba(184, 184, 184, 0.3)',
-    rotate = 25,
-    zIndex = 99999,
-    timestamp = 'YYYY-MM-DD HH:mm'
-} = {}) {
+export function createWatermark(option) {
     // eslint-disable-next-line no-undef
     if (WATERMARK_DISABLED) {
         return;
@@ -162,17 +164,7 @@ export function createWatermark({
     destroyWatermark();
 
     _createWatermark({
-        content,
-        container,
-        width,
-        height,
-        textAlign,
-        textBaseline,
-        fontSize,
-        fontFamily,
-        fillStyle,
-        rotate,
-        zIndex,
-        timestamp
+        ...defaultOption,
+        ...option
     });
 }
