@@ -86,7 +86,8 @@ function _createWatermark(param) {
         parseInt(fontSize) + 5
     );
 
-    const watermarkDiv = document.createElement('div');
+    let __wm = document.querySelector('.__wm');
+    const watermarkDiv = __wm || document.createElement('div');
     const styleStr = `
     position: ${container === document.body ? 'fixed' : 'absolute'};
     user-select: none;
@@ -102,12 +103,14 @@ function _createWatermark(param) {
     watermarkDiv.setAttribute('style', styleStr);
     watermarkDiv.classList.add('__wm');
 
-    container.insertBefore(watermarkDiv, container.firstChild);
+    if (!__wm) {
+        container.insertBefore(watermarkDiv, container.firstChild);
+    }
 
     const MutationObserver = window.MutationObserver || window.WebKitMutationObserver;
     if (MutationObserver) {
         _wmMo = new MutationObserver(() => {
-            const __wm = document.querySelector('.__wm');
+            __wm = document.querySelector('.__wm');
             if ((__wm && __wm.getAttribute('style') !== styleStr) || !__wm) {
                 // 避免一直触发
                 _wmMo.disconnect();
