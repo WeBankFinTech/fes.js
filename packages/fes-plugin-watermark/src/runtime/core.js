@@ -30,6 +30,36 @@ function timeFormat(date, format = 'YYYY-MM-DD') {
     return format.replace(/Y+|M+|D+|H+|h+|m+|s+|S+|Q/g, str => String(map[str]));
 }
 
+let _wmEnable = true; // 开关控制
+let _wmMo = null; // MutationObserver
+let _wmTimer = null; // timestamp
+
+function _close(param) {
+    // 开关关闭
+    _wmEnable = false;
+
+    // 监听器关闭
+    _wmMo && _wmMo.disconnect();
+    _wmMo = null;
+    _wmTimer && clearTimeout(_wmTimer);
+    _wmTimer = null;
+
+    // 删除水印元素
+    const __wm = document.querySelector('.__wm');
+    __wm && param.container.removeChild(__wm);
+}
+function _open(param) {
+    // 避免重复触发
+    _close(param);
+
+    // 开关打开
+    _wmEnable = true;
+
+    // 生成水印
+    // eslint-disable-next-line no-use-before-define
+    createWatermark(param);
+}
+
 // canvas 实现 watermark
 export function createWatermark({
     container = document.body,
@@ -63,6 +93,9 @@ export function createWatermark({
         zIndex,
         timestamp
     };
+    if (!_wmEnable) {
+        return;
+    }
     const canvas = document.createElement('canvas');
     canvas.setAttribute('width', `${width}px`);
     canvas.setAttribute('height', `${height}px`);
@@ -108,17 +141,17 @@ export function createWatermark({
 
     const MutationObserver = window.MutationObserver || window.WebKitMutationObserver;
     if (MutationObserver) {
-        let mo = new MutationObserver(() => {
+        _wmMo = new MutationObserver(() => {
             __wm = document.querySelector('.__wm');
             if ((__wm && __wm.getAttribute('style') !== styleStr) || !__wm) {
                 // 避免一直触发
-                mo.disconnect();
-                mo = null;
+                _wmMo.disconnect();
+                _wmMo = null;
                 createWatermark(param);
             }
         });
 
-        mo.observe(container, {
+        _wmMo.observe(container, {
             attributes: true,
             subtree: true,
             childList: true
@@ -135,9 +168,14 @@ export function createWatermark({
             timeout = 1000 * 60 * 60;
         }
 
-        setTimeout(() => {
+        _wmTimer = setTimeout(() => {
             // 触发MutationObserver
             watermarkDiv.style.bottom = '0';
         }, timeout);
     }
+
+    return {
+        close: () => _close(param),
+        open: () => _open(param)
+    };
 }

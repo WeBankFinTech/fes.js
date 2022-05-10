@@ -49,6 +49,14 @@ import { createWatermark } from '@fesjs/fes'
 createWatermark({ content: '我是水印' });
 ```
 
+若需要动态关闭和重新打开水印，则：
+
+```js
+const { close, open } = createWatermark({ content: '我是水印' });
+
+close(); // 关闭水印
+open(); // 重新打开水印
+```
 
 默认参数是：
 ```js
