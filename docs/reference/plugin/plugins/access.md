@@ -163,15 +163,15 @@ import { access } from '@fesjs/fes'
 ```
 
 #### access.hasAccess
-- **类型**：函数
+- **类型**：( accessId: string | number ) => Promise<boolean>
   
 - **详情**: 判断某个资源是否可见。
 - **参数**：
   - accessId，资源Id
-- **返回值**：Boolean
+- **返回值**：是否有权限
 
 #### access.isDataReady
-- **类型**：函数
+- **类型**：() => boolean
   
 - **详情**：可以用异步数据来设置权限，`isDataReady` 用来判断异步数据是否已经加载完毕。
 - **参数**：null
