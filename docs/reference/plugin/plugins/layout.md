@@ -74,9 +74,8 @@ export default {
 
 - **logo**：logo和标题区域。
 
-## 配置
 
-### keep-alive
+## keep-alive
 从 4.0.7 开始支持配置路由页面缓存：
 ```
 <config lang="json">
@@ -86,7 +85,7 @@ export default {
 </config>
 ```
 
-### 编译时配置
+## 编译时配置
 在 `.fes.js` 中配置：
 ```js
 export default {
@@ -124,70 +123,64 @@ export default {
     },
 ```
 
-#### footer
+### footer
 - **类型**：`String`
   
 - **默认值**：`null`
 
 - **详情**：页面底部的文字。
 
-#### theme
+### theme
 - **类型**：`String`
   
 - **默认值**：`dark`
 
 - **详情**：主题，可选有 `dark`、`light`
 
-#### navigation
+### navigation
 - **类型**：`String`
   
 - **默认值**：`side`
 
 - **详情**：页面布局类型，可选有 `side`、 `top`、 `mixin` 
 
-#### fixedHeader
+### fixedHeader
 - **类型**：`Boolean`
   
 - **默认值**：`false`
 
 - **详情**：是否固定头部，不跟随页面滚动。
 
-#### fixedSideBar
+### fixedSideBar
 - **类型**：`Boolean`
   
 - **默认值**：`true`
 
 - **详情**：是否固定sidebar，不跟随页面滚动。
 
-#### title
+### title
 - **类型**：`String`
   
 - **默认值**：`name` in package.json
 
 - **详情**：产品名，会显示在 Logo 旁边。   
 
-#### logo
+### logo
 - **类型**：`String`
   
 - **默认值**：默认提供 fes.js 的 Logo
 
-- **详情**：Logo，会显示在布局上。
+- **详情**：Logo的链接
 
-#### locale
-- **类型**：`boolean`
-  
-- **默认值**：`false`
 
-- **详情**：是否显示语言选择框。
-
-#### multiTabs
+### multiTabs
 - **类型**：`boolean`
   
 - **默认值**：`false`
 
 - **详情**：是否开启多页。
 
-#### menus
+### menus
 - **类型**：`Array`
   
 - **默认值**：`[]`
@@ -225,7 +218,7 @@ export default {
   
   - **children**：子菜单配置。
 
-#### menusConfig
+### menusConfig
 - **类型**：`Object`
   
 - **默认值**：`{}`
@@ -238,7 +231,7 @@ export default {
 
   - **accordion**：是否只保持一个子菜单的展开。
   
-### 运行时配置
+## 运行时配置
 在 `app.js` 中配置：
 ```js
 import UserCenter from '@/components/UserCenter';
@@ -248,7 +241,7 @@ export const layout = {
 
 ```
 
-#### menus
+### menus
 - **类型**：`(defaultMenus: [] )=> Ref | []`
   
 - **详情**：运行时修改菜单，入参是默认菜单配置（.fes.js中的menu配置），需要返回一个`Ref`或者数组。
@@ -280,35 +273,35 @@ export const layout = layoutConfig => ({
 :::
 
 
-#### header
+### header
 - **类型**：`String`
   
 - **默认值**：`true`
 
 - **详情**：是否显示 header 区域。
 
-#### sidebar
+### sidebar
 - **类型**：`String`
   
 - **默认值**：`true`
 
 - **详情**：是否显示 sidebar 区域。
 
-#### logo
+### logo
 - **类型**：`String`
   
 - **默认值**：`true`
 
 - **详情**：是否显示 logo 区域。
 
-#### customHeader
+### customHeader
 - **类型**：Vue Component
   
 - **默认值**：`null`
 
 - **详情**：top的区域部分位置提供组件自定义功能。
 
-#### unAccessHandler
+### unAccessHandler
 - **类型**：`Function`
   
 - **默认值**：`null`
@@ -340,7 +333,7 @@ export const access = {
 
 ```
 
-#### noFoundHandler
+### noFoundHandler
 - **类型**：函数
   
 - **默认值**：null
@@ -367,3 +360,14 @@ export const access = {
 };
 
 ```
+
+### logoUrl
+- **类型**：`String`
+  
+- **默认值**：默认提供 fes.js 的 Logo
+
+- **详情**：Logo的链接。
+
+
+### 其他运行时配置 (> 4.1.0)
+编译时配置的内容同样支持在运行时配置，但是`logo`除外，用`logoUrl`替代。
