@@ -41,7 +41,7 @@ function _close(param) {
     // 监听器关闭
     _wmMo && _wmMo.disconnect();
     _wmMo = null;
-    _wmTimer && clearTimeout(_wmTimer);
+    _wmTimer && window.clearTimeout(_wmTimer);
     _wmTimer = null;
 
     // 删除水印元素
@@ -79,6 +79,9 @@ export function createWatermark({
     if (WATERMARK_DISABLED) {
         return;
     }
+    if (!_wmEnable) {
+        return;
+    }
     const param = {
         container,
         width,
@@ -93,9 +96,6 @@ export function createWatermark({
         zIndex,
         timestamp
     };
-    if (!_wmEnable) {
-        return;
-    }
     const canvas = document.createElement('canvas');
     canvas.setAttribute('width', `${width}px`);
     canvas.setAttribute('height', `${height}px`);
@@ -168,7 +168,7 @@ export function createWatermark({
             timeout = 1000 * 60 * 60;
         }
 
-        _wmTimer = setTimeout(() => {
+        _wmTimer = window.setTimeout(() => {
             // 触发MutationObserver
             watermarkDiv.style.bottom = '0';
         }, timeout);
