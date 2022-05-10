@@ -26,8 +26,8 @@ export const beforeRender = {
     }
 };
 
-export const layout = initialValue => ({
-    ...initialValue,
+export const layout = layoutConfig => ({
+    ...layoutConfig,
     customHeader: <UserCenter />,
     menus: (defaultMenuData) => {
         const menusRef = ref(defaultMenuData);
