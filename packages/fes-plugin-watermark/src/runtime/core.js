@@ -34,7 +34,8 @@ let param = null; // 配置项
 let _wmMo = null; // MutationObserver
 let _wmTimer = null; // timestamp
 
-function _destroyWatermark() {
+// 销毁水印
+export function destroyWatermark() {
     // 监听器关闭
     _wmMo && _wmMo.disconnect();
     _wmMo = null;
@@ -68,7 +69,7 @@ export function createWatermark({
     }
 
     // 为避免多次调用 createWatermark 触发重复监听，这里先执行销毁水印操作
-    _destroyWatermark();
+    destroyWatermark();
 
     param = {
         container,
@@ -161,9 +162,4 @@ export function createWatermark({
             watermarkDiv.style.bottom = '0';
         }, timeout);
     }
-}
-
-// 销毁水印
-export function destroyWatermark() {
-    _destroyWatermark();
 }
