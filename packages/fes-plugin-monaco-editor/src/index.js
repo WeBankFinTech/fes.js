@@ -74,7 +74,7 @@ export default (api) => {
 
     api.addRuntimePlugin(() => `@@/${absRuntimeFilePath}`);
 
-    if (api.builder.isVite) {
+    if (api.builder.name === 'vite') {
         api.modifyBundleConfig((config) => {
             const monacoEditorPlugin = require('vite-plugin-monaco-editor').default;
             config?.plugins?.push(monacoEditorPlugin(api.config?.monacoEditor || {}));

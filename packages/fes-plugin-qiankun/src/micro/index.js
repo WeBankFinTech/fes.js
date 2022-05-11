@@ -19,7 +19,7 @@ export default function (api) {
         enableBy: () => isSlaveEnable(api),
     });
 
-    if (api.builder.isVite) {
+    if (api.builder.name === 'vite') {
         // 处理
     } else {
         api.modifyDefaultConfig((memo) => {

@@ -17,7 +17,7 @@ export default (api) => {
         },
     });
 
-    if (api.builder.isVite) {
+    if (api.builder.name === 'vite') {
         // vite 不需要处理
     } else {
         api.chainWebpack((memo, { createCSSRule }) => {

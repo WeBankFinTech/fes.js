@@ -91,5 +91,8 @@ export default {
     dynamicImport: true,
     monacoEditor: {
         languages: ['javascript', 'typescript', 'html', 'json']
-    }
+    },
+    presets: [
+        require.resolve('../fes-build-webpack/lib'),
+    ]
 };

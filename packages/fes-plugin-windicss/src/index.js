@@ -61,7 +61,7 @@ export default (api) => {
 
     api.addEntryImportsAhead(() => [{ source: 'windi-base.css' }, { source: 'windi-components.css' }, { source: 'windi-utilities.css' }]);
 
-    if (api.builder.isVite) {
+    if (api.builder.name === 'vite') {
         buildWindicssWithVite(api);
     } else {
         buildWindicssWithWebpack(api);

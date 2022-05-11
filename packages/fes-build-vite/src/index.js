@@ -1,6 +1,7 @@
 export default function () {
     return {
         plugins: [
+            require.resolve('./registerBuilder'),
             require.resolve('./registerMethods'),
             require.resolve('./registerType'),
 
