@@ -38,7 +38,7 @@ export default (api) => {
 
     api.addPluginExports(() => [
         {
-            specifiers: ['createWatermark'],
+            specifiers: ['createWatermark', 'destroyWatermark'],
             source: absoluteFilePath
         }
     ]);
