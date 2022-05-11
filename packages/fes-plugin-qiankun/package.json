@@ -8,8 +8,9 @@
   ],
   "scripts": {
     "start": "npm-run-all --parallel start:*",
-    "start:master": "cd ./examples/main && fes dev",
-    "start:app1": "cd ./examples/app1 && fes dev"
+    "start:vite-main": "cd ./examples/vite-main && fes dev",
+    "start:webpack-main": "cd ./examples/webpack-main && fes dev",
+    "start:micro": "cd ./examples/micro && fes dev"
   },
   "repository": {
     "type": "git",
