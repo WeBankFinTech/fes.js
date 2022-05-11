@@ -6,6 +6,7 @@
 .cache
 .temp
 .hound
+.fes
 dist
 *.log
 node_modules
@@ -14,7 +15,6 @@ npm-debug.log
 /packages/fes-doc/docs/.vuepress/dist
 /packages/fes-template/package-lock.json
 /.changelog
-
 /packages/*/lib
 /packages/*/es
 /packages/*/dist

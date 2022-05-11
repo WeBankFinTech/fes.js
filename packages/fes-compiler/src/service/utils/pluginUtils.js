@@ -1,14 +1,11 @@
 import { dirname, join, basename, relative, extname } from 'path';
 import { compatESModuleRequire, resolve, winPath, pkgUp, lodash } from '@fesjs/utils';
-import Logger from '../../logger';
 
 import { PluginType } from '../enums';
 
-const logger = new Logger('fes:compiler');
-
 const RE = {
     [PluginType.plugin]: /^(@fesjs\/|@webank\/fes-|fes-)plugin-/,
-    [PluginType.preset]: /^(@fesjs\/|@webank\/fes-|fes-)preset-/,
+    [PluginType.preset]: /^(@fesjs\/|@webank\/fes-|fes-)(preset|build)-/,
 };
 
 export function isPluginOrPreset(type, name) {
@@ -26,18 +23,6 @@ function filterPluginAndPreset(type, pkg) {
         .filter(isPluginOrPreset.bind(null, type));
 }
 
-export function filterBuilder(pkg) {
-    const builders = Object.keys(pkg.devDependencies || {})
-        .concat(Object.keys(pkg.dependencies || {}))
-        .filter((name) => /^@fesjs\/build-/.test(name));
-
-    if (builders.length > 1) {
-        logger.warn(`检测到您使用了多个个 builder: ${builders}，当前生效的是 ${builders[0]}, 请保留一个`);
-    }
-
-    return builders.slice(0, 1);
-}
-
 export function getPluginsOrPresets(type, opts) {
     const upperCaseType = type.toUpperCase();
     return [
@@ -46,8 +31,6 @@ export function getPluginsOrPresets(type, opts) {
         // env
         ...(process.env[`FES_${upperCaseType}S`] || '').split(',').filter(Boolean),
         ...filterPluginAndPreset(type, opts.pkg),
-        // 构建只允许是 presets
-        ...(type === PluginType.preset ? filterBuilder(opts.pkg) : []),
         // user config
         ...(opts[type === PluginType.preset ? 'userConfigPresets' : 'userConfigPlugins'] || []),
     ].map((path) =>
@@ -122,13 +105,29 @@ export function pathToObj({ path, type, cwd }) {
 export function resolvePresets(opts) {
     const type = PluginType.preset;
     const presets = [...getPluginsOrPresets(type, opts)];
-    return presets.map((path) =>
-        pathToObj({
-            type,
-            path,
-            cwd: opts.cwd,
-        }),
-    );
+    return presets
+        .map((path) =>
+            pathToObj({
+                type,
+                path,
+                cwd: opts.cwd,
+            }),
+        )
+        .sort((a, b) => {
+            if (a.id === '@fesjs/preset-built-in') {
+                return -1;
+            }
+            if (b.id === '@fesjs/preset-built-in') {
+                return 1;
+            }
+            if (/^(@fesjs\/|@webank\/fes-|fes-)build-/.test(a.id)) {
+                return -1;
+            }
+            if (/^(@fesjs\/|@webank\/fes-|fes-)build-/.test(b.id)) {
+                return 1;
+            }
+            return 0;
+        });
 }
 
 export function resolvePlugins(opts) {

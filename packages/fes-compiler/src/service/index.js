@@ -9,7 +9,7 @@ import { AsyncSeriesWaterfallHook } from 'tapable';
 import { existsSync } from 'fs';
 import { lodash, chalk } from '@fesjs/utils';
 import { Command, Option } from 'commander';
-import { resolvePresets, filterBuilder, pathToObj, resolvePlugins } from './utils/pluginUtils';
+import { resolvePresets, pathToObj, resolvePlugins } from './utils/pluginUtils';
 import loadDotEnv from './utils/loadDotEnv';
 import isPromise from './utils/isPromise';
 import BabelRegister from './babelRegister';
@@ -37,6 +37,9 @@ export default class Service extends EventEmitter {
 
     // including plugins
     plugins = {};
+
+    // 构建
+    builder = {};
 
     // plugin methods
     pluginMethods = {};
@@ -88,11 +91,6 @@ export default class Service extends EventEmitter {
         this.pkg = opts.pkg || this.resolvePackage();
         this.env = opts.env || process.env.NODE_ENV;
         this.fesPkg = opts.fesPkg || {};
-
-        const builderPkgPath = filterBuilder(this.pkg);
-        this.builder = {
-            isVite: (builderPkgPath[0] || '').includes('build-vite'),
-        };
 
         assert(existsSync(this.cwd), `cwd ${this.cwd} does not exist.`);
 

@@ -77,6 +77,7 @@ export interface InnerBuildConfig {
     };
     mountElementId?: string;
     plugins?: string[];
+    presets?: string[];
     proxy?: {
         [apiPrefix: string]: {
             target: string;
