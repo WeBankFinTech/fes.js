@@ -35,10 +35,12 @@ export default {
         }
     },
     plugins: [
-        require.resolve('../../../fes-build-vite/lib'),
         require.resolve('../../../fes-plugin-model/lib'),
         require.resolve('../../../fes-plugin-layout/lib'),
         require.resolve('../../../fes-plugin-access/lib'),
         require.resolve('../../../fes-plugin-qiankun/lib'),
+    ],
+    presets: [
+        require.resolve('../../../fes-build-vite/lib'),
     ]
 };
