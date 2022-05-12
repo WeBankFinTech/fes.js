@@ -93,6 +93,6 @@ export default {
         languages: ['javascript', 'typescript', 'html', 'json']
     },
     presets: [
-        require.resolve('../fes-build-webpack/lib'),
+        require.resolve('../fes-builder-webpack/lib'),
     ]
 };

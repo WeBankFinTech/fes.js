@@ -41,6 +41,6 @@ export default {
         require.resolve('../../../fes-plugin-qiankun/lib'),
     ],
     presets: [
-        require.resolve('../../../fes-build-vite/lib'),
+        require.resolve('../../../fes-builder-vite/lib'),
     ]
 };
