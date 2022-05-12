@@ -1,7 +1,7 @@
 {
-  "name": "@fesjs/build-webpack",
+  "name": "@fesjs/builder-webpack",
   "version": "1.0.0",
-  "description": "@fesjs/build-webpack",
+  "description": "@fesjs/builder-webpack",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "files": [
@@ -10,7 +10,7 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/WeBankFinTech/fes.js.git",
-    "directory": "packages/fes-build-webpack"
+    "directory": "packages/fes-builder-webpack"
   },
   "keywords": [
     "fes"

@@ -5,7 +5,7 @@ import { PluginType } from '../enums';
 
 const RE = {
     [PluginType.plugin]: /^(@fesjs\/|@webank\/fes-|fes-)plugin-/,
-    [PluginType.preset]: /^(@fesjs\/|@webank\/fes-|fes-)(preset|build)-/,
+    [PluginType.preset]: /^(@fesjs\/|@webank\/fes-|fes-)(preset|builder)-/,
 };
 
 export function isPluginOrPreset(type, name) {
@@ -120,10 +120,10 @@ export function resolvePresets(opts) {
             if (b.id === '@fesjs/preset-built-in') {
                 return 1;
             }
-            if (/^(@fesjs\/|@webank\/fes-|fes-)build-/.test(a.id)) {
+            if (/^(@fesjs\/|@webank\/fes-|fes-)builder-/.test(a.id)) {
                 return -1;
             }
-            if (/^(@fesjs\/|@webank\/fes-|fes-)build-/.test(b.id)) {
+            if (/^(@fesjs\/|@webank\/fes-|fes-)builder-/.test(b.id)) {
                 return 1;
             }
             return 0;

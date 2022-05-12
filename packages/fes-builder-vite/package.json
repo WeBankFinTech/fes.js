@@ -1,7 +1,7 @@
 {
-  "name": "@fesjs/build-vite",
+  "name": "@fesjs/builder-vite",
   "version": "1.0.0",
-  "description": "@fesjs/build-vite",
+  "description": "@fesjs/builder-vite",
   "main": "lib/index.js",
   "files": [
     "lib"
@@ -9,7 +9,7 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/WeBankFinTech/fes.js.git",
-    "directory": "packages/fes-build-vite"
+    "directory": "packages/fes-builder-vite"
   },
   "keywords": [
     "fes"

@@ -39,6 +39,6 @@ export default {
         require.resolve('../../../fes-plugin-qiankun/lib'),
     ],
     presets: [
-        require.resolve('../../../fes-build-webpack/lib'),
+        require.resolve('../../../fes-builder-webpack/lib'),
     ]
 };

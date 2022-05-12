@@ -1,6 +1,6 @@
 import { Logger } from '@fesjs/compiler';
 
-const logger = new Logger('fes:build-webpack');
+const logger = new Logger('fes:builder-webpack');
 
 export default (api) => {
     const {
