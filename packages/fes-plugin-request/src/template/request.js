@@ -8,7 +8,6 @@ import setDataField from './setDataField';
 import paramsProcess from './paramsProcess';
 import genRequestKey from './genRequestKey';
 import preventRepeatReq from './preventRepeatReq';
-import throttle from './throttle';
 import cacheControl from './cacheControl';
 import resDataAdaptor from './resDataAdaptor';
 import resErrorProcess from './resErrorProcess';
@@ -71,7 +70,6 @@ function getRequestInstance() {
         .use(genRequestKey)
         .use(cacheControl)
         .use(preventRepeatReq)
-        .use(throttle)
         .use(axiosMiddleware)
         .use(resDataAdaptor)
         .use(resErrorProcess)
@@ -89,18 +87,8 @@ function getRequestInstance() {
     };
 }
 
-// DEPRECATED 废弃，使用 axios baseURL
-function handleApiPathBase(url, options = {}) {
-    if (url.startsWith('http')) return url;
-
-    if (options.base) {
-        return `${options.base}${url}`;
-    }
-    return `REPLACE_BASE${url}`;
-}
-
 function userConfigHandler(url, data, options = {}) {
-    options.url = handleApiPathBase(url, options);
+    options.url = url;
     options.method = (options.method || 'post').toUpperCase();
     if (checkHttpRequestHasBody(options.method)) {
         options.data = data;
