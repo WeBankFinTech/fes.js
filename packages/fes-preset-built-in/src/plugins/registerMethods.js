@@ -36,16 +36,21 @@ export default function (api) {
         },
     });
 
+    const cacheCopyPath = {};
+
     api.registerMethod({
         name: 'copyTmpFiles',
         fn({ namespace, path, ignore }) {
+            const base = join(api.paths.absTmpPath, namespace);
+            // copy 行为只需要执行一次
+            if (cacheCopyPath[base]) return;
+            cacheCopyPath[base] = true;
             assert(api.stage >= api.ServiceStage.pluginReady, 'api.copyTmpFiles() should not execute in register stage.');
             assert(path, 'api.copyTmpFiles() should has param path');
             assert(namespace, 'api.copyTmpFiles() should has param namespace');
             const files = api.utils.glob.sync('**/*', {
                 cwd: path,
             });
-            const base = join(api.paths.absTmpPath, namespace);
             files.forEach((file) => {
                 const source = join(path, file);
                 const target = join(base, file);
