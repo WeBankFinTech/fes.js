@@ -1,5 +1,6 @@
 import WebpackDevServer from 'webpack-dev-server';
 import webpack from 'webpack';
+import { chalk } from '@fesjs/utils';
 
 export function startDevServer({ webpackConfig, host, port, proxy, https, beforeMiddlewares, afterMiddlewares, customerDevServerConfig }) {
     const options = {
@@ -12,9 +13,6 @@ export function startDevServer({ webpackConfig, host, port, proxy, https, before
                 hostname: host,
                 port,
             },
-        },
-        devMiddleware: {
-            stats: 'errors-only',
         },
         setupMiddlewares(middlewares) {
             middlewares.unshift(...beforeMiddlewares);
@@ -33,6 +31,7 @@ export function startDevServer({ webpackConfig, host, port, proxy, https, before
     const compiler = webpack(webpackConfig);
     const server = new WebpackDevServer(options, compiler);
 
+    console.log(chalk.green('Server: '), chalk.blue(`${options.server}://${options.host}:${options.port}`));
     server.startCallback((err) => {
         if (err) {
             console.error(err);

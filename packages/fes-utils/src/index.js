@@ -31,6 +31,7 @@ import getHostName from './getHostName';
 import resolveRuntimeEnv from './resolveRuntimeEnv';
 import stringifyObjValue from './stringifyObjValue';
 import getTargetsAndBrowsersList from './getTargetsAndBrowsersList';
+import * as logger from './logger';
 
 export {
     chalk,
@@ -50,6 +51,7 @@ export {
     portfinder,
     resolve,
     generator,
+    logger,
 };
 
 export {

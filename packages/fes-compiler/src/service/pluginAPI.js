@@ -7,7 +7,6 @@ import assert from 'assert';
 import * as utils from '@fesjs/utils';
 import { isValidPlugin, pathToObj } from './utils/pluginUtils';
 import { EnableBy, PluginType, ServiceStage } from './enums';
-import Logger from '../logger';
 
 // TODO
 // 标准化 logger
@@ -17,7 +16,7 @@ export default class PluginAPI {
         this.key = opts.key;
         this.service = opts.service;
         this.utils = utils;
-        this.logger = new Logger(`fes:plugin:${this.id || this.key}`);
+        this.logger = utils.logger;
     }
 
     // TODO: reversed keys
