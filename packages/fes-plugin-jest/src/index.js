@@ -1,12 +1,9 @@
 import assert from 'assert';
 import { join } from 'path';
 import { existsSync } from 'fs';
-import { Logger } from '@fesjs/compiler';
 // jest-cli 不在暴露 options，维护一份本地的 options
 import { options as CliOptions } from './jestArgs';
 import createDefaultConfig from './createDefaultConfig';
-
-const logger = new Logger('fes:plugin-unit-jest');
 
 function getCommandOptiton() {
     const opts = [];
@@ -28,7 +25,7 @@ function getCommandOptiton() {
 
 export default function (api) {
     const {
-        utils: { mergeConfig },
+        utils: { mergeConfig, logger },
         cwd,
     } = api;
 
@@ -43,22 +40,22 @@ export default function (api) {
                 args._.shift();
             }
 
-            args.debug && logger.log(`args: ${JSON.stringify(args)}`);
+            args.debug && logger.info(`args: ${JSON.stringify(args)}`);
 
             // Read config from cwd/jest.config.js
             const userJestConfigFile = join(cwd, 'jest.config.js');
             const userJestConfig = existsSync(userJestConfigFile) && require(userJestConfigFile);
-            args.debug && logger.log(`config from jest.config.js: ${JSON.stringify(userJestConfig)}`);
+            args.debug && logger.info(`config from jest.config.js: ${JSON.stringify(userJestConfig)}`);
 
             // Read jest config from package.json
             const packageJSONPath = join(cwd, 'package.json');
             const packageJestConfig = existsSync(packageJSONPath) && require(packageJSONPath).jest;
-            args.debug && logger.log(`jest config from package.json: ${JSON.stringify(packageJestConfig)}`);
+            args.debug && logger.info(`jest config from package.json: ${JSON.stringify(packageJestConfig)}`);
 
             // Merge configs
             // user config and args config could have value function for modification
             const config = mergeConfig(createDefaultConfig(cwd, args), packageJestConfig, userJestConfig);
-            args.debug && logger.log(`final config: ${JSON.stringify(config)}`);
+            args.debug && logger.info(`final config: ${JSON.stringify(config)}`);
 
             // Generate jest options
             const argsConfig = Object.keys(CliOptions).reduce((prev, name) => {
@@ -69,7 +66,7 @@ export default function (api) {
                 if (alias && args[alias]) prev[name] = args[alias];
                 return prev;
             }, {});
-            args.debug && logger.log(`config from args: ${JSON.stringify(argsConfig)}`);
+            args.debug && logger.info(`config from args: ${JSON.stringify(argsConfig)}`);
 
             // 比较大的库建议使用require，使用时才加载，提升fes命令的效率
             const { runCLI } = require('jest');
@@ -87,7 +84,7 @@ export default function (api) {
                 },
                 [cwd],
             );
-            args.debug && logger.log(result);
+            args.debug && logger.info(result);
 
             // Throw error when run failed
             assert(result.results.success, 'Test with jest failed');

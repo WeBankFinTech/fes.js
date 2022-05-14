@@ -1,11 +1,8 @@
 import { readdirSync, statSync, readFileSync } from 'fs';
 import { join, extname, posix, basename } from 'path';
-import { lodash, parser, generator } from '@fesjs/utils';
+import { lodash, parser, generator, logger } from '@fesjs/utils';
 import { parse } from '@vue/compiler-sfc';
-import { Logger } from '@fesjs/compiler';
 import { runtimePath } from '../../utils/constants';
-
-const logger = new Logger('fes:router');
 
 //   pages
 //  ├── index.vue         # 根路由页面 路径 /

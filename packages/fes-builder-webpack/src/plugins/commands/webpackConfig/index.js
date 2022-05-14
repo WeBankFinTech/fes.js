@@ -56,7 +56,7 @@ export default async function getConfig({ api, cwd, config, env, entry = {}, mod
     const absoluteOutput = join(cwd, config.outputPath || 'dist');
 
     webpackConfig.mode(env);
-    webpackConfig.stats('verbose');
+    webpackConfig.stats('errors-only');
     webpackConfig.externals(config.externals || {});
     webpackConfig.devtool(isDev ? config.devtool || 'cheap-module-source-map' : config.devtool);
 
@@ -226,6 +226,8 @@ export default async function getConfig({ api, cwd, config, env, entry = {}, mod
         ]);
     }
 
+    webpackConfig.plugin('progress').use(require.resolve(require.resolve('webpackbar')));
+
     // --------------- define -----------
     createDefineWebpackConfig({
         config,
@@ -279,6 +281,7 @@ export default async function getConfig({ api, cwd, config, env, entry = {}, mod
 
     const memo = webpackConfig.toConfig();
     memo.infrastructureLogging = {
+        level: 'error',
         ...memo.infrastructureLogging,
     };
     memo.output = {
