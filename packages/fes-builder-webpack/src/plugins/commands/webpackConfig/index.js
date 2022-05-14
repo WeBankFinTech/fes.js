@@ -284,6 +284,10 @@ export default async function getConfig({ api, cwd, config, env, entry = {}, mod
         level: 'error',
         ...memo.infrastructureLogging,
     };
+    memo.watchOptions = {
+        aggregateTimeout: 200,
+        ...memo.watchOptions,
+    };
     memo.output = {
         ...memo.output,
         assetModuleFilename: 'static/[name][hash:8][ext]',
