@@ -33,7 +33,31 @@ export default {
 -   默认值： `''`
 -   详情：
 
-    `dataField` 对应接口统一格式中的数据字段，比如接口如果统一的规范是 `{ success: boolean, result: any}` ，那么就不需要配置，这样你通过 `useRequest` 消费的时候会生成一个默认的 `formatResult`，直接返回 `result` 中的数据，方便使用。如果你的后端接口不符合这个规范，可以自行配置 `dataField`。配置为 `''`（空字符串）的时候不做处理。
+    `dataField` 对应接口中的数据字段。假设接口统一的规范是 `{ code: string, result: any}`，可配置 `dataField: 'result'`， 直接获取数据。如果个别接口不符合这个规范，可在第三个参数加上 `dataField: false`。
+
+```js
+// 构建时配置 dataField: 'result'
+
+import { request } from '@fesjs/fes';
+
+// 假设相应体为： {code: '0',  result: {say: 'hello'}}
+const result = await request('/path/to/query/');
+
+// {say: 'hello'}
+console.log(result);
+
+// 假设相应体为： {code: '0',  data: {say: 'hello'}}，其中 result 字段换成了 data
+const response1 = await request('/special/to/query/', null, { dataField: false });
+
+// {code: '0',  data: {say: 'hello'}}
+console.log(response1);
+
+// 或者：假设相应体为： {code: '0',  data: {say: 'hello'}}，其中 result 字段换成了 data
+const response2 = await request('/special/to/query/', null, { dataField: 'data' });
+
+// {say: 'hello'}
+console.log(response2);
+```
 
 ### 运行时配置
 
