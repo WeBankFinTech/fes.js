@@ -22,16 +22,26 @@ export const zh: NavbarConfig = [
     link: '/reference/cli/',
   },
   {
+    text: '版本',
+    children: [
+      {
+        text: '3.0',
+        link:
+          'http://fesjs.mumblefe.cn/next',
+      },
+      {
+        text: '1.0',
+        link: 'https://webank.gitee.io/fes.js/',
+      },
+    ],
+  },
+  {
     text: '了解更多',
     children: [
       {
         text: '更新日志',
         link:
           'https://github.com/WeBankFinTech/fes.js/blob/master/CHANGELOG.md',
-      },
-      {
-        text: 'v1 文档',
-        link: 'https://webank.gitee.io/fes.js/',
       },
       {
         text: 'fes-design',
