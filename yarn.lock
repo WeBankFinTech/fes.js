@@ -1496,6 +1496,37 @@
     normalize-wheel "^1.0.1"
     stickybits "^3.7.9"
 
+"@fesjs/fes-design@^0.5.0":
+  version "0.5.1"
+  resolved "https://registry.npmmirror.com/@fesjs/fes-design/-/fes-design-0.5.1.tgz#63ee227f39cf587da056c3cd702705c5fd50af7f"
+  integrity sha512-tk3DXGLhpO3gTpYbwqa+FuSmFzOxPFrrp1jVYYDPuvUevTY246Zo7Mulpzy5A7h0Z0bAYBemMshvIroNzIoHAw==
+  dependencies:
+    "@babel/runtime" "^7.16.3"
+    "@floating-ui/dom" "^0.4.2"
+    "@juggle/resize-observer" "^3.3.1"
+    "@types/lodash-es" "^4.17.5"
+    "@types/normalize-wheel" "^1.0.0"
+    "@vue/shared" "^3.2.19"
+    "@vueuse/core" "^6.7.5"
+    async-validator "^4.0.1"
+    csstype "^3.0.10"
+    date-fns "^2.28.0"
+    lodash-es "^4.17.21"
+    normalize-wheel "^1.0.1"
+    stickybits "^3.7.9"
+
+"@floating-ui/core@^0.6.2":
+  version "0.6.2"
+  resolved "https://registry.npmmirror.com/@floating-ui/core/-/core-0.6.2.tgz#f2813f0e5f3d5ed7af5029e1a082203dadf02b7d"
+  integrity sha512-jktYRmZwmau63adUG3GKOAVCofBXkk55S/zQ94XOorAHhwqFIOFAy1rSp2N0Wp6/tGbe9V3u/ExlGZypyY17rg==
+
+"@floating-ui/dom@^0.4.2":
+  version "0.4.5"
+  resolved "https://registry.npmmirror.com/@floating-ui/dom/-/dom-0.4.5.tgz#2e88d16646119cc67d44683f75ee99840475bbfa"
+  integrity sha512-b+prvQgJt8pieaKYMSJBXHxX/DYwdLsAWxKYqnO5dO2V4oo/TYBZJAUQCVNjTWWsrs6o4VDrNcP9+E70HAhJdw==
+  dependencies:
+    "@floating-ui/core" "^0.6.2"
+
 "@hapi/hoek@^9.0.0":
   version "9.2.1"
   resolved "https://registry.npmmirror.com/@hapi/hoek/-/hoek-9.2.1.tgz#9551142a1980503752536b5050fd99f4a7f13b17"
@@ -4432,6 +4463,11 @@ data-urls@^2.0.0:
     abab "^2.0.3"
     whatwg-mimetype "^2.3.0"
     whatwg-url "^8.0.0"
+
+date-fns@^2.28.0:
+  version "2.28.0"
+  resolved "https://registry.npmmirror.com/date-fns/-/date-fns-2.28.0.tgz#9570d656f5fc13143e50c975a3b6bbeb46cd08b2"
+  integrity sha512-8d35hViGYx/QH0icHYCeLmsLmMUheMmTyV9Fcm6gvNwdw31yXXH+O85sOBJ+OLnLQMKZowvpKb6FgMIQjcpvQw==
 
 dateformat@^3.0.0:
   version "3.0.3"
@@ -8854,7 +8890,7 @@ q@^1.5.1:
   resolved "https://registry.npmmirror.com/q/-/q-1.5.1.tgz#7e32f75b41381291d04611f1bf14109ac00651d7"
   integrity sha512-kV/CThkXo6xyFEZUugw/+pIOywXcDbFYgSct5cT3gqlbkBE1SJdwy6UQoZvodiWF/ckQLZyDE/Bu1M6gVu5lVw==
 
-qiankun@^2.4.4:
+qiankun@^2.7.0:
   version "2.7.0"
   resolved "https://registry.npmmirror.com/qiankun/-/qiankun-2.7.0.tgz#2054e1be05ddfbf1eb7658125075bc9f04afd37e"
   integrity sha512-MvsRNsu/2dql9un6qWRz/uNsyrFKa2b21Yxpb6UQpNu1pAl16xFozLDufBqiv/RbaGLI+f37VMwofi8n6WpP3w==
