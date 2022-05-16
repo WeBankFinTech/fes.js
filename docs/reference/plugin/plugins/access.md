@@ -163,7 +163,7 @@ import { access } from '@fesjs/fes'
 ```
 
 #### access.hasAccess
-- **类型**：( accessId: string | number ) => Promise<boolean>
+- **类型**：( accessId: string | number ) => Promise\<boolean\>
   
 - **详情**: 判断某个资源是否可见。
 - **参数**：
