@@ -4,7 +4,7 @@ import { navbar, sidebar } from './configs'
 
 const config: UserConfig<DefaultThemeOptions> = {
 
-  base: '/',
+  base: '/next/',
 
   head: [['link', { rel: 'manifest', href: '/manifest.webmanifest' }], ['link', { rel: 'icon', href: `/logo.png` }]],
 
