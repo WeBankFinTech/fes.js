@@ -1,6 +1,6 @@
 {
   "name": "@fesjs/builder-webpack",
-  "version": "1.0.0",
+  "version": "3.0.0-beta.0",
   "description": "@fesjs/builder-webpack",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -62,6 +62,7 @@
     "webpackbar": "^5.0.2"
   },
   "peerDependencies": {
+    "@fesjs/fes": "^3.0.0-beta.0",
     "@vue/compiler-sfc": "^3.0.5",
     "core-js": "^3.19.2"
   }

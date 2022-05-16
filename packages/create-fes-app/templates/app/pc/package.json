@@ -1,6 +1,6 @@
 {
   "name": "@fesjs/template",
-  "version": "2.0.0",
+  "version": "3.0.0-beta.0",
   "description": "fes项目模版",
   "scripts": {
     "build": "fes build",
@@ -47,13 +47,13 @@
     "@webank/eslint-config-webank": "^1.0.2"
   },
   "dependencies": {
-    "@fesjs/fes": "^2.0.0",
-    "@fesjs/plugin-access": "^2.0.0",
-    "@fesjs/plugin-layout": "^4.0.0",
-    "@fesjs/plugin-model": "^2.0.0",
-    "@fesjs/plugin-enums": "^2.0.0",
+    "@fesjs/fes": "^3.0.0-beta.0",
+    "@fesjs/plugin-access": "^3.0.0-beta.0",
+    "@fesjs/plugin-layout": "^5.0.0-beta.0",
+    "@fesjs/plugin-model": "^3.0.0-beta.0",
+    "@fesjs/plugin-enums": "^3.0.0-beta.0",
     "@fesjs/fes-design": "^0.5.0",
-    "@fesjs/builder-webpack": "^1.0.0",
+    "@fesjs/builder-webpack": "^3.0.0-beta.0",
     "vue": "^3.2.6",
     "core-js": "^3.19.2"
   },
