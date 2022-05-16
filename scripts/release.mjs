@@ -47,7 +47,7 @@ async function publishPackage(pkg, runIfNotDry) {
             [
                 'publish',
                 '--new-version',
-                pkg.version,
+                pkg.newVersion,
                 ...(_releaseTag ? ['--tag', _releaseTag] : []),
                 '--access',
                 'public',
