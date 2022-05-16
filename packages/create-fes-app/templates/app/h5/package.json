@@ -50,7 +50,7 @@
     "@fesjs/plugin-request": "^2.0.0",
     "@fesjs/builder-webpack": "^1.0.0",
     "vue": "^3.2.6",
-    "core-js": "^3.8.3"
+    "core-js": "^3.19.2"
   },
   "private": true
 }

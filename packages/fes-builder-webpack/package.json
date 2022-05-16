@@ -64,8 +64,5 @@
   "peerDependencies": {
     "@vue/compiler-sfc": "^3.0.5",
     "core-js": "^3.19.2"
-  },
-  "devDependencies": {
-    "core-js": "^3.19.2"
   }
 }
