@@ -1,8 +1,5 @@
 import { readFileSync } from 'fs';
 import { join } from 'path';
-import { lodash, winPath } from '@fesjs/utils';
-import { getModels } from './utils/getModels';
-import { getTmpFile } from './utils/getTmpFile';
 
 const namespace = 'plugin-model';
 
@@ -11,6 +8,10 @@ export default (api) => {
         paths,
         utils: { Mustache },
     } = api;
+
+    const { lodash, winPath } = require('@fesjs/utils');
+    const { getModels } = require('./utils/getModels');
+    const { getTmpFile } = require('./utils/getTmpFile');
 
     function getModelDir() {
         return api.config.singular ? 'model' : 'models';
@@ -22,18 +23,10 @@ export default (api) => {
 
     function getAllModels() {
         const srcModelsPath = getModelsPath();
-        return lodash.uniq([
-            ...getModels(srcModelsPath),
-            // ...getModels(
-            //     paths.absPagesPath,
-            //     `**/${getModelDir()}/**/*.{js,jsx}`
-            // ),
-            // ...getModels(paths.absPagesPath, '**/*.model.{js,jsx}')
-        ]);
+        return lodash.uniq([...getModels(srcModelsPath)]);
     }
 
     const absCoreFilePath = join(namespace, 'core.js');
-    const absRuntimeFilePath = join(namespace, 'runtime.js');
     const absInitialStateFilePath = join(namespace, 'models/initialState.js');
 
     api.register({
@@ -64,14 +57,10 @@ export default (api) => {
             }),
         });
 
-        api.writeTmpFile({
-            path: absRuntimeFilePath,
-            content: Mustache.render(readFileSync(join(__dirname, 'runtime/runtime.tpl'), 'utf-8'), {}),
-        });
-
-        api.writeTmpFile({
-            path: absInitialStateFilePath,
-            content: Mustache.render(readFileSync(join(__dirname, 'runtime/models/initialState.tpl'), 'utf-8'), {}),
+        api.copyTmpFiles({
+            namespace,
+            path: join(__dirname, 'runtime'),
+            ignore: ['.tpl'],
         });
     });
 
@@ -81,6 +70,4 @@ export default (api) => {
             source: absCoreFilePath,
         },
     ]);
-
-    api.addRuntimePlugin(() => `@@/${absRuntimeFilePath}`);
 };

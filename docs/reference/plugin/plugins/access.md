@@ -1,15 +1,13 @@
 # @fesjs/plugin-access
 
-
-
 ## 介绍
 对于前端应用来说，权限就是页面、页面元素是否可见。
 
 ### 资源
-Fes.js 把页面、页面元素统一叫做资源，每个资源都有 `accessId`：
-- 页面的 `accessId` 默认是页面的路由 `path` 。比如页面 `pages/a.vue` 的路由 `path` 是 `/a`。当页面访问 `/a` 时会渲染当前页面，`/a` 也就是页面的 `accessId`。
+Fes.js 把页面、页面元素统一叫做资源，用资源 ID 来识别区分他们：
+- 页面的资源 ID 默认是页面的路由 `path` 。比如页面 `pages/a.vue` 的路由 `path` 是 `/a`。当页面访问 `/a` 时会渲染当前页面，`/a` 也就是页面的 `accessId`。
   
-- 页面元素的 `accessId` 没有默认值，由我们自定义。
+- 页面元素的资源 ID 没有默认值，需要自定义。
 ```vue
 <template>
     <access :id="accessId"> accessOnepicess1 <input /> </access>
@@ -71,9 +69,7 @@ export default {
 }
 ```
 
-## 配置
-
-### 编译时配置
+## 编译时配置
 在执行 `fes dev` 或者 `fes build` 时，通过此配置生成运行时的代码，在配置文件`.fes.js` 中配置：
 ```js
 export default {
@@ -85,7 +81,7 @@ export default {
 }
 ```
 
-#### roles
+### roles
 - **类型**：对象
   
 - **默认值**：`{}`
@@ -95,10 +91,10 @@ export default {
   角色预定义列表。`key` 是角色 Id ，`value`是角色 Id 对应的资源列表。
 
 
-### 运行时配置
+## 运行时配置
 在 `app.js` 中配置
 
-#### unAccessHandler
+### unAccessHandler
 - **类型**：`Function`
   
 - **默认值**：`null`
@@ -130,7 +126,7 @@ export const access = {
 
 ```
 
-#### noFoundHandler
+### noFoundHandler
 - **类型**：`Function`
   
 - **默认值**：`null`
@@ -167,15 +163,15 @@ import { access } from '@fesjs/fes'
 ```
 
 #### access.hasAccess
-- **类型**：函数
+- **类型**：( accessId: string | number ) => Promise<boolean>
   
 - **详情**: 判断某个资源是否可见。
 - **参数**：
   - accessId，资源Id
-- **返回值**：Boolean
+- **返回值**：是否有权限
 
 #### access.isDataReady
-- **类型**：函数
+- **类型**：() => boolean
   
 - **详情**：可以用异步数据来设置权限，`isDataReady` 用来判断异步数据是否已经加载完毕。
 - **参数**：null

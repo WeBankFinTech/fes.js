@@ -27,7 +27,8 @@ const renderClient = (opts = {}) => {
     });
 
     const app = createApp(rootContainer);
-    app.provide("initialState", initialState);
+    // initialState是响应式的，后期可以更改
+    app.provide("initialState", reactive(initialState ?? {}));
 
     plugin.applyPlugins({
         key: 'onAppCreated',

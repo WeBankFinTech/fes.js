@@ -18,14 +18,10 @@ export function onRouterCreated({ router }) {
                     next,
                 });
             }
+            return next(false);
         }
-        let path;
-        if (to.matched.length === 1) {
-            path = to.matched[0].path;
-        } else {
-            path = to.path;
-        }
-        const canRoute = await access.hasAccess(path);
+        // path是匹配路由的path，不是页面hash
+        const canRoute = await access.hasAccess(to.matched[to.matched.length - 1].path);
         if (canRoute) {
             return next();
         }

@@ -22,6 +22,7 @@ module.exports = {
         'fes-plugin-vuex',
         'fes-plugin-pinia',
         'fes-plugin-windicss',
+        'fes-plugin-watermark',
     ],
     copy: [],
 };

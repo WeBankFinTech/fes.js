@@ -19,8 +19,8 @@
 
 在 `.fes.js` 配置文件中添加自定义配置，详细配置[请看](https://windicss.org/integrations/webpack.html)：
 
-```
-{
+```js
+export default {
     windicss: {
         root: './',
     }

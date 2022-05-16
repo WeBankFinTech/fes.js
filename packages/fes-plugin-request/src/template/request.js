@@ -129,24 +129,32 @@ function skipErrorHandlerToObj(skipErrorHandler = []) {
     }, {});
 }
 
-function handleRequestError({ errorHandler = {}, error, response, config }) {
-    // 跳过所有错误类型处理
-    if (config.skipErrorHandler === true) return;
-
-    const skipObj = skipErrorHandlerToObj(config.skipErrorHandler);
+function getErrorKey(error, response) {
     const resCode = getResponseCode(response);
 
-    let errorKey = 'default';
-    if (resCode && errorHandler[resCode]) {
-        errorKey = resCode;
-    } else if (error.type && errorHandler[error.type]) {
-        errorKey = error.type;
-    } else if (error.response && errorHandler[error.response.status]) {
-        errorKey = error.response.status;
-    }
+    if (resCode) return resCode;
+    if (error.type) return error.type;
+    return error.response?.status;
+}
 
-    if (!skipObj[errorKey] && errorHandler[errorKey]) {
-        return errorHandler[errorKey](error);
+function isSkipErrorHandler(config, errorKey) {
+    // 跳过所有错误类型处理
+    if (config.skipErrorHandler === true) return true;
+
+    const skipObj = skipErrorHandlerToObj(config.skipErrorHandler);
+
+    return skipObj[errorKey];
+}
+
+function handleRequestError({ errorHandler = {}, error, response, config }) {
+    const errorKey = getErrorKey(error, response);
+
+    if (!isSkipErrorHandler(config, errorKey)) {
+        if (isFunction(errorHandler[errorKey])) {
+            errorHandler[errorKey](error, response);
+        } else if (isFunction(errorHandler.default)) {
+            errorHandler.default(error, response);
+        }
     }
 }
 

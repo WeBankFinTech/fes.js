@@ -8,20 +8,75 @@ Fes.js 框架跟传统开发模式不一样。传统开发模式中用户编写 
 
 例如：
 
-plugin-acess插件定义运行时配置项：
+plugin-access 插件定义运行时配置项：
+
 ```js
 api.addRuntimePluginKey(() => 'access');
 ```
-plugin-acess插件读取配置项：
+
+plugin-access 插件读取配置项：
+
 ```js
 const runtimeConfig = plugin.applyPlugins({
     key: 'access',
     type: ApplyPluginsType.modify,
-    initialValue: {}
+    initialValue: {},
 });
 ```
 
 而用户则只需要配置：
+
+```js
+// app.js
+import { defineBuildConfig } from '@fesjs/fes';
+
+export default defineRuntimeConfig({
+    access: memo => ({
+        ...memo
+        unAccessHandler({
+            router, to, from, next
+        }) {
+            // 处理逻辑
+        },
+        noFoundHandler({
+            router, to, from, next
+        }) {
+            // 处理逻辑
+        },
+    }),
+});
+```
+
+## 配置智能提示
+
+配置可以单独导出，也可以通过 `defineRuntimeConfig` 工具函数获取类型提示。
+
+方式一（推荐，有类型提示）：
+
+```js
+// app.js
+import { defineBuildConfig } from '@fesjs/fes';
+
+export default defineRuntimeConfig({
+    access: memo => ({
+        ...memo
+        unAccessHandler({
+            router, to, from, next
+        }) {
+            // 处理逻辑
+        },
+        noFoundHandler({
+            router, to, from, next
+        }) {
+            // 处理逻辑
+        },
+    }),
+    // ...其他配置项
+});
+```
+
+方式二：
+
 ```js
 // app.js
 export const access = memo => ({
@@ -37,7 +92,6 @@ export const access = memo => ({
         // 处理逻辑
     },
 });
-
 ```
 
 ## 配置项
@@ -49,6 +103,7 @@ beforeRender(lastOpts)
 在渲染之前执行，执行`action`过程中显示 `loading` 配置的组件，执行结果作为参数 `initialState` 传给 `modifyClientRenderOpts`。
 
 示例：
+
 ```js
 // app.js
 import { access } from '@fesjs/fes';
@@ -65,31 +120,32 @@ export function beforeRender(lastOpts) {
                 setTimeout(() => {
                     setRole('admin');
                     resolve({
-                        userName: 'harrywan'
+                        userName: 'harrywan',
                     });
                 }, 1000);
             });
-        }
-    }
-};
+        },
+    };
+}
 ```
 
 ### patchRoutes
 
 patchRoutes({routes })
 
-
 修改路由。
 
 比如在最前面添加一个 /foo 路由：
-```
+
+```js
 export function patchRoutes({ routes }) {
-  routes.unshift({
-    path: '/foo',
-    component: require('@/extraRoutes/foo').default,
-  });
+    routes.unshift({
+        path: '/foo',
+        component: require('@/extraRoutes/foo').default,
+    });
 }
 ```
+
 :::tip
 直接修改 `routes`, 不需要返回
 :::
@@ -99,18 +155,20 @@ export function patchRoutes({ routes }) {
 modifyClientRenderOpts(lastOpts)
 
 修改 `clientRender` 参数。参数是一个对象：
-- routes，路由配置信息
-- rootElement， 渲染的根节点，默认是 `#app`，可通过配置 `mountElementId` 修改。
-- initialState， 初始化数据，`beforeRender` 运行得到的数据。
+
+-   routes，路由配置信息
+-   rootElement， 渲染的根节点，默认是 `#app`，可通过配置 `mountElementId` 修改。
+-   initialState， 初始化数据，`beforeRender` 运行得到的数据。
 
 比如在微前端里动态修改渲染根节点：
+
 ```js
 let isSubApp = false;
 export function modifyClientRenderOpts(lastOpts) {
-  return {
-    ...lastOpts,
-    rootElement: isSubApp ? 'sub-root' : lastOpts.rootElement,    
-  };
+    return {
+        ...lastOpts,
+        rootElement: isSubApp ? 'sub-root' : lastOpts.rootElement,
+    };
 }
 ```
 
@@ -120,12 +178,13 @@ rootContainer(LastRootContainer, args)
 
 修改交给 Vue 渲染时的根组件，默认是 `<RouterView></RouterView>`。
 
-- LastRootContainer，上一个插件修改后的结果。
-- args，包含：
-    - routes，全量路由配置
-    - plugin，运行时插件机制
+-   LastRootContainer，上一个插件修改后的结果。
+-   args，包含：
+    -   routes，全量路由配置
+    -   plugin，运行时插件机制
 
-比如在可以包一层DIV：
+比如在可以包一层 DIV：
+
 ```js
 export function rootContainer(container) {
     return () => {
@@ -133,8 +192,8 @@ export function rootContainer(container) {
             <div>
                 <RouterView></RouterView>
             </div>
-        )
-  }
+        );
+    };
 }
 ```
 
@@ -145,14 +204,14 @@ onAppCreated({app})
 创建 app 实例后触发。
 
 比如用于安装 Vue 插件：
+
 ```js
-import { createRouter } from "vue-router";
+import { createRouter } from 'vue-router';
 
 export function onAppCreated({ app }) {
     const router = createRouter();
     app.use(router);
 }
-
 ```
 
 ### render
@@ -163,22 +222,22 @@ render(oldRender: Function)
 
 比如用于渲染之前做权限校验。
 
-
-
 ### onRouterCreated
 
 onRouterCreated({router})
 
-生成router时触发。
+生成 router 时触发。
 
 比如用于收集切换路由的记录：
+
 ```js
 export function onRouterCreated({ router }) {
     router.afterEach((to, from) => {
-        console.log(to)
+        console.log(to);
     });
 }
 ```
 
 ## 更多配置项
+
 Fes.js 允许插件注册运行时配置，如果你使用插件，肯定会在插件里找到更多运行时的配置项。
