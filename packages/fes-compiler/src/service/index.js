@@ -21,7 +21,6 @@ import getPaths from './getPaths';
 
 // TODO
 // 1. duplicated key
-// 2. Logger
 export default class Service extends EventEmitter {
     cwd;
 

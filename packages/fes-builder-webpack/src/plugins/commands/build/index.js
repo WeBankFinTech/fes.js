@@ -5,14 +5,11 @@
 
 import { relative } from 'path';
 import { existsSync } from 'fs';
-import { Logger } from '@fesjs/compiler';
-
-const logger = new Logger('fes:builder-webpack');
 
 export default function (api) {
     const {
         paths,
-        utils: { rimraf },
+        utils: { rimraf, logger },
     } = api;
 
     api.registerCommand({
@@ -38,7 +35,7 @@ export default function (api) {
                 // clear output path before exec build
                 if (process.env.CLEAR_OUTPUT !== 'none') {
                     if (paths.absOutputPath && existsSync(paths.absOutputPath)) {
-                        logger.debug(`Clear OutputPath: ${paths.absNodeModulesPath}`);
+                        logger.info(`Clear OutputPath: ${paths.absOutputPath}`);
                         rimraf.sync(paths.absOutputPath);
                     }
                 }

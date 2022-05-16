@@ -1,11 +1,7 @@
-import { Logger } from '@fesjs/compiler';
-
-const logger = new Logger('fes:builder-webpack');
-
 export default (api) => {
     const {
         paths,
-        utils: { chalk, getPort, getHostName, changePort },
+        utils: { chalk, getPort, getHostName, changePort, logger },
     } = api;
 
     let port;
