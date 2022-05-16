@@ -13,12 +13,15 @@ import buildConfig from '../build.config.js';
 const { prompt } = enquirer;
 const __dirname = url.fileURLToPath(new URL('.', import.meta.url));
 
-const { preid: preId, dry: isDryRun, tag: releaseTag } = minimist(process.argv.slice(2));
+const { preid, dry: isDryRun, tag: releaseTag } = minimist(process.argv.slice(2));
 const packages = buildConfig.pkgs;
 
-const versionIncrements = ['patch', 'minor', 'major', ...(preId ? ['prepatch', 'preminor', 'premajor', 'prerelease'] : [])];
+const versionIncrements = ['patch', 'minor', 'major', 'prepatch', 'preminor', 'premajor', 'prerelease'];
 
-const incVersion = (version, i) => semver.inc(version, i, preId);
+const incVersion = (version, i) => {
+    const preId = preid || semver.prerelease(version)[0] || 'alpha';
+    return semver.inc(version, i, preId);
+};
 const run = (bin, args, opts = {}) => execa(bin, args, { stdio: 'inherit', ...opts });
 const dryRun = (bin, args, opts = {}) => console.log(chalk.blue(`[dryrun] ${bin} ${args.join(' ')}`), opts);
 const runIfNotDry = isDryRun ? dryRun : run;
@@ -27,16 +30,7 @@ const step = (msg) => console.log(chalk.cyan(msg));
 
 // eslint-disable-next-line no-shadow
 async function publishPackage(pkg, runIfNotDry) {
-    let _releaseTag;
-    if (releaseTag) {
-        _releaseTag = releaseTag;
-    } else if (pkg.newVersion.includes('alpha')) {
-        _releaseTag = 'alpha';
-    } else if (pkg.newVersion.includes('beta')) {
-        _releaseTag = 'beta';
-    } else if (pkg.newVersion.includes('rc')) {
-        _releaseTag = 'rc';
-    }
+    const _releaseTag = releaseTag || 'next';
 
     step(`Publishing ${pkg.name}...`);
     try {
