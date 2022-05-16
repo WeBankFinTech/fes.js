@@ -10,7 +10,7 @@ Fes.js 把页面、页面元素统一叫做资源，用资源 ID 来识别区分
 - 页面元素的资源 ID 没有默认值，需要自定义。
 ```vue
 <template>
-    <access :id="accessId"> accessOnepicess1 <input /> </access>
+    <access :id="accessId"> accessOnepicess1 </access>
     <div v-access="accessId"> accessOnepicess2 </div>
 </template>
 <script>
@@ -163,7 +163,7 @@ import { access } from '@fesjs/fes'
 ```
 
 #### access.hasAccess
-- **类型**：( accessId: string | number ) => Promise<boolean>
+- **类型**：( accessId: string | number ) => Promise\<boolean\>
   
 - **详情**: 判断某个资源是否可见。
 - **参数**：
@@ -244,6 +244,7 @@ export default {
 ```
 ### v-access
 在指令 `v-access` 中传入 `accessId`，则当 `accessId` 拥有权限时显示DOM，当没有权限时隐藏此DOM。
+
 ```vue
 <template>
     <div v-access="accessId"> accessOnepicess </div>
@@ -261,6 +262,7 @@ export default {
 
 ### 组件 Access
 组件 `Access` 中传入 `accessId`，则当 `accessId` 拥有权限时渲染此组件，当没有权限时隐藏此组件。
+
 ```vue
 <template>
     <access :id="accessId"> accessOnepicess </access>
