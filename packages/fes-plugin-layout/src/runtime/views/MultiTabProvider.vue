@@ -9,19 +9,10 @@
             @close="handleCloseTab"
             @update:modelValue="switchPage"
         >
-            <FTabPane
-                v-for="page in pageList"
-                :key="page.path"
-                :value="page.path"
-                :closable="route.path !== page.path"
-            >
+            <FTabPane v-for="page in pageList" :key="page.path" :value="page.path" :closable="route.path !== page.path">
                 <template #tab>
-                    {{page.title}}
-                    <ReloadOutlined
-                        v-show="route.path === page.path"
-                        class="layout-tabs-close-icon"
-                        @click="reloadPage(page.path)"
-                    />
+                    {{ page.title }}
+                    <ReloadOutlined v-show="route.path === page.path" class="layout-tabs-close-icon" @click="reloadPage(page.path)" />
                 </template>
             </FTabPane>
             <template #suffix>
@@ -57,10 +48,10 @@ export default {
         FTabPane,
         FDropdown,
         ReloadOutlined,
-        MoreOutlined
+        MoreOutlined,
     },
     props: {
-        multiTabs: Boolean
+        multiTabs: Boolean,
     },
     setup() {
         const createPage = (_route) => {
@@ -70,7 +61,7 @@ export default {
                 route: _route,
                 name: _route.meta.name,
                 title: computed(() => transTitle(title)),
-                key: getKey()
+                key: getKey(),
             };
         };
 
@@ -80,15 +71,15 @@ export default {
         const actions = [
             {
                 value: 'closeOtherPage',
-                label: '关闭其他'
+                label: '关闭其他',
             },
             {
                 value: 'reloadPage',
-                label: '刷新当前页'
-            }
+                label: '刷新当前页',
+            },
         ];
 
-        const findPage = path => pageList.value.find(item => unref(item.path) === unref(path));
+        const findPage = (path) => pageList.value.find((item) => unref(item.path) === unref(path));
 
         router.beforeEach((to) => {
             if (!findPage(to.path)) {
@@ -103,7 +94,7 @@ export default {
                 router.push({
                     path,
                     query: selectedPage.route.query,
-                    params: selectedPage.route.params
+                    params: selectedPage.route.params,
                 });
             }
         };
@@ -168,9 +159,9 @@ export default {
             handleCloseTab,
             actions,
             getComponent,
-            keepAlivePages
+            keepAlivePages,
         };
-    }
+    },
 };
 </script>
 <style lang="less">
