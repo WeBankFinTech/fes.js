@@ -15,9 +15,8 @@
 }
 ```
 
-## 配置
 
-### 编译时配置
+## 编译时配置
 在执行 `fes dev` 或者 `fes build` 时，通过此配置生成运行时的代码，在配置文件`.fes.js` 中配置：
 ```js
 export default {
@@ -29,17 +28,17 @@ export default {
 我们通过 `monaco-editor-webpack-plugin` 集成 `Monaco Editor` 的 `ESM`版本，所以编辑时其实就是 `monaco-editor-webpack-plugin` 的配置，具体配置项参考[文档](https://github.com/Microsoft/monaco-editor-webpack-plugin)。
 
 
-#### filename
+### filename
 - **类型**：自定义worker脚本名称
   
 - **默认值**：`'[name].worker.js'`
 
-#### publicPath
+### publicPath
 - **类型**：自定义worker脚本的路径
   
 - **默认值**：`''`
 
-#### languages
+### languages
 - **类型**：需要支持的语言类型
   
 - **默认值**：`['abap', 'apex', 'azcli', 'bat', 'bicep', 'cameligo', 'clojure', 'coffee', 'cpp', 'csharp', 'csp', 'css', 'dart', 'dockerfile', 'ecl', 'elixir', 'fsharp', 'go', 'graphql', 'handlebars', 'hcl', 'html', 'ini', 'java', 'javascript', 'json', 'julia', 'kotlin', 'less', 'lexon', 'liquid', 'lua', 'm3', 'markdown', 'mips', 'msdax', 'mysql', 'objective-c', 'pascal', 'pascaligo', 'perl', 'pgsql', 'php', 'postiats', 'powerquery', 'powershell', 'pug', 'python', 'qsharp', 'r', 'razor', 'redis', 'redshift', 'restructuredtext', 'ruby', 'rust', 'sb', 'scala', 'scheme', 'scss', 'shell', 'solidity', 'sophia', 'sparql', 'sql', 'st', 'swift', 'systemverilog', 'tcl', 'twig', 'typescript', 'vb', 'xml', 'yaml']`

@@ -11,6 +11,9 @@ export default {
     router: {
         mode: 'hash'
     },
+    watermark: {
+        disabled: false
+    },
     access: {
         roles: {
             admin: ['*'],
@@ -71,7 +74,10 @@ export default {
             {
                 name: 'pinia'
             }
-        ]
+        ],
+        menuConfig: {
+            defaultExpandAll: false
+        }
     },
     locale: {
         legacy: true

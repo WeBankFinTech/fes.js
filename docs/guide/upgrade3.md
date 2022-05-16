@@ -1,6 +1,6 @@
-# 从 2.0.x 迁移到 2.1.x
+# 从 2.0.x 迁移到 3.0.x
 
-## 版本 2.1.x 的 break
+## 版本 3.0.x 的 break
 
 1. 编译时的 [base](../reference/config/#base) 配置，移到了 [router.base](../reference/config/#router) 下。
 2. [webpack-dev-server](https://github.com/webpack/webpack-dev-server) 从 `v3.x` 升级到了 `v4.x`，如果遇到配置不兼容，可以查看[webpack-dev-server 3.x 升级 4.x](https://github.com/webpack/webpack-dev-server/blob/master/migration-v4.md)。

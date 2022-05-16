@@ -3,7 +3,11 @@
 
 
 ## 介绍
-Fes.js 默认只支持 `less`，通过此插件扩展支持 `sass`
+Fes.js 默认只支持 `less`，通过此插件扩展支持 `sass`。
+
+::: tip webpack 构建 sass 插件
+如果使用 Vite 构建，直接装 `sass` 依赖即可，不需要安装此插件。
+:::
 
 ## 启用方式
 在 `package.json` 中引入依赖：

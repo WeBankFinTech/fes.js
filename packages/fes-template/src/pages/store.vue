@@ -2,17 +2,15 @@
     <div class="page">
         <h4>Vuex</h4>
         <div>
-            <button @click="increment">click me：{{doubleCount}}</button>
+            <button @click="increment">click me：{{ doubleCount }}</button>
         </div>
         <div>
             <button :disabled="disabled" @click="login">async login</button>
         </div>
         <div>
-            <button @click="fooBarIncrement">
-                foo/bar：{{fooBarDoubleCount}}
-            </button>
+            <button @click="fooBarIncrement">foo/bar：{{ fooBarDoubleCount }}</button>
         </div>
-        <div>{{address}}</div>
+        <div>{{ address }}</div>
     </div>
 </template>
 <config>
@@ -28,14 +26,13 @@ import { MUTATION_TYPES, GETTER_TYPES, ACTION_TYPES } from '@fesjs/fes';
 
 export default {
     setup() {
+        console.log('store.vue');
         const store = useStore();
         console.log('store==>', store);
         const disabled = ref(false);
         return {
             address: computed(() => store.getters[GETTER_TYPES.user.address]),
-            doubleCount: computed(
-                () => store.getters[GETTER_TYPES.counter.doubleCount]
-            ),
+            doubleCount: computed(() => store.getters[GETTER_TYPES.counter.doubleCount]),
             disabled,
             increment: () => store.commit(MUTATION_TYPES.counter.increment),
             login: () => {
@@ -47,11 +44,9 @@ export default {
                 });
             },
             fooBarIncrement: () => store.commit(MUTATION_TYPES.fooBar.increment),
-            fooBarDoubleCount: computed(
-                () => store.getters[GETTER_TYPES.fooBar.doubleCount]
-            )
+            fooBarDoubleCount: computed(() => store.getters[GETTER_TYPES.fooBar.doubleCount]),
         };
-    }
+    },
 };
 </script>
 <style scoped>

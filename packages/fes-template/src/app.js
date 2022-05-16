@@ -1,4 +1,5 @@
-import { access as accessApi, pinia } from '@fesjs/fes';
+import { access as accessApi, pinia, createWatermark } from '@fesjs/fes';
+import { ref } from 'vue';
 import PageLoading from '@/components/PageLoading.vue';
 import UserCenter from '@/components/UserCenter.vue';
 import { useStore } from '@/store/main';
@@ -17,11 +18,22 @@ export const beforeRender = {
                 resolve({
                     userName: '李雷',
                 });
+                createWatermark({ content: '万纯(harrywan)' });
             }, 1000);
         });
     },
 };
 
-export const layout = {
+export const layout = (layoutConfig) => ({
+    ...layoutConfig,
     customHeader: <UserCenter />,
-};
+    menus: (defaultMenuData) => {
+        const menusRef = ref(defaultMenuData);
+        // watch(() => initialValue.initialState.userName, () => {
+        //     menusRef.value = [{
+        //         name: 'store'
+        //     }];
+        // });
+        return menusRef;
+    },
+});

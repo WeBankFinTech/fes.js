@@ -38,20 +38,15 @@ export default (api) => {
             ...(api.config.layout || {}),
         };
 
-        // 路由信息
-        const routes = await api.getRoutes();
-        // 把路由的meta合并到menu配置中
-        userConfig.menus = helper.fillMenuByRoute(userConfig.menus, routes);
+        const iconNames = helper.getIconNamesFromMenu(userConfig.menus);
 
-        const icons = helper.getIconsFromMenu(userConfig.menus);
-
-        const iconsString = icons.map((iconName) => `import { ${iconName} } from '@fesjs/fes-design/icon'`);
+        const iconsString = iconNames.map((iconName) => `import { ${iconName} } from '@fesjs/fes-design/icon'`);
         api.writeTmpFile({
             path: join(namespace, 'icons.js'),
             content: `
         ${iconsString.join(';\n')}
         export default {
-            ${icons.join(',\n')}
+            ${iconNames.join(',\n')}
         }`,
         });
 

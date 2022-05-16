@@ -28,34 +28,16 @@ export default {
         };
         console.log(process.env.NODE_ENV, process.env.HELLO);
         console.log(useRoute());
-        request('/v2/movie/in_theaters_proxy', (res) => {
-            console.log(res);
-        });
 
-        const get = (id) => {
-            request(
-                '/get/api',
-                { id },
-                {
-                    method: 'get',
-                },
-            );
-        };
-
-        const post = (id) => {
-            request(
-                '/api',
-                { id },
-                {
-                    responseType: 'blob',
-                },
-            ).then((data) => {
-                console.log(data);
+        const get = () => {
+            request('/api', null, {
+                skipErrorHandler: ['500'],
+            }).catch((err) => {
+                console.log('skip error', err);
             });
         };
 
-        // get(1);
-        // post(3);
+        get(1);
 
         return {
             fes,

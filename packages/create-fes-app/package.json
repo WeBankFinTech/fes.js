@@ -1,6 +1,6 @@
 {
   "name": "@fesjs/create-fes-app",
-  "version": "2.1.6",
+  "version": "2.1.7",
   "description": "create a app base on fes.js",
   "main": "lib/index.js",
   "files": [

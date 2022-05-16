@@ -9,7 +9,11 @@ export default async (ctx, next) => {
     if (!config.closeResDataCheck && response && isObject(response.data)) {
         const code = response.data.code;
         if (code !== '0') {
-            ctx.error = response; // code 不为零进入 reject
+            // 尽量保持内部 error 结构和 http 异常的 error 结构一致
+            ctx.error = {
+                ...response,
+                response
+            };
         }
     }
 

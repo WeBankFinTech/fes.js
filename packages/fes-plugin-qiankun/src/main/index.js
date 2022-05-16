@@ -18,6 +18,7 @@ export default function (api) {
         enableBy: () => isMasterEnable(api),
     });
 
+    // 避免跟子应用冲突
     api.modifyDefaultConfig((config) => ({
         ...config,
         mountElementId: defaultMainRootId,

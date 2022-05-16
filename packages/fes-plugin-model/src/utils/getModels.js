@@ -3,13 +3,13 @@ import { getValidFiles } from '.';
 
 export function getModels(cwd, pattern) {
     const files = glob
-        .sync(pattern || '**/*.{js,jsx}', {
+        .sync(pattern || '**/*.{js,jsx,ts,tsx}', {
             cwd
         })
         .filter(
             file => !file.endsWith('.d.ts')
-        && !file.endsWith('.test.js')
-        && !file.endsWith('.test.jsx')
+                && !file.endsWith('.test.js')
+                && !file.endsWith('.test.jsx')
         );
 
     return getValidFiles(files, cwd);

@@ -14,7 +14,16 @@
                     <img :src="logo" class="logo-img" />
                     <div class="logo-name">{{ title }}</div>
                 </div>
-                <Menu class="layout-menu" :menus="menus" :collapsed="collapsedRef" mode="vertical" :inverted="theme === 'dark'" />
+                <Menu
+                    class="layout-menu"
+                    :menus="menus"
+                    :collapsed="collapsedRef"
+                    mode="vertical"
+                    :inverted="theme === 'dark'"
+                    :expandedKeys="menuConfig?.expandedKeys"
+                    :defaultExpandAll="menuConfig?.defaultExpandAll"
+                    :accordion="menuConfig?.accordion"
+                />
             </f-aside>
             <f-layout :fixed="fixedSideBar" :style="sideStyleRef">
                 <f-header v-if="routeLayout.header" ref="headerRef" class="layout-header" :fixed="currentFixedHeaderRef">
@@ -41,7 +50,15 @@
                     <img :src="logo" class="logo-img" />
                     <div class="logo-name">{{ title }}</div>
                 </div>
-                <Menu class="layout-menu" :menus="menus" mode="horizontal" :inverted="theme === 'dark'" />
+                <Menu
+                    class="layout-menu"
+                    :menus="menus"
+                    mode="horizontal"
+                    :inverted="theme === 'dark'"
+                    :expandedKeys="menuConfig?.expandedKeys"
+                    :defaultExpandAll="menuConfig?.defaultExpandAll"
+                    :accordion="menuConfig?.accordion"
+                />
                 <div class="layout-header-custom">
                     <slot name="customHeader"></slot>
                 </div>
@@ -80,7 +97,15 @@
                     collapsible
                     class="layout-aside"
                 >
-                    <Menu class="layout-menu" :menus="menus" :collapsed="collapsedRef" mode="vertical" />
+                    <Menu
+                        class="layout-menu"
+                        :menus="menus"
+                        :collapsed="collapsedRef"
+                        mode="vertical"
+                        :expandedKeys="menuConfig?.expandedKeys"
+                        :defaultExpandAll="menuConfig?.defaultExpandAll"
+                        :accordion="menuConfig?.accordion"
+                    />
                 </f-aside>
                 <f-layout :embedded="!multiTabs" :fixed="fixedSideBar" :style="sideStyleRef">
                     <f-main class="layout-main">
@@ -98,11 +123,12 @@
 
 <script>
 import { ref, computed, onMounted } from 'vue';
-import { useRoute, plugin, ApplyPluginsType } from '@@/core/coreExports';
+import { useRoute } from '@@/core/coreExports';
 import { FLayout, FAside, FMain, FFooter, FHeader } from '@fesjs/fes-design';
 import Menu from './Menu.vue';
 import MultiTabProvider from './MultiTabProvider.vue';
 import defaultLogo from '../assets/logo.png';
+import getRuntimeConfig from '../helpers/getRuntimeConfig';
 
 export default {
     components: {
@@ -158,6 +184,9 @@ export default {
             default: 200,
         },
         footer: String,
+        menuConfig: {
+            type: Object,
+        },
     },
     setup(props) {
         const headerRef = ref();
@@ -171,15 +200,7 @@ export default {
 
         const collapsedRef = ref(false);
         const route = useRoute();
-        const runtimeConfig = plugin.applyPlugins({
-            key: 'layout',
-            type: ApplyPluginsType.modify,
-            initialValue: {
-                sidebar: true,
-                header: true,
-                logo: true,
-            },
-        });
+        const runtimeConfig = getRuntimeConfig();
         const routeLayout = computed(() => {
             let config;
             // meta 中 layout 默认为 true
@@ -207,8 +228,8 @@ export default {
         const sideStyleRef = computed(() =>
             props.fixedSideBar
                 ? {
-                    left: collapsedRef.value ? '48px' : `${props.sideWidth}px`,
-                }
+                      left: collapsedRef.value ? '48px' : `${props.sideWidth}px`,
+                  }
                 : null,
         );
         return {
@@ -259,6 +280,9 @@ export default {
         }
         .layout-header-custom {
             flex: 1;
+        }
+        .layout-menu {
+            width: auto;
         }
     }
     .fes-layout-aside {
