@@ -44,10 +44,10 @@
     "@vue/compiler-sfc": "^3.2.2"
   },
   "dependencies": {
-    "@fesjs/fes": "^2.0.0",
-    "@fesjs/plugin-icon": "^2.0.0",
-    "@fesjs/plugin-request": "^2.0.0",
-    "@fesjs/builder-webpack": "^1.0.0",
+    "@fesjs/fes": "^3.0.0-beta.0",
+    "@fesjs/plugin-icon": "^3.0.0-beta.0",
+    "@fesjs/plugin-request": "^3.0.0-beta.0",
+    "@fesjs/builder-webpack": "^3.0.0-beta.0",
     "vue": "^3.2.2"
   },
   "private": true

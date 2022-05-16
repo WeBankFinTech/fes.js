@@ -1478,24 +1478,6 @@
     minimatch "^3.0.4"
     strip-json-comments "^3.1.1"
 
-"@fesjs/fes-design@^0.3.3":
-  version "0.3.11"
-  resolved "https://registry.npmmirror.com/@fesjs/fes-design/-/fes-design-0.3.11.tgz#6c6e9771d0325ac9061142313a4a7581a4384170"
-  integrity sha512-+lE/0xC5VuxZ9XfUNsM/qiVo50QfXNr66AWrTDWu9C0IcVgjJKqSKfrXd+8EYkpi1oSsKFiL6tv+unGHebX4lA==
-  dependencies:
-    "@babel/runtime" "^7.16.3"
-    "@juggle/resize-observer" "^3.3.1"
-    "@popperjs/core" "^2.4.0"
-    "@types/lodash-es" "^4.17.5"
-    "@types/normalize-wheel" "^1.0.0"
-    "@vue/shared" "^3.2.19"
-    "@vueuse/core" "^6.7.5"
-    async-validator "^4.0.1"
-    csstype "^3.0.10"
-    lodash-es "^4.17.21"
-    normalize-wheel "^1.0.1"
-    stickybits "^3.7.9"
-
 "@fesjs/fes-design@^0.5.0":
   version "0.5.1"
   resolved "https://registry.npmmirror.com/@fesjs/fes-design/-/fes-design-0.5.1.tgz#63ee227f39cf587da056c3cd702705c5fd50af7f"
@@ -1852,11 +1834,6 @@
   version "1.0.0-next.21"
   resolved "https://registry.npmmirror.com/@polka/url/-/url-1.0.0-next.21.tgz#5de5a2385a35309427f6011992b544514d559aa1"
   integrity sha512-a5Sab1C4/icpTZVzZc5Ghpz88yQtGOyNqYXcZgOssB2uuAr+wF/MvN6bgtW32q7HHrvBki+BsZ0OuNv6EV3K9g==
-
-"@popperjs/core@^2.4.0":
-  version "2.11.4"
-  resolved "https://registry.npmmirror.com/@popperjs/core/-/core-2.11.4.tgz#d8c7b8db9226d2d7664553a0741ad7d0397ee503"
-  integrity sha512-q/ytXxO5NKvyT37pmisQAItCFqA7FD/vNb8dgaJy3/630Fsc+Mz9/9f2SziBoIZ30TJooXyTwZmhi1zjXmObYg==
 
 "@rollup/plugin-babel@^5.2.0":
   version "5.3.1"

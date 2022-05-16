@@ -1,6 +1,6 @@
 {
   "name": "@fesjs/plugin-request",
-  "version": "2.0.15",
+  "version": "3.0.0-beta.0",
   "description": "@fesjs/plugin-request",
   "main": "lib/index.js",
   "files": [
@@ -27,11 +27,10 @@
     "access": "public"
   },
   "peerDependencies": {
-    "@fesjs/fes": "^2.0.0",
+    "@fesjs/fes": "^3.0.0-beta.0",
     "vue": "^3.0.5"
   },
   "dependencies": {
-    "@fesjs/compiler": "^2.0.5",
     "@fesjs/utils": "^2.0.4",
     "axios": "0.21.1"
   },

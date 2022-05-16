@@ -1,6 +1,6 @@
 {
   "name": "@fesjs/plugin-enums",
-  "version": "2.0.2",
+  "version": "3.0.0-beta.0",
   "description": "@fesjs/plugin-enums",
   "main": "lib/index.js",
   "files": [
@@ -27,7 +27,7 @@
     "access": "public"
   },
   "peerDependencies": {
-    "@fesjs/fes": "^2.0.0",
+    "@fesjs/fes": "^3.0.0-beta.0",
     "vue": "^3.0.5"
   },
   "typings": "./types.d.ts"

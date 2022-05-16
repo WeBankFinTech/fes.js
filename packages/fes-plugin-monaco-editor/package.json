@@ -1,6 +1,6 @@
 {
   "name": "@fesjs/plugin-monaco-editor",
-  "version": "2.0.0-beta.6",
+  "version": "3.0.0-beta.0",
   "description": "@fesjs/plugin-monaco-editor",
   "main": "lib/index.js",
   "files": [
@@ -32,7 +32,7 @@
     "vite-plugin-monaco-editor": "^1.0.10"
   },
   "peerDependencies": {
-    "@fesjs/fes": "^2.0.0",
+    "@fesjs/fes": "^3.0.0-beta.0",
     "vue": "^3.0.5"
   },
   "typings": "./types.d.ts"
