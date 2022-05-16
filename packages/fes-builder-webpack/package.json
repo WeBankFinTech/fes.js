@@ -33,7 +33,6 @@
     "@babel/plugin-transform-runtime": "^7.16.4",
     "@babel/preset-env": "^7.16.4",
     "@babel/preset-typescript": "^7.15.0",
-    "@fesjs/compiler": "^2.0.5",
     "@fesjs/utils": "^2.0.4",
     "@vue/babel-plugin-jsx": "^1.1.1",
     "autoprefixer": "^10.2.4",
@@ -59,7 +58,8 @@
     "webpack": "^5.69.0",
     "webpack-bundle-analyzer": "^4.4.0",
     "webpack-chain": "^6.5.1",
-    "webpack-dev-server": "^4.8.1"
+    "webpack-dev-server": "^4.8.1",
+    "webpackbar": "^5.0.2"
   },
   "peerDependencies": {
     "@vue/compiler-sfc": "^3.0.5",
