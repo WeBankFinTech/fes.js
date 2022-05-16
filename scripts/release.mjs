@@ -31,23 +31,13 @@ const step = (msg) => console.log(chalk.cyan(msg));
 // eslint-disable-next-line no-shadow
 async function publishPackage(pkg, runIfNotDry) {
     const _releaseTag = releaseTag || 'next';
-
     step(`Publishing ${pkg.name}...`);
     try {
         await runIfNotDry(
             // note: use of yarn is intentional here as we rely on its publishing
             // behavior.
-            'yarn',
-            [
-                'publish',
-                '--new-version',
-                pkg.newVersion,
-                ...(_releaseTag ? ['--tag', _releaseTag] : []),
-                '--access',
-                'public',
-                '--registry',
-                'https://registry.npmjs.org',
-            ],
+            'npm',
+            ['publish', ...(_releaseTag ? ['--tag', _releaseTag] : []), '--access', 'public', '--registry', 'https://registry.npmjs.org'],
             {
                 cwd: getPkgRoot(pkg.dirName),
                 stdio: 'pipe',
@@ -63,19 +53,19 @@ async function publishPackage(pkg, runIfNotDry) {
     }
 }
 
-function readPackageJson(pkg) {
-    const pkgPath = path.resolve(getPkgRoot(pkg), 'package.json');
+function readPackageJson(pkgPath) {
     return JSON.parse(fs.readFileSync(pkgPath, 'utf-8'));
 }
 
 function genRootPackageVersion() {
     const pkgPath = path.resolve(path.resolve(__dirname, '..'), 'package.json');
     const pkg = JSON.parse(fs.readFileSync(pkgPath, 'utf-8'));
-    return semver.inc(pkg.version, 'patch');
+    return semver.inc(pkg.version, 'prerelease', semver.prerelease(pkg.version) && semver.prerelease(pkg.version)[0]);
 }
 
 function readPackageVersionAndName(pkg) {
-    const { version, name } = readPackageJson(pkg);
+    const pkgPath = path.resolve(getPkgRoot(pkg), 'package.json');
+    const { version, name } = readPackageJson(pkgPath);
     return {
         version,
         name,
