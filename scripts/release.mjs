@@ -94,10 +94,14 @@ const isChangeInCurrentTag = async (pkg, newestTag) => {
 const filterChangedPackages = async () => {
     const { stdout: newestTag } = await run('git', ['describe', '--abbrev=0', '--tags'], { stdio: 'pipe' });
 
-    return packages.filter(async (pkg) => {
-        const result = await isChangeInCurrentTag(pkg, newestTag);
-        return result;
-    });
+    const results = await Promise.all(
+        packages.map(async (pkg) => {
+            const result = await isChangeInCurrentTag(pkg, newestTag);
+            return result;
+        }),
+    );
+
+    return packages.filter((_v, index) => results[index]);
 };
 
 async function createPackageNewVersion(pkg) {
