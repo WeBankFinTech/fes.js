@@ -1,3 +1,12 @@
+# [3.0.0-beta.4](https://github.com/WeBankFinTech/fes.js/compare/v3.0.0-beta.3...v3.0.0-beta.4) (2022-05-17)
+
+
+### Bug Fixes
+
+* vite忽略@fesjs/fes ([e2c6cd0](https://github.com/WeBankFinTech/fes.js/commit/e2c6cd085f4330d53c2e3b83e59045313b9268b2))
+
+
+
 # [3.0.0-beta.3](https://github.com/WeBankFinTech/fes.js/compare/v3.0.0-beta.2...v3.0.0-beta.3) (2022-05-17)
 
 
