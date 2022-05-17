@@ -42,6 +42,9 @@ export function getInnerCommonConfig(api) {
                     '@@': api.paths.absTmpPath,
                 },
             },
+            optimizeDeps: {
+                exclude: ['@fesjs/fes'],
+            },
         },
         otherViteOption,
     );
