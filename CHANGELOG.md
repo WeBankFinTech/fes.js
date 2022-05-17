@@ -1,3 +1,15 @@
+# [3.0.0-beta.2](https://github.com/WeBankFinTech/fes.js/compare/v3.0.0-beta.1...v3.0.0-beta.2) (2022-05-17)
+
+
+### Bug Fixes
+
+* initialState存在非setup使用场景,不能使用provide/inject ([45e95a0](https://github.com/WeBankFinTech/fes.js/commit/45e95a0d0afdac6807ca046d9a0b3a09c12b558a))
+* 优化模板 ([cfdfd51](https://github.com/WeBankFinTech/fes.js/commit/cfdfd510f3e3491f8efd2f0e86a889770d55e6cf))
+* 修正包版本 ([5d6aed8](https://github.com/WeBankFinTech/fes.js/commit/5d6aed8ac09a792d1bb74b8aacad16542f4af051))
+* 模板优化 ([55e5a6f](https://github.com/WeBankFinTech/fes.js/commit/55e5a6f15dbaf6633e6f1bd9dad092a28f7b55bf))
+
+
+
 ## [3.0.0-beta.1](https://github.com/WeBankFinTech/fes.js/compare/v2.0.0...v2.1.1) (2022-05-16)
 
 ### Bug Fixes
