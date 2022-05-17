@@ -1,7 +1,5 @@
-
-
 import { plugin, ApplyPluginsType } from '@@/core/coreExports';
-import { inject } from 'vue';
+import { initialState } from '@@/initialState';
 
 let runtimeConfig;
 
@@ -11,11 +9,11 @@ export default () => {
             key: 'layout',
             type: ApplyPluginsType.modify,
             initialValue: {
-                initialState: inject('initialState'),
+                initialState,
                 sidebar: true,
                 header: true,
-                logo: true
-            }
+                logo: true,
+            },
         });
     }
     return runtimeConfig;

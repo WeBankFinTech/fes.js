@@ -65,5 +65,10 @@ export default function (api) {
                 runtimePath,
             }),
         });
+
+        api.writeTmpFile({
+            path: `initialState.js`,
+            content: Mustache.render(readFileSync(join(__dirname, `./initialState.tpl`), 'utf-8')),
+        });
     });
 }
