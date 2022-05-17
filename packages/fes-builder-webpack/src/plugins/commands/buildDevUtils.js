@@ -51,7 +51,7 @@ export async function getBundleAndConfigs({ api }) {
                 return api.applyPlugins({
                     key: 'addHTMLHeadScripts',
                     type: api.ApplyPluginsType.add,
-                    initialState: [],
+                    initialValue: [],
                 });
             },
             publicPath: await api.applyPlugins({

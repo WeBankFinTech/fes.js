@@ -1,5 +1,5 @@
 <template>
-    <div class="user-center">{{initialState.userName}}</div>
+    <div class="user-center">{{ initialState.userName }}</div>
 </template>
 <script>
 import { useModel } from '@fesjs/fes';
@@ -8,9 +8,9 @@ export default {
     setup() {
         const initialState = useModel('@@initialState');
         return {
-            initialState
+            initialState,
         };
-    }
+    },
 };
 </script>
 <style lang="less">

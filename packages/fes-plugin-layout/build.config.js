@@ -1,4 +1,3 @@
-
 module.exports = {
-    copy: ['runtime']
+    copy: ['runtime'],
 };
