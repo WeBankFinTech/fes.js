@@ -29,8 +29,5 @@ export default {
             landscape: false,
             landscapeUnit: 'vw'
         })
-    ],
-    devServer: {
-        port: 8000
-    }
+    ]
 };
