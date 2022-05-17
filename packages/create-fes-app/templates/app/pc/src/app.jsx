@@ -1,8 +1,6 @@
-
-
 import { access } from '@fesjs/fes';
-import PageLoading from '@/components/PageLoading';
-import UserCenter from '@/components/UserCenter';
+import PageLoading from '@/components/PageLoading.vue';
+import UserCenter from '@/components/UserCenter.vue';
 
 export const beforeRender = {
     loading: <PageLoading />,
@@ -13,13 +11,13 @@ export const beforeRender = {
                 setRole('admin');
                 // 初始化应用的全局状态，可以通过 useModel('@@initialState') 获取，具体用法看@/components/UserCenter 文件
                 resolve({
-                    userName: '李雷'
+                    userName: '李雷',
                 });
             }, 1000);
         });
-    }
+    },
 };
 
 export const layout = {
-    customHeader: <UserCenter />
+    customHeader: <UserCenter />,
 };
