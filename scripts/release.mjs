@@ -185,7 +185,7 @@ async function main() {
     if (stdout) {
         step('\nCommitting changes...');
         await runIfNotDry('git', ['add', '-A']);
-        await runIfNotDry('git', ['commit', '-m', `release: v${newRootVersion}`]);
+        await runIfNotDry('git', ['commit', '-m', `chore: v${newRootVersion}`]);
     } else {
         console.log('No changes to commit.');
     }
