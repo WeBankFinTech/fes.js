@@ -1,6 +1,6 @@
 {
   "name": "fes.js",
-  "version": "3.0.0-beta.1",
+  "version": "3.0.0-beta.2",
   "description": "一个好用的前端管理台快速开发框架",
   "preferGlobal": true,
   "private": true,
@@ -113,6 +113,10 @@
       },
       "chore": {
         "title": "🎫 其他更新",
+        "enable": false
+      },
+      "release": {  
+        "title": "发布",
         "enable": false
       }
     }
