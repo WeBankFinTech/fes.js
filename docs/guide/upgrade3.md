@@ -19,8 +19,8 @@
 
 ## 插件
 
-如果使用 Webpack 构建，插件是向后兼容的。如果是使用 Vite 构建，大部分插件也是向后兼容的，需要处理的插件有：
+插件都需要升级到 `3.0.x` 版本，新增兼容`builder`的逻辑，接口和配置没有变化，正常使用即可。
 
--   [@fesjs/plugin-qiankun](../reference/plugins/qiankun) 需要升级到 `2.1.x` 版本。
--   [@fesjs/plugin-windicss](../reference/plugins/windicss) 需要升级到 `2.1.x` 版本。
--   [@fesjs/plugin-sass](../reference/plugins/sass) 直接移除，再安装 `sass` 包即可。
+- [@fesjs/plugin-sass](../reference/plugins/sass) 直接移除，再安装 `sass` 包即可。
+- [@fesjs/plugin-layout](../reference/plugins/layout) 需要升级到`5.0.x`版本。
+- [@fesjs/plugin-locale](../reference/plugins/locale) 需要升级到`4.0.x`版本。
