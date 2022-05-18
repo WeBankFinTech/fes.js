@@ -24,7 +24,7 @@ export function getInnerCommonConfig(api) {
                 createHtmlPlugin({
                     minify: true,
                     // 使用绝对地址在win下会提示没有权限
-                    entry: `src/${api.paths.tmpDir}/fes.js`,
+                    entry: `/src/${api.paths.tmpDir}/fes.js`,
                     template: 'index.html',
                     inject: {
                         data: {
