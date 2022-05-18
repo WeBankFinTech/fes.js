@@ -1,3 +1,12 @@
+# [3.0.0-beta.5](https://github.com/WeBankFinTech/fes.js/compare/v3.0.0-beta.4...v3.0.0-beta.5) (2022-05-18)
+
+
+### Bug Fixes
+
+* **builder-vite:** 修复build时找不到入口js问题 ([fef2aee](https://github.com/WeBankFinTech/fes.js/commit/fef2aeefaea60a1f4e0b2734254a816c88295308))
+
+
+
 # [3.0.0-beta.4](https://github.com/WeBankFinTech/fes.js/compare/v3.0.0-beta.3...v3.0.0-beta.4) (2022-05-17)
 
 
