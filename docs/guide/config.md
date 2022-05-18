@@ -8,11 +8,7 @@ Fes.js 约定 `.fes.js` 文件为项目编译需要编译时配置文件，可�
 import { defineBuildConfig } from '@fesjs/fes';
 
 export default defineBuildConfig({
-    base: '/foo/',
     publicPath: '/',
-    devServer: {
-        port: 8080,
-    },
     mock: {
         prefix: '/v2',
     },

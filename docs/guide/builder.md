@@ -1,6 +1,6 @@
 # 支持 Vite 和 Webpack 双构建
 
-`Fes.js@2.1.x` 版本支持 Vite 和 Webpack 两种构建方式，不再内置构建方式，需要开发者自行选择:
+`Fes.js@3.0.x` 版本支持 Vite 和 Webpack 两种构建方式，不再内置构建方式，需要开发者自行选择:
 
 -   选用 Vite 构建，安装 `npm i @fesjs/builder-vite` 依赖即可。
 -   选用 Webpack 构建，安装 `npm i @fesjs/builder-webpack` 依赖即可。
