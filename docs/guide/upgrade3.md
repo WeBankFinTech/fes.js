@@ -12,7 +12,7 @@
 
 ## 换成 Vite
 
-1. 安装依赖包 `npm i @fesjs/build-vite`。
+1. 安装依赖包 `npm i @fesjs/builder-vite`。
 2. 将 Webpack 相关的配置换成 Vite，具体可查看[配置](../reference/config)。
 3. 将 html 模版文件从 `public/index.html` 挪到项目根目录，如果有相应的 [html-webpack-plugin](https://github.com/jantimon/html-webpack-plugin) 配置，需要改成 [vite-plugin-html](https://github.com/vbenjs/vite-plugin-html) 的写法。
 4. 将 `require` 等 Vite 不支持的代码，改写成 Vite 支持的方式。
