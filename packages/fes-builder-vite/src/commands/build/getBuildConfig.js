@@ -1,5 +1,5 @@
 import { getInnerCommonConfig } from '../../common/getConfig';
-import babelPolyfillPlugin from './babelPolyfillPlugin';
+import legacy from '@vitejs/plugin-legacy';
 
 export default async (api) => {
     const { deepmerge, getTargetsAndBrowsersList } = api.utils;
@@ -22,7 +22,7 @@ export default async (api) => {
             },
         },
         plugins: [
-            babelPolyfillPlugin({
+            legacy({
                 targets,
             }),
         ],

@@ -1189,6 +1189,11 @@
   dependencies:
     regenerator-runtime "^0.13.4"
 
+"@babel/standalone@^7.17.11":
+  version "7.17.12"
+  resolved "https://registry.npmmirror.com/@babel/standalone/-/standalone-7.17.12.tgz#df3021ab011faa69ff573eece7259ed1c4ec97f6"
+  integrity sha512-U14lJUFnEXZn/t8v516Hok6pZR6mRu7wk+Ivl2uvDJ1elA7kbYVh0djVdQvQDatMerR/P8yPJpNCuCxWHsWpaA==
+
 "@babel/template@^7.0.0", "@babel/template@^7.16.7", "@babel/template@^7.3.3":
   version "7.16.7"
   resolved "https://registry.npmmirror.com/@babel/template/-/template-7.16.7.tgz#8d126c8701fde4d66b264b3eba3d96f07666d155"
@@ -1478,6 +1483,22 @@
     minimatch "^3.0.4"
     strip-json-comments "^3.1.1"
 
+"@fesjs/compiler@^2.0.5":
+  version "2.0.5"
+  resolved "https://registry.npmmirror.com/@fesjs/compiler/-/compiler-2.0.5.tgz#5a98f9497bd51f52045e184ecddc41f15c2d5a10"
+  integrity sha512-zfKZcwOBRVtjnNQRvPtvffBN8gw3oSeI4+OkH9cUoh0irqpYBLX9FkaJmCMo+RlG3R1ke21Ssk/ZU/r7VyF5jA==
+  dependencies:
+    "@babel/core" "^7.16.7"
+    "@babel/preset-env" "^7.15.0"
+    "@babel/register" "^7.15.3"
+    "@fesjs/utils" "^2.0.4"
+    commander "^7.0.0"
+    dotenv "8.2.0"
+    joi "17.3.0"
+    readline "^1.3.0"
+    set-value "3.0.2"
+    tapable "^2.2.0"
+
 "@fesjs/fes-design@^0.5.0":
   version "0.5.1"
   resolved "https://registry.npmmirror.com/@fesjs/fes-design/-/fes-design-0.5.1.tgz#63ee227f39cf587da056c3cd702705c5fd50af7f"
@@ -1496,6 +1517,46 @@
     lodash-es "^4.17.21"
     normalize-wheel "^1.0.1"
     stickybits "^3.7.9"
+
+"@fesjs/plugin-jest@^2.0.0":
+  version "2.0.5"
+  resolved "https://registry.npmmirror.com/@fesjs/plugin-jest/-/plugin-jest-2.0.5.tgz#054e6c4dc47b58f1a6d823759e169096ba4be7aa"
+  integrity sha512-E2rEVLhevFz6SgNrM2toPNOh383m+Nlng2gZP2fa3S3pHuz1uAqAfHrRfHNLt/e8CVWMafyvXIXh6GLHYu3IdQ==
+  dependencies:
+    "@babel/preset-env" "^7.15.0"
+    "@fesjs/compiler" "^2.0.5"
+    "@vue/babel-plugin-jsx" "^1.0.6"
+    babel-jest "^27.0.6"
+    jest "^27.0.6"
+    jest-transform-stub "^2.0.0"
+    jest-watch-typeahead "^0.6.1"
+    ts-jest "^27.0.4"
+    typescript "^4.3.5"
+    vue3-jest "^27.0.0-alpha.1"
+
+"@fesjs/utils@^2.0.4":
+  version "2.0.4"
+  resolved "https://registry.npmmirror.com/@fesjs/utils/-/utils-2.0.4.tgz#ac7d5899a5fdd25479e343d3ca8033b717b9af3b"
+  integrity sha512-jnTs+ioRjYJ34LaoSzKeOQ5qgPJIYdeh+Uj9frjEJ2ZIIB+D+MyL82ciISRnnSs0XkocV5eNsb6Bs8p3/eEd4Q==
+  dependencies:
+    "@babel/generator" "^7.15.0"
+    "@babel/parser" "^7.15.0"
+    "@babel/traverse" "^7.15.0"
+    chalk "^4.1.2"
+    chokidar "^3.5.2"
+    crequire "^1.8.1"
+    debug "^4.3.2"
+    deepmerge "^4.2.2"
+    glob "^7.1.7"
+    lodash "^4.17.21"
+    mkdirp "^1.0.4"
+    mustache "^4.2.0"
+    pkg-up "^3.1.0"
+    portfinder "^1.0.28"
+    resolve "^1.20.0"
+    rimraf "^3.0.2"
+    semver "^7.3.5"
+    yargs-parser "^20.2.9"
 
 "@floating-ui/core@^0.6.2":
   version "0.6.2"
@@ -2302,6 +2363,17 @@
   integrity sha512-T8Yc9wt/5LbJyCaLiHPReJa0kApcIgJ7Bn735GjItUfh08Z1pJvu8QZqb9s+mMvKV6WUQRV7K2R46YbjMXTTJw==
   dependencies:
     "@types/yargs-parser" "*"
+
+"@vitejs/plugin-legacy@^1.8.2":
+  version "1.8.2"
+  resolved "https://registry.npmmirror.com/@vitejs/plugin-legacy/-/plugin-legacy-1.8.2.tgz#2f315bcb6685b12719813fb9412851445cca636f"
+  integrity sha512-NCOKU+pU+cxLMR9P9RTolEuOK+h+zYBXlknj+zGcKSj/NXBZYgA1GAH1FnO4zijoWRiTaiOm2ha9LQrELE7XHg==
+  dependencies:
+    "@babel/standalone" "^7.17.11"
+    core-js "^3.22.3"
+    magic-string "^0.26.1"
+    regenerator-runtime "^0.13.9"
+    systemjs "^6.12.1"
 
 "@vitejs/plugin-vue-jsx@^1.3.8":
   version "1.3.9"
@@ -4153,6 +4225,11 @@ core-js-compat@^3.20.2, core-js-compat@^3.21.0:
     browserslist "^4.19.1"
     semver "7.0.0"
 
+core-js@^3.22.3:
+  version "3.22.5"
+  resolved "https://registry.npmmirror.com/core-js/-/core-js-3.22.5.tgz#a5f5a58e663d5c0ebb4e680cd7be37536fb2a9cf"
+  integrity sha512-VP/xYuvJ0MJWRAobcmQ8F2H6Bsn+s7zqAAjFaHGBMc5AQm7zaelhD1LGduFn2EehEcQcU+br6t+fwbpQ5d1ZWA==
+
 core-js@^3.6.1:
   version "3.21.1"
   resolved "https://registry.npmmirror.com/core-js/-/core-js-3.21.1.tgz#f2e0ddc1fc43da6f904706e8e955bc19d06a0d94"
@@ -4450,6 +4527,11 @@ dateformat@^3.0.0:
   version "3.0.3"
   resolved "https://registry.npmmirror.com/dateformat/-/dateformat-3.0.3.tgz#a6e37499a4d9a9cf85ef5872044d62901c9889ae"
   integrity sha512-jyCETtSl3VMZMWeRo7iY1FL19ges1t55hMo5yaam4Jrsm5EPL89UQkoQRyiI+Yf4k8r2ZpdngkV8hr1lIdjb3Q==
+
+dayjs@1.11.1:
+  version "1.11.1"
+  resolved "https://registry.npmmirror.com/dayjs/-/dayjs-1.11.1.tgz#90b33a3dda3417258d48ad2771b415def6545eb0"
+  integrity sha512-ER7EjqVAMkRRsxNCC5YqJ9d9VQYuWdGt7aiH2qA5R5wt8ZmWaP2dLUSIK6y/kVzLMlmh1Tvu5xUf4M/wdGJ5KA==
 
 debug@2.6.9, debug@^2.6.9:
   version "2.6.9"
@@ -7546,6 +7628,13 @@ magic-string@^0.25.0, magic-string@^0.25.7:
   dependencies:
     sourcemap-codec "^1.4.8"
 
+magic-string@^0.26.1:
+  version "0.26.2"
+  resolved "https://registry.npmmirror.com/magic-string/-/magic-string-0.26.2.tgz#5331700e4158cd6befda738bb6b0c7b93c0d4432"
+  integrity sha512-NzzlXpclt5zAbmo6h6jNc8zl2gNRGHvmsZW4IvZhTC4W7k4OlLP+S5YLussa/r3ixNT66KOQfNORlXHSOy/X4A==
+  dependencies:
+    sourcemap-codec "^1.4.8"
+
 make-dir@^2.0.0, make-dir@^2.1.0:
   version "2.1.0"
   resolved "https://registry.npmmirror.com/make-dir/-/make-dir-2.1.0.tgz#5f0310e18b8be898cc07009295a30ae41e91e6f5"
@@ -9015,7 +9104,7 @@ regenerate@^1.4.2:
   resolved "https://registry.npmmirror.com/regenerate/-/regenerate-1.4.2.tgz#b9346d8827e8f5a32f7ba29637d398b69014848a"
   integrity sha512-zrceR/XhGYU/d/opr2EKO7aRHUeiBI8qjtfHqADTwZd6Szfy16la6kqD0MIUs5z5hx6AaKa+PixpPrR289+I0A==
 
-regenerator-runtime@^0.13.4:
+regenerator-runtime@^0.13.4, regenerator-runtime@^0.13.9:
   version "0.13.9"
   resolved "https://registry.npmmirror.com/regenerator-runtime/-/regenerator-runtime-0.13.9.tgz#8925742a98ffd90814988d7566ad30ca3b263b52"
   integrity sha512-p3VT+cOEgxFsRRA9X4lkI1E+k2/CtnKtU4gcxyaCUreilL/vqI6CdZ3wxVUx3UOUg+gnUOQQcRI7BmSI656MYA==
@@ -10021,6 +10110,11 @@ symbol-tree@^3.2.4:
   version "3.2.4"
   resolved "https://registry.npmmirror.com/symbol-tree/-/symbol-tree-3.2.4.tgz#430637d248ba77e078883951fb9aa0eed7c63fa2"
   integrity sha512-9QNk5KwDF+Bvz+PyObkmSYjI5ksVUYtjW7AU22r2NKcfLJcXp96hkDWU3+XndOsUb+AQ9QhfzfCT2O+CNWT5Tw==
+
+systemjs@^6.12.1:
+  version "6.12.1"
+  resolved "https://registry.npmmirror.com/systemjs/-/systemjs-6.12.1.tgz#47cdd23a6ec9f1b01cf5b5f70562c8550da229d3"
+  integrity sha512-hqTN6kW+pN6/qro6G9OZ7ceDQOcYno020zBQKpZQLsJhYTDMCMNfXi/Y8duF5iW+4WWZr42ry0MMkcRGpbwG2A==
 
 tapable@^2.0.0, tapable@^2.1.1, tapable@^2.2.0:
   version "2.2.1"
