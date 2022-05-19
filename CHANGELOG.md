@@ -1,3 +1,12 @@
+# [3.0.0-beta.6](https://github.com/WeBankFinTech/fes.js/compare/v3.0.0-beta.5...v3.0.0-beta.6) (2022-05-19)
+
+
+### Bug Fixes
+
+* polyfill改为使用@vitejs/plugin-legacy ([53c8a33](https://github.com/WeBankFinTech/fes.js/commit/53c8a33aac2e71db9dfc6563adc174a71c27f1c4))
+
+
+
 # [3.0.0-beta.5](https://github.com/WeBankFinTech/fes.js/compare/v3.0.0-beta.4...v3.0.0-beta.5) (2022-05-18)
 
 
