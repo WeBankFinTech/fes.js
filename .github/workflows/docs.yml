@@ -5,16 +5,39 @@ on:
       - '1.0'
     paths:
       - 'packages/fes-doc/**/**'
+      - 'package.json'
 jobs:
+  # build-and-deploy:
+  #   runs-on: ubuntu-latest
+  #   steps:
+    # - name: Checkout
+    #   uses: actions/checkout@master
+    # - name: Build and Deploy
+    #   uses: JamesIves/github-pages-deploy-action@master
+    #   env:
+    #     ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+    #     BRANCH: gh-pages
+    #     FOLDER: packages/fes-doc/docs/.vuepress/dist
+    #     BUILD_SCRIPT: cd packages/fes-doc && npm install && npm run build && cd ../../
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
-      uses: actions/checkout@master
-    - name: Build and Deploy
-      uses: JamesIves/github-pages-deploy-action@master
+      uses: actions/checkout@v2.3.1
+    
+    - name: Install and Build 🔧 # This example project is built using npm and outputs the result to the 'build' folder. Replace with the commands required to build your project, or remove this step entirely if your site is pre-built.
+      run: cd packages/fes-doc & yarn && yarn build
+
+    - name: Deploy
+      uses: easingthemes/ssh-deploy@main
       env:
-        ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-        BRANCH: gh-pages
-        FOLDER: packages/fes-doc/docs/.vuepress/dist
-        BUILD_SCRIPT: cd packages/fes-doc && npm install && npm run build && cd ../../
+        # 本地.ssh文件下的私钥id_rsa，存在secrets的TOKEN中
+        SSH_PRIVATE_KEY: ${{ secrets.HARRYWAN_PRIVATE_KEY }} 
+        # 源目录，相对于$GITHUB_WORKSPACE根目录的路径
+        SOURCE: packages/fes-doc/docs/.vuepress/dist
+        # 服务器域名
+        REMOTE_HOST: ${{ secrets.TX_IP }}
+        # 腾讯云默认用户名为root
+        REMOTE_USER: root 
+        # 目标目录
+        TARGET: /data/web-packages/p/fesjs/1.0
