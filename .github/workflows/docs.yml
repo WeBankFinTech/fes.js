@@ -34,7 +34,7 @@ jobs:
         # 本地.ssh文件下的私钥id_rsa，存在secrets的TOKEN中
         SSH_PRIVATE_KEY: ${{ secrets.HARRYWAN_PRIVATE_KEY }} 
         # 源目录，相对于$GITHUB_WORKSPACE根目录的路径
-        SOURCE: packages/fes-doc/docs/.vuepress/dist
+        SOURCE: packages/fes-doc/docs/.vuepress/dist/
         # 服务器域名
         REMOTE_HOST: ${{ secrets.TX_IP }}
         # 腾讯云默认用户名为root

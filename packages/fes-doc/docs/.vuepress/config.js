@@ -1,5 +1,5 @@
 module.exports = {
-    base: "/fes.js/",
+    base: "/1.0/",
     title: "Fes.js",
     description: "中台应用前端快速解决方案",
     plugins: {
