@@ -25,13 +25,13 @@ export const zh: NavbarConfig = [
     text: '版本',
     children: [
       {
-        text: '3.0',
+        text: 'next(3.0)',
         link:
-          'http://fesjs.mumblefe.cn/next',
+          'https://fesjs.mumblefe.cn/next',
       },
       {
         text: '1.0',
-        link: 'https://webank.gitee.io/fes.js/',
+        link: 'https://fesjs.mumblefe.cn/1.0',
       },
     ],
   },
