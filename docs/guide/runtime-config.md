@@ -28,7 +28,7 @@ const runtimeConfig = plugin.applyPlugins({
 
 ```js
 // app.js
-import { defineBuildConfig } from '@fesjs/fes';
+import { defineRuntimeConfig } from '@fesjs/fes';
 
 export default defineRuntimeConfig({
     access: memo => ({
@@ -55,7 +55,7 @@ export default defineRuntimeConfig({
 
 ```js
 // app.js
-import { defineBuildConfig } from '@fesjs/fes';
+import { defineRuntimeConfig } from '@fesjs/fes';
 
 export default defineRuntimeConfig({
     access: memo => ({
