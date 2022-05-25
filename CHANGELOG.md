@@ -1,3 +1,12 @@
+# [3.0.0-beta.7](https://github.com/WeBankFinTech/fes.js/compare/v3.0.0-beta.6...v3.0.0-beta.7) (2022-05-25)
+
+
+### Bug Fixes
+
+* npm 包 ts 文件丢失问题 ([bf4475f](https://github.com/WeBankFinTech/fes.js/commit/bf4475f2405334a50255ee85cde0bf8a078d760b))
+
+
+
 # [3.0.0-beta.6](https://github.com/WeBankFinTech/fes.js/compare/v3.0.0-beta.5...v3.0.0-beta.6) (2022-05-19)
 
 
