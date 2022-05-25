@@ -29,3 +29,15 @@ jobs:
         REMOTE_USER: root 
         # 目标目录
         TARGET: /data/web-packages/p/fesjs
+  build-and-deploy-pages:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@master
+    - name: Build and Deploy
+      uses: JamesIves/github-pages-deploy-action@master
+      env:
+        ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+        BRANCH: gh-pages
+        FOLDER: docs/.vuepress/dist
+        BUILD_SCRIPT: yarn && yarn docs:build
