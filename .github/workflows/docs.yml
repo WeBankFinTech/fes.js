@@ -29,7 +29,7 @@ jobs:
         REMOTE_USER: root 
         # 目标目录
         TARGET: /data/web-packages/p/fesjs
-        
+
   build-and-deploy-pages:
     concurrency: ci-${{ github.ref }} # Recommended if you intend to make multiple deployments in quick succession.
     runs-on: ubuntu-latest
@@ -46,6 +46,5 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@v4.3.3
         with:
           branch: gh-pages # The branch the action should deploy to.
-          folder: build # The folder the action should deploy.
           folder: docs/.vuepress/dist
           token: ${{ secrets.ACCESS_TOKEN }}
