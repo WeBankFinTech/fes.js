@@ -16,7 +16,7 @@
     "release": "node scripts/build.js && lerna publish from-git",
     "docs:dev": "vuepress dev docs --clean-cache",
     "docs:build": "vuepress build docs --clean-cache",
-    "docs:build-pages": "BASE=fes.js/ vuepress build docs --clean-cache",
+    "docs:build-pages": "BASE=/fes.js/ vuepress build docs --clean-cache",
     "test": "fes test",
     "lint": "eslint -c ./.eslintrc.js --ext .js,.jsx,.vue,.ts"
   },
