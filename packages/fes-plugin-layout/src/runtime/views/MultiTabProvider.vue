@@ -13,7 +13,7 @@
                 v-for="page in pageList"
                 :key="page.path"
                 :value="page.path"
-                :closable="route.path !== page.path"
+                :closable="pageList.length > 1"
             >
                 <template #tab>
                     {{page.title}}
@@ -80,11 +80,11 @@ export default {
         const actions = [
             {
                 value: 'closeOtherPage',
-                label: '关闭其他'
+                label: '关闭其他页签'
             },
             {
                 value: 'reloadPage',
-                label: '刷新当前页'
+                label: '刷新当前页签'
             }
         ];
 
@@ -97,20 +97,29 @@ export default {
             return true;
         });
         // 还需要考虑参数
-        const switchPage = (path) => {
+        const switchPage = async (path) => {
             const selectedPage = findPage(path);
             if (selectedPage) {
-                router.push({
+                await router.push({
                     path,
                     query: selectedPage.route.query,
                     params: selectedPage.route.params
                 });
             }
         };
-        const handleCloseTab = (targetKey) => {
+        const handleCloseTab = async (targetKey) => {
             const selectedPage = findPage(targetKey);
             const list = [...pageList.value];
             const index = list.indexOf(selectedPage);
+            if (route.path === selectedPage.path) {
+                if (list.length > 1) {
+                    if (list.length - 1 === index) {
+                        await switchPage(list[index - 1].path);
+                    } else {
+                        await switchPage(list[index + 1].path);
+                    }
+                }
+            }
             list.splice(index, 1);
             pageList.value = list;
         };
