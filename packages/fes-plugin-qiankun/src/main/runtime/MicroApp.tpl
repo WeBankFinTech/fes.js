@@ -77,7 +77,7 @@ export const MicroApp = defineComponent({
             const appConfig = appConfigRef.value;
             const { name, entry } = appConfig;
             // 加载新的
-            microAppRef.value = loadMicroApp(
+            const app = loadMicroApp(
                 {
                     // 保证唯一
                     name: `${name}`,
@@ -96,6 +96,10 @@ export const MicroApp = defineComponent({
                     (v1, v2) => concat(v1 ?? [], v2 ?? [])
                 )
             );
+            app.mount().catch((e)=>{
+                console.log(e)
+            })
+            microAppRef.value = app;
         };
 
         // 当参数变化时，update子应用
