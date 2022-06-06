@@ -28,6 +28,7 @@ export const MicroApp = defineComponent({
             type: String,
             required: true
         },
+        entry: String,
         settings: Object,
         props: Object,
         lifeCycles: Object
@@ -80,7 +81,7 @@ export const MicroApp = defineComponent({
             const app = loadMicroApp(
                 {
                     // 保证唯一
-                    name: `${name}`,
+                    name: `${name}_${props.entry || ''}`,
                     entry: entry,
                     container: containerRef.value,
                     props: {...propsConfigRef.value}

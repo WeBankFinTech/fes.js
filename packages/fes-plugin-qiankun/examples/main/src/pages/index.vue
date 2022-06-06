@@ -1,6 +1,7 @@
 <template>
     <div>
         main
+        <input />
         <FTabs v-model="activeKey">
             <FTabPane name="Tab 1" value="1">
                 <MicroAppWithMemoHistory key="1" name="app1" url="/app1" a="1" />
