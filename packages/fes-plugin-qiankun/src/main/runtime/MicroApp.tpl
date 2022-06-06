@@ -12,13 +12,13 @@ import {mergeWith} from "{{{LODASH_ES}}}";
 // eslint-disable-next-line import/extensions
 import { getMasterOptions } from "./masterOptions";
 
-function unmountMicroApp(microApp) {
+async function unmountMicroApp(microApp) {
     if (!microApp) {
         return;
     }
     const status = microApp.getStatus();
     if (status === 'MOUNTED') {
-        microApp.unmount();
+        await microApp.unmount();
     }
 }
 
@@ -80,7 +80,7 @@ export const MicroApp = defineComponent({
             microAppRef.value = loadMicroApp(
                 {
                     // 保证唯一
-                    name: `${name}_${Date.now()}`,
+                    name: `${name}`,
                     entry: entry,
                     container: containerRef.value,
                     props: {...propsConfigRef.value}

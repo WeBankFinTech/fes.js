@@ -1,6 +1,7 @@
 <template>
     <div class="haizekuo">
         app1 - index
+        <input />
     </div>
 </template>
 <config>

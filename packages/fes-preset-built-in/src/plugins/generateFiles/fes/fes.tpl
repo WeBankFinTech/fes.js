@@ -61,6 +61,7 @@ const beforeRender = async ({rootElement}) => {
             console.error(e);
         }
         app.unmount();
+        app._container.innerHTML = '';
     }
     return initialState;
 };

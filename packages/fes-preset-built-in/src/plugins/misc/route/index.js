@@ -328,7 +328,7 @@ export default function (api) {
 
     api.addCoreExports(() => [
         {
-            specifiers: ['getRoutes', 'getRouter', 'getHistory', 'destroyRouter', 'defineRouteMeta'],
+            specifiers: ['getRoutes', 'defineRouteMeta'],
             source: absCoreFilePath
         }
     ]);
