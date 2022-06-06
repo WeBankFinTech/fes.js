@@ -65,11 +65,11 @@ export const MicroApp = defineComponent({
             return {};
         });
 
+        
         const propsConfigRef = computed(() => {
             return {
                 ...propsFromConfigRef.value,
                 ...props.props,
-                ...attrs
             };
         });
 
@@ -84,7 +84,7 @@ export const MicroApp = defineComponent({
                     name: `${name}_${props.entry || ''}`,
                     entry: entry,
                     container: containerRef.value,
-                    props: {...propsConfigRef.value}
+                    props: {...propsConfigRef.value, ...attrs}
                 },
                 {
                     ...globalSettings,
@@ -97,8 +97,10 @@ export const MicroApp = defineComponent({
                     (v1, v2) => concat(v1 ?? [], v2 ?? [])
                 )
             );
-            app.mount().catch((e)=>{
-                console.log(e)
+            ['loadPromise', 'bootstrapPromise', 'mountPromise', 'unmountPromise'].forEach((key)=>{
+                app[key].catch((e)=>{
+                    console.warn("[@fesjs/plugin-qiankun]", e)
+                })
             })
             microAppRef.value = app;
         };
@@ -136,7 +138,7 @@ export const MicroApp = defineComponent({
                             }
 
                             // 返回 microApp.update 形成链式调用
-                            return microApp.update({...propsConfigRef.value});
+                            return microApp.update({...propsConfigRef.value, ...attrs});
                         }
                     }
                 );
