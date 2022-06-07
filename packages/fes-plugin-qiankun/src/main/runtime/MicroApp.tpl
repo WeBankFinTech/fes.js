@@ -76,7 +76,7 @@ export const MicroApp = defineComponent({
         // 只有当name变化时才重新加载新的子应用
         const loadApp = () => {
             const appConfig = appConfigRef.value;
-            const { name, cacheName } = appConfig;
+            const { name, entry } = appConfig;
             // 加载新的
             const app = loadMicroApp(
                 {
