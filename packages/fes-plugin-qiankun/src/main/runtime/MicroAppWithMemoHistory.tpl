@@ -14,6 +14,7 @@ export const MicroAppWithMemoHistory = defineComponent({
             type: String,
             required: true
         },
+        cacheName: String,
         settings: Object,
         props: Object,
         lifeCycles: Object,
