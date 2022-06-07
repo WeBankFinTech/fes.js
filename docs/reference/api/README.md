@@ -74,7 +74,6 @@ Fes.js 路由基于 [Vue Router 4.0](https://next.router.vuejs.org/introduction.
 返回当前 `router` 实例。
 ```js
 import { getRouter } from "@fesjs/fes";
-
 const router = getRouter();
 router.push();
 ```
