@@ -3,11 +3,11 @@ import { MicroApp } from './MicroApp';
 export function getMicroAppRouteComponent({
   key,
   appName,
-  entry,
+  cacheName,
   base,
   masterHistoryType,
   routeProps
 }) {
 
-  return <MicroApp key={key} base={base} masterHistoryType={masterHistoryType} name={appName} entry={entry} {...routeProps} />;
+  return <MicroApp key={key} base={base} masterHistoryType={masterHistoryType} name={appName} cacheName={cacheName} {...routeProps} />;
 }

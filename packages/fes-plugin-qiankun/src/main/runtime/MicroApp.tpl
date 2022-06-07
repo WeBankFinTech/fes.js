@@ -28,7 +28,7 @@ export const MicroApp = defineComponent({
             type: String,
             required: true
         },
-        entry: String,
+        cacheName: String,
         settings: Object,
         props: Object,
         lifeCycles: Object
@@ -76,12 +76,12 @@ export const MicroApp = defineComponent({
         // 只有当name变化时才重新加载新的子应用
         const loadApp = () => {
             const appConfig = appConfigRef.value;
-            const { name, entry } = appConfig;
+            const { name, cacheName } = appConfig;
             // 加载新的
             const app = loadMicroApp(
                 {
                     // 保证唯一
-                    name: `${name}_${props.entry || ''}`,
+                    name: `${name}_${props.cacheName || ''}`,
                     entry: entry,
                     container: containerRef.value,
                     props: {...propsConfigRef.value, ...attrs}
