@@ -1,9 +1,5 @@
-
-import {
-    defineComponent, isRef, watch
-} from 'vue';
+import { defineComponent, watch, onUnmounted } from 'vue';
 import { MicroApp } from './MicroApp';
-
 
 export const MicroAppWithMemoHistory = defineComponent({
     components: {
@@ -26,9 +22,21 @@ export const MicroAppWithMemoHistory = defineComponent({
             microRouter = router;
             microRouter.push(props.url);
         };
-        watch(()=>props.url, () => {
-            microRouter.push(props.url);
+        watch(
+            () => props.url,
+            () => {
+                microRouter.push(props.url);
+            }
+        );
+        onUnmounted(() => {
+            microRouter = null;
         });
-        return () => <MicroApp onRouterInit={onRouterInit} {...props} {...attrs}></MicroApp>;
+        return () => (
+            <MicroApp
+                onRouterInit={onRouterInit}
+                {...props}
+                {...attrs}
+            ></MicroApp>
+        );
     }
 });
