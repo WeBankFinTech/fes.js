@@ -1,4 +1,4 @@
-import { plugin, ApplyPluginsType } from '@@/core/coreExports';
+import { plugin, ApplyPluginsType, getHistory, destroyRouter } from '@@/core/coreExports';
 {{#HAS_PLUGIN_MODEL}}
 import { setModelState } from './qiankunModel';
 {{/HAS_PLUGIN_MODEL}}
@@ -49,6 +49,7 @@ export function genBootstrap(oldRender, appPromise) {
         if (isPromise(appPromise)) {
             cacheAppPromise = appPromise;
         }
+        appPromise = null;
     };
 }
 
@@ -115,6 +116,12 @@ export function genUpdate() {
 // 子应用生命周期钩子Unmount
 export function genUnmount() {
     return async (props) => {
+        Object.keys(history).forEach(key=>{
+            delete history[key]
+        })
+        const routerHistory = getHistory();
+        routerHistory?.destroy();
+        destroyRouter();
         if (cache[props.name]) {
             setTimeout(() => {
                 const app = cache[props.name];

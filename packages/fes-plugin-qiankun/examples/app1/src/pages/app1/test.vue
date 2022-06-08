@@ -14,6 +14,7 @@
 export default {
     setup() {
         return {
+            leak: new Array(5 * 1024 * 1024)
         };
     }
 };
