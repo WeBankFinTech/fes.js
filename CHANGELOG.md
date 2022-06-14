@@ -1,3 +1,18 @@
+# [3.0.0-beta.8](https://github.com/WeBankFinTech/fes.js/compare/v3.0.0-beta.7...v3.0.0-beta.8) (2022-06-14)
+
+
+### Bug Fixes
+
+* 修复qiankun内存泄露 ([5bacf31](https://github.com/WeBankFinTech/fes.js/commit/5bacf31098a51eeb949d75399108da31c8753503))
+* 修复乾坤 bug ([2a43385](https://github.com/WeBankFinTech/fes.js/commit/2a433855f0d311298461579da81af83ffbdef255))
+
+
+### Features
+
+* plugin-layout 多页签可以删除当前页面 ([400d254](https://github.com/WeBankFinTech/fes.js/commit/400d254a4b9969fc76127b587e6267e08702cf5f))
+
+
+
 # [3.0.0-beta.7](https://github.com/WeBankFinTech/fes.js/compare/v3.0.0-beta.6...v3.0.0-beta.7) (2022-05-25)
 
 
