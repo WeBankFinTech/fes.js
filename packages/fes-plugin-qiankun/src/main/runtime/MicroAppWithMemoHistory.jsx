@@ -1,4 +1,4 @@
-import { defineComponent, watch } from 'vue';
+import { defineComponent, watch, onUnmounted } from 'vue';
 // eslint-disable-next-line import/extensions
 import { MicroApp } from './MicroApp';
 
@@ -11,6 +11,7 @@ export const MicroAppWithMemoHistory = defineComponent({
             type: String,
             required: true,
         },
+        cacheName: String,
         settings: Object,
         props: Object,
         lifeCycles: Object,
@@ -28,6 +29,9 @@ export const MicroAppWithMemoHistory = defineComponent({
                 microRouter.push(props.url);
             },
         );
+        onUnmounted(() => {
+            microRouter = null;
+        });
         return () => <MicroApp onRouterInit={onRouterInit} {...props} {...attrs}></MicroApp>;
     },
 });

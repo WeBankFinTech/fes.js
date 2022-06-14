@@ -301,7 +301,7 @@ import { access, useAccess } from '@fesjs/fes';
 ```js
 api.addCoreExports(() => [
     {
-        specifiers: ['getRoutes', 'getRouter', 'getHistory', 'destroyRouter'],
+        specifiers: ['getRoutes'],
         source: absCoreFilePath
     }
 ]);
