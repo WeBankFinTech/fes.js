@@ -269,3 +269,24 @@ export default {
 
 - 主应用使用 props 的模式传递数据（参考主应用装载子应用配置一节）
 - 子应用在生命周期钩子中获取 props 消费数据（参考子应用运行时配置一节） 
+
+
+### MicroApp
+| 属性   | 说明       | 类型          | 默认值     |
+| ---- | ----------- | ------------- | ---------- |
+| name  | 子应用名称，传入`qiankun.main.apps`配置中的`name` | String                      |  -      |
+| settings  | 子应用配置信息        | Object                      |  {}      |
+| props  | 传入子应用的参数        | Object                      |  {}      |
+| lifeCycles  | 子应用生命周期钩子        | Object                      |  {}      |
+| cacheName  | 子应用缓存名称，配置后根据`name`+`cacheName`缓存子应用实例     | Object                      |  -      |
+
+
+### MicroAppWithMemoHistory
+| 属性   | 说明       | 类型          | 默认值     |
+| ---- | ----------- | ------------- | ---------- |
+| name  | 子应用名称，传入`qiankun.main.apps`配置中的`name` | String                      |  -      |
+| settings  | 子应用配置信息        | Object                      |  {}      |
+| props  | 传入子应用的参数        | Object                      |  {}      |
+| lifeCycles  | 子应用生命周期钩子        | Object                      |  {}      |
+| cacheName  | 子应用缓存名称，配置后根据`name`+`cacheName`缓存子应用实例     | Object                      |  -      |
+| url  | 子应用的路由地址    | String                      |  -      |

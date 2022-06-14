@@ -12,13 +12,13 @@ import { mergeWith } from "{{{LODASH_ES}}}";
 // eslint-disable-next-line import/extensions
 import { getMasterOptions } from "./masterOptions";
 
-function unmountMicroApp(microApp) {
+async function unmountMicroApp(microApp) {
     if (!microApp) {
         return;
     }
     const status = microApp.getStatus();
     if (status === 'MOUNTED') {
-        microApp.unmount();
+        await microApp.unmount();
     }
 }
 
@@ -28,6 +28,7 @@ export const MicroApp = defineComponent({
             type: String,
             required: true
         },
+        cacheName: String,
         settings: Object,
         props: Object,
         lifeCycles: Object
@@ -64,11 +65,11 @@ export const MicroApp = defineComponent({
             return {};
         });
 
+        
         const propsConfigRef = computed(() => {
             return {
                 ...propsFromConfigRef.value,
                 ...props.props,
-                ...attrs
             };
         });
 
@@ -77,13 +78,13 @@ export const MicroApp = defineComponent({
             const appConfig = appConfigRef.value;
             const { name, entry } = appConfig;
             // 加载新的
-            microAppRef.value = loadMicroApp(
+            const app = loadMicroApp(
                 {
                     // 保证唯一
-                    name: `${name}_${Date.now()}`,
+                    name: `${name}_${props.cacheName || ''}`,
                     entry: entry,
                     container: containerRef.value,
-                    props: {...propsConfigRef.value}
+                    props: {...propsConfigRef.value, ...attrs}
                 },
                 {
                     ...globalSettings,
@@ -96,6 +97,12 @@ export const MicroApp = defineComponent({
                     (v1, v2) => concat(v1 ?? [], v2 ?? [])
                 )
             );
+            ['loadPromise', 'bootstrapPromise', 'mountPromise', 'unmountPromise'].forEach((key)=>{
+                app[key].catch((e)=>{
+                    console.warn("[@fesjs/plugin-qiankun]", e)
+                })
+            })
+            microAppRef.value = app;
         };
 
         // 当参数变化时，update子应用
@@ -131,7 +138,7 @@ export const MicroApp = defineComponent({
                             }
 
                             // 返回 microApp.update 形成链式调用
-                            return microApp.update({...propsConfigRef.value});
+                            return microApp.update({...propsConfigRef.value, ...attrs});
                         }
                     }
                 );

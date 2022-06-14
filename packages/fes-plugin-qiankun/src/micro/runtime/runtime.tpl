@@ -1,5 +1,5 @@
-import { createMemoryHistory, getHistory } from '@@/core/coreExports';
-import qiankunRender, { clientRenderOptsStack, history } from './lifecycles';
+import { createMemoryHistory } from '@@/core/coreExports';
+import qiankunRender, { clientRenderOptsStack, history as historyConfig } from './lifecycles';
 
 
 export const render = oldRender => qiankunRender().then(oldRender);
@@ -15,19 +15,18 @@ export function modifyClientRenderOpts(memo) {
 }
 
 export function modifyCreateHistory(memo) {
-    if (history.url) {
+    if (historyConfig.url) {
         return createMemoryHistory
     }
     return memo;
 }
 
-export function onRouterCreated({ router }) {
-     if(history.url) {
-        const memoryHistory = getHistory();
-        memoryHistory.push(history.url)
+export function onRouterCreated({ router, history }) {
+     if(historyConfig.url) {
+        history.push(historyConfig.url)
     }
-    if(history.onRouterInit){
-        history.onRouterInit(router)
+    if(historyConfig.onRouterInit){
+        historyConfig.onRouterInit(router)
     }
 }
 

@@ -9,7 +9,7 @@
             @close="handleCloseTab"
             @update:modelValue="switchPage"
         >
-            <FTabPane v-for="page in pageList" :key="page.path" :value="page.path" :closable="route.path !== page.path">
+            <FTabPane v-for="page in pageList" :key="page.path" :value="page.path" :closable="pageList.length > 1">
                 <template #tab>
                     {{ page.title }}
                     <ReloadOutlined v-show="route.path === page.path" class="layout-tabs-close-icon" @click="reloadPage(page.path)" />
@@ -22,8 +22,8 @@
             </template>
         </FTabs>
         <router-view v-slot="{ Component, route }">
-            <keep-alive>
-                <component :is="Component" :key="getPageKey(route)" />
+            <keep-alive :include="keepAlivePages">
+                <component :is="getComponent(Component, route, true)" :key="getPageKey(route)" />
             </keep-alive>
         </router-view>
     </template>
@@ -59,11 +59,12 @@ export default {
             return {
                 path: _route.path,
                 route: _route,
-                name: _route.meta.name,
+                name: _route.meta.name ?? _route.name,
                 title: computed(() => transTitle(title)),
                 key: getKey(),
             };
         };
+        const keepAlivePages = ref([]);
 
         const route = useRoute();
         const router = useRouter();
@@ -71,11 +72,11 @@ export default {
         const actions = [
             {
                 value: 'closeOtherPage',
-                label: '关闭其他',
+                label: '关闭其他页签',
             },
             {
                 value: 'reloadPage',
-                label: '刷新当前页',
+                label: '刷新当前页签',
             },
         ];
 
@@ -88,22 +89,37 @@ export default {
             return true;
         });
         // 还需要考虑参数
-        const switchPage = (path) => {
+        const switchPage = async (path) => {
             const selectedPage = findPage(path);
             if (selectedPage) {
-                router.push({
+                await router.push({
                     path,
                     query: selectedPage.route.query,
                     params: selectedPage.route.params,
                 });
             }
         };
-        const handleCloseTab = (targetKey) => {
+        const handleCloseTab = async (targetKey) => {
             const selectedPage = findPage(targetKey);
             const list = [...pageList.value];
             const index = list.indexOf(selectedPage);
+            if (route.path === selectedPage.path) {
+                if (list.length > 1) {
+                    if (list.length - 1 === index) {
+                        await switchPage(list[index - 1].path);
+                    } else {
+                        await switchPage(list[index + 1].path);
+                    }
+                }
+            }
             list.splice(index, 1);
             pageList.value = list;
+            const _keepAlivePages = [...keepAlivePages.value];
+            const keepIndex = _keepAlivePages.indexOf(selectedPage.name);
+            if (keepIndex !== -1) {
+                _keepAlivePages.splice(keepIndex, 1);
+            }
+            keepAlivePages.value = _keepAlivePages;
         };
         const reloadPage = (path) => {
             const selectedPage = findPage(path || unref(route.path));
@@ -114,6 +130,7 @@ export default {
         const closeOtherPage = (path) => {
             const selectedPage = findPage(path || unref(route.path));
             pageList.value = [selectedPage];
+            keepAlivePages.value = [selectedPage.name];
         };
         const getPageKey = (_route) => {
             const selectedPage = findPage(_route.path);
@@ -133,10 +150,10 @@ export default {
                 default:
             }
         };
-        const keepAlivePages = ref([]);
-        const getComponent = (Component, _route) => {
-            if (_route.meta['keep-alive']) {
-                const name = _route.meta?.name || _route.name;
+
+        const getComponent = (Component, _route, isKeep = false) => {
+            if (isKeep || _route.meta['keep-alive']) {
+                const name = _route.meta?.name ?? _route.name;
                 if (name) {
                     // 修改组件的 name
                     Component.type.name = name;

@@ -5,9 +5,6 @@ const ROUTER_BASE = '{{{ routerBase }}}';
 let router = null;
 let history = null;
 export const createRouter = (routes) => {
-  if (router) {
-    return router;
-  }
   const createHistory = plugin.applyPlugins({
     key: 'modifyCreateHistory',
     type: ApplyPluginsType.modify,
@@ -31,7 +28,7 @@ export const createRouter = (routes) => {
   plugin.applyPlugins({
     key: 'onRouterCreated',
     type: ApplyPluginsType.event,
-    args: { router },
+    args: { router, history },
   });
 
   return router;

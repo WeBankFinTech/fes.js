@@ -1,4 +1,4 @@
-import { plugin, ApplyPluginsType, getRouter, getHistory, destroyRouter } from '@@/core/coreExports';
+import { plugin, ApplyPluginsType, getHistory, destroyRouter } from '@@/core/coreExports';
 {{#HAS_PLUGIN_MODEL}}
 import { setModelState } from './qiankunModel';
 {{/HAS_PLUGIN_MODEL}}
@@ -18,6 +18,7 @@ function isPromise(obj) {
 let render = () => {};
 let cacheAppPromise = null;
 let hasMountedAtLeastOnce = false;
+const cache = {};
 
 export default () => defer.promise;
 
@@ -48,6 +49,7 @@ export function genBootstrap(oldRender, appPromise) {
         if (isPromise(appPromise)) {
             cacheAppPromise = appPromise;
         }
+        appPromise = null;
     };
 }
 
@@ -91,6 +93,11 @@ export function genMount(mountElementId) {
             defer.resolve();
         }
         hasMountedAtLeastOnce = true;
+        cacheAppPromise.then((app)=>{
+            if(!cache[props.name]) {
+                cache[props.name] = app;
+            }
+        })
     };
 }
 
@@ -109,9 +116,21 @@ export function genUpdate() {
 // 子应用生命周期钩子Unmount
 export function genUnmount() {
     return async (props) => {
-        const history = getHistory();
-        history.destroy();  // 会触发app.unmount
+        Object.keys(history).forEach(key=>{
+            delete history[key]
+        })
+        const routerHistory = getHistory();
+        routerHistory?.destroy();
         destroyRouter();
+        if (cache[props.name]) {
+            setTimeout(() => {
+                const app = cache[props.name];
+                app.unmount();
+                app._container.innerHTML = '';
+                delete cache[props.name];
+                cacheAppPromise = null;
+            }, 0);
+        }
         const slaveRuntime = getSlaveRuntime();
         if (slaveRuntime.unmount) {
             await slaveRuntime.unmount(props);

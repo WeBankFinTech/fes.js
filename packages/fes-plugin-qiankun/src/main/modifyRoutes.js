@@ -1,16 +1,13 @@
 import { defaultHistoryType } from '../constants';
 
 function getMicroApp(options) {
-    const { key, microAppName, masterHistoryType, base, namespace, ...normalizedRouteProps } = options;
-    return `() => {
-return new Promise((resolve)=>{
-    import('@@/${namespace}/getMicroAppRouteComponent').then(({ getMicroAppRouteComponent })=>{
-        resolve(getMicroAppRouteComponent({ key: '${key}', appName: '${microAppName}', base: '${base}', masterHistoryType: '${masterHistoryType}', routeProps: ${JSON.stringify(
+    const { key, microAppName, cacheName, masterHistoryType, base, namespace, ...normalizedRouteProps } = options;
+    return `(async () => {
+const { getMicroAppRouteComponent } = await import('@@/${namespace}/getMicroAppRouteComponent');
+return getMicroAppRouteComponent({key: '${key}', appName: '${microAppName}', cacheName: '${cacheName}', base: '${base}', masterHistoryType: '${masterHistoryType}', routeProps: ${JSON.stringify(
         normalizedRouteProps,
-    )}  }))
-    })
-})
-}`;
+    )} })
+})()`;
 }
 
 function modifyRoutesWithAttachMode({ routes, masterHistoryType, base, namespace }) {
@@ -20,6 +17,7 @@ function modifyRoutesWithAttachMode({ routes, masterHistoryType, base, namespace
                 if (route.meta && route.meta.microApp) {
                     route.component = getMicroApp({
                         key: route.path,
+                        cacheName: route.meta.cacheName ?? route.path,
                         microAppName: route.meta.microApp,
                         masterHistoryType,
                         base,
