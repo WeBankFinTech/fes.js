@@ -14,7 +14,7 @@ export function typeOf(obj) {
         '[object Undefined]': 'undefined',
         '[object Null]': 'null',
         '[object Object]': 'object',
-        '[object URLSearchParams]': 'URLSearchParams'
+        '[object URLSearchParams]': 'URLSearchParams',
     };
     return map[Object.prototype.toString.call(obj)];
 }
@@ -43,36 +43,30 @@ export function isURLSearchParams(obj) {
     return typeOf(obj) === 'URLSearchParams';
 }
 
-// eslint-disable-next-line
-export const isUndefined = val => val === undefined;
-
-export const isDefined = val => val != null;
-
-
 export function checkHttpRequestHasBody(method) {
     method = method.toUpperCase();
     const HTTP_METHOD = {
         GET: {
-            request_body: false
+            request_body: false,
         },
         POST: {
-            request_body: true
+            request_body: true,
         },
         PUT: {
-            request_body: true
+            request_body: true,
         },
         DELETE: {
-            request_body: true
+            request_body: true,
         },
         HEAD: {
-            request_body: false
+            request_body: false,
         },
         OPTIONS: {
-            request_body: false
+            request_body: false,
         },
         PATCH: {
-            request_body: true
-        }
+            request_body: true,
+        },
     };
     return HTTP_METHOD[method].request_body;
 }
