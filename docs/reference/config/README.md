@@ -133,7 +133,7 @@ export default {
 };
 ```
 
-然后所有以 `/api/users` 开始的请求，就能进入 mock.js 文件处理。
+然后所有以 `/api/users` 开始的请求，就能进入 mock.js 文件处理，[mock.js 示例](../../guide/mock)。
 
 ### mountElementId
 
