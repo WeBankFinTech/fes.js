@@ -36,7 +36,7 @@ export default {
     layout: {
         title: 'Fes.js',
         footer: 'Created by MumbleFE',
-        multiTabs: true,
+        multiTabs: false,
         navigation: 'side',
         theme: 'dark',
         menus: [
