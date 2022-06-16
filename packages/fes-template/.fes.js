@@ -20,9 +20,6 @@ export default {
             menuTest: ['/', '/menuTest']
         }
     },
-    request: {
-        dataField: 'result'
-    },
     mock: {
         prefix: '/v2'
     },
