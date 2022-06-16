@@ -10,9 +10,6 @@ export default defineBuildConfig({
         }
     },
     publicPath: '/',
-    request: {
-        dataField: 'result'
-    },
     html: {
         title: '拉夫德鲁'
     },

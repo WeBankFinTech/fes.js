@@ -7,7 +7,7 @@
 </template>
 <script>
 import { ref } from 'vue';
-import { request, defineRouteMeta, useRoute } from '@fesjs/fes';
+import { request, defineRouteMeta } from '@fesjs/fes';
 import HelloWorld from '@/components/helloWorld.vue';
 
 defineRouteMeta({
@@ -26,15 +26,15 @@ export default {
         const clickIcon = () => {
             console.log('click icon');
         };
-        console.log(process.env.NODE_ENV, process.env.HELLO);
-        console.log(useRoute());
 
         const get = () => {
-            request('/api', null, {
-                skipErrorHandler: ['500'],
-            }).catch((err) => {
-                console.log('skip error', err);
-            });
+            request('/api', null, {})
+                .then((data) => {
+                    console.log(data);
+                })
+                .catch((err) => {
+                    console.log('error', err);
+                });
         };
 
         get(1);
