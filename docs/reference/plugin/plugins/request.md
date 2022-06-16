@@ -1,6 +1,6 @@
 # @fesjs/plugin-request
 
-基于 axios 封装的 request，内置防止重复请求、请求节流、错误处理等功能。
+基于 axios 封装的 request，内置防止重复请求、请求缓存、错误处理等功能。
 
 ## 启用方式
 
@@ -9,114 +9,86 @@
 ```json
 {
     "dependencies": {
-        "@fesjs/fes": "^2.0.0",
-        "@fesjs/plugin-request": "^2.0.0"
+        "@fesjs/fes": "^3.0.0",
+        "@fesjs/plugin-request": "^3.0.0"
     }
 }
 ```
 
-## 配置
+## 运行时配置
 
-### 构建时配置
+入口文件的全局配置，具体请求的配置参数会覆盖全局配置，支持 [axios](https://axios-http.com/zh/docs/req_config) 所有的参数。
 
 ```js
-export default {
+import { defineRuntimeConfig } from '@fesjs/fes';
+
+export default defineRuntimeConfig({
     request: {
-        dataField: 'result',
-    },
-};
-```
-
-#### dataField
-
--   类型： `string`
--   默认值： `''`
--   详情：
-
-    `dataField` 对应接口中的数据字段。假设接口统一的规范是 `{ code: string, result: any}`，可配置 `dataField: 'result'`， 直接获取数据。如果个别接口不符合这个规范，可在第三个参数加上 `dataField: false`。
-
-```js
-// 构建时配置 dataField: 'result'
-
-import { request } from '@fesjs/fes';
-
-// 假设相应体为： {code: '0',  result: {say: 'hello'}}
-const result = await request('/path/to/query/');
-
-// {say: 'hello'}
-console.log(result);
-
-// 假设相应体为： {code: '0',  data: {say: 'hello'}}，其中 result 字段换成了 data
-const response1 = await request('/special/to/query/', null, { dataField: false });
-
-// {code: '0',  data: {say: 'hello'}}
-console.log(response1);
-
-// 或者：假设相应体为： {code: '0',  data: {say: 'hello'}}，其中 result 字段换成了 data
-const response2 = await request('/special/to/query/', null, { dataField: 'data' });
-
-// {say: 'hello'}
-console.log(response2);
-```
-
-### 运行时配置
-
-在 `app.js` 中进行运行时配置。
-
-```js
-export const request = {
-    // 格式化 response.data (只有 response.data 类型为 object 才会调用)
-    responseDataAdaptor: (data) => {
-        data.code = data.code === '200' ? '0' : data.code;
-        return data;
-    },
-    // 关闭 response data 校验（只判断 xhr status）
-    closeResDataCheck: false,
-    // 请求拦截器
-    requestInterceptors: [],
-    // 响应拦截器
-    responseInterceptors: [],
-    // 错误处理
-    // 内部以 reponse.data.code === '0' 判断请求是否成功
-    // 若使用其他字段判断，可以使用 responseDataAdaptor 对响应数据进行格式
-    errorHandler: {
-        11199(response) {
-            // 特殊 code 处理逻辑
+        // API  前缀
+        baseURL: '',
+        dataHandler(data, response) {
+            // 处理响应内容异常
+            if (data.code !== '0') {
+                if (data.code === '10000') {
+                    FMesseage.error('hello world');
+                }
+                if (data.code === '20000') {
+                    FMesseage.error('hello world');
+                }
+                throw new Error(response);
+            }
+            // 响应数据格式化
+            return data?.result ? data.result : data;
         },
-        404(error) {},
-        default(error) {
-            // 异常统一处理
+        // http 异常，和插件异常
+        errorHandler(error) {
+            if (error.response) {
+                // 请求成功发出且服务器也响应了状态码，但状态代码超出了 2xx 的范围
+                console.log(error.response.data);
+                console.log(error.response.status);
+                console.log(error.response.headers);
+            } else if (error.request) {
+                // 请求已经成功发起，但没有收到响应
+                // `error.request` 在浏览器中是 XMLHttpRequest 的实例，
+                // 而在node.js中是 http.ClientRequest 的实例
+                console.log(error.request);
+            } else if (error.type) {
+                // 插件异常
+                console.log(error.msg);
+            } else {
+                // 发送请求时出了点问题
+                console.log('Error', error.message);
+            }
+            console.log(error.config);
         },
+        // 请求拦截器
+        requestInterceptors: [],
+        // 响应拦截器
+        responseInterceptors: [],
+        // 支持其他 axios 配置
+        ...otherConfigs,
     },
-    // 其他 axios 配置
-    ...otherConfigs,
-};
+});
 ```
 
-#### skipErrorHandler
+## API
 
--   类型： `boolean | string | number | array<string | number>`
--   默认值： ``
--   详情：
+### request
 
-    指定当前请求的某些错误状态不走 `errorHandler`，单独进行处理。如果设置为 `true`，当前请求的错误处理都不走 `errorHandler`。
+-   **类型**：函数
 
--   示列：
+-   **详情**：请求后端接口
+-   **参数**：
 
-```js
-import { request } from '@fesjs/fes';
+    -   url: 后端接口 url
+    -   data: 参数
+    -   options: 配置支持 [axios](https://axios-http.com/zh/docs/req_config) 所有的参数，和插件扩展参数。
 
-request('/api/login', null, {
-    skipErrorHandler: '110',
-})
-    .then((res) => {
-        // do something
-    })
-    .catch((err) => {
-        // 这里处理 code 为 110 的异常
-        // 此时 errorHandler[110] 函数不会生效，也不会执行 errorHandler.default
-    });
-```
+-   **返回值**: Promise
+
+### useRequest
+
+request 的封装，返回响应式 `loading`、`error`、 `data`
 
 ## 使用
 
@@ -212,20 +184,3 @@ export default {
     },
 };
 ```
-
-## API
-
-### request
-
--   **类型**：函数
-
--   **详情**：请求后端接口
--   **参数**：
-    -   url: 后端接口 url
-    -   data: 参数
-    -   options:  配置（ 支持 axios 所有配置）
--   **返回值**: Promise
-
-### useRequest
-
-request 的封装，返回响应式 `loading`、`error`、 `data`

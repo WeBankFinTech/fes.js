@@ -14,9 +14,7 @@ const getQueryString = (data) => {
 };
 
 export default async function genRequestKey(ctx, next) {
-    const {
-        url, data, params, method
-    } = ctx.config;
+    const { url, data, params, method } = ctx.config;
 
     ctx.key = `${url}${getQueryString(data)}${getQueryString(params)}${method}`;
 
