@@ -102,7 +102,7 @@ function getCustomerHandler(ctx, options = {}) {
     const { dataHandler, errorHandler } = ctx;
     return {
         dataHandler: options.dataHandler || dataHandler,
-        errorHandler: errorHandler || options.errorHandler,
+        errorHandler: options.errorHandler || errorHandler,
     };
 }
 
