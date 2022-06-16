@@ -1,16 +1,13 @@
-import axios from 'AXIOS_PATH';
+import axios from 'axios';
 import { ApplyPluginsType, plugin } from '@fesjs/fes';
 import { ref } from 'vue';
 import scheduler from './scheduler';
 import { checkHttpRequestHasBody, isFunction } from './helpers';
 
-import setDataField from './setDataField';
 import paramsProcess from './paramsProcess';
 import genRequestKey from './genRequestKey';
 import preventRepeatReq from './preventRepeatReq';
 import cacheControl from './cacheControl';
-import resDataAdaptor from './resDataAdaptor';
-import resErrorProcess from './resErrorProcess';
 
 function addInterceptors(instance, interceptors, type = 'request') {
     interceptors.forEach((fn) => {
@@ -41,10 +38,10 @@ async function axiosMiddleware(context, next) {
 
 function getRequestInstance() {
     const {
-        responseDataAdaptor,
+        dataHandler,
+        errorHandler,
         requestInterceptors = [],
         responseInterceptors = [],
-        errorHandler,
         ...otherConfigs
     } = plugin.applyPlugins({
         key: 'request',
@@ -65,23 +62,14 @@ function getRequestInstance() {
     addResponseInterceptors(instance, responseInterceptors);
 
     // 洋葱模型内部应该这是对数据的处理，避免有副作用调用
-    scheduler
-        .use(paramsProcess)
-        .use(genRequestKey)
-        .use(cacheControl)
-        .use(preventRepeatReq)
-        .use(axiosMiddleware)
-        .use(resDataAdaptor)
-        .use(resErrorProcess)
-        .use(setDataField);
+    scheduler.use(paramsProcess).use(genRequestKey).use(cacheControl).use(preventRepeatReq).use(axiosMiddleware);
 
     return {
         context: {
+            errorHandler,
+            dataHandler: dataHandler || ((data) => data),
             instance,
             defaultConfig,
-            dataField: REPLACE_DATA_FIELD, // eslint-disable-line
-            responseDataAdaptor,
-            errorHandler,
         },
         request: scheduler.compose(),
     };
@@ -110,52 +98,12 @@ function createContext(userConfig) {
     };
 }
 
-function getResponseCode(response) {
-    if (response) {
-        if (response._rawData) return response._rawData.code;
-        if (response.data) return response.data.code;
-    }
-    return null;
-}
-
-function skipErrorHandlerToObj(skipErrorHandler = []) {
-    if (!Array.isArray(skipErrorHandler)) {
-        skipErrorHandler = [skipErrorHandler];
-    }
-
-    return skipErrorHandler.reduce((acc, cur) => {
-        acc[cur] = true;
-        return acc;
-    }, {});
-}
-
-function getErrorKey(error, response) {
-    const resCode = getResponseCode(response);
-
-    if (resCode) return resCode;
-    if (error.type) return error.type;
-    return error.response?.status;
-}
-
-function isSkipErrorHandler(config, errorKey) {
-    // 跳过所有错误类型处理
-    if (config.skipErrorHandler === true) return true;
-
-    const skipObj = skipErrorHandlerToObj(config.skipErrorHandler);
-
-    return skipObj[errorKey];
-}
-
-function handleRequestError({ errorHandler = {}, error, response, config }) {
-    const errorKey = getErrorKey(error, response);
-
-    if (!isSkipErrorHandler(config, errorKey)) {
-        if (isFunction(errorHandler[errorKey])) {
-            errorHandler[errorKey](error, response);
-        } else if (isFunction(errorHandler.default)) {
-            errorHandler.default(error, response);
-        }
-    }
+function getCustomerHandler(ctx, options = {}) {
+    const { dataHandler, errorHandler } = ctx;
+    return {
+        dataHandler: options.dataHandler || dataHandler,
+        errorHandler: options.errorHandler || errorHandler,
+    };
 }
 
 export const request = (url, data, options = {}) => {
@@ -169,12 +117,13 @@ export const request = (url, data, options = {}) => {
     }
     const userConfig = userConfigHandler(url, data, options);
     const context = createContext(userConfig);
+    const { dataHandler, errorHandler } = getCustomerHandler(context, options);
 
     return currentRequestInstance.request(context).then(async () => {
         if (!context.error) {
-            return context.config.useResponse ? context.response : context.response.data;
+            return dataHandler(context.response.data, context.response);
         }
-        await handleRequestError(context);
+        errorHandler && errorHandler(context.error);
         return Promise.reject(context.error);
     });
 };

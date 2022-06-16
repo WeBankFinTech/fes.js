@@ -7,9 +7,6 @@ export default {
         // __VUE_OPTIONS_API__: true,
         // __VUE_PROD_DEVTOOLS__: false
     },
-    request: {
-        dataField: ''
-    },
     html: {
         title: '拉夫德鲁'
     },
