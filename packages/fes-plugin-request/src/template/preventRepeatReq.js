@@ -20,11 +20,11 @@ function handleRepeatRequest(ctx) {
         queue.forEach((resolve) => {
             if (ctx.error) {
                 resolve({
-                    error: ctx.error
+                    error: ctx.error,
                 });
             } else {
                 resolve({
-                    response: ctx.response
+                    response: ctx.response,
                 });
             }
         });
@@ -47,7 +47,7 @@ export default async (ctx, next) => {
             ctx.error = {
                 type: 'REPEAT',
                 msg: '重复请求',
-                config: ctx.config
+                config: ctx.config,
             };
             return;
         }
