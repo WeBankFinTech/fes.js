@@ -5,17 +5,14 @@
     </div>
 </template>
 
-<script>
+<script setup>
+import { defineRouteMeta } from '@fesjs/fes';
 import { FButton } from '@fesjs/fes-design';
 
-export default {
-    components: {
-        FButton,
-    },
-    setup() {
-        return {};
-    },
-};
+defineRouteMeta({
+    name: 'index',
+    title: '$home',
+});
 </script>
 
 <style>
@@ -23,10 +20,3 @@ export default {
     height: 1000px;
 }
 </style>
-
-<config>
-{
-    "name": "index",
-    "title": "$home"
-}
-</config>
