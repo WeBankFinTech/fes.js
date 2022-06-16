@@ -1,7 +1,7 @@
 # @fesjs/plugin-layout
 
 ## 介绍
-为了进一步降低研发成本，我们尝试将布局通过 fes 插件的方式内置，只需通过简单的配置即可拥有布局，包括导航以及侧边栏。从而做到用户无需关心布局。
+为了进一步降低研发成本，我们将布局利用 `fes.js` 插件的方式内置，只需通过简单的配置即可拥有布局，包括导航以及侧边栏。从而做到用户无需关心布局。
 - 侧边栏菜单数据根据路由中的配置自动生成。
 - 布局，提供 `side`、 `top`、`mixin` 三种布局。
 - 主题，提供 `light`、`dark` 两种主题。
@@ -19,21 +19,14 @@
 ```json
 {
     "dependencies": {
-        "@fesjs/fes": "^2.0.0",
-        "@fesjs/plugin-layout": "^4.0.0"
+        "@fesjs/fes": "^3.0.0",
+        "@fesjs/plugin-layout": "^5.0.0"
     },
 }
 ```
 
 ## 布局类型
-配置参数是 `navigation`, 布局有三种类型 `side`、`mixin` 和 `top`， 默认是 `side`：
-```js
-export default {
-    layout: {
-        navigation: 'side'
-    }
-}
-```
+配置参数是 `navigation`, 布局有三种类型 `side`、`mixin` 和 `top`， 默认是 `side`。
 
 ### side
 <!-- ![side](/side.png) -->
@@ -47,8 +40,33 @@ export default {
 <!-- ![mixin](/mixin.png) -->
 <img :src="$withBase('mixin.png')" alt="mixin">
 
-### 页面禁用布局
-布局是默认开启的，但是可能某些页面不需要展示布局样式，比如登录页面。我们只需要在页面的`.vue`中添加如下配置：
+### 布局开关
+
+布局默认开启，可以通过一些方式更改。
+
+开关的可选配置有：
+
+- **sidebar**： 左侧区域
+  
+- **header**： 头部区域
+
+- **logo**：logo和标题区域。
+
+#### 全局定义
+
+全局定义可以通过配置`switch`实现，在 `app.js` 中配置：
+```js
+import UserCenter from '@/components/UserCenter';
+export const layout = {
+    switch: {
+        header: false
+    }
+};
+
+```
+
+#### 页面定义
+可以通过[定义路由元信息](../../../guide/route.html#扩展路由元信息)配置页面的布局开关，添加如下配置：
 ```vue
 <config lang="json">
 {
@@ -66,17 +84,15 @@ export default {
 }
 </config>
 ```
-`layout`的可选配置有：
 
-- **sidebar**： 左侧区域，从v4.0.0开始，之前名称叫`side`
-  
-- **header**： 头部区域，从v4.0.0开始，之前名称叫`top`
-
-- **logo**：logo和标题区域。
+#### 地址参数定义
+通过路由的`query`参数定义，比如当访问`http://localhost:8080/#/?layout={%22sidebar%22:%20false,%20%22header%22:%20false}` 时，页面隐藏 `sidebar`和`header`区域。此种方式优先级最高！
 
 
-## keep-alive
-从 4.0.7 开始支持配置路由页面缓存：
+
+## 页面缓存
+
+支持配置页面缓存，通过[定义路由元信息](../../../guide/route.html#扩展路由元信息)开启缓存：
 ```
 <config lang="json">
 {
@@ -85,7 +101,10 @@ export default {
 </config>
 ```
 
-## 编译时配置
+## 配置
+
+#### 编译时配置方式
+
 在 `.fes.js` 中配置：
 ```js
 export default {
@@ -95,17 +114,7 @@ export default {
         // 底部文字
         footer: 'Created by MumbleFE',
         // 主题light
-        theme: 'dark'
-        // 是否开启 tabs
-        multiTabs: false,
-        // 布局类型
-        navigation: 'side',
-        // 是否固定头部
-        fixedHeader: false,
-        // 是否固定sidebar
-        fixedSideBar: true,
-        // sidebar的宽度
-        sideWidth: 200,
+        theme: 'dark',
         menus: [{
             name: 'index'
         }, {
@@ -115,13 +124,50 @@ export default {
         }, {
             name: 'simpleList'
         }],
-        menuConfig: {
-            defaultExpandAll: false,
-            expandedKeys: [],
-            accordion: false
-        }
+
     },
 ```
+
+#### 运行时配置方式
+
+在 `app.js` 中配置：
+```js
+import UserCenter from '@/components/UserCenter';
+export const layout = {
+    renderHeader: ()=> <UserCenter />,
+    menus: [{
+        name: 'index'
+    }]
+};
+
+```
+在`fes.js`中，运行时配置有定义对象和函数两种方式，当使用函数配置`layout`时，`layoutConfig`是编译时配置结果，`initialState`是 `beforeRender.action`执行后创建的应用初始状态数据。         
+。
+```js
+export const layout = (layoutConfig, { initialState }) => ({
+    renderHeader: () => <UserCenter />,
+    menus: () => {
+        const menusRef = ref(layoutConfig.menus);
+        watch(
+            () => initialState.userName,
+            () => {
+                menusRef.value = [
+                    {
+                        name: 'store',
+                    },
+                ];
+            },
+        );
+        return menusRef;
+    },
+});
+```
+
+最终配置结果是运行时配置跟编译时配置合并的结果，运行时配置优先于编译时配置。
+
+实际上运行配置能做的事情更多，推荐用运行时配置方式。
+
+
 
 ### footer
 - **类型**：`String`
@@ -144,14 +190,14 @@ export default {
 
 - **详情**：页面布局类型，可选有 `side`、 `top`、 `mixin` 
 
-### fixedHeader
+### isHeaderFixed
 - **类型**：`Boolean`
   
 - **默认值**：`false`
 
 - **详情**：是否固定头部，不跟随页面滚动。
 
-### fixedSideBar
+### isSidebarFixed
 - **类型**：`Boolean`
   
 - **默认值**：`true`
@@ -161,14 +207,14 @@ export default {
 ### title
 - **类型**：`String`
   
-- **默认值**：`name` in package.json
+- **默认值**：默认为 [编译时配置title](../../../reference/config/#title)
 
-- **详情**：产品名，会显示在 Logo 旁边。   
+- **详情**：产品名。   
 
 ### logo
 - **类型**：`String`
   
-- **默认值**：默认提供 fes.js 的 Logo
+- **默认值**：默认提供 `fes.js` 的 Logo
 
 - **详情**：Logo的链接
 
@@ -181,7 +227,7 @@ export default {
 - **详情**：是否开启多页。
 
 ### menus
-- **类型**：`Array`
+- **类型**：`[] | ()=> Ref<[]>`
   
 - **默认值**：`[]`
 
@@ -203,13 +249,11 @@ export default {
   - **title**：菜单的标题，如果同时使用[国际化插件](./locale.md)，而且`title`的值以`$`开头，则使用`$`后面的内容去匹配语言设置。
 
   - **icon**: 菜单的图标，只有一级标题展示图标。
-    - 图标使用[fes-design icon](https://fes-design-4gvn317r3b6bfe17-1254145788.ap-shanghai.app.tcloudbase.com/zh/components/icon.html)，在这里使用组件名称。
-```js
-{
-    icon: "AppstoreOutlined"
-}
-```
+
+    - 图标使用[fes-design icon](https://fes-design-4gvn317r3b6bfe17-1254145788.ap-shanghai.app.tcloudbase.com/zh/components/icon.html)，编译时配置使用组件名称，我们会自动引入组件。
+
     - 图标使用本地或者远程svg图片。
+
 ```js
 {
     icon: "/wine-outline.svg"
@@ -218,7 +262,13 @@ export default {
   
   - **children**：子菜单配置。
 
-### menusConfig
+:::tip
+函数类型仅在运行时可用，可以实现动态变更菜单。
+:::
+
+
+
+### menusProps
 - **类型**：`Object`
   
 - **默认值**：`{}`
@@ -231,84 +281,42 @@ export default {
 
   - **accordion**：是否只保持一个子菜单的展开。
   
-## 运行时配置
-在 `app.js` 中配置：
-```js
-import UserCenter from '@/components/UserCenter';
-export const layout = {
-    customHeader: <UserCenter />
-};
 
-```
-
-### menus
-- **类型**：`(defaultMenus: [] )=> Ref | []`
+ ### switch
+- **类型**：`Object`
   
-- **详情**：运行时修改菜单，入参是默认菜单配置（.fes.js中的menu配置），需要返回一个`Ref`或者数组。
+- **默认值**：`{ logo: true, sidebar: true, header: true }`
 
-```js
-import { ClusterOutlined } from '@fesjs/fes-design/icon'
-export const layout = layoutConfig => ({
-    ...layoutConfig,
-    customHeader: <UserCenter />,
-    menus: (defaultMenuData) => {
-        const menusRef = ref(defaultMenuData);
-        watch(() => layoutConfig.initialState.userName, () => {
-            menusRef.value = [{
-                name: 'store',
-                icon: <ClusterOutlined />
-            }];
-        });
-        return menusRef;
-    }
-});
-
-```
-`layoutConfig.initialState` 是 `beforeRender.action`执行后创建的应用初始状态数据。         
-
-如果菜单需要根据某些状态动态改变，则返回`Ref`，否则只需要返回数组。
-
-:::tip
-在运行时配置菜单中的icon，需要传组件本身，而不是组件的名称。
-:::
-
-
-### header
-- **类型**：`String`
+- **详情**：布局的开关：
   
-- **默认值**：`true`
-
-- **详情**：是否显示 header 区域。
-
-### sidebar
-- **类型**：`String`
+  - **logo**：是否展示logo区域。
   
-- **默认值**：`true`
+  - **sidebar**：配置默认展开的菜单，需要传子项是菜单路径的数组。
 
-- **详情**：是否显示 sidebar 区域。
+  - **header**：是否只保持一个子菜单的展开。
 
-### logo
-- **类型**：`String`
+### sideWidth
+- **类型**：`Number`
   
-- **默认值**：`true`
+- **默认值**：`200`
 
-- **详情**：是否显示 logo 区域。
+- **详情**：sidebar的宽度
+  
 
-### customHeader
-- **类型**：Vue Component
+### renderHeader
+- **类型**： `()=> VNodes`
   
 - **默认值**：`null`
 
-- **详情**：top的区域部分位置提供组件自定义功能。
+- **详情**： 自定义`top`区域部分位置，仅运行时。
+
 
 ### unAccessHandler
-- **类型**：`Function`
+- **类型**：`({ to, from, next})=> void`
   
 - **默认值**：`null`
 
-- **详情**：     
-  
-  当进入某个路由时，如果路由对应的页面不属于可见资源列表，则会暂停进入，调用 `unAccessHandler` 函数。
+- **详情**：仅运行时，当进入某个路由时，如果路由对应的页面不属于可见资源列表，则会暂停进入，调用 `unAccessHandler` 函数。
 - **参数**
   - router：createRouter 创建的路由实例
   - to： 准备进入的路由
@@ -334,13 +342,11 @@ export const access = {
 ```
 
 ### noFoundHandler
-- **类型**：函数
+- **类型**：`({ to, from, next})=> void`
   
-- **默认值**：null
+- **默认值**：`null`
 
-- **详情**：     
-  
-  当进入某个路由时，如果路由对应的页面不存在，则会调用 `noFoundHandler` 函数。
+- **详情**：仅运行时，当进入某个路由时，如果路由对应的页面不存在，则会调用 `noFoundHandler` 函数。
 - **参数**
   - router：createRouter 创建的路由实例
   - to： 准备进入的路由
@@ -360,14 +366,3 @@ export const access = {
 };
 
 ```
-
-### logoUrl
-- **类型**：`String`
-  
-- **默认值**：默认提供 fes.js 的 Logo
-
-- **详情**：Logo的链接。
-
-
-### 其他运行时配置 (> 4.1.0)
-编译时配置的内容同样支持在运行时配置，但是`logo`除外，用`logoUrl`替代。

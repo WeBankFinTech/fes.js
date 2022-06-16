@@ -104,13 +104,17 @@ function cleanBeforeCompilerResult(pkgName, log) {
 
 function transformFile(filePath, outputPath, config, log) {
     if (/\.[jt]sx?$/.test(path.extname(filePath))) {
-        const code = fs.readFileSync(filePath, 'utf-8');
-        const shortFilePath = genShortPath(filePath);
-        const transformedCode = compiler(code, config);
+        try {
+            const code = fs.readFileSync(filePath, 'utf-8');
+            const shortFilePath = genShortPath(filePath);
+            const transformedCode = compiler(code, config);
 
-        const type = config.target === 'browser' ? ESM_OUTPUT_DIR : NODE_CJS_OUTPUT_DIR;
-        log(`Transform to ${type} for ${config.target === 'browser' ? chalk.yellow(shortFilePath) : chalk.blue(shortFilePath)}`);
-        fse.outputFileSync(outputPath, transformedCode);
+            const type = config.target === 'browser' ? ESM_OUTPUT_DIR : NODE_CJS_OUTPUT_DIR;
+            log(`Transform to ${type} for ${config.target === 'browser' ? chalk.yellow(shortFilePath) : chalk.blue(shortFilePath)}`);
+            fse.outputFileSync(outputPath, transformedCode);
+        } catch (error) {
+            console.error(error);
+        }
     } else {
         fse.copySync(filePath, outputPath);
     }

@@ -4,7 +4,7 @@
             <f-aside
                 v-if="routeLayout.sidebar"
                 v-model:collapsed="collapsedRef"
-                :fixed="fixedSideBar"
+                :fixed="isSidebarFixed"
                 :width="`${sideWidth}px`"
                 class="layout-aside"
                 collapsible
@@ -20,12 +20,12 @@
                     :collapsed="collapsedRef"
                     mode="vertical"
                     :inverted="theme === 'dark'"
-                    :expandedKeys="menuConfig?.expandedKeys"
-                    :defaultExpandAll="menuConfig?.defaultExpandAll"
-                    :accordion="menuConfig?.accordion"
+                    :expandedKeys="menuProps?.expandedKeys"
+                    :defaultExpandAll="menuProps?.defaultExpandAll"
+                    :accordion="menuProps?.accordion"
                 />
             </f-aside>
-            <f-layout :fixed="fixedSideBar" :style="sideStyleRef">
+            <f-layout :fixed="isSidebarFixed" :style="sideStyleRef">
                 <f-header v-if="routeLayout.header" ref="headerRef" class="layout-header" :fixed="currentFixedHeaderRef">
                     <div class="layout-header-custom">
                         <slot name="customHeader"></slot>
@@ -55,9 +55,9 @@
                     :menus="menus"
                     mode="horizontal"
                     :inverted="theme === 'dark'"
-                    :expandedKeys="menuConfig?.expandedKeys"
-                    :defaultExpandAll="menuConfig?.defaultExpandAll"
-                    :accordion="menuConfig?.accordion"
+                    :expandedKeys="menuProps?.expandedKeys"
+                    :defaultExpandAll="menuProps?.defaultExpandAll"
+                    :accordion="menuProps?.accordion"
                 />
                 <div class="layout-header-custom">
                     <slot name="customHeader"></slot>
@@ -92,7 +92,7 @@
                 <f-aside
                     v-if="routeLayout.sidebar"
                     v-model:collapsed="collapsedRef"
-                    :fixed="fixedSideBar"
+                    :fixed="isSidebarFixed"
                     :width="`${sideWidth}px`"
                     collapsible
                     class="layout-aside"
@@ -102,12 +102,12 @@
                         :menus="menus"
                         :collapsed="collapsedRef"
                         mode="vertical"
-                        :expandedKeys="menuConfig?.expandedKeys"
-                        :defaultExpandAll="menuConfig?.defaultExpandAll"
-                        :accordion="menuConfig?.accordion"
+                        :expandedKeys="menuProps?.expandedKeys"
+                        :defaultExpandAll="menuProps?.defaultExpandAll"
+                        :accordion="menuProps?.accordion"
                     />
                 </f-aside>
-                <f-layout :embedded="!multiTabs" :fixed="fixedSideBar" :style="sideStyleRef">
+                <f-layout :embedded="!multiTabs" :fixed="isSidebarFixed" :style="sideStyleRef">
                     <f-main class="layout-main">
                         <MultiTabProvider :multiTabs="multiTabs" />
                     </f-main>
@@ -128,7 +128,6 @@ import { FLayout, FAside, FMain, FFooter, FHeader } from '@fesjs/fes-design';
 import Menu from './Menu.vue';
 import MultiTabProvider from './MultiTabProvider.vue';
 import defaultLogo from '../assets/logo.png';
-import getRuntimeConfig from '../helpers/getRuntimeConfig';
 
 export default {
     components: {
@@ -167,11 +166,11 @@ export default {
             type: String,
             default: 'side', // side 左右（上/下）、 top 上/下、 mixin 上/下（左/右）
         },
-        fixedHeader: {
+        isHeaderFixed: {
             type: Boolean,
             default: false,
         },
-        fixedSideBar: {
+        isSidebarFixed: {
             type: Boolean,
             default: true,
         },
@@ -184,8 +183,18 @@ export default {
             default: 200,
         },
         footer: String,
-        menuConfig: {
+        menuProps: {
             type: Object,
+        },
+        switch: {
+            type: Object,
+            default() {
+                return {
+                    logo: true,
+                    sidebar: true,
+                    header: true,
+                };
+            },
         },
     },
     setup(props) {
@@ -200,22 +209,21 @@ export default {
 
         const collapsedRef = ref(false);
         const route = useRoute();
-        const runtimeConfig = getRuntimeConfig();
         const routeLayout = computed(() => {
             let config;
             // meta 中 layout 默认为 true
             const metaLayoutConfig = route.meta.layout === undefined ? true : route.meta.layout;
             if (typeof metaLayoutConfig === 'boolean') {
-                config = metaLayoutConfig ? runtimeConfig : false;
+                config = metaLayoutConfig ? props.switch : false;
             } else if (typeof metaLayoutConfig === 'object') {
-                config = { ...runtimeConfig, ...metaLayoutConfig };
+                config = { ...props.switch, ...metaLayoutConfig };
             } else {
                 console.error('[plugin-layout]: meta layout must be object or boolean！');
             }
             // query 中 layout 默认为 false
             const routeQueryLayoutConfig = route.query.layout && JSON.parse(route.query.layout);
             if (typeof routeQueryLayoutConfig === 'boolean') {
-                config = routeQueryLayoutConfig ? runtimeConfig : false;
+                config = routeQueryLayoutConfig ? props.switch : false;
             } else if (typeof routeQueryLayoutConfig === 'object') {
                 config = { ...config, ...routeQueryLayoutConfig };
             } else if (routeQueryLayoutConfig !== undefined) {
@@ -223,15 +231,18 @@ export default {
             }
             return config;
         });
-        const currentFixedHeaderRef = computed(() => props.fixedHeader || props.navigation === 'mixin');
-        const headerStyleRef = computed(() => (currentFixedHeaderRef.value ? { top: `${headerHeightRef.value}px` } : null));
-        const sideStyleRef = computed(() =>
-            props.fixedSideBar
-                ? {
-                      left: collapsedRef.value ? '48px' : `${props.sideWidth}px`,
-                  }
-                : null,
-        );
+        const currentFixedHeaderRef = computed(() => props.isHeaderFixed || props.navigation === 'mixin');
+        const headerStyleRef = computed(() => {
+            if (!routeLayout.value) return;
+            if (!routeLayout.value.header) return;
+            return currentFixedHeaderRef.value ? { top: `${headerHeightRef.value}px` } : null;
+        });
+        const sideStyleRef = computed(() => {
+            if (!routeLayout.value) return;
+            if (!routeLayout.value.sidebar) return;
+            const left = collapsedRef.value ? '48px' : `${props.sideWidth}px`;
+            return props.isSidebarFixed ? { left } : null;
+        });
         return {
             headerRef,
             headerHeightRef,

@@ -21,17 +21,9 @@
                 </FDropdown>
             </template>
         </FTabs>
-        <router-view v-slot="{ Component, route }">
-            <keep-alive :include="keepAlivePages">
-                <component :is="getComponent(Component, route, true)" :key="getPageKey(route)" />
-            </keep-alive>
-        </router-view>
+        <Page :nameList="keepAlivePages" :pageKey="getPageKey" isAllKeepAlive />
     </template>
-    <router-view v-else v-slot="{ Component, route }">
-        <keep-alive :include="keepAlivePages">
-            <component :is="getComponent(Component, route)" />
-        </keep-alive>
-    </router-view>
+    <Page v-else :nameList="keepAlivePages" />
 </template>
 <script>
 import { computed, unref, ref } from 'vue';
@@ -39,6 +31,7 @@ import { FTabs, FTabPane, FDropdown } from '@fesjs/fes-design';
 import { ReloadOutlined, MoreOutlined } from '@fesjs/fes-design/icon';
 import { useRouter, useRoute } from '@@/core/coreExports';
 import { transTitle } from '../helpers/pluginLocale';
+import Page from './page.vue';
 
 let i = 0;
 const getKey = () => ++i;
@@ -49,6 +42,7 @@ export default {
         FDropdown,
         ReloadOutlined,
         MoreOutlined,
+        Page,
     },
     props: {
         multiTabs: Boolean,
@@ -151,21 +145,6 @@ export default {
             }
         };
 
-        const getComponent = (Component, _route, isKeep = false) => {
-            if (isKeep || _route.meta['keep-alive']) {
-                const name = _route.meta?.name ?? _route.name;
-                if (name) {
-                    // 修改组件的 name
-                    Component.type.name = name;
-                    // 缓存的关键是组件name在keep-alive的include列表
-                    if (!keepAlivePages.value.includes(name)) {
-                        keepAlivePages.value = [...keepAlivePages.value, name];
-                    }
-                }
-            }
-
-            return Component;
-        };
         return {
             route,
             pageList,
@@ -175,7 +154,6 @@ export default {
             handlerMore,
             handleCloseTab,
             actions,
-            getComponent,
             keepAlivePages,
         };
     },
