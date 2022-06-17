@@ -23,12 +23,7 @@ const Layout = defineComponent({
         const localeShared = plugin.getShared('locale');
         return () => {
             const slots = {
-                customHeader: () => {
-                    if (config.renderHeader) {
-                        return config.renderHeader();
-                    }
-                    return null;
-                },
+                renderCustom: config.renderCustom,
                 locale: () => {
                     if (localeShared) {
                         return <localeShared.SelectLang></localeShared.SelectLang>;

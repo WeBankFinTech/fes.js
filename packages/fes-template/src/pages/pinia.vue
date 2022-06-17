@@ -6,7 +6,9 @@
 {
     "name": "pinia",
     "title": "pinia",
-    "layout": false
+    "layout": {
+        "navigation": null
+    }
 }
 </config>
 <script>

@@ -3,14 +3,14 @@
 ## 介绍
 为了进一步降低研发成本，我们将布局利用 `fes.js` 插件的方式内置，只需通过简单的配置即可拥有布局，包括导航以及侧边栏。从而做到用户无需关心布局。
 - 侧边栏菜单数据根据路由中的配置自动生成。
-- 布局，提供 `side`、 `top`、`mixin` 三种布局。
+- 布局，提供 `side`、 `top`、`mixin`、`left-right` 四种布局。
 - 主题，提供 `light`、`dark` 两种主题。
 - 默认实现对路由的 404、403 处理。
 - 搭配 [@fesjs/plugin-access](./access.html) 插件使用，可以完成对路由的权限控制。
 - 搭配 [@fesjs/plugin-locale](./locale.html) 插件使用，提供切换语言的能力。
-- 支持自定义头部区域。
-- 菜单支持配置icon
-- 菜单标题支持国际化
+- 支持自定义头部或者侧边栏区域。
+- 菜单支持配置icon。
+- 菜单标题支持国际化。
   
 - 可配置页面是否需要 layout。
 
@@ -26,7 +26,7 @@
 ```
 
 ## 布局类型
-配置参数是 `navigation`, 布局有三种类型 `side`、`mixin` 和 `top`， 默认是 `side`。
+配置参数是 `navigation`, 布局有三种类型 `side`、`mixin` 、`top` 和 `left-right`， 默认是 `side`。
 
 ### side
 <!-- ![side](/side.png) -->
@@ -40,54 +40,23 @@
 <!-- ![mixin](/mixin.png) -->
 <img :src="$withBase('mixin.png')" alt="mixin">
 
-### 布局开关
+### left-right
+<!-- ![mixin](/mixin.png) -->
+<img :src="$withBase('left-right.png')" alt="left-right">
 
-布局默认开启，可以通过一些方式更改。
+### 页面个性化
 
-开关的可选配置有：
-
-- **sidebar**： 左侧区域
-  
-- **header**： 头部区域
-
-- **logo**：logo和标题区域。
-
-#### 全局定义
-
-全局定义可以通过配置`switch`实现，在 `app.js` 中配置：
-```js
-import UserCenter from '@/components/UserCenter';
-export const layout = {
-    switch: {
-        header: false
-    }
-};
-
-```
-
-#### 页面定义
-可以通过[定义路由元信息](../../../guide/route.html#扩展路由元信息)配置页面的布局开关，添加如下配置：
-```vue
-<config lang="json">
-{
-    "layout": false
-}
-</config>
-```
-如果只是不想展示`sidebar`，则：
+可以为页面单独设置布局类型：
 ```
 <config lang="json">
 {
     "layout": {
-        "sidebar": false
+        "navigation": 'top'
     }
 }
 </config>
 ```
-
-#### 地址参数定义
-通过路由的`query`参数定义，比如当访问`http://localhost:8080/#/?layout={%22sidebar%22:%20false,%20%22header%22:%20false}` 时，页面隐藏 `sidebar`和`header`区域。此种方式优先级最高！
-
+当设置为 `null` 时，页面不使用布局。
 
 
 ## 页面缓存
@@ -282,19 +251,6 @@ export const layout = (layoutConfig, { initialState }) => ({
   - **accordion**：是否只保持一个子菜单的展开。
   
 
- ### switch
-- **类型**：`Object`
-  
-- **默认值**：`{ logo: true, sidebar: true, header: true }`
-
-- **详情**：布局的开关：
-  
-  - **logo**：是否展示logo区域。
-  
-  - **sidebar**：配置默认展开的菜单，需要传子项是菜单路径的数组。
-
-  - **header**：是否只保持一个子菜单的展开。
-
 ### sideWidth
 - **类型**：`Number`
   
@@ -303,12 +259,12 @@ export const layout = (layoutConfig, { initialState }) => ({
 - **详情**：sidebar的宽度
   
 
-### renderHeader
+### renderCustom
 - **类型**： `()=> VNodes`
   
 - **默认值**：`null`
 
-- **详情**： 自定义`top`区域部分位置，仅运行时。
+- **详情**： 自定义区域内容，仅运行时。
 
 
 ### unAccessHandler
