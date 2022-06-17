@@ -339,3 +339,13 @@ export const access = {
 };
 
 ```
+
+
+### 4.x 升级到 5.x
+
+1. 个性化 layout 配置改为使用传入 navigation
+2. renderHeader 改为 renderCustom
+3. fixedHeader 改为 isHeaderFixed
+4. menusConfig 改为 menusProps
+5. fixedSideBar 改为 isSidebarFixed
+6. 去掉运行时 logo、header、sidebar 三个区域显示配置，请改为使用 navigation: left-right
