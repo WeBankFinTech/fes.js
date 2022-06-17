@@ -70,6 +70,23 @@
 </config>
 ```
 
+### 处理嵌套路由
+Fes.js 里约定目录下有 layout.vue 时会生成嵌套路由，以 layout.vue 为该目录的公共父组件，layout.vue 中必须实现 `<RouterView/>`。如果嵌套路由下的页面设置了keep-alive，则需要用 `<Page/>` 替换 `<RouterView/>`
+
+```vue
+<template>
+    <Page></Page>
+</template>
+<script>
+import { Page } from '@fesjs/fes'
+export default {
+    components: {
+        Page
+    }
+}
+</script>
+```
+
 ## 配置
 
 #### 编译时配置方式
