@@ -10,8 +10,8 @@
                 :inverted="theme === 'dark'"
             >
                 <div class="layout-logo">
-                    <img :src="logo" class="logo-img" />
-                    <div class="logo-name">{{ title }}</div>
+                    <img v-if="logo" :src="logo" class="logo-img" />
+                    <div v-if="title" class="logo-name">{{ title }}</div>
                 </div>
                 <Menu
                     class="layout-menu"
@@ -55,8 +55,8 @@
                 <div class="flex-between">
                     <div>
                         <div class="layout-logo">
-                            <img :src="logo" class="logo-img" />
-                            <div class="logo-name">{{ title }}</div>
+                            <img v-if="logo" :src="logo" class="logo-img" />
+                            <div v-if="title" class="logo-name">{{ title }}</div>
                         </div>
                         <Menu
                             class="layout-menu"
@@ -93,8 +93,8 @@
         <template v-else-if="currentNavigation === 'top'">
             <f-header ref="headerRef" class="layout-header" :inverted="theme === 'dark'" :fixed="currentFixedHeaderRef">
                 <div class="layout-logo">
-                    <img :src="logo" class="logo-img" />
-                    <div class="logo-name">{{ title }}</div>
+                    <img v-if="logo" :src="logo" class="logo-img" />
+                    <div v-if="title" class="logo-name">{{ title }}</div>
                 </div>
                 <Menu
                     class="layout-menu"
@@ -124,8 +124,8 @@
         <template v-else-if="currentNavigation === 'mixin'">
             <f-header ref="headerRef" class="layout-header" :fixed="currentFixedHeaderRef" :inverted="theme === 'dark'">
                 <div class="layout-logo">
-                    <img :src="logo" class="logo-img" />
-                    <div class="logo-name">{{ title }}</div>
+                    <img v-if="logo" :src="logo" class="logo-img" />
+                    <div v-if="title" class="logo-name">{{ title }}</div>
                 </div>
                 <div class="layout-header-custom">
                     <slot name="renderCustom"></slot>
