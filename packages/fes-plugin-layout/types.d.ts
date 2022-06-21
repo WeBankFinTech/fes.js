@@ -1,4 +1,4 @@
-import { Component } from 'vue';
+import {Component, VNode, Ref } from 'vue';
 import { Router, NavigationGuard } from 'vue-router';
 
 interface Menu {
@@ -6,21 +6,27 @@ interface Menu {
     path: string;
     match: string[];
     title: string;
-    icon: string;
+    icon: string | Component;
     children?: Menu[]
 }
 
 export interface LayoutBuildConfig {
     layout: {
-        title: string;
         footer: string;
         theme: 'dark' | 'light';
+        navigation: 'side' | 'top' | 'mixin' | 'left-right';
+        title: string;
+        isFixedHeader: boolean;
+        isFixedSidebar: boolean;
+        logo: string;
         multiTabs: boolean;
-        navigation: 'side' | 'top' | 'mixin';
-        fixedHeader: boolean;
-        fixedSideBar: boolean;
         sideWidth: number;
         menus: Menu[];
+        menuProps: {
+            expandedKeys: string[];
+            defaultExpandAll: boolean;
+            accordion: boolean;
+        };
     };
 }
 
@@ -28,10 +34,22 @@ export interface LayoutBuildConfig {
 
 export interface LayoutRuntimeConfig {
     layout: {
-        header: boolean;
-        sidebar: boolean;
-        logo: boolean;
-        customHeader: Component,
+        footer: string;
+        theme: 'dark' | 'light';
+        navigation: 'side' | 'top' | 'mixin' | 'left-right';
+        title: string;
+        isFixedHeader: boolean;
+        isFixedSidebar: boolean;
+        logo: string;
+        multiTabs: boolean;
+        sideWidth: number;
+        menus: Menu[] | (()=> (Ref<Menu[]> | Menu[]));
+        menuProps: {
+            expandedKeys: string[];
+            defaultExpandAll: boolean;
+            accordion: boolean;
+        };
+        renderCustom: ()=> VNode[],
         noFoundHandler: (param: { router: Router } & NavigationGuard) => void;
         unAccessHandler: (param: { router: Router } & NavigationGuard) => void;
     };

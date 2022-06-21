@@ -1,1 +1,3 @@
-export Page from './views/page.vue';
+import page from './views/page.vue';
+
+export const Page = page;

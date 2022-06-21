@@ -254,7 +254,7 @@ export const layout = (layoutConfig, { initialState }) => ({
 
 
 
-### menusProps
+### menuProps
 - **类型**：`Object`
   
 - **默认值**：`{}`
@@ -346,6 +346,6 @@ export const access = {
 1. 个性化 layout 配置改为使用传入 navigation
 2. renderHeader 改为 renderCustom
 3. fixedHeader 改为 isFixedHeader
-4. menusConfig 改为 menusProps
+4. menusConfig 改为 menuProps
 5. fixedSideBar 改为 isFixedSidebar
 6. 去掉运行时 logo、header、sidebar 三个区域显示配置，请改为使用 navigation: left-right
