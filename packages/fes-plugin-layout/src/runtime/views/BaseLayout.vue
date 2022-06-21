@@ -3,7 +3,7 @@
         <template v-if="currentNavigation === 'side'">
             <f-aside
                 v-model:collapsed="collapsedRef"
-                :fixed="isSidebarFixed"
+                :fixed="isFixedSidebar"
                 :width="`${sideWidth}px`"
                 class="layout-aside"
                 collapsible
@@ -24,7 +24,7 @@
                     :accordion="menuProps?.accordion"
                 />
             </f-aside>
-            <f-layout :fixed="isSidebarFixed" :style="sideStyleRef">
+            <f-layout :fixed="isFixedSidebar" :style="sideStyleRef">
                 <f-header ref="headerRef" class="layout-header" :fixed="currentFixedHeaderRef">
                     <div class="layout-header-custom">
                         <slot name="renderCustom"></slot>
@@ -46,7 +46,7 @@
         <template v-if="currentNavigation === 'left-right'">
             <f-aside
                 v-model:collapsed="collapsedRef"
-                :fixed="isSidebarFixed"
+                :fixed="isFixedSidebar"
                 :width="`${sideWidth}px`"
                 class="layout-aside"
                 collapsible
@@ -79,7 +79,7 @@
                     </div>
                 </div>
             </f-aside>
-            <f-layout :fixed="isSidebarFixed" :style="sideStyleRef">
+            <f-layout :fixed="isFixedSidebar" :style="sideStyleRef">
                 <f-layout :embedded="!multiTabs">
                     <f-main class="layout-main">
                         <MultiTabProvider :multiTabs="multiTabs" />
@@ -135,7 +135,7 @@
                 </template>
             </f-header>
             <f-layout :fixed="currentFixedHeaderRef" :style="headerStyleRef">
-                <f-aside v-model:collapsed="collapsedRef" :fixed="isSidebarFixed" :width="`${sideWidth}px`" collapsible class="layout-aside">
+                <f-aside v-model:collapsed="collapsedRef" :fixed="isFixedSidebar" :width="`${sideWidth}px`" collapsible class="layout-aside">
                     <Menu
                         class="layout-menu"
                         :menus="menus"
@@ -146,7 +146,7 @@
                         :accordion="menuProps?.accordion"
                     />
                 </f-aside>
-                <f-layout :embedded="!multiTabs" :fixed="isSidebarFixed" :style="sideStyleRef">
+                <f-layout :embedded="!multiTabs" :fixed="isFixedSidebar" :style="sideStyleRef">
                     <f-main class="layout-main">
                         <MultiTabProvider :multiTabs="multiTabs" />
                     </f-main>
@@ -209,11 +209,11 @@ export default {
             type: String,
             default: 'side', // side 左右（上/下）、 top 上/下、 mixin 上/下（左/右）
         },
-        isHeaderFixed: {
+        isFixedHeader: {
             type: Boolean,
             default: false,
         },
-        isSidebarFixed: {
+        isFixedSidebar: {
             type: Boolean,
             default: true,
         },
@@ -243,11 +243,11 @@ export default {
             return props.navigation;
         });
 
-        const currentFixedHeaderRef = computed(() => props.isHeaderFixed || props.navigation === 'mixin');
+        const currentFixedHeaderRef = computed(() => props.isFixedHeader || props.navigation === 'mixin');
         const headerStyleRef = computed(() => (currentFixedHeaderRef.value ? { top: `${headerHeightRef.value}px` } : null));
         const sideStyleRef = computed(() => {
             const left = collapsedRef.value ? '48px' : `${props.sideWidth}px`;
-            return props.isSidebarFixed ? { left } : null;
+            return props.isFixedSidebar ? { left } : null;
         });
 
         onMounted(() => {

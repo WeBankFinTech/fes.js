@@ -176,14 +176,14 @@ export const layout = (layoutConfig, { initialState }) => ({
 
 - **详情**：页面布局类型，可选有 `side`、 `top`、 `mixin` 
 
-### isHeaderFixed
+### isFixedHeader
 - **类型**：`Boolean`
   
 - **默认值**：`false`
 
 - **详情**：是否固定头部，不跟随页面滚动。
 
-### isSidebarFixed
+### isFixedSidebar
 - **类型**：`Boolean`
   
 - **默认值**：`true`
@@ -345,7 +345,7 @@ export const access = {
 
 1. 个性化 layout 配置改为使用传入 navigation
 2. renderHeader 改为 renderCustom
-3. fixedHeader 改为 isHeaderFixed
+3. fixedHeader 改为 isFixedHeader
 4. menusConfig 改为 menusProps
-5. fixedSideBar 改为 isSidebarFixed
+5. fixedSideBar 改为 isFixedSidebar
 6. 去掉运行时 logo、header、sidebar 三个区域显示配置，请改为使用 navigation: left-right

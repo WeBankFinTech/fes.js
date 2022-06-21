@@ -198,7 +198,17 @@ const router = new VueRouter({
 ```
 
 
-接下来我们看看如何配置 `meta`。在单文件组件中可以通过`<config></config>`定义：
+我们使用`defineRouteMeta` 配置 `meta`：
+
+```jsx
+import { defineRouteMete } from '@fesjs/fes';
+defineRouteMeta({
+    name: "store",
+    title: "vuex测试"
+})
+```
+
+当然在单文件组件中，还可以通过`<config></config>`配置 `meta`：
 
 ```vue
 <config>
@@ -209,15 +219,10 @@ const router = new VueRouter({
 </config>
 ```
 
-在使用`jsx`或者`tsx`时，可以使用`defineRouteMeta` 定义：
+::: tip
+推荐使用`defineRouteMete`，有更好的提示。
+:::
 
-```jsx
-import { defineRouteMete } from '@fesjs/fes';
-defineRouteMeta({
-    name: "store",
-    title: "vuex测试"
-})
-```
 
 
 路由元信息在编译后会附加到路由配置中：
