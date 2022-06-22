@@ -85,6 +85,5 @@ export default (api) => {
 
     api.addConfigType(() => ({
         source: name,
-        build: ['LocalBuildConfig'],
     }));
 };

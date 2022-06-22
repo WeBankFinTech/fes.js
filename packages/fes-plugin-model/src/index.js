@@ -1,5 +1,6 @@
 import { readFileSync } from 'fs';
 import { join } from 'path';
+import { name } from '../package.json';
 
 const namespace = 'plugin-model';
 
@@ -70,4 +71,8 @@ export default (api) => {
             source: absCoreFilePath,
         },
     ]);
+
+    api.addConfigType(() => ({
+        source: name,
+    }));
 };

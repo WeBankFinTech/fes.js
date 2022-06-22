@@ -26,6 +26,5 @@ export default (api) => {
 
     api.addConfigType(() => ({
         source: name,
-        runtime: ['RequestRuntimeConfig'],
     }));
 };
