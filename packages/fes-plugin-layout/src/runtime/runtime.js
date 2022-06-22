@@ -2,7 +2,8 @@
 import { access as accessApi } from '../plugin-access/core';
 import Exception404 from './views/404.vue';
 import Exception403 from './views/403.vue';
-import getRuntimeConfig from './helpers/getRuntimeConfig';
+// eslint-disable-next-line import/extensions
+import getConfig from './helpers/getConfig';
 
 if (!accessApi) {
     throw new Error('[plugin-layout]: pLugin-layout depends on plugin-access，please install plugin-access first！');
@@ -24,40 +25,41 @@ const handle = (type, router) => {
     }
 };
 
-export const access = (memo) => ({
-    unAccessHandler({ router, to, from, next }) {
-        const runtimeConfig = getRuntimeConfig();
-        if (runtimeConfig.unAccessHandler && typeof runtimeConfig.unAccessHandler === 'function') {
-            return runtimeConfig.unAccessHandler({
-                router,
-                to,
-                from,
-                next,
-            });
-        }
-        if (to.path === '/404') {
-            handle(404, router);
-            return next('/404');
-        }
-        handle(403, router);
-        next('/403');
-    },
-    noFoundHandler({ router, to, from, next }) {
-        const runtimeConfig = getRuntimeConfig();
-        if (runtimeConfig.noFoundHandler && typeof runtimeConfig.noFoundHandler === 'function') {
-            return runtimeConfig.noFoundHandler({
-                router,
-                to,
-                from,
-                next,
-            });
-        }
-        if (to.path === '/403') {
+export const access = (memo) => {
+    const runtimeConfig = getConfig();
+    return {
+        unAccessHandler({ router, to, from, next }) {
+            if (runtimeConfig.unAccessHandler && typeof runtimeConfig.unAccessHandler === 'function') {
+                return runtimeConfig.unAccessHandler({
+                    router,
+                    to,
+                    from,
+                    next,
+                });
+            }
+            if (to.path === '/404') {
+                handle(404, router);
+                return next('/404');
+            }
             handle(403, router);
-            return next('/403');
-        }
-        handle(404, router);
-        next('/404');
-    },
-    ...memo,
-});
+            next('/403');
+        },
+        noFoundHandler({ router, to, from, next }) {
+            if (runtimeConfig.noFoundHandler && typeof runtimeConfig.noFoundHandler === 'function') {
+                return runtimeConfig.noFoundHandler({
+                    router,
+                    to,
+                    from,
+                    next,
+                });
+            }
+            if (to.path === '/403') {
+                handle(403, router);
+                return next('/403');
+            }
+            handle(404, router);
+            next('/404');
+        },
+        ...memo,
+    };
+};
