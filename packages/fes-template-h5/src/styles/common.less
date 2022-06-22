@@ -26,8 +26,7 @@ a {
 
 /* 适配 iPhone X 顶部填充*/
 @supports (top: env(safe-area-inset-top)){
-    body,
-    .alien-screen-header {
+    body {
         padding-top: constant(safe-area-inset-top, 40px);
         padding-top: env(safe-area-inset-top, 40px);
         padding-top: var(safe-area-inset-top, 40px);
@@ -36,10 +35,9 @@ a {
 
 /* 判断iPhoneX 将 footer 的 padding-bottom 填充到最底部 */
 @supports (bottom: env(safe-area-inset-bottom)){
-    body,
-    .alien-screen-footer {
+    body  {
         padding-bottom: constant(safe-area-inset-bottom, 20px);
         padding-bottom: env(safe-area-inset-bottom, 20px);
-        padding-top: var(safe-area-inset-bottom, 20px);
+        padding-bottom: var(safe-area-inset-bottom, 20px);
     }
 }

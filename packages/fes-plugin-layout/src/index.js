@@ -24,16 +24,16 @@ export default (api) => {
 
     api.addRuntimePluginKey(() => 'layout');
 
-    const absFilePath = join(namespace, 'index.jsx');
+    const absFilePath = join(namespace, 'views/index.jsx');
+
+    const absConfigFilePath = join(namespace, 'helpers/getConfig.js');
 
     const absRuntimeFilePath = join(namespace, 'runtime.js');
 
     api.onGenerateFiles(async () => {
-        const HAS_LOCALE = api.hasPlugins(['@fesjs/plugin-locale']);
-
         // .fes配置
         const userConfig = {
-            title: api.pkg.name,
+            title: api.title,
             footer: 'Created by Fes.js',
             ...(api.config.layout || {}),
         };
@@ -52,9 +52,15 @@ export default (api) => {
 
         api.writeTmpFile({
             path: absFilePath,
-            content: Mustache.render(readFileSync(join(__dirname, 'runtime/index.tpl'), 'utf-8'), {
+            content: Mustache.render(readFileSync(join(__dirname, 'runtime/views/index.tpl'), 'utf-8'), {
                 REPLACE_USER_CONFIG: JSON.stringify(userConfig),
-                HAS_LOCALE,
+            }),
+        });
+
+        api.writeTmpFile({
+            path: absConfigFilePath,
+            content: Mustache.render(readFileSync(join(__dirname, 'runtime/helpers/getConfig.tpl'), 'utf-8'), {
+                REPLACE_USER_CONFIG: JSON.stringify(userConfig),
             }),
         });
 
@@ -66,6 +72,13 @@ export default (api) => {
     });
 
     api.addRuntimePlugin(() => `@@/${absRuntimeFilePath}`);
+
+    api.addPluginExports(() => [
+        {
+            specifiers: ['Page'],
+            source: join(namespace, 'index.js'),
+        },
+    ]);
 
     // 把BaseLayout插入到路由配置中，作为根路由
     api.modifyRoutes((routes) => [

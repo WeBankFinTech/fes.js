@@ -1,5 +1,5 @@
 import { access as accessApi, pinia, createWatermark } from '@fesjs/fes';
-import { ref } from 'vue';
+import { ref, watch } from 'vue';
 import PageLoading from '@/components/PageLoading.vue';
 import UserCenter from '@/components/UserCenter.vue';
 import { useStore } from '@/store/main';
@@ -24,16 +24,21 @@ export const beforeRender = {
     },
 };
 
-export const layout = (layoutConfig) => ({
+export const layout = (layoutConfig, { initialState }) => ({
     ...layoutConfig,
-    customHeader: <UserCenter />,
-    menus: (defaultMenuData) => {
-        const menusRef = ref(defaultMenuData);
-        // watch(() => initialValue.initialState.userName, () => {
-        //     menusRef.value = [{
-        //         name: 'store'
-        //     }];
-        // });
+    renderCustom: () => <UserCenter />,
+    menus: () => {
+        const menusRef = ref(layoutConfig.menus);
+        watch(
+            () => initialState.userName,
+            () => {
+                menusRef.value = [
+                    {
+                        name: 'store',
+                    },
+                ];
+            },
+        );
         return menusRef;
     },
 });

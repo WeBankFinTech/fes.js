@@ -5,17 +5,9 @@
         </div>
         <template #content>
             <FScrollbar height="274" class="lang-container">
-                <div
-                    v-for="item in configs"
-                    :key="item.lang"
-                    :class="[
-                        'lang-option',
-                        item.lang === locale && 'is-selected'
-                    ]"
-                    @click="handleSelect(item)"
-                >
-                    <span>{{item.icon}}</span>
-                    <span>{{item.label}}</span>
+                <div v-for="item in configs" :key="item.lang" :class="['lang-option', item.lang === locale && 'is-selected']" @click="handleSelect(item)">
+                    <span>{{ item.icon }}</span>
+                    <span>{{ item.label }}</span>
                 </div>
             </FScrollbar>
         </template>
@@ -28,13 +20,14 @@ import { LanguageOutlined } from '@fesjs/fes-design/icon';
 import { useI18n } from 'vue-i18n';
 import { computed, ref } from 'vue';
 import langUConfigMap from '../langUConfigMap';
+// eslint-disable-next-line import/extensions
 import { locale as _locale } from '../core';
 
 export default {
     components: {
         FTooltip,
         FScrollbar,
-        LanguageOutlined
+        LanguageOutlined,
     },
     setup() {
         const { messages, locale } = useI18n();
@@ -57,9 +50,9 @@ export default {
             handleSelect,
             locale,
             configs,
-            isOpened
+            isOpened,
         };
-    }
+    },
 };
 </script>
 <style>
@@ -68,10 +61,10 @@ export default {
 }
 </style>
 <style lang="less" scoped>
-
 .lang-icon {
     display: flex;
     align-items: center;
+    justify-content: center;
     margin: 0 8px;
     padding: 0 4px;
     cursor: pointer;
