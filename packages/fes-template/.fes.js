@@ -72,7 +72,7 @@ export default {
                 name: 'pinia'
             }
         ],
-        menuConfig: {
+        menuProps: {
             defaultExpandAll: false
         }
     },

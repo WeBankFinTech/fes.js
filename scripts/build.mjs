@@ -69,7 +69,9 @@ async function getPkgConfig(config, pkgName) {
     const pkgConfigPath = path.join(getPkgPath(pkgName), CONFIG_FILE_NAME);
     if (fs.existsSync(pkgConfigPath)) {
         const content = await import(process.platform === 'win32' ? `file://${pkgConfigPath}` : pkgConfigPath);
-        return merge(config, content.default);
+        const result = merge(config, content.default);
+        result.resolveCopy = result.copy.map((item) => path.join(getPkgPath(pkgName), 'src', item));
+        return result;
     }
 
     return config;
@@ -104,13 +106,17 @@ function cleanBeforeCompilerResult(pkgName, log) {
 
 function transformFile(filePath, outputPath, config, log) {
     if (/\.[jt]sx?$/.test(path.extname(filePath))) {
-        const code = fs.readFileSync(filePath, 'utf-8');
-        const shortFilePath = genShortPath(filePath);
-        const transformedCode = compiler(code, config);
+        try {
+            const code = fs.readFileSync(filePath, 'utf-8');
+            const shortFilePath = genShortPath(filePath);
+            const transformedCode = compiler(code, config);
 
-        const type = config.target === 'browser' ? ESM_OUTPUT_DIR : NODE_CJS_OUTPUT_DIR;
-        log(`Transform to ${type} for ${config.target === 'browser' ? chalk.yellow(shortFilePath) : chalk.blue(shortFilePath)}`);
-        fse.outputFileSync(outputPath, transformedCode);
+            const type = config.target === 'browser' ? ESM_OUTPUT_DIR : NODE_CJS_OUTPUT_DIR;
+            log(`Transform to ${type} for ${config.target === 'browser' ? chalk.yellow(shortFilePath) : chalk.blue(shortFilePath)}`);
+            fse.outputFileSync(outputPath, transformedCode);
+        } catch (error) {
+            console.error(error);
+        }
     } else {
         fse.copySync(filePath, outputPath);
     }
@@ -140,12 +146,11 @@ function watchFile(dir, outputDir, config, log) {
         })
         .on('all', (event, changeFile) => {
             // 修改的可能是一个目录，一个文件，一个需要 copy 的文件 or 目录
-            const baseName = path.basename(changeFile);
             const shortChangeFile = genShortPath(changeFile);
             const outputPath = changeFile.replace(dir, outputDir);
             const stat = fs.lstatSync(changeFile);
             log(`[${event}] ${shortChangeFile}`);
-            if (config.copy.includes(baseName)) {
+            if (config.resolveCopy.some((item) => changeFile.startsWith(item))) {
                 fse.copySync(changeFile, outputPath);
             } else if (stat.isFile()) {
                 transformFile(changeFile, outputPath, config, log);
