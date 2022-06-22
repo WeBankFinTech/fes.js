@@ -1,5 +1,5 @@
 import { Component, DefineComponent, App } from 'vue';
-import { RouteRecordRaw, Router } from 'vue-router';
+import { RouteRecordRaw, Router, RouterHistory } from 'vue-router';
 
 // @ts-ignore
 import { Plugin } from '@fesjs/runtime';
@@ -92,4 +92,6 @@ declare module "@fesjs/fes" {
     }
 
     export function getRouter(): Router;
+    export function getHistory(): RouterHistory;
+    export function destroyRouter(): void;
 }

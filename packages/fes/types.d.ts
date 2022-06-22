@@ -1,10 +1,7 @@
 // @ts-ignore
 import '@@/configType';
 
-// // @ts-ignore
-// export * from '@@/core/coreExports';
-// // @ts-ignore
-// export * from '@@/core/pluginExports';
+export * from '@fesjs/runtime';
 
 export interface RouteMeta {
     name?: string;
