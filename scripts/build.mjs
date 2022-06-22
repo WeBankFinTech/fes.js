@@ -69,7 +69,9 @@ async function getPkgConfig(config, pkgName) {
     const pkgConfigPath = path.join(getPkgPath(pkgName), CONFIG_FILE_NAME);
     if (fs.existsSync(pkgConfigPath)) {
         const content = await import(process.platform === 'win32' ? `file://${pkgConfigPath}` : pkgConfigPath);
-        return merge(config, content.default);
+        const result = merge(config, content.default);
+        result.resolveCopy = result.copy.map((item) => path.join(getPkgPath(pkgName), 'src', item));
+        return result;
     }
 
     return config;
@@ -144,12 +146,11 @@ function watchFile(dir, outputDir, config, log) {
         })
         .on('all', (event, changeFile) => {
             // 修改的可能是一个目录，一个文件，一个需要 copy 的文件 or 目录
-            const baseName = path.basename(changeFile);
             const shortChangeFile = genShortPath(changeFile);
             const outputPath = changeFile.replace(dir, outputDir);
             const stat = fs.lstatSync(changeFile);
             log(`[${event}] ${shortChangeFile}`);
-            if (config.copy.includes(baseName)) {
+            if (config.resolveCopy.some((item) => changeFile.startsWith(item))) {
                 fse.copySync(changeFile, outputPath);
             } else if (stat.isFile()) {
                 transformFile(changeFile, outputPath, config, log);
