@@ -1,3 +1,4 @@
+import '@fesjs/fes';
 
 interface EnumExtend {
     key: string;
@@ -7,20 +8,18 @@ interface EnumExtend {
 
 interface EnumApi {
     get(name: string, key?: string, extend?: EnumExtend): any;
-    push(name: string, _enum?: [] | object, option?: {keyName: string; valueName: string}): any;
+    push(name: string, _enum?: [] | object, option?: { keyName: string; valueName: string }): any;
     remove(name: string): void;
-    concat(name: string, _enum: [] | object, option?: {keyName: string; valueName: string, before: boolean, extend: EnumExtend}): any;
-    convert(name: string, _enum?: [] | object, option?: {keyName: string; valueName: string}): any;
+    concat(name: string, _enum: [] | object, option?: { keyName: string; valueName: string; before: boolean; extend: EnumExtend }): any;
+    convert(name: string, _enum?: [] | object, option?: { keyName: string; valueName: string }): any;
 }
 
-declare module "@fesjs/fes" {
+declare module '@fesjs/fes' {
     interface PluginBuildConfig {
-        enums: {
-            [key: string]: [string | number, string | number][]
-        }
+        enums?: {
+            [key: string]: [string | number, string | number][];
+        } | false;
     }
 
     export const enums: EnumApi;
 }
-
-

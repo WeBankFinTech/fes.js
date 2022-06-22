@@ -4,7 +4,8 @@
   "description": "@fesjs/plugin-icon",
   "main": "lib/index.js",
   "files": [
-    "lib"
+    "lib",
+    "types.d.ts"
   ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -31,5 +32,6 @@
   },
   "dependencies": {
     "svgo": "^2.3.1"
-  }
+  },
+  "typings": "./types.d.ts"
 }

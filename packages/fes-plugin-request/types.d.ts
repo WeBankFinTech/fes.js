@@ -15,7 +15,7 @@ interface RequestPluginOption {
 
 declare module "@fesjs/fes" {
     interface PluginRuntimeConfig {
-        request: {
+        request?: {
             dataHandler?(data: any, response: AxiosResponse): any;
             errorHandler?(error: AxiosError | {type: string, msg: string, [key: string]: string}): void;
             requestInterceptors?: RequestInterceptor[];

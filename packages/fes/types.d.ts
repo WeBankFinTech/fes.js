@@ -15,7 +15,7 @@ export interface PluginBuildConfig {}
 
 export declare function defineRouteMeta(routeMeta: RouteMeta): RouteMeta;
 
-export function defineBuildConfig(config: PluginBuildConfig ): PluginBuildConfig;
+export declare function defineBuildConfig(config: PluginBuildConfig ): PluginBuildConfig;
 
-export function defineRuntimeConfig(config:  PluginRuntimeConfig):  PluginRuntimeConfig;
+export declare function defineRuntimeConfig(config:  PluginRuntimeConfig):  PluginRuntimeConfig;
 
