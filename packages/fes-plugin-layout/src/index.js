@@ -78,7 +78,5 @@ export default (api) => {
 
     api.addConfigType(() => ({
         source: name,
-        runtime: ['LayoutRuntimeConfig'],
-        build: ['LayoutBuildConfig'],
     }));
 };

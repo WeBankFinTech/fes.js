@@ -1,16 +1,20 @@
 // @ts-ignore
-import type { PluginRuntimeConfig, PluginBuildConfig } from '@@/configType';
+import '@@/configType';
 
-// @ts-ignore
-export * from '@@/core/coreExports';
-// @ts-ignore
-export * from '@@/core/pluginExports';
+// // @ts-ignore
+// export * from '@@/core/coreExports';
+// // @ts-ignore
+// export * from '@@/core/pluginExports';
 
-interface RouteMeta {
+export interface RouteMeta {
     name?: string;
     title?: string;
     layout?: boolean | { sidebar?: boolean; header?: boolean; logo?: boolean };
 }
+
+export interface PluginRuntimeConfig {}
+
+export interface PluginBuildConfig {}
 
 export declare function defineRouteMeta(routeMeta: RouteMeta): RouteMeta;
 

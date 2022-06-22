@@ -1,14 +1,16 @@
 import { Router, NavigationGuard } from 'vue-router';
 
-export interface AccessBuildConfig {
-    access: {
-        rules: Record<string, []>;
-    };
-}
+declare module "@fesjs/fes" {
+    interface PluginBuildConfig {
+        access: {
+            rules: Record<string, []>;
+        };
+    }
 
-export interface AccessRuntimeConfig {
-    access: {
-        noFoundHandler: (param: { router: Router } & NavigationGuard) => void;
-        unAccessHandler: (param: { router: Router } & NavigationGuard) => void;
-    };
+    interface PluginRuntimeConfig {
+        access: {
+            noFoundHandler: (param: { router: Router } & NavigationGuard) => void;
+            unAccessHandler: (param: { router: Router } & NavigationGuard) => void;
+        };
+    }
 }
