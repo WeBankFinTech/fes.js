@@ -62,16 +62,16 @@
 ## 页面缓存
 
 支持配置页面缓存，通过[定义路由元信息](../../../guide/route.html#扩展路由元信息)开启缓存：
-```
-<config lang="json">
-{
+```js
+import { defineRouteMete } from '@fesjs/fes';
+
+defineRouteMeta({
     "keep-alive": true
-}
-</config>
+})
 ```
 
 ### 处理嵌套路由
-Fes.js 里约定目录下有 layout.vue 时会生成嵌套路由，以 layout.vue 为该目录的公共父组件，layout.vue 中必须实现 `<RouterView/>`。如果嵌套路由下的页面设置了keep-alive，则需要用 `<Page/>` 替换 `<RouterView/>`
+Fes.js 里约定目录下有 `layout.vue` 时会生成嵌套路由，以 `layout.vue` 为该目录的公共父组件，layout.vue 中必须实现 `<RouterView/>`。如果嵌套路由下的页面设置了 `keep-alive`，则需要用 `<Page/>` 替换 `<RouterView/>`，`<Page/>`实现了页面缓存。
 
 ```vue
 <template>

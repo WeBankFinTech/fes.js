@@ -200,7 +200,7 @@ const router = new VueRouter({
 
 我们使用`defineRouteMeta` 配置 `meta`：
 
-```jsx
+```js
 import { defineRouteMete } from '@fesjs/fes';
 defineRouteMeta({
     name: "store",
