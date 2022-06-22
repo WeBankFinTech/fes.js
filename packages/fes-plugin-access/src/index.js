@@ -56,7 +56,5 @@ export default (api) => {
 
     api.addConfigType(() => ({
         source: name,
-        runtime: ['AccessRuntimeConfig'],
-        build: ['AccessBuildConfig'],
     }));
 };
