@@ -113,18 +113,20 @@ const genRoutes = function (parentRoutes, path, parentRoutePath, config) {
             const routeName = getRouteName(parentRoutePath, fileName);
             const componentPath = getComponentPath(parentRoutePath, ext === '.vue' ? `${fileName}${ext}` : fileName, config);
 
-            let content = readFileSync(component, 'utf-8');
+            const content = readFileSync(component, 'utf-8');
             let routeMeta = {};
             if (ext === '.vue') {
                 const { descriptor } = parse(content);
                 const routeMetaBlock = descriptor.customBlocks.find((b) => b.type === 'config');
                 routeMeta = routeMetaBlock?.content ? JSON.parse(routeMetaBlock.content) : {};
                 if (descriptor.script) {
-                    content = descriptor.script.content;
-                    routeMeta = getRouteMeta(content) || routeMeta;
+                    routeMeta = getRouteMeta(descriptor.script.content) || routeMeta;
                 }
-            }
-            if (ext === '.jsx' || ext === '.tsx') {
+                // 优先使用 descriptor.script， 兼容 script 和 script setup 同时存在的情况
+                if (descriptor.scriptSetup && lodash.isEmpty(routeMeta)) {
+                    routeMeta = getRouteMeta(descriptor.scriptSetup.content) || routeMeta;
+                }
+            } else if (ext === '.jsx' || ext === '.tsx') {
                 routeMeta = getRouteMeta(content) || {};
             }
 

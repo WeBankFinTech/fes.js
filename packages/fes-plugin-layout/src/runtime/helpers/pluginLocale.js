@@ -12,14 +12,14 @@ export const transTitle = (name) => {
     return name;
 };
 
-
-export const transform = menus => menus.map((menu) => {
-    const copy = {
-        ...menu,
-        label: transTitle(menu.label)
-    };
-    if (menu.children) {
-        copy.children = transform(menu.children);
-    }
-    return copy;
-});
+export const transform = (menus) =>
+    menus.map((menu) => {
+        const copy = {
+            ...menu,
+            label: transTitle(menu.label),
+        };
+        if (menu.children) {
+            copy.children = transform(menu.children);
+        }
+        return copy;
+    });
