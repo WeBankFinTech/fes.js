@@ -1,3 +1,12 @@
+# [3.0.0-beta.11](https://github.com/WeBankFinTech/fes.js/compare/v3.0.0-beta.10...v3.0.0-beta.11) (2022-06-23)
+
+
+### Bug Fixes
+
+* 优化项目模板ts配置 ([dd455fb](https://github.com/WeBankFinTech/fes.js/commit/dd455fba7bfba6e2bfa7c45fcfa846861f993ad7))
+
+
+
 # [3.0.0-beta.10](https://github.com/WeBankFinTech/fes.js/compare/v3.0.0-beta.9...v3.0.0-beta.10) (2022-06-16)
 
 
