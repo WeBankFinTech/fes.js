@@ -2809,10 +2809,10 @@
   dependencies:
     vue-demi "*"
 
-"@webank/eslint-config-webank@^1.2.0":
-  version "1.2.0"
-  resolved "https://registry.npmmirror.com/@webank/eslint-config-webank/-/eslint-config-webank-1.2.0.tgz#7a466de0cfb2a619f9c85275d279a085ff76f65c"
-  integrity sha512-aO6XLEvwS5W31lOb56IR8rr3fsqiyVuexo0jfD4DENzJgTrPIfAF6eIQDYnw3BV1JWJsnzYd72bFfr3o4jNcEQ==
+"@webank/eslint-config-webank@^1.2.3":
+  version "1.2.3"
+  resolved "https://registry.npmmirror.com/@webank/eslint-config-webank/-/eslint-config-webank-1.2.3.tgz#1a14f771a3cb7a2936920edcb7a56b373d66e415"
+  integrity sha512-Q0K+1xp2AOeigFCvnGTzcfgdmF5gzQPSnrd0Al/T/OQu+k5WDexsyxXDBHw40iN88OAsdS6dReve9yqsrqw8qA==
   dependencies:
     "@babel/core" "^7.16.0"
     "@babel/eslint-parser" "^7.16.3"
@@ -2826,7 +2826,7 @@
     eslint-plugin-import "2.25.3"
     eslint-plugin-node "^11.1.0"
     eslint-plugin-prettier "^4.0.0"
-    eslint-plugin-vue "^8.1.1"
+    eslint-plugin-vue "^8.6.0"
     prettier "^2.5.0"
     vue-eslint-parser "^8.0.1"
 
@@ -5168,13 +5168,15 @@ eslint-plugin-prettier@^4.0.0:
   dependencies:
     prettier-linter-helpers "^1.0.0"
 
-eslint-plugin-vue@^8.1.1:
-  version "8.5.0"
-  resolved "https://registry.npmmirror.com/eslint-plugin-vue/-/eslint-plugin-vue-8.5.0.tgz#65832bba43ca713fa5da16bdfcf55d0095677f6f"
-  integrity sha512-i1uHCTAKOoEj12RDvdtONWrGzjFm/djkzqfhmQ0d6M/W8KM81mhswd/z+iTZ0jCpdUedW3YRgcVfQ37/J4zoYQ==
+eslint-plugin-vue@^8.6.0:
+  version "8.7.1"
+  resolved "https://registry.npmmirror.com/eslint-plugin-vue/-/eslint-plugin-vue-8.7.1.tgz#f13c53547a0c9d64588a675cc5ecc6ccaf63703f"
+  integrity sha512-28sbtm4l4cOzoO1LtzQPxfxhQABararUb1JtqusQqObJpWX2e/gmVyeYVfepizPFne0Q5cILkYGiBoV36L12Wg==
   dependencies:
     eslint-utils "^3.0.0"
     natural-compare "^1.4.0"
+    nth-check "^2.0.1"
+    postcss-selector-parser "^6.0.9"
     semver "^7.3.5"
     vue-eslint-parser "^8.0.1"
 

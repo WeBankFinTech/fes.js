@@ -1,6 +1,6 @@
 import { access as accessApi, pinia } from '@fesjs/fes';
-import PageLoading from '@/components/PageLoading.vue';
-import UserCenter from '@/components/UserCenter.vue';
+import PageLoading from '@/components/pageLoading.vue';
+import UserCenter from '@/components/userCenter.vue';
 import { useStore } from '@/store/main';
 
 export const beforeRender = {

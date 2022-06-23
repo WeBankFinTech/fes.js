@@ -8,16 +8,15 @@ import { FSpin } from '@fesjs/fes-design';
 
 export default {
     components: {
-        FSpin
+        FSpin,
     },
     setup() {
-        return {
-        };
-    }
+        return {};
+    },
 };
 </script>
 <style>
-.page-loading{
+.page-loading {
     position: fixed;
     top: 0;
     left: 0;
