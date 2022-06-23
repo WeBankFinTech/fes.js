@@ -15,6 +15,6 @@ export default {
 </script>
 <style lang="less">
 .user-center {
-    text-align: center;
+    text-align: right;
 }
 </style>

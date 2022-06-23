@@ -1,7 +1,7 @@
 import { access as accessApi, pinia, createWatermark } from '@fesjs/fes';
 import { ref, watch } from 'vue';
-import PageLoading from '@/components/PageLoading.vue';
-import UserCenter from '@/components/UserCenter.vue';
+import PageLoading from '@/components/pageLoading.vue';
+import UserCenter from '@/components/userCenter.vue';
 import { useStore } from '@/store/main';
 
 export const beforeRender = {
