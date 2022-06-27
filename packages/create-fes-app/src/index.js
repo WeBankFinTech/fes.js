@@ -6,6 +6,7 @@ import inquirer from 'inquirer';
 
 import { clearConsole } from './utils';
 import AppGenerator from './generator/App';
+import PluginGenerator from './generator/Plugin';
 
 export default async ({ cwd, args }) => {
     if (args.proxy) {
@@ -75,12 +76,13 @@ export default async ({ cwd, args }) => {
             choices: [
                 { name: 'PC, suitable for management desk front-end applications', value: 'pc' },
                 { name: 'H5, suitable for mobile applications', value: 'h5' },
+                { name: 'Plugin, suitable for fes plugin', value: 'plugin' },
                 { name: 'Cancel', value: false }
             ]
         }
     ]);
 
-    if (template) {
+    if (template === 'pc' || template === 'h5') {
         const generator = new AppGenerator({
             cwd,
             args,
@@ -90,6 +92,21 @@ export default async ({ cwd, args }) => {
         await generator.run();
         console.log();
         console.log(chalk.green(`project ${projectName} created successfully, please execute the following command to use:`));
+        console.log(`$ cd ${projectName}`);
+        console.log('$ yarn');
+        console.log('$ yarn dev');
+        console.log();
+    } else if (template === 'plugin') {
+        const generator = new PluginGenerator({
+            cwd,
+            args,
+            targetDir,
+            path: path.join(__dirname, '../templates/plugin'),
+            name
+        });
+        await generator.run();
+        console.log();
+        console.log(chalk.green(`plugin ${projectName} created successfully, please execute the following command to use:`));
         console.log(`$ cd ${projectName}`);
         console.log('$ yarn');
         console.log('$ yarn dev');
