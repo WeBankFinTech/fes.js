@@ -36,6 +36,33 @@ API 对象是构建流程管理 Service 类的实例，api 提供一些有用的
 - **enableBy**， 是否开启插件，可配置某些场景下禁用插件。
 
 
+## 创建插件
+
+##### 第一步：安装`create-fes-app`
+```bash
+npm i -g @fesjs/create-fes-app
+```
+
+
+##### 第二步：创建插件项目
+
+```bash
+create-fes-app pluginName
+```
+在询问`Pick an template`时选择`Plugin`!
+
+##### 第三步：进入插件目录 & 安装依赖
+```bash
+cd pluginName & yarn
+```
+
+##### 第四步：启动编译
+```bash
+yarn dev
+```
+
+##### 第五步：使用插件API完成你的插件！（可以参考其他插件理解api用法和场景）
+
 ## 发布到 npm
  
 以 `@fesjs/preset-`、`@fesjs/plugin-`、`@webank/fes-preset-`、`@webank/fes-plugin-`、`fes-preset-` 和 `fes-plugin-` 开头的依赖会被 Fes.js 自动注册为插件或插件集。 
