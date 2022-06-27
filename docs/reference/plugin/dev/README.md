@@ -51,9 +51,9 @@ create-fes-app pluginName
 ```
 在询问`Pick an template`时选择`Plugin`!
 
-##### 第三步：进入插件目录
+##### 第三步：进入插件目录 & 安装依赖
 ```bash
-cd pluginName
+cd pluginName & yarn
 ```
 
 ##### 第四步：启动编译
