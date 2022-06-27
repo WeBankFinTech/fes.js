@@ -28,7 +28,7 @@ const config: UserConfig<DefaultThemeOptions> = {
 
     docsDir: 'docs',
 
-    docsBranch: 'vue3',
+    docsBranch: 'master',
 
     // theme-level locales config
     locales: {
