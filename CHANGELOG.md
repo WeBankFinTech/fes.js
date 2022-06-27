@@ -1,3 +1,12 @@
+# [3.0.0-beta.12](https://github.com/WeBankFinTech/fes.js/compare/v3.0.0-beta.11...v3.0.0-beta.12) (2022-06-27)
+
+
+### Features
+
+* 插件开发文档和模板 ([#135](https://github.com/WeBankFinTech/fes.js/issues/135)) ([3b8af8a](https://github.com/WeBankFinTech/fes.js/commit/3b8af8aacba7afe370635f745e0a95f4784d491b))
+
+
+
 # [3.0.0-beta.11](https://github.com/WeBankFinTech/fes.js/compare/v3.0.0-beta.10...v3.0.0-beta.11) (2022-06-23)
 
 
