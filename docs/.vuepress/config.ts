@@ -82,6 +82,19 @@ const config: UserConfig<DefaultThemeOptions> = {
         },
       },
     ],
+    [
+      '@vuepress/docsearch',
+      {
+        appId: '4ZF3BCJTP5',
+        apiKey: '09ff75bbe16bc6e166e103ffb57e10ea',
+        indexName: 'fesjs',
+        locales: {
+          '/': {
+            placeholder: '搜索文档',
+          },
+        },
+      },
+    ],
   ],
 }
 

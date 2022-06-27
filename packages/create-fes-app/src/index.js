@@ -6,6 +6,7 @@ import inquirer from 'inquirer';
 
 import { clearConsole } from './utils';
 import AppGenerator from './generator/App';
+import PluginGenerator from './generator/Plugin';
 
 export default async ({ cwd, args }) => {
     if (args.proxy) {
@@ -19,12 +20,14 @@ export default async ({ cwd, args }) => {
     const result = validateProjectName(name);
     if (!result.validForNewPackages) {
         console.error(chalk.red(`Invalid project name: "${name}"`));
-        result.errors && result.errors.forEach((err) => {
-            console.error(chalk.red.dim(`Error: ${err}`));
-        });
-        result.warnings && result.warnings.forEach((warn) => {
-            console.error(chalk.red.dim(`Warning: ${warn}`));
-        });
+        result.errors &&
+            result.errors.forEach((err) => {
+                console.error(chalk.red.dim(`Error: ${err}`));
+            });
+        result.warnings &&
+            result.warnings.forEach((warn) => {
+                console.error(chalk.red.dim(`Warning: ${warn}`));
+            });
         throw new Error('Process exited');
     }
     if (fs.pathExistsSync(targetDir) && !args.merge) {
@@ -36,8 +39,8 @@ export default async ({ cwd, args }) => {
                 {
                     name: 'ok',
                     type: 'confirm',
-                    message: 'Generate project in current directory?'
-                }
+                    message: 'Generate project in current directory?',
+                },
             ]);
             if (!ok) {
                 return null;
@@ -52,9 +55,9 @@ export default async ({ cwd, args }) => {
                     choices: [
                         { name: 'Overwrite', value: 'overwrite' },
                         { name: 'Merge', value: 'merge' },
-                        { name: 'Cancel', value: false }
-                    ]
-                }
+                        { name: 'Cancel', value: false },
+                    ],
+                },
             ]);
             if (!action) {
                 return null;
@@ -75,21 +78,37 @@ export default async ({ cwd, args }) => {
             choices: [
                 { name: 'PC, suitable for management desk front-end applications', value: 'pc' },
                 { name: 'H5, suitable for mobile applications', value: 'h5' },
-                { name: 'Cancel', value: false }
-            ]
-        }
+                { name: 'Plugin, suitable for fes plugin', value: 'plugin' },
+                { name: 'Cancel', value: false },
+            ],
+        },
     ]);
 
-    if (template) {
+    if (template === 'pc' || template === 'h5') {
         const generator = new AppGenerator({
             cwd,
             args,
             targetDir,
-            path: path.join(__dirname, `../templates/app/${template}`)
+            path: path.join(__dirname, `../templates/app/${template}`),
         });
         await generator.run();
         console.log();
         console.log(chalk.green(`project ${projectName} created successfully, please execute the following command to use:`));
+        console.log(`$ cd ${projectName}`);
+        console.log('$ yarn');
+        console.log('$ yarn dev');
+        console.log();
+    } else if (template === 'plugin') {
+        const generator = new PluginGenerator({
+            cwd,
+            args,
+            targetDir,
+            path: path.join(__dirname, '../templates/plugin'),
+            name,
+        });
+        await generator.run();
+        console.log();
+        console.log(chalk.green(`plugin ${projectName} created successfully, please execute the following command to use:`));
         console.log(`$ cd ${projectName}`);
         console.log('$ yarn');
         console.log('$ yarn dev');
