@@ -1,3 +1,12 @@
+# [3.0.0-beta.13](https://github.com/WeBankFinTech/fes.js/compare/v3.0.0-beta.12...v3.0.0-beta.13) (2022-07-04)
+
+
+### Bug Fixes
+
+* 修复layout的bug ([3e3ee6a](https://github.com/WeBankFinTech/fes.js/commit/3e3ee6a4b44dfb38dca1a569339a1b5fb18ace6e))
+
+
+
 # [3.0.0-beta.12](https://github.com/WeBankFinTech/fes.js/compare/v3.0.0-beta.11...v3.0.0-beta.12) (2022-06-27)
 
 
