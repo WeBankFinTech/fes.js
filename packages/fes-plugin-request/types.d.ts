@@ -6,8 +6,8 @@ type RequestInterceptor = (value: AxiosRequestConfig) => AxiosRequestConfig | [(
 type ResponseInterceptor = (value: AxiosResponse) => AxiosResponse | [(value: AxiosResponse) => AxiosResponse, (error: any) => any];
 
 interface RequestPluginOption {
-    mergeRequest: boolean;
-    cache: boolean | {
+    mergeRequest?: boolean;
+    cache?: boolean | {
         type: 'ram' | 'sessionStorage' | 'localStorage',
         cacheTime: number;
     }
