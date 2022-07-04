@@ -43,7 +43,7 @@
                 </f-layout>
             </f-layout>
         </template>
-        <template v-if="currentNavigation === 'left-right'">
+        <template v-else-if="currentNavigation === 'left-right'">
             <f-aside
                 v-model:collapsed="collapsedRef"
                 :fixed="isFixedSidebar"

@@ -21,9 +21,14 @@ const Layout = defineComponent({
         const filledMenuRef = computed(() => fillMenu(menusRef.value, getRoutes()));
 
         const localeShared = plugin.getShared('locale');
+
+        const renderCustom = config.renderCustom;
+
+        delete config.renderCustom;
+        
         return () => {
             const slots = {
-                renderCustom: config.renderCustom,
+                renderCustom,
                 locale: () => {
                     if (localeShared) {
                         return <localeShared.SelectLang></localeShared.SelectLang>;
