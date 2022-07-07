@@ -50,14 +50,9 @@ const getRouteName = function (parentRoutePath, fileName) {
         .replace(/\*/g, 'FUZZYMATCH');
 };
 
-const getComponentPath = function (parentRoutePath, fileName, config) {
-    const pagesName = config.singular ? 'page' : 'pages';
-    return posix.join(`@/${pagesName}/`, parentRoutePath, fileName);
-};
-
-const getRoutePath = function (parentRoutePath, fileName) {
+const getRoutePath = function (parentRoutePath, fileName, isFile = true) {
     // /index.vue -> /
-    if (fileName === 'index') {
+    if (isFile && fileName === 'index') {
         fileName = '';
     }
     // /@id.vue -> /:id
@@ -87,7 +82,7 @@ function getRouteMeta(content) {
 let cacheGenRoutes = {};
 
 // TODO 约定 layout 目录作为布局文件夹，
-const genRoutes = function (parentRoutes, path, parentRoutePath, config) {
+const genRoutes = function (parentRoutes, path, parentRoutePath) {
     const dirList = readdirSync(path);
     const hasLayout = checkHasLayout(path);
     const layoutRoute = {
@@ -113,7 +108,7 @@ const genRoutes = function (parentRoutes, path, parentRoutePath, config) {
 
             // 路由名称
             const routeName = getRouteName(parentRoutePath, fileName);
-            const componentPath = getComponentPath(parentRoutePath, fileName, config);
+            const componentPath = posix.join(path, item);
 
             let content = readFileSync(component, 'utf-8');
             let routeMeta = {};
@@ -153,12 +148,12 @@ const genRoutes = function (parentRoutes, path, parentRoutePath, config) {
     dirList.forEach((item) => {
         if (isProcessDirectory(path, item)) {
             // 文件或者目录的绝对路径
-            const component = join(path, item);
-            const nextParentRouteUrl = posix.join(parentRoutePath, item);
+            const nextPath = join(path, item);
+            const nextParentRouteUrl = getRoutePath(parentRoutePath, item, false);
             if (hasLayout) {
-                genRoutes(layoutRoute.children, component, nextParentRouteUrl, config);
+                genRoutes(layoutRoute.children, nextPath, nextParentRouteUrl);
             } else {
-                genRoutes(parentRoutes, component, nextParentRouteUrl, config);
+                genRoutes(parentRoutes, nextPath, nextParentRouteUrl);
             }
         }
     });
@@ -210,7 +205,7 @@ const getRoutes = function ({ config, absPagesPath }) {
 
     const routes = [];
     cacheGenRoutes = {};
-    genRoutes(routes, absPagesPath, '/', config);
+    genRoutes(routes, absPagesPath, '/');
     rank(routes);
     return routes;
 };
