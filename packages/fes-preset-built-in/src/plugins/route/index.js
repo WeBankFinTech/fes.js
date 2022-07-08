@@ -38,18 +38,12 @@ const checkHasLayout = function (path) {
 
 const getRouteName = function (parentRoutePath, fileName) {
     const routeName = posix.join(parentRoutePath, fileName);
-    return routeName.slice(1).replace(/\//g, '_').replace(/@/g, '_').replace(/\*/g, 'FUZZYMATCH');
+    return routeName.slice(1).replace(/\//g, '_').replace(/@/g, '_').replace(/:/g, '_').replace(/\*/g, 'FUZZYMATCH');
 };
 
-const getPagePathPrefix = (config) => `@/${config.singular ? 'page' : 'pages'}`;
-
-const getComponentPath = function (parentRoutePath, fileName, config) {
-    return posix.join(`${getPagePathPrefix(config)}/`, parentRoutePath, fileName);
-};
-
-const getRoutePath = function (parentRoutePath, fileName) {
+const getRoutePath = function (parentRoutePath, fileName, isFile = true) {
     // /index.vue -> /
-    if (fileName === 'index') {
+    if (isFile && fileName === 'index') {
         fileName = '';
     }
     // /@id.vue -> /:id
@@ -83,7 +77,8 @@ function getRouteMeta(content) {
 
 let cacheGenRoutes = {};
 
-const genRoutes = function (parentRoutes, path, parentRoutePath, config) {
+// TODO 约定 layout 目录作为布局文件夹，
+const genRoutes = function (parentRoutes, path, parentRoutePath) {
     const dirList = readdirSync(path);
     const hasLayout = checkHasLayout(path);
     const layoutRoute = {
@@ -111,7 +106,7 @@ const genRoutes = function (parentRoutes, path, parentRoutePath, config) {
 
             // 路由名称
             const routeName = getRouteName(parentRoutePath, fileName);
-            const componentPath = getComponentPath(parentRoutePath, ext === '.vue' ? `${fileName}${ext}` : fileName, config);
+            const componentPath = posix.join(path, item);
 
             const content = readFileSync(component, 'utf-8');
             let routeMeta = {};
@@ -151,12 +146,12 @@ const genRoutes = function (parentRoutes, path, parentRoutePath, config) {
     dirList.forEach((item) => {
         if (isProcessDirectory(path, item)) {
             // 文件或者目录的绝对路径
-            const component = join(path, item);
-            const nextParentRouteUrl = posix.join(parentRoutePath, item);
+            const nextPath = join(path, item);
+            const nextParentRouteUrl = getRoutePath(parentRoutePath, item, false);
             if (hasLayout) {
-                genRoutes(layoutRoute.children, component, nextParentRouteUrl, config);
+                genRoutes(layoutRoute.children, nextPath, nextParentRouteUrl);
             } else {
-                genRoutes(parentRoutes, component, nextParentRouteUrl, config);
+                genRoutes(parentRoutes, nextPath, nextParentRouteUrl);
             }
         }
     });
@@ -208,13 +203,13 @@ const getRoutes = function ({ config, absPagesPath }) {
 
     const routes = [];
     cacheGenRoutes = {};
-    genRoutes(routes, absPagesPath, '/', config);
+    genRoutes(routes, absPagesPath, '/');
     rank(routes);
     return routes;
 };
 
-function genComponentName(component, config) {
-    return lodash.camelCase(component.replace(getPagePathPrefix(config), '').replace('.vue', ''));
+function genComponentName(component, paths) {
+    return lodash.camelCase(component.replace(paths.absPagesPath, '').replace('.vue', ''));
 }
 
 function isFunctionComponent(component) {
@@ -225,7 +220,7 @@ function isFunctionComponent(component) {
     );
 }
 
-const getRoutesJSON = function ({ routes, config }) {
+const getRoutesJSON = function ({ routes, config, paths }) {
     // 因为要往 routes 里加无用的信息，所以必须 deep clone 一下，避免污染
     const clonedRoutes = lodash.cloneDeep(routes);
 
@@ -240,7 +235,7 @@ const getRoutesJSON = function ({ routes, config }) {
             // TODO 针对目录进行 chunk 划分，import(/* webpackChunkName: "group-user" */ './UserDetails.vue')
             return `() => import('${value}')`;
         }
-        const componentName = genComponentName(value, config);
+        const componentName = genComponentName(value, paths);
         importList.push(`import ${componentName} from '${value}'`);
         return componentName;
     }
@@ -290,7 +285,7 @@ export default function (api) {
     api.registerMethod({
         name: 'getRoutesJSON',
         async fn(routes) {
-            return getRoutesJSON({ routes: await (routes || api.getRoutes()), config: api.config });
+            return getRoutesJSON({ routes: await (routes || api.getRoutes()), config: api.config, paths: api.paths });
         },
     });
 

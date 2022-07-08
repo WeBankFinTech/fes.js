@@ -111,15 +111,15 @@ process.env.FES_ENV = 'prod';
 
 执行 `fes build` 后，产物默认会存放在这里。
 
-## public 目录
+### public 目录
 
 此目录下所有文件为静态资源，会被复制到输出路径。
 
-## index.html
+### index.html
 
 默认的 `html` 模板文件，如果删除此 `html` 则会使用内置的 `html` 模板文件。
 
-## src 目录
+### src 目录
 
 ### .fes 目录
 
