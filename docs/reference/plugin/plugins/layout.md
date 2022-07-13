@@ -341,7 +341,7 @@ export const access = {
 ```
 
 
-### 4.x 升级到 5.x
+## 4.x 升级到 5.x
 
 1. 个性化 layout 配置改为使用传入 navigation
 2. customHeader 改为 renderCustom
