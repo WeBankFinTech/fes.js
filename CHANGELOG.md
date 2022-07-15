@@ -1,3 +1,17 @@
+# [3.0.0-beta.14](https://github.com/WeBankFinTech/fes.js/compare/v3.0.0-beta.13...v3.0.0-beta.14) (2022-07-15)
+
+
+### Bug Fixes
+
+* 修复win下路径问题 ([bcce28d](https://github.com/WeBankFinTech/fes.js/commit/bcce28d5674da8497270c0f6e414a5d9f11aa1da))
+
+
+### Features
+
+* 文件目录名带@转化成动态路由 ([#137](https://github.com/WeBankFinTech/fes.js/issues/137)) ([9b3b7e5](https://github.com/WeBankFinTech/fes.js/commit/9b3b7e5d0c52e2c4c27046968d228f407b76cd7e))
+
+
+
 # [3.0.0-beta.13](https://github.com/WeBankFinTech/fes.js/compare/v3.0.0-beta.12...v3.0.0-beta.13) (2022-07-04)
 
 
