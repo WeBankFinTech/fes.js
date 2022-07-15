@@ -13,6 +13,7 @@
 [![GitHub issues](https://img.shields.io/github/issues/WeBankFinTech/fes.js.svg?style=flat-square)](../../issues)
 [![MIT](https://img.shields.io/dub/l/vibe-d.svg?style=flat-square)](http://opensource.org/licenses/MIT)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](../../pulls)
+[![Page Views Count](https://badges.toozhao.com/badges/01G7TRNN1PH9PMSCYWDF3EK4QT/green.svg)](https://badges.toozhao.com/stats/01G7TRNN1PH9PMSCYWDF3EK4QT "Get your own page views count badge on badges.toozhao.com")
 
 </div>
 
