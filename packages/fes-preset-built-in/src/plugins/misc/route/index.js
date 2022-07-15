@@ -1,8 +1,10 @@
 import { readdirSync, statSync, readFileSync } from 'fs';
 import {
-    join, extname, posix, basename
+    join, extname, basename
 } from 'path';
-import { lodash, parser, generator } from '@fesjs/utils';
+import {
+    lodash, parser, generator, winPath
+} from '@fesjs/utils';
 import { parse } from '@vue/compiler-sfc';
 import { Logger } from '@fesjs/compiler';
 import { runtimePath } from '../../../utils/constants';
@@ -25,14 +27,14 @@ const isProcessFile = function (path) {
 };
 
 const isProcessDirectory = function (path, item) {
-    const component = join(path, item);
+    const component = winPath(join(path, item));
     return statSync(component).isDirectory() && !['components'].includes(item);
 };
 
 const checkHasLayout = function (path) {
     const dirList = readdirSync(path);
     return dirList.some((item) => {
-        if (!isProcessFile(join(path, item))) {
+        if (!isProcessFile(winPath(join(path, item)))) {
             return false;
         }
         const ext = extname(item);
@@ -42,7 +44,7 @@ const checkHasLayout = function (path) {
 };
 
 const getRouteName = function (parentRoutePath, fileName) {
-    const routeName = posix.join(parentRoutePath, fileName);
+    const routeName = winPath(join(parentRoutePath, fileName));
     return routeName
         .slice(1)
         .replace(/\//g, '_')
@@ -63,7 +65,7 @@ const getRoutePath = function (parentRoutePath, fileName, isFile = true) {
     if (fileName.includes('*')) {
         fileName = fileName.replace('*', ':pathMatch(.*)');
     }
-    return posix.join(parentRoutePath, fileName);
+    return winPath(join(parentRoutePath, fileName));
 };
 
 function getRouteMeta(content) {
@@ -94,8 +96,8 @@ const genRoutes = function (parentRoutes, path, parentRoutePath) {
     }
     dirList.forEach((item) => {
         // 文件或者目录的绝对路径
-        const component = join(path, item);
-        if (isProcessFile(component)) {
+        const filePath = winPath(join(path, item));
+        if (isProcessFile(filePath)) {
             const ext = extname(item);
             const fileName = basename(item, ext);
             // 路由的path
@@ -108,9 +110,9 @@ const genRoutes = function (parentRoutes, path, parentRoutePath) {
 
             // 路由名称
             const routeName = getRouteName(parentRoutePath, fileName);
-            const componentPath = posix.join(path, item);
+            const componentPath = winPath(filePath);
 
-            let content = readFileSync(component, 'utf-8');
+            let content = readFileSync(filePath, 'utf-8');
             let routeMeta = {};
             if (ext === '.vue') {
                 const { descriptor } = parse(content);
@@ -148,7 +150,7 @@ const genRoutes = function (parentRoutes, path, parentRoutePath) {
     dirList.forEach((item) => {
         if (isProcessDirectory(path, item)) {
             // 文件或者目录的绝对路径
-            const nextPath = join(path, item);
+            const nextPath = winPath(join(path, item));
             const nextParentRouteUrl = getRoutePath(parentRoutePath, item, false);
             if (hasLayout) {
                 genRoutes(layoutRoute.children, nextPath, nextParentRouteUrl);
