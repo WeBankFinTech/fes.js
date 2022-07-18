@@ -6,7 +6,6 @@ export * from '@fesjs/runtime';
 export interface RouteMeta {
     name?: string;
     title?: string;
-    layout?: boolean | { sidebar?: boolean; header?: boolean; logo?: boolean };
 }
 
 export interface PluginRuntimeConfig {}
