@@ -209,7 +209,11 @@ const getRoutes = function ({ config, absPagesPath }) {
 };
 
 function genComponentName(component, paths) {
-    return lodash.camelCase(component.replace(paths.absPagesPath, '').replace('.vue', ''));
+    const componentName = lodash.camelCase(component.replace(paths.absPagesPath, '').replace('.vue', ''));
+    if (/^\d+/.test(componentName)) {
+        return `numPage${componentName}`;
+    }
+    return componentName;
 }
 
 function isFunctionComponent(component) {
