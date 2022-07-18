@@ -1,6 +1,6 @@
 {
   "name": "@fesjs/plugin-layout",
-  "version": "5.0.0-beta.8",
+  "version": "5.0.0-beta.9",
   "description": "@fesjs/plugin-layout",
   "main": "lib/index.js",
   "files": [

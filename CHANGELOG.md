@@ -1,3 +1,12 @@
+# [3.0.0-beta.15](https://github.com/WeBankFinTech/fes.js/compare/v3.0.0-beta.14...v3.0.0-beta.15) (2022-07-18)
+
+
+### Bug Fixes
+
+* 路由生成支持全数字 ([ba73ac7](https://github.com/WeBankFinTech/fes.js/commit/ba73ac7ff7beb5271c70f4154fa1357e180ef35c))
+
+
+
 # [3.0.0-beta.14](https://github.com/WeBankFinTech/fes.js/compare/v3.0.0-beta.13...v3.0.0-beta.14) (2022-07-15)
 
 
