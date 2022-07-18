@@ -12,9 +12,9 @@ interface Menu {
 
 declare module '@fesjs/fes' {
     interface RouteMeta {
-        'keep-alive': boolean;
-        layout: {
-            navigation: 'side' | 'mixin' | 'top' | 'left-right' | null,
+        'keep-alive'?: boolean;
+        layout?: {
+            navigation?: 'side' | 'mixin' | 'top' | 'left-right' | null,
         }
     }
     interface PluginBuildConfig {
