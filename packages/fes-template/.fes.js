@@ -69,7 +69,7 @@ export default defineBuildConfig({
             },
             {
                 name: 'pinia'
-            }
+            },
         ],
         menuProps: {
             defaultExpandAll: false

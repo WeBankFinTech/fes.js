@@ -208,11 +208,6 @@
         <f-button type="primary" @click="click">上一页</f-button>
     </div>
 </template>
-<config>
-{
-    "layout": false
-}
-</config>
 <script>
 import { useRouter } from '@@/core/coreExports';
 import { FButton } from '@fesjs/fes-design';
