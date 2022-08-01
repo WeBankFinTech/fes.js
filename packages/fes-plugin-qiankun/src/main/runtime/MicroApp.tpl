@@ -6,9 +6,10 @@ import {
     computed,
     onBeforeUnmount,
     onMounted,
+    shallowRef,
 } from "vue";
 import { loadMicroApp } from "{{{QIANKUN}}}";
-import {mergeWith} from "{{{LODASH_ES}}}";
+import { mergeWith, cloneDeep, isEqual } from "{{{LODASH_ES}}}";
 // eslint-disable-next-line import/extensions
 import { getMasterOptions } from "./masterOptions";
 
@@ -66,12 +67,27 @@ export const MicroApp = defineComponent({
         });
 
         
-        const propsConfigRef = computed(() => {
-            return {
-                ...propsFromConfigRef.value,
-                ...props.props,
-            };
-        });
+        const propsConfigRef = shallowRef({});
+
+        watch(
+            [() => props.props, () => attrs, propsFromConfigRef],
+            () => {
+                // 使用深拷贝去掉主应用数据和子应用数据的引用关系，避免出现副作用。
+                const newProps = cloneDeep({
+                    ...propsFromConfigRef.value,
+                    ...props.props,
+                    ...attrs
+                });
+                // 避免第一次无意义update
+                if(!isEqual(newProps, propsConfigRef.value)) {
+                    propsConfigRef.value = newProps
+                }
+            },
+            {
+                deep: true,
+                immediate: true
+            }
+        );
 
         // 只有当name变化时才重新加载新的子应用
         const loadApp = () => {
@@ -84,7 +100,7 @@ export const MicroApp = defineComponent({
                     name: `${name}_${props.cacheName || ''}`,
                     entry: entry,
                     container: containerRef.value,
-                    props: {...propsConfigRef.value, ...attrs}
+                    props: propsConfigRef.value
                 },
                 {
                     ...globalSettings,
@@ -138,7 +154,7 @@ export const MicroApp = defineComponent({
                             }
 
                             // 返回 microApp.update 形成链式调用
-                            return microApp.update({...propsConfigRef.value, ...attrs});
+                            return microApp.update(propsConfigRef.value);
                         }
                     }
                 );
