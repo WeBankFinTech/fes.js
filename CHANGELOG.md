@@ -1,3 +1,12 @@
+# [3.0.0-beta.16](https://github.com/WeBankFinTech/fes.js/compare/v3.0.0-beta.15...v3.0.0-beta.16) (2022-08-01)
+
+
+### Bug Fixes
+
+* **plugin-qiankun:** 修复主应用状态变更后使用useModel没有响应问题 ([c64bd48](https://github.com/WeBankFinTech/fes.js/commit/c64bd4844d3bde1d69da45fdaefc348ba0fbb5a0))
+
+
+
 # [3.0.0-beta.15](https://github.com/WeBankFinTech/fes.js/compare/v3.0.0-beta.14...v3.0.0-beta.15) (2022-07-18)
 
 
