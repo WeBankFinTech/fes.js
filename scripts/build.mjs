@@ -150,7 +150,7 @@ function watchFile(dir, outputDir, config, log) {
             const outputPath = changeFile.replace(dir, outputDir);
             const stat = fs.lstatSync(changeFile);
             log(`[${event}] ${shortChangeFile}`);
-            if (config.resolveCopy.some((item) => changeFile.startsWith(item))) {
+            if (config.resolveCopy?.some((item) => changeFile.startsWith(item))) {
                 fse.copySync(changeFile, outputPath);
             } else if (stat.isFile()) {
                 transformFile(changeFile, outputPath, config, log);

@@ -10,6 +10,7 @@ export function getInnerCommonConfig(api) {
     const { server, build, define, base, ...otherViteOption } = api.config.viteOption;
 
     const publicPath = base || api.config.publicPath || '/';
+    const postcssConfig = require(`${api.paths.cwd}/postcss.config.js`);
 
     return deepmerge(
         {
@@ -17,6 +18,11 @@ export function getInnerCommonConfig(api) {
             configFile: false,
             define: getDefine(api, publicPath),
             cacheDir: join(api.cwd, '.cache'),
+            css: {
+                postcss: {
+                    ...postcssConfig,
+                },
+            },
             plugins: [
                 vue(api.config.viteVuePlugin || {}),
                 SFCConfigBlockPlugin,

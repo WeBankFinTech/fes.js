@@ -1,5 +1,5 @@
-import { getInnerCommonConfig } from '../../common/getConfig';
 import legacy from '@vitejs/plugin-legacy';
+import { getInnerCommonConfig } from '../../common/getConfig';
 
 export default async (api) => {
     const { deepmerge, getTargetsAndBrowsersList } = api.utils;
