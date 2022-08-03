@@ -1,3 +1,4 @@
+import basicSsl from '@vitejs/plugin-basic-ssl';
 import { getInnerCommonConfig } from '../../common/getConfig';
 import viteMiddlewarePlugin from './viteMiddlewarePlugin';
 
@@ -24,15 +25,17 @@ export default async (api, args) => {
         args: {},
     });
 
+    const isHTTPS = !!(process.env.HTTPS || args.https);
+
     const bundleConfig = deepmerge(getInnerCommonConfig(api), {
         mode: 'development',
-        plugins: [viteMiddlewarePlugin(beforeMiddlewares, middlewares)],
+        plugins: [viteMiddlewarePlugin(beforeMiddlewares, middlewares), isHTTPS && basicSsl()].filter(Boolean),
         server: {
             ...server,
             proxy: server?.proxy || api.config.proxy,
             port,
             host: hostname,
-            https: process.env.HTTPS || args.https,
+            https: isHTTPS,
         },
     });
 
