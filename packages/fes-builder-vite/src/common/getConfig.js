@@ -1,16 +1,25 @@
 import { join } from 'path';
+import { existsSync } from 'fs';
 import vue from '@vitejs/plugin-vue';
 import vueJsx from '@vitejs/plugin-vue-jsx';
 import { createHtmlPlugin } from 'vite-plugin-html';
 import SFCConfigBlockPlugin from './SFCConfigBlockPlugin';
 import getDefine from './getDefine';
 
+function getPostcssConfig(api) {
+    // TODO 支持其他 postcss 配置文件类型
+    const configPath = `${api.paths.cwd}/postcss.config.js`;
+    if (existsSync(configPath)) {
+        return require(`${api.paths.cwd}/postcss.config.js`);
+    }
+    return {};
+}
+
 export function getInnerCommonConfig(api) {
     const { deepmerge, resolveRuntimeEnv } = api.utils;
     const { server, build, define, base, ...otherViteOption } = api.config.viteOption;
 
     const publicPath = base || api.config.publicPath || '/';
-    const postcssConfig = require(`${api.paths.cwd}/postcss.config.js`);
 
     return deepmerge(
         {
@@ -20,7 +29,7 @@ export function getInnerCommonConfig(api) {
             cacheDir: join(api.cwd, '.cache'),
             css: {
                 postcss: {
-                    ...postcssConfig,
+                    ...getPostcssConfig(api),
                 },
             },
             plugins: [
