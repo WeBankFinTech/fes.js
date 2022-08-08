@@ -82,10 +82,10 @@ export default {
                 const matched = _route.matched;
                 const component = matched[matched.length - 1].components.default;
                 const name = _route.meta?.name ?? _route.name;
-                if (name) {
+                if (name && component) {
                     // 修改组件的 name
-                    component.name = name;
                     // 缓存的关键是组件name在keep-alive的include列表
+                    component.name = name;
                     return name;
                 }
             }
@@ -122,6 +122,7 @@ export default {
         });
 
         router.afterEach(() => {
+            // 此时route已变，但是页面还未加载
             const name = changePageComName(route);
             // 缓存的关键是组件name在keep-alive的include列表
             if (!keepAlivePages.value.includes(name)) {
