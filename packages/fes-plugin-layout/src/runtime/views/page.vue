@@ -1,21 +1,16 @@
 <template>
     <router-view v-slot="{ Component, route }">
-        <keep-alive :include="currentNameList">
-            <component :is="getComponent(Component, route)" :key="pageKey(route)" />
+        <keep-alive :include="keepAlivePages">
+            <component :is="Component" :key="pageKey(route)" />
         </keep-alive>
     </router-view>
 </template>
 <script>
-import { defineComponent, ref, watch } from 'vue';
+import { useRouter, useRoute } from '@@/core/coreExports';
+import { defineComponent, ref } from 'vue';
 
 export default defineComponent({
     props: {
-        nameList: {
-            type: Array,
-            default() {
-                return [];
-            },
-        },
         pageKey: {
             type: Function,
             default: () => {},
@@ -25,39 +20,57 @@ export default defineComponent({
             default: false,
         },
     },
-    emits: ['update:nameList'],
-    setup(props, { emit }) {
-        const currentNameList = ref(props.nameList);
+    setup(props) {
+        const route = useRoute();
+        const router = useRouter();
 
-        watch(
-            () => props.nameList,
-            () => {
-                if (currentNameList.value !== props.nameList) {
-                    currentNameList.value = props.nameList;
-                }
-            },
-        );
-
-        const getComponent = (Component, route) => {
-            if (props.isAllKeepAlive || route.meta['keep-alive']) {
-                const name = route.meta?.name ?? route.name;
-                if (name) {
+        function changePageComName(_route) {
+            if (_route.meta['keep-alive'] || props.isAllKeepAlive) {
+                const matched = _route.matched;
+                const component = matched[matched.length - 1].components.default;
+                const name = _route.meta?.name ?? _route.name;
+                if (name && component) {
                     // 修改组件的 name
-                    Component.type.name = name;
                     // 缓存的关键是组件name在keep-alive的include列表
-                    if (!currentNameList.value.includes(name)) {
-                        currentNameList.value = [...currentNameList.value, name];
-                        emit('update:nameList', currentNameList.value);
-                    }
+                    component.name = name;
+                    return name;
                 }
             }
+        }
 
-            return Component;
+        function getInitAlivePage() {
+            const name = changePageComName(route);
+            return name ? [name] : [];
+        }
+
+        const keepAlivePages = ref(getInitAlivePage());
+
+        router.afterEach(() => {
+            // 此时route已变，但是页面还未加载
+            const name = changePageComName(route);
+            // 缓存的关键是组件name在keep-alive的include列表
+            if (!keepAlivePages.value.includes(name)) {
+                keepAlivePages.value = [...keepAlivePages.value, name];
+            }
+        });
+
+        const removeKeepAlive = (name) => {
+            const _keepAlivePages = [...keepAlivePages.value];
+            const keepIndex = _keepAlivePages.indexOf(name);
+            if (keepIndex !== -1) {
+                _keepAlivePages.splice(keepIndex, 1);
+            }
+            keepAlivePages.value = _keepAlivePages;
+        };
+
+        const removeAllAndSaveKeepAlive = (name) => {
+            keepAlivePages.value = [name];
         };
 
         return {
-            currentNameList,
-            getComponent,
+            keepAlivePages,
+            removeKeepAlive,
+            removeAllAndSaveKeepAlive,
         };
     },
 });
