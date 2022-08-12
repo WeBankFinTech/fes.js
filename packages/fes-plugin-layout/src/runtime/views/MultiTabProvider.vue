@@ -21,9 +21,9 @@
                 </FDropdown>
             </template>
         </FTabs>
-        <Page :nameList="keepAlivePages" :pageKey="getPageKey" isAllKeepAlive />
+        <Page ref="pageRef" :pageKey="getPageKey" isAllKeepAlive />
     </template>
-    <Page v-else :nameList="keepAlivePages" />
+    <Page v-else />
 </template>
 <script>
 import { computed, unref, ref } from 'vue';
@@ -48,6 +48,9 @@ export default {
         multiTabs: Boolean,
     },
     setup() {
+        const pageRef = ref();
+        const route = useRoute();
+        const router = useRouter();
         const createPage = (_route) => {
             const title = _route.meta.title;
             return {
@@ -58,10 +61,7 @@ export default {
                 key: getKey(),
             };
         };
-        const keepAlivePages = ref([]);
 
-        const route = useRoute();
-        const router = useRouter();
         const pageList = ref([createPage(route)]);
         const actions = [
             {
@@ -77,11 +77,15 @@ export default {
         const findPage = (path) => pageList.value.find((item) => unref(item.path) === unref(path));
 
         router.beforeEach((to) => {
-            if (!findPage(to.path)) {
+            const page = findPage(to.path);
+            if (!page) {
                 pageList.value = [...pageList.value, createPage(to)];
+            } else {
+                page.route = to;
             }
             return true;
         });
+
         // 还需要考虑参数
         const switchPage = async (path) => {
             const selectedPage = findPage(path);
@@ -108,12 +112,7 @@ export default {
             }
             list.splice(index, 1);
             pageList.value = list;
-            const _keepAlivePages = [...keepAlivePages.value];
-            const keepIndex = _keepAlivePages.indexOf(selectedPage.name);
-            if (keepIndex !== -1) {
-                _keepAlivePages.splice(keepIndex, 1);
-            }
-            keepAlivePages.value = _keepAlivePages;
+            pageRef.value.removeKeepAlive(selectedPage.name);
         };
         const reloadPage = (path) => {
             const selectedPage = findPage(path || unref(route.path));
@@ -124,7 +123,7 @@ export default {
         const closeOtherPage = (path) => {
             const selectedPage = findPage(path || unref(route.path));
             pageList.value = [selectedPage];
-            keepAlivePages.value = [selectedPage.name];
+            pageRef.value.removeAllAndSaveKeepAlive(selectedPage.name);
         };
         const getPageKey = (_route) => {
             const selectedPage = findPage(_route.path);
@@ -146,6 +145,7 @@ export default {
         };
 
         return {
+            pageRef,
             route,
             pageList,
             getPageKey,
@@ -154,7 +154,6 @@ export default {
             handlerMore,
             handleCloseTab,
             actions,
-            keepAlivePages,
         };
     },
 };

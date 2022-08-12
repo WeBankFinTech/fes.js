@@ -5,8 +5,7 @@
 <config>
 {
     "name": "editor",
-    "title": "$editor",
-    "keep-alive": true
+    "title": "$editor"
 }
 </config>
 <script>

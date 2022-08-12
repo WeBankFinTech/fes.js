@@ -1,6 +1,7 @@
 <template>
     <div class="page">
         <h4>Vuex</h4>
+        <input />
         <div>
             <button @click="increment">click me：{{ doubleCount }}</button>
         </div>
@@ -16,11 +17,12 @@
 <config>
 {
     "name": "store",
-    "title": "$store"
+    "title": "$store",
+    "keep-alive": true
 }
 </config>
 <script>
-import { computed, ref } from 'vue';
+import { computed, ref, onMounted, onUnmounted, onActivated, onDeactivated } from 'vue';
 import { useStore } from 'vuex';
 import { MUTATION_TYPES, GETTER_TYPES, ACTION_TYPES } from '@fesjs/fes';
 
@@ -30,6 +32,23 @@ export default {
         const store = useStore();
         console.log('store==>', store);
         const disabled = ref(false);
+
+        onMounted(() => {
+            console.log('onMounted');
+        });
+
+        onUnmounted(() => {
+            console.log('onUnmounted');
+        });
+
+        onActivated(() => {
+            console.log('onActivated');
+        });
+
+        onDeactivated(() => {
+            console.log('onDeactivated');
+        });
+
         return {
             address: computed(() => store.getters[GETTER_TYPES.user.address]),
             doubleCount: computed(() => store.getters[GETTER_TYPES.counter.doubleCount]),
