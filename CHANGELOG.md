@@ -1,3 +1,17 @@
+# [3.0.0-beta.17](https://github.com/WeBankFinTech/fes.js/compare/v3.0.0-beta.16...v3.0.0-beta.17) (2022-08-15)
+
+
+### Bug Fixes
+
+* **plugin-layout:**  打开相同path的链接会更新页签为新的 & 正确触发onActivated ([#146](https://github.com/WeBankFinTech/fes.js/issues/146)) ([86ff19b](https://github.com/WeBankFinTech/fes.js/commit/86ff19b3d10498a15f1abcbccefcffca54fb522d)), closes [#144](https://github.com/WeBankFinTech/fes.js/issues/144) [#145](https://github.com/WeBankFinTech/fes.js/issues/145)
+
+
+### Features
+
+* 升级 vite3 ([#143](https://github.com/WeBankFinTech/fes.js/issues/143)) ([fa77896](https://github.com/WeBankFinTech/fes.js/commit/fa7789653c01a57bbaab2e30fe2a64733154fd5b))
+
+
+
 # [3.0.0-beta.16](https://github.com/WeBankFinTech/fes.js/compare/v3.0.0-beta.15...v3.0.0-beta.16) (2022-08-01)
 
 
