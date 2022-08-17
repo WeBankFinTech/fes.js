@@ -31,7 +31,7 @@
   },
   "peerDependencies": {
     "@fesjs/fes": "^2.0.0",
-    "vue": "^3.0.5"
+    "vue": "^3.2.37"
   },
   "lint-staged": {
     "*.{js,jsx,vue,ts}": [

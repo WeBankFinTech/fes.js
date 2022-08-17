@@ -37,6 +37,7 @@
     "@fesjs/utils": "^2.0.4",
     "@soda/friendly-errors-webpack-plugin": "^1.8.0",
     "@vue/babel-plugin-jsx": "^1.0.2",
+    "@vue/compiler-sfc": "^3.2.37",
     "autoprefixer": "^10.2.4",
     "babel-loader": "^8.2.2",
     "babel-plugin-import": "1.13.3",
@@ -73,7 +74,6 @@
     "webpackbar": "^5.0.0-3"
   },
   "peerDependencies": {
-    "@vue/compiler-sfc": "^3.0.5",
     "core-js": "^3.8.3"
   }
 }
