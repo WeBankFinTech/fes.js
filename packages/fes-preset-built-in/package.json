@@ -33,8 +33,7 @@
     "express": "^4.17.3"
   },
   "peerDependencies": {
-    "vue": "^3.0.5",
-    "@vue/compiler-sfc": "^3.0.5"
+    "vue": "^3.2.37"
   },
   "typings": "./types.d.ts"
 }

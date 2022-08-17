@@ -15,7 +15,6 @@ export default function () {
             // bundle configs
             require.resolve('./plugins/features/alias'),
             require.resolve('./plugins/features/autoprefixer'),
-            require.resolve('./plugins/features/checkVuePackage'),
             require.resolve('./plugins/features/define'),
             require.resolve('./plugins/features/dynamicImport'),
             require.resolve('./plugins/features/globalCSS'),
