@@ -41,15 +41,14 @@
   },
   "devDependencies": {
     "@webank/eslint-config-webank": "0.3.1",
-    "@ttou/postcss-px-to-viewport": "1.1.4",
-    "@vue/compiler-sfc": "^3.2.2"
+    "@ttou/postcss-px-to-viewport": "1.1.4"
   },
   "dependencies": {
     "@fesjs/fes": "^2.0.0",
     "@fesjs/plugin-icon": "^2.0.0",
     "@fesjs/plugin-request": "^2.0.0",
     "@fesjs/plugin-windicss": "^2.0.0",
-    "vue": "^3.2.2"
+    "vue": "^3.2.37"
   },
   "private": true
 }
