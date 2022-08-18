@@ -1,3 +1,7 @@
+# [3.0.0-beta.18](https://github.com/WeBankFinTech/fes.js/compare/v3.0.0-beta.17...v3.0.0-beta.18) (2022-08-17)
+
+
+
 # [3.0.0-beta.17](https://github.com/WeBankFinTech/fes.js/compare/v3.0.0-beta.16...v3.0.0-beta.17) (2022-08-15)
 
 

@@ -1,6 +1,6 @@
 {
   "name": "@fesjs/plugin-icon",
-  "version": "3.0.0-beta.4",
+  "version": "3.0.0-beta.5",
   "description": "@fesjs/plugin-icon",
   "main": "lib/index.js",
   "files": [
@@ -28,7 +28,7 @@
     "access": "public"
   },
   "peerDependencies": {
-    "vue": "^3.0.5"
+    "vue": "^3.2.37"
   },
   "dependencies": {
     "svgo": "^2.3.1"

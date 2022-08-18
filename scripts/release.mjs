@@ -43,7 +43,7 @@ async function publishPackage(pkg, runIfNotDry) {
                 stdio: 'pipe',
             },
         );
-        console.log(chalk.green(`Successfully published ${pkg.name}@${pkg.newVersion}`));
+        console.log('Successfully published :', chalk.green(`${pkg.name}@${pkg.newVersion}`));
     } catch (e) {
         if (e.stderr.match(/previously published/)) {
             console.log(chalk.red(`Skipping already published: ${pkg.name}`));
