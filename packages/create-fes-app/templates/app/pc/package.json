@@ -43,7 +43,6 @@
     "access": "public"
   },
   "devDependencies": {
-    "@vue/compiler-sfc": "^3.2.6",
     "@webank/eslint-config-webank": "^1.0.2"
   },
   "dependencies": {
@@ -54,7 +53,7 @@
     "@fesjs/plugin-enums": "^3.0.0-beta.0",
     "@fesjs/fes-design": "^0.5.0",
     "@fesjs/builder-webpack": "^3.0.0-beta.0",
-    "vue": "^3.2.6",
+    "vue": "^3.2.37",
     "core-js": "^3.19.2"
   },
   "private": true

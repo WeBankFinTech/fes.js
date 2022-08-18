@@ -1,6 +1,6 @@
 {
   "name": "@fesjs/preset-built-in",
-  "version": "3.0.0-beta.10",
+  "version": "3.0.0-beta.11",
   "description": "@fesjs/preset-built-in",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -33,8 +33,7 @@
     "express": "^4.17.3"
   },
   "peerDependencies": {
-    "vue": "^3.0.5",
-    "@vue/compiler-sfc": "^3.0.5"
+    "vue": "^3.2.37"
   },
   "typings": "./types.d.ts"
 }
