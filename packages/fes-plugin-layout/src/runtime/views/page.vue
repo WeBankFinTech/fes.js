@@ -49,7 +49,7 @@ export default defineComponent({
             // 此时route已变，但是页面还未加载
             const name = changePageComName(route);
             // 缓存的关键是组件name在keep-alive的include列表
-            if (!keepAlivePages.value.includes(name)) {
+            if (name && !keepAlivePages.value.includes(name)) {
                 keepAlivePages.value = [...keepAlivePages.value, name];
             }
         });
