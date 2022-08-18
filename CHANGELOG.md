@@ -1,3 +1,12 @@
+# [3.0.0-beta.19](https://github.com/WeBankFinTech/fes.js/compare/v3.0.0-beta.18...v3.0.0-beta.19) (2022-08-18)
+
+
+### Bug Fixes
+
+* 修复plugin-layout把未缓存页面当做undefined丢进缓存列表出现的问题 ([7b696e4](https://github.com/WeBankFinTech/fes.js/commit/7b696e41ffd4dc5f67c7bfe0bf83aa303a3d63de))
+
+
+
 # [3.0.0-beta.18](https://github.com/WeBankFinTech/fes.js/compare/v3.0.0-beta.17...v3.0.0-beta.18) (2022-08-17)
 
 
