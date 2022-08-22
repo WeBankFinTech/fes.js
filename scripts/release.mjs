@@ -22,11 +22,23 @@ const incVersion = (version, i) => {
     const preId = preid || semver.prerelease(version)[0] || 'alpha';
     return semver.inc(version, i, preId);
 };
+const autoIncVersion = (version) => {
+    if (version.includes('-')) {
+        return semver.inc(version, 'prerelease');
+    }
+    return semver.inc(version, 'patch');
+};
+
 const run = (bin, args, opts = {}) => execa(bin, args, { stdio: 'inherit', ...opts });
 const dryRun = (bin, args, opts = {}) => console.log(chalk.blue(`[dryrun] ${bin} ${args.join(' ')}`), opts);
 const runIfNotDry = isDryRun ? dryRun : run;
 const getPkgRoot = (pkg) => path.resolve(__dirname, `../packages/${pkg}`);
 const step = (msg) => console.log(chalk.cyan(msg));
+const arrToObj = (arr, key) =>
+    arr.reduce((acc, cur) => {
+        acc[cur[key]] = cur;
+        return acc;
+    }, {});
 
 // eslint-disable-next-line no-shadow
 async function publishPackage(pkg, runIfNotDry) {
@@ -53,8 +65,14 @@ async function publishPackage(pkg, runIfNotDry) {
     }
 }
 
-function readPackageJson(pkgPath) {
-    return JSON.parse(fs.readFileSync(pkgPath, 'utf-8'));
+function readPackageJson(pkg) {
+    const pkgPath = getPkgRoot(pkg);
+    return JSON.parse(fs.readFileSync(path.join(pkgPath, 'package.json', 'utf-8')));
+}
+
+function writePackageJson(pkg, content) {
+    const pkgPath = getPkgRoot(pkg);
+    fs.writeFileSync(path.join(pkgPath, 'package.json'), `${JSON.stringify(content, null, 2)}\n`);
 }
 
 function genRootPackageVersion() {
@@ -64,26 +82,34 @@ function genRootPackageVersion() {
 }
 
 function readPackageVersionAndName(pkg) {
-    const pkgPath = path.resolve(getPkgRoot(pkg), 'package.json');
-    const { version, name } = readPackageJson(pkgPath);
+    const { version, name } = readPackageJson(pkg);
     return {
         version,
         name,
     };
 }
 
-function updatePackage(pkgRoot, version) {
-    const pkgPath = path.resolve(pkgRoot, 'package.json');
+function updatePackage(pkgName, version, pkgs) {
+    const pkgJson = readPackageJson(pkgName);
+    pkgJson.version = version;
+    Object.keys(pkgJson.dependencies).forEach((npmName) => {
+        if (pkgs[npmName]) {
+            pkgJson.dependencies[npmName] = pkgs[npmName].newVersion;
+        }
+    });
+    writePackageJson(pkgName, pkgJson);
+}
+
+function updateRootVersion(newRootVersion) {
+    const pkgPath = path.resolve(path.resolve(__dirname, '..'), 'package.json');
     const pkg = JSON.parse(fs.readFileSync(pkgPath, 'utf-8'));
-    pkg.version = version;
+    pkg.version = newRootVersion;
     fs.writeFileSync(pkgPath, `${JSON.stringify(pkg, null, 2)}\n`);
 }
 
-function updateVersions(packagesVersion, newRootVersion) {
-    // 1. update root package.json
-    updatePackage(path.resolve(__dirname, '..'), newRootVersion);
-    // 2. update all packages
-    packagesVersion.forEach((p) => updatePackage(getPkgRoot(p.dirName), p.newVersion));
+function updateVersions(packagesVersion) {
+    const pkgs = arrToObj(packagesVersion, 'name');
+    packagesVersion.forEach((p) => updatePackage(p.dirName, p.newVersion, pkgs));
 }
 
 const isChangeInCurrentTag = async (pkg, newestTag) => {
@@ -137,6 +163,36 @@ async function createPackageNewVersion(pkg) {
     return newVersion;
 }
 
+function genOtherPkgsVersion(packagesVersion) {
+    const noChangedPkgs = packages.filter((name) => !packagesVersion.find((item) => item.name === name));
+    const pkgs = arrToObj(packagesVersion, 'name');
+    const result = [];
+    noChangedPkgs.forEach((currentPkg) => {
+        const pkgJson = readPackageJson(currentPkg);
+        let isUpdated = false;
+        Object.keys(pkgJson.dependencies).forEach((npmName) => {
+            if (pkgs[npmName]) {
+                isUpdated = true;
+                pkgJson.dependencies[npmName] = pkgs[npmName].newVersion;
+            }
+        });
+
+        if (isUpdated) {
+            const oldVersion = pkgJson.version;
+            pkgJson.version = autoIncVersion(oldVersion);
+            result.push({
+                dirName: currentPkg,
+                version: oldVersion,
+                newVersion: pkgJson.version,
+                name: pkgJson.name,
+            });
+            writePackageJson(currentPkg, pkgJson);
+        }
+    });
+
+    return result;
+}
+
 async function main() {
     const changedPackages = await filterChangedPackages();
 
@@ -145,15 +201,18 @@ async function main() {
         return;
     }
 
-    const packagesVersion = [];
+    const updatedPkgs = [];
     for (const pkg of changedPackages) {
         const newVersion = await createPackageNewVersion(pkg);
-        packagesVersion.push({
+        updatedPkgs.push({
             dirName: pkg,
             newVersion,
             ...readPackageVersionAndName(pkg),
         });
     }
+
+    const passiveUpdatePkgs = genOtherPkgsVersion(updatedPkgs);
+    const packagesVersion = passiveUpdatePkgs.concat(updatedPkgs);
 
     const { yes } = await prompt({
         type: 'confirm',
@@ -171,8 +230,11 @@ async function main() {
 
     // update all package versions and inter-dependencies
     step('\nUpdating cross dependencies...');
-    updateVersions(packagesVersion, newRootVersion);
+    updateRootVersion(newRootVersion);
+    updateVersions(packagesVersion);
 
+    // update lock
+    await run('yarn');
     // // build all packages with types
     step('\nBuilding all packages...');
     if (!isDryRun) {
