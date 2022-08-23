@@ -14,7 +14,10 @@ export default {
         FButton,
     },
     setup() {
-        return {};
+        const a = 'aa'.replaceAll('a', 1);
+        return {
+            a,
+        };
     },
 };
 </script>
