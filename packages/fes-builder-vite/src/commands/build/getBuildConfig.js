@@ -23,11 +23,13 @@ export default async (api) => {
         },
         plugins: [
             legacy({
+                modernPolyfills: true,
                 targets,
             }),
         ],
         build: {
             ...build,
+            minify: 'terser',
             terserOptions: build.terserOptions || api.config.terserOptions,
             target: build.target || 'es2015',
             outDir: build.outDir || api.config.outputPath || 'dist',
