@@ -67,7 +67,7 @@ async function publishPackage(pkg, runIfNotDry) {
 
 function readPackageJson(pkg) {
     const pkgPath = getPkgRoot(pkg);
-    return JSON.parse(fs.readFileSync(path.join(pkgPath, 'package.json', 'utf-8')));
+    return JSON.parse(fs.readFileSync(path.join(pkgPath, 'package.json'), 'utf-8'));
 }
 
 function writePackageJson(pkg, content) {
@@ -170,12 +170,15 @@ function genOtherPkgsVersion(packagesVersion) {
     noChangedPkgs.forEach((currentPkg) => {
         const pkgJson = readPackageJson(currentPkg);
         let isUpdated = false;
-        Object.keys(pkgJson.dependencies).forEach((npmName) => {
-            if (pkgs[npmName]) {
-                isUpdated = true;
-                pkgJson.dependencies[npmName] = pkgs[npmName].newVersion;
-            }
-        });
+
+        if (pkgJson.dependencies) {
+            Object.keys(pkgJson.dependencies).forEach((npmName) => {
+                if (pkgs[npmName]) {
+                    isUpdated = true;
+                    pkgJson.dependencies[npmName] = pkgs[npmName].newVersion;
+                }
+            });
+        }
 
         if (isUpdated) {
             const oldVersion = pkgJson.version;

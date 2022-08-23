@@ -1,3 +1,12 @@
+# [3.0.0-beta.20](https://github.com/WeBankFinTech/fes.js/compare/v3.0.0-beta.19...v3.0.0-beta.20) (2022-08-23)
+
+
+### Bug Fixes
+
+* 修复现代浏览器 polyfill 问题 ([#147](https://github.com/WeBankFinTech/fes.js/issues/147)) ([dbbf447](https://github.com/WeBankFinTech/fes.js/commit/dbbf4473624ab8c5876897da1499a71d9eb23312))
+
+
+
 # [3.0.0-beta.19](https://github.com/WeBankFinTech/fes.js/compare/v3.0.0-beta.18...v3.0.0-beta.19) (2022-08-18)
 
 
