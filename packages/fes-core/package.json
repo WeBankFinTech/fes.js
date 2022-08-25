@@ -1,6 +1,6 @@
 {
   "name": "@webank/fes-core",
-  "version": "0.4.9",
+  "version": "0.4.10",
   "description": "一个好用的前端管理台快速开发框架",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -27,6 +27,6 @@
     "vue-template-compiler": "^2.6.10"
   },
   "peerDependencies": {
-    "@webank/fes-ui": "^0.1.0"
+    "@webank/fes-ui": "^0.4.0"
   }
 }
