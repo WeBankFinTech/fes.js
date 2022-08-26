@@ -10,6 +10,10 @@ export default {
     html: {
         title: '拉夫德鲁'
     },
+    targets: {
+        chrome: '61',
+        ios: '10'
+    },
     extraPostCSSPlugins: [
         pxtoviewport({
             unitToConvert: 'px',
