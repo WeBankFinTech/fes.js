@@ -1,5 +1,16 @@
+import { splitVendorChunkPlugin } from 'vite';
 import legacy from '@vitejs/plugin-legacy';
 import { getInnerCommonConfig } from '../../common/getConfig';
+
+function getEsbuildTarget(targets) {
+    const result = [];
+    ['chrome', 'edge', 'firefox', 'hermes', 'ios', 'node', 'opera', 'rhino', 'safari'].forEach((key) => {
+        if (targets[key]) {
+            result.push(`${key}${targets[key]}`);
+        }
+    });
+    return result;
+}
 
 export default async (api) => {
     const { deepmerge, getTargetsAndBrowsersList } = api.utils;
@@ -24,14 +35,15 @@ export default async (api) => {
         plugins: [
             legacy({
                 modernPolyfills: true,
+                renderLegacyChunks: false,
                 targets,
             }),
+            splitVendorChunkPlugin(),
         ],
         build: {
             ...build,
-            minify: 'terser',
             terserOptions: build.terserOptions || api.config.terserOptions,
-            target: build.target || 'es2015',
+            target: build.target || getEsbuildTarget(targets),
             outDir: build.outDir || api.config.outputPath || 'dist',
             assetsInlineLimit: build.assetsInlineLimit || api.config.inlineLimit || 8192,
         },

@@ -32,7 +32,7 @@ function transformBrowserCode(code) {
                 {
                     modules: false,
                     useBuiltIns: false,
-                    targets: { chrome: '51' },
+                    targets: { chrome: '64' },
                 },
             ],
         ],
