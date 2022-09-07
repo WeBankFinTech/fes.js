@@ -19,6 +19,7 @@ An excellent front-end solution
 
 - document - [http://fesjs.mumblefe.cn/](http://fesjs.mumblefe.cn/)
 - changelog - [CHANGELOG.md](./CHANGELOG.md)
+- 3.0 ( vite and webpack ) - [http://fesjs.mumblefe.cn/next/](http://fesjs.mumblefe.cn/next/)
 
 # Pain points
 Before developing a front-end project, we may need to do the following preparations：
