@@ -45,7 +45,7 @@
     "dependencies": {
         "@fesjs/fes": "^2.0.0",
         "vue": "^3.2.37",
-        "@fesjs/fes-design": "^0.6.3"
+        "@fesjs/fes-design": "^0.7.0"
     },
     "private": true
 }

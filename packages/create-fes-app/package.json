@@ -6,7 +6,7 @@
   "files": [
     "lib",
     "bin",
-    "templates"
+    "templates/**/*"
   ],
   "bin": {
     "create-fes-app": "bin/create-fes-app.js"

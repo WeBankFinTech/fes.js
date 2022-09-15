@@ -1438,10 +1438,10 @@
     set-value "3.0.2"
     tapable "^2.2.0"
 
-"@fesjs/fes-design@^0.6.3":
-  version "0.6.4"
-  resolved "https://registry.npmmirror.com/@fesjs/fes-design/-/fes-design-0.6.4.tgz#d4e30abb23d279b045f44b8a1d1fe1eaefe3b87c"
-  integrity sha512-4fwUCvL1SHfEi+zsBVtuPoGChJNHZcAfOfvIqJdbhzHHb28RhK0k3m7yVqm28Itt7E55hWQs//GOWh40vOhWjg==
+"@fesjs/fes-design@^0.7.0":
+  version "0.7.0"
+  resolved "https://registry.npmmirror.com/@fesjs/fes-design/-/fes-design-0.7.0.tgz#5fda20e77fd3e360279305ee7af9a1d2ed267ff7"
+  integrity sha512-VEZzE4UUBj/Z+aeWdTY1jDeGCX1z9qs3SLzX7/movwdkLPJYzfZrCCOOioMuWEUj1Xv6NP7PjTmMxnuq/SFJjA==
   dependencies:
     "@babel/runtime" "^7.16.3"
     "@floating-ui/dom" "^0.4.2"
