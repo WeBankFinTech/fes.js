@@ -1,3 +1,12 @@
+# [3.0.0-beta.22](https://github.com/WeBankFinTech/fes.js/compare/v3.0.0-beta.21...v3.0.0-beta.22) (2022-09-15)
+
+
+### Bug Fixes
+
+* 升级 fes-design 依赖 ([9141e77](https://github.com/WeBankFinTech/fes.js/commit/9141e77865197f00cb8cef96e49568f95b504f1c))
+
+
+
 # [3.0.0-beta.21](https://github.com/WeBankFinTech/fes.js/compare/v3.0.0-beta.20...v3.0.0-beta.21) (2022-08-26)
 
 
