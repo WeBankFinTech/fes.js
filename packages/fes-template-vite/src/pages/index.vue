@@ -1,12 +1,13 @@
 <template>
     <div class="page">
-        home
+        {{ t('home') }}
         <fes-icon type="smile" />
         <FButton class="m-2">Button</FButton>
     </div>
 </template>
 
 <script>
+import { useI18n } from '@fesjs/fes';
 import { FButton } from '@fesjs/fes-design';
 
 export default {
@@ -14,9 +15,11 @@ export default {
         FButton,
     },
     setup() {
+        const { t } = useI18n();
         const a = 'aa'.replaceAll('a', 1);
         return {
             a,
+            t,
         };
     },
 };
