@@ -1,3 +1,12 @@
+# [3.0.0-beta.23](https://github.com/WeBankFinTech/fes.js/compare/v3.0.0-beta.22...v3.0.0-beta.23) (2022-09-22)
+
+
+### Bug Fixes
+
+* 修复SelectLang.vue的循环依赖问题 ([#148](https://github.com/WeBankFinTech/fes.js/issues/148)) ([0a64739](https://github.com/WeBankFinTech/fes.js/commit/0a64739a2252976db3bad930c2bdfbe8843ceeb8))
+
+
+
 # [3.0.0-beta.22](https://github.com/WeBankFinTech/fes.js/compare/v3.0.0-beta.21...v3.0.0-beta.22) (2022-09-15)
 
 
