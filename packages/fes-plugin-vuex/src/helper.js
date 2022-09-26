@@ -105,11 +105,14 @@ function parseModel(paths = [], root) {
         importModules.push(`import ${moduleName} from '${path}'`);
         modules.push(moduleName);
         const content = readFileSync(path).toString('utf-8');
-        let ast = parser.parse(content, {
-            sourceType: 'module',
-            plugins: ['jsx', 'typescript']
-        });
-        ast = ast.program.body.filter(body => body.type === 'ExportDefaultDeclaration')[0];
+        let ast;
+        try {
+            ast = parser.parse(content, {
+                sourceType: 'module',
+                plugins: ['jsx', 'typescript']
+            });
+            ast = ast.program.body.filter(body => body.type === 'ExportDefaultDeclaration')[0];
+        } catch (err) {}
         if (ast) {
             const { mutations, actions, getters } = getModelTypes(ast.declaration, moduleName);
             MUTATION_TYPES = {
