@@ -80,9 +80,6 @@ export default {
             defaultExpandAll: false
         }
     },
-    locale: {
-        legacy: true
-    },
     devServer: {
         port: 8080
     },
