@@ -1,3 +1,12 @@
+# [3.0.0-beta.24](https://github.com/WeBankFinTech/fes.js/compare/v3.0.0-beta.23...v3.0.0-beta.24) (2022-09-27)
+
+
+### Bug Fixes
+
+* js 语法错误导致 dev 退出 ([2840b46](https://github.com/WeBankFinTech/fes.js/commit/2840b462ecb0cc1a7ddaee08032f65d0ccc95237))
+
+
+
 # [3.0.0-beta.23](https://github.com/WeBankFinTech/fes.js/compare/v3.0.0-beta.22...v3.0.0-beta.23) (2022-09-22)
 
 
