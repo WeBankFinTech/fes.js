@@ -1,6 +1,6 @@
 {
   "name": "@fesjs/plugin-watermark",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "@fesjs/plugin-watermark",
   "main": "lib/index.js",
   "files": [
