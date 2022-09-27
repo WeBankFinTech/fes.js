@@ -112,10 +112,15 @@ export const genModels = (imports, absSrcPath) => {
     const checkDuplicates = list => new Set(list).size !== list.length;
 
     const raw = contents.map((ele, index) => {
-        const ast = parser.parse(ele.content, {
-            sourceType: 'module',
-            plugins: ['jsx', 'typescript']
-        });
+        let ast;
+        try {
+            ast = parser.parse(ele.content, {
+                sourceType: 'module',
+                plugins: ['jsx', 'typescript']
+            });
+        } catch (err) {
+            return null;
+        }
 
         const use = [];
 
@@ -136,7 +141,7 @@ export const genModels = (imports, absSrcPath) => {
         });
 
         return { namespace: ele.namespace, use, importName: `model${index}` };
-    });
+    }).filter(Boolean);
 
     const models = sort(raw);
 
@@ -149,45 +154,46 @@ export const genModels = (imports, absSrcPath) => {
 };
 
 export const isValidHook = (filePath) => {
-    const content = readFileSync(filePath, { encoding: 'utf-8' }).toString();
-
-    const ast = parser.parse(content, {
-        sourceType: 'module',
-        plugins: [
-            'classProperties',
-            'dynamicImport',
-            'exportDefaultFrom',
-            'exportNamespaceFrom',
-            'functionBind',
-            'nullishCoalescingOperator',
-            'objectRestSpread',
-            'optionalChaining',
-            'decorators-legacy'
-        ].filter(Boolean)
-    });
     let valid = false;
-    let identifierName = '';
-    traverse(ast, {
-        enter(p) {
-            if (p.isExportDefaultDeclaration()) {
-                const { type } = p.node.declaration;
-                try {
-                    if (
-                        type === 'ArrowFunctionExpression'
+    try {
+        const content = readFileSync(filePath, { encoding: 'utf-8' }).toString();
+
+        const ast = parser.parse(content, {
+            sourceType: 'module',
+            plugins: [
+                'classProperties',
+                'dynamicImport',
+                'exportDefaultFrom',
+                'exportNamespaceFrom',
+                'functionBind',
+                'nullishCoalescingOperator',
+                'objectRestSpread',
+                'optionalChaining',
+                'decorators-legacy'
+            ].filter(Boolean)
+        });
+
+        let identifierName = '';
+        traverse(ast, {
+            enter(p) {
+                if (p.isExportDefaultDeclaration()) {
+                    const { type } = p.node.declaration;
+                    try {
+                        if (
+                            type === 'ArrowFunctionExpression'
                         || type === 'FunctionDeclaration'
-                    ) {
-                        valid = true;
-                    } else if (type === 'Identifier') {
-                        identifierName = p.node.declaration.name;
+                        ) {
+                            valid = true;
+                        } else if (type === 'Identifier') {
+                            identifierName = p.node.declaration.name;
+                        }
+                    } catch (e) {
+                        console.error(e);
                     }
-                } catch (e) {
-                    console.error(e);
                 }
             }
-        }
-    });
+        });
 
-    try {
         if (identifierName) {
             ast.program.body.forEach((ele) => {
                 if (ele.type === 'FunctionDeclaration') {
