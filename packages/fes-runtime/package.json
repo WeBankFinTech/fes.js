@@ -1,6 +1,6 @@
 {
   "name": "@fesjs/runtime",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "description": "@fesjs/runtime",
   "main": "es/index.js",
   "module": "es/index.js",
