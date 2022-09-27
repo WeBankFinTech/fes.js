@@ -58,20 +58,22 @@ const getRoutePath = function (parentRoutePath, fileName, isFile = true) {
 };
 
 function getRouteMeta(content) {
-    const ast = parser.parse(content, {
-        sourceType: 'module',
-        plugins: ['jsx', 'typescript'],
-    });
-    const defineRouteExpression = ast.program.body.filter(
-        (expression) =>
-            expression.type === 'ExpressionStatement' &&
-            expression.expression.type === 'CallExpression' &&
-            expression.expression.callee.name === 'defineRouteMeta',
-    )[0];
-    if (defineRouteExpression) {
-        const argument = generator(defineRouteExpression.expression.arguments[0]);
-        return JSON.parse(argument.code.replace(/'/g, '"').replace(/(\S+):/g, (global, m1) => `"${m1}":`));
-    }
+    try {
+        const ast = parser.parse(content, {
+            sourceType: 'module',
+            plugins: ['jsx', 'typescript'],
+        });
+        const defineRouteExpression = ast.program.body.filter(
+            (expression) =>
+                expression.type === 'ExpressionStatement' &&
+                expression.expression.type === 'CallExpression' &&
+                expression.expression.callee.name === 'defineRouteMeta',
+        )[0];
+        if (defineRouteExpression) {
+            const argument = generator(defineRouteExpression.expression.arguments[0]);
+            return JSON.parse(argument.code.replace(/'/g, '"').replace(/(\S+):/g, (global, m1) => `"${m1}":`));
+        }
+    } catch (err) {}
     return null;
 }
 
