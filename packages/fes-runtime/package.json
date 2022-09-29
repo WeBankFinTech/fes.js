@@ -31,5 +31,6 @@
   },
   "dependencies": {
     "vue-router": "^4.0.1"
-  }
+  },
+  "typings": "./types.d.ts"
 }
