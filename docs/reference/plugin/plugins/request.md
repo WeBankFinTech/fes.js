@@ -220,9 +220,10 @@ export const request = {
         },
         [
             function (config) {
-            // 在发送请求之前做些什么
+                // 在发送请求之前做些什么
                 return config;
-            }, function (error) {
+            },
+            function (error) {
                 // 对请求错误做些什么
                 return Promise.reject(error);
             }
@@ -238,29 +239,29 @@ export const request = {
             function (response) {
                 // 对响应数据做点什么
                 return response;
-            }, function (error) {
+            },
+            function (error) {
                 // 对响应错误做点什么
                 return Promise.reject(error);
             }
         ]
-    ],
-}
-
+    ]
+};
+```
 
 ## API
 
 ### request
 
-- **类型**：函数
+-   **类型**：函数
 
-- **详情**：请求后端接口
-- **参数**：
-  - url: 后端接口 url
-  - data: 参数
-  - options: 配置（ 支持 axios 所有配置）
-- **返回值**: Promise
+-   **详情**：请求后端接口
+-   **参数**：
+    -   url: 后端接口 url
+    -   data: 参数
+    -   options:  配置（ 支持 axios 所有配置）
+-   **返回值**: Promise
 
 ### useRequest
 
 request 的封装，返回响应式 `loading`、`error`、 `data`
-```
