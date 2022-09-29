@@ -1,3 +1,12 @@
+# [3.0.0-beta.25](https://github.com/WeBankFinTech/fes.js/compare/v3.0.0-beta.24...v3.0.0-beta.25) (2022-09-29)
+
+
+### Bug Fixes
+
+* runtime 添加 d.ts ([4f85b22](https://github.com/WeBankFinTech/fes.js/commit/4f85b22c302955788cfc41aa738bc9a3b09ca68a))
+
+
+
 # [3.0.0-beta.24](https://github.com/WeBankFinTech/fes.js/compare/v3.0.0-beta.23...v3.0.0-beta.24) (2022-09-27)
 
 
