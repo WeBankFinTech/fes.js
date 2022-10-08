@@ -94,7 +94,7 @@ export function genMount(mountElementId) {
         }
         hasMountedAtLeastOnce = true;
         cacheAppPromise.then((app)=>{
-            if(!cache[props.name]) {
+            if(props?.name && !cache[props.name]) {
                 cache[props.name] = app;
             }
         })
