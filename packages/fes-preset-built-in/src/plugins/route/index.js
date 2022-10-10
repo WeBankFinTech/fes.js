@@ -71,7 +71,9 @@ function getRouteMeta(content) {
         )[0];
         if (defineRouteExpression) {
             const argument = generator(defineRouteExpression.expression.arguments[0]);
-            return JSON.parse(argument.code.replace(/'/g, '"').replace(/(\S+):/g, (global, m1) => `"${m1}":`));
+            // eslint-disable-next-line no-eval
+            const fn = eval(`() => (${argument.code})`);
+            return fn();
         }
     } catch (err) {}
     return null;
