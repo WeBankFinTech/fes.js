@@ -6,9 +6,13 @@
     </div>
 </template>
 
-<script>
-import { useI18n } from '@fesjs/fes';
+<script lang="ts">
+import { useI18n, defineRouteMeta } from '@fesjs/fes';
 import { FButton } from '@fesjs/fes-design';
+
+defineRouteMeta({
+    'keep-alive': true,
+});
 
 export default {
     components: {
