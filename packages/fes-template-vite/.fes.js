@@ -33,6 +33,7 @@ export default {
         menus: [
             {
                 name: 'index',
+
                 icon: '/wine-outline.svg',
                 match: ['/route/*']
             },
@@ -69,7 +70,7 @@ export default {
         ]
     },
     locale: {
-        legacy: true
+        legacy: false
     },
     enums: {
         status: [
