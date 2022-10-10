@@ -1,3 +1,12 @@
+# [3.0.0-beta.27](https://github.com/WeBankFinTech/fes.js/compare/v3.0.0-beta.26...v3.0.0-beta.27) (2022-10-10)
+
+
+### Bug Fixes
+
+* qiankun props 异常 ([339c811](https://github.com/WeBankFinTech/fes.js/commit/339c81126a491b6a2cd2d47ed25a79479908de6e))
+
+
+
 # [3.0.0-beta.26](https://github.com/WeBankFinTech/fes.js/compare/v3.0.0-beta.25...v3.0.0-beta.26) (2022-09-29)
 
 
