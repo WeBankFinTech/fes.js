@@ -117,7 +117,11 @@ const genRoutes = function (parentRoutes, path, parentRoutePath) {
             if (ext === '.vue') {
                 const { descriptor } = parse(content);
                 const routeMetaBlock = descriptor.customBlocks.find((b) => b.type === 'config');
-                routeMeta = routeMetaBlock?.content ? JSON.parse(routeMetaBlock.content) : {};
+                try {
+                    routeMeta = routeMetaBlock?.content ? JSON.parse(routeMetaBlock.content) : {};
+                } catch (e) {
+                    console.warn(`config: ${routeMetaBlock.content} 必须为 json 格式`);
+                }
                 if (descriptor.script) {
                     routeMeta = getRouteMeta(descriptor.script.content) || routeMeta;
                 }
