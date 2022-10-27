@@ -77,7 +77,9 @@ function getRouteMeta(content) {
         const defineRouteExpression = ast.program.body.filter(expression => expression.type === 'ExpressionStatement' && expression.expression.type === 'CallExpression' && expression.expression.callee.name === 'defineRouteMeta')[0];
         if (defineRouteExpression) {
             const argument = generator(defineRouteExpression.expression.arguments[0]);
-            return JSON.parse(argument.code.replace(/'/g, '"').replace(/(\S+):/g, (global, m1) => `"${m1}":`));
+            // eslint-disable-next-line no-eval
+            const fn = eval(`() => (${argument.code})`);
+            return fn();
         }
         return null;
     } catch (error) {
@@ -123,7 +125,11 @@ const genRoutes = function (parentRoutes, path, parentRoutePath) {
                 const routeMetaBlock = descriptor.customBlocks.find(
                     b => b.type === 'config'
                 );
-                routeMeta = routeMetaBlock?.content ? JSON.parse(routeMetaBlock.content) : {};
+                try {
+                    routeMeta = routeMetaBlock?.content ? JSON.parse(routeMetaBlock.content) : {};
+                } catch (e) {
+                    console.warn(`config: ${routeMetaBlock.content} 必须为 json 格式`);
+                }
                 if (descriptor.script) {
                     routeMeta = getRouteMeta(descriptor.script.content) || routeMeta;
                 }
