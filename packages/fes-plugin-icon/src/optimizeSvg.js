@@ -4,7 +4,12 @@ import { optimize } from 'svgo';
 
 const presetDefault = [
     {
-        name: 'preset-default'
+        name: 'preset-default',
+        params: {
+            overrides: {
+                removeViewBox: false
+            }
+        }
     },
     'cleanupListOfValues',
     {
