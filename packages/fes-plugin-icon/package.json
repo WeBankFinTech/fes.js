@@ -1,6 +1,6 @@
 {
   "name": "@fesjs/plugin-icon",
-  "version": "2.0.7",
+  "version": "2.0.8",
   "description": "@fesjs/plugin-icon",
   "main": "lib/index.js",
   "files": [
