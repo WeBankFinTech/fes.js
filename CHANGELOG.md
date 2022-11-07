@@ -1,3 +1,14 @@
+# [3.0.0-beta.28](https://github.com/WeBankFinTech/fes.js/compare/v3.0.0-beta.27...v3.0.0-beta.28) (2022-11-07)
+
+
+### Bug Fixes
+
+* 修复 icon-plugin viewBox 删除问题 ([e4f3dff](https://github.com/WeBankFinTech/fes.js/commit/e4f3dff7fafa87acf576c50c9415b2afdbb5ab04))
+* config 不是 json 格式导致 dev 退出 ([a384335](https://github.com/WeBankFinTech/fes.js/commit/a384335534f956769103b2343bc2c2ca8bed1f98))
+* defineRouteMeta parse 异常 ([76afad7](https://github.com/WeBankFinTech/fes.js/commit/76afad7c2d5e35d78f0ae3c6ecccba968a718b98))
+
+
+
 # [3.0.0-beta.27](https://github.com/WeBankFinTech/fes.js/compare/v3.0.0-beta.26...v3.0.0-beta.27) (2022-10-10)
 
 
