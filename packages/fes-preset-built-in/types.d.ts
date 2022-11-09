@@ -85,7 +85,7 @@ declare module "@fesjs/fes" {
         beforeRender?: (option: BeforeRenderConfig) => BeforeRenderConfig;
         patchRoutes?: ({ routes }: { routes: RouteRecordRaw[] }) => void;
         modifyClientRenderOpts?: (option: ClientRenderOption) => ClientRenderOption;
-        rootContainer?: (component: DefineComponent, option: { routes: RouteRecordRaw[], plugin: Plugin }) => DefineComponent;
+        rootContainer?: (component: DefineComponent, option: { routes: RouteRecordRaw[], plugin: Plugin }) => Component;
         onAppCreated?: ({ app, routes }: { app: App, routes: RouteRecordRaw[] }) => void;
         render?: (defaultRender: RenderFunc) => RenderFunc;
         onRouterCreated?: ({ router }: { router: Router }) => void;
