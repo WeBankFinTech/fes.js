@@ -2,6 +2,10 @@
 
 Fes.js 默认模板内容是：
 
+::: tip
+fes3.0+ html 模版文件从 `public/index.html` 挪到项目根目录。
+:::
+
 ```html
 <!DOCTYPE html>
 <html>

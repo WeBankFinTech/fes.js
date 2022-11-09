@@ -20,3 +20,7 @@ Webpack 和 Vite 构建在配置方面有一些差异，具体可以查看[配�
 ### html 模版
 
 html 模版比较常规的需求，例如模版变量，Webpack 和 Vite 之间没什么差异。如果有其他特殊的需求， Webpack 可以使用 [html-webpack-plugin](https://github.com/jantimon/html-webpack-plugin)，Vite 使用[vite-plugin-html](https://github.com/vbenjs/vite-plugin-html) 进行个性化配置。
+
+::: tip
+fes3.0+ html 模版文件从 `public/index.html` 挪到项目根目录。
+:::
