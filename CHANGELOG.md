@@ -1,3 +1,12 @@
+# [3.0.0-beta.29](https://github.com/WeBankFinTech/fes.js/compare/v3.0.0-beta.28...v3.0.0-beta.29) (2022-11-09)
+
+
+### Bug Fixes
+
+* 优化类型声明 ([cb1af88](https://github.com/WeBankFinTech/fes.js/commit/cb1af88de67397fc739cb8e24e70d7be11404f56))
+
+
+
 # [3.0.0-beta.28](https://github.com/WeBankFinTech/fes.js/compare/v3.0.0-beta.27...v3.0.0-beta.28) (2022-11-07)
 
 
