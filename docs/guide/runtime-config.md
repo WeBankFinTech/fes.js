@@ -156,7 +156,7 @@ export function patchRoutes({ routes }) {
 
 
 ### modifyRoute
-modifyRoute({base, mode, routes})
+modifyRoute({base, createHistory, routes})
 
 修改路由配置信息。
 
@@ -184,6 +184,16 @@ export function modifyRoute(memo) {
     return {
         ...memo,
         base: window.location.href
+    }
+}
+```
+
+比如改为使用createMemoryHistory：
+```js
+export function modifyRoute(memo) {
+    return {
+        ...memo,
+        createHistory: createMemoryHistory
     }
 }
 ```
