@@ -1,7 +1,7 @@
 function importsToStr(imports) {
     return imports.map((imp) => {
         const { source } = imp;
-        return `import '${source}';`;
+        return `export * from '${source}';`;
     });
 }
 

@@ -24,15 +24,8 @@
   },
   "include": [
     "src/**/*",
-    "tests/**/*",
-    "test/**/*",
-    "__test__/**/*",
-    "typings/**/*",
-    "config/**/*",
-    ".eslintrc.js",
-    ".stylelintrc.js",
-    ".prettierrc.js",
-    "src/.fes/configType.d.ts"
+    ".fes.js",
+    ".fes.*.js"
   ],
   "exclude": ["node_modules", "build", "dist", "scripts", "src/.fes/*", "webpack", "jest"]
 }

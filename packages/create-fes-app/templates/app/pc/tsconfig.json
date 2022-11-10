@@ -33,8 +33,7 @@
     ".fes*.js",
     "src/**/*",
     "typings/**/*",
-    "config/**/*",
-    "src/.fes/configType.d.ts"
+    "config/**/*"
   ],
   "exclude": [
     "build",
