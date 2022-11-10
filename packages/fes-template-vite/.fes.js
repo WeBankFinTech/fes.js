@@ -1,7 +1,6 @@
 import { defineBuildConfig } from "@fesjs/fes";
 
 export default defineBuildConfig({
-    // exportStatic: {},
     define: {
         __DEV__: false
     },
@@ -33,7 +32,6 @@ export default defineBuildConfig({
         menus: [
             {
                 name: 'index',
-
                 icon: '/wine-outline.svg',
                 match: ['/route/*']
             },
@@ -68,9 +66,6 @@ export default defineBuildConfig({
                 name: 'pinia'
             }
         ]
-    },
-    locale: {
-        legacy: false
     },
     enums: {
         status: [

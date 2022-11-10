@@ -13,16 +13,25 @@ export const createRouter = (routes) => {
     },
     initialValue: {{{ CREATE_HISTORY }}},
   });
-  history = createHistory(ROUTER_BASE);
   // 修改routes
   plugin.applyPlugins({
     key: 'patchRoutes',
     type: ApplyPluginsType.event,
     args: { routes },
   });
+  const route = plugin.applyPlugins({
+    key: 'modifyRoute',
+    type: ApplyPluginsType.modify,
+    initialValue: {
+      base: ROUTER_BASE,
+      routes: routes,
+      createHistory: createHistory
+    },
+  });
+  history = route['createHistory']?.(route.base);
   router = createVueRouter({
     history,
-    routes
+    routes: route.routes
   });
 
   plugin.applyPlugins({
