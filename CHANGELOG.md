@@ -1,3 +1,17 @@
+# [3.0.0-beta.30](https://github.com/WeBankFinTech/fes.js/compare/v3.0.0-beta.29...v3.0.0-beta.30) (2022-11-10)
+
+
+### Bug Fixes
+
+* 解决 ts 提示问题 ([#155](https://github.com/WeBankFinTech/fes.js/issues/155)) ([92e154e](https://github.com/WeBankFinTech/fes.js/commit/92e154e48b0f057f1d4525d59f089d2fb6edcdd9))
+
+
+### Features
+
+* 路由支持配置base & plugin-locale插件legacy默认false ([#154](https://github.com/WeBankFinTech/fes.js/issues/154)) ([104571b](https://github.com/WeBankFinTech/fes.js/commit/104571b2a4a78b6df18f4ef9288668d245ca88ab))
+
+
+
 # [3.0.0-beta.29](https://github.com/WeBankFinTech/fes.js/compare/v3.0.0-beta.28...v3.0.0-beta.29) (2022-11-09)
 
 

@@ -92,11 +92,12 @@ function readPackageVersionAndName(pkg) {
 function updatePackage(pkgName, version, pkgs) {
     const pkgJson = readPackageJson(pkgName);
     pkgJson.version = version;
-    Object.keys(pkgJson.dependencies).forEach((npmName) => {
-        if (pkgs[npmName]) {
-            pkgJson.dependencies[npmName] = pkgs[npmName].newVersion;
-        }
-    });
+    pkgJson.dependencies &&
+        Object.keys(pkgJson.dependencies).forEach((npmName) => {
+            if (pkgs[npmName]) {
+                pkgJson.dependencies[npmName] = pkgs[npmName].newVersion;
+            }
+        });
     writePackageJson(pkgName, pkgJson);
 }
 
