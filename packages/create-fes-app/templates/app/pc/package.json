@@ -46,13 +46,13 @@
     "@webank/eslint-config-webank": "^1.2.3"
   },
   "dependencies": {
-    "@fesjs/fes": "^3.0.0-beta.0",
-    "@fesjs/plugin-access": "^3.0.0-beta.0",
-    "@fesjs/plugin-layout": "^5.0.0-beta.0",
-    "@fesjs/plugin-model": "^3.0.0-beta.0",
-    "@fesjs/plugin-enums": "^3.0.0-beta.0",
+    "@fesjs/fes": "^3.0.0-rc.0",
+    "@fesjs/plugin-access": "^3.0.0-rc.0",
+    "@fesjs/plugin-layout": "^5.0.0-rc.0",
+    "@fesjs/plugin-model": "^3.0.0-rc.0",
+    "@fesjs/plugin-enums": "^3.0.0-rc.0",
     "@fesjs/fes-design": "^0.7.0",
-    "@fesjs/builder-webpack": "^3.0.0-beta.0",
+    "@fesjs/builder-webpack": "^3.0.0-rc.0",
     "vue": "^3.2.37",
     "core-js": "^3.19.2"
   },

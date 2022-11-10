@@ -28,11 +28,11 @@
     "access": "public"
   },
   "dependencies": {
-    "@fesjs/utils": "^3.0.0-beta.0",
+    "@fesjs/utils": "^3.0.0-rc.0",
     "vue-i18n": "^9.0.0"
   },
   "peerDependencies": {
-    "@fesjs/fes": "^3.0.0-beta.0",
+    "@fesjs/fes": "^3.0.0-rc.0",
     "@fesjs/fes-design": "^0.7.0",
     "vue": "^3.2.37"
   },

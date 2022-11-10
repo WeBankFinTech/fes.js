@@ -26,14 +26,14 @@
     "access": "public"
   },
   "dependencies": {
-    "@fesjs/utils": "^3.0.0-beta.0",
+    "@fesjs/utils": "^3.0.0-rc.0",
     "lodash-es": "^4.17.15",
     "monaco-editor": "^0.20.0",
     "monaco-editor-webpack-plugin": "^1.9.1",
     "vite-plugin-monaco-editor": "^1.0.10"
   },
   "peerDependencies": {
-    "@fesjs/fes": "^3.0.0-beta.0",
+    "@fesjs/fes": "^3.0.0-rc.0",
     "vue": "^3.2.37"
   },
   "typings": "./types.d.ts"

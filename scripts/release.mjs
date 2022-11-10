@@ -98,6 +98,12 @@ function updatePackage(pkgName, version, pkgs) {
                 pkgJson.dependencies[npmName] = pkgs[npmName].newVersion;
             }
         });
+    pkgJson.peerDependencies &&
+        Object.keys(pkgJson.peerDependencies).forEach((npmName) => {
+            if (pkgs[npmName]) {
+                pkgJson.peerDependencies[npmName] = pkgs[npmName].newVersion;
+            }
+        });
     writePackageJson(pkgName, pkgJson);
 }
 

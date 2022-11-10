@@ -31,7 +31,7 @@
     "yargs-parser": "^20.2.9"
   },
   "peerDependencies": {
-    "@fesjs/fes": "^3.0.0-beta.0",
+    "@fesjs/fes": "^3.0.0-rc.0",
     "vue": "^3.2.37"
   },
   "lint-staged": {
