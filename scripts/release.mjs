@@ -164,7 +164,7 @@ async function createPackageNewVersion(pkg) {
 }
 
 function genOtherPkgsVersion(packagesVersion) {
-    const noChangedPkgs = packages.filter((name) => !packagesVersion.find((item) => item.name === name));
+    const noChangedPkgs = packages.filter((name) => !packagesVersion.find((item) => item.dirName === name));
     const pkgs = arrToObj(packagesVersion, 'name');
     const result = [];
     noChangedPkgs.forEach((currentPkg) => {
