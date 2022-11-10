@@ -1,6 +1,6 @@
-// .fes.js 只负责管理编译时配置，只能使用plain Object
+import { defineBuildConfig } from "@fesjs/fes";
 
-export default {
+export default defineBuildConfig({
     define: {
         __DEV__: false
     },
@@ -79,5 +79,5 @@ export default {
     dynamicImport: true,
     monacoEditor: {
         languages: ['javascript', 'typescript', 'html', 'json']
-    }
-};
+    },
+});

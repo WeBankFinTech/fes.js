@@ -1,5 +1,5 @@
 import { Component, DefineComponent, App } from 'vue';
-import { RouteRecordRaw, Router, RouterHistory } from 'vue-router';
+import { RouteRecordRaw, Router, RouterHistory, createMemoryHistory, createWebHashHistory, createWebHistory } from 'vue-router';
 
 // @ts-ignore
 import { Plugin } from '@fesjs/runtime';
@@ -19,10 +19,28 @@ interface ClientRenderOption {
 type RenderFunc = () => Promise<App>
 
 interface Route  {
-    base: string; mode:string;  routes: RouteRecordRaw[] 
+    base: string; 
+    mode:string;  
+    createHistory: createMemoryHistory | createWebHashHistory | createWebHistory;
 }
 
-declare module "@fesjs/fes" {
+
+export function getRouter(): Router;
+export function getHistory(): RouterHistory;
+export function destroyRouter(): void;
+
+declare module '@fesjs/fes' {
+    interface PluginRuntimeConfig {
+        beforeRender?: (option: BeforeRenderConfig) => BeforeRenderConfig;
+        patchRoutes?: ({ routes }: { routes: RouteRecordRaw[] }) => void;
+        modifyRoute?: ({base, mode, createHistory }: Route) => Route;
+        modifyClientRenderOpts?: (option: ClientRenderOption) => ClientRenderOption;
+        rootContainer?: (component: DefineComponent, option: { routes: RouteRecordRaw[], plugin: Plugin }) => Component;
+        onAppCreated?: ({ app, routes }: { app: App, routes: RouteRecordRaw[] }) => void;
+        render?: (defaultRender: RenderFunc) => RenderFunc;
+        onRouterCreated?: ({ router }: { router: Router }) => void;
+    }
+
     interface PluginBuildConfig {
         alias?: Record<string, string>,
         autoprefixer?: {
@@ -84,18 +102,5 @@ declare module "@fesjs/fes" {
         terserOptions?: object;
         title?: string;
     }
-    interface PluginRuntimeConfig {
-        beforeRender?: (option: BeforeRenderConfig) => BeforeRenderConfig;
-        patchRoutes?: ({ routes }: { routes: RouteRecordRaw[] }) => void;
-        modifyRoute?: ({base, mode, routes }: Route) => Route;
-        modifyClientRenderOpts?: (option: ClientRenderOption) => ClientRenderOption;
-        rootContainer?: (component: DefineComponent, option: { routes: RouteRecordRaw[], plugin: Plugin }) => Component;
-        onAppCreated?: ({ app, routes }: { app: App, routes: RouteRecordRaw[] }) => void;
-        render?: (defaultRender: RenderFunc) => RenderFunc;
-        onRouterCreated?: ({ router }: { router: Router }) => void;
-    }
-
-    export function getRouter(): Router;
-    export function getHistory(): RouterHistory;
-    export function destroyRouter(): void;
+    
 }

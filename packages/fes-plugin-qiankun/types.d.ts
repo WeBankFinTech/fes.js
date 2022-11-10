@@ -7,20 +7,18 @@ interface AppOption {
     props: Record<string, any>;
 }
 
-declare module '@fesjs/fes' {
-    interface PluginBuildConfig {
-        qiankun?:
-            | {
-                  main?: {
-                      apps: AppOption[];
-                      lifeCycles?: FrameworkLifeCycles<MicroApp>;
-                      [key: string]: any;
-                  };
-                  micro?: {};
-              }
-            | false;
-    }
-
-    export const MicroApp: Component;
-    export const MicroAppWithMemoHistory: Component;
+export interface PluginBuildConfig {
+    qiankun?:
+        | {
+              main?: {
+                  apps: AppOption[];
+                  lifeCycles?: FrameworkLifeCycles<MicroApp>;
+                  [key: string]: any;
+              };
+              micro?: {};
+          }
+        | false;
 }
+
+export const MicroApp: Component;
+export const MicroAppWithMemoHistory: Component;

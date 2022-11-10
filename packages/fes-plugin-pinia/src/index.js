@@ -2,6 +2,7 @@ import { readFileSync } from 'fs';
 import { join } from 'path';
 import { winPath } from '@fesjs/utils';
 import { parseStore } from './helper';
+import { name } from '../package.json';
 
 const namespace = 'plugin-pinia';
 
@@ -52,4 +53,8 @@ export default (api) => {
     ]);
 
     api.addRuntimePlugin(() => `@@/${absRuntimeFilePath}`);
+
+    api.addConfigType(() => ({
+        source: name,
+    }));
 };

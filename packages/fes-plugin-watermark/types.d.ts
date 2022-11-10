@@ -14,6 +14,8 @@ interface WatermarkParam {
     zIndex: number;
     timestamp: string;
 }
+export function createWatermark(param: WatermarkParam): void;
+export function destroyWatermark(): void;
 
 declare module '@fesjs/fes' {
     interface PluginBuildConfig {
@@ -21,7 +23,4 @@ declare module '@fesjs/fes' {
             disable: boolean;
         } | false;
     }
-
-    export function createWatermark(param: WatermarkParam): void;
-    export function destroyWatermark(): void;
 }
