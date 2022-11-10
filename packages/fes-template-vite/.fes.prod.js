@@ -1,5 +1,4 @@
-// .fes.js 只负责管理编译时配置，只能使用plain Object
-
+import { defineBuildConfig } from "@fesjs/fes";
 
 export default {
     publicPath: 'https://gw.alipayobjects.com/'

@@ -13,6 +13,8 @@ interface RequestPluginOption {
     }
 }
 
+export function request(url: string, data: null | Record<string, any>, options: AxiosRequestConfig & RequestPluginOption ): Promise<any>
+export function useRequest(url: string, data: null | Record<string, any>, options: AxiosRequestConfig & RequestPluginOption ): {loadingRef: Ref<boolean>; errorRef: Ref<Error>; dataRef: Ref<any>}
 declare module "@fesjs/fes" {
     interface PluginRuntimeConfig {
         request?: {
@@ -22,6 +24,4 @@ declare module "@fesjs/fes" {
             responseInterceptors?: ResponseInterceptor[];
         } & AxiosRequestConfig;
     }
-    export function request(url: string, data: null | Record<string, any>, options: AxiosRequestConfig & RequestPluginOption ): Promise<any>
-    export function useRequest(url: string, data: null | Record<string, any>, options: AxiosRequestConfig & RequestPluginOption ): {loadingRef: Ref<boolean>; errorRef: Ref<Error>; dataRef: Ref<any>}
 }

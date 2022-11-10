@@ -10,6 +10,7 @@ interface Menu {
     children?: Menu[];
 }
 
+export const Page: Component;
 declare module '@fesjs/fes' {
     interface RouteMeta {
         'keep-alive'?: boolean;
@@ -61,5 +62,4 @@ declare module '@fesjs/fes' {
         };
     }
 
-    export const Page: Component;
 }
