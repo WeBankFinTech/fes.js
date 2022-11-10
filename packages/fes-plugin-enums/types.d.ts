@@ -14,12 +14,11 @@ interface EnumApi {
     convert(name: string, _enum?: [] | object, option?: { keyName: string; valueName: string }): any;
 }
 
+export const enums: EnumApi;
 declare module '@fesjs/fes' {
     interface PluginBuildConfig {
         enums?: {
             [key: string]: [string | number, string | number][];
         } | false;
     }
-
-    export const enums: EnumApi;
 }

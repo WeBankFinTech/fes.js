@@ -1,5 +1,4 @@
-// @ts-ignore
-import '@@/configType';
+export * from '@@/configType'
 
 export * from '@fesjs/runtime';
 

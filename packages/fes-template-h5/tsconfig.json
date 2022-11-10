@@ -3,10 +3,7 @@
     "outDir": "build/dist",
     "module": "esnext",
     "target": "esnext",
-    "lib": [
-      "esnext",
-      "dom"
-    ],
+    "lib": ["esnext", "dom"],
     "sourceMap": true,
     "baseUrl": ".",
     "jsx": "preserve",
@@ -17,31 +14,18 @@
     "suppressImplicitAnyIndexErrors": true,
     "noUnusedLocals": true,
     "allowJs": true,
+    "skipLibCheck": true,
     "experimentalDecorators": true,
     "strict": true,
     "paths": {
-      "@/*": [
-        "./src/*"
-      ],
-      "@@/*": [
-        "./src/.fes/*"
-      ]
+      "@/*": ["./src/*"],
+      "@@/*": ["./src/.fes/*"]
     }
   },
   "include": [
-    "*.js",
-    ".fes.js",
     "src/**/*",
-    "typings/**/*",
-    "config/**/*",
-    "src/.fes/configType.d.ts"
+    ".fes.js",
+    ".fes.*.js"
   ],
-  "exclude": [
-    "build",
-    "dist",
-    "scripts",
-    "webpack",
-    "jest",
-    "node_modules"
-  ]
+  "exclude": ["node_modules", "build", "dist", "scripts", "src/.fes/*", "webpack", "jest"]
 }

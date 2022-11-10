@@ -29,12 +29,9 @@
     }
   },
   "include": [
-    "*.js",
-    ".fes*.js",
     "src/**/*",
-    "typings/**/*",
-    "config/**/*",
-    "src/.fes/configType.d.ts"
+    "*.js",
+    ".fes*.js"
   ],
   "exclude": [
     "build",
