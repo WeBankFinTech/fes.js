@@ -1,6 +1,5 @@
 import { defineBuildConfig } from '@fesjs/fes'
 export default defineBuildConfig({
-    // exportStatic: {},
     define: {
         __DEV__: false
     },
@@ -74,9 +73,6 @@ export default defineBuildConfig({
         menuProps: {
             defaultExpandAll: false
         }
-    },
-    locale: {
-        legacy: true
     },
     devServer: {
         port: 8080

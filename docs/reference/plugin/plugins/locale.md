@@ -76,7 +76,7 @@ export default {
         locale: 'zh-CN', // default locale
         fallbackLocale: 'zh-CN', // set fallback locale
         baseNavigator: true, // 开启浏览器语言检测
-        legacy: true, // 用户是否需要 Legacy API 模式
+        legacy: false, // 用户是否需要 Legacy API 模式
     }
 } 
 ```
@@ -108,7 +108,7 @@ export default {
 #### legacy
 - **类型**：`Boolean`
   
-- **默认值**：`true`
+- **默认值**：`false`
 
 - **详情**：用户是否需要 Legacy API 模式
 

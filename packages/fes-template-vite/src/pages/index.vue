@@ -11,6 +11,8 @@ import { useI18n, defineRouteMeta } from '@fesjs/fes';
 import { FButton } from '@fesjs/fes-design';
 
 defineRouteMeta({
+    name: 'index',
+    title: '$home',
     'keep-alive': true,
 });
 
@@ -20,9 +22,7 @@ export default {
     },
     setup() {
         const { t } = useI18n();
-        const a = 'aa'.replaceAll('a', 1);
         return {
-            a,
             t,
         };
     },

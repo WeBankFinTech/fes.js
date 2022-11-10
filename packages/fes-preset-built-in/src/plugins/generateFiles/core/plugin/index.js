@@ -27,8 +27,10 @@ export default function (api) {
                 'render',
                 // 修改路由
                 'patchRoutes',
-                // 修改history
+                // 修改创建history API
                 'modifyCreateHistory',
+                // 修改路由配置
+                'modifyRoute',
                 // 生成router时触发
                 'onRouterCreated',
             ],
