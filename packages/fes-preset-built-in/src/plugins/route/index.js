@@ -309,14 +309,7 @@ export default function (api) {
 
     const absCoreFilePath = join(namespace, 'routes.js');
     const absExportsFilePath = join(namespace, 'routeExports.js');
-
     const absRuntimeFilePath = join(namespace, 'runtime.js');
-
-    const historyType = {
-        history: 'createWebHistory',
-        hash: 'createWebHashHistory',
-        memory: 'createMemoryHistory',
-    };
 
     api.onGenerateFiles(async () => {
         const routesTpl = readFileSync(join(__dirname, 'template/routes.tpl'), 'utf-8');
@@ -334,9 +327,8 @@ export default function (api) {
             path: absExportsFilePath,
             content: Mustache.render(routeExportsTpl, {
                 runtimePath,
-                config: api.config,
                 routerBase: api.config.router?.base,
-                CREATE_HISTORY: historyType[api.config.router.mode] || 'createWebHashHistory',
+                routerMode: api.config.router.mode,
             }),
         });
 

@@ -1,4 +1,3 @@
-import { createMemoryHistory } from '@@/core/coreExports';
 import qiankunRender, { clientRenderOptsStack, history as historyConfig } from './lifecycles';
 
 
@@ -14,9 +13,12 @@ export function modifyClientRenderOpts(memo) {
     };
 }
 
-export function modifyCreateHistory(memo) {
+export function modifyRoute(memo) {
     if (historyConfig.url) {
-        return createMemoryHistory
+        return {
+            ...memo,
+            mode: 'memory'
+        }
     }
     return memo;
 }

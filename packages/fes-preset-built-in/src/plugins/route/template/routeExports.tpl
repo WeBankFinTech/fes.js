@@ -1,28 +1,36 @@
-import { createRouter as createVueRouter, {{{ CREATE_HISTORY }}}, ApplyPluginsType } from '{{{ runtimePath }}}';
+import { createRouter as createVueRouter, createWebHistory, createWebHashHistory, createMemoryHistory, ApplyPluginsType } from '{{{ runtimePath }}}';
 import { plugin } from '../plugin';
 
+const createHistoryMap = {
+    history: createWebHistory,
+    hash: createWebHashHistory,
+    memory: createMemoryHistory,
+};
+
 const ROUTER_BASE = '{{{ routerBase }}}';
+const ROUTER_MODE = '{{{ routerMode }}}'
 let router = null;
 let history = null;
 export const createRouter = (routes) => {
-  const createHistory = plugin.applyPlugins({
-    key: 'modifyCreateHistory',
-    type: ApplyPluginsType.modify,
-    args: {
-      base: ROUTER_BASE
-    },
-    initialValue: {{{ CREATE_HISTORY }}},
-  });
-  history = createHistory(ROUTER_BASE);
   // 修改routes
   plugin.applyPlugins({
     key: 'patchRoutes',
     type: ApplyPluginsType.event,
     args: { routes },
   });
+  const route = plugin.applyPlugins({
+    key: 'modifyRoute',
+    type: ApplyPluginsType.modify,
+    initialValue: {
+      base: ROUTER_BASE,
+      routes: routes,
+      mode: ROUTER_MODE
+    },
+  });
+  history = createHistoryMap[route.mode]?.(route.base);
   router = createVueRouter({
     history,
-    routes
+    routes: route.routes
   });
 
   plugin.applyPlugins({

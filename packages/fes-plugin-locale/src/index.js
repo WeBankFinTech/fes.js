@@ -40,7 +40,7 @@ export default (api) => {
         const userConfig = {
             locale: 'zh-CN', // default locale
             fallbackLocale: 'zh-CN', // set fallback locale
-            legacy: true,
+            legacy: false,
             baseNavigator: true, // 开启浏览器语言检测
             ...api.config.locale,
         };
@@ -49,20 +49,14 @@ export default (api) => {
 
         const locales = getLocales(localeConfigFileBasePath);
 
+        const { baseNavigator, ...otherConfig } = userConfig;
+
         api.writeTmpFile({
             path: absoluteFilePath,
             content: Mustache.render(readFileSync(join(__dirname, 'runtime/core.tpl'), 'utf-8'), {
                 REPLACE_LOCALES: locales,
-                REPLACE_DEFAULT_OPTIONS: JSON.stringify(
-                    {
-                        locale: userConfig.locale,
-                        fallbackLocale: userConfig.fallbackLocale,
-                        legacy: userConfig.legacy,
-                    },
-                    null,
-                    2,
-                ),
-                BASE_NAVIGATOR: userConfig.baseNavigator,
+                REPLACE_DEFAULT_OPTIONS: JSON.stringify(otherConfig, null, 2),
+                BASE_NAVIGATOR: baseNavigator,
                 VUE_I18N_PATH: 'vue-i18n',
             }),
         });

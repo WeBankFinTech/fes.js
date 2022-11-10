@@ -1,7 +1,6 @@
 // .fes.js 只负责管理编译时配置，只能使用plain Object
 
 export default {
-    // exportStatic: {},
     define: {
         __DEV__: false
     },
@@ -33,7 +32,6 @@ export default {
         menus: [
             {
                 name: 'index',
-
                 icon: '/wine-outline.svg',
                 match: ['/route/*']
             },
@@ -68,9 +66,6 @@ export default {
                 name: 'pinia'
             }
         ]
-    },
-    locale: {
-        legacy: false
     },
     enums: {
         status: [

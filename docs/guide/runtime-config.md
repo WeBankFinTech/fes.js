@@ -129,9 +129,13 @@ export function beforeRender(lastOpts) {
 }
 ```
 
-### patchRoutes
+### patchRoutes 
 
 patchRoutes({routes })
+
+:::warning
+准备删除此API，推荐使用`modifyRoute`
+:::
 
 修改路由。
 
@@ -149,6 +153,41 @@ export function patchRoutes({ routes }) {
 :::tip
 直接修改 `routes`, 不需要返回
 :::
+
+
+### modifyRoute
+modifyRoute({base, mode, routes})
+
+修改路由配置信息。
+
+比如在最前面添加一个 /foo 路由：
+
+```js
+export function modifyRoute(memo) {
+    return {
+        ...memo,
+        routes: [
+            {
+                path: '/foo',
+                component: require('@/extraRoutes/foo').default,
+            }, 
+            ...memo.routes
+        ]
+    }
+}
+```
+
+
+比如修改 base:
+```js
+export function modifyRoute(memo) {
+    return {
+        ...memo,
+        base: window.location.href
+    }
+}
+```
+
 
 ### modifyClientRenderOpts
 
