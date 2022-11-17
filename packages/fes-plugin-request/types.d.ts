@@ -15,6 +15,8 @@ interface RequestPluginOption {
     }
 }
 
+export type RequestOptions = AxiosRequestConfig & RequestPluginOption;
+
 export function request(url: string, data?: null | Record<string, any>, options?: AxiosRequestConfig & RequestPluginOption ): Promise<any>
 export function useRequest(url: string, data?: null | Record<string, any>, options?: AxiosRequestConfig & RequestPluginOption ): {loadingRef: Ref<boolean>; errorRef: Ref<Error>; dataRef: Ref<any>}
 declare module "@fesjs/fes" {
