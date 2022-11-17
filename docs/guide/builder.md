@@ -5,6 +5,7 @@
 -   选用 Vite 构建，安装 `npm i @fesjs/builder-vite` 依赖即可。
 -   选用 Webpack 构建，安装 `npm i @fesjs/builder-webpack` 依赖即可。
 
+
 ## 使用差异
 
 由于 Fes.js 在 Vite 和 Webpack 上做了一层封装，开发者关心的构建配置不会太多。从使用上来说，主要存在以下几个差异点：
