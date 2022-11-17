@@ -1,8 +1,9 @@
 import { defineUserConfig } from '@vuepress/cli';
 import { defaultTheme } from '@vuepress/theme-default';
 import { docsearchPlugin } from '@vuepress/plugin-docsearch';
-import { pwaPopupPlugin } from '@vuepress/plugin-pwa-popup'
-import { pwaPlugin } from '@vuepress/plugin-pwa'
+import { pwaPopupPlugin } from '@vuepress/plugin-pwa-popup';
+import { pwaPlugin } from '@vuepress/plugin-pwa';
+import { backToTopPlugin } from '@vuepress/plugin-back-to-top'
 import { navbar, sidebar } from './configs';
 
 export default defineUserConfig({
@@ -87,6 +88,7 @@ export default defineUserConfig({
 					buttonText: '刷新',
 				},
 			},
-		})
+		}),
+        backToTopPlugin()
     ],
 });
