@@ -201,7 +201,7 @@ const router = new VueRouter({
 我们使用`defineRouteMeta` 配置 `meta`：
 
 ```js
-import { defineRouteMete } from '@fesjs/fes';
+import { defineRouteMeta } from '@fesjs/fes';
 defineRouteMeta({
     name: "store",
     title: "vuex测试"
