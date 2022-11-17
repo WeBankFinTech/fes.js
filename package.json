@@ -42,6 +42,7 @@
     "@vuepress/plugin-docsearch": "2.0.0-beta.53",
     "@vuepress/plugin-pwa": "2.0.0-beta.53",
     "@vuepress/plugin-pwa-popup": "2.0.0-beta.53",
+    "@vuepress/plugin-back-to-top": "2.0.0-beta.53",
     "@webank/eslint-config-webank": "^1.2.3",
     "chokidar": "^3.5.2",
     "commitizen": "^4.2.1",
