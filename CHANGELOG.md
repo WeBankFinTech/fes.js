@@ -1,3 +1,13 @@
+# [3.0.0-rc.2](https://github.com/WeBankFinTech/fes.js/compare/v3.0.0-rc.1...v3.0.0-rc.2) (2022-11-17)
+
+
+### Bug Fixes
+
+* 导出 RequestOptions 类型 ([03e98ac](https://github.com/WeBankFinTech/fes.js/commit/03e98ac667f92dbcbd0b90033b7a29695d2d2426))
+* 修复 request ts 类型提示问题 ([2469009](https://github.com/WeBankFinTech/fes.js/commit/246900923a71b872cda37003c08fae3046d250d9))
+
+
+
 # [3.0.0-beta.32](https://github.com/WeBankFinTech/fes.js/compare/v3.0.0-beta.31...v3.0.0-beta.32) (2022-11-15)
 
 
