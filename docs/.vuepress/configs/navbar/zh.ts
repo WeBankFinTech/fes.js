@@ -22,15 +22,15 @@ export const zh: NavbarConfig = [
     link: '/reference/cli/',
   },
   {
-    text: '版本',
+    text: 'v2.0',
     children: [
       {
-        text: 'next(3.0)',
+        text: 'v3.0.0-rc.1',
         link:
           'https://fesjs.mumblefe.cn/next',
       },
       {
-        text: '1.0',
+        text: 'v1.0',
         link: 'https://fesjs.mumblefe.cn/1.0',
       },
     ],
