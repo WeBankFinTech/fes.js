@@ -7,14 +7,16 @@ type ResponseInterceptor = (value: AxiosResponse) => AxiosResponse | [(value: Ax
 
 interface RequestPluginOption {
     mergeRequest?: boolean;
+    dataHandler?(data: any, response: AxiosResponse): any;
+    errorHandler?(error: AxiosError | {type: string, msg: string, [key: string]: string}): void;
     cache?: boolean | {
         type: 'ram' | 'sessionStorage' | 'localStorage',
         cacheTime: number;
     }
 }
 
-export function request(url: string, data: null | Record<string, any>, options: AxiosRequestConfig & RequestPluginOption ): Promise<any>
-export function useRequest(url: string, data: null | Record<string, any>, options: AxiosRequestConfig & RequestPluginOption ): {loadingRef: Ref<boolean>; errorRef: Ref<Error>; dataRef: Ref<any>}
+export function request(url: string, data?: null | Record<string, any>, options?: AxiosRequestConfig & RequestPluginOption ): Promise<any>
+export function useRequest(url: string, data?: null | Record<string, any>, options?: AxiosRequestConfig & RequestPluginOption ): {loadingRef: Ref<boolean>; errorRef: Ref<Error>; dataRef: Ref<any>}
 declare module "@fesjs/fes" {
     interface PluginRuntimeConfig {
         request?: {
