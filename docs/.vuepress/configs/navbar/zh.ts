@@ -1,4 +1,5 @@
 import type { NavbarConfig } from '@vuepress/theme-default'
+import { version } from '../../../../package.json'
 
 export const zh: NavbarConfig = [
   {
@@ -22,7 +23,7 @@ export const zh: NavbarConfig = [
     link: '/reference/cli/',
   },
   {
-    text: 'v3.0.0-rc.0',
+    text: `v${version}`,
     children: [
       {
         text: 'v2.0',
@@ -41,7 +42,7 @@ export const zh: NavbarConfig = [
       {
         text: '更新日志',
         link:
-          'https://github.com/WeBankFinTech/fes.js/blob/master/CHANGELOG.md',
+          'https://github.com/WeBankFinTech/fes.js/blob/next/CHANGELOG.md',
       },
       {
         text: 'fes-design',
