@@ -25,7 +25,7 @@ export const zh: NavbarConfig = [
     text: 'v2.0',
     children: [
       {
-        text: 'v3.0.0-rc.1',
+        text: 'v3.0',
         link:
           'https://fesjs.mumblefe.cn/next',
       },
