@@ -61,9 +61,9 @@ npm run dev
 
 ## 反馈
 
-| Github Issue  | 微信群 | Fes.js开源运营小助手 |
-| --- | --- | --- |
-| [@fesjs/fes.js/issues](https://github.com/WeBankFinTech/fes.js/issues) | <img src="https://i.loli.net/2020/09/11/2XhKtPZd6NFVbDE.png" width="250" /> | <img src="https://i.loli.net/2020/09/16/sxwr62CKhmYOUyV.jpg" height="250"/> |
+| Github Issue  | Fes.js开源运营小助手 |
+| --- | --- |
+| [@fesjs/fes.js/issues](https://github.com/WeBankFinTech/fes.js/issues) | <img src="https://cos-1254145788.cos.ap-guangzhou.myqcloud.com/WechatIMG104.jpeg" height="250"/> |
 
 
 
