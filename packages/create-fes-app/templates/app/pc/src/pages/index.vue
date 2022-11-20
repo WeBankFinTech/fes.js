@@ -1,21 +1,12 @@
 <template>
-    <div style="padding: 32px;">
-        hello world
-    </div>
+    <div style="padding: 32px">hello world</div>
 </template>
 
-<script>
-export default {
-    setup() {
-        return {
-        };
-    }
-};
-</script>
+<script setup>
+import { defineRouteMeta } from '@fesjs/fes';
 
-<config>
-{
-    "name": "index",
-    "title": "首页"
-}
-</config>
+defineRouteMeta({
+    name: 'index',
+    title: '首页',
+});
+</script>

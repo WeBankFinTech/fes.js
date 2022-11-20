@@ -44,12 +44,12 @@
     "@ttou/postcss-px-to-viewport": "1.1.1"
   },
   "dependencies": {
-    "@fesjs/fes": "^3.0.0-rc.0",
+    "@fesjs/fes": "^3.0.0-rc.1",
     "@fesjs/plugin-icon": "^3.0.0-rc.0",
-    "@fesjs/plugin-request": "^3.0.0-rc.0",
-    "@fesjs/builder-webpack": "^3.0.0-rc.0",
+    "@fesjs/plugin-request": "^3.0.0-rc.3",
+    "@fesjs/builder-webpack": "^3.0.0-rc.1",
     "vue": "^3.2.37",
-    "core-js": "^3.19.2"
+    "core-js": "^3.26.1"
   },
   "private": true
 }
