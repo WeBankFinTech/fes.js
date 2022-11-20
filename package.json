@@ -14,7 +14,7 @@
     "docs:dev": "vuepress dev docs --clean-cache",
     "docs:build": "vuepress build docs --clean-cache",
     "test": "fes test",
-    "lint": "eslint -c ./.eslintrc.js --ext .js,.jsx,.vue,.ts",
+    "lint": "eslint -c ./.eslintrc.js --ignore-pattern='templates' --ext .js,.jsx,.vue,.ts",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s"
   },
   "license": "MIT",
@@ -57,7 +57,7 @@
   },
   "lint-staged": {
     "*.{js,jsx,vue,ts}": [
-      "eslint"
+      "npm run lint"
     ]
   },
   "husky": {
