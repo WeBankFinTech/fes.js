@@ -1,7 +1,7 @@
 import { defineRuntimeConfig } from '@fesjs/fes';
 
 export default defineRuntimeConfig({
-    request: {},
+    // request: {},
 });
 
 // export default defineRuntimeConfig({
