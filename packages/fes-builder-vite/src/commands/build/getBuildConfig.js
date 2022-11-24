@@ -37,6 +37,7 @@ export default async (api) => {
                 modernPolyfills: true,
                 renderLegacyChunks: false,
                 targets,
+                ...api.config.viteLegacy,
             }),
             splitVendorChunkPlugin(),
         ],

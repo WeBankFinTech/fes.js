@@ -5,33 +5,39 @@ import { defineBuildConfig } from '@fesjs/fes';
 export default defineBuildConfig({
     proxy: {
         '/v2': {
-            'target': 'https://api.douban.com/',
-            'changeOrigin': true,
-        }
+            target: 'https://api.douban.com/',
+            changeOrigin: true,
+        },
     },
     publicPath: '/',
-    html: {
-        title: '拉夫德鲁'
+    viteOption: {
+        css: {
+            postcss: {
+                plugins: [
+                    pxtoviewport({
+                        unitToConvert: 'px',
+                        viewportWidth: 375,
+                        unitPrecision: 5,
+                        propList: ['*'],
+                        viewportUnit: 'vw',
+                        fontViewportUnit: 'vw',
+                        selectorBlackList: [],
+                        minPixelValue: 1,
+                        mediaQuery: false,
+                        replace: true,
+                        exclude: [],
+                        landscape: false,
+                        landscapeUnit: 'vw',
+                    }),
+                ],
+            },
+        },
+        build: {
+            target: 'es2015',
+        },
     },
-    extraPostCSSPlugins: [
-        pxtoviewport({
-            unitToConvert: 'px',
-            viewportWidth: 375,
-            unitPrecision: 5,
-            propList: ['*'],
-            viewportUnit: 'vw',
-            fontViewportUnit: 'vw',
-            selectorBlackList: [],
-            minPixelValue: 1,
-            mediaQuery: false,
-            replace: true,
-            exclude: [],
-            landscape: false,
-            landscapeUnit: 'vw'
-        })
-    ],
-    devServer: {
-        port: 8000
-    }
+    targets: {
+        chrome: 61,
+        ios: 11,
+    },
 });
-
