@@ -26,8 +26,28 @@ export default class BabelRegister {
                     },
                 ],
             ],
-            ignore: [/node_modules/],
-            only,
+            plugins: [
+                function () {
+                    return {
+                        visitor: {
+                            ExportAllDeclaration(path) {
+                                if (path.node.source.value.startsWith('@@')) {
+                                    path.remove();
+                                }
+                            },
+                        },
+                    };
+                },
+            ],
+            only: [
+                ...only,
+                function (filepath) {
+                    if (/@fesjs[/\\]+fes/.test(filepath)) {
+                        return true;
+                    }
+                    return false;
+                },
+            ],
             extensions: ['.jsx', '.js', '.ts', '.tsx'],
             babelrc: false,
             cache: false,
