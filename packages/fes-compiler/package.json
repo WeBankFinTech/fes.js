@@ -1,6 +1,6 @@
 {
   "name": "@fesjs/compiler",
-  "version": "3.0.0-rc.1",
+  "version": "3.0.0-rc.2",
   "description": "@fesjs/compiler",
   "main": "lib/index.js",
   "files": [
@@ -27,7 +27,7 @@
     "@babel/core": "^7.16.7",
     "@babel/preset-env": "^7.15.0",
     "@babel/register": "^7.15.3",
-    "@fesjs/utils": "3.0.0-rc.1",
+    "@fesjs/utils": "3.0.0-rc.2",
     "commander": "^7.0.0",
     "dotenv": "8.2.0",
     "joi": "17.3.0",
