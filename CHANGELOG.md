@@ -1,3 +1,14 @@
+# [3.0.0-rc.3](https://github.com/WeBankFinTech/fes.js/compare/v3.0.0-rc.2...v3.0.0-rc.3) (2022-11-25)
+
+
+### Bug Fixes
+
+* 修复 viteLegacy 配置问题 ([aec267f](https://github.com/WeBankFinTech/fes.js/commit/aec267f83ff0486b78f3b33f97b8608fc4e1833f))
+* 修复 windows 兼容问题 ([9a518bc](https://github.com/WeBankFinTech/fes.js/commit/9a518bcb9598798498064c948da698511cbb5189))
+* remove Created by MumbleFE ([b6ba33d](https://github.com/WeBankFinTech/fes.js/commit/b6ba33df6e945d7e78feb209d2117370fbf47322))
+
+
+
 # [3.0.0-rc.2](https://github.com/WeBankFinTech/fes.js/compare/v3.0.0-rc.1...v3.0.0-rc.2) (2022-11-17)
 
 

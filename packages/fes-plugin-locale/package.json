@@ -1,6 +1,6 @@
 {
   "name": "@fesjs/plugin-locale",
-  "version": "4.0.0-rc.1",
+  "version": "4.0.0-rc.2",
   "description": "@fesjs/plugin-locale",
   "main": "lib/index.js",
   "files": [
@@ -28,11 +28,11 @@
     "access": "public"
   },
   "dependencies": {
-    "@fesjs/utils": "3.0.0-rc.1",
+    "@fesjs/utils": "3.0.0-rc.2",
     "vue-i18n": "^9.0.0"
   },
   "peerDependencies": {
-    "@fesjs/fes": "3.0.0-rc.1",
+    "@fesjs/fes": "3.0.0-rc.2",
     "@fesjs/fes-design": "^0.7.0",
     "vue": "^3.2.37"
   },
