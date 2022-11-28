@@ -1,17 +1,18 @@
 <template>
-    <div>
-        main
-        <input />
-        <FTabs v-model="activeKey">
-            <FTabPane name="Tab 1" value="1">
-                <MicroAppWithMemoHistory key="1" name="micro" url="/micro" />
-            </FTabPane>
-            <FTabPane name="Tab 2" value="2">
-                <MicroAppWithMemoHistory key="2" name="micro" url="/micro/test" />
-            </FTabPane>
-            <FTabPane name="Tab 3" value="3"> Content of Tab Pane 3 </FTabPane>
-        </FTabs>
-    </div>
+    <FTabs v-model="activeKey">
+        <FTabPane name="webpack子应用首页" value="1">
+            <MicroAppWithMemoHistory key="1" name="webpack-micro" url="/webpack" />
+        </FTabPane>
+        <FTabPane name="webpack子应用测试页" value="2">
+            <MicroAppWithMemoHistory key="2" name="webpack-micro" url="/webpack/test" />
+        </FTabPane>
+        <FTabPane name="vite子应用首页" value="3">
+            <MicroAppWithMemoHistory key="3" name="vite-micro" url="/vite" />
+        </FTabPane>
+        <FTabPane name="vite子应用测试页" value="4">
+            <MicroAppWithMemoHistory key="4" name="vite-micro" url="/vite/test" />
+        </FTabPane>
+    </FTabs>
 </template>
 <config>
 {
@@ -20,22 +21,15 @@
 }
 </config>
 <script>
-import { ref, onMounted } from 'vue';
+import { ref } from 'vue';
 import { MicroAppWithMemoHistory } from '@fesjs/fes';
 import { FTabPane, FTabs } from '@fesjs/fes-design';
 
 export default {
     components: { FTabs, FTabPane, MicroAppWithMemoHistory },
     setup() {
-        const url = ref('/micro/test');
-        onMounted(() => {
-            setTimeout(() => {
-                url.value = '/micro';
-            }, 3000);
-        });
         return {
             activeKey: ref('1'),
-            url,
         };
     },
 };

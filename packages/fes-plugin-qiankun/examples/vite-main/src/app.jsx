@@ -9,7 +9,7 @@ export const beforeRender = {
             setTimeout(() => {
                 setRole('admin');
                 resolve();
-            }, 1000);
+            }, 100);
         });
     },
 };

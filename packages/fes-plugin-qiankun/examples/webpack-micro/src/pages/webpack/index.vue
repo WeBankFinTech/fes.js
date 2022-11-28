@@ -1,11 +1,10 @@
 <template>
-    <div class="haizekuo">micro - test</div>
-    <input />
+    <div>webpack - micro - index</div>
 </template>
 <config>
 {
-    "name": "test",
-    "title": "test"
+    "name": "index",
+    "title": "home"
 }
 </config>
 <script>
@@ -17,5 +16,3 @@ export default {
     },
 };
 </script>
-
-<style scoped></style>
