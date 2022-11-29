@@ -30,7 +30,6 @@ export default function (api) {
     const absMicroAppWithMemoHistoryPath = join(namespace, 'MicroAppWithMemoHistory.jsx');
     const absRuntimePath = join(namespace, 'runtime.js');
     const absMasterOptionsPath = join(namespace, 'masterOptions.js');
-    const absGetMicroAppRouteCompPath = join(namespace, 'getMicroAppRouteComponent.jsx');
 
     api.onGenerateFiles(() => {
         const HAS_PLUGIN_MODEL = api.hasPlugins(['@fesjs/plugin-model']);
@@ -83,13 +82,6 @@ export default function (api) {
         {
             specifiers: ['MicroAppWithMemoHistory'],
             source: absMicroAppWithMemoHistoryPath,
-        },
-    ]);
-
-    api.addPluginExports(() => [
-        {
-            specifiers: ['getMicroAppRouteComponent'],
-            source: absGetMicroAppRouteCompPath,
         },
     ]);
 }

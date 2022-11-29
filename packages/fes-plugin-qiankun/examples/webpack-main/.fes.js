@@ -2,35 +2,57 @@
 export default {
     access: {
         roles: {
-            admin: ["*"]
-        }
+            admin: ['*'],
+        },
     },
     layout: {
-        title: "Fes.js",
+        title: 'webpack 主应用',
         footer: 'Created by MumbleFE',
         multiTabs: false,
         navigation: 'mixin',
-        menus: [{
-            name: 'index',
-        }, {
-            title: "子应用1",
-            children: [{
-                name: 'micro-index'
-            },{
-                name: 'micro-test'
-            }]
-        }]
+        menus: [
+            {
+                name: 'index',
+            },
+            {
+                title: 'webpack子应用',
+                children: [
+                    {
+                        name: 'webpack-micro-index',
+                    },
+                    {
+                        name: 'webpack-micro-test',
+                    },
+                ],
+            },
+            {
+                title: 'vite子应用',
+                children: [
+                    {
+                        name: 'vite-micro-index',
+                    },
+                    {
+                        name: 'vite-micro-test',
+                    },
+                ],
+            },
+        ],
     },
     qiankun: {
         main: {
             apps: [
                 {
-                    name: 'micro', // 唯一 id
+                    name: 'webpack-micro', // 唯一 id
+                    entry: '//localhost:9001', // html entry
+                    props: {}, // 传递给子应用的数据
+                },
+                {
+                    name: 'vite-micro', // 唯一 id
                     entry: '//localhost:8001', // html entry
-                    props: {}  // 传递给子应用的数据
-                }
-            ]
-        }
+                    props: {}, // 传递给子应用的数据
+                },
+            ],
+        },
     },
     plugins: [
         require.resolve('../../../fes-plugin-model/lib'),
@@ -38,7 +60,5 @@ export default {
         require.resolve('../../../fes-plugin-access/lib'),
         require.resolve('../../../fes-plugin-qiankun/lib'),
     ],
-    presets: [
-        require.resolve('../../../fes-builder-webpack/lib'),
-    ]
+    presets: [require.resolve('../../../fes-builder-webpack/lib')],
 };

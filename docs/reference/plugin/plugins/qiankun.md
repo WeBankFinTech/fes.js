@@ -42,6 +42,11 @@ export default {
 };
 ```
 
+当使用 `vite` 构建时需注意，**name** 必须跟子应用 `package.json`的 `name`保持一致。
+
+
+
+
 ### 第二步：装载子应用
 
 #### 使用路由绑定的方式
@@ -72,7 +77,7 @@ export default {
 }
 ```
 我们现在想在 `/son` 加载子应用 `app1`，只需要增加这样一些配置即可：
-```js {16-23}
+```js {16-21}
 export default {
     router: {
         routes: [{
@@ -92,8 +97,6 @@ export default {
                     "path": "/son",
                     "meta": {
                         "name": "son",
-                        "title": "子应用",
-                        "microApp": "app1"
                     }
                 }
             ]
@@ -101,7 +104,7 @@ export default {
     }
 }
 ```
-当前我们依然提倡约定路由的方式，在`src/pages` 目录新建 `son.vue`：
+在`src/pages` 目录新建 `son.vue`：
 ```vue
 <config>
 {
@@ -168,6 +171,17 @@ export default {
 export default {
     qiankun: {
         micro: {},
+    }
+};
+```
+
+如果使用 `vite` 构建，当执行 `dev` 时需要额外配置：
+```js
+export default {
+    qiankun: {
+        micro: {
+            useDevMode: true
+        },
     }
 };
 ```
