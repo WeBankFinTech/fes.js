@@ -1,3 +1,12 @@
+# [3.0.0-rc.4](https://github.com/WeBankFinTech/fes.js/compare/v3.0.0-rc.3...v3.0.0-rc.4) (2022-11-29)
+
+
+### Features
+
+* qiankun插件支持vite ([#157](https://github.com/WeBankFinTech/fes.js/issues/157)) ([5c44181](https://github.com/WeBankFinTech/fes.js/commit/5c44181fcd8d9fdbe2f8d99ce7421587079c7296))
+
+
+
 # [3.0.0-rc.3](https://github.com/WeBankFinTech/fes.js/compare/v3.0.0-rc.2...v3.0.0-rc.3) (2022-11-25)
 
 

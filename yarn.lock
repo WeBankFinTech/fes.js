@@ -1477,6 +1477,16 @@
     typescript "^4.3.5"
     vue3-jest "^27.0.0-alpha.1"
 
+"@fesjs/plugin-qiankun@^3.0.0-rc.0":
+  version "3.0.0-rc.2"
+  resolved "https://registry.npmmirror.com/@fesjs/plugin-qiankun/-/plugin-qiankun-3.0.0-rc.2.tgz#22efb0a42821b39168a5e94a002212e9962cdafa"
+  integrity sha512-YTfoWEMeDEMOqx/Na71gw3t1h577fb+3ZapAWjxm1gVZ0HiiALPRZnboKeiAQxZHpHKiSr8s8pmoDlC2Unq5hQ==
+  dependencies:
+    "@fesjs/utils" "3.0.0-rc.2"
+    address "^1.1.2"
+    lodash-es "^4.17.15"
+    qiankun "^2.7.0"
+
 "@fesjs/utils@^2.0.4":
   version "2.0.4"
   resolved "https://registry.npmmirror.com/@fesjs/utils/-/utils-2.0.4.tgz#ac7d5899a5fdd25479e343d3ca8033b717b9af3b"
