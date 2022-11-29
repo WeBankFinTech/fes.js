@@ -1,5 +1,5 @@
 import { createMemoryHistory } from '@@/core/coreExports';
-import qiankunRender, { clientRenderOptsStack, history as historyConfig } from './lifecycles';
+import qiankunRender, { clientRenderOptsStack, history as historyConfig } from './lifecycle';
 
 
 export const render = oldRender => qiankunRender().then(oldRender);

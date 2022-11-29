@@ -1,5 +1,5 @@
 {
-    "name": "webpack-main",
+    "name": "vite-micro",
     "version": "2.0.0",
     "description": "fes项目模版",
     "scripts": {

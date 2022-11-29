@@ -1,5 +1,5 @@
 {
-    "name": "main",
+    "name": "vite-main",
     "version": "2.0.0",
     "description": "fes项目模版",
     "scripts": {
@@ -43,8 +43,8 @@
         "access": "public"
     },
     "dependencies": {
-        "@fesjs/fes": "^2.0.0",
         "vue": "^3.2.37",
+        "@fesjs/fes": "^2.0.0",
         "@fesjs/fes-design": "^0.7.0"
     },
     "private": true
