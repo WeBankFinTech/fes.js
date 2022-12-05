@@ -133,7 +133,7 @@ export default {
 ```js
 import UserCenter from '@/components/UserCenter';
 export const layout = {
-    renderHeader: () => <UserCenter />,
+    renderCustom: () => <UserCenter />,
     menus: [
         {
             name: 'index',
@@ -147,7 +147,7 @@ export const layout = {
 
 ```js
 export const layout = (layoutConfig, { initialState }) => ({
-    renderHeader: () => <UserCenter />,
+    renderCustom: () => <UserCenter />,
     menus: () => {
         const menusRef = ref(layoutConfig.menus);
         watch(
