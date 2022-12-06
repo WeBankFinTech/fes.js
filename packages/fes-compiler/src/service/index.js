@@ -5,18 +5,18 @@
 import { join } from 'path';
 import { EventEmitter } from 'events';
 import assert from 'assert';
-import { AsyncSeriesWaterfallHook } from 'tapable';
 import { existsSync } from 'fs';
+import { AsyncSeriesWaterfallHook } from 'tapable';
 import { lodash, chalk } from '@fesjs/utils';
 import { Command, Option } from 'commander';
+import Config from '../config';
+import { getUserConfigWithKey } from '../config/utils/configUtils';
 import { resolvePresets, pathToObj, resolvePlugins } from './utils/pluginUtils';
 import loadDotEnv from './utils/loadDotEnv';
 import isPromise from './utils/isPromise';
 import BabelRegister from './babelRegister';
 import PluginAPI from './pluginAPI';
 import { ApplyPluginsType, ConfigChangeType, EnableBy, PluginType, ServiceStage } from './enums';
-import Config from '../config';
-import { getUserConfigWithKey } from '../config/utils/configUtils';
 import getPaths from './getPaths';
 
 // TODO
@@ -125,11 +125,13 @@ export default class Service extends EventEmitter {
             ...baseOpts,
             presets: opts.presets || [],
             userConfigPresets: this.userConfig.presets || [],
+            builder: this.userConfig.builder,
         });
         this.initialPlugins = resolvePlugins({
             ...baseOpts,
             plugins: opts.plugins || [],
             userConfigPlugins: this.userConfig.plugins || [],
+            builder: this.userConfig.builder,
         });
     }
 

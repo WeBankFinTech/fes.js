@@ -1,5 +1,6 @@
-import { defineBuildConfig } from "@fesjs/fes";
+import { defineBuildConfig } from '@fesjs/fes';
 
-export default {
-    publicPath: 'https://gw.alipayobjects.com/'
-};
+export default defineBuildConfig({
+    builder: 'webpack',
+    publicPath: 'https://gw.alipayobjects.com/',
+});

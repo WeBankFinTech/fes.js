@@ -5,8 +5,8 @@
 
 import { existsSync } from 'fs';
 import { extname, join } from 'path';
-import { chalk, chokidar, compatESModuleRequire, deepmerge, cleanRequireCache, lodash, parseRequireDeps, winPath } from '@fesjs/utils';
 import assert from 'assert';
+import { chalk, chokidar, compatESModuleRequire, deepmerge, cleanRequireCache, lodash, parseRequireDeps, winPath } from '@fesjs/utils';
 import joi from 'joi';
 import { ServiceStage } from '../service/enums';
 import { getUserConfigWithKey, updateUserConfigWithKey } from './utils/configUtils';
