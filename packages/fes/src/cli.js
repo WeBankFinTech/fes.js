@@ -1,9 +1,9 @@
 import { chalk, yParser, semver } from '@fesjs/utils';
+import fesPkg from '../package.json';
 import { Service } from './serviceWithBuiltIn';
 import fork from './utils/fork';
 import getCwd from './utils/getCwd';
 import getPkg from './utils/getPkg';
-import fesPkg from '../package.json';
 import { hackFesInBuild } from './hackFesInBuild';
 
 const requiredVersion = fesPkg.engines.node;

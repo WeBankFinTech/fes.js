@@ -9,7 +9,9 @@ export interface RouteMeta {
 
 export interface PluginRuntimeConfig {}
 
-export interface PluginBuildConfig {}
+export interface PluginBuildConfig {
+    builder?: string,
+}
 
 export declare function defineRouteMeta(routeMeta: RouteMeta): RouteMeta;
 

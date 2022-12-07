@@ -1,27 +1,28 @@
-import { defineBuildConfig } from "@fesjs/fes";
+import { defineBuildConfig } from '@fesjs/fes';
 
 export default defineBuildConfig({
+    builder: 'vite',
     define: {
-        __DEV__: false
+        __DEV__: false,
     },
     title: '海贼王',
     router: {
-        mode: 'hash'
+        mode: 'hash',
     },
     access: {
         roles: {
             admin: ['*'],
-            menuTest: ['/', '/menuTest']
-        }
+            menuTest: ['/', '/menuTest'],
+        },
     },
     mock: {
-        prefix: '/v2'
+        prefix: '/v2',
     },
     proxy: {
         '/v2': {
             target: 'https://api.douban.com/',
-            changeOrigin: true
-        }
+            changeOrigin: true,
+        },
     },
     layout: {
         title: 'Fes.js',
@@ -33,51 +34,51 @@ export default defineBuildConfig({
             {
                 name: 'index',
                 icon: '/wine-outline.svg',
-                match: ['/route/*']
+                match: ['/route/*'],
             },
             {
-                name: 'store'
+                name: 'store',
             },
             {
                 name: 'editor',
-                icon: '/wine-outline.svg'
+                icon: '/wine-outline.svg',
             },
             {
                 title: '$externalLink',
                 icon: 'UserOutlined',
-                path: 'https://www.baidu.com'
+                path: 'https://www.baidu.com',
             },
             {
-                name: 'mock'
+                name: 'mock',
             },
             {
                 title: '菜单权限测试',
                 children: [
                     {
                         title: '子菜单',
-                        path: '/menuTest'
+                        path: '/menuTest',
                     },
-                ]
+                ],
             },
             {
-                name: 'cssModule'
+                name: 'cssModule',
             },
             {
-                name: 'pinia'
-            }
-        ]
+                name: 'pinia',
+            },
+        ],
     },
     enums: {
         status: [
             ['0', '无效的'],
-            ['1', '有效的']
-        ]
+            ['1', '有效的'],
+        ],
     },
     vuex: {
-        strict: true
+        strict: true,
     },
     dynamicImport: true,
     monacoEditor: {
-        languages: ['javascript', 'typescript', 'html', 'json']
+        languages: ['javascript', 'typescript', 'html', 'json'],
     },
 });

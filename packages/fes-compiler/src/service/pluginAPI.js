@@ -123,9 +123,9 @@ export default class PluginAPI {
 
     registerBuilder(builder) {
         assert(typeof builder === 'object', 'api.registerBuilder() failed, the builder must be object.');
-        const { name } = builder;
-        assert(typeof name === 'string', 'api.registerBuilder() failed, the builder.name must be string.');
-        assert(typeof this.service.builder.name !== 'string', `检测到您使用了 builder: ${name}，已经加载 builder: ${this.service.builder.name}， 请保留一个`);
+        // const { name } = builder;
+        // assert(typeof name === 'string', 'api.registerBuilder() failed, the builder.name must be string.');
+        // assert(typeof this.service.builder.name !== 'string', `检测到您使用了 builder: ${name}，已经加载 builder: ${this.service.builder.name}， 请保留一个`);
         this.service.builder = builder;
     }
 

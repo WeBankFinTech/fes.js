@@ -1,11 +1,12 @@
 import { dirname, join, basename, relative, extname } from 'path';
-import { compatESModuleRequire, resolve, winPath, pkgUp, lodash } from '@fesjs/utils';
+import { compatESModuleRequire, resolve, winPath, pkgUp, lodash, chalk } from '@fesjs/utils';
 
 import { PluginType } from '../enums';
 
 const RE = {
     [PluginType.plugin]: /^(@fesjs\/|@webank\/fes-|fes-)plugin-/,
-    [PluginType.preset]: /^(@fesjs\/|@webank\/fes-|fes-)(preset|builder)-/,
+    [PluginType.preset]: /^(@fesjs\/|@webank\/fes-|fes-)preset-/,
+    [PluginType.builder]: /^(@fesjs\/|@webank\/fes-|fes-)builder-/,
 };
 
 export function isPluginOrPreset(type, name) {
@@ -17,10 +18,29 @@ export function isPluginOrPreset(type, name) {
     return re.test(name);
 }
 
-function filterPluginAndPreset(type, pkg) {
-    return Object.keys(pkg.devDependencies || {})
-        .concat(Object.keys(pkg.dependencies || {}))
+function filterBuilder(opts) {
+    const builders = Object.keys(opts.pkg.devDependencies || {})
+        .concat(Object.keys(opts.pkg.dependencies || {}))
+        .filter(isPluginOrPreset.bind(null, PluginType.builder))
+        .filter((builder) => builder.indexOf(opts.builder || '') !== -1);
+    if (builders.length > 1) {
+        console.log(chalk.yellow(`提示：您使用了多个builder，默认使用第一个${builders[0]}`));
+        return builders[0];
+    }
+    return builders;
+}
+
+function filterPluginAndPreset(type, opts) {
+    const base = Object.keys(opts.pkg.devDependencies || {})
+        .concat(Object.keys(opts.pkg.dependencies || {}))
         .filter(isPluginOrPreset.bind(null, type));
+    if (type === PluginType.preset) {
+        return base.concat(filterBuilder(opts));
+    }
+    if (type === PluginType.plugin) {
+        return base.concat(join(__dirname, '../plugins/builder.js'));
+    }
+    return base;
 }
 
 export function getPluginsOrPresets(type, opts) {
@@ -30,7 +50,7 @@ export function getPluginsOrPresets(type, opts) {
         ...(opts[type === PluginType.preset ? 'presets' : 'plugins'] || []),
         // env
         ...(process.env[`FES_${upperCaseType}S`] || '').split(',').filter(Boolean),
-        ...filterPluginAndPreset(type, opts.pkg),
+        ...filterPluginAndPreset(type, opts),
         // user config
         ...(opts[type === PluginType.preset ? 'userConfigPresets' : 'userConfigPlugins'] || []),
     ].map((path) =>
