@@ -1,6 +1,6 @@
 {
   "name": "@fesjs/fes",
-  "version": "3.0.0-rc.2",
+  "version": "3.0.0-rc.3",
   "description": "一个好用的前端管理台快速开发框架",
   "preferGlobal": true,
   "scripts": {
@@ -38,8 +38,8 @@
     "strong"
   ],
   "dependencies": {
-    "@fesjs/compiler": "3.0.0-rc.2",
-    "@fesjs/preset-built-in": "3.0.0-rc.2",
+    "@fesjs/compiler": "3.0.0-rc.3",
+    "@fesjs/preset-built-in": "3.0.0-rc.3",
     "@fesjs/runtime": "3.0.0-rc.1",
     "@fesjs/utils": "3.0.0-rc.2",
     "pirates": "^4.0.5",
