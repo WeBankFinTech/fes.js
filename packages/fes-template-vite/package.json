@@ -44,6 +44,7 @@
   },
   "dependencies": {
     "@fesjs/builder-vite": "^3.0.0-rc.0",
+    "@fesjs/builder-webpack": "^3.0.0-rc.0",
     "@fesjs/fes": "^3.0.0-rc.0",
     "@fesjs/fes-design": "^0.7.0",
     "@fesjs/plugin-access": "^3.0.0-rc.0",
