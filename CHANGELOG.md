@@ -1,3 +1,12 @@
+# [3.0.0-rc.5](https://github.com/WeBankFinTech/fes.js/compare/v3.0.0-rc.4...v3.0.0-rc.5) (2022-12-07)
+
+
+### Features
+
+* 支持配置选择vite ([#159](https://github.com/WeBankFinTech/fes.js/issues/159)) ([42b83cc](https://github.com/WeBankFinTech/fes.js/commit/42b83cc54fdea8163b394e17f6660d10246806b5))
+
+
+
 # [3.0.0-rc.4](https://github.com/WeBankFinTech/fes.js/compare/v3.0.0-rc.3...v3.0.0-rc.4) (2022-11-29)
 
 
