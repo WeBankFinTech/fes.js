@@ -8,7 +8,7 @@ function transform(code, options) {
     return result.code;
 }
 
-function transformNodeCode(code) {
+function transformNodeCode(code, config) {
     return transform(code, {
         presets: [
             [
@@ -19,6 +19,8 @@ function transformNodeCode(code) {
                 },
             ],
         ],
+        sourceFileName: config.sourceMap ? config.sourceFileName : undefined,
+        sourceMaps: config.sourceMap ? 'inline' : false,
     });
 }
 
@@ -41,7 +43,7 @@ function transformBrowserCode(code) {
 
 export default function compiler(code, config) {
     if (!config.target || config.target === 'node') {
-        return transformNodeCode(code);
+        return transformNodeCode(code, config);
     }
     if (config.target === 'browser') {
         return transformBrowserCode(code);
