@@ -9,10 +9,9 @@ import chalk from 'chalk';
 import merge from 'deepmerge';
 import chokidar from 'chokidar';
 import yargsParser from 'yargs-parser';
+import buildConfig from '../build.config.js';
 import compiler from './compiler.mjs';
 import randomColor from './randomColor.mjs';
-
-import buildConfig from '../build.config.js';
 
 const argv = yargsParser(process.argv.slice(2));
 
@@ -67,6 +66,9 @@ function getGlobalConfig() {
 
 async function getPkgConfig(config, pkgName) {
     const pkgConfigPath = path.join(getPkgPath(pkgName), CONFIG_FILE_NAME);
+    if (argv.watch) {
+        config.sourceMap = true;
+    }
     if (fs.existsSync(pkgConfigPath)) {
         const content = await import(process.platform === 'win32' ? `file://${pkgConfigPath}` : pkgConfigPath);
         const result = merge(config, content.default);
@@ -109,6 +111,9 @@ function transformFile(filePath, outputPath, config, log) {
         try {
             const code = fs.readFileSync(filePath, 'utf-8');
             const shortFilePath = genShortPath(filePath);
+            if (config.sourceMap) {
+                config.sourceFileName = filePath;
+            }
             const transformedCode = compiler(code, config);
 
             const type = config.target === 'browser' ? ESM_OUTPUT_DIR : NODE_CJS_OUTPUT_DIR;
