@@ -93,6 +93,10 @@ npm install
 npm run dev
 ```
 
+## Start On Cloud IDE
+
+[https://idegithub.com/WeBankFinTech/fes.js](https://idegithub.com/WeBankFinTech/fes.js)
+
 ## Feedback
 
 | Github Issue  | WeChat group | Fes.js开源运营小助手 |

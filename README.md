@@ -95,6 +95,10 @@ npm install
 npm run dev
 ```
 
+## 在 Cloud IDE 中预览
+
+[https://idegithub.com/WeBankFinTech/fes.js](https://idegithub.com/WeBankFinTech/fes.js)
+
 ## 反馈
 
 | Github Issue  | Fes.js开源运营小助手 |
