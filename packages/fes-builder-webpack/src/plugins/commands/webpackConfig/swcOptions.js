@@ -1,5 +1,5 @@
 export function buildSwcOptions(browserslist, config, isJsx, isTs) {
-    return {
+    const result = {
         env: {
             targets: browserslist,
             mode: 'entry',
@@ -10,11 +10,12 @@ export function buildSwcOptions(browserslist, config, isJsx, isTs) {
                 syntax: isTs ? 'typescript' : 'ecmascript',
                 jsx: isJsx,
             },
-            experimental: {
-                plugins: [['swc-plugin-vue-jsx', {}]],
-            },
         },
         minify: true,
         ...config.swcLoader,
     };
+    if (isJsx) {
+        result.jsc.parser.experimental.plugins = (result.jsc.parser.experimental.plugins || []).push(['swc-plugin-vue-jsx', {}]);
+    }
+    return result;
 }
