@@ -126,14 +126,8 @@ export default async function getConfig({ api, cwd, config, env, entry = {}, mod
         webpackConfig.module
             .rule('js')
             .test(/\.(js|mjs)$/)
-            .exclude.add((filepath) => {
-                // always transpile js in vue files
-                if (/(\.vue|\.jsx)$/.test(filepath)) {
-                    return false;
-                }
-                // Don't transpile node_modules
-                return /node_modules/.test(filepath);
-            })
+            // Don't transpile node_modules
+            .exclude.add((filepath) => /node_modules/.test(filepath))
             .end()
             .use('swc-loader')
             .loader(require.resolve('swc-loader'))
@@ -141,14 +135,6 @@ export default async function getConfig({ api, cwd, config, env, entry = {}, mod
         webpackConfig.module
             .rule('jsx')
             .test(/\.jsx$/)
-            .exclude.add((filepath) => {
-                // always transpile js in vue files
-                if (/(\.vue|\.jsx)$/.test(filepath)) {
-                    return false;
-                }
-                // Don't transpile node_modules
-                return /node_modules/.test(filepath);
-            })
             .end()
             .use('swc-loader')
             .loader(require.resolve('swc-loader'))
@@ -157,14 +143,6 @@ export default async function getConfig({ api, cwd, config, env, entry = {}, mod
         webpackConfig.module
             .rule('ts')
             .test(/\.ts$/)
-            .exclude.add((filepath) => {
-                // always transpile js in vue files
-                if (/(\.vue|\.tsx)$/.test(filepath)) {
-                    return false;
-                }
-                // Don't transpile node_modules
-                return /node_modules/.test(filepath);
-            })
             .end()
             .use('swc-loader')
             .loader(require.resolve('swc-loader'))
@@ -172,14 +150,6 @@ export default async function getConfig({ api, cwd, config, env, entry = {}, mod
         webpackConfig.module
             .rule('tsx')
             .test(/\.tsx$/)
-            .exclude.add((filepath) => {
-                // always transpile js in vue files
-                if (/(\.vue|\.tsx)$/.test(filepath)) {
-                    return false;
-                }
-                // Don't transpile node_modules
-                return /node_modules/.test(filepath);
-            })
             .end()
             .use('swc-loader')
             .loader(require.resolve('swc-loader'))
@@ -217,7 +187,7 @@ export default async function getConfig({ api, cwd, config, env, entry = {}, mod
             .test(/\.(js|mjs|jsx|ts|tsx)$/)
             .exclude.add((filepath) => {
                 // always transpile js in vue files
-                if (/(\.vue|\.jsx)$/.test(filepath)) {
+                if (/(\.tsx|\.ts|\.jsx)$/.test(filepath)) {
                     return false;
                 }
                 // Don't transpile node_modules
