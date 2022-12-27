@@ -1,5 +1,5 @@
 <template>
-    <div class="page">
+    <div class="page bg-black">
         home
         <FButton class="m-2">Button</FButton>
     </div>
@@ -13,6 +13,7 @@ defineRouteMeta({
     name: 'index',
     title: '$home',
 });
+console.log('123123'.replaceAll('123', '234'));
 </script>
 
 <style>
