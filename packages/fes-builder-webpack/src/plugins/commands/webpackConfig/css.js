@@ -10,7 +10,7 @@
 // 根据 entry 将文件输出到不同的文件夹
 
 import { deepmerge } from '@fesjs/utils';
-import { CssMinimizerPlugin } from 'css-minimizer-webpack-plugin';
+import CssMinimizerPlugin from 'css-minimizer-webpack-plugin';
 
 function createRules({ isDev, webpackConfig, config, lang, test, loader, options, browserslist, styleLoaderOption }) {
     function applyLoaders(rule, cssLoaderOption = {}) {
