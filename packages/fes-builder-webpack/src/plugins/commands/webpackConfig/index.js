@@ -131,29 +131,26 @@ export default async function getConfig({ api, cwd, config, env, entry = {}, mod
             .end()
             .use('swc-loader')
             .loader(require.resolve('swc-loader'))
-            .options(buildSwcOptions(browserslist, config, false, false));
+            .options(buildSwcOptions(targets, config, false, false));
         webpackConfig.module
             .rule('jsx')
             .test(/\.jsx$/)
-            .end()
             .use('swc-loader')
             .loader(require.resolve('swc-loader'))
-            .options(buildSwcOptions(browserslist, config, true, false));
+            .options(buildSwcOptions(targets, config, true, false));
 
         webpackConfig.module
             .rule('ts')
             .test(/\.ts$/)
-            .end()
             .use('swc-loader')
             .loader(require.resolve('swc-loader'))
-            .options(buildSwcOptions(browserslist, config, false, true));
+            .options(buildSwcOptions(targets, config, false, true));
         webpackConfig.module
             .rule('tsx')
             .test(/\.tsx$/)
-            .end()
             .use('swc-loader')
             .loader(require.resolve('swc-loader'))
-            .options(buildSwcOptions(browserslist, config, true, true));
+            .options(buildSwcOptions(targets, config, true, true));
         // 为了避免第三方依赖包编译不充分导致线上问题，默认对 node_modules 也进行全编译，只在生产构建的时候进行
         if (isProd) {
             const transpileDepRegex = genTranspileDepRegex(config.nodeModulesTransform.exclude);
@@ -172,7 +169,7 @@ export default async function getConfig({ api, cwd, config, env, entry = {}, mod
                 .end()
                 .use('swc-loader')
                 .loader(require.resolve('swc-loader'))
-                .options(buildSwcOptions(browserslist, config, false, false));
+                .options(buildSwcOptions(targets, config, false, false));
         }
     } else {
         const babelOpts = await getBabelOpts({

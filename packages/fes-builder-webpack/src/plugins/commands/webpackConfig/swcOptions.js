@@ -1,21 +1,24 @@
-export function buildSwcOptions(browserslist, config, isJsx, isTs) {
-    const result = {
-        env: {
-            targets: browserslist,
-            mode: 'entry',
-            coreJs: '3',
-        },
-        jsc: {
-            parser: {
-                syntax: isTs ? 'typescript' : 'ecmascript',
-                jsx: isJsx,
+import { deepmerge } from '@fesjs/utils';
+
+export function buildSwcOptions(targets, config, isJsx, isTs) {
+    return deepmerge(
+        {
+            env: {
+                targets,
+                mode: 'usage',
+                coreJs: '3',
             },
+            jsc: {
+                parser: {
+                    syntax: isTs ? 'typescript' : 'ecmascript',
+                    jsx: isJsx,
+                },
+                experimental: {
+                    plugins: [['swc-plugin-vue-jsx', {}]],
+                },
+            },
+            minify: true,
         },
-        minify: true,
-        ...config.swcLoader,
-    };
-    if (isJsx) {
-        result.jsc.parser.experimental.plugins = (result.jsc.parser.experimental.plugins || []).push(['swc-plugin-vue-jsx', {}]);
-    }
-    return result;
+        config.swcLoader || {},
+    );
 }
