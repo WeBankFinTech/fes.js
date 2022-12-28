@@ -35,7 +35,6 @@
     "@babel/preset-env": "^7.16.4",
     "@babel/preset-typescript": "^7.15.0",
     "@fesjs/utils": "3.0.0-rc.2",
-    "@swc/css": "^0.0.18",
     "@vue/babel-plugin-jsx": "^1.1.1",
     "autoprefixer": "^10.2.4",
     "babel-loader": "^8.2.2",
