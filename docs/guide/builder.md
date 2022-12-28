@@ -4,7 +4,7 @@
 
 -   选用 Vite 构建，安装 `npm i @fesjs/builder-vite` 依赖即可。
 -   选用 Webpack 构建，安装 `npm i @fesjs/builder-webpack` 依赖即可。
-
+-   Webpack构建支持用babel+terser和swc两种编译方式，如选用swc，安装`npm i @swc/core` 同时配置额外传`swcLoader:{}`，具体可以查看[配置](../reference/config)。
 
 ## 使用差异
 
