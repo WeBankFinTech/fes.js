@@ -49,7 +49,7 @@
     "@fesjs/plugin-request": "^3.0.0-rc.3",
     "@fesjs/builder-webpack": "^3.0.0-rc.1",
     "vue": "^3.2.37",
-    "core-js": "^3.26.1"
+    "core-js": "^3.27.0"
   },
   "private": true
 }

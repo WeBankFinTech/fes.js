@@ -54,7 +54,7 @@
     "@fesjs/fes-design": "^0.7.9",
     "@fesjs/builder-webpack": "^3.0.0-rc.0",
     "vue": "^3.2.45",
-    "core-js": "^3.26.1"
+    "core-js": "^3.27.0"
   },
   "private": true
 }
