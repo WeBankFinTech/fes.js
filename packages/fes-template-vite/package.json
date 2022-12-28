@@ -60,6 +60,7 @@
     "@fesjs/plugin-sass": "^3.0.0-rc.0",
     "@fesjs/plugin-vuex": "^3.0.0-rc.0",
     "@fesjs/plugin-windicss": "^3.0.0-rc.0",
+    "core-js": "^3.27.0",
     "cssnano": "^5.1.12",
     "pinia": "^2.0.11",
     "vue": "^3.2.37",

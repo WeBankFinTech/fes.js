@@ -8,7 +8,7 @@ function getBabelOpts({ cwd, targets, config, presetOpts }) {
                 targets,
                 useBuiltIns: 'usage',
                 corejs: {
-                    version: 3,
+                    version: require('core-js/package.json').version,
                     proposals: true,
                 },
                 modules: false,
