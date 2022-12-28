@@ -64,6 +64,6 @@
   },
   "peerDependencies": {
     "@fesjs/fes": "3.0.0-rc.2",
-    "core-js": "^3.19.2"
+    "core-js": "^3.27.0"
   }
 }

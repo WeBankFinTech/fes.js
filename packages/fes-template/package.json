@@ -59,6 +59,7 @@
     "@fesjs/plugin-pinia": "^3.0.0-rc.0",
     "@fesjs/plugin-watermark": "^3.0.0-rc.0",
     "@fesjs/fes-design": "^0.7.0",
+    "core-js": "^3.27.0",
     "vue": "^3.2.37",
     "vuex": "^4.0.0",
     "pinia": "^2.0.11"
