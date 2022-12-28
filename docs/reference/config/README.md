@@ -459,6 +459,13 @@ export default {
 
 配置额外的 `babel` 插件集。
 
+### swcLoader
+-  类型： `object`
+-  默认值： `undefined`
+-  详情：
+
+传对象时使用swc进行编译和压缩，[swc配置](https://swc.rs/docs/configuration/swcrc)  
+默认usage模式
 ### extraPostCSSPlugins
 
 -   类型： `array`
