@@ -1,8 +1,12 @@
 import { deepmerge } from '@fesjs/utils';
 
-export function buildSwcOptions(targets, config, isJsx, isTs) {
+export function buildSwcOptions(targets, config, isJsx, isTs, isEsm) {
+    if (config.swcLoader?.cjsPkg) {
+        delete config.swcLoader.cjsPkg;
+    }
     return deepmerge(
         {
+            // sync: true,
             env: {
                 targets,
                 mode: 'usage',
@@ -16,8 +20,12 @@ export function buildSwcOptions(targets, config, isJsx, isTs) {
                 experimental: {
                     plugins: [['swc-plugin-vue-jsx', {}]],
                 },
+                // preserveAllComments: true,
             },
-            minify: true,
+            module: {
+                type: isEsm ? 'es6' : 'commonjs',
+            },
+            // minify: true,
         },
         config.swcLoader || {},
     );
