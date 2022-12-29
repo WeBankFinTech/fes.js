@@ -2307,6 +2307,90 @@
     "@swc/core-win32-ia32-msvc" "1.3.24"
     "@swc/core-win32-x64-msvc" "1.3.24"
 
+"@swc/css-android-arm-eabi@0.0.18":
+  version "0.0.18"
+  resolved "https://registry.npmmirror.com/@swc/css-android-arm-eabi/-/css-android-arm-eabi-0.0.18.tgz#c42b7a4775c3ae7dcbfc38008cd5d8c5c8cf0b06"
+  integrity sha512-B7V4SsquT4pGkAnggSoAiGWFP/QTV6rqezccsLkPhJxEcdsX0OnDCJYa2h2WRxpsxvWEAakIh6p9edoWbRnKfA==
+
+"@swc/css-android-arm64@0.0.18":
+  version "0.0.18"
+  resolved "https://registry.npmmirror.com/@swc/css-android-arm64/-/css-android-arm64-0.0.18.tgz#960ca6def1129e3ab36ba58bdbc1b9019de0844b"
+  integrity sha512-dXafkyVXUfKwSdTZ0rUTO2I4Rs+43IdJ5gQqvsVvCwlDpF6f6UaIykermXs22/8tWaZd+gkPzKAocyOAnkGOWQ==
+
+"@swc/css-darwin-arm64@0.0.18":
+  version "0.0.18"
+  resolved "https://registry.npmmirror.com/@swc/css-darwin-arm64/-/css-darwin-arm64-0.0.18.tgz#2589ce344a3026594828b427f72b1f4aba39c0e3"
+  integrity sha512-PZxbMEG7YldYFHkD1xVnl1Fq6DF4wlmLFN7zrSAB2MrWP6eAUlHFQgD7xal6VPD0SPSjuU/m+FoD83TJbhY54Q==
+
+"@swc/css-darwin-x64@0.0.18":
+  version "0.0.18"
+  resolved "https://registry.npmmirror.com/@swc/css-darwin-x64/-/css-darwin-x64-0.0.18.tgz#6aa3a05af645ccfa21e4d73bb97dd0928e236792"
+  integrity sha512-usMlRrUph/YKpvtUfpFaE69xLYVnKjJHuMbQfMq6K5537SVaJ6K7yd1XjCakA16t6G2sU3z2JTTVzzp/VfTRVg==
+
+"@swc/css-freebsd-x64@0.0.18":
+  version "0.0.18"
+  resolved "https://registry.npmmirror.com/@swc/css-freebsd-x64/-/css-freebsd-x64-0.0.18.tgz#d872c9c4abe3cbeedc39039d11cb9dcc1e9d1a80"
+  integrity sha512-dCQpTnEl7H6qqHd6dDl4nHC4W1IjVUz1p78ym6kpFO81cw6nuzqDcEpmcIhCprWVzNTitOcTDi21A6tfPJ1LGQ==
+
+"@swc/css-linux-arm-gnueabihf@0.0.18":
+  version "0.0.18"
+  resolved "https://registry.npmmirror.com/@swc/css-linux-arm-gnueabihf/-/css-linux-arm-gnueabihf-0.0.18.tgz#5a678cd036226b0e23c10b4fc8aa3fc8f9afd772"
+  integrity sha512-kJJaWmCJKw69dIsd6TyP8FTXEp+bKCxyvcWzur0753aCdd1TfH/8jH8HWlulphpJlnIuETfFJUi9tBPUprQBEA==
+
+"@swc/css-linux-arm64-gnu@0.0.18":
+  version "0.0.18"
+  resolved "https://registry.npmmirror.com/@swc/css-linux-arm64-gnu/-/css-linux-arm64-gnu-0.0.18.tgz#589a00f581f4cec77b247fea297ad9d51250418f"
+  integrity sha512-hBkejxUWRPYVZSIOYr2/MCKuZLRuJpGx8OAKr0yq+5/E0506Vwv8ub4Gs3Bu1j8+A4jQxJs1jzUZHOjJSDJktQ==
+
+"@swc/css-linux-arm64-musl@0.0.18":
+  version "0.0.18"
+  resolved "https://registry.npmmirror.com/@swc/css-linux-arm64-musl/-/css-linux-arm64-musl-0.0.18.tgz#da8c5c9201279bd68a5398432dd7ee9d7022f863"
+  integrity sha512-cnFd3zwaXVphV5HLef/YNoeSrfE6FpLnQ4gsrIdvt/wuwOsq9p7dm3g5PvgwbSINGa39WJMK1EoSAOwhWrePzg==
+
+"@swc/css-linux-x64-gnu@0.0.18":
+  version "0.0.18"
+  resolved "https://registry.npmmirror.com/@swc/css-linux-x64-gnu/-/css-linux-x64-gnu-0.0.18.tgz#505815aceb8fd86bd573ba4106252c5534236baa"
+  integrity sha512-QdbuFt5NRLBo0Tp6tL5PolryF8NEp6y+nU9kD1F7kBWkTTxwsxXNfdmpBi3hACCarSwQ5nzDI303+j7FtSipMg==
+
+"@swc/css-linux-x64-musl@0.0.18":
+  version "0.0.18"
+  resolved "https://registry.npmmirror.com/@swc/css-linux-x64-musl/-/css-linux-x64-musl-0.0.18.tgz#1ca8bbc75118b2317c15fbd2507345b1e825c5e5"
+  integrity sha512-x6Uk0oJio0OZLNBV46O5LGaOr9udiXjMgA1axo7DVn1FsOFGW5LG2wo732KSnPXbDrysbzJoc5JINCpdHV4L8w==
+
+"@swc/css-win32-arm64-msvc@0.0.18":
+  version "0.0.18"
+  resolved "https://registry.npmmirror.com/@swc/css-win32-arm64-msvc/-/css-win32-arm64-msvc-0.0.18.tgz#7a4ed69cac1dfe3b77dee46dc4b1d21dd5b25a73"
+  integrity sha512-9Ljv7fc6+GIrAUeJkYOjLzMyBN/33IQQ9xF9M8wZMdin5urEplDYyn6G+MQhUk1j2YiHe9bOzqqH2fXa6MGzWA==
+
+"@swc/css-win32-ia32-msvc@0.0.18":
+  version "0.0.18"
+  resolved "https://registry.npmmirror.com/@swc/css-win32-ia32-msvc/-/css-win32-ia32-msvc-0.0.18.tgz#7f0fdf22ad755a5c7318bfa4077accfe25c80c28"
+  integrity sha512-1qKpcGtOAYiF5oh5rd6lRJHOJjO6fEXT7O9eSc8IfEjab1845igoxd/2vCU2xm8VkVaPkHM02f8N+Wukm1zJIQ==
+
+"@swc/css-win32-x64-msvc@0.0.18":
+  version "0.0.18"
+  resolved "https://registry.npmmirror.com/@swc/css-win32-x64-msvc/-/css-win32-x64-msvc-0.0.18.tgz#80497aad89d013b50e0a2a0fd0ea001f08a87672"
+  integrity sha512-v1W3WhAZlafY9OeWz8X0j1jVw/toe+D07bBO5GnxcW6qHIMOh+SSuAGqLWTfgWVcgY0aq8k/BpP0gEiaUIBtrA==
+
+"@swc/css@^0.0.18":
+  version "0.0.18"
+  resolved "https://registry.npmmirror.com/@swc/css/-/css-0.0.18.tgz#45a4d39bc7259ed6b4956c05168057eadc795bff"
+  integrity sha512-5zSKWvmiwF+lYCFBEk2fVFq57+ezOxA1htPhIygtJm8b8E6ufVpZfGbFiVfaKO7tqbIZ2Ja9fFnKsjO09F15Gw==
+  optionalDependencies:
+    "@swc/css-android-arm-eabi" "0.0.18"
+    "@swc/css-android-arm64" "0.0.18"
+    "@swc/css-darwin-arm64" "0.0.18"
+    "@swc/css-darwin-x64" "0.0.18"
+    "@swc/css-freebsd-x64" "0.0.18"
+    "@swc/css-linux-arm-gnueabihf" "0.0.18"
+    "@swc/css-linux-arm64-gnu" "0.0.18"
+    "@swc/css-linux-arm64-musl" "0.0.18"
+    "@swc/css-linux-x64-gnu" "0.0.18"
+    "@swc/css-linux-x64-musl" "0.0.18"
+    "@swc/css-win32-arm64-msvc" "0.0.18"
+    "@swc/css-win32-ia32-msvc" "0.0.18"
+    "@swc/css-win32-x64-msvc" "0.0.18"
+
 "@tootallnate/once@1":
   version "1.1.2"
   resolved "https://registry.npmmirror.com/@tootallnate/once/-/once-1.1.2.tgz#ccb91445360179a04e7fe6aff78c00ffc1eeaf82"
