@@ -131,7 +131,7 @@ export default async function getConfig({ api, cwd, config, env, entry = {}, mod
             .end()
             .use('swc-loader')
             .loader(require.resolve('swc-loader'))
-            .options(buildSwcOptions(targets, config, false, false, true));
+            .options(buildSwcOptions(targets, config, false, false, true, false));
         webpackConfig.module
             .rule('jsx')
             .test(/\.jsx$/)
@@ -139,7 +139,7 @@ export default async function getConfig({ api, cwd, config, env, entry = {}, mod
             .end()
             .use('swc-loader')
             .loader(require.resolve('swc-loader'))
-            .options(buildSwcOptions(targets, config, true, false, true));
+            .options(buildSwcOptions(targets, config, true, false, true, false));
 
         webpackConfig.module
             .rule('ts')
@@ -148,7 +148,7 @@ export default async function getConfig({ api, cwd, config, env, entry = {}, mod
             .end()
             .use('swc-loader')
             .loader(require.resolve('swc-loader'))
-            .options(buildSwcOptions(targets, config, false, true));
+            .options(buildSwcOptions(targets, config, false, true, false));
         webpackConfig.module
             .rule('tsx')
             .test(/\.tsx$/)
@@ -156,7 +156,7 @@ export default async function getConfig({ api, cwd, config, env, entry = {}, mod
             .end()
             .use('swc-loader')
             .loader(require.resolve('swc-loader'))
-            .options(buildSwcOptions(targets, config, true, true));
+            .options(buildSwcOptions(targets, config, true, true, false));
         // 为了避免第三方依赖包编译不充分导致线上问题，默认对 node_modules 也进行全编译，只在生产构建的时候进行
         if (isProd) {
             const cjsReg = [/css-loader/].concat(config.swcLoader?.cjsPkg || []);
@@ -178,7 +178,7 @@ export default async function getConfig({ api, cwd, config, env, entry = {}, mod
                 .end()
                 .use('swc-loader')
                 .loader(require.resolve('swc-loader'))
-                .options(buildSwcOptions(targets, config, false, false, true));
+                .options(buildSwcOptions(targets, config, false, false, true, true));
             webpackConfig.module
                 .rule('cjs-in-node_modules')
                 .test(/\.(js)$/)
@@ -197,7 +197,7 @@ export default async function getConfig({ api, cwd, config, env, entry = {}, mod
                 .end()
                 .use('swc-loader')
                 .loader(require.resolve('swc-loader'))
-                .options(buildSwcOptions(targets, config, false, false, false));
+                .options(buildSwcOptions(targets, config, false, false, false, true));
         }
     } else {
         const babelOpts = await getBabelOpts({
