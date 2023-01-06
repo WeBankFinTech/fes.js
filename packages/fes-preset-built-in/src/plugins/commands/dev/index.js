@@ -4,6 +4,24 @@
  */
 
 const assert = require('assert');
+const path = require('path');
+
+async function handleCacheClean(cwd) {
+    return new Promise((resolve, reject) => {
+        const cachePath = path.join(cwd, '.cache/webpack');
+        require('get-folder-size')(cachePath, (err, size) => {
+            if (err) {
+                return reject(err);
+            }
+            // 大于 5G 清除缓存，修复 webpack 缓存无限增长问题
+            // https://github.com/webpack/webpack/issues/13291
+            if (size > 5 * 1024 * 1024 * 1024) {
+                require('fs-extra').removeSync(cachePath);
+            }
+            resolve(size);
+        });
+    });
+}
 
 export default (api) => {
     const {
@@ -43,6 +61,7 @@ export default (api) => {
             const createRouteMiddleware = require('./createRouteMiddleware').default;
             const generateFiles = require('../../../utils/generateFiles').default;
             const { watchPkg } = require('./watchPkg');
+            await handleCacheClean(api.paths.cwd);
 
             const defaultPort = process.env.PORT || args.port || api.config.devServer?.port;
             port = await portfinder.getPortPromise({
