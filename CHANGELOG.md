@@ -1,3 +1,18 @@
+# [3.0.0-rc.7](https://github.com/WeBankFinTech/fes.js/compare/v3.0.0-rc.6...v3.0.0-rc.7) (2023-01-06)
+
+
+### Bug Fixes
+
+* 解决 core-js 版本问题 ([#164](https://github.com/WeBankFinTech/fes.js/issues/164)) ([eee453b](https://github.com/WeBankFinTech/fes.js/commit/eee453b601c0799b4c4836e8dbde77e80e0871f8))
+* webpack 缓存不断叠加 ([#167](https://github.com/WeBankFinTech/fes.js/issues/167)) ([ab4cc6a](https://github.com/WeBankFinTech/fes.js/commit/ab4cc6a5a8d6f99921597720d184cc3efe13b100))
+
+
+### Features
+
+* **build script:** generate sourcemap for developer ([#162](https://github.com/WeBankFinTech/fes.js/issues/162)) ([22000e4](https://github.com/WeBankFinTech/fes.js/commit/22000e4f9c254e1597c750c1f1f3a36c5672547b))
+
+
+
 # [3.0.0-rc.6](https://github.com/WeBankFinTech/fes.js/compare/v3.0.0-rc.5...v3.0.0-rc.6) (2022-12-11)
 
 
