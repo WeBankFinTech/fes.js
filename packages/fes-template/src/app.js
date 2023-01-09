@@ -14,13 +14,19 @@ export const beforeRender = {
                 store.$patch({
                     userName: '李雷',
                 });
-                setRole('admin');
+                setRole('menuTest');
                 resolve({
                     userName: '李雷',
                 });
                 createWatermark({ content: '万纯(harrywan)' });
             }, 1000);
         });
+    },
+};
+
+export const login = {
+    hasLogin() {
+        return !!sessionStorage.getItem('login');
     },
 };
 

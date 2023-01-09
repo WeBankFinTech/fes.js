@@ -149,6 +149,7 @@ export const access = {
     isDataReady,
     setRole,
     setAccess,
+    match,
     getAccess: getAllowAccessIds,
 };
 

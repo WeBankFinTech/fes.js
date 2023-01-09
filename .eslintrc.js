@@ -8,12 +8,12 @@ module.exports = {
         __DEV__: false,
     },
     rules: {
-        'vue/comment-directive': 'off',
-        'global-require': 'off',
-        'import/no-unresolved': 'off',
-        'no-restricted-syntax': 'off',
-        'no-undefined': 'off',
-        'vue/valid-template-root': 'off',
+        // 'vue/comment-directive': 'off',
+        // 'global-require': 'off',
+        // 'import/no-unresolved': 'off',
+        // 'no-restricted-syntax': 'off',
+        // 'no-undefined': 'off',
+        // 'vue/valid-template-root': 'off',
     },
     env: {
         jest: true,

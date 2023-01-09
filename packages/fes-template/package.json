@@ -1,68 +1,69 @@
 {
-  "name": "@fesjs/template",
-  "version": "2.0.0",
-  "description": "fes项目模版",
-  "scripts": {
-    "build": "fes build",
-    "prod": "FES_ENV=prod fes build",
-    "analyze": "ANALYZE=1 fes build",
-    "dev": "fes dev",
-    "test": "fes test"
-  },
-  "keywords": [
-    "管理端",
-    "fes",
-    "fast",
-    "easy",
-    "strong"
-  ],
-  "files": [
-    ".eslintrc.js",
-    ".gitignore",
-    ".fes.js",
-    ".fes.prod.js",
-    "mock.js",
-    "package.json",
-    "README.md",
-    "tsconfig.json",
-    "/src",
-    "/config"
-  ],
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/WeBankFinTech/fes.js.git",
-    "directory": "packages/fes-template"
-  },
-  "author": "harrywan",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/WeBankFinTech/fes.js/issues"
-  },
-  "homepage": "https://github.com/WeBankFinTech/fes.js#readme",
-  "publishConfig": {
-    "access": "public"
-  },
-  "dependencies": {
-    "@fesjs/fes": "^3.0.0-rc.0",
-    "@fesjs/plugin-access": "^3.0.0-rc.0",
-    "@fesjs/plugin-layout": "^5.0.0-rc.0",
-    "@fesjs/plugin-locale": "^4.0.0-rc.0",
-    "@fesjs/plugin-model": "^3.0.0-rc.0",
-    "@fesjs/plugin-enums": "^3.0.0-rc.0",
-    "@fesjs/plugin-jest": "^2.0.0",
-    "@fesjs/plugin-vuex": "^3.0.0-rc.0",
-    "@fesjs/plugin-request": "^3.0.0-rc.0",
-    "@fesjs/plugin-qiankun": "^3.0.0-rc.0",
-    "@fesjs/plugin-sass": "^3.0.0-rc.0",
-    "@fesjs/plugin-monaco-editor": "^3.0.0-rc.0",
-    "@fesjs/plugin-windicss": "^3.0.0-rc.0",
-    "@fesjs/plugin-pinia": "^3.0.0-rc.0",
-    "@fesjs/plugin-watermark": "^3.0.0-rc.0",
-    "@fesjs/fes-design": "^0.7.0",
-    "core-js": "^3.27.0",
-    "vue": "^3.2.37",
-    "vuex": "^4.0.0",
-    "pinia": "^2.0.11"
-  },
-  "private": true
+    "name": "@fesjs/template",
+    "version": "2.0.0",
+    "description": "fes项目模版",
+    "scripts": {
+        "build": "fes build",
+        "prod": "FES_ENV=prod fes build",
+        "analyze": "ANALYZE=1 fes build",
+        "dev": "fes dev",
+        "test": "fes test"
+    },
+    "keywords": [
+        "管理端",
+        "fes",
+        "fast",
+        "easy",
+        "strong"
+    ],
+    "files": [
+        ".eslintrc.js",
+        ".gitignore",
+        ".fes.js",
+        ".fes.prod.js",
+        "mock.js",
+        "package.json",
+        "README.md",
+        "tsconfig.json",
+        "/src",
+        "/config"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/WeBankFinTech/fes.js.git",
+        "directory": "packages/fes-template"
+    },
+    "author": "harrywan",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/WeBankFinTech/fes.js/issues"
+    },
+    "homepage": "https://github.com/WeBankFinTech/fes.js#readme",
+    "publishConfig": {
+        "access": "public"
+    },
+    "dependencies": {
+        "@fesjs/fes": "^3.0.0-rc.0",
+        "@fesjs/plugin-access": "^3.0.0-rc.0",
+        "@fesjs/plugin-layout": "^5.0.0-rc.0",
+        "@fesjs/plugin-locale": "^4.0.0-rc.0",
+        "@fesjs/plugin-login": "^3.0.0-rc.0",
+        "@fesjs/plugin-model": "^3.0.0-rc.0",
+        "@fesjs/plugin-enums": "^3.0.0-rc.0",
+        "@fesjs/plugin-jest": "^2.0.0",
+        "@fesjs/plugin-vuex": "^3.0.0-rc.0",
+        "@fesjs/plugin-request": "^3.0.0-rc.0",
+        "@fesjs/plugin-qiankun": "^3.0.0-rc.0",
+        "@fesjs/plugin-sass": "^3.0.0-rc.0",
+        "@fesjs/plugin-monaco-editor": "^3.0.0-rc.0",
+        "@fesjs/plugin-windicss": "^3.0.0-rc.0",
+        "@fesjs/plugin-pinia": "^3.0.0-rc.0",
+        "@fesjs/plugin-watermark": "^3.0.0-rc.0",
+        "@fesjs/fes-design": "^0.7.0",
+        "core-js": "^3.27.0",
+        "vue": "^3.2.37",
+        "vuex": "^4.0.0",
+        "pinia": "^2.0.11"
+    },
+    "private": true
 }
