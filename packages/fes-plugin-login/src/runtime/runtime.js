@@ -14,11 +14,7 @@ function getLoginConfig() {
     return config;
 }
 
-export function access(memo) {
-    const { loginPath } = getLoginConfig();
-    memo.ignoreAccess = (memo.ignoreAccess || []).concat(loginPath);
-    return memo;
-}
+// ACCESS
 
 export function request(memo) {
     if (!memo.responseInterceptors) {
