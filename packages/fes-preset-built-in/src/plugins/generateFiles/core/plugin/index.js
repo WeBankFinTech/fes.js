@@ -16,8 +16,6 @@ export default function (api) {
             key: 'addRuntimePluginKey',
             type: api.ApplyPluginsType.add,
             initialValue: [
-                // 初始化数据
-                'beforeRender',
                 // modify渲染工具
                 'modifyClientRenderOpts',
                 'rootContainer',
@@ -31,6 +29,8 @@ export default function (api) {
                 'modifyCreateHistory',
                 // 修改路由配置
                 'modifyRoute',
+                // 初始化数据
+                'beforeRender',
                 // 生成router时触发
                 'onRouterCreated',
             ],

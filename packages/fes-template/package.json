@@ -57,7 +57,6 @@
         "@fesjs/plugin-sass": "^3.0.0-rc.0",
         "@fesjs/plugin-monaco-editor": "^3.0.0-rc.0",
         "@fesjs/plugin-windicss": "^3.0.0-rc.0",
-        "@fesjs/plugin-pinia": "^3.0.0-rc.0",
         "@fesjs/plugin-watermark": "^3.0.0-rc.0",
         "@fesjs/fes-design": "^0.7.0",
         "core-js": "^3.27.0",
