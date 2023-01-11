@@ -21,7 +21,7 @@
   "devDependencies": {
     "@babel/core": "^7.15.0",
     "@babel/preset-env": "^7.15.0",
-    "@webank/eslint-config-webank": "^1.2.3",
+    "@webank/eslint-config-webank": "1.2.7",
     "chalk": "^4.1.2",
     "chokidar": "^3.5.2",
     "deepmerge": "^4.2.2",

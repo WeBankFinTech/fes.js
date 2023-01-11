@@ -1,8 +1,12 @@
 const path = require('path');
+const fs = require('fs');
 
 async function handleCacheClean(cwd) {
     return new Promise((resolve, reject) => {
         const cachePath = path.join(cwd, '.cache/webpack');
+        if (!fs.existsSync(cachePath)) {
+            return resolve();
+        }
         require('get-folder-size')(cachePath, (err, size) => {
             if (err) {
                 return reject(err);

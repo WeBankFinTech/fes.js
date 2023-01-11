@@ -1,8 +1,8 @@
 import { readFileSync } from 'fs';
 import { join } from 'path';
 import { winPath } from '@fesjs/utils';
-import { parseStore } from './helper';
 import { name } from '../package.json';
+import { parseStore } from './helper';
 
 const namespace = 'plugin-pinia';
 

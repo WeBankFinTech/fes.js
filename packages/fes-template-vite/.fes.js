@@ -37,9 +37,6 @@ export default defineBuildConfig({
                 match: ['/route/*'],
             },
             {
-                name: 'store',
-            },
-            {
                 name: 'editor',
                 icon: '/wine-outline.svg',
             },
@@ -73,9 +70,6 @@ export default defineBuildConfig({
             ['0', '无效的'],
             ['1', '有效的'],
         ],
-    },
-    vuex: {
-        strict: true,
     },
     dynamicImport: true,
     monacoEditor: {

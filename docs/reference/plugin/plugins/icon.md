@@ -3,15 +3,17 @@
 ## 介绍
 
 提供以 `component` 的方式，直接使用 svg icon 的能力。
+
 ## 启用方式
 
 在 `package.json` 中引入依赖：
+
 ```json
 {
     "dependencies": {
-        "@fesjs/fes": "^2.0.0",
-        "@fesjs/plugin-icon": "^2.0.0"
-    },
+        "@fesjs/fes": "^3.0.0-rc.2",
+        "@fesjs/plugin-icon": "^3.0.0-rc.2"
+    }
 }
 ```
 
@@ -25,8 +27,8 @@
 
 ### 属性
 
-| 属性 | 说明 | 类型 |
-| :-----| :---- | :---- |
-| type | svg 文件名 | `string` |
-| spin | 是否无限旋转 | `boolean` |
-| rotate | 旋转角度 | `number` |
+| 属性   | 说明         | 类型      |
+| :----- | :----------- | :-------- |
+| type   | svg 文件名   | `string`  |
+| spin   | 是否无限旋转 | `boolean` |
+| rotate | 旋转角度     | `number`  |
