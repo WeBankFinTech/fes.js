@@ -8,7 +8,7 @@ export const useStore = defineStore('main', {
         // all these properties will have their type inferred automatically
         counter: 0,
         name: 'Eduardo',
-        isAdmin: true
+        isAdmin: true,
     }),
     actions: {
         increment() {
@@ -16,6 +16,6 @@ export const useStore = defineStore('main', {
         },
         randomizeCounter() {
             this.counter = Math.round(100 * Math.random());
-        }
-    }
+        },
+    },
 });

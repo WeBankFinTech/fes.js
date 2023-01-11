@@ -84,9 +84,6 @@ export default defineBuildConfig({
             ['1', '有效的'],
         ],
     },
-    vuex: {
-        strict: true,
-    },
     dynamicImport: true,
     monacoEditor: {
         languages: ['javascript', 'typescript', 'html', 'json'],
