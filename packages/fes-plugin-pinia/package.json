@@ -1,6 +1,6 @@
 {
   "name": "@fesjs/plugin-pinia",
-  "version": "3.0.0-rc.2",
+  "version": "3.0.0-rc.3",
   "description": "@fesjs/plugin-pinia",
   "main": "lib/index.js",
   "files": [
@@ -31,7 +31,7 @@
     "@fesjs/utils": "3.0.0-rc.2"
   },
   "peerDependencies": {
-    "@fesjs/fes": "3.0.0-rc.2",
+    "@fesjs/fes": "3.0.0-rc.4",
     "pinia": "^2.0.11",
     "vue": "^3.2.37"
   },

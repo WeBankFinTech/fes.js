@@ -1,3 +1,12 @@
+# [3.0.0-rc.8](https://github.com/WeBankFinTech/fes.js/compare/v3.0.0-rc.7...v3.0.0-rc.8) (2023-01-11)
+
+
+### Features
+
+* 添加 login 插件 ([#168](https://github.com/WeBankFinTech/fes.js/issues/168)) ([8332b11](https://github.com/WeBankFinTech/fes.js/commit/8332b1114ce73b49a5facb251a045edef019b232))
+
+
+
 # [3.0.0-rc.7](https://github.com/WeBankFinTech/fes.js/compare/v3.0.0-rc.6...v3.0.0-rc.7) (2023-01-06)
 
 
