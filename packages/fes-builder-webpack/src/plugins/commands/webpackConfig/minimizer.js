@@ -1,4 +1,5 @@
 import { deepmerge } from '@fesjs/utils';
+import TerserPlugin from 'terser-webpack-plugin';
 
 const defaultTerserOptions = {
     compress: {
@@ -40,6 +41,7 @@ const defaultTerserOptions = {
 const terserOptions = (config) => ({
     terserOptions: deepmerge(defaultTerserOptions, config.terserOptions || {}),
     extractComments: false,
+    minify: config.swcLoader ? TerserPlugin.swcMinify : undefined,
 });
 
 export default function createMinimizerWebpackConfig({ isProd, config, webpackConfig }) {
