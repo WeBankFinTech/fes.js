@@ -57,6 +57,7 @@
     "postcss-safe-parser": "^6.0.0",
     "style-loader": "^2.0.0",
     "swc-loader": "^0.2.3",
+    "terser-webpack-plugin": "^5.3.6",
     "vue-loader": "^16.1.2",
     "webpack": "^5.69.0",
     "webpack-bundle-analyzer": "^4.4.0",

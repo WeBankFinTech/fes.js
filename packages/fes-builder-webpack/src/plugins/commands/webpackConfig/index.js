@@ -60,7 +60,7 @@ export default async function getConfig({ api, cwd, config, env, entry = {}, mod
     webpackConfig.mode(env);
     webpackConfig.stats('errors-only');
     webpackConfig.externals(config.externals || {});
-    webpackConfig.devtool(isDev ? config.devtool || 'cheap-module-source-map' : config.devtool);
+    webpackConfig.devtool(false);
 
     // --------------- cache -----------
     webpackConfig.cache({
@@ -131,7 +131,7 @@ export default async function getConfig({ api, cwd, config, env, entry = {}, mod
             .end()
             .use('swc-loader')
             .loader(require.resolve('swc-loader'))
-            .options(buildSwcOptions(targets, config, false, false, true, false));
+            .options(buildSwcOptions(targets, config, false, false));
         webpackConfig.module
             .rule('jsx')
             .test(/\.jsx$/)
@@ -139,7 +139,7 @@ export default async function getConfig({ api, cwd, config, env, entry = {}, mod
             .end()
             .use('swc-loader')
             .loader(require.resolve('swc-loader'))
-            .options(buildSwcOptions(targets, config, true, false, true, false));
+            .options(buildSwcOptions(targets, config, true, false));
 
         webpackConfig.module
             .rule('ts')
@@ -148,7 +148,7 @@ export default async function getConfig({ api, cwd, config, env, entry = {}, mod
             .end()
             .use('swc-loader')
             .loader(require.resolve('swc-loader'))
-            .options(buildSwcOptions(targets, config, false, true, false));
+            .options(buildSwcOptions(targets, config, false, true));
         webpackConfig.module
             .rule('tsx')
             .test(/\.tsx$/)
@@ -156,13 +156,13 @@ export default async function getConfig({ api, cwd, config, env, entry = {}, mod
             .end()
             .use('swc-loader')
             .loader(require.resolve('swc-loader'))
-            .options(buildSwcOptions(targets, config, true, true, false));
+            .options(buildSwcOptions(targets, config, true, true));
         // 为了避免第三方依赖包编译不充分导致线上问题，默认对 node_modules 也进行全编译，只在生产构建的时候进行
         if (isProd) {
-            const cjsReg = [/css-loader/].concat(config.swcLoader?.cjsPkg || []);
+            // const cjsReg = [/css-loader/, /vue-loader/].concat(config.swcLoader?.cjsPkg || []);
             const transpileDepRegex = genTranspileDepRegex(config.nodeModulesTransform.exclude);
             webpackConfig.module
-                .rule('esm-in-node_modules')
+                .rule('node_modules')
                 .test(/\.(js|mjs)$/)
                 .include.add(/node_modules/)
                 .end()
@@ -170,34 +170,12 @@ export default async function getConfig({ api, cwd, config, env, entry = {}, mod
                     if (transpileDepRegex && transpileDepRegex.test(filepath)) {
                         return true;
                     }
-                    if (cjsReg.some((reg) => reg.test(filepath))) {
-                        return true;
-                    }
                     return false;
                 })
                 .end()
                 .use('swc-loader')
                 .loader(require.resolve('swc-loader'))
-                .options(buildSwcOptions(targets, config, false, false, true, true));
-            webpackConfig.module
-                .rule('cjs-in-node_modules')
-                .test(/\.(js)$/)
-                .include.add(/node_modules/)
-                .end()
-                .exclude.add((filepath) => {
-                    if (transpileDepRegex && transpileDepRegex.test(filepath)) {
-                        return true;
-                    }
-                    if (cjsReg.every((reg) => !reg.test(filepath))) {
-                        return true;
-                    }
-
-                    return false;
-                })
-                .end()
-                .use('swc-loader')
-                .loader(require.resolve('swc-loader'))
-                .options(buildSwcOptions(targets, config, false, false, false, true));
+                .options(buildSwcOptions(targets, config, false, false));
         }
     } else {
         const babelOpts = await getBabelOpts({
@@ -337,13 +315,12 @@ export default async function getConfig({ api, cwd, config, env, entry = {}, mod
     }
 
     // --------------- 压缩 -----------
-    if (!useSwc) {
-        createMinimizerWebpackConfig({
-            isProd,
-            config,
-            webpackConfig,
-        });
-    }
+    createMinimizerWebpackConfig({
+        isProd,
+        config,
+        webpackConfig,
+    });
+
     // --------------- chainwebpack -----------
     if (chainWebpack) {
         await chainWebpack(webpackConfig, {
