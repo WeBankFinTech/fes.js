@@ -1,3 +1,12 @@
+# [3.0.0-rc.9](https://github.com/WeBankFinTech/fes.js/compare/v3.0.0-rc.8...v3.0.0-rc.9) (2023-01-30)
+
+
+### Bug Fixes
+
+* fix login plugin build error ([#169](https://github.com/WeBankFinTech/fes.js/issues/169)) ([a1cbdb5](https://github.com/WeBankFinTech/fes.js/commit/a1cbdb558f7f361993dc66d8d12eb65baeba3034))
+
+
+
 # [3.0.0-rc.8](https://github.com/WeBankFinTech/fes.js/compare/v3.0.0-rc.7...v3.0.0-rc.8) (2023-01-11)
 
 
