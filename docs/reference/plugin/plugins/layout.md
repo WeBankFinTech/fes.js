@@ -227,39 +227,45 @@ export const layout = (layoutConfig, { initialState }) => ({
 
 ### menus
 
--   **类型**：`[] | ()=> Ref<[]>`
+-   **类型**：`[] | () => Ref<[]> | () => []`
 -   **默认值**：`[]`
 
--   **详情**：菜单配置，子项具体配置如下：
+-   **详情**：菜单配置
+
+    子项具体配置如下：
 
     -   **name**：菜单的名称。通过匹配 `name` 和路由元信息 [meta](../../../guide/route.md#扩展路由元信息) 中的 `name`，把菜单和路由关联起来， 然后使用路由元信息补充菜单配置，比如 `title`、`path`  等。
 
     -   **path**：菜单的路径，可配置第三方地址。
 
-    -   **match**：额外匹配的路径，当前路由命中匹配规则时，此菜单高亮。 (v4.0.0+）
+    -   **match (v4.0.0+）**：额外匹配的路径，当前路由命中匹配规则时，此菜单高亮。
 
-```
-{
-    path: '/product',
-    match: ['/product/*', '/product/create']
-}
-```
+        ```
+        {
+            path: '/product',
+            match: ['/product/*', '/product/create']
+        }
+        ```
 
--   **title**：菜单的标题，如果同时使用[国际化插件](./locale.md)，而且`title`的值以`$`开头，则使用`$`后面的内容去匹配语言设置。
+    -   **title**：菜单的标题。
+        
+        - 如果同时使用[国际化插件](./locale.md)，而且`title`的值以`$`开头，则使用`$`后面的内容去匹配语言设置。
+        
+        - title支持配置函数，对应 Fes Design 中 Menu 组件的`label`插槽。仅在运行时配置中支持。
 
--   **icon**: 菜单的图标，只有一级标题展示图标。
+    -   **icon**: 菜单的图标，只一级标题展示图标。
 
-    -   图标使用[fes-design icon](https://fes-design-4gvn317r3b6bfe17-1254145788.ap-shanghai.app.tcloudbase.com/zh/components/icon.html)，编译时配置使用组件名称，我们会自动引入组件。
+        - 图标使用[fes-design icon](https://fes-design-4gvn317r3b6bfe17-1254145788.ap-shanghai.app.tcloudbase.com/zh/components/icon.html)，编译时配置使用组件名称，我们会自动引入组件。
 
-    -   图标使用本地或者远程 svg 图片。
+        - 图标使用本地或者远程 svg 图片。
 
-```js
-{
-    icon: '/wine-outline.svg';
-}
-```
+            ```js
+            {
+                icon: '/wine-outline.svg';
+            }
+            ```
 
--   **children**：子菜单配置。
+    -   **children**：子菜单配置。
 
 :::tip
 函数类型仅在运行时可用，可以实现动态变更菜单。
