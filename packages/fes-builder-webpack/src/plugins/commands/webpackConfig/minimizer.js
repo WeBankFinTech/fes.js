@@ -38,15 +38,22 @@ const defaultTerserOptions = {
     },
 };
 
-const terserOptions = (config) => ({
-    terserOptions: deepmerge(defaultTerserOptions, config.terserOptions || {}),
-    extractComments: false,
-    minify: config.swcLoader ? TerserPlugin.swcMinify : undefined,
-});
+const terserOptions = (config, swcOptions) => {
+    if (swcOptions) {
+        return {
+            terserOptions: swcOptions.jsc?.minify,
+            minify: TerserPlugin.swcMinify,
+        };
+    }
+    return {
+        terserOptions: deepmerge(defaultTerserOptions, config.terserOptions || {}),
+        extractComments: false,
+    };
+};
 
-export default function createMinimizerWebpackConfig({ isProd, config, webpackConfig }) {
+export default function createMinimizerWebpackConfig({ isProd, config, webpackConfig, swcOptions }) {
     if (isProd) {
-        webpackConfig.optimization.minimizer('terser').use(require.resolve('terser-webpack-plugin'), [terserOptions(config)]);
+        webpackConfig.optimization.minimizer('terser').use(require.resolve('terser-webpack-plugin'), [terserOptions(config, swcOptions)]);
     }
     if (process.env.FES_ENV === 'test') {
         webpackConfig.optimization.minimize(false);

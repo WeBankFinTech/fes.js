@@ -319,6 +319,7 @@ export default async function getConfig({ api, cwd, config, env, entry = {}, mod
         isProd,
         config,
         webpackConfig,
+        swcOptions: useSwc ? buildSwcOptions(targets, config, false, false, true) : undefined,
     });
 
     // --------------- chainwebpack -----------
