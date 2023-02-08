@@ -1,6 +1,6 @@
 import { deepmerge } from '@fesjs/utils';
 
-export function buildSwcOptions(targets, config, isJsx, isTs) {
+export function buildSwcOptions(targets, config, isJsx, isTs, minify = false) {
     if (config.swcLoader?.cjsPkg) {
         delete config.swcLoader.cjsPkg;
     }
@@ -26,7 +26,7 @@ export function buildSwcOptions(targets, config, isJsx, isTs) {
                 // preserveAllComments: true,
             },
             isModule: 'unknown',
-            minify: false,
+            minify: minify ? {} : false,
         },
         config.swcLoader || {},
     );
