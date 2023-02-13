@@ -60,7 +60,7 @@ export default async function getConfig({ api, cwd, config, env, entry = {}, mod
     webpackConfig.mode(env);
     webpackConfig.stats('errors-only');
     webpackConfig.externals(config.externals || {});
-    webpackConfig.devtool(false);
+    webpackConfig.devtool(isDev ? config.devtool || 'cheap-module-source-map' : config.devtool);
 
     // --------------- cache -----------
     webpackConfig.cache({
