@@ -1,3 +1,12 @@
+# [3.0.0-rc.11](https://github.com/WeBankFinTech/fes.js/compare/v3.0.0-rc.10...v3.0.0-rc.11) (2023-02-21)
+
+
+### Bug Fixes
+
+* .d.ts 类型异常 ([5d537c5](https://github.com/WeBankFinTech/fes.js/commit/5d537c55c0c3d409afa04c600954aefa77a6c57b))
+
+
+
 # [3.0.0-rc.10](https://github.com/WeBankFinTech/fes.js/compare/v3.0.0-rc.9...v3.0.0-rc.10) (2023-02-21)
 
 
