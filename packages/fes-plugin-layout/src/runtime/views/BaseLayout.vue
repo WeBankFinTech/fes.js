@@ -168,9 +168,9 @@
 import { ref, computed, onMounted } from 'vue';
 import { useRoute } from '@@/core/coreExports';
 import { FLayout, FAside, FMain, FFooter, FHeader } from '@fesjs/fes-design';
+import defaultLogo from '../assets/logo.png';
 import Menu from './Menu.vue';
 import MultiTabProvider from './MultiTabProvider.vue';
-import defaultLogo from '../assets/logo.png';
 
 export default {
     components: {
