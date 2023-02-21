@@ -1,3 +1,12 @@
+# [3.0.0-rc.10](https://github.com/WeBankFinTech/fes.js/compare/v3.0.0-rc.9...v3.0.0-rc.10) (2023-02-21)
+
+
+### Bug Fixes
+
+* layout插件菜单会自动展开当前路由 & 修复之前不合理用法 ([#171](https://github.com/WeBankFinTech/fes.js/issues/171)) ([e3bd573](https://github.com/WeBankFinTech/fes.js/commit/e3bd57342957124fe09db98b37231e7749b6a94d))
+
+
+
 # [3.0.0-rc.9](https://github.com/WeBankFinTech/fes.js/compare/v3.0.0-rc.8...v3.0.0-rc.9) (2023-01-30)
 
 
