@@ -1,7 +1,7 @@
 import { Router, NavigationGuard } from 'vue-router';
 import { Ref } from 'vue';
 
-export function access(): {
+export const access: {
     hasAccess(accessId: string | number): Promise<boolean>;
     isDataReady(): boolean;
     setRole(roleId: string | Promise<string>): void;

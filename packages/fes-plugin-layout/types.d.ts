@@ -15,8 +15,8 @@ declare module '@fesjs/fes' {
     interface RouteMeta {
         'keep-alive'?: boolean;
         layout?: {
-            navigation?: 'side' | 'mixin' | 'top' | 'left-right' | null,
-        }
+            navigation?: 'side' | 'mixin' | 'top' | 'left-right' | null;
+        };
     }
     interface PluginBuildConfig {
         layout?:
@@ -41,25 +41,24 @@ declare module '@fesjs/fes' {
     }
     interface PluginRuntimeConfig {
         layout?: {
-            footer: string;
-            theme: 'dark' | 'light';
-            navigation: 'side' | 'top' | 'mixin' | 'left-right';
-            title: string;
-            isFixedHeader: boolean;
-            isFixedSidebar: boolean;
-            logo: string;
-            multiTabs: boolean;
-            sideWidth: number;
-            menus: Menu[] | (() => Ref<Menu[]> | Menu[]);
-            menuProps: {
-                expandedKeys: string[];
-                defaultExpandAll: boolean;
-                accordion: boolean;
+            footer?: string;
+            theme?: 'dark' | 'light';
+            navigation?: 'side' | 'top' | 'mixin' | 'left-right';
+            title?: string;
+            isFixedHeader?: boolean;
+            isFixedSidebar?: boolean;
+            logo?: string;
+            multiTabs?: boolean;
+            sideWidth?: number;
+            menus?: Menu[] | (() => Ref<Menu[]> | Menu[]);
+            menuProps?: {
+                expandedKeys?: string[];
+                defaultExpandAll?: boolean;
+                accordion?: boolean;
             };
-            renderCustom: () => VNode[];
-            noFoundHandler: (param: { router: Router } & NavigationGuard) => void;
-            unAccessHandler: (param: { router: Router } & NavigationGuard) => void;
+            renderCustom?: () => VNode | VNode[];
+            noFoundHandler?: (param: { router: Router } & NavigationGuard) => void;
+            unAccessHandler?: (param: { router: Router } & NavigationGuard) => void;
         };
     }
-
 }
