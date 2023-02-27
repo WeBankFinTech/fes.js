@@ -21,6 +21,7 @@ type RenderFunc = () => Promise<App>;
 interface Route {
     base: string;
     mode: string;
+    routes: RouteRecordRaw[];
     createHistory: createMemoryHistory | createWebHashHistory | createWebHistory;
 }
 
@@ -32,7 +33,7 @@ declare module '@fesjs/fes' {
     interface PluginRuntimeConfig {
         beforeRender?: BeforeRenderConfig;
         patchRoutes?: ({ routes }: { routes: RouteRecordRaw[] }) => void;
-        modifyRoute?: ({ base, mode, createHistory }: Route) => Route;
+        modifyRoute?: ({ base, mode, routes, createHistory }: Route) => Route;
         modifyClientRenderOpts?: (option: ClientRenderOption) => ClientRenderOption;
         rootContainer?: (component: DefineComponent, option: { routes: RouteRecordRaw[]; plugin: Plugin }) => Component;
         onAppCreated?: ({ app, routes }: { app: App; routes: RouteRecordRaw[] }) => void;
