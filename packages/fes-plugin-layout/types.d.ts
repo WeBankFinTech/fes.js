@@ -11,6 +11,28 @@ interface Menu {
 }
 
 export const Page: Component;
+
+interface LayoutRuntimeConfig {
+    footer?: string;
+    theme?: 'dark' | 'light';
+    navigation?: 'side' | 'top' | 'mixin' | 'left-right';
+    title?: string;
+    isFixedHeader?: boolean;
+    isFixedSidebar?: boolean;
+    logo?: string;
+    multiTabs?: boolean;
+    sideWidth?: number;
+    menus?: Menu[] | (() => Ref<Menu[]> | Menu[]);
+    menuProps?: {
+        expandedKeys?: string[];
+        defaultExpandAll?: boolean;
+        accordion?: boolean;
+    };
+    renderCustom?: () => VNode | VNode[];
+    noFoundHandler?: (param: { router: Router } & NavigationGuard) => void;
+    unAccessHandler?: (param: { router: Router } & NavigationGuard) => void;
+}
+
 declare module '@fesjs/fes' {
     interface RouteMeta {
         'keep-alive'?: boolean;
@@ -40,25 +62,6 @@ declare module '@fesjs/fes' {
             | false;
     }
     interface PluginRuntimeConfig {
-        layout?: {
-            footer?: string;
-            theme?: 'dark' | 'light';
-            navigation?: 'side' | 'top' | 'mixin' | 'left-right';
-            title?: string;
-            isFixedHeader?: boolean;
-            isFixedSidebar?: boolean;
-            logo?: string;
-            multiTabs?: boolean;
-            sideWidth?: number;
-            menus?: Menu[] | (() => Ref<Menu[]> | Menu[]);
-            menuProps?: {
-                expandedKeys?: string[];
-                defaultExpandAll?: boolean;
-                accordion?: boolean;
-            };
-            renderCustom?: () => VNode | VNode[];
-            noFoundHandler?: (param: { router: Router } & NavigationGuard) => void;
-            unAccessHandler?: (param: { router: Router } & NavigationGuard) => void;
-        };
+        layout?: LayoutRuntimeConfig | ((layoutRuntimeConfig: LayoutRuntimeConfig, { initialState }: { initialState: any }) => LayoutRuntimeConfig);
     }
 }
