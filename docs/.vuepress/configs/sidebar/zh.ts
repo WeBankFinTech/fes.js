@@ -55,6 +55,7 @@ export const zh: SidebarConfig = {
                 '/reference/plugin/plugins/pinia.md',
                 '/reference/plugin/plugins/watermark.md',
                 '/reference/plugin/plugins/login.md',
+                '/reference/plugin/plugins/swc.md',
             ],
         },
         {

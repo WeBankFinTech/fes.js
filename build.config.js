@@ -24,6 +24,7 @@ module.exports = {
         'fes-plugin-windicss',
         'fes-plugin-watermark',
         'fes-plugin-login',
+        'fes-plugin-swc',
     ],
     copy: [],
 };
