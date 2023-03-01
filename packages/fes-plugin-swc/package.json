@@ -1,6 +1,6 @@
 {
   "name": "@fesjs/plugin-swc",
-  "version": "3.0.0-rc.0",
+  "version": "3.0.0-rc.1",
   "description": "@fesjs/plugin-swc",
   "main": "lib/index.js",
   "types": "types.d.ts",
@@ -35,7 +35,7 @@
     "css-minimizer-webpack-plugin": "^4.0.0"
   },
   "peerDependencies": {
-    "@fesjs/fes": "^3.0.0-rc.7",
-    "@fesjs/builder-webpack": "^3.0.0-rc.5"
+    "@fesjs/fes": "3.0.0-rc.7",
+    "@fesjs/builder-webpack": "3.0.0-rc.5"
   }
 }

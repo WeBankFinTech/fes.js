@@ -1,3 +1,36 @@
+# [3.0.0-rc.13](https://github.com/WeBankFinTech/fes.js/compare/v3.0.0-rc.12...v3.0.0-rc.13) (2023-03-01)
+
+
+### Bug Fixes
+
+* cjs ([862ba3c](https://github.com/WeBankFinTech/fes.js/commit/862ba3cf9c7d123755f908e5aabb01ca553355e6))
+* css ([8ef9a1c](https://github.com/WeBankFinTech/fes.js/commit/8ef9a1c862055d1b1ee8a8f0daac43cd4ef23b57))
+* exclude ([9204184](https://github.com/WeBankFinTech/fes.js/commit/92041845c68320f7b68da8825e0be350c82cd67a))
+* keep browsers ([9d6b32b](https://github.com/WeBankFinTech/fes.js/commit/9d6b32be88aba540e6b4b5334f9f9c92285abcd8))
+* minify ([bda1bb4](https://github.com/WeBankFinTech/fes.js/commit/bda1bb4cf53e7b9dd12d74e4eff416c80857e763))
+* rm swc/css ([0e05f23](https://github.com/WeBankFinTech/fes.js/commit/0e05f23bc15d86170d44b86ed6bf3dc9adbec65e))
+* swc/css ([2d92ad8](https://github.com/WeBankFinTech/fes.js/commit/2d92ad883f16467b6a306cbc66b961ab9e22bafe))
+* swc/css ([c4fd1f6](https://github.com/WeBankFinTech/fes.js/commit/c4fd1f6fea3be84f19c65ff048290684abb21e1f))
+* targets ([acb27c4](https://github.com/WeBankFinTech/fes.js/commit/acb27c4c918fa91e04540a3eb44435936c34f556))
+* 固定corejs版本吧 ([f823a8c](https://github.com/WeBankFinTech/fes.js/commit/f823a8cf5e8c284487c5c3efb7fb4b11ac0bb58f))
+
+
+### Features
+
+* log more error ([f5dddd7](https://github.com/WeBankFinTech/fes.js/commit/f5dddd770057f562bcff24bdc3bf3e18fad54aa1))
+* plugin-swc ([e05fb32](https://github.com/WeBankFinTech/fes.js/commit/e05fb32a76c7ef309f17ada1ed4bc340886d768b))
+* swc/css ([a9c8469](https://github.com/WeBankFinTech/fes.js/commit/a9c8469b9592b4bff9639488b50d01ffd2e09278))
+* use swc with webpack ([3c7edef](https://github.com/WeBankFinTech/fes.js/commit/3c7edefc622046d012701c86efbc87a5acb805c9))
+* 升级swc版本 ([3211408](https://github.com/WeBankFinTech/fes.js/commit/32114081336d00f717bbc04ce9b3de2fbe42fce8))
+* 只在prod开压缩 ([bca7273](https://github.com/WeBankFinTech/fes.js/commit/bca727338bc8220e7a8051609fdc1d75a37216fe))
+
+
+### Reverts
+
+* devtool ([db6f279](https://github.com/WeBankFinTech/fes.js/commit/db6f2799efae436843d89e2abcd6600e4fc52d52))
+
+
+
 # [3.0.0-rc.12](https://github.com/WeBankFinTech/fes.js/compare/v3.0.0-rc.11...v3.0.0-rc.12) (2023-02-27)
 
 

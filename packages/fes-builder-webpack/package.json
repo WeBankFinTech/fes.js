@@ -1,6 +1,6 @@
 {
   "name": "@fesjs/builder-webpack",
-  "version": "3.0.0-rc.4",
+  "version": "3.0.0-rc.5",
   "description": "@fesjs/builder-webpack",
   "main": "lib/index.js",
   "types": "types.d.ts",
@@ -66,7 +66,7 @@
     "webpackbar": "^5.0.2"
   },
   "peerDependencies": {
-    "@fesjs/fes": "3.0.0-rc.4",
+    "@fesjs/fes": "3.0.0-rc.7",
     "core-js": "^3.27.0"
   }
 }
