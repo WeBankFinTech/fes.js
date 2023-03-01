@@ -17,7 +17,7 @@ export function buildSwcOptions(targets, config, isJsx, isTs, minify = false) {
                         return memo;
                     }, {}),
                 mode: 'usage',
-                coreJs: '3',
+                coreJs: require('core-js/package.json').version,
             },
             jsc: {
                 parser: {
