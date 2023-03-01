@@ -24,7 +24,6 @@ export default function () {
             require.resolve('./plugins/features/postcssLoader'),
             require.resolve('./plugins/features/nodeModulesTransform'),
             require.resolve('./plugins/features/vueLoader'),
-            require.resolve('./plugins/features/swcLoader'),
 
             // commands
             require.resolve('./plugins/commands/build'),

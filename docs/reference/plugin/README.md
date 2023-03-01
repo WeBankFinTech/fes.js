@@ -7,7 +7,7 @@
 | [@fesjs/plugin-enums](./plugins/enums.md)  | 提供统一的枚举存取及丰富的函数来处理枚举 | 
 | [@fesjs/plugin-icon](./plugins/icon.md)  | svg 文件自动注册为组件 |  
 | [@fesjs/plugin-jest](./plugins/jest.md)  | 基于 `Jest`，提供单元测试、覆盖测试能力 | 
-| [ @fesjs/plugin-layout](./plugins/layout.md) |  简单的配置即可拥有布局，包括导航以及侧边栏 |
+| [@fesjs/plugin-layout](./plugins/layout.md) |  简单的配置即可拥有布局，包括导航以及侧边栏 |
 | [@fesjs/plugin-locale](./plugins/locale.md) |  基于 `Vue I18n`，提供国际化能力 |
 | [@fesjs/plugin-model](./plugins/model.md) |  简易的数据管理方案 |
 | [@fesjs/plugin-request](./plugins/request.md) |  基于 `Axios` 封装的 request，内置防止重复请求、请求节流、错误处理等功能 |
@@ -18,6 +18,7 @@
 | [@fesjs/plugin-windicss](./plugins/windicss.md) | 基于 `windicss`，提供原子化 CSS 能力 |
 | [@fesjs/plugin-pinia](./plugins/pinia.md) | 基于 `pinia`，提供状态管理 |
 | [@fesjs/plugin-watermark](./plugins/watermark.md) | 水印 |
+| [@fesjs/plugin-swc](./plugins/swc.md) | swc |
 
 ## 架构
 

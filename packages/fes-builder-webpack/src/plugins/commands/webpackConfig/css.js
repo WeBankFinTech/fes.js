@@ -10,7 +10,6 @@
 // 根据 entry 将文件输出到不同的文件夹
 
 import { deepmerge } from '@fesjs/utils';
-import CssMinimizerPlugin from 'css-minimizer-webpack-plugin';
 
 function createRules({ isDev, webpackConfig, config, lang, test, loader, options, browserslist, styleLoaderOption }) {
     function applyLoaders(rule, cssLoaderOption = {}) {
@@ -98,7 +97,7 @@ export default function createCssWebpackConfig({ isDev, config, webpackConfig, b
                 chunkFilename: '[id].[contenthash:8].css',
             },
         ]);
-        webpackConfig.optimization.minimizer('css').use(require.resolve('css-minimizer-webpack-plugin'), [{ minify: CssMinimizerPlugin.swcMinify }]);
+        webpackConfig.optimization.minimizer('css').use(require.resolve('css-minimizer-webpack-plugin'), [{}]);
     }
 
     return (options) => {

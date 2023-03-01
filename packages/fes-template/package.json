@@ -60,10 +60,9 @@
     "@fesjs/plugin-vuex": "^3.0.0-rc.0",
     "@fesjs/plugin-watermark": "^3.0.0-rc.0",
     "@fesjs/plugin-windicss": "^3.0.0-rc.0",
-    "@swc/core": "^1.3.32",
+    "@fesjs/plugin-swc": "^3.0.0-rc.0",
     "core-js": "3.27.0",
     "pinia": "^2.0.11",
-    "swc-plugin-vue-jsx": "^0.2.0",
     "vue": "^3.2.37",
     "vuex": "^4.0.0"
   },

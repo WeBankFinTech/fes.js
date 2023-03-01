@@ -1,5 +1,4 @@
 import { deepmerge } from '@fesjs/utils';
-import TerserPlugin from 'terser-webpack-plugin';
 
 const defaultTerserOptions = {
     compress: {
@@ -38,22 +37,14 @@ const defaultTerserOptions = {
     },
 };
 
-const terserOptions = (config, swcOptions) => {
-    if (swcOptions) {
-        return {
-            terserOptions: swcOptions.jsc?.minify,
-            minify: TerserPlugin.swcMinify,
-        };
-    }
-    return {
-        terserOptions: deepmerge(defaultTerserOptions, config.terserOptions || {}),
-        extractComments: false,
-    };
-};
+const terserOptions = (config) => ({
+    terserOptions: deepmerge(defaultTerserOptions, config.terserOptions || {}),
+    extractComments: false,
+});
 
-export default function createMinimizerWebpackConfig({ isProd, config, webpackConfig, swcOptions }) {
+export default function createMinimizerWebpackConfig({ isProd, config, webpackConfig }) {
     if (isProd) {
-        webpackConfig.optimization.minimizer('terser').use(require.resolve('terser-webpack-plugin'), [terserOptions(config, swcOptions)]);
+        webpackConfig.optimization.minimizer('terser').use(require.resolve('terser-webpack-plugin'), [terserOptions(config)]);
     }
     if (process.env.FES_ENV === 'test') {
         webpackConfig.optimization.minimize(false);

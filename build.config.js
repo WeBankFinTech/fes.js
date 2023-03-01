@@ -23,6 +23,7 @@ module.exports = {
         'fes-plugin-pinia',
         'fes-plugin-windicss',
         'fes-plugin-watermark',
+        'fes-plugin-swc',
     ],
     copy: [],
 };
