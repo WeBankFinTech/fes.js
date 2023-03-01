@@ -8,7 +8,6 @@ import createVueWebpackConfig from './vue';
 import createDefineWebpackConfig from './define';
 import createMinimizerWebpackConfig from './minimizer';
 import createHtmlWebpackConfig from './html';
-import { buildSwcOptions } from './swcOptions';
 
 const DEFAULT_EXCLUDE_NODE_MODULES = [
     'vue',
@@ -53,7 +52,6 @@ function handleAlias({ api, webpackConfig }) {
 export default async function getConfig({ api, cwd, config, env, entry = {}, modifyBabelOpts, modifyBabelPresetOpts, chainWebpack, headScripts, publicPath }) {
     const isDev = env === 'development';
     const isProd = env === 'production';
-    const useSwc = !!config.swcLoader;
     const webpackConfig = new Config();
     const absoluteOutput = join(cwd, config.outputPath || 'dist');
 
@@ -114,6 +112,13 @@ export default async function getConfig({ api, cwd, config, env, entry = {}, mod
         .type('asset/source');
 
     const { targets, browserslist } = api.utils.getTargetsAndBrowsersList({ config });
+    const babelOpts = await getBabelOpts({
+        cwd,
+        config,
+        modifyBabelOpts,
+        modifyBabelPresetOpts,
+        targets,
+    });
 
     // --------------- js -----------
     // https://webpack.docschina.org/configuration/module/#resolve-fully-specified
@@ -122,106 +127,43 @@ export default async function getConfig({ api, cwd, config, env, entry = {}, mod
         .test(/\.m?jsx?$/)
         .resolve.set('fullySpecified', false);
 
-    if (useSwc) {
-        webpackConfig.module
-            .rule('js')
-            .test(/\.(js|mjs)$/)
+    webpackConfig.module
+        .rule('js')
+        .test(/\.(js|mjs|jsx|ts|tsx)$/)
+        .exclude.add((filepath) => {
+            // always transpile js in vue files
+            if (/(\.vue|\.jsx)$/.test(filepath)) {
+                return false;
+            }
             // Don't transpile node_modules
-            .exclude.add(/node_modules/)
-            .end()
-            .use('swc-loader')
-            .loader(require.resolve('swc-loader'))
-            .options(buildSwcOptions(targets, config, false, false));
-        webpackConfig.module
-            .rule('jsx')
-            .test(/\.jsx$/)
-            .exclude.add(/node_modules/)
-            .end()
-            .use('swc-loader')
-            .loader(require.resolve('swc-loader'))
-            .options(buildSwcOptions(targets, config, true, false));
+            return /node_modules/.test(filepath);
+        })
+        .end()
+        .use('babel-loader')
+        .loader(require.resolve('babel-loader'))
+        .options(babelOpts);
 
+    // 为了避免第三方依赖包编译不充分导致线上问题，默认对 node_modules 也进行全编译，只在生产构建的时候进行
+    if (isProd) {
+        const transpileDepRegex = genTranspileDepRegex(config.nodeModulesTransform.exclude);
         webpackConfig.module
-            .rule('ts')
-            .test(/\.ts$/)
-            .exclude.add(/node_modules/)
+            .rule('js-in-node_modules')
+            .test(/\.(js|mjs)$/)
+            .include.add(/node_modules/)
             .end()
-            .use('swc-loader')
-            .loader(require.resolve('swc-loader'))
-            .options(buildSwcOptions(targets, config, false, true));
-        webpackConfig.module
-            .rule('tsx')
-            .test(/\.tsx$/)
-            .exclude.add(/node_modules/)
-            .end()
-            .use('swc-loader')
-            .loader(require.resolve('swc-loader'))
-            .options(buildSwcOptions(targets, config, true, true));
-        // 为了避免第三方依赖包编译不充分导致线上问题，默认对 node_modules 也进行全编译，只在生产构建的时候进行
-        if (isProd) {
-            // const cjsReg = [/css-loader/, /vue-loader/].concat(config.swcLoader?.cjsPkg || []);
-            const transpileDepRegex = genTranspileDepRegex(config.nodeModulesTransform.exclude);
-            webpackConfig.module
-                .rule('node_modules')
-                .test(/\.(js|mjs)$/)
-                .include.add(/node_modules/)
-                .end()
-                .exclude.add((filepath) => {
-                    if (transpileDepRegex && transpileDepRegex.test(filepath)) {
-                        return true;
-                    }
-                    return false;
-                })
-                .end()
-                .use('swc-loader')
-                .loader(require.resolve('swc-loader'))
-                .options(buildSwcOptions(targets, config, false, false));
-        }
-    } else {
-        const babelOpts = await getBabelOpts({
-            cwd,
-            config,
-            modifyBabelOpts,
-            modifyBabelPresetOpts,
-            targets,
-        });
-        webpackConfig.module
-            .rule('js')
-            .test(/\.(js|mjs|jsx|ts|tsx)$/)
             .exclude.add((filepath) => {
-                // always transpile js in vue files
-                if (/(\.tsx|\.ts|\.jsx)$/.test(filepath)) {
-                    return false;
+                if (transpileDepRegex && transpileDepRegex.test(filepath)) {
+                    return true;
                 }
-                // Don't transpile node_modules
-                return /node_modules/.test(filepath);
+
+                return false;
             })
             .end()
             .use('babel-loader')
             .loader(require.resolve('babel-loader'))
             .options(babelOpts);
-
-        // 为了避免第三方依赖包编译不充分导致线上问题，默认对 node_modules 也进行全编译，只在生产构建的时候进行
-        if (isProd) {
-            const transpileDepRegex = genTranspileDepRegex(config.nodeModulesTransform.exclude);
-            webpackConfig.module
-                .rule('js-in-node_modules')
-                .test(/\.(js|mjs)$/)
-                .include.add(/node_modules/)
-                .end()
-                .exclude.add((filepath) => {
-                    if (transpileDepRegex && transpileDepRegex.test(filepath)) {
-                        return true;
-                    }
-
-                    return false;
-                })
-                .end()
-                .use('babel-loader')
-                .loader(require.resolve('babel-loader'))
-                .options(babelOpts);
-        }
     }
+
     // --------------- css -----------
     const createCSSRule = createCssWebpackConfig({
         isDev,
@@ -319,13 +261,15 @@ export default async function getConfig({ api, cwd, config, env, entry = {}, mod
         isProd,
         config,
         webpackConfig,
-        swcOptions: useSwc ? buildSwcOptions(targets, config, false, false, true) : undefined,
     });
 
     // --------------- chainwebpack -----------
     if (chainWebpack) {
         await chainWebpack(webpackConfig, {
             createCSSRule,
+            env,
+            targets,
+            browserslist,
             webpack,
         });
     }
@@ -334,6 +278,8 @@ export default async function getConfig({ api, cwd, config, env, entry = {}, mod
         await config.chainWebpack(webpackConfig, {
             createCSSRule,
             env,
+            targets,
+            browserslist,
             webpack,
         });
     }

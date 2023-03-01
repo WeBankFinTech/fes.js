@@ -1,14 +1,21 @@
 import { deepmerge } from '@fesjs/utils';
 
+const Supported = ['chrome', 'opera', 'edge', 'firefox', 'safari', 'ie', 'ios', 'android', 'node', 'electron'];
+
 export function buildSwcOptions(targets, config, isJsx, isTs, minify = false) {
-    if (config.swcLoader?.cjsPkg) {
-        delete config.swcLoader.cjsPkg;
+    if (config.swc?.loader?.cjsPkg) {
+        delete config.swc.loader.cjsPkg;
     }
     return deepmerge(
         {
             // sync: true,
             env: {
-                targets,
+                targets: Object.keys(targets)
+                    .filter((key) => Supported.includes(key))
+                    .reduce((memo, key) => {
+                        memo[key] = targets[key];
+                        return memo;
+                    }, {}),
                 mode: 'usage',
                 coreJs: '3',
             },
@@ -28,6 +35,6 @@ export function buildSwcOptions(targets, config, isJsx, isTs, minify = false) {
             isModule: 'unknown',
             minify: minify ? {} : false,
         },
-        config.swcLoader || {},
+        config.swc?.loader || {},
     );
 }

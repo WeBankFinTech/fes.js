@@ -66,6 +66,7 @@ It mainly has the following functions:
 | [@fesjs/plugin-monaco-editor](http://fesjs.mumblefe.cn/reference/plugin/plugins/editor.html#%E4%BB%8B%E7%BB%8D) | Provide code editor capability, based on `monaco-editor` (code editor used by VS Code) |
 | [@fesjs/plugin-pinia](http://fesjs.mumblefe.cn/reference/plugin/plugins/pinia.html) | state manager |
 | [@fesjs/plugin-watermark](http://fesjs.mumblefe.cn/reference/plugin/plugins/watermark.html) | watermark |
+| [@fesjs/plugin-swc](http://fesjs.mumblefe.cn/reference/plugin/plugins/swc.html) | use swc-loader |
 
 ## As easy as counting 1, 2, 3
 use `yarn`：
