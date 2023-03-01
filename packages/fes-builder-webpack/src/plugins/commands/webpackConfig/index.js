@@ -267,6 +267,9 @@ export default async function getConfig({ api, cwd, config, env, entry = {}, mod
     if (chainWebpack) {
         await chainWebpack(webpackConfig, {
             createCSSRule,
+            env,
+            targets,
+            browserslist,
             webpack,
         });
     }
@@ -275,6 +278,8 @@ export default async function getConfig({ api, cwd, config, env, entry = {}, mod
         await config.chainWebpack(webpackConfig, {
             createCSSRule,
             env,
+            targets,
+            browserslist,
             webpack,
         });
     }
