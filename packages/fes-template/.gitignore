@@ -9,3 +9,6 @@
 /src/.fes-production
 /src/.fes-test
 /.env.local
+
+# swc wasm cache
+/.swc
