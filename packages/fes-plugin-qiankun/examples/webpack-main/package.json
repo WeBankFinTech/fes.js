@@ -43,7 +43,9 @@
         "access": "public"
     },
     "dependencies": {
-        "@fesjs/fes": "^2.0.0",
+        "@fesjs/fes": "^3.0.0-rc.0",
+        "@fesjs/builder-webpack": "^3.0.0-rc.5",
+        "@fesjs/plugin-qiankun": "3.0.0-rc.0",
         "vue": "^3.2.37",
         "@fesjs/fes-design": "^0.7.0"
     },
