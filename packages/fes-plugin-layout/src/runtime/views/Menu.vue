@@ -96,6 +96,9 @@ export default {
         });
         const defaultExpandMenu = computed(() => {
             let index = menuArray.value.findIndex((item) => item.value === activePath.value);
+            if (index === -1) {
+                return props.expandedKeys;
+            }
             const activeMenu = menuArray.value[index];
             const arr = [activeMenu];
             while (index > 0) {
