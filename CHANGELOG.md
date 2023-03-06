@@ -1,3 +1,12 @@
+# [3.0.0-rc.14](https://github.com/WeBankFinTech/fes.js/compare/v3.0.0-rc.13...v3.0.0-rc.14) (2023-03-06)
+
+
+### Bug Fixes
+
+* 修复plugin-layout中计算默认展开菜单未考虑未配置在菜单的路由场景 ([#172](https://github.com/WeBankFinTech/fes.js/issues/172)) ([943ffba](https://github.com/WeBankFinTech/fes.js/commit/943ffba07ff0e201635d4f01d6126bdd5829d0ef))
+
+
+
 # [3.0.0-rc.13](https://github.com/WeBankFinTech/fes.js/compare/v3.0.0-rc.12...v3.0.0-rc.13) (2023-03-01)
 
 
