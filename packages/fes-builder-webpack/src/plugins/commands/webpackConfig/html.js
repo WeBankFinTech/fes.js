@@ -7,7 +7,7 @@ export default async function createHtmlWebpackConfig({ api, cwd, config, webpac
         filename: '[name].html',
         ...config.html,
         templateParameters: {
-            title: config.html?.title || api.config.title || 'Fes.js',
+            title: api.config.title || config.html?.title || 'fes.js',
             ...resolveRuntimeEnv(publicPath),
             mountElementId: config.mountElementId,
         },

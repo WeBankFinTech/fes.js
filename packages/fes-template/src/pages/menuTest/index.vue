@@ -1,7 +1,5 @@
 <template>
-    <div class="page">
-        menuTest-index
-    </div>
+    <div class="page">menuTest-index</div>
 </template>
 <config>
 {
@@ -10,12 +8,10 @@
 </config>
 <script>
 export default {
-    components: {
-    },
+    components: {},
     setup() {
-        return {
-        };
-    }
+        return {};
+    },
 };
 </script>
 

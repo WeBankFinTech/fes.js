@@ -12,6 +12,8 @@ interface Menu {
 
 export const Page: Component;
 
+export function useTitle(title: string | Ref<string>): void;
+
 interface LayoutRuntimeConfig {
     footer?: string;
     theme?: 'dark' | 'light';

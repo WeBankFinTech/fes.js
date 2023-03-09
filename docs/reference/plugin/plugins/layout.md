@@ -354,6 +354,29 @@ export const access = {
 };
 ```
 
+## API
+
+### useTitle
+类型定义如下：
+```ts
+function useTitle(title: string | Ref<string>): void;
+```
+                
+                
+当使用多页签模式时，在页面中使用 `useTitle` 可以自定义页面标签：
+```vue
+<script setup>
+import { ref } from 'vue';
+import { useRoute, useTitle } from '@fesjs/fes';
+
+const title = ref(`详情-${route.params?.id}`);
+useTitle(title);
+</script>
+```
+
+
+
+
 ## 4.x 升级到 5.x
 
 1. 个性化 layout 配置改为使用传入 navigation

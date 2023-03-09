@@ -31,6 +31,7 @@ import { FTabs, FTabPane, FDropdown } from '@fesjs/fes-design';
 import { ReloadOutlined, MoreOutlined } from '@fesjs/fes-design/icon';
 import { useRouter, useRoute } from '@@/core/coreExports';
 import { transTitle } from '../helpers/pluginLocale';
+import { getTitle } from '../useTitle';
 import Page from './page.vue';
 
 let i = 0;
@@ -52,17 +53,20 @@ export default {
         const route = useRoute();
         const router = useRouter();
         const createPage = (_route) => {
-            const title = _route.meta.title;
+            const computedTitle = computed(() => {
+                const customTitle = unref(getTitle(_route.path));
+                return customTitle ?? transTitle(_route.meta.title);
+            });
             return {
                 path: _route.path,
                 route: _route,
                 name: _route.meta.name ?? _route.name,
-                title: computed(() => transTitle(title)),
+                title: computedTitle,
                 key: getKey(),
             };
         };
 
-        const pageList = ref([createPage(route)]);
+        const pageList = ref([createPage(router.currentRoute.value)]);
         const actions = [
             {
                 value: 'closeOtherPage',

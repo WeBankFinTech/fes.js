@@ -1,7 +1,5 @@
 <template>
-    <div class="page">
-        menuTest: {{route.params}}
-    </div>
+    <div class="page">menuTest: {{ route.params }}</div>
 </template>
 <config>
 {
@@ -9,17 +7,24 @@
 }
 </config>
 <script>
-import { useRoute } from '@fesjs/fes';
+import { ref } from 'vue';
+import { useRoute, useTitle } from '@fesjs/fes';
 
 export default {
-    components: {
-    },
+    components: {},
     setup() {
         const route = useRoute();
+        const title = ref(`详情-${route.params?.id}`);
+        useTitle(title);
+
+        setTimeout(() => {
+            title.value = `详情-${route.params?.id}-changed`;
+        }, 1000);
+
         return {
-            route
+            route,
         };
-    }
+    },
 };
 </script>
 

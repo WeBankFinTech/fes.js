@@ -75,7 +75,7 @@ export default (api) => {
 
     api.addPluginExports(() => [
         {
-            specifiers: ['Page'],
+            specifiers: ['Page', 'useTitle'],
             source: join(namespace, 'index.js'),
         },
     ]);
