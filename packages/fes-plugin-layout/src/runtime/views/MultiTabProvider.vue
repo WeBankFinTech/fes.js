@@ -31,7 +31,7 @@ import { FTabs, FTabPane, FDropdown } from '@fesjs/fes-design';
 import { ReloadOutlined, MoreOutlined } from '@fesjs/fes-design/icon';
 import { useRouter, useRoute } from '@@/core/coreExports';
 import { transTitle } from '../helpers/pluginLocale';
-import { getTitle } from '../useTitle';
+import { getTitle, deleteTitle } from '../useTitle';
 import Page from './page.vue';
 
 let i = 0;
@@ -117,6 +117,7 @@ export default {
             list.splice(index, 1);
             pageList.value = list;
             pageRef.value.removeKeepAlive(selectedPage.name);
+            deleteTitle(selectedPage.path);
         };
         const reloadPage = (path) => {
             const selectedPage = findPage(path || unref(route.path));

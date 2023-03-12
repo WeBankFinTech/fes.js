@@ -366,11 +366,12 @@ function useTitle(title: string | Ref<string>): void;
 当使用多页签模式时，在页面中使用 `useTitle` 可以自定义页面标签：
 ```vue
 <script setup>
-import { ref } from 'vue';
-import { useRoute, useTitle } from '@fesjs/fes';
+import { useRoute, useTabTitle } from '@fesjs/fes';
 
-const title = ref(`详情-${route.params?.id}`);
-useTitle(title);
+const titleRef = useTabTitle(`详情-${route.params?.id}`);
+
+//如果要更新
+titleRef.value = "changed"
 </script>
 ```
 

@@ -1,11 +1,18 @@
+import { reactive, ref } from 'vue';
 import { useRoute } from '@@/core/coreExports';
-import { reactive } from 'vue';
 
 const cache = reactive(new Map());
 
 export const getTitle = (path) => cache.get(path);
 
-export const useTitle = (title) => {
+export const deleteTitle = (patch) => cache.delete(patch);
+
+export const useTabTitle = (title) => {
     const route = useRoute();
-    cache.set(route.path, title);
+    const titleRef = ref(title);
+    const path = route.path;
+
+    cache.set(path, titleRef);
+
+    return titleRef;
 };
