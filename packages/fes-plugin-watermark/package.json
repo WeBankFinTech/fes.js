@@ -1,6 +1,6 @@
 {
   "name": "@fesjs/plugin-watermark",
-  "version": "3.0.0-rc.2",
+  "version": "3.0.0-rc.3",
   "description": "@fesjs/plugin-watermark",
   "main": "lib/index.js",
   "files": [
@@ -32,7 +32,7 @@
     "lodash-es": "^4.17.15"
   },
   "peerDependencies": {
-    "@fesjs/fes": "3.0.0-rc.2",
+    "@fesjs/fes": "3.0.0-rc.8",
     "vue": "^3.2.37"
   },
   "typings": "./types.d.ts"
