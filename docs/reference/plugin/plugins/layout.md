@@ -356,14 +356,14 @@ export const access = {
 
 ## API
 
-### useTitle
+### useTabTitle
 类型定义如下：
 ```ts
-function useTitle(title: string | Ref<string>): void;
+function useTabTitle(title: string | Ref<string>): void;
 ```
                 
                 
-当使用多页签模式时，在页面中使用 `useTitle` 可以自定义页面标签：
+当使用多页签模式时，在页面中使用 `useTabTitle` 可以自定义页面标签：
 ```vue
 <script setup>
 import { useRoute, useTabTitle } from '@fesjs/fes';
