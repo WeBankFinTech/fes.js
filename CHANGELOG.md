@@ -1,3 +1,17 @@
+# [3.0.0-rc.15](https://github.com/WeBankFinTech/fes.js/compare/v3.0.0-rc.14...v3.0.0-rc.15) (2023-03-13)
+
+
+### Bug Fixes
+
+* 修复其他dom变化也会导致水印重新渲染的问题 ([#175](https://github.com/WeBankFinTech/fes.js/issues/175)) ([7c432ba](https://github.com/WeBankFinTech/fes.js/commit/7c432badf6f7563d872da62fbca65c124f4ca4cd))
+
+
+### Features
+
+* **plugin-layout:** 多页签支持配置title ([#174](https://github.com/WeBankFinTech/fes.js/issues/174)) ([fc4173a](https://github.com/WeBankFinTech/fes.js/commit/fc4173a7e800511ee03abbf5169b2bed5e94beaf))
+
+
+
 # [3.0.0-rc.14](https://github.com/WeBankFinTech/fes.js/compare/v3.0.0-rc.13...v3.0.0-rc.14) (2023-03-06)
 
 
