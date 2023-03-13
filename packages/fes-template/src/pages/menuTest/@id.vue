@@ -1,7 +1,5 @@
 <template>
-    <div class="page">
-        menuTest: {{route.params}}
-    </div>
+    <div class="page">menuTest: {{ route.params }} <input style="border: 1px solid red" /></div>
 </template>
 <config>
 {
@@ -9,17 +7,22 @@
 }
 </config>
 <script>
-import { useRoute } from '@fesjs/fes';
+import { useRoute, useTabTitle } from '@fesjs/fes';
 
 export default {
-    components: {
-    },
+    components: {},
     setup() {
         const route = useRoute();
+        const title = useTabTitle(`详情-${route.params?.id}`);
+
+        setTimeout(() => {
+            title.value = `详情-${route.params?.id}-changed`;
+        }, 1000);
+
         return {
-            route
+            route,
         };
-    }
+    },
 };
 </script>
 
