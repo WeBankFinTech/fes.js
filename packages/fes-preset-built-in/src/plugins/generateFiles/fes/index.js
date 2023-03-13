@@ -24,7 +24,7 @@ export default function (api) {
             path: 'fes.js',
             content: Mustache.render(fesTpl, {
                 enableTitle: api.config.title !== false,
-                defaultTitle: api.config.title || '',
+                defaultTitle: api.config.title || 'fes.js',
                 runtimePath,
                 rootElement: `#${api.config.mountElementId || 'app'}`,
                 entryCode: (

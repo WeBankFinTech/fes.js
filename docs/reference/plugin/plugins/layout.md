@@ -313,7 +313,7 @@ export const layout = (layoutConfig, { initialState }) => ({
 比如：
 
 ```js
-export const access = {
+export const layout = {
     unAccessHandler({ to, next }) {
         const accesssIds = accessApi.getAccess();
         if (to.path === '/404') {
@@ -343,7 +343,7 @@ export const access = {
 比如：
 
 ```js
-export const access = {
+export const layout = {
     noFoundHandler({ next }) {
         const accesssIds = accessApi.getAccess();
         if (!accesssIds.includes('/404')) {
@@ -353,6 +353,30 @@ export const access = {
     },
 };
 ```
+
+## API
+
+### useTabTitle
+类型定义如下：
+```ts
+function useTabTitle(title: string | Ref<string>): void;
+```
+                
+                
+当使用多页签模式时，在页面中使用 `useTabTitle` 可以自定义页面标签：
+```vue
+<script setup>
+import { useRoute, useTabTitle } from '@fesjs/fes';
+
+const titleRef = useTabTitle(`详情-${route.params?.id}`);
+
+//如果要更新
+titleRef.value = "changed"
+</script>
+```
+
+
+
 
 ## 4.x 升级到 5.x
 

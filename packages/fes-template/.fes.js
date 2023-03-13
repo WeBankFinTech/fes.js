@@ -41,7 +41,7 @@ export default defineBuildConfig({
     layout: {
         title: 'Fes.js',
         footer: 'Created by MumbleFE',
-        multiTabs: false,
+        multiTabs: true,
         navigation: 'side',
         theme: 'dark',
         menus: [
