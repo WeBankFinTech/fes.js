@@ -313,7 +313,7 @@ export const layout = (layoutConfig, { initialState }) => ({
 比如：
 
 ```js
-export const access = {
+export const layout = {
     unAccessHandler({ to, next }) {
         const accesssIds = accessApi.getAccess();
         if (to.path === '/404') {
@@ -343,7 +343,7 @@ export const access = {
 比如：
 
 ```js
-export const access = {
+export const layout = {
     noFoundHandler({ next }) {
         const accesssIds = accessApi.getAccess();
         if (!accesssIds.includes('/404')) {
