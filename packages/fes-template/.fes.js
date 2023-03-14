@@ -41,7 +41,7 @@ export default defineBuildConfig({
     layout: {
         title: 'Fes.js',
         footer: 'Created by MumbleFE',
-        multiTabs: true,
+        multiTabs: false,
         navigation: 'side',
         theme: 'dark',
         menus: [
@@ -49,9 +49,6 @@ export default defineBuildConfig({
                 name: 'index',
                 icon: '/wine-outline.svg',
                 match: ['/route/*'],
-            },
-            {
-                name: 'store',
             },
             {
                 name: 'editor',

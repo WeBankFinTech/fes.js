@@ -58,7 +58,6 @@
     "@fesjs/plugin-qiankun": "^3.0.0-rc.0",
     "@fesjs/plugin-request": "^3.0.0-rc.0",
     "@fesjs/plugin-sass": "^3.0.0-rc.0",
-    "@fesjs/plugin-vuex": "^3.0.0-rc.0",
     "@fesjs/plugin-watermark": "^3.0.0-rc.0",
     "@fesjs/plugin-windicss": "^3.0.0-rc.0",
     "@fesjs/plugin-swc": "^3.0.0-rc.0",
