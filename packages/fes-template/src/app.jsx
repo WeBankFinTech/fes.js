@@ -19,12 +19,6 @@ export const beforeRender = {
     },
 };
 
-// export const login = {
-//     hasLogin() {
-//         return !!sessionStorage.getItem('login');
-//     },
-// };
-
 export const layout = (layoutConfig, { initialState }) => ({
     ...layoutConfig,
     renderCustom: () => <UserCenter />,

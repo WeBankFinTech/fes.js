@@ -1,12 +1,12 @@
 <template>
-    <div class="page bg-black">
+    <div class="page">
         home
-        <FButton class="m-2">Button</FButton>
+        <FButton class="m-2" @click="go">Button</FButton>
     </div>
 </template>
 
 <script setup>
-import { defineRouteMeta } from '@fesjs/fes';
+import { defineRouteMeta, useRouter } from '@fesjs/fes';
 import { FButton } from '@fesjs/fes-design';
 
 defineRouteMeta({
@@ -14,6 +14,11 @@ defineRouteMeta({
     title: '$home',
 });
 console.log('123123'.replaceAll('123', '234'));
+
+const router = useRouter();
+const go = () => {
+    router.push('/editor');
+};
 </script>
 
 <style>
