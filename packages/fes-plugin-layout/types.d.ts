@@ -1,5 +1,16 @@
 import { Component, VNode, Ref } from 'vue';
-import { Router, NavigationGuard } from 'vue-router';
+import { Router, RouteLocationNormalized, NavigationGuardNext, NavigationGuardReturn, NavigationGuard } from 'vue-router';
+
+interface CustomNavigationGuardOption {
+    router: Router;
+    to: RouteLocationNormalized;
+    from: RouteLocationNormalized;
+    next: NavigationGuardNext;
+}
+
+interface CustomNavigationGuard {
+    (option: CustomNavigationGuardOption): NavigationGuardReturn | Promise<NavigationGuardReturn>;
+}
 
 interface Menu {
     name: string;
@@ -31,8 +42,8 @@ interface LayoutRuntimeConfig {
         accordion?: boolean;
     };
     renderCustom?: () => VNode | VNode[];
-    noFoundHandler?: (param: { router: Router } & NavigationGuard) => void;
-    unAccessHandler?: (param: { router: Router } & NavigationGuard) => void;
+    noFoundHandler?: CustomNavigationGuard;
+    unAccessHandler?: CustomNavigationGuard;
 }
 
 declare module '@fesjs/fes' {
