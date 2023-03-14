@@ -1,3 +1,12 @@
+# [3.0.0-rc.16](https://github.com/WeBankFinTech/fes.js/compare/v3.0.0-rc.15...v3.0.0-rc.16) (2023-03-14)
+
+
+### Bug Fixes
+
+* 修复plugin-access和plugin-layout中noFoundHandler和unAccessHandler的类型错误问题 ([b1adca9](https://github.com/WeBankFinTech/fes.js/commit/b1adca9f117234584bbe67d5d39f5ee91948fcf0))
+
+
+
 # [3.0.0-rc.15](https://github.com/WeBankFinTech/fes.js/compare/v3.0.0-rc.14...v3.0.0-rc.15) (2023-03-13)
 
 
