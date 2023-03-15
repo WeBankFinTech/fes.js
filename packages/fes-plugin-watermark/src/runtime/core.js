@@ -30,30 +30,36 @@ function timeFormat(date, format = 'YYYY-MM-DD') {
     return format.replace(/Y+|M+|D+|H+|h+|m+|s+|S+|Q/g, (str) => String(map[str]));
 }
 
-let _wmContainerMo = null; // MutationObserver
-let _wmMo = null; // MutationObserver
-let _wmTimer = null; // timestamp
+let wmContainerObx = null; // MutationObserver
+let wmObx = null; // MutationObserver
+let wmTimer = null; // timestamp
+let watermarkDiv = null;
 
 // 销毁水印
 export function destroyWatermark() {
     // 监听器关闭
-    _wmMo?.disconnect();
-    _wmMo = null;
-    _wmContainerMo?.disconnect();
-    _wmContainerMo = null;
+    wmObx?.disconnect();
+    wmObx = null;
+    wmContainerObx?.disconnect();
+    wmContainerObx = null;
     // 清除timer
-    if (_wmTimer) {
-        window.clearTimeout(_wmTimer);
-        _wmTimer = null;
+    if (wmTimer) {
+        window.clearTimeout(wmTimer);
+        wmTimer = null;
     }
     // 删除水印元素
-    let __wm = document.querySelector('.__wm');
-    __wm?.parentNode?.removeChild(__wm);
-    __wm = null;
+    watermarkDiv?.parentNode?.removeChild(watermarkDiv);
+    watermarkDiv = null;
 }
 
-function _createWatermark(param) {
+function innerCreateWatermark(param) {
     const { content, container, width, height, textAlign, textBaseline, fontSize, fontFamily, fillStyle, rotate, zIndex, timestamp, watch } = param;
+
+    if (!container) {
+        return console.warn('createWatermark配置的container不能为空');
+    }
+
+    destroyWatermark();
 
     const canvas = document.createElement('canvas');
     canvas.setAttribute('width', `${width}px`);
@@ -67,9 +73,13 @@ function _createWatermark(param) {
     ctx.translate(width / 2, height / 2);
     ctx.rotate(-(Math.PI / 180) * rotate);
     ctx.fillText(`${content}`, 0, 0);
-    timestamp && ctx.fillText(`${timeFormat(new Date(), timestamp)}`, 0, parseInt(fontSize) + 5);
+    if (timestamp) {
+        ctx.fillText(`${timeFormat(new Date(), timestamp)}`, 0, parseInt(fontSize) + 5);
+    }
 
-    const watermarkDiv = document.querySelector('.__wm') || document.createElement('div');
+    const CLASS_NAME = `wm_${Date.now()}`;
+
+    watermarkDiv = document.createElement('div');
     const styleStr = `
     position: ${container === document.body ? 'fixed' : 'absolute'};
     user-select: none;
@@ -81,9 +91,8 @@ function _createWatermark(param) {
     pointer-events: none !important;
     background-repeat: repeat;
     background-image: url('${canvas.toDataURL()}')`;
-
     watermarkDiv.setAttribute('style', styleStr);
-    watermarkDiv.classList.add('__wm');
+    watermarkDiv.classList.add(CLASS_NAME);
 
     if (container.firstChild) {
         container.insertBefore(watermarkDiv, container.firstChild);
@@ -91,26 +100,25 @@ function _createWatermark(param) {
         container.appendChild(watermarkDiv);
     }
 
-    const MutationObserver = window.MutationObserver || window.WebKitMutationObserver;
+    const MutationObserver = window.MutationObserver;
     if (watch && MutationObserver) {
-        _wmContainerMo = new MutationObserver(() => {
-            const __wm = container.querySelector('.__wm');
-            if ((__wm && __wm.getAttribute('style') !== styleStr) || !__wm) {
-                destroyWatermark();
-                _createWatermark(param);
+        wmContainerObx = new MutationObserver(() => {
+            if (!container.querySelector(`.${CLASS_NAME}`)) {
+                innerCreateWatermark(param);
             }
         });
 
-        _wmContainerMo.observe(container, {
+        wmContainerObx.observe(container, {
             childList: true,
         });
 
-        _wmMo = new MutationObserver(() => {
-            destroyWatermark();
-            _createWatermark(param);
+        wmObx = new MutationObserver(() => {
+            if (watermarkDiv.getAttribute('style') !== styleStr) {
+                innerCreateWatermark(param);
+            }
         });
 
-        _wmMo.observe(watermarkDiv, {
+        wmObx.observe(watermarkDiv, {
             attributes: true,
         });
     }
@@ -125,9 +133,8 @@ function _createWatermark(param) {
             timeout = 1000 * 60 * 60;
         }
 
-        _wmTimer = window.setTimeout(() => {
-            destroyWatermark();
-            _createWatermark(param);
+        wmTimer = window.setTimeout(() => {
+            innerCreateWatermark(param);
         }, timeout);
     }
 }
@@ -155,10 +162,7 @@ export function createWatermark(option) {
         watch: true,
     };
 
-    // 为避免多次调用 createWatermark 触发重复监听，这里先执行销毁水印操作
-    destroyWatermark();
-
-    _createWatermark({
+    innerCreateWatermark({
         ...defaultOption,
         ...option,
     });

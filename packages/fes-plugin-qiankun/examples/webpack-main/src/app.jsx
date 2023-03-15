@@ -1,4 +1,4 @@
-import { access as accessApi } from '@fesjs/fes';
+import { access as accessApi, createWatermark } from '@fesjs/fes';
 import PageLoading from '@/components/PageLoading.vue';
 
 export const beforeRender = {
@@ -10,6 +10,7 @@ export const beforeRender = {
                 setRole('admin');
                 resolve();
             }, 1000);
+            createWatermark();
         });
     },
 };
