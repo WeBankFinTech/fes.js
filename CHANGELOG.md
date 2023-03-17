@@ -1,3 +1,12 @@
+# [3.0.0-rc.17](https://github.com/WeBankFinTech/fes.js/compare/v3.0.0-rc.16...v3.0.0-rc.17) (2023-03-17)
+
+
+### Bug Fixes
+
+* 水印插件兼容微前端场景,应用唯一 ([e7987ee](https://github.com/WeBankFinTech/fes.js/commit/e7987ee60f342e305e4c123a1610ea301f4ebd53))
+
+
+
 # [3.0.0-rc.16](https://github.com/WeBankFinTech/fes.js/compare/v3.0.0-rc.15...v3.0.0-rc.16) (2023-03-14)
 
 
