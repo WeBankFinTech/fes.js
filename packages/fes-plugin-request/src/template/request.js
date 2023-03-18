@@ -1,131 +1,34 @@
-import axios from 'axios';
 import { ApplyPluginsType, plugin } from '@fesjs/fes';
 import { ref } from 'vue';
-import scheduler from './scheduler';
-import { checkHttpRequestHasBody, isFunction } from './helpers';
 
-import paramsProcess from './paramsProcess';
-import genRequestKey from './genRequestKey';
-import preventRepeatReq from './preventRepeatReq';
-import cacheControl from './cacheControl';
-
-function addInterceptors(instance, interceptors, type = 'request') {
-    interceptors.forEach((fn) => {
-        if (Array.isArray(fn)) {
-            instance.interceptors[type].use(...fn);
-        } else if (isFunction(fn)) {
-            instance.interceptors[type].use(fn);
-        }
-    });
-}
-
-function addRequestInterceptors(instance, interceptors) {
-    addInterceptors(instance, interceptors, 'request');
-}
-
-function addResponseInterceptors(instance, interceptors) {
-    addInterceptors(instance, interceptors, 'response');
-}
-
-async function axiosMiddleware(context, next) {
-    try {
-        context.response = await context.instance.request(context.config);
-    } catch (error) {
-        context.error = error;
-    }
-    await next();
-}
+import { createRequest } from '@qlin/request';
 
 function getRequestInstance() {
-    const {
-        dataHandler,
-        errorHandler,
-        requestInterceptors = [],
-        responseInterceptors = [],
-        ...otherConfigs
-    } = plugin.applyPlugins({
+    const defaultConfig = plugin.applyPlugins({
         key: 'request',
         type: ApplyPluginsType.modify,
-        initialValue: {},
+        initialValue: {
+            timeout: 10000,
+        },
     });
 
-    const defaultConfig = Object.assign(
-        {
-            timeout: 10000,
-            withCredentials: true,
-        },
-        otherConfigs,
-    );
-    const instance = axios.create(defaultConfig);
-
-    addRequestInterceptors(instance, requestInterceptors);
-    addResponseInterceptors(instance, responseInterceptors);
-
-    // 洋葱模型内部应该这是对数据的处理，避免有副作用调用
-    scheduler.use(paramsProcess).use(genRequestKey).use(cacheControl).use(preventRepeatReq).use(axiosMiddleware);
-
-    return {
-        context: {
-            errorHandler,
-            dataHandler: dataHandler || ((data) => data),
-            instance,
-            defaultConfig,
-        },
-        request: scheduler.compose(),
-    };
+    return createRequest(defaultConfig);
 }
 
-function userConfigHandler(url, data, options = {}) {
-    options.url = url;
-    options.method = (options.method || 'post').toUpperCase();
-    if (checkHttpRequestHasBody(options.method)) {
-        options.data = data;
-    } else {
-        options.params = data;
-    }
-    return options;
-}
+const currentRequest = getRequestInstance();
 
-let currentRequestInstance = null;
-
-function createContext(userConfig) {
-    return {
-        ...currentRequestInstance.context,
-        config: {
-            ...currentRequestInstance.context.defaultConfig,
-            ...userConfig,
-        },
-    };
-}
-
-function getCustomerHandler(ctx, options = {}) {
-    const { dataHandler, errorHandler } = ctx;
-    return {
-        dataHandler: options.dataHandler || dataHandler,
-        errorHandler: options.errorHandler || errorHandler,
-    };
-}
-
-export const request = (url, data, options = {}) => {
+export const rawRequest = (url, data, options = {}) => {
     if (typeof options === 'string') {
         options = {
             method: options,
         };
     }
-    if (!currentRequestInstance) {
-        currentRequestInstance = getRequestInstance();
-    }
-    const userConfig = userConfigHandler(url, data, options);
-    const context = createContext(userConfig);
-    const { dataHandler, errorHandler } = getCustomerHandler(context, options);
+    return currentRequest(url, data, options);
+};
 
-    return currentRequestInstance.request(context).then(async () => {
-        if (!context.error) {
-            return dataHandler(context.response.data, context.response);
-        }
-        errorHandler && errorHandler(context.error);
-        return Promise.reject(context.error);
-    });
+export const request = async (url, data, options = {}) => {
+    const response = await rawRequest(url, data, options);
+    return response.data;
 };
 
 function isPromiseLike(obj) {

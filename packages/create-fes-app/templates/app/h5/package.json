@@ -46,7 +46,7 @@
     "dependencies": {
         "@fesjs/fes": "^3.0.0-rc.1",
         "@fesjs/plugin-icon": "^3.0.0-rc.0",
-        "@fesjs/plugin-request": "^3.0.0-rc.3",
+        "@fesjs/plugin-request": "^4.0.0-rc.0",
         "@fesjs/builder-webpack": "^3.0.0-rc.1",
         "vue": "^3.2.37",
         "core-js": "^3.27.0"

@@ -56,7 +56,7 @@
     "@fesjs/plugin-model": "^3.0.0-rc.0",
     "@fesjs/plugin-monaco-editor": "^3.0.0-rc.0",
     "@fesjs/plugin-pinia": "^3.0.0-rc.0",
-    "@fesjs/plugin-request": "^3.0.0-rc.0",
+    "@fesjs/plugin-request": "^4.0.0-rc.0",
     "@fesjs/plugin-sass": "^3.0.0-rc.0",
     "@fesjs/plugin-windicss": "^3.0.0-rc.0",
     "core-js": "^3.27.0",

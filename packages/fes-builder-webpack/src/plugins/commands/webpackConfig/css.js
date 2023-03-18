@@ -93,8 +93,8 @@ export default function createCssWebpackConfig({ isDev, config, webpackConfig, b
     if (!isDev) {
         webpackConfig.plugin('extra-css').use(require.resolve('mini-css-extract-plugin'), [
             {
-                filename: '[name].[contenthash:8].css',
-                chunkFilename: '[id].[contenthash:8].css',
+                filename: 'css/[name].[contenthash:8].css',
+                chunkFilename: 'css/[id].[contenthash:8].css',
             },
         ]);
         webpackConfig.optimization.minimizer('css').use(require.resolve('css-minimizer-webpack-plugin'), [{}]);

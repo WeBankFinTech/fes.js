@@ -29,7 +29,7 @@
   },
   "peerDependencies": {
     "@fesjs/fes": "3.0.0-rc.4",
-    "@fesjs/plugin-request": "3.0.0-rc.6",
+    "@fesjs/plugin-request": "^4.0.0-rc.0",
     "vue": "^3.2.37"
   },
   "typings": "./types.d.ts"
