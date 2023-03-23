@@ -1,12 +1,12 @@
 
 export default (api) => {
     api.describe({
-        key: 'useExtraCss',
+        key: 'useExtraCSS',
         config: {
             schema(joi) {
                 return joi.boolean();
-            }
-        },
-        default: true
+            },
+            default: true
+        }
     });
 };

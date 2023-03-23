@@ -109,7 +109,7 @@ export default function createCssWebpackConfig({
         browserslist
     });
 
-    if (isDev && config.useExtraCSS) {
+    if (!isDev && config.useExtraCSS) {
         webpackConfig.plugin('extra-css')
             .use(require.resolve('mini-css-extract-plugin'), [{
                 filename: '[name].[contenthash:8].css',

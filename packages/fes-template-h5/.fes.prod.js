@@ -5,5 +5,10 @@ export default {
     request: {
         base: '/api'
     },
+    chainWebpack(memo) {
+        memo.output.filename('./static/[name].[contenthash:8].js')
+            .chunkFilename('./static/[name].[contenthash:8].chunk.js')
+            .assetModuleFilename('./static/[hash][ext][query]');
+    },
     useExtraCSS: false
 };
