@@ -1,6 +1,6 @@
 {
     "name": "@fesjs/preset-built-in",
-    "version": "2.1.9",
+    "version": "2.1.10",
     "description": "@fesjs/preset-built-in",
     "main": "lib/index.js",
     "types": "lib/index.d.ts",
@@ -70,8 +70,8 @@
         "url-loader": "^4.1.1",
         "vue-loader": "^16.1.2",
         "webpack": "^5.76.2",
-        "webpack-bundle-analyzer": "^4.4.0",
         "webpack-5-chain": "^8.0.1",
+        "webpack-bundle-analyzer": "^4.4.0",
         "webpack-dev-server": "^3.11.2",
         "webpackbar": "^5.0.0-3"
     },
