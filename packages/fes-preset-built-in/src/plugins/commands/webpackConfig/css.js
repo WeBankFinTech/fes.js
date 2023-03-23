@@ -23,15 +23,14 @@ function createRules({
     styleLoaderOption
 }) {
     function applyLoaders(rule, isCSSModules) {
-        if (isDev) {
+        if (isDev || !config.useExtraCSS) {
             rule.use('extra-css-loader')
                 .loader(require.resolve('style-loader'))
                 .options(Object.assign({}, styleLoaderOption));
         } else {
             rule.use('extra-css-loader')
                 .loader(require('mini-css-extract-plugin').loader)
-                .options({
-                });
+                .options({});
         }
 
         rule.use('css-loader')
@@ -110,7 +109,7 @@ export default function createCssWebpackConfig({
         browserslist
     });
 
-    if (!isDev) {
+    if (isDev && config.useExtraCSS) {
         webpackConfig.plugin('extra-css')
             .use(require.resolve('mini-css-extract-plugin'), [{
                 filename: '[name].[contenthash:8].css',

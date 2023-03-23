@@ -4,5 +4,6 @@
 export default {
     request: {
         base: '/api'
-    }
+    },
+    useExtraCSS: false
 };

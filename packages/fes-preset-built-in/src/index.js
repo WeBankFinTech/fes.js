@@ -44,6 +44,7 @@ export default function () {
             require.resolve('./plugins/features/terserOptions'),
             require.resolve('./plugins/features/nodeModulesTransform'),
             require.resolve('./plugins/features/vueLoader'),
+            require.resolve('./plugins/features/useExtraCSS'),
 
             // misc
             require.resolve('./plugins/misc/route'),

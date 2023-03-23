@@ -1,6 +1,6 @@
 import { join } from 'path';
 import { existsSync } from 'fs';
-import Config from 'webpack-chain';
+import Config from 'webpack-5-chain';
 import webpack from 'webpack';
 import createCssWebpackConfig from './css';
 import getBabelOpts from './getBabelOpts';
@@ -97,7 +97,8 @@ export default async function getConfig({
         .path(absoluteOutput)
         .publicPath(publicPath)
         .filename('[name].[contenthash:8].js')
-        .chunkFilename('[name].[contenthash:8].chunk.js');
+        .chunkFilename('[name].[contenthash:8].chunk.js')
+        .assetModuleFilename('[hash][ext][query]');
 
     // --------------- resolve -----------
     webpackConfig.resolve.extensions.merge(['.mjs', '.js', '.jsx', '.vue', '.ts', '.tsx', '.json', '.wasm']);
@@ -113,48 +114,22 @@ export default async function getConfig({
     webpackConfig.module
         .rule('image')
         .test(/\.(png|jpe?g|gif|webp|ico)(\?.*)?$/)
-        .use('url-loader')
-        .loader(require.resolve('url-loader'))
-        .options({
-            limit: config.inlineLimit || 8192,
-            esModule: false,
-            fallback: {
-                loader: require.resolve('file-loader'),
-                options: {
-                    name: 'static/[name].[hash:8].[ext]',
-                    esModule: false
-                }
-            }
-        });
+        .type('asset/resource');
 
     webpackConfig.module
         .rule('svg')
         .test(/\.(svg)(\?.*)?$/)
-        .use('file-loader')
-        .loader(require.resolve('file-loader'))
-        .options({
-            name: 'static/[name].[hash:8].[ext]',
-            esModule: false
-        });
+        .type('asset/resource');
 
     webpackConfig.module
         .rule('fonts')
         .test(/\.(eot|woff|woff2|ttf)(\?.*)?$/)
-        .use('file-loader')
-        .loader(require.resolve('file-loader'))
-        .options({
-            name: 'static/[name].[hash:8].[ext]',
-            esModule: false
-        });
+        .type('asset/resource');
 
     webpackConfig.module
         .rule('raw')
         .test(/\.(txt|text|md)$/)
-        .use('raw-loader')
-        .loader(require.resolve('raw-loader'))
-        .options({
-            esModule: false
-        });
+        .type('asset/resource');
 
     const { targets, browserslist } = getTargetsAndBrowsersList({ config });
     const babelOpts = await getBabelOpts({
