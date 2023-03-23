@@ -114,7 +114,12 @@ export default async function getConfig({
     webpackConfig.module
         .rule('image')
         .test(/\.(png|jpe?g|gif|webp|ico)(\?.*)?$/)
-        .type('asset/resource');
+        .type('asset')
+        .parser({
+            dataUrlCondition: {
+                maxSize: config.inlineLimit || 8 * 1024
+            }
+        });
 
     webpackConfig.module
         .rule('svg')
