@@ -96,6 +96,20 @@ export default {
 
 然后你代码里写 `console.log(__DEV__)`，会被编译成 `console.log('development')`。
 
+### builder
+
+-   类型： `string`
+-   默认值： 当前安装的 builder
+-   详情：
+    比如 dev 用 vite，构建用 webpack
+-   示例：
+
+```js
+export default {
+    builder: 'webpack',
+};
+```
+
 ### dynamicImport
 
 -   类型： `boolean`
