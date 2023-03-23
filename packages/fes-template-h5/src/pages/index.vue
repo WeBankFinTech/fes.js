@@ -7,6 +7,7 @@
             type="smile"
             @click="clickIcon"
         />
+        <img src="@/images/male.png" />
         <HelloWorld />
         <HelloTSX />
         <helloTS />
@@ -67,6 +68,7 @@ div {
     p {
         margin: 20px;
     }
+    background: url('@/images/male.png');
 }
 .one-icon {
     color: yellow;
