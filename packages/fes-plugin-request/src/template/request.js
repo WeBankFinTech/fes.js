@@ -1,5 +1,5 @@
 import { ApplyPluginsType, plugin } from '@fesjs/fes';
-import { ref } from 'vue';
+import { ref, shallowRef } from 'vue';
 
 import { createRequest } from '@qlin/request';
 
@@ -38,7 +38,7 @@ function isPromiseLike(obj) {
 export const useRequest = (url, data, options = {}) => {
     const loadingRef = ref(true);
     const errorRef = ref(null);
-    const dataRef = ref(null);
+    const dataRef = shallowRef(null);
     let promise;
     if (isPromiseLike(url)) {
         promise = url;
