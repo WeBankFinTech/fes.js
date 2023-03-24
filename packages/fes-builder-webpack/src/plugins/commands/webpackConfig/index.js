@@ -1,6 +1,6 @@
 import { join } from 'path';
 import { existsSync } from 'fs';
-import Config from 'webpack-chain';
+import Config from 'webpack-5-chain';
 import webpack from 'webpack';
 import createCssWebpackConfig from './css';
 import getBabelOpts from './getBabelOpts';
@@ -78,7 +78,8 @@ export default async function getConfig({ api, cwd, config, env, entry = {}, mod
         .path(absoluteOutput)
         .publicPath(publicPath || '/')
         .filename('js/[name].[contenthash:8].js')
-        .chunkFilename('js/[name].[contenthash:8].chunk.js');
+        .chunkFilename('js/[name].[contenthash:8].chunk.js')
+        .assetModuleFilename('static/[name][hash:8][ext]');
 
     // --------------- resolve -----------
     webpackConfig.resolve.extensions.merge(['.mjs', '.js', '.jsx', '.vue', '.ts', '.tsx', '.json', '.wasm']);
@@ -292,10 +293,6 @@ export default async function getConfig({ api, cwd, config, env, entry = {}, mod
     memo.watchOptions = {
         aggregateTimeout: 200,
         ...memo.watchOptions,
-    };
-    memo.output = {
-        ...memo.output,
-        assetModuleFilename: 'static/[name][hash:8][ext]',
     };
 
     return memo;

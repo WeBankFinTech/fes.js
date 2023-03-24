@@ -333,7 +333,7 @@ const defaultTerserOptions = {
 -   默认值：`null`
 -   详情：
 
-    通过 [webpack-chain](https://github.com/neutrinojs/webpack-chain) 的 API 修改 webpack 配置。
+    通过 [webpack-chain](https://github.com/sorrycc/webpack-chain#readme) 的 API 修改 webpack 配置。
 
 示例：
 
