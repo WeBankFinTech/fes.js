@@ -66,7 +66,10 @@ export const createRouter = (routes) => {
           document.body.removeChild(rootElement);
       }
     }
-    next();
+    // 避免在beforeRender action中操作路由或者location.href，构建后会出现卡死
+    setTimeout(() => {
+      next();
+    }, 0);
   })
 
   plugin.applyPlugins({
