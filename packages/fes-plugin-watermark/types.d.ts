@@ -1,6 +1,6 @@
 import '@fesjs/fes';
 
-interface WatermarkParam {
+export interface WatermarkParam {
     content?: string;
     container?: HTMLElement;
     width?: number;
