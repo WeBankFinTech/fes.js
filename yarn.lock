@@ -2103,10 +2103,10 @@
   resolved "https://registry.npmmirror.com/@polka/url/-/url-1.0.0-next.21.tgz#5de5a2385a35309427f6011992b544514d559aa1"
   integrity sha512-a5Sab1C4/icpTZVzZc5Ghpz88yQtGOyNqYXcZgOssB2uuAr+wF/MvN6bgtW32q7HHrvBki+BsZ0OuNv6EV3K9g==
 
-"@qlin/request@^0.1.1":
-  version "0.1.1"
-  resolved "https://registry.npmmirror.com/@qlin/request/-/request-0.1.1.tgz#265026e2741208640522161eb9621077aae05487"
-  integrity sha512-3bQ3XaD4I4/EYZC15CR1TIHFCWQtZfYz0oleXlf4RS1xIW+7zna3OT5c0VKPiDn/aK1wZAH0mYODChIaRKSciA==
+"@qlin/request@^0.1.2":
+  version "0.1.2"
+  resolved "https://registry.npmmirror.com/@qlin/request/-/request-0.1.2.tgz#84400b9c53eb5cadcfbdb63b7ecc1fe53559114a"
+  integrity sha512-iHkkFQjNuutRIEatYcfWpSimQO9SumOvM5mcDJ6zLr4zLyXTqMlWaRXvORmvlt+DCbc/k8m2fi9DDXaUQb2TqQ==
   dependencies:
     "@types/lodash-es" "^4.17.6"
     lodash-es "^4.17.21"
