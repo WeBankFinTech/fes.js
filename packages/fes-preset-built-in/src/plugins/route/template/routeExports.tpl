@@ -39,37 +39,37 @@ export const createRouter = (routes) => {
 
   let isInit = false
   router.beforeEach(async (to, from, next) => {
-    if(!isInit) {
-      isInit = true
-      const beforeRenderConfig = plugin.applyPlugins({
-        key: "beforeRender",
-        type: ApplyPluginsType.modify,
-        initialValue: {
-            loading: null,
-            action: null
-        },
-      });
-      if (typeof beforeRenderConfig.action === "function") {
-          const rootElement = document.createElement('div');
-          document.body.appendChild(rootElement)
-          const app = createApp(beforeRenderConfig.loading);
-          app.mount(rootElement);
-          try {
-              const initialState = await beforeRenderConfig.action({router, history});
-              updateInitialState(initialState || {})
-          } catch(e){
-              console.error(`[fes] beforeRender执行出现异常：`);
-              console.error(e);
-          }
-          app.unmount();
-          app._container.innerHTML = '';
-          document.body.removeChild(rootElement);
-      }
+    if(isInit){
+      return next()
     }
-    // 避免在beforeRender action中操作路由或者location.href，构建后会出现卡死
-    setTimeout(() => {
-      next();
-    }, 0);
+    isInit = true
+    const beforeRenderConfig = plugin.applyPlugins({
+      key: "beforeRender",
+      type: ApplyPluginsType.modify,
+      initialValue: {
+          loading: null,
+          action: null
+      },
+    });
+    if (typeof beforeRenderConfig.action !== "function") {
+      return next();
+    }
+    const rootElement = document.createElement('div');
+    document.body.appendChild(rootElement)
+    const app = createApp(beforeRenderConfig.loading);
+    app.mount(rootElement);
+    try {
+        const initialState = await beforeRenderConfig.action({router, history});
+        updateInitialState(initialState || {})
+        next();
+    } catch(e){
+        next(false);
+        console.error(`[fes] beforeRender执行出现异常：`);
+        console.error(e);
+    }
+    app.unmount();
+    app._container.innerHTML = '';
+    document.body.removeChild(rootElement);
   })
 
   plugin.applyPlugins({
