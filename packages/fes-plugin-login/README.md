@@ -50,17 +50,17 @@ Fes.js 是一个好用的前端应用解决方案。提供覆盖编译构建到�
 
 ## 像数 1, 2, 3 一样容易
 
-使用 `yarn`：
+使用 `pnpm`：
 
 ```bash
 # 创建模板
-yarn create @fesjs/fes-app myapp
+pnpm create @fesjs/fes-app myapp
 
 # 安装依赖
-yarn
+pnpm i
 
 # 运行
-yarn dev
+pnpm dev
 ```
 
 使用 `npm`：

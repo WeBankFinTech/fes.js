@@ -28,7 +28,7 @@
     "access": "public"
   },
   "peerDependencies": {
-    "vue": "^3.2.37"
+    "vue": "^3.2.47"
   },
   "dependencies": {
     "vite-plugin-windicss": "^1.8.3",

@@ -53,8 +53,8 @@
         "@fesjs/plugin-enums": "^3.0.0-rc.0",
         "@fesjs/fes-design": "^0.7.9",
         "@fesjs/builder-webpack": "^3.0.0-rc.0",
-        "vue": "^3.2.45",
-        "core-js": "^3.27.0"
+        "vue": "^3.2.47",
+        "core-js": "^3.29.1"
     },
     "private": true
 }

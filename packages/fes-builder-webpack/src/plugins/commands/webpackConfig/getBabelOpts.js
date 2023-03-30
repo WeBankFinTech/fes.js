@@ -43,7 +43,6 @@ function getBabelOpts({ cwd, targets, config, presetOpts }) {
                 ...presetOpts.transformRuntime,
             },
         ],
-        ...(presetOpts.import ? presetOpts.import.map((importOpts) => [require.resolve('babel-plugin-import'), importOpts, importOpts.libraryName]) : []),
         require.resolve('@vue/babel-plugin-jsx'),
         ...(config.extraBabelPlugins || []),
     ];

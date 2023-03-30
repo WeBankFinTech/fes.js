@@ -5,24 +5,26 @@ sidebar: auto
 # 命令行工具
 
 ## create-fes-app
+
 通过 `create-fes-app` 命令创建项目模板，输入`create-fes-app -h`则可以看到如下信息：
+
 ```
 Usage: create-fes-app <name>
 
 Options:
     -v, --version            Output the current version
-    -h, --help               Display help for command   
+    -h, --help               Display help for command
     -f, --force              Overwrite target directory if it exists
     -m, --merge              Merge target directory if it exists
 ```
 
 可以在本机安装后使用：
 <CodeGroup>
-  <CodeGroupItem title="YARN" active>
+<CodeGroupItem title="PNPM" active>
 
 ```bash
 # 全局安装
-yarn global add @fesjs/create-fes-app
+pnpm global add @fesjs/create-fes-app
 
 # 创建模板
 create-fes-app fes-app
@@ -43,20 +45,20 @@ create-fes-app fes-app
   </CodeGroupItem>
 </CodeGroup>
 
-推荐使用 `yarn create` 和 `npx` 方式创建模板，一直使用最新的模板：
+推荐使用 `pnpm create` 和 `npx` 方式创建模板，一直使用最新的模板：
 
 <CodeGroup>
-  <CodeGroupItem title="YARN" active>
+  <CodeGroupItem title="PNPM" active>
 
 ```bash
 # 创建模板
-yarn create @fesjs/fes-app myapp
+pnpm create @fesjs/fes-app myapp
 
 # 安装依赖
-yarn 
+pnpm i
 
 # 运行
-yarn dev
+pnpm dev
 ```
 
   </CodeGroupItem>
@@ -68,7 +70,7 @@ yarn dev
 npx @fesjs/create-fes-app myapp
 
 # 安装依赖
-npm install 
+npm install
 
 # 运行
 npm run dev
@@ -77,8 +79,8 @@ npm run dev
   </CodeGroupItem>
 </CodeGroup>
 
-
 ## fes
+
 需要在项目根目录执行 `fes` 命令，输入`fes -h`则可以看到如下信息：
 
 ```
@@ -101,7 +103,9 @@ Commands:
 ```
 
 ### fes dev
+
 启动本地开发服务器进行项目的开发调试。
+
 ```
 Usage: fes dev [options]
 
@@ -112,13 +116,17 @@ Options:
   --https     whether to turn on the https service
   -h, --help  display help for command
 ```
+
 比如：
+
 ```bash
 fes dev --port=8080
 ```
 
 ### fes build
+
 编译构建 web 产物。
+
 ```
 Usage: fes build [options]
 
@@ -127,19 +135,26 @@ build application for production
 Options:
   -h, --help  display help for command
 ```
+
 比如：
+
 ```
 fes build
 ```
+
 ### fes help
+
 打印帮助文档。
 比如：
+
 ```bash
 fes help
 ```
 
 ### fes info
+
 打印当前项目的有用的环境信息，用来帮助定位问题。
+
 ```
 Usage: fes info [options]
 
@@ -148,13 +163,17 @@ print debugging information about your environment
 Options:
   -h, --help  display help for command
 ```
+
 比如：
+
 ```bash
 fes info
 ```
 
 ### fes webpack
+
 查看项目使用的 webpack 配置。
+
 ```
 Usage: fes webpack [options]
 
@@ -170,6 +189,7 @@ Options:
 ```
 
 比如：
+
 ```bash
 fes webpack
 ```

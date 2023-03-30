@@ -29,11 +29,11 @@
   },
   "dependencies": {
     "@fesjs/utils": "3.0.0-rc.2",
-    "lodash-es": "^4.17.15"
+    "lodash-es": "^4.17.21"
   },
   "peerDependencies": {
     "@fesjs/fes": "3.0.0-rc.8",
-    "vue": "^3.2.37"
+    "vue": "^3.2.47"
   },
   "typings": "./types.d.ts"
 }
