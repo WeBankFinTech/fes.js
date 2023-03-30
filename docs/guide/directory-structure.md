@@ -51,24 +51,24 @@ fes-template
         "access": "public"
     },
     "devDependencies": {
-        "@webank/eslint-config-webank": "0.3.1"
+        "@webank/eslint-config-webank": "1.2.1"
     },
     "dependencies": {
-        "@fesjs/fes": "^3.0.0-beta.0",
-        "@fesjs/builder-webpack": "^3.0.0-beta.0",
-        "@fesjs/plugin-access": "^3.0.0-beta.0",
-        "@fesjs/plugin-layout": "^5.0.0-beta.0",
-        "@fesjs/plugin-model": "^3.0.0-beta.0",
-        "@fesjs/plugin-enums": "^3.0.0-beta.0",
-        "@fesjs/plugin-jest": "^3.0.0-beta.0",
-        "@fesjs/plugin-vuex": "^3.0.0-beta.0",
-        "@fesjs/plugin-request": "^3.0.0-beta.0",
-        "@fesjs/plugin-qiankun": "^3.0.0-beta.0",
-        "@fesjs/plugin-sass": "^3.0.0-beta.0",
-        "@fesjs/plugin-monaco-editor": "^3.0.0-beta.0",
-        "@fesjs/plugin-windicss": "^3.0.0-beta.0",
-        "@fesjs/fes-design": "^0.5.0",
-        "vue": "^3.2.37",
+        "@fesjs/fes": "^3.0.0",
+        "@fesjs/builder-webpack": "^3.0.0",
+        "@fesjs/plugin-access": "^3.0.0",
+        "@fesjs/plugin-layout": "^5.0.0",
+        "@fesjs/plugin-model": "^3.0.0",
+        "@fesjs/plugin-enums": "^3.0.0",
+        "@fesjs/plugin-jest": "^3.0.0",
+        "@fesjs/plugin-vuex": "^3.0.0",
+        "@fesjs/plugin-request": "^3.0.0",
+        "@fesjs/plugin-qiankun": "^3.0.0",
+        "@fesjs/plugin-sass": "^3.0.0",
+        "@fesjs/plugin-monaco-editor": "^3.0.0",
+        "@fesjs/plugin-windicss": "^3.0.0",
+        "@fesjs/fes-design": "^0.7.23",
+        "vue": "^3.2.47",
         "vuex": "^4.0.0"
     },
     "private": true

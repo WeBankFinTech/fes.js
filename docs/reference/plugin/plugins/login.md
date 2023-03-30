@@ -11,8 +11,8 @@
 ```json
 {
     "dependencies": {
-        "@fesjs/fes": "^3.0.0-rc.2",
-        "@fesjs/plugin-login": "^3.0.0-rc.1"
+        "@fesjs/fes": "^3.0.0",
+        "@fesjs/plugin-login": "^3.0.0"
     }
 }
 ```

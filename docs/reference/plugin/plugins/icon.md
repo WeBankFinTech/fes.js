@@ -11,8 +11,8 @@
 ```json
 {
     "dependencies": {
-        "@fesjs/fes": "^3.0.0-rc.2",
-        "@fesjs/plugin-icon": "^3.0.0-rc.2"
+        "@fesjs/fes": "^3.0.0",
+        "@fesjs/plugin-icon": "^3.0.0"
     }
 }
 ```
