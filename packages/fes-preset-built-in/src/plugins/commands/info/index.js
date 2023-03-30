@@ -7,7 +7,7 @@ export default function (api) {
                 .run(
                     {
                         System: ['OS', 'CPU'],
-                        Binaries: ['Node', 'Yarn', 'npm'],
+                        Binaries: ['Node', 'Pnpm', 'npm'],
                         Browsers: ['Chrome', 'Edge', 'Firefox', 'Safari'],
                         npmPackages: ['@fesjs/fes', 'vue', 'vue-router'],
                         npmGlobalPackages: ['@fesjs/fes'],

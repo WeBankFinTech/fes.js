@@ -10,11 +10,11 @@ node -v
 v12.13.0
 ```
 
-推荐使用 yarn 管理 npm 依赖
+推荐使用 [pnpm](https://pnpm.io/installation) 管理 npm 依赖
 
 ```bash
-# 全局安装 yarn
-npm i yarn -g
+# 全局安装 pnpm
+npm i pnpm -g
 ```
 
 ## 创建项目
@@ -42,11 +42,11 @@ cd workspace
 ##### 步骤 2 在工作空间创建项目
 
 <CodeGroup>
-  <CodeGroupItem title="YARN" active>
+  <CodeGroupItem title="PNPM" active>
 
 ```bash
 # 创建模板
-yarn create @fesjs/fes-app myapp
+pnpm create @fesjs/fes-app myapp
 ```
 
   </CodeGroupItem>
@@ -78,13 +78,13 @@ npx @fesjs/create-fes-app myapp
 ##### 步骤 3 安装依赖
 
 <CodeGroup>
-  <CodeGroupItem title="YARN" active>
+  <CodeGroupItem title="PNPM" active>
 
 ```bash
 # 进入项目目录
 cd myapp
 # 安装依赖
-yarn
+pnpm i
 ```
 
   </CodeGroupItem>
@@ -104,13 +104,13 @@ npm i
 ## 启动项目
 
 <CodeGroup>
-  <CodeGroupItem title="YARN" active>
+  <CodeGroupItem title="PNPM" active>
 
 ```bash
 # 开发调试
-yarn dev
+pnpm dev
 
-yarn run v1.22.4
+pnpm run v1.22.4
 $ fes dev
 Starting the development server http://localhost:8080 ...
 
@@ -149,13 +149,13 @@ Fes.js 会在 [http://localhost:8080](http://localhost:8080) 启动一个热重�
 ### 构建
 
 <CodeGroup>
-  <CodeGroupItem title="YARN" active>
+  <CodeGroupItem title="PNPM" active>
 
 ```bash
 # 构建
-yarn build
+pnpm build
 
-yarn run v1.22.4
+pnpm run v1.22.4
 $ fes build
 
 ✔ Webpack

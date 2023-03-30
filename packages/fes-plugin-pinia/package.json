@@ -33,7 +33,7 @@
   "peerDependencies": {
     "@fesjs/fes": "3.0.0-rc.4",
     "pinia": "^2.0.11",
-    "vue": "^3.2.37"
+    "vue": "^3.2.47"
   },
   "typings": "./types.d.ts"
 }

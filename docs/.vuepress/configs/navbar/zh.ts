@@ -28,7 +28,7 @@ export const zh: NavbarConfig = [
       {
         text: 'v2.0',
         link:
-          'https://fesjs.mumblefe.cn/',
+          'https://fesjs.mumblefe.cn/2.0',
       },
       {
         text: 'v1.0',

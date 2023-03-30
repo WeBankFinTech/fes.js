@@ -58,11 +58,10 @@
     "@fesjs/plugin-pinia": "^3.0.0-rc.0",
     "@fesjs/plugin-request": "^3.0.0-rc.0",
     "@fesjs/plugin-sass": "^3.0.0-rc.0",
-    "@fesjs/plugin-windicss": "^3.0.0-rc.0",
-    "core-js": "^3.27.0",
-    "cssnano": "^5.1.12",
+    "core-js": "^3.29.1",
+    "cssnano": "^6.0.0",
     "pinia": "^2.0.11",
-    "vue": "^3.2.37",
+    "vue": "^3.2.47",
     "vuex": "^4.0.0"
   },
   "private": true

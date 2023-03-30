@@ -31,7 +31,7 @@
   },
   "dependencies": {
     "@fesjs/utils": "3.0.0-rc.2",
-    "fs-extra": "^10.0.0",
+    "fs-extra": "^11.1.1",
     "inquirer": "^7.3.3",
     "readline": "^1.3.0",
     "validate-npm-package-name": "^3.0.0"

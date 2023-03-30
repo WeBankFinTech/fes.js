@@ -40,13 +40,13 @@
     "access": "public"
   },
   "dependencies": {
-    "@ttou/postcss-px-to-viewport": "1.1.4",
+    "@ttou/postcss-px-to-viewport": "^2.0.3",
     "@fesjs/fes": "^3.0.0-rc.0",
     "@fesjs/plugin-icon": "^3.0.0-rc.0",
     "@fesjs/plugin-request": "^3.0.0-rc.0",
     "@fesjs/builder-vite": "^3.0.0-rc.1",
-    "core-js": "^3.27.0",
-    "vue": "^3.2.37"
+    "core-js": "^3.29.1",
+    "vue": "^3.2.47"
   },
   "private": true
 }

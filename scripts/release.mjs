@@ -1,7 +1,7 @@
-import minimist from 'minimist';
 import fs from 'fs';
 import * as url from 'url';
 import path from 'path';
+import minimist from 'minimist';
 import chalk from 'chalk';
 import semver from 'semver';
 import enquirer from 'enquirer';
@@ -13,13 +13,13 @@ import buildConfig from '../build.config.js';
 const { prompt } = enquirer;
 const __dirname = url.fileURLToPath(new URL('.', import.meta.url));
 
-const { preid, dry: isDryRun, tag: releaseTag } = minimist(process.argv.slice(2));
+const { preid, dry: isDryRun } = minimist(process.argv.slice(2));
 const packages = buildConfig.pkgs;
 
 const versionIncrements = ['patch', 'minor', 'major', 'prepatch', 'preminor', 'premajor', 'prerelease'];
 
 const incVersion = (version, i) => {
-    const preId = preid || semver.prerelease(version)[0] || 'alpha';
+    const preId = preid || semver.prerelease(version)[0];
     return semver.inc(version, i, preId);
 };
 const autoIncVersion = (version) => {
@@ -42,14 +42,13 @@ const arrToObj = (arr, key) =>
 
 // eslint-disable-next-line no-shadow
 async function publishPackage(pkg, runIfNotDry) {
-    const _releaseTag = releaseTag || 'next';
     step(`Publishing ${pkg.name}...`);
     try {
         await runIfNotDry(
-            // note: use of yarn is intentional here as we rely on its publishing
+            // note: use of pnpm is intentional here as we rely on its publishing
             // behavior.
             'npm',
-            ['publish', ...(_releaseTag ? ['--tag', _releaseTag] : []), '--access', 'public', '--registry', 'https://registry.npmjs.org'],
+            ['publish', '--access', 'public', '--registry', 'https://registry.npmjs.org'],
             {
                 cwd: getPkgRoot(pkg.dirName),
                 stdio: 'pipe',
@@ -244,18 +243,18 @@ async function main() {
     updateVersions(packagesVersion);
 
     // update lock
-    await run('yarn');
+    await run('pnpm i');
     // // build all packages with types
     step('\nBuilding all packages...');
     if (!isDryRun) {
-        await run('yarn', ['build']);
+        await run('pnpm', ['build']);
     } else {
         console.log(`(skipped build)`);
     }
 
     // generate changelog
     step('\nGenerating changelog...');
-    await run(`yarn`, ['changelog']);
+    await run(`pnpm`, ['changelog']);
 
     const { stdout } = await run('git', ['diff'], { stdio: 'pipe' });
     if (stdout) {

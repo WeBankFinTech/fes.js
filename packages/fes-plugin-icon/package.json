@@ -28,10 +28,10 @@
     "access": "public"
   },
   "peerDependencies": {
-    "vue": "^3.2.37"
+    "vue": "^3.2.47"
   },
   "dependencies": {
-    "svgo": "^2.3.1"
+    "svgo": "^3.0.2"
   },
   "typings": "./types.d.ts"
 }

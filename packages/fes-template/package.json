@@ -45,7 +45,7 @@
   },
   "dependencies": {
     "@fesjs/fes": "^3.0.0-rc.0",
-    "@fesjs/fes-design": "^0.7.0",
+    "@fesjs/fes-design": "^0.7.20",
     "@fesjs/plugin-login": "^3.0.0-rc.0",
     "@fesjs/plugin-access": "^3.0.0-rc.0",
     "@fesjs/plugin-enums": "^3.0.0-rc.0",
@@ -62,8 +62,8 @@
     "@fesjs/plugin-windicss": "^3.0.0-rc.0",
     "@fesjs/plugin-swc": "^3.0.0-rc.0",
     "core-js": "3.27.0",
-    "pinia": "^2.0.11",
-    "vue": "^3.2.37",
+    "pinia": "^2.0.33",
+    "vue": "^3.2.47",
     "vuex": "^4.0.0"
   },
   "private": true

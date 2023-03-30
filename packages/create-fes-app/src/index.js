@@ -95,8 +95,8 @@ export default async ({ cwd, args }) => {
         console.log();
         console.log(chalk.green(`project ${projectName} created successfully, please execute the following command to use:`));
         console.log(`$ cd ${projectName}`);
-        console.log('$ yarn');
-        console.log('$ yarn dev');
+        console.log('$ pnpm i');
+        console.log('$ pnpm dev');
         console.log();
     } else if (template === 'plugin') {
         const generator = new PluginGenerator({
@@ -110,8 +110,8 @@ export default async ({ cwd, args }) => {
         console.log();
         console.log(chalk.green(`plugin ${projectName} created successfully, please execute the following command to use:`));
         console.log(`$ cd ${projectName}`);
-        console.log('$ yarn');
-        console.log('$ yarn dev');
+        console.log('$ pnpm i');
+        console.log('$ pnpm dev');
         console.log();
     }
 };
