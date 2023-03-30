@@ -13,7 +13,7 @@ interface RequestPluginOption {
     cache?:
         | boolean
         | {
-              type?: 'ram' | 'sessionStorage' | 'localStorage';
+              cacheType?: 'ram' | 'sessionStorage' | 'localStorage';
               cacheTime?: number;
           };
 }
