@@ -71,8 +71,8 @@ export default {
 ```json
 {
     "dependencies": {
-        "@fesjs/fes": "^2.0.0",
-        "@fesjs/plugin-access": "^2.0.0"
+        "@fesjs/fes": "^3.0.0",
+        "@fesjs/plugin-access": "^3.0.0"
     }
 }
 ```

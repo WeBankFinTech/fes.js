@@ -41,8 +41,8 @@ import { useStore } from 'vuex';
 ```json
 {
     "dependencies": {
-        "@fesjs/fes": "^2.0.0",
-        "@fesjs/plugin-vuex": "^2.0.0"
+        "@fesjs/fes": "^3.0.0",
+        "@fesjs/plugin-vuex": "^3.0.0"
     }
 }
 ```

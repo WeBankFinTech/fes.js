@@ -139,8 +139,8 @@ importers:
         specifier: ^3.0.0-rc.0
         version: link:../../../../fes
       '@fesjs/fes-design':
-        specifier: ^0.7.9
-        version: 0.7.9(vue@3.2.47)
+        specifier: ^0.7.23
+        version: 0.7.23(vue@3.2.47)
       '@fesjs/plugin-access':
         specifier: ^3.0.0-rc.0
         version: link:../../../../fes-plugin-access
@@ -4386,6 +4386,29 @@ packages:
 
   /@fesjs/fes-design@0.7.20(vue@3.2.47):
     resolution: {integrity: sha512-XEyi1GLOLwCuGi2S0MGnwMGHoSDQ2XXjOgnzxrRz+z7XmC4jA/P+5Z2Q82J1F1D4lRxNAzzRjFQlfM+hNoLblA==}
+    peerDependencies:
+      vue: ^3.2.24
+    dependencies:
+      '@babel/runtime': 7.21.0
+      '@floating-ui/dom': 0.4.5
+      '@juggle/resize-observer': 3.4.0
+      '@types/lodash-es': 4.17.7
+      '@types/normalize-wheel': 1.0.1
+      '@vue/shared': 3.2.47
+      '@vueuse/core': 9.13.0(vue@3.2.47)
+      async-validator: 4.2.5
+      csstype: 3.1.1
+      date-fns: 2.29.3
+      lodash-es: 4.17.21
+      normalize-wheel: 1.0.1
+      stickybits: 3.7.11
+      vue: 3.2.47
+    transitivePeerDependencies:
+      - '@vue/composition-api'
+    dev: false
+
+  /@fesjs/fes-design@0.7.23(vue@3.2.47):
+    resolution: {integrity: sha512-FCQk4+SBVmYgQLhxjUqkxT701o7LprnhrBf7o5zPLhu3wZKbhPGAc2g96reBf08nWjxV6UubAX3QpeQ5aQWxcA==}
     peerDependencies:
       vue: ^3.2.24
     dependencies:
