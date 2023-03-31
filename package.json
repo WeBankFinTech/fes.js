@@ -8,6 +8,8 @@
     "packages/*"
   ],
   "scripts": {
+    "bootstrap": "pnpm i",
+    "clean": "rm -rf packages/**/node_modules  & rm -rf node_modules",
     "dev": "node scripts/build.mjs --watch",
     "build": "node scripts/build.mjs",
     "release": "node scripts/release.mjs",
