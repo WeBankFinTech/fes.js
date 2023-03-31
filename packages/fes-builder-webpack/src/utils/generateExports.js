@@ -1,6 +1,6 @@
-import { lodash, winPath } from '@fesjs/utils';
 import assert from 'assert';
 import path from 'path';
+import { lodash, winPath } from '@fesjs/utils';
 
 const reserveLibrarys = ['fes']; // reserve library
 // todo 插件导出内容冲突问题待解决

@@ -32,7 +32,7 @@
     "lodash-es": "^4.17.21"
   },
   "peerDependencies": {
-    "@fesjs/fes": "3.0.0-rc.5",
+    "@fesjs/fes": "^3.0.0-rc.0",
     "vue": "^3.2.47",
     "vue-router": "^4.0.1"
   },

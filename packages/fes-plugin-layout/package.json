@@ -31,7 +31,7 @@
     "@fesjs/utils": "3.0.0-rc.2"
   },
   "peerDependencies": {
-    "@fesjs/fes": "3.0.0-rc.8",
+    "@fesjs/fes": "^3.0.0-rc.0",
     "@fesjs/fes-design": "^0.7.0",
     "vue": "^3.2.47",
     "vue-router": "^4.0.1"
