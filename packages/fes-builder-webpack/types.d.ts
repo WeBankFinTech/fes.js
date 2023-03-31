@@ -1,4 +1,4 @@
-import Config from 'webpack-chain'
+import Config from 'webpack-5-chain'
 import webpack from 'webpack';
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 
