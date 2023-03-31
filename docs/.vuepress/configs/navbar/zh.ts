@@ -27,7 +27,7 @@ export const zh: NavbarConfig = [
       {
         text: 'v3.0',
         link:
-          'https://fesjs.mumblefe.cn/next',
+          'https://fesjs.mumblefe.cn',
       },
       {
         text: 'v1.0',
@@ -41,7 +41,7 @@ export const zh: NavbarConfig = [
       {
         text: '更新日志',
         link:
-          'https://github.com/WeBankFinTech/fes.js/blob/master/CHANGELOG.md',
+          'https://github.com/WeBankFinTech/fes.js/blob/2.0/CHANGELOG.md',
       },
       {
         text: 'fes-design',

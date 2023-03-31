@@ -17,9 +17,9 @@
 
 </div>
 
-- 使用文档 - [http://fesjs.mumblefe.cn/](http://fesjs.mumblefe.cn/)
+- 使用文档 - [http://fesjs.mumblefe.cn/2.0/](http://fesjs.mumblefe.cn/2.0/)
 - 更新日志 - [CHANGELOG.md](./CHANGELOG.md)
-- 3.0版本（构建可选vite和webpack）- [http://fesjs.mumblefe.cn/next/](http://fesjs.mumblefe.cn/next/)
+- 3.0版本（构建可选vite和webpack）- [http://fesjs.mumblefe.cn/](http://fesjs.mumblefe.cn)
 
 # 痛点
 在开发一个前端项目之前，我们可能需要做如下准备工作：
