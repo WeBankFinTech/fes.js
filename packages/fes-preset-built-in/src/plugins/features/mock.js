@@ -1,9 +1,6 @@
 import { existsSync, readFileSync } from 'fs';
 import { resolve } from 'path';
 import { chokidar, lodash, parseRequireDeps } from '@fesjs/utils';
-import bodyParser from 'body-parser';
-import cookieParser from 'cookie-parser';
-import mockjs from 'mockjs';
 
 export default (api) => {
     let mockFlag = false; // mock 开关flag
@@ -25,7 +22,7 @@ export default (api) => {
         });
         api.babelRegister.setOnlyMap({
             key: 'mock',
-            value: [...paths, ...requireDeps]
+            value: [...paths, ...requireDeps],
         });
     };
 
@@ -34,9 +31,9 @@ export default (api) => {
         config: {
             schema(joi) {
                 return joi.alternatives(joi.boolean(), joi.object());
-            }
+            },
         },
-        enableBy: () => process.env.NODE_ENV === 'development'
+        enableBy: () => process.env.NODE_ENV === 'development',
     });
 
     // 对 array、object 遍历处理
@@ -57,11 +54,11 @@ export default (api) => {
         // 默认配置
         const option = {
             headers: {
-                'Cache-Control': 'no-cache'
+                'Cache-Control': 'no-cache',
             },
             statusCode: 200,
             cookies: [],
-            timeout: 0
+            timeout: 0,
         };
         if (len === 0) return option;
         if (len === 1) {
@@ -69,12 +66,9 @@ export default (api) => {
             if (lodash.isPlainObject(newOption)) {
                 traversalHandler(newOption, (value, key) => {
                     if (key === 'headers') {
-                        traversalHandler(
-                            newOption.headers,
-                            (headervalue, headerkey) => {
-                                option.headers[headerkey] = newOption.headers[headerkey];
-                            }
-                        );
+                        traversalHandler(newOption.headers, (headervalue, headerkey) => {
+                            option.headers[headerkey] = newOption.headers[headerkey];
+                        });
                     } else {
                         option[key] = newOption[key];
                     }
@@ -107,9 +101,7 @@ export default (api) => {
 
         // mock打开情况下，配置的过滤前缀
         const mockPrefixTemp = api.config.mock.prefix || mockPrefix;
-        mockPrefix = mockPrefixTemp === mockPrefix
-            ? mockPrefixTemp
-            : `${mockPrefixTemp}/`;
+        mockPrefix = mockPrefixTemp === mockPrefix ? mockPrefixTemp : `${mockPrefixTemp}/`;
         // mock文件处理
         mockFile = parsePath('./mock.js');
         if (!existsSync(mockFile)) {
@@ -130,20 +122,22 @@ export default (api) => {
                 api.logger.info('mock.js should export Function');
                 return;
             }
+            const mockjs = require('mockjs');
             initFunction({ cgiMock, mockjs, utils });
         } catch (err) {
             api.logger.error('mock.js run fail!');
         }
 
-        return (req, res, next) => {
+        const express = require('express');
+        const app = express();
+
+        app.use((req, res, next) => {
             // 如果请求不是以 cgiMock.prefix 开头，直接 next
             if (!req.path.startsWith(mockPrefix)) {
                 return next();
             }
             // 请求以 cgiMock.prefix 开头，匹配处理
-            const matchRequet = requestList.find(
-                item => req.path.search(item.url) !== -1
-            );
+            const matchRequet = requestList.find((item) => req.path.search(item.url) !== -1);
             if (!matchRequet) {
                 return next();
             }
@@ -163,14 +157,10 @@ export default (api) => {
                     delete item.value;
                     res.cookie(name, value, item);
                 });
-
                 // do result
                 if (lodash.isFunction(matchRequet.result)) {
                     matchRequet.result(req, res);
-                } else if (
-                    lodash.isArray(matchRequet.result)
-                    || lodash.isPlainObject(matchRequet.result)
-                ) {
+                } else if (lodash.isArray(matchRequet.result) || lodash.isPlainObject(matchRequet.result)) {
                     !matchRequet.type && res.type('json');
                     res.json(matchRequet.result);
                 } else {
@@ -179,27 +169,21 @@ export default (api) => {
                 }
             };
 
-            bodyParser.json({ strict: false })(req, res, () => {
-                bodyParser.urlencoded({ extended: true })(req, res, () => {
-                    cookieParser()(req, res, () => {
-                        sendData();
-                    });
-                });
-            });
-        };
+            sendData();
+        });
+
+        return app;
     };
 
     api.onStart(() => {
         // 获取mock配置: 是否打开
-        mockFlag = lodash.isPlainObject(api.config.mock)
-            ? true
-            : api.config.mock;
+        mockFlag = lodash.isPlainObject(api.config.mock) ? true : api.config.mock;
         if (!mockFlag) return;
 
         loadMock = createMock();
         return chokidar
             .watch(mockFile, {
-                ignoreInitial: true
+                ignoreInitial: true,
             })
             .on('change', () => {
                 api.logger.info('mock.js changed，reload');

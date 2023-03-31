@@ -1,13 +1,13 @@
-
 import { readFileSync } from 'fs';
 import { join } from 'path';
+import { name } from '../package.json';
 
 const namespace = 'plugin-model';
 
 export default (api) => {
     const {
         paths,
-        utils: { Mustache }
+        utils: { Mustache },
     } = api;
 
     const { lodash, winPath } = require('@fesjs/utils');
@@ -24,9 +24,7 @@ export default (api) => {
 
     function getAllModels() {
         const srcModelsPath = getModelsPath();
-        return lodash.uniq([
-            ...getModels(srcModelsPath)
-        ]);
+        return lodash.uniq([...getModels(srcModelsPath)]);
     }
 
     const absCoreFilePath = join(namespace, 'core.js');
@@ -34,10 +32,12 @@ export default (api) => {
 
     api.register({
         key: 'addExtraModels',
-        fn: () => [{
-            absPath: winPath(join(paths.absTmpPath, absInitialStateFilePath)),
-            namespace: '@@initialState'
-        }]
+        fn: () => [
+            {
+                absPath: winPath(join(paths.absTmpPath, absInitialStateFilePath)),
+                namespace: '@@initialState',
+            },
+        ],
     });
 
     api.onGenerateFiles(async () => {
@@ -46,7 +46,7 @@ export default (api) => {
         const additionalModels = await api.applyPlugins({
             key: 'addExtraModels',
             type: api.ApplyPluginsType.add,
-            initialValue: []
+            initialValue: [],
         });
 
         const tmpFiles = getTmpFile(files, additionalModels, paths.absSrcPath);
@@ -54,21 +54,25 @@ export default (api) => {
         api.writeTmpFile({
             path: absCoreFilePath,
             content: Mustache.render(readFileSync(join(__dirname, 'runtime/core.tpl'), 'utf-8'), {
-                ...tmpFiles
-            })
+                ...tmpFiles,
+            }),
         });
 
         api.copyTmpFiles({
             namespace,
             path: join(__dirname, 'runtime'),
-            ignore: ['.tpl']
+            ignore: ['.tpl'],
         });
     });
 
     api.addPluginExports(() => [
         {
             specifiers: ['useModel'],
-            source: absCoreFilePath
-        }
+            source: absCoreFilePath,
+        },
     ]);
+
+    api.addConfigType(() => ({
+        source: name,
+    }));
 };

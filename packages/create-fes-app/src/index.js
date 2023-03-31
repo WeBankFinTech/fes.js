@@ -20,12 +20,14 @@ export default async ({ cwd, args }) => {
     const result = validateProjectName(name);
     if (!result.validForNewPackages) {
         console.error(chalk.red(`Invalid project name: "${name}"`));
-        result.errors && result.errors.forEach((err) => {
-            console.error(chalk.red.dim(`Error: ${err}`));
-        });
-        result.warnings && result.warnings.forEach((warn) => {
-            console.error(chalk.red.dim(`Warning: ${warn}`));
-        });
+        result.errors &&
+            result.errors.forEach((err) => {
+                console.error(chalk.red.dim(`Error: ${err}`));
+            });
+        result.warnings &&
+            result.warnings.forEach((warn) => {
+                console.error(chalk.red.dim(`Warning: ${warn}`));
+            });
         throw new Error('Process exited');
     }
     if (fs.pathExistsSync(targetDir) && !args.merge) {
@@ -37,8 +39,8 @@ export default async ({ cwd, args }) => {
                 {
                     name: 'ok',
                     type: 'confirm',
-                    message: 'Generate project in current directory?'
-                }
+                    message: 'Generate project in current directory?',
+                },
             ]);
             if (!ok) {
                 return null;
@@ -53,9 +55,9 @@ export default async ({ cwd, args }) => {
                     choices: [
                         { name: 'Overwrite', value: 'overwrite' },
                         { name: 'Merge', value: 'merge' },
-                        { name: 'Cancel', value: false }
-                    ]
-                }
+                        { name: 'Cancel', value: false },
+                    ],
+                },
             ]);
             if (!action) {
                 return null;
@@ -77,9 +79,9 @@ export default async ({ cwd, args }) => {
                 { name: 'PC, suitable for management desk front-end applications', value: 'pc' },
                 { name: 'H5, suitable for mobile applications', value: 'h5' },
                 { name: 'Plugin, suitable for fes plugin', value: 'plugin' },
-                { name: 'Cancel', value: false }
-            ]
-        }
+                { name: 'Cancel', value: false },
+            ],
+        },
     ]);
 
     if (template === 'pc' || template === 'h5') {
@@ -87,14 +89,14 @@ export default async ({ cwd, args }) => {
             cwd,
             args,
             targetDir,
-            path: path.join(__dirname, `../templates/app/${template}`)
+            path: path.join(__dirname, `../templates/app/${template}`),
         });
         await generator.run();
         console.log();
         console.log(chalk.green(`project ${projectName} created successfully, please execute the following command to use:`));
         console.log(`$ cd ${projectName}`);
-        console.log('$ yarn');
-        console.log('$ yarn dev');
+        console.log('$ pnpm i');
+        console.log('$ pnpm dev');
         console.log();
     } else if (template === 'plugin') {
         const generator = new PluginGenerator({
@@ -102,14 +104,14 @@ export default async ({ cwd, args }) => {
             args,
             targetDir,
             path: path.join(__dirname, '../templates/plugin'),
-            name
+            name,
         });
         await generator.run();
         console.log();
         console.log(chalk.green(`plugin ${projectName} created successfully, please execute the following command to use:`));
         console.log(`$ cd ${projectName}`);
-        console.log('$ yarn');
-        console.log('$ yarn dev');
+        console.log('$ pnpm i');
+        console.log('$ pnpm dev');
         console.log();
     }
 };

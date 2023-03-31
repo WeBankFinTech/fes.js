@@ -1,6 +1,7 @@
 import { readFileSync } from 'fs';
 import { join } from 'path';
 import { winPath } from '@fesjs/utils';
+import { name } from '../package.json';
 import { parseStore } from './helper';
 
 const namespace = 'plugin-pinia';
@@ -8,7 +9,7 @@ const namespace = 'plugin-pinia';
 export default (api) => {
     const {
         paths,
-        utils: { Mustache }
+        utils: { Mustache },
     } = api;
 
     api.describe({
@@ -17,8 +18,8 @@ export default (api) => {
             schema(joi) {
                 return joi.object();
             },
-            onChange: api.ConfigChangeType.regenerateTmpFiles
-        }
+            onChange: api.ConfigChangeType.regenerateTmpFiles,
+        },
     });
 
     const absCoreFilePath = join(namespace, 'core.js');
@@ -31,28 +32,29 @@ export default (api) => {
         // 文件写出
         api.writeTmpFile({
             path: absCoreFilePath,
-            content: Mustache.render(
-                readFileSync(join(__dirname, 'runtime/core.tpl'), 'utf-8'),
-                {
-                    IMPORT_PLUGINS: store.importPlugins.join('\n'),
-                    PLUGINS: store.plugins
-                }
-            )
+            content: Mustache.render(readFileSync(join(__dirname, 'runtime/core.tpl'), 'utf-8'), {
+                IMPORT_PLUGINS: store.importPlugins.join('\n'),
+                PLUGINS: store.plugins,
+            }),
         });
 
         api.copyTmpFiles({
             namespace,
             path: join(__dirname, 'runtime'),
-            ignore: ['.tpl']
+            ignore: ['.tpl'],
         });
     });
 
     api.addPluginExports(() => [
         {
             specifiers: ['pinia'],
-            source: absCoreFilePath
-        }
+            source: absCoreFilePath,
+        },
     ]);
 
     api.addRuntimePlugin(() => `@@/${absRuntimeFilePath}`);
+
+    api.addConfigType(() => ({
+        source: name,
+    }));
 };

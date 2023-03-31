@@ -65,6 +65,15 @@ plugin.applyPlugins({
 - modify，用于修改值
 - event，用于执行事件，前面没有依赖关系
 
+### defineRouteMeta
+定义页面的元信息
+
+### defineBuildConfig
+定义构建配置
+
+### defineRuntimeConfig
+定义运行时配置
+
 
 ## 路由API
 
@@ -77,6 +86,10 @@ import { getRouter } from "@fesjs/fes";
 const router = getRouter();
 router.push();
 ```
+
+### getHistory
+返回当前路由的History
+
 
 ### useRoute
 返回当前 `route` 实例，相当于在模板内使用 `$route`。必须在 `setup` 函数内调用。
@@ -186,5 +199,6 @@ router-view 将显示当前 URL 的对应的路由组件。你可以把它放在
 ```
 可以查看[官方文档](https://next.router.vuejs.org/api/#router-view-props)了解更多 RouterView 的 Porps。查看[官方文档](https://next.router.vuejs.org/api/#router-view-s-v-slot)了解 RouterView 的作用域插槽。
 
-### Router Methods
-查看[官方文档](https://next.router.vuejs.org/api/#router-methods)了解更多
+### 其他 Router Methods
+查看[vue-router 官方文档](https://next.router.vuejs.org/api/#router-methods)了解更多。
+

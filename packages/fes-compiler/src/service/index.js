@@ -5,29 +5,22 @@
 import { join } from 'path';
 import { EventEmitter } from 'events';
 import assert from 'assert';
-import { AsyncSeriesWaterfallHook } from 'tapable';
 import { existsSync } from 'fs';
+import { AsyncSeriesWaterfallHook } from 'tapable';
 import { lodash, chalk } from '@fesjs/utils';
 import { Command, Option } from 'commander';
+import Config from '../config';
+import { getUserConfigWithKey } from '../config/utils/configUtils';
 import { resolvePresets, pathToObj, resolvePlugins } from './utils/pluginUtils';
 import loadDotEnv from './utils/loadDotEnv';
 import isPromise from './utils/isPromise';
 import BabelRegister from './babelRegister';
 import PluginAPI from './pluginAPI';
-import {
-    ApplyPluginsType,
-    ConfigChangeType,
-    EnableBy,
-    PluginType,
-    ServiceStage
-} from './enums';
-import Config from '../config';
-import { getUserConfigWithKey } from '../config/utils/configUtils';
+import { ApplyPluginsType, ConfigChangeType, EnableBy, PluginType, ServiceStage } from './enums';
 import getPaths from './getPaths';
 
 // TODO
 // 1. duplicated key
-// 2. Logger
 export default class Service extends EventEmitter {
     cwd;
 
@@ -43,6 +36,9 @@ export default class Service extends EventEmitter {
 
     // including plugins
     plugins = {};
+
+    // 构建
+    builder = {};
 
     // plugin methods
     pluginMethods = {};
@@ -95,7 +91,6 @@ export default class Service extends EventEmitter {
         this.env = opts.env || process.env.NODE_ENV;
         this.fesPkg = opts.fesPkg || {};
 
-
         assert(existsSync(this.cwd), `cwd ${this.cwd} does not exist.`);
 
         // register babel before config parsing
@@ -108,7 +103,7 @@ export default class Service extends EventEmitter {
         this.configInstance = new Config({
             cwd: this.cwd,
             service: this,
-            localConfig: this.env === 'development'
+            localConfig: this.env === 'development',
         });
         this.userConfig = this.configInstance.getUserConfig();
 
@@ -116,26 +111,27 @@ export default class Service extends EventEmitter {
         this.paths = getPaths({
             cwd: this.cwd,
             config: this.userConfig,
-            env: this.env
+            env: this.env,
         });
 
         this.program = this.initCommand();
 
-
         // setup initial plugins
         const baseOpts = {
             pkg: this.pkg,
-            cwd: this.cwd
+            cwd: this.cwd,
         };
         this.initialPresets = resolvePresets({
             ...baseOpts,
             presets: opts.presets || [],
-            userConfigPresets: this.userConfig.presets || []
+            userConfigPresets: this.userConfig.presets || [],
+            builder: this.userConfig.builder,
         });
         this.initialPlugins = resolvePlugins({
             ...baseOpts,
             plugins: opts.plugins || [],
-            userConfigPlugins: this.userConfig.plugins || []
+            userConfigPlugins: this.userConfig.plugins || [],
+            builder: this.userConfig.builder,
         });
     }
 
@@ -182,7 +178,7 @@ export default class Service extends EventEmitter {
         this.setStage(ServiceStage.pluginReady);
         await this.applyPlugins({
             key: 'onPluginReady',
-            type: ApplyPluginsType.event
+            type: ApplyPluginsType.event,
         });
 
         // get config, including:
@@ -200,7 +196,7 @@ export default class Service extends EventEmitter {
         const paths = await this.applyPlugins({
             key: 'modifyPaths',
             type: ApplyPluginsType.modify,
-            initialValue: this.paths
+            initialValue: this.paths,
         });
         Object.keys(paths).forEach((key) => {
             this.paths[key] = paths[key];
@@ -211,14 +207,14 @@ export default class Service extends EventEmitter {
         const defaultConfig = await this.applyPlugins({
             key: 'modifyDefaultConfig',
             type: this.ApplyPluginsType.modify,
-            initialValue: await this.configInstance.getDefaultConfig()
+            initialValue: await this.configInstance.getDefaultConfig(),
         });
         this.config = await this.applyPlugins({
             key: 'modifyConfig',
             type: this.ApplyPluginsType.modify,
             initialValue: this.configInstance.getConfig({
-                defaultConfig
-            })
+                defaultConfig,
+            }),
         });
     }
 
@@ -242,16 +238,10 @@ export default class Service extends EventEmitter {
         const pluginAPI = new PluginAPI(opts);
 
         // register built-in methods
-        [
-            'onPluginReady',
-            'modifyPaths',
-            'onStart',
-            'modifyDefaultConfig',
-            'modifyConfig'
-        ].forEach((name) => {
+        ['onPluginReady', 'modifyPaths', 'onStart', 'modifyDefaultConfig', 'modifyConfig'].forEach((name) => {
             pluginAPI.registerMethod({
                 name,
-                exitsError: false
+                exitsError: false,
             });
         });
 
@@ -279,15 +269,14 @@ export default class Service extends EventEmitter {
                         'args',
                         'hasPlugins',
                         'hasPresets',
-                        'setConfig'
+                        'setConfig',
+                        'builder',
                     ].includes(prop)
                 ) {
-                    return typeof this[prop] === 'function'
-                        ? this[prop].bind(this)
-                        : this[prop];
+                    return typeof this[prop] === 'function' ? this[prop].bind(this) : this[prop];
                 }
                 return target[prop];
-            }
+            },
         });
     }
 
@@ -309,24 +298,23 @@ export default class Service extends EventEmitter {
         this.registerPlugin(preset);
         const { presets, plugins } = await this.applyAPI({
             api,
-            apply
+            apply,
         });
 
         // register extra presets and plugins
         if (presets) {
-            assert(
-                Array.isArray(presets),
-                `presets returned from preset ${id} must be Array.`
-            );
+            assert(Array.isArray(presets), `presets returned from preset ${id} must be Array.`);
             // 插到最前面，下个 while 循环优先执行
             this._extraPresets.splice(
                 0,
                 0,
-                ...presets.map(path => pathToObj({
-                    type: PluginType.preset,
-                    path,
-                    cwd: this.cwd
-                }))
+                ...presets.map((path) =>
+                    pathToObj({
+                        type: PluginType.preset,
+                        path,
+                        cwd: this.cwd,
+                    }),
+                ),
             );
         }
 
@@ -339,20 +327,18 @@ export default class Service extends EventEmitter {
         }
 
         if (plugins) {
-            assert(
-                Array.isArray(plugins),
-                `plugins returned from preset ${id} must be Array.`
-            );
+            assert(Array.isArray(plugins), `plugins returned from preset ${id} must be Array.`);
             this._extraPlugins.push(
-                ...plugins.map(path => pathToObj({
-                    type: PluginType.plugin,
-                    path,
-                    cwd: this.cwd
-                }))
+                ...plugins.map((path) =>
+                    pathToObj({
+                        type: PluginType.plugin,
+                        path,
+                        cwd: this.cwd,
+                    }),
+                ),
             );
         }
     }
-
 
     async initPlugin(plugin) {
         const { id, key, apply } = plugin;
@@ -360,21 +346,21 @@ export default class Service extends EventEmitter {
         const api = this.getPluginAPI({
             id,
             key,
-            service: this
+            service: this,
         });
 
         // register before apply
         this.registerPlugin(plugin);
         await this.applyAPI({
             api,
-            apply
+            apply,
         });
     }
 
     getPluginOptsWithKey(key) {
         return getUserConfigWithKey({
             key,
-            userConfig: this.userConfig
+            userConfig: this.userConfig,
         });
     }
 
@@ -424,10 +410,7 @@ export default class Service extends EventEmitter {
         switch (opts.type) {
             case ApplyPluginsType.add:
                 if ('initialValue' in opts) {
-                    assert(
-                        Array.isArray(opts.initialValue),
-                        'applyPlugins failed, opts.initialValue must be Array if opts.type is add.'
-                    );
+                    assert(Array.isArray(opts.initialValue), 'applyPlugins failed, opts.initialValue must be Array if opts.type is add.');
                 }
                 // eslint-disable-next-line
                 const tAdd = new AsyncSeriesWaterfallHook(["memo"]);
@@ -440,12 +423,12 @@ export default class Service extends EventEmitter {
                             name: hook.pluginId,
                             stage: hook.stage || 0,
                             // @ts-ignore
-                            before: hook.before
+                            before: hook.before,
                         },
                         async (memo) => {
                             const items = await hook.fn(opts.args);
                             return memo.concat(items);
-                        }
+                        },
                     );
                 }
                 return tAdd.promise(opts.initialValue || []);
@@ -461,9 +444,9 @@ export default class Service extends EventEmitter {
                             name: hook.pluginId,
                             stage: hook.stage || 0,
                             // @ts-ignore
-                            before: hook.before
+                            before: hook.before,
                         },
-                        async memo => hook.fn(memo, opts.args)
+                        async (memo) => hook.fn(memo, opts.args),
                     );
                 }
                 return tModify.promise(opts.initialValue);
@@ -479,18 +462,16 @@ export default class Service extends EventEmitter {
                             name: hook.pluginId,
                             stage: hook.stage || 0,
                             // @ts-ignore
-                            before: hook.before
+                            before: hook.before,
                         },
                         async () => {
                             await hook.fn(opts.args);
-                        }
+                        },
                     );
                 }
                 return tEvent.promise();
             default:
-                throw new Error(
-                    `applyPlugin failed, type is not defined or is not matched, got ${opts.type}.`
-                );
+                throw new Error(`applyPlugin failed, type is not defined or is not matched, got ${opts.type}.`);
         }
     }
 
@@ -511,8 +492,8 @@ export default class Service extends EventEmitter {
             key: 'onStart',
             type: ApplyPluginsType.event,
             args: {
-                args
-            }
+                args,
+            },
         });
 
         return this.runCommand({ rawArgv, args });
@@ -539,7 +520,10 @@ export default class Service extends EventEmitter {
             if (commandOptionConfig.fn) {
                 c.action(async () => {
                     await commandOptionConfig.fn({
-                        rawArgv, args, options: c.opts(), program
+                        rawArgv,
+                        args,
+                        options: c.opts(),
+                        program,
                     });
                 });
             }
@@ -551,14 +535,10 @@ export default class Service extends EventEmitter {
     async parseCommand() {
         this.program.on('--help', () => {
             console.log();
-            console.log(
-                `  Run ${chalk.cyan(
-                    'fes <command> --help'
-                )} for detailed usage of given command.`
-            );
+            console.log(`  Run ${chalk.cyan('fes <command> --help')} for detailed usage of given command.`);
             console.log();
         });
-        this.program.commands.forEach(c => c.on('--help', () => console.log()));
+        this.program.commands.forEach((c) => c.on('--help', () => console.log()));
         return this.program.parseAsync(process.argv);
     }
 }

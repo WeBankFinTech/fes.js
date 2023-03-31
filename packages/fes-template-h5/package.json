@@ -39,16 +39,14 @@
   "publishConfig": {
     "access": "public"
   },
-  "devDependencies": {
-    "@webank/eslint-config-webank": "0.3.1",
-    "@ttou/postcss-px-to-viewport": "1.1.4"
-  },
   "dependencies": {
-    "@fesjs/fes": "^2.0.0",
-    "@fesjs/plugin-icon": "^2.0.0",
-    "@fesjs/plugin-request": "^2.0.0",
-    "@fesjs/plugin-windicss": "^2.0.0",
-    "vue": "^3.2.37"
+    "@ttou/postcss-px-to-viewport": "^2.0.3",
+    "@fesjs/fes": "workspace:*",
+    "@fesjs/plugin-icon": "workspace:*",
+    "@fesjs/plugin-request": "workspace:*",
+    "@fesjs/builder-vite": "workspace:*",
+    "core-js": "^3.29.1",
+    "vue": "^3.2.47"
   },
   "private": true
 }

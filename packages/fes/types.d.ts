@@ -1,10 +1,21 @@
-// @ts-ignore
-export * from '@@/core/coreExports';
-// @ts-ignore
-export * from '@@/core/pluginExports';
+export * from '@@/configType'
 
-export declare function defineRouteMeta(routeMeta: {
+export * from '@fesjs/runtime';
+
+export interface RouteMeta {
     name?: string;
     title?: string;
-    layout?: boolean | { sidebar?: boolean; header?: boolean; logo?: boolean };
-});
+}
+
+export interface PluginRuntimeConfig {}
+
+export interface PluginBuildConfig {
+    builder?: string,
+}
+
+export declare function defineRouteMeta(routeMeta: RouteMeta): RouteMeta;
+
+export declare function defineBuildConfig(config: PluginBuildConfig ): PluginBuildConfig;
+
+export declare function defineRuntimeConfig(config:  PluginRuntimeConfig):  PluginRuntimeConfig;
+

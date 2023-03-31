@@ -1,4 +1,3 @@
-
 class Scheduler {
     constructor() {
         this.middlewares = [];

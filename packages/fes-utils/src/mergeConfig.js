@@ -1,4 +1,3 @@
-
 export default function mergeConfig(defaultConfig, ...configs) {
     const ret = { ...defaultConfig };
     configs.forEach((config) => {

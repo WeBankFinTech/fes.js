@@ -164,8 +164,20 @@ pages
 ```
 这样，如果访问 `/foo`，`/` 不能匹配，会 fallback 到 `*` 路由，通过 `src/pages/*.vue` 进行渲染。
 
-### 扩展路由元信息
+### 智能路由
+可以看到，编译后路由都会有 `count` 属性，这是我们根据精准匹配优先算法原则设计出路由排名算法，对匹配到的路由打分：
+- 路由的路径每个子项得到4分
+- 子项为静态细分(`/list`)再加3分
+- 子项为动态细分（`/:orderId`）再加2分
+- 根段(`/`)再1分
+- 通配符(`*`)匹配到的减去1分
+
+当我们跳转路由时，如果 URL 匹配到多个路由，则选择分数最高的路由。
+
+## 扩展路由元信息
+
 我们在定义路由时可以配置`meta`字段，用来记录一些跟路由相关的信息：
+
 ```js
 const router = new VueRouter({
   routes: [
@@ -185,10 +197,18 @@ const router = new VueRouter({
 })
 ```
 
-接下来我们来配置 `meta`：
 
-<CodeGroup>
-  <CodeGroupItem title="vue" active>
+我们使用`defineRouteMeta` 配置 `meta`：
+
+```js
+import { defineRouteMeta } from '@fesjs/fes';
+defineRouteMeta({
+    name: "store",
+    title: "vuex测试"
+})
+```
+
+当然在单文件组件中，还可以通过`<config></config>`配置 `meta`：
 
 ```vue
 <config>
@@ -199,33 +219,13 @@ const router = new VueRouter({
 </config>
 ```
 
-  </CodeGroupItem>
-  <CodeGroupItem title="jsx">
-
-```jsx
-import { defineRouteMeta, useRoute } from '@fesjs/fes';
-defineRouteMeta({
-    name: "store",
-    title: "vuex测试"
-})
-```
-
-  </CodeGroupItem>
-    <CodeGroupItem title="tsx">
-
-```tsx
-import { defineRouteMeta, useRoute } from '@fesjs/fes';
-defineRouteMeta({
-    name: "store",
-    title: "vuex测试"
-})
-```
-
-  </CodeGroupItem>
-</CodeGroup>
+::: tip
+推荐使用`defineRouteMete`，有更好的提示。
+:::
 
 
-则编译后的路由配置为：
+
+路由元信息在编译后会附加到路由配置中：
 ```js{5-8}
 [
     { 
@@ -238,16 +238,6 @@ defineRouteMeta({
     },
 ]
 ```
-
-### 智能路由
-可以看到，编译后路由都会有 `count` 属性，这是我们根据精准匹配优先算法原则设计出路由排名算法，对匹配到的路由打分：
-- 路由的路径每个子项得到4分
-- 子项为静态细分(`/list`)再加3分
-- 子项为动态细分（`/:orderId`）再加2分
-- 根段(`/`)再1分
-- 通配符(`*`)匹配到的减去1分
-
-当我们跳转路由时，如果 URL 匹配到多个路由，则选择分数最高的路由。
 
 ## 路由跳转
 想学习更多，可以查看 [Vue Router 官方文档](https://next.router.vuejs.org/zh/guide/essentials/navigation.html#%E6%9B%BF%E6%8D%A2%E5%BD%93%E5%89%8D%E4%BD%8D%E7%BD%AE)。

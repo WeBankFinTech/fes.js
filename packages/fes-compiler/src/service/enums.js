@@ -1,6 +1,7 @@
 export const PluginType = {
     preset: 'preset',
-    plugin: 'plugin'
+    plugin: 'plugin',
+    builder: 'builder',
 };
 
 export const ServiceStage = {
@@ -12,21 +13,21 @@ export const ServiceStage = {
     pluginReady: 5,
     getConfig: 6,
     getPaths: 7,
-    run: 8
+    run: 8,
 };
 
 export const ConfigChangeType = {
     reload: 'reload',
-    regenerateTmpFiles: 'regenerateTmpFiles'
+    regenerateTmpFiles: 'regenerateTmpFiles',
 };
 
 export const ApplyPluginsType = {
     add: 'add',
     modify: 'modify',
-    event: 'event'
+    event: 'event',
 };
 
 export const EnableBy = {
     register: 'register',
-    config: 'config'
+    config: 'config',
 };

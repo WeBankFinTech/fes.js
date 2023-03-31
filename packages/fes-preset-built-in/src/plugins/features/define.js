@@ -1,4 +1,3 @@
-
 export default (api) => {
     api.describe({
         key: 'define',
@@ -6,8 +5,7 @@ export default (api) => {
             schema(joi) {
                 return joi.object();
             },
-            default: {
-            }
-        }
+            default: {},
+        },
     });
 };

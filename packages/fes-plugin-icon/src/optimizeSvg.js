@@ -7,19 +7,18 @@ const presetDefault = [
         name: 'preset-default',
         params: {
             overrides: {
-                removeViewBox: false
-            }
-        }
+                removeViewBox: false,
+            },
+        },
     },
     'cleanupListOfValues',
     {
         name: 'removeAttrs',
         params: {
-            attrs: '(fill|stroke|class)'
-        }
-    }
+            attrs: '(fill|stroke|class)',
+        },
+    },
 ];
-
 
 export default function optimizeSvg(files) {
     const optimizedSvgData = [];
@@ -29,7 +28,7 @@ export default function optimizeSvg(files) {
             const svgData = optimize(data, { path: filePath, plugins: presetDefault });
             optimizedSvgData.push({
                 fileName: basename(filePath),
-                ...svgData
+                ...svgData,
             });
         }
     }

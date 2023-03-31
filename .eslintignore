@@ -1,0 +1,4 @@
+**/*.ts
+
+lib
+node_modules

@@ -2,13 +2,14 @@ import { readFileSync } from 'fs';
 import { join } from 'path';
 import { winPath } from '@fesjs/utils';
 import { parseStore } from './helper';
+import { name } from '../package.json';
 
 const namespace = 'plugin-vuex';
 
 export default (api) => {
     const {
         paths,
-        utils: { Mustache }
+        utils: { Mustache },
     } = api;
 
     api.describe({
@@ -17,8 +18,8 @@ export default (api) => {
             schema(joi) {
                 return joi.object();
             },
-            onChange: api.ConfigChangeType.regenerateTmpFiles
-        }
+            onChange: api.ConfigChangeType.regenerateTmpFiles,
+        },
     });
 
     const absCoreFilePath = join(namespace, 'core.js');
@@ -30,34 +31,35 @@ export default (api) => {
         // 文件写出
         api.writeTmpFile({
             path: absCoreFilePath,
-            content: Mustache.render(
-                readFileSync(join(__dirname, 'runtime/core.tpl'), 'utf-8'),
-                {
-                    IMPORT_MODULES: store.importModules.join('\n'),
-                    IMPORT_PLUGINS: store.importPlugins.join('\n'),
-                    MODULES: `{ ${store.modules.join(', ')} }`,
-                    PLUGINS: `[${store.plugins.join(', ')}]`,
-                    MUTATION_TYPES: JSON.stringify(store.MUTATION_TYPES),
-                    ACTION_TYPES: JSON.stringify(store.ACTION_TYPES),
-                    GETTER_TYPES: JSON.stringify(store.GETTER_TYPES),
-                    VUEX_CONFIG: JSON.stringify(vuexConfig)
-                }
-            )
+            content: Mustache.render(readFileSync(join(__dirname, 'runtime/core.tpl'), 'utf-8'), {
+                IMPORT_MODULES: store.importModules.join('\n'),
+                IMPORT_PLUGINS: store.importPlugins.join('\n'),
+                MODULES: `{ ${store.modules.join(', ')} }`,
+                PLUGINS: `[${store.plugins.join(', ')}]`,
+                MUTATION_TYPES: JSON.stringify(store.MUTATION_TYPES),
+                ACTION_TYPES: JSON.stringify(store.ACTION_TYPES),
+                GETTER_TYPES: JSON.stringify(store.GETTER_TYPES),
+                VUEX_CONFIG: JSON.stringify(vuexConfig),
+            }),
         });
 
         api.copyTmpFiles({
             namespace,
             path: join(__dirname, 'runtime'),
-            ignore: ['.tpl']
+            ignore: ['.tpl'],
         });
     });
 
     api.addPluginExports(() => [
         {
             specifiers: ['MUTATION_TYPES', 'ACTION_TYPES', 'GETTER_TYPES', 'store'],
-            source: absCoreFilePath
-        }
+            source: absCoreFilePath,
+        },
     ]);
 
     api.addRuntimePlugin(() => `@@/${absRuntimeFilePath}`);
+
+    api.addConfigType(() => ({
+        source: name,
+    }));
 };

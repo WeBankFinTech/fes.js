@@ -1,37 +1,38 @@
-// .fes.js 只负责管理编译时配置，只能使用plain Object
+import { defineBuildConfig } from '@fesjs/fes';
 
-export default {
-    // exportStatic: {},
-    define: {
-        __DEV__: false
+export default defineBuildConfig({
+    swc: {
+        loader: {},
     },
-    publicPath: './',
+    targets: {
+        chrome: '78',
+    },
+    define: {
+        __DEV__: false,
+    },
     html: {
-        title: '海贼王'
+        title: '海贼王',
     },
     router: {
-        mode: 'hash'
+        mode: 'hash',
     },
     watermark: {
-        disabled: false
+        disabled: false,
     },
     access: {
         roles: {
             admin: ['*'],
-            menuTest: ['/', '/menuTest']
-        }
-    },
-    request: {
-        dataField: 'result'
+            menuTest: ['/', '/menuTest'],
+        },
     },
     mock: {
-        prefix: '/v2'
+        prefix: '/v2',
     },
     proxy: {
         '/v2': {
             target: 'https://api.douban.com/',
-            changeOrigin: true
-        }
+            changeOrigin: true,
+        },
     },
     layout: {
         title: 'Fes.js',
@@ -43,57 +44,52 @@ export default {
             {
                 name: 'index',
                 icon: '/wine-outline.svg',
-                match: ['/route/*']
-            },
-            {
-                name: 'store'
+                match: ['/route/*'],
             },
             {
                 name: 'editor',
-                icon: '/wine-outline.svg'
+                icon: '/wine-outline.svg',
             },
             {
                 title: '$externalLink',
                 icon: 'UserOutlined',
-                path: 'https://www.baidu.com'
+                path: 'https://www.baidu.com',
             },
             {
-                name: 'mock'
+                name: 'mock',
             },
             {
                 title: '菜单权限测试',
                 children: [
                     {
                         title: '子菜单',
-                        path: '/menuTest'
+                        path: '/menuTest',
                     },
-                ]
+                ],
             },
             {
-                name: 'cssModule'
+                name: 'cssModule',
             },
             {
-                name: 'pinia'
-            }
+                name: 'pinia',
+            },
         ],
-        menuConfig: {
-            defaultExpandAll: false
-        }
+        menuProps: {
+            defaultExpandAll: false,
+        },
     },
     devServer: {
-        port: 8080
+        port: 8080,
     },
     enums: {
         status: [
             ['0', '无效的'],
-            ['1', '有效的']
-        ]
-    },
-    vuex: {
-        strict: true
+            ['1', '有效的'],
+        ],
     },
     dynamicImport: true,
     monacoEditor: {
-        languages: ['javascript', 'typescript', 'html', 'json']
-    }
-};
+        languages: ['javascript', 'typescript', 'html', 'json'],
+    },
+    presets: [require.resolve('../fes-builder-webpack/lib')],
+});

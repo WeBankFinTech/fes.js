@@ -1,6 +1,4 @@
-import {
-    isObject, isString, isURLSearchParams, checkHttpRequestHasBody
-} from './helpers';
+import { isObject, isString, isURLSearchParams, checkHttpRequestHasBody } from './helpers';
 /**
  * 缓存实现的功能
  * 1. 唯一定位一个请求（url, data | params, method）
@@ -19,7 +17,6 @@ import {
  * type: 'ram' | 'sessionStorage' | 'localStorage'
  * cacheTime: ''
  */
-
 
 /**
  * 缓存数据结构
@@ -41,7 +38,7 @@ const CACHE_KEY_PREFIX = '__FES_REQUEST_CACHE:';
 const CACHE_TYPE = {
     ram: 'ram',
     session: 'sessionStorage',
-    local: 'localStorage'
+    local: 'localStorage',
 };
 
 const CACHE_DATA_MAP = new Map();
@@ -57,19 +54,14 @@ function canCache(data) {
     return !data || isObject(data) || isString(data) || Array.isArray(data) || isURLSearchParams(data);
 }
 
-function setCacheData({
-    key,
-    cacheType = 'ram',
-    data,
-    cacheTime = 1000 * 60 * 3
-}) {
+function setCacheData({ key, cacheType = 'ram', data, cacheTime = 1000 * 60 * 3 }) {
     const _key = genInnerKey(key, cacheType);
 
     const currentCacheData = {
         cacheType,
         data,
         cacheTime,
-        expire: Date.now() + cacheTime
+        expire: Date.now() + cacheTime,
     };
     if (cacheType !== CACHE_TYPE.ram) {
         const cacheInstance = window[CACHE_TYPE[cacheType]];
@@ -150,7 +142,7 @@ function handleCachingQueueSuccess(ctx, config) {
     if (queue && queue.length > 0) {
         queue.forEach((resolve) => {
             resolve({
-                response: ctx.response
+                response: ctx.response,
             });
         });
     }
@@ -178,7 +170,7 @@ export default async (ctx, next) => {
         const cacheData = getCacheData({ key: ctx.key, cacheType: config.cache.cacheType });
         if (cacheData) {
             ctx.response = {
-                data: cacheData
+                data: cacheData,
             };
             return;
         }
@@ -200,7 +192,7 @@ export default async (ctx, next) => {
             setCacheData({
                 key: ctx.key,
                 data: ctx.response.data,
-                ...config.cache
+                ...config.cache,
             });
         } else {
             handleCachingQueueError(ctx, config);

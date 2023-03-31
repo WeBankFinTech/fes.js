@@ -1,10 +1,11 @@
 {
   "name": "@fesjs/plugin-enums",
-  "version": "2.0.3",
+  "version": "3.0.0-rc.1",
   "description": "@fesjs/plugin-enums",
   "main": "lib/index.js",
   "files": [
-    "lib"
+    "lib",
+    "types.d.ts"
   ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -27,7 +28,8 @@
     "access": "public"
   },
   "peerDependencies": {
-    "@fesjs/fes": "^2.0.0",
-    "vue": "^3.2.37"
-  }
+    "@fesjs/fes": "^3.0.0-rc.0",
+    "vue": "^3.2.47"
+  },
+  "typings": "./types.d.ts"
 }

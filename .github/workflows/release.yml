@@ -1,53 +1,30 @@
-name: Release
-
 on:
-  push:
-    tags: ["v*"]
+    push:
+        tags:
+            - 'v*' # Push events to matching v*, i.e. v1.0, v20.15.10
+
+name: Create Release
 
 jobs:
-  github_release:
-    name: Trigger GitHub release
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout the new tag
-        uses: actions/checkout@v1.0.0
-
-      - name: Get tag info
-        id: tags
-        uses: babel/actions/get-release-tags@v2
-
-      - name: Generate the changelog
-        id: changelog
-        uses: ./.github/actions/generate-changelog
-        with:
-          from: ${{ steps.tags.outputs.old }}
-          to: ${{ steps.tags.outputs.new }}
-        env:
-          GITHUB_AUTH: ${{ secrets.ACCESS_TOKEN }}
-
-      - name: Create a draft GitHub release
-        uses: babel/actions/publish-github-release@v2
-        with:
-          tag: ${{ steps.tags.outputs.new }}
-          changelog: ${{ steps.changelog.outputs.changelog }}
-          token: ${{ secrets.ACCESS_TOKEN }}
-
-      - name: Check if releasing from master
-        id: is_master
-        uses: babel/actions/ref-matches-branch@v2
-        with:
-          name: master
-
-      - name: Update CHANGELOG.md
-        if: steps.is_master.outputs.result == 1
-        uses: babel/actions/update-changelog@v2
-        with:
-          changelog: ${{ steps.changelog.outputs.changelog }}
-
-      - name: Commit CHANGELOG.md
-        if: steps.is_master.outputs.result == 1
-        run: |
-          git add CHANGELOG.md
-          git -c user.name="wanchun" -c user.email="445436867@qq.com" \
-            commit -m "Add ${{ steps.tags.outputs.new }} to CHANGELOG.md [skip ci]" --no-verify --quiet
-          git push "https://wanchun:${{ secrets.ACCESS_TOKEN }}@github.com/${GITHUB_REPOSITORY}.git" master
+    build:
+        name: Create Release
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@master
+            - name: Get the release version from the tag
+              shell: bash
+              if: env.RELEASE_VERSION == ''
+              run: |
+                  echo "RELEASE_VERSION=${GITHUB_REF#refs/tags/}" >> $GITHUB_ENV
+            - name: Generate Release Notes
+              run: |
+                  ./.github/workflows/release-notes.mjs ${{ env.RELEASE_VERSION }}
+                  cat notes-${{ env.RELEASE_VERSION }}.md
+            - name: Create Release for Tag
+              id: release_tag
+              uses: softprops/action-gh-release@v1
+              env:
+                  GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+              with:
+                  body_path: notes-${{ env.RELEASE_VERSION }}.md

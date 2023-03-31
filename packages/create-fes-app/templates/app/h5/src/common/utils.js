@@ -4,7 +4,6 @@
 // 手机号、身份证号 等的校验
 // 数字分割
 
-
 export function resetContainerHeight(dom) {
     const originalHeight = document.body.clientHeight || document.documentElement.clientHeight;
 
@@ -18,12 +17,11 @@ export function resetContainerHeight(dom) {
     };
 }
 
-
 export function resetInputBlur() {
     const isWechat = window.navigator.userAgent.match(/MicroMessenger\/([\d.]+)/i);
     if (!isWechat) return;
     const wechatVersion = isWechat[1];
-    const version = (navigator.appVersion).match(/OS (\d+)_(\d+)_?(\d+)?/);
+    const version = navigator.appVersion.match(/OS (\d+)_(\d+)_?(\d+)?/);
 
     // 如果设备类型为iOS 12+ 和wechat 6.7.4+，恢复成原来的视口
     if (+wechatVersion.replace(/\./g, '') >= 674 && +version[1] >= 12) {

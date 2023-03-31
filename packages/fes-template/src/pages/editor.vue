@@ -1,18 +1,11 @@
 <template>
-    <monaco-editor
-        ref="editorRef"
-        v-model="json"
-        :language="language"
-        height="200px"
-        check
-    />
-    {{json}}
+    <monaco-editor ref="editorRef" v-model="json" :language="language" height="200px" check />
+    {{ json }}
 </template>
 <config>
 {
     "name": "editor",
-    "title": "$editor",
-    "keep-alive": true
+    "title": "$editor"
 }
 </config>
 <script>
@@ -21,7 +14,7 @@ import { MonacoEditor } from '@fesjs/fes';
 
 export default {
     components: {
-        MonacoEditor
+        MonacoEditor,
     },
     setup() {
         console.log('editor.vue');
@@ -36,8 +29,8 @@ export default {
         return {
             editorRef,
             json,
-            language
+            language,
         };
-    }
+    },
 };
 </script>

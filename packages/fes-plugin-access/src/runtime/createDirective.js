@@ -41,6 +41,6 @@ export default function createDirective(useAccess) {
             if (ctx.unwatch) {
                 ctx.unwatch();
             }
-        }
+        },
     };
 }

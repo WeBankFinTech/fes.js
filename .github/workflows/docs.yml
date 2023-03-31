@@ -11,10 +11,15 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - name: Checkout
-              uses: actions/checkout@v2.3.1
+              uses: actions/checkout@v3
+
+            - name: PNPM
+              uses: pnpm/action-setup@v2
+              with:
+                  version: 8.1.0
 
             - name: Install and Build 🔧 # This example project is built using npm and outputs the result to the 'build' folder. Replace with the commands required to build your project, or remove this step entirely if your site is pre-built.
-              run: yarn && yarn docs:build
+              run: pnpm i && pnpm docs:build
 
             - name: Deploy
               uses: easingthemes/ssh-deploy@main
@@ -28,7 +33,7 @@ jobs:
                   # 腾讯云默认用户名为root
                   REMOTE_USER: root
                   # 目标目录
-                  TARGET: /data/web-packages/p/fesjs/2.0
+                  TARGET: /data/web-packages/p/fesjs
 
     build-and-deploy-pages:
         concurrency: ci-${{ github.ref }} # Recommended if you intend to make multiple deployments in quick succession.
@@ -39,9 +44,8 @@ jobs:
 
             - name: Install and Build 🔧 # This example project is built using npm and outputs the result to the 'build' folder. Replace with the commands required to build your project, or remove this step entirely if your site is pre-built.
               run: |
-                  yarn
-                  yarn docs:build-pages
-
+                  pnpm i
+                  pnpm docs:build
             - name: Deploy 🚀
               uses: JamesIves/github-pages-deploy-action@v4.3.3
               with:

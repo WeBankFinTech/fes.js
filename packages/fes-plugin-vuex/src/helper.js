@@ -26,10 +26,11 @@ function getDirFilePaths(dir) {
  * @param {*} path
  */
 function pathToHump(path, root) {
-    return path.replace(root, '')
+    return path
+        .replace(root, '')
         .replace('.js', '')
-        .replace(RegExp('(/|\\.|-|_)\\S', 'g'), text => text[1].toUpperCase())
-        .replace(/\S/, text => text.toLowerCase());
+        .replace(RegExp('(/|\\.|-|_)\\S', 'g'), (text) => text[1].toUpperCase())
+        .replace(/\S/, (text) => text.toLowerCase());
 }
 
 /**
@@ -41,7 +42,7 @@ function getModelTypes(ast, name, namespace = '') {
     const types = {
         mutations: {},
         actions: {},
-        getters: {}
+        getters: {},
     };
     let namespaced = false;
     if (ast.type !== 'ObjectExpression') return types;
@@ -74,12 +75,12 @@ function getModelTypes(ast, name, namespace = '') {
                     if (namespaced) {
                         types[key][name] = {
                             ...subTypes[key],
-                            ...types[key][name]
+                            ...types[key][name],
                         };
                     } else {
                         types[key] = {
                             ...subTypes[key],
-                            ...types[key]
+                            ...types[key],
                         };
                     }
                 });
@@ -109,28 +110,32 @@ function parseModel(paths = [], root) {
         try {
             ast = parser.parse(content, {
                 sourceType: 'module',
-                plugins: ['jsx', 'typescript']
+                plugins: ['jsx', 'typescript'],
             });
-            ast = ast.program.body.filter(body => body.type === 'ExportDefaultDeclaration')[0];
-        } catch (err) {}
+            ast = ast.program.body.filter((body) => body.type === 'ExportDefaultDeclaration')[0];
+        } catch (err) { }
         if (ast) {
             const { mutations, actions, getters } = getModelTypes(ast.declaration, moduleName);
             MUTATION_TYPES = {
                 ...mutations,
-                ...MUTATION_TYPES
+                ...MUTATION_TYPES,
             };
             ACTION_TYPES = {
                 ...actions,
-                ...ACTION_TYPES
+                ...ACTION_TYPES,
             };
             GETTER_TYPES = {
                 ...getters,
-                ...GETTER_TYPES
+                ...GETTER_TYPES,
             };
         }
     });
     return {
-        modules, importModules, MUTATION_TYPES, ACTION_TYPES, GETTER_TYPES
+        modules,
+        importModules,
+        MUTATION_TYPES,
+        ACTION_TYPES,
+        GETTER_TYPES,
     };
 }
 
@@ -158,6 +163,6 @@ export function parseStore(root) {
     });
     return {
         ...parsePlugin(pluginPaths, root),
-        ...parseModel(modelPaths, root)
+        ...parseModel(modelPaths, root),
     };
 }

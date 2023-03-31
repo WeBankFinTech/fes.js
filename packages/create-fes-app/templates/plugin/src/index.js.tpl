@@ -1,5 +1,6 @@
 import { join } from 'path';
 import { readFileSync } from 'fs';
+import { name } from '../package.json';
 
 const namespace = 'plugin-{{{name}}}';
 
@@ -21,7 +22,7 @@ export default (api) => {
     const absoluteFilePath = join(namespace, 'core.js');
 
     const absRuntimeFilePath = join(namespace, 'runtime.js');
-
+    
     api.onGenerateFiles(() => {
         // 运行时执行的代码全部copy到临时目录，此时不需要编译，稍后webpack会编译临时目录代码
         api.copyTmpFiles({
@@ -41,5 +42,17 @@ export default (api) => {
         });
     });
 
+    if (api.builder.name === 'vite') {
+        // 处理vite构建器
+    } else if(api.builder.name === 'webpack') {
+        // 处理webpack构建器
+    }
+
+    // 注册运行时插件
     api.addRuntimePlugin(() => `@@/${absRuntimeFilePath}`);
+
+    // 注册代码提示
+    api.addConfigType(() => ({
+        source: name,
+    }));
 };

@@ -9,17 +9,16 @@
 
 ## 使用方式
 
-* 在项目根目录下添加 `build.config.js` 指定需要编译的 `packages` 包
-* 可以通过 `--watch` cli 参数开启 `watch` 模式
-* 如果需要只编译某个包，通过 `--pkg pkgName` 参数指定
+-   在项目根目录下添加 `build.config.js` 指定需要编译的 `packages` 包
+-   可以通过 `--watch` cli 参数开启 `watch` 模式
+-   如果需要只编译某个包，通过 `--pkg pkgName` 参数指定
 
 ## 配置
 
 ```
 const config = {
-    target: "node", // 编译目标 "node" | "browser", "node" 输出目录 lib, "broswer" 输出目录 lib。默认编译目标 "node“
+    target: "node", // 编译目标 "node" | "browser", "node" 输出目录 lib, "browser" 输出目录 lib。默认编译目标 "node“
     pkgs: [], // 需要编译的 packages 包，默认编译根目录下所有的 packages 包，pkgs 参数只在根目录下的配置有效
     copy: [] // 直接拷贝，不进行编译
 }
 ```
-

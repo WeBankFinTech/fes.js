@@ -1,27 +1,27 @@
-// .fes.js 只负责管理编译时配置，只能使用plain Object
+import { defineBuildConfig } from '@fesjs/fes';
 
-
-export default {
-    publicPath: './',
+export default defineBuildConfig({
     access: {
         roles: {
-            admin: ["*"],
-            manager: ["/"]
-        }
+            admin: ['*'],
+            manager: ['/'],
+        },
     },
     layout: {
-        title: "Fes.js",
+        title: 'Fes.js',
         footer: 'Created by MumbleFE',
         navigation: 'mixin',
         multiTabs: false,
-        menus: [{
-            name: 'index'
-        }]
-    },
-    devServer: {
-        port: 8000
+        menus: [
+            {
+                name: 'index',
+            },
+        ],
     },
     enums: {
-        status: [['0', '无效的'], ['1', '有效的']]
-    }
-};
+        status: [
+            ['0', '无效的'],
+            ['1', '有效的'],
+        ],
+    },
+});

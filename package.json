@@ -1,6 +1,6 @@
 {
   "name": "fes.js",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "description": "一个好用的前端管理台快速开发框架",
   "preferGlobal": true,
   "private": true,
@@ -8,17 +8,16 @@
     "packages/*"
   ],
   "scripts": {
-    "clean": "lerna clean",
-    "bootstrap": "lerna bootstrap",
-    "dev": "node scripts/build.js --watch",
-    "build": "node scripts/build.js",
-    "ver": "lerna version --conventional-prerelease --no-changelog --no-commit-hooks --no-private",
-    "release": "node scripts/build.js && lerna publish from-git",
+    "bootstrap": "pnpm i",
+    "dev": "node scripts/build.mjs --watch",
+    "build": "node scripts/build.mjs",
+    "release": "node scripts/release.mjs",
+    "clean": "rm pnpm-lock.yaml & rm -rf ./node_modules & rm -rf packages/**/node_modules & rm -rf packages/**/.cache",
     "docs:dev": "vuepress dev docs --clean-cache",
     "docs:build": "vuepress build docs --clean-cache",
-    "docs:build-pages": "BASE=/fes.js/ vuepress build docs --clean-cache",
     "test": "fes test",
-    "lint": "eslint -c ./.eslintrc.js --ext .js,.jsx,.vue,.ts"
+    "lint": "eslint -c ./.eslintrc.js --ignore-pattern='templates' --ext .js,.jsx,.vue,.ts",
+    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s"
   },
   "license": "MIT",
   "keywords": [
@@ -29,36 +28,38 @@
     "strong"
   ],
   "dependencies": {
-    "lerna": "^4.0.0"
+    "chalk": "^5.0.1",
+    "conventional-changelog-cli": "^2.2.2",
+    "enquirer": "^2.3.6",
+    "execa": "^6.1.0",
+    "minimist": "^1.2.6",
+    "semver": "^7.3.6",
+    "vuepress": "2.0.0-beta.53"
   },
   "devDependencies": {
-    "@babel/core": "^7.15.0",
-    "@babel/preset-env": "^7.15.0",
+    "@babel/core": "^7.21.3",
+    "@babel/preset-env": "^7.20.2",
     "@commitlint/cli": "^11.0.0",
     "@commitlint/config-conventional": "^11.0.0",
-    "@fesjs/fes": "^2.0.0",
-    "@fesjs/plugin-jest": "^2.0.0",
-    "@vuepress/plugin-docsearch": "2.0.0-beta.28",
-    "@vuepress/plugin-pwa": "2.0.0-beta.28",
-    "@vuepress/plugin-pwa-popup": "2.0.0-beta.28",
-    "@vuepress/bundler-webpack": "2.0.0-beta.28",
-    "@webank/eslint-config-webank": "0.3.1",
-    "chalk": "^4.1.2",
+    "@vuepress/plugin-back-to-top": "2.0.0-beta.53",
+    "@vuepress/plugin-docsearch": "2.0.0-beta.53",
+    "@vuepress/plugin-pwa": "2.0.0-beta.53",
+    "@vuepress/plugin-pwa-popup": "2.0.0-beta.53",
+    "@webank/eslint-config-webank": "1.2.7",
     "chokidar": "^3.5.2",
     "commitizen": "^4.2.1",
     "cz-conventional-changelog": "^3.3.0",
     "deepmerge": "^4.2.2",
-    "fs-extra": "^10.0.0",
-    "husky": "^4.3.0",
-    "lint-staged": "^10.4.0",
-    "postcss": "^8.0.0",
-    "postcss-loader": "^5.0.0",
-    "vuepress": "2.0.0-beta.28",
+    "fs-extra": "^11.1.1",
+    "husky": "^8.0.3",
+    "lint-staged": "^13.2.0",
+    "postcss": "^8.4.21",
+    "postcss-loader": "^7.1.0",
     "yargs-parser": "^20.2.9"
   },
   "lint-staged": {
     "*.{js,jsx,vue,ts}": [
-      "eslint --format=codeframe"
+      "npm run lint"
     ]
   },
   "husky": {
@@ -70,53 +71,6 @@
   "config": {
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
-    }
-  },
-  "changelog": {
-    "bugsUrl": "https://github.com/WeBankFinTech/fes.js/issues/",
-    "authorName": true,
-    "authorEmail": false,
-    "settings": {
-      "feat": {
-        "title": ":rocket: New Feature",
-        "enable": true
-      },
-      "fix": {
-        "title": ":bug: Bug Fix"
-      },
-      "perf": {
-        "title": ":running_woman: Performance"
-      },
-      "revert": {
-        "title": ":leftwards_arrow_with_hook: Revert"
-      },
-      "refactor": {
-        "title": "♻ 代码重构"
-      },
-      "docs": {
-        "title": ":memo: Documentation",
-        "enable": true
-      },
-      "style": {
-        "title": ":eyeglasses: Spec Compliance",
-        "enable": true
-      },
-      "test": {
-        "title": "✅ 测试",
-        "enable": false
-      },
-      "build": {
-        "title": "👷‍ 构建",
-        "enable": false
-      },
-      "ci": {
-        "title": "🔧 CI 配置",
-        "enable": false
-      },
-      "chore": {
-        "title": "🎫 其他更新",
-        "enable": false
-      }
     }
   }
 }

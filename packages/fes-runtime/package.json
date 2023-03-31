@@ -1,12 +1,13 @@
 {
   "name": "@fesjs/runtime",
-  "version": "2.0.3",
+  "version": "3.0.0-rc.2",
   "description": "@fesjs/runtime",
   "main": "es/index.js",
   "module": "es/index.js",
   "files": [
     "lib",
-    "es"
+    "es",
+    "types.d.ts"
   ],
   "repository": {
     "type": "git",
@@ -27,9 +28,10 @@
     "access": "public"
   },
   "peerDependencies": {
-    "vue": "^3.2.37"
+    "vue": "^3.2.47"
   },
   "dependencies": {
     "vue-router": "^4.0.1"
-  }
+  },
+  "typings": "./types.d.ts"
 }

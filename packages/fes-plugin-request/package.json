@@ -1,10 +1,11 @@
 {
   "name": "@fesjs/plugin-request",
-  "version": "2.0.16",
+  "version": "3.0.0-rc.5",
   "description": "@fesjs/plugin-request",
   "main": "lib/index.js",
   "files": [
-    "lib"
+    "lib",
+    "types.d.ts"
   ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -27,12 +28,12 @@
     "access": "public"
   },
   "peerDependencies": {
-    "@fesjs/fes": "^2.0.0",
-    "vue": "^3.2.37"
+    "@fesjs/fes": "^3.0.0-rc.0",
+    "vue": "^3.2.47"
   },
   "dependencies": {
-    "@fesjs/compiler": "^2.0.5",
-    "@fesjs/utils": "^2.0.4",
-    "axios": "0.21.1"
-  }
+    "@fesjs/utils": "3.0.0-rc.2",
+    "axios": "^1.0.0-alpha.1"
+  },
+  "typings": "./types.d.ts"
 }

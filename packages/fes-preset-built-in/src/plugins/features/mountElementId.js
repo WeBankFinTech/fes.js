@@ -1,4 +1,3 @@
-
 export default (api) => {
     api.describe({
         key: 'mountElementId',
@@ -6,7 +5,7 @@ export default (api) => {
             default: 'app',
             schema(joi) {
                 return joi.string().allow('');
-            }
-        }
+            },
+        },
     });
 };
