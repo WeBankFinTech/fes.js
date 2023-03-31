@@ -28,10 +28,9 @@ export function buildSwcOptions(targets, config, isJsx, isTs, minify = false) {
                 },
                 experimental: isJsx
                     ? {
-                          plugins: [['swc-plugin-vue-jsx', {}]],
-                      }
+                        plugins: [['swc-plugin-vue-jsx', {}]],
+                    }
                     : undefined,
-                // preserveAllComments: true,
             },
             isModule: 'unknown',
             minify: minify ? {} : false,

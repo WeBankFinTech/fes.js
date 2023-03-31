@@ -1,6 +1,6 @@
 import { join } from 'path';
 import { existsSync } from 'fs';
-import Config from 'webpack-chain';
+import Config from 'webpack-5-chain';
 import webpack from 'webpack';
 import createCssWebpackConfig from './css';
 import getBabelOpts from './getBabelOpts';

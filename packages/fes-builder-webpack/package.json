@@ -59,8 +59,8 @@
     "terser-webpack-plugin": "^5.3.6",
     "vue-loader": "^17.0.1",
     "webpack": "^5.76.2",
+    "webpack-5-chain": "^8.0.1",
     "webpack-bundle-analyzer": "^4.4.0",
-    "webpack-chain": "^6.5.1",
     "webpack-dev-server": "^4.8.1",
     "webpackbar": "^5.0.2"
   },
