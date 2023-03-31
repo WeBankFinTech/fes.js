@@ -7,7 +7,8 @@
     "prod": "FES_ENV=prod fes build",
     "analyze": "ANALYZE=1 fes build",
     "dev": "fes dev",
-    "test": "fes test"
+    "test": "fes test",
+    "prev": "fes preview"
   },
   "keywords": [
     "管理端",
@@ -42,29 +43,27 @@
   "publishConfig": {
     "access": "public"
   },
-  "devDependencies": {
-    "@webank/eslint-config-webank": "0.3.1"
-  },
   "dependencies": {
-    "@fesjs/fes": "^2.0.0",
-    "@fesjs/plugin-access": "^2.0.0",
-    "@fesjs/plugin-layout": "^4.0.0",
-    "@fesjs/plugin-locale": "^3.0.0",
-    "@fesjs/plugin-model": "^2.0.0",
-    "@fesjs/plugin-enums": "^2.0.0",
-    "@fesjs/plugin-jest": "^2.0.0",
-    "@fesjs/plugin-vuex": "^2.0.0",
-    "@fesjs/plugin-request": "^2.0.0",
-    "@fesjs/plugin-qiankun": "^2.0.0",
-    "@fesjs/plugin-sass": "^2.0.0",
-    "@fesjs/plugin-monaco-editor": "^2.0.0-beta.0",
-    "@fesjs/plugin-windicss": "^2.0.0",
-    "@fesjs/plugin-pinia": "^2.0.0",
-    "@fesjs/plugin-watermark": "^2.0.0",
-    "@fesjs/fes-design": "^0.5.0",
-    "vue": "^3.2.37",
-    "vuex": "^4.0.0",
-    "pinia": "^2.0.11"
+    "@fesjs/fes": "workspace:*",
+    "@fesjs/plugin-login": "workspace:*",
+    "@fesjs/plugin-access": "workspace:*",
+    "@fesjs/plugin-enums": "workspace:*",
+    "@fesjs/plugin-jest": "workspace:*",
+    "@fesjs/plugin-layout": "workspace:*",
+    "@fesjs/plugin-locale": "workspace:*",
+    "@fesjs/plugin-model": "workspace:*",
+    "@fesjs/plugin-monaco-editor": "workspace:*",
+    "@fesjs/plugin-pinia": "workspace:*",
+    "@fesjs/plugin-qiankun": "workspace:*",
+    "@fesjs/plugin-request": "workspace:*",
+    "@fesjs/plugin-sass": "workspace:*",
+    "@fesjs/plugin-watermark": "workspace:*",
+    "@fesjs/plugin-windicss": "workspace:*",
+    "@fesjs/plugin-swc": "workspace:*",
+    "@fesjs/fes-design": "^0.7.20",
+    "core-js": "3.29.1",
+    "pinia": "^2.0.33",
+    "vue": "^3.2.47"
   },
   "private": true
 }

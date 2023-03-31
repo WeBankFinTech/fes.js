@@ -1,5 +1,5 @@
-import { inject } from 'vue';
+import { initialState } from '@@/initialState';
 
 export default function initialStateModel() {
-    return inject('initialState');
+    return initialState;
 }

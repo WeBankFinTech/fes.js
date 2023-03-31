@@ -4,9 +4,8 @@ export default (api) => {
         config: {
             default: '/',
             schema(joi) {
-                return joi
-                    .string();
-            }
-        }
+                return joi.string().regex(/\/$/).error(new Error('config.publicPath must end with /.'));
+            },
+        },
     });
 };

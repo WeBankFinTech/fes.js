@@ -3,22 +3,25 @@
 集成 [Jest](https://www.jestjs.cn/) 测试框架，目前只支持单元测试和覆盖测试。
 
 ## 启用方式
+
 在 `package.json` 中引入依赖：
+
 ```json
 {
     "dependencies": {
-        "@fesjs/fes": "^2.0.0",
-        "@fesjs/plugin-jest": "^2.0.0"
-    },
+        "@fesjs/fes": "^3.0.0",
+        "@fesjs/plugin-jest": "^3.0.0"
+    }
 }
 ```
 
 ## 约定
 
-- 项目根目录下 `tests` 和 `__tests__` 文件夹中的 `js` 或者 `jsx` 文件为测试文件。
-- 需要覆盖测试的文件范围是`src/index.{js,jsx,ts,tsx,vue}`
+-   项目根目录下 `tests` 和 `__tests__` 文件夹中的 `js` 或者 `jsx` 文件为测试文件。
+-   需要覆盖测试的文件范围是`src/index.{js,jsx,ts,tsx,vue}`
 
 例如测试文件 `add.js`：
+
 ```
 fes-template
 ├── __tests__
@@ -28,22 +31,26 @@ fes-template
     └── utils
         └── sum.js
 ```
+
 内容如下：
+
 ```js
 import sum from '@/utils/sum';
 test('adds 1 + 2 to equal 3', () => {
     expect(sum(1, 2)).toBe(3);
 });
-
 ```
 
-## 命令 
+## 命令
+
 在 `fes` 上注册 `test` 命令：
+
 ```bash
 $ fes test
 ```
 
 ## 配置
+
 插件实现 Jest 的全部配置，具体请查看 [文档-configuration](https://www.jestjs.cn/docs/configuration#reference)。 也可以使用 `-h` 打印配置帮助信息：
 
 ### args 变量
@@ -51,7 +58,9 @@ $ fes test
 ```bash
 $ fes test -h
 ```
+
 打印配置帮助信息:
+
 ```
 $ fes test -h
 Usage: fes test [options]
@@ -342,14 +351,15 @@ Options:
 ```
 
 比如覆盖测试：
+
 ```
 fes test --coverage
 ```
 
 ### 配置文件
-除了插件内置的默认配置之外，插件遵循 `Jest`的配置文件规范，约定项目根目录下的 `jest.config.js` 为用户配置文件，约定 `packages.json` 的 `jest` 属性内容也是配置。
 
+除了插件内置的默认配置之外，插件遵循 `Jest`的配置文件规范，约定项目根目录下的 `jest.config.js` 为用户配置文件，约定 `packages.json` 的 `jest` 属性内容也是配置。
 
 ### 优先级
 
-`args` 配置 > `package.json`中的 `jest` >  `jest.config.js` > 默认配置 
+`args` 配置 > `package.json`中的 `jest` > `jest.config.js` > 默认配置

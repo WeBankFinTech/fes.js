@@ -10,8 +10,8 @@ export default (api) => {
         config: {
             schema(joi) {
                 return joi.object();
-            }
-        }
+            },
+        },
     });
 
     const namespace = 'plugin-icon';
@@ -24,34 +24,29 @@ export default (api) => {
     api.onGenerateFiles(async () => {
         const base = join(api.paths.absSrcPath, 'icons');
         const iconFiles = api.utils.glob.sync('**/*', {
-            cwd: join(api.paths.absSrcPath, 'icons')
+            cwd: join(api.paths.absSrcPath, 'icons'),
         });
-        const svgDatas = await optimizeSvg(iconFiles.map(item => join(base, item)));
+        const svgDatas = await optimizeSvg(iconFiles.map((item) => join(base, item)));
         const iconNames = [];
         const SVG_COMPONENT_TMPLATE = 'export default () => (SVG)';
         for (const { fileName, data } of svgDatas) {
             iconNames.push(basename(fileName, '.svg'));
             api.writeTmpFile({
-                path: `${namespace}/icons/${basename(fileName, '.svg')}.js`,
-                content: SVG_COMPONENT_TMPLATE
-                    .replace('SVG', data)
+                path: `${namespace}/icons/${basename(fileName, '.svg')}.jsx`,
+                content: SVG_COMPONENT_TMPLATE.replace('SVG', data),
             });
         }
 
         api.writeTmpFile({
             path: `${namespace}/icons.js`,
-            content: api.utils.Mustache.render(
-                readFileSync(join(__dirname, 'runtime/icons.tpl'), 'utf-8'),
-                {
-                    ICON_NAMES: iconNames
-                }
-            )
+            content: api.utils.Mustache.render(readFileSync(join(__dirname, 'runtime/icons.tpl'), 'utf-8'), {
+                ICON_NAMES: iconNames,
+            }),
         });
 
         api.writeTmpFile({
             path: absRuntimeFilePath,
-            content: api.utils.Mustache.render(readFileSync(join(__dirname, 'runtime/runtime.tpl'), 'utf-8'), {
-            })
+            content: api.utils.Mustache.render(readFileSync(join(__dirname, 'runtime/runtime.tpl'), 'utf-8'), {}),
         });
 
         if (!generatedOnce) {
@@ -59,7 +54,7 @@ export default (api) => {
             api.copyTmpFiles({
                 namespace,
                 path: join(__dirname, 'runtime'),
-                ignore: ['.tpl']
+                ignore: ['.tpl'],
             });
         }
     });

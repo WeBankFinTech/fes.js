@@ -1,0 +1,36 @@
+{
+  "name": "@fesjs/plugin-login",
+  "version": "3.0.0-rc.3",
+  "description": "@fesjs/plugin-login",
+  "main": "lib/index.js",
+  "files": [
+    "lib",
+    "types.d.ts"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WeBankFinTech/fes.js.git",
+    "directory": "packages/fes-plugin-login"
+  },
+  "keywords": [
+    "fes"
+  ],
+  "author": "qlin",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/WeBankFinTech/fes.js/issues"
+  },
+  "homepage": "https://github.com/WeBankFinTech/fes.js#readme",
+  "publishConfig": {
+    "access": "public"
+  },
+  "peerDependencies": {
+    "@fesjs/fes": "^3.0.0-rc.0",
+    "@fesjs/plugin-request": "^3.0.0-rc.5",
+    "vue": "^3.2.47"
+  },
+  "typings": "./types.d.ts"
+}

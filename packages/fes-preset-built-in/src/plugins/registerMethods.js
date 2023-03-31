@@ -1,8 +1,7 @@
 import assert from 'assert';
 import { dirname, join } from 'path';
-import {
-    existsSync, statSync, readFileSync, writeFileSync, copyFileSync
-} from 'fs';
+import { existsSync, statSync, readFileSync, writeFileSync, copyFileSync } from 'fs';
+import { startWatch } from './watch/watchMode';
 
 export default function (api) {
     [
@@ -16,60 +15,42 @@ export default function (api) {
         'addEntryImports',
         'addEntryCodeAhead',
         'addEntryCode',
-        'addBeforeMiddlewares',
-        'addHTMLHeadScripts',
-        'addMiddlewares',
         'modifyRoutes',
-        'modifyBundleConfigOpts',
-        'modifyBundleConfig',
-        'modifyBabelOpts',
-        'modifyBabelPresetOpts',
-        'chainWebpack',
+        'addConfigType',
         'addTmpGenerateWatcherPaths',
-        'modifyPublicPathStr'
+        'addBeforeMiddlewares',
+        'addMiddlewares',
     ].forEach((name) => {
         api.registerMethod({ name });
     });
 
     api.registerMethod({
         name: 'writeTmpFile',
-        fn({
-            path,
-            content
-        }) {
-            assert(
-                api.stage >= api.ServiceStage.pluginReady,
-                'api.writeTmpFile() should not execute in register stage.'
-            );
+        fn({ path, content }) {
+            assert(api.stage >= api.ServiceStage.pluginReady, 'api.writeTmpFile() should not execute in register stage.');
             const absPath = join(api.paths.absTmpPath, path);
             api.utils.mkdirp.sync(dirname(absPath));
             if (!existsSync(absPath) || readFileSync(absPath, 'utf-8') !== content) {
                 writeFileSync(absPath, content, 'utf-8');
             }
-        }
+        },
     });
+
+    const cacheCopyPath = {};
 
     api.registerMethod({
         name: 'copyTmpFiles',
-        fn({
-            namespace, path, ignore
-        }) {
-            assert(
-                api.stage >= api.ServiceStage.pluginReady,
-                'api.copyTmpFiles() should not execute in register stage.'
-            );
-            assert(
-                path,
-                'api.copyTmpFiles() should has param path'
-            );
-            assert(
-                namespace,
-                'api.copyTmpFiles() should has param namespace'
-            );
-            const files = api.utils.glob.sync('**/*', {
-                cwd: path
-            });
+        fn({ namespace, path, ignore }) {
             const base = join(api.paths.absTmpPath, namespace);
+            // copy 行为只需要执行一次
+            if (cacheCopyPath[base]) return;
+            cacheCopyPath[base] = true;
+            assert(api.stage >= api.ServiceStage.pluginReady, 'api.copyTmpFiles() should not execute in register stage.');
+            assert(path, 'api.copyTmpFiles() should has param path');
+            assert(namespace, 'api.copyTmpFiles() should has param namespace');
+            const files = api.utils.glob.sync('**/*', {
+                cwd: path,
+            });
             files.forEach((file) => {
                 const source = join(path, file);
                 const target = join(base, file);
@@ -79,13 +60,20 @@ export default function (api) {
                 if (statSync(source).isDirectory()) {
                     api.utils.mkdirp.sync(target);
                 } else if (Array.isArray(ignore)) {
-                    if (!ignore.some(pattern => new RegExp(pattern).test(file))) {
+                    if (!ignore.some((pattern) => new RegExp(pattern).test(file))) {
                         copyFileSync(source, target);
                     }
                 } else {
                     copyFileSync(source, target);
                 }
             });
-        }
+        },
+    });
+
+    api.registerMethod({
+        name: 'startWatch',
+        fn() {
+            startWatch(api);
+        },
     });
 }

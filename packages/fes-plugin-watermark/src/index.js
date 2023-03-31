@@ -1,4 +1,5 @@
 import { join } from 'path';
+import { name } from '../package.json';
 
 const namespace = 'plugin-watermark';
 
@@ -8,11 +9,11 @@ export default (api) => {
         config: {
             schema(joi) {
                 return joi.object({
-                    disabled: joi.boolean()
+                    disabled: joi.boolean(),
                 });
             },
-            default: {}
-        }
+            default: {},
+        },
     });
 
     const absoluteFilePath = join(namespace, 'core.js');
@@ -23,23 +24,26 @@ export default (api) => {
         defineConfig.WATERMARK_DISABLED = memo.watermark.disabled ?? false;
         return {
             ...memo,
-            define: defineConfig
+            define: defineConfig,
         };
     });
-
 
     api.onGenerateFiles(() => {
         api.copyTmpFiles({
             namespace,
             path: join(__dirname, 'runtime'),
-            ignore: ['.tpl']
+            ignore: ['.tpl'],
         });
     });
 
     api.addPluginExports(() => [
         {
             specifiers: ['createWatermark', 'destroyWatermark'],
-            source: absoluteFilePath
-        }
+            source: absoluteFilePath,
+        },
     ]);
+
+    api.addConfigType(() => ({
+        source: name,
+    }));
 };

@@ -3,18 +3,16 @@
         fes & 拉夫德鲁 <br />
         <fes-icon :spin="true" class="one-icon" type="smile" @click="clickIcon" />
         <div v-if="loading" class="loading">loading</div>
-        <div v-else class="data">{{data}}</div>
+        <div v-else class="data">{{ data }}</div>
     </div>
 </template>
-<config>
-{
-    "title": "首页",
-    "layout": "false"
-}
-</config>
 <script>
 import { ref, onMounted } from 'vue';
-import { useRouter, useRequest } from '@fesjs/fes';
+import { useRouter, useRequest, defineRouteMeta } from '@fesjs/fes';
+
+defineRouteMeta({
+    title: '首页',
+});
 
 export default {
     setup() {
@@ -34,15 +32,15 @@ export default {
             data,
             fes,
             rotate,
-            clickIcon
+            clickIcon,
         };
-    }
+    },
 };
 </script>
 
 <style lang="less" scoped>
-@import "~@/styles/mixins/hairline";
-@import "~@/styles/mixins/hover";
+@import '~@/styles/mixins/hairline';
+@import '~@/styles/mixins/hover';
 
 div {
     padding: 20px;
@@ -56,7 +54,7 @@ div {
     .hover();
 }
 .onepiece {
-    .hairline("top");
+    .hairline('top');
     background: url('../images/male.png');
 }
 </style>

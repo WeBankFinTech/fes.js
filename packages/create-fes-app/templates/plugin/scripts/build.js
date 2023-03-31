@@ -13,14 +13,13 @@ const compiler = require('./compiler');
 const randomColor = require('./randomColor');
 const pkg = require('../package.json');
 
-
 const ESM_OUTPUT_DIR = 'es';
 const NODE_CJS_OUTPUT_DIR = 'lib';
 const SOURCE_DIR = 'src';
 const CONFIG_FILE_NAME = 'build.config.js';
 const GLOBAL_CONFIG_PATH = path.join(process.cwd(), CONFIG_FILE_NAME);
 const DEFAULT_CONFIG = {
-    target: 'node'
+    target: 'node',
 };
 
 function genLog(pkgName) {
@@ -105,7 +104,7 @@ function compilerPkg(codeDir, outputDir, config, log) {
 function watchFile(dir, outputDir, config, log) {
     chokidar
         .watch(dir, {
-            ignoreInitial: true
+            ignoreInitial: true,
         })
         .on('all', (event, changeFile) => {
             // 修改的可能是一个目录，一个文件，一个需要 copy 的文件 or 目录
@@ -113,7 +112,7 @@ function watchFile(dir, outputDir, config, log) {
             const outputPath = changeFile.replace(dir, outputDir);
             const stat = fs.lstatSync(changeFile);
             log(`[${event}] ${shortChangeFile}`);
-            if (config.resolveCopy.some(item => changeFile.startsWith(item))) {
+            if (config.resolveCopy.some((item) => changeFile.startsWith(item))) {
                 fse.copySync(changeFile, outputPath);
             } else if (stat.isFile()) {
                 transformFile(changeFile, outputPath, config, log);

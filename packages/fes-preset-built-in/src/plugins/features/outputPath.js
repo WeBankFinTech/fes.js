@@ -4,11 +4,8 @@ export default (api) => {
         config: {
             default: 'dist',
             schema(joi) {
-                return joi
-                    .string()
-                    .not('src', 'public', 'pages', 'mock', 'config')
-                    .allow('');
-            }
-        }
+                return joi.string().not('src', 'public', 'pages', 'mock', 'config').allow('');
+            },
+        },
     });
 };

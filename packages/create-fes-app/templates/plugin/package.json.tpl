@@ -1,11 +1,12 @@
 {
   "name": "fes-plugin-{{{name}}}",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "description": "一个fes.js插件",
   "main": "lib/index.js",
   "files": [
     "lib",
-    "README.md"
+    "README.md",
+    "types.d.ts"
   ],
   "scripts": {
     "dev": "node scripts/build.js --watch",
@@ -18,20 +19,20 @@
   "dependencies": {
   },
   "devDependencies": {
-    "@babel/core": "^7.15.0",
-    "@babel/preset-env": "^7.15.0",
-    "@webank/eslint-config-webank": "0.3.1",
+    "@babel/core": "^7.21.3",
+    "@babel/preset-env": "^7.20.2",
+    "@webank/eslint-config-webank": "1.2.7",
     "chalk": "^4.1.2",
     "chokidar": "^3.5.2",
     "deepmerge": "^4.2.2",
-    "fs-extra": "^10.0.0",
+    "fs-extra": "^11.1.1",
     "husky": "^4.3.0",
     "lint-staged": "^10.4.0",
     "yargs-parser": "^20.2.9"
   },
   "peerDependencies": {
-    "@fesjs/fes": "^2.0.0",
-    "vue": "^3.2.37"
+    "@fesjs/fes": "^3.0.0",
+    "vue": "^3.2.47"
   },
   "lint-staged": {
     "*.{js,jsx,vue,ts}": [
@@ -43,5 +44,6 @@
       "pre-commit": "lint-staged",
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
     }
-  }
+  },
+  "typings": "./types.d.ts"
 }

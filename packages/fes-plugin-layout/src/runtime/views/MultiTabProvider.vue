@@ -9,19 +9,10 @@
             @close="handleCloseTab"
             @update:modelValue="switchPage"
         >
-            <FTabPane
-                v-for="page in pageList"
-                :key="page.path"
-                :value="page.path"
-                :closable="pageList.length > 1"
-            >
+            <FTabPane v-for="page in pageList" :key="page.path" :value="page.path" :closable="pageList.length > 1">
                 <template #tab>
-                    {{page.title}}
-                    <ReloadOutlined
-                        v-show="route.path === page.path"
-                        class="layout-tabs-close-icon"
-                        @click="reloadPage(page.path)"
-                    />
+                    {{ page.title }}
+                    <ReloadOutlined v-show="route.path === page.path" class="layout-tabs-close-icon" @click="reloadPage(page.path)" />
                 </template>
             </FTabPane>
             <template #suffix>
@@ -30,17 +21,9 @@
                 </FDropdown>
             </template>
         </FTabs>
-        <router-view v-slot="{ Component, route }">
-            <keep-alive :include="keepAlivePages">
-                <component :is="Component" :key="getPageKey(route)" />
-            </keep-alive>
-        </router-view>
+        <Page ref="pageRef" :pageKey="getPageKey" isAllKeepAlive />
     </template>
-    <router-view v-else v-slot="{ Component }">
-        <keep-alive :include="keepAlivePages">
-            <component :is="Component" />
-        </keep-alive>
-    </router-view>
+    <Page v-else />
 </template>
 <script>
 import { computed, unref, ref } from 'vue';
@@ -48,6 +31,8 @@ import { FTabs, FTabPane, FDropdown } from '@fesjs/fes-design';
 import { ReloadOutlined, MoreOutlined } from '@fesjs/fes-design/icon';
 import { useRouter, useRoute } from '@@/core/coreExports';
 import { transTitle } from '../helpers/pluginLocale';
+import { getTitle, deleteTitle } from '../useTitle';
+import Page from './page.vue';
 
 let i = 0;
 const getKey = () => ++i;
@@ -57,59 +42,43 @@ export default {
         FTabPane,
         FDropdown,
         ReloadOutlined,
-        MoreOutlined
+        MoreOutlined,
+        Page,
     },
     props: {
-        multiTabs: Boolean
+        multiTabs: Boolean,
     },
-    setup(props) {
+    setup() {
+        const pageRef = ref();
         const route = useRoute();
         const router = useRouter();
-
         const createPage = (_route) => {
-            const title = _route.meta.title;
+            const computedTitle = computed(() => {
+                const customTitle = unref(getTitle(_route.path));
+                return customTitle ?? transTitle(_route.meta.title);
+            });
             return {
                 path: _route.path,
                 route: _route,
                 name: _route.meta.name ?? _route.name,
-                title: computed(() => transTitle(title)),
-                key: getKey()
+                title: computedTitle,
+                key: getKey(),
             };
         };
 
-        function changePageComName(_route) {
-            if (_route.meta['keep-alive'] || props.multiTabs) {
-                const matched = _route.matched;
-                const component = matched[matched.length - 1].components.default;
-                const name = _route.meta?.name ?? _route.name;
-                if (name && component) {
-                    // 修改组件的 name
-                    // 缓存的关键是组件name在keep-alive的include列表
-                    component.name = name;
-                    return name;
-                }
-            }
-        }
-
-        function getInitAlivePage() {
-            const name = changePageComName(route);
-            return name ? [name] : [];
-        }
-
-        const pageList = ref([createPage(route)]);
-        const keepAlivePages = ref(getInitAlivePage());
+        const pageList = ref([createPage(router.currentRoute.value)]);
         const actions = [
             {
                 value: 'closeOtherPage',
-                label: '关闭其他页签'
+                label: '关闭其他页签',
             },
             {
                 value: 'reloadPage',
-                label: '刷新当前页签'
-            }
+                label: '刷新当前页签',
+            },
         ];
 
-        const findPage = path => pageList.value.find(item => unref(item.path) === unref(path));
+        const findPage = (path) => pageList.value.find((item) => unref(item.path) === unref(path));
 
         router.beforeEach((to) => {
             const page = findPage(to.path);
@@ -121,15 +90,6 @@ export default {
             return true;
         });
 
-        router.afterEach(() => {
-            // 此时route已变，但是页面还未加载
-            const name = changePageComName(route);
-            // 缓存的关键是组件name在keep-alive的include列表
-            if (!keepAlivePages.value.includes(name)) {
-                keepAlivePages.value = [...keepAlivePages.value, name];
-            }
-        });
-
         // 还需要考虑参数
         const switchPage = async (path) => {
             const selectedPage = findPage(path);
@@ -137,7 +97,7 @@ export default {
                 await router.push({
                     path,
                     query: selectedPage.route.query,
-                    params: selectedPage.route.params
+                    params: selectedPage.route.params,
                 });
             }
         };
@@ -156,12 +116,8 @@ export default {
             }
             list.splice(index, 1);
             pageList.value = list;
-            const _keepAlivePages = [...keepAlivePages.value];
-            const keepIndex = _keepAlivePages.indexOf(selectedPage.name);
-            if (keepIndex !== -1) {
-                _keepAlivePages.splice(keepIndex, 1);
-            }
-            keepAlivePages.value = _keepAlivePages;
+            pageRef.value.removeKeepAlive(selectedPage.name);
+            deleteTitle(selectedPage.path);
         };
         const reloadPage = (path) => {
             const selectedPage = findPage(path || unref(route.path));
@@ -172,7 +128,7 @@ export default {
         const closeOtherPage = (path) => {
             const selectedPage = findPage(path || unref(route.path));
             pageList.value = [selectedPage];
-            keepAlivePages.value = [selectedPage.name];
+            pageRef.value.removeAllAndSaveKeepAlive(selectedPage.name);
         };
         const getPageKey = (_route) => {
             const selectedPage = findPage(_route.path);
@@ -194,6 +150,7 @@ export default {
         };
 
         return {
+            pageRef,
             route,
             pageList,
             getPageKey,
@@ -202,9 +159,8 @@ export default {
             handlerMore,
             handleCloseTab,
             actions,
-            keepAlivePages
         };
-    }
+    },
 };
 </script>
 <style lang="less">

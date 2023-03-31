@@ -1,10 +1,13 @@
-
 module.exports = {
-    // 需要编译的包
     pkgs: [
         'create-fes-app',
         'fes',
         'fes-compiler',
+        'fes-preset-built-in',
+        'fes-builder-vite',
+        'fes-builder-webpack',
+        'fes-runtime',
+        'fes-utils',
         'fes-plugin-access',
         'fes-plugin-enums',
         'fes-plugin-icon',
@@ -18,11 +21,10 @@ module.exports = {
         'fes-plugin-sass',
         'fes-plugin-vuex',
         'fes-plugin-pinia',
-        'fes-preset-built-in',
         'fes-plugin-windicss',
         'fes-plugin-watermark',
-        'fes-runtime',
-        'fes-utils'
+        'fes-plugin-login',
+        'fes-plugin-swc',
     ],
-    copy: []
+    copy: [],
 };

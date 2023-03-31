@@ -1,6 +1,6 @@
 {
   "name": "@fesjs/plugin-jest",
-  "version": "2.0.5",
+  "version": "3.0.0-rc.1",
   "description": "@fesjs/plugin-jest",
   "main": "lib/index.js",
   "files": [
@@ -29,16 +29,18 @@
   "publishConfig": {
     "access": "public"
   },
+  "peerDependencies": {
+    "@fesjs/fes": "^3.0.0-rc.0"
+  },
   "dependencies": {
     "@babel/preset-env": "^7.15.0",
-    "@fesjs/compiler": "^2.0.5",
     "@vue/babel-plugin-jsx": "^1.0.6",
     "babel-jest": "^27.0.6",
     "jest": "^27.0.6",
     "jest-transform-stub": "^2.0.0",
     "jest-watch-typeahead": "^0.6.1",
     "ts-jest": "^27.0.4",
-    "typescript": "^4.3.5",
+    "typescript": "^4.9.0",
     "vue3-jest": "^27.0.0-alpha.1"
   }
 }

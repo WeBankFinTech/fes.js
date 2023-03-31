@@ -24,6 +24,14 @@ import compatESModuleRequire from './compatESModuleRequire';
 import cleanRequireCache from './cleanRequireCache';
 import parseRequireDeps from './parseRequireDeps';
 import mergeConfig from './mergeConfig';
+import getAppPath from './getAppPath';
+import getPort from './getPort';
+import changePort from './changePort';
+import getHostName from './getHostName';
+import resolveRuntimeEnv from './resolveRuntimeEnv';
+import stringifyObjValue from './stringifyObjValue';
+import getTargetsAndBrowsersList from './getTargetsAndBrowsersList';
+import * as logger from './logger';
 
 export {
     chalk,
@@ -42,7 +50,8 @@ export {
     pkgUp,
     portfinder,
     resolve,
-    generator
+    generator,
+    logger,
 };
 
 export {
@@ -53,5 +62,12 @@ export {
     cleanRequireCache,
     parseRequireDeps,
     mergeConfig,
-    resolvePkg
+    resolvePkg,
+    getAppPath,
+    getPort,
+    changePort,
+    getHostName,
+    resolveRuntimeEnv,
+    stringifyObjValue,
+    getTargetsAndBrowsersList,
 };

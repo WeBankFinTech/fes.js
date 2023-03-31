@@ -9,9 +9,10 @@ fes-template
 ├── mock.js
 ├── .fes.js
 ├── .env
+├── index.html
 ├── dist
 ├── public
-│   └── index.html
+│   └── logo.png
 └── src
     ├── .fes
     └── pages
@@ -34,18 +35,7 @@ fes-template
         "test": "fes test"
     },
     "keywords": ["管理端", "fes", "fast", "easy", "strong"],
-    "files": [
-        ".eslintrc.js",
-        ".gitignore",
-        ".fes.js",
-        ".fes.prod.js",
-        "mock.js",
-        "package.json",
-        "README.md",
-        "tsconfig.json",
-        "/src",
-        "/config"
-    ],
+    "files": [".eslintrc.js", ".gitignore", ".fes.js", ".fes.prod.js", "mock.js", "package.json", "README.md", "tsconfig.json", "/src", "/config"],
     "repository": {
         "type": "git",
         "url": "git+https://github.com/WeBankFinTech/fes.js.git",
@@ -61,31 +51,31 @@ fes-template
         "access": "public"
     },
     "devDependencies": {
-        "@webank/eslint-config-webank": "0.3.1"
+        "@webank/eslint-config-webank": "1.2.1"
     },
     "dependencies": {
-        "@fesjs/fes": "^2.0.0",
-        "@fesjs/plugin-access": "^2.0.0",
-        "@fesjs/plugin-layout": "^3.0.0",
-        "@fesjs/plugin-locale": "^3.0.0",
-        "@fesjs/plugin-model": "^2.0.0",
-        "@fesjs/plugin-enums": "^2.0.0",
-        "@fesjs/plugin-jest": "^2.0.0",
-        "@fesjs/plugin-vuex": "^2.0.0",
-        "@fesjs/plugin-request": "^2.0.0",
-        "@fesjs/plugin-qiankun": "^2.0.0",
-        "@fesjs/plugin-sass": "^2.0.0",
-        "@fesjs/plugin-monaco-editor": "^2.0.0-beta.0",
-        "@fesjs/plugin-windicss": "^2.0.0",
-        "@fesjs/fes-design": "^0.5.0",
-        "vue": "^3.0.5",
+        "@fesjs/fes": "^3.0.0",
+        "@fesjs/builder-webpack": "^3.0.0",
+        "@fesjs/plugin-access": "^3.0.0",
+        "@fesjs/plugin-layout": "^5.0.0",
+        "@fesjs/plugin-model": "^3.0.0",
+        "@fesjs/plugin-enums": "^3.0.0",
+        "@fesjs/plugin-jest": "^3.0.0",
+        "@fesjs/plugin-vuex": "^3.0.0",
+        "@fesjs/plugin-request": "^3.0.0",
+        "@fesjs/plugin-qiankun": "^3.0.0",
+        "@fesjs/plugin-sass": "^3.0.0",
+        "@fesjs/plugin-monaco-editor": "^3.0.0",
+        "@fesjs/plugin-windicss": "^3.0.0",
+        "@fesjs/fes-design": "^0.7.23",
+        "vue": "^3.2.47",
         "vuex": "^4.0.0"
     },
     "private": true
 }
 ```
 
-其中`@fesjs/fes`是 Fes.js 核心依赖，另外以 `@fesjs/preset-`、`@fesjs/plugin-`、`@webank/fes-preset-`、`@webank/fes-plugin-`、`fes-preset-` 和 `fes-plugin-` 开头的依赖会被自动注册为插件或插件集。
+其中`@fesjs/fes`是 Fes.js 核心依赖，另外以 `@fesjs/preset-`、`@fesjs/plugin-`、`@webank/fes-preset-`、`@webank/fes-plugin-`、`fes-preset-` 和 `fes-plugin-` 开头的依赖会被自动注册为插件或插件集。`@fesjs/builder-` 开头的会被注册为构建器。
 
 ### tsconfig.json
 
@@ -121,7 +111,7 @@ process.env.FES_ENV = 'prod';
 
 执行 `fes build` 后，产物默认会存放在这里。
 
-## public 目录
+### public 目录
 
 此目录下所有文件为静态资源，会被复制到输出路径。
 
@@ -129,7 +119,7 @@ process.env.FES_ENV = 'prod';
 
 默认的 `html` 模板文件，如果删除此 `html` 则会使用内置的 `html` 模板文件。
 
-## src 目录
+### src 目录
 
 ### .fes 目录
 

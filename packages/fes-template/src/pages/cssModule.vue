@@ -1,7 +1,5 @@
 <template>
-    <div :class="$style.red">
-        字体颜色
-    </div>
+    <div :class="$style.red">字体颜色</div>
 </template>
 <config>
 {
@@ -13,12 +11,12 @@
 export default {
     setup() {
         return {};
-    }
+    },
 };
 </script>
 
 <style module>
 .red {
-  color: red;
+    color: red;
 }
 </style>

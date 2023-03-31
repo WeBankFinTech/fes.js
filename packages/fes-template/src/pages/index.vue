@@ -1,27 +1,23 @@
 <template>
     <div class="page">
         home
-        <FButton class="m-2">Button</FButton>
+        <FButton class="m-2" @click="go">Button</FButton>
     </div>
 </template>
 
-<script>
+<script setup>
+import { defineRouteMeta, useRouter } from '@fesjs/fes';
 import { FButton } from '@fesjs/fes-design';
-import { useModel } from '@fesjs/fes';
 
-export default {
-    components: {
-        FButton
-    },
-    setup() {
-        const initialState = useModel('@@initialState');
-        setTimeout(() => {
-            initialState.userName = '1';
-        }, 1000);
-        console.log('index.vue');
-        return {
-        };
-    }
+defineRouteMeta({
+    name: 'index',
+    title: '$home',
+});
+console.log('123123'.replaceAll('123', '234'));
+
+const router = useRouter();
+const go = () => {
+    router.push('/editor');
 };
 </script>
 
@@ -30,10 +26,3 @@ export default {
     height: 1000px;
 }
 </style>
-
-<config>
-{
-    "name": "index",
-    "title": "$home"
-}
-</config>

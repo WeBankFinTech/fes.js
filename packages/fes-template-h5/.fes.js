@@ -1,49 +1,43 @@
 // fes.config.js 只负责管理 cli 相关的配置
 import pxtoviewport from '@ttou/postcss-px-to-viewport';
+import { defineBuildConfig } from '@fesjs/fes';
 
-
-export default {
-    define: {
-        // __VUE_OPTIONS_API__: true,
-        // __VUE_PROD_DEVTOOLS__: false
+export default defineBuildConfig({
+    proxy: {
+        '/v2': {
+            target: 'https://api.douban.com/',
+            changeOrigin: true,
+        },
     },
-    publicPath: './',
-    request: {
-        base: '/ras-mas',
-        dataField: 'result'
+    publicPath: '/',
+    viteOption: {
+        css: {
+            postcss: {
+                plugins: [
+                    pxtoviewport({
+                        unitToConvert: 'px',
+                        viewportWidth: 375,
+                        unitPrecision: 5,
+                        propList: ['*'],
+                        viewportUnit: 'vw',
+                        fontViewportUnit: 'vw',
+                        selectorBlackList: [],
+                        minPixelValue: 1,
+                        mediaQuery: false,
+                        replace: true,
+                        exclude: [],
+                        landscape: false,
+                        landscapeUnit: 'vw',
+                    }),
+                ],
+            },
+        },
+        build: {
+            target: 'es2015',
+        },
     },
-    html: {
-        title: '拉夫德鲁'
+    targets: {
+        chrome: 61,
+        ios: 11,
     },
-    extraPostCSSPlugins: [
-        pxtoviewport({
-            unitToConvert: 'px',
-            viewportWidth: 375,
-            unitPrecision: 5,
-            propList: ['*'],
-            viewportUnit: 'vw',
-            fontViewportUnit: 'vw',
-            selectorBlackList: [],
-            minPixelValue: 1,
-            mediaQuery: false,
-            replace: true,
-            exclude: [],
-            landscape: false,
-            landscapeUnit: 'vw'
-        })
-    ],
-    devServer: {
-        port: 8000
-    },
-    windicss: {
-        config: {
-            theme: {
-                extend: {
-                    colors: {
-                        green: '#7cb305'
-                    }
-                }
-            }
-        }
-    }
-};
+});

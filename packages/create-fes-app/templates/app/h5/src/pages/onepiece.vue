@@ -1,21 +1,20 @@
 <template>
-    <div>{{fes}}</div>
+    <div>{{ fes }}</div>
 </template>
-<config>
-{
-    "title": "onepiece",
-    "layout": "true"
-}
-</config>
 <script>
+import { defineRouteMeta } from '@fesjs/fes';
 import { ref } from 'vue';
+
+defineRouteMeta({
+    title: 'one piece',
+});
 
 export default {
     setup() {
         const fes = ref('fes upgrade to vue3');
         return {
-            fes
+            fes,
         };
-    }
+    },
 };
 </script>

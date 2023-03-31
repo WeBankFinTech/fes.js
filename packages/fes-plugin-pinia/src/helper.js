@@ -1,12 +1,15 @@
-import { winPath } from '@fesjs/utils';
-import { readdirSync, statSync } from 'fs';
+import { readdirSync, statSync, existsSync } from 'fs';
 import { join } from 'path';
+import { winPath } from '@fesjs/utils';
 
 /**
  * 获取文件夹所有JS文件路径
  * @param {string} dir
  */
 function getDirFilePaths(dir) {
+    if (!existsSync(dir)) {
+        return [];
+    }
     const dirs = readdirSync(dir);
     let pathList = [];
     for (const name of dirs) {
@@ -26,12 +29,12 @@ function getDirFilePaths(dir) {
  * @param {*} path
  */
 function pathToHump(path, root) {
-    return path.replace(root, '')
+    return path
+        .replace(root, '')
         .replace('.js', '')
-        .replace(RegExp('(/|\\.|-|_)\\S', 'g'), text => text[1].toUpperCase())
-        .replace(/\S/, text => text.toLowerCase());
+        .replace(RegExp('(/|\\.|-|_)\\S', 'g'), (text) => text[1].toUpperCase())
+        .replace(/\S/, (text) => text.toLowerCase());
 }
-
 
 function parsePlugin(paths = [], root) {
     const plugins = [];
@@ -53,6 +56,6 @@ export function parseStore(root) {
         }
     });
     return {
-        ...parsePlugin(pluginPaths, root)
+        ...parsePlugin(pluginPaths, root),
     };
 }

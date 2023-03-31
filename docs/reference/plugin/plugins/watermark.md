@@ -1,15 +1,18 @@
 # @fesjs/plugin-watermark
 
 ## 介绍
+
 给页面添加水印效果
 
 ## 启用方式
+
 在 `package.json` 中引入依赖：
+
 ```json
 {
     "dependencies": {
-        "@fesjs/fes": "^2.0.0",
-        "@fesjs/plugin-watermark": "^2.0.0"
+        "@fesjs/fes": "^3.0.0",
+        "@fesjs/plugin-watermark": "^3.0.0"
     }
 }
 ```
@@ -19,9 +22,9 @@
 ```js
 export default {
     watermark: {
-        disabled: false
+        disabled: false,
     },
-}
+};
 ```
 
 ### disabled
@@ -33,9 +36,9 @@ export default {
 ```js
 export default {
     watermark: {
-        disabled: true
+        disabled: true,
     },
-}
+};
 ```
 
 ## API
@@ -52,20 +55,21 @@ destroyWatermark(); // 销毁水印
 ```
 
 默认参数是：
+
 ```js
 {
-    content = '请勿外传',
-    container = document.body,
-    width = 300,
-    height = 300,
-    textAlign = 'center',
-    textBaseline = 'middle',
-    fontSize = '14px',
-    fontFamily = 'Microsoft Yahei',
-    fillStyle = 'rgba(184, 184, 184, 0.3)',
-    rotate = 25,
-    zIndex = 99999,
-    timestamp = 'YYYY-MM-DD HH:mm'
+    (content = '请勿外传'),
+        (container = document.body),
+        (width = 300),
+        (height = 300),
+        (textAlign = 'center'),
+        (textBaseline = 'middle'),
+        (fontSize = '14px'),
+        (fontFamily = 'Microsoft Yahei'),
+        (fillStyle = 'rgba(184, 184, 184, 0.3)'),
+        (rotate = 25),
+        (zIndex = 99999),
+        (timestamp = 'YYYY-MM-DD HH:mm');
 }
 ```
 

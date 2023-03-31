@@ -1,10 +1,11 @@
 {
   "name": "@fesjs/plugin-sass",
-  "version": "2.0.0",
+  "version": "3.0.0-rc.1",
   "description": "@fesjs/plugin-sass",
   "main": "lib/index.js",
   "files": [
-    "lib"
+    "lib",
+    "types.d.ts"
   ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -31,6 +32,7 @@
     "sass-loader": "^11.0.1"
   },
   "peerDependencies": {
-    "@fesjs/fes": "^2.0.0"
-  }
+    "@fesjs/fes": "^3.0.0-rc.0"
+  },
+  "typings": "./types.d.ts"
 }

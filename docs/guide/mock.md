@@ -7,6 +7,7 @@ Mock 数据是前端开发过程中必不可少的一环，是分离前后端开
 Fes.js 约定 `./mock.js` 为 mock 文件。
 
 比如：
+
 ```
 .
 ├── mock.js
@@ -18,39 +19,46 @@ Fes.js 约定 `./mock.js` 为 mock 文件。
 ## 编写 Mock 文件
 
 可以参考如下 🌰：
-``` js
+
+```js
 export default function ({ cgiMock, mockjs, utils }) {
     const { Random } = mockjs;
 
     // 测试 proxy 与 mock 用例集合
     cgiMock('/movie/in_theaters_mock', (req, res) => {
-        res.send(JSON.stringify({
-            code: '0',
-            msg: '',
-            result: {
-                text: 'movie:  movie/in_theaters_mock ~~~~~'
-            }
-        }));
+        res.send(
+            JSON.stringify({
+                code: '0',
+                msg: '',
+                result: {
+                    text: 'movie:  movie/in_theaters_mock ~~~~~',
+                },
+            }),
+        );
     });
     cgiMock('/movie/test_mock', (req, res) => {
-        res.send(JSON.stringify({
-            code: '0',
-            msg: '',
-            result: {
-                text: 'mock:  movie/test_mock'
-            }
-        }));
+        res.send(
+            JSON.stringify({
+                code: '0',
+                msg: '',
+                result: {
+                    text: 'mock:  movie/test_mock',
+                },
+            }),
+        );
     });
 
     // 测试用例: mock.js change，重现请求，需要能拉最新的数据
     cgiMock('/watchtest', (req, res) => {
-        res.send(JSON.stringify({
-            code: '0',
-            msg: '',
-            result: {
-                text: '通过 register 测试 mock watch: 初始状态'
-            }
-        }));
+        res.send(
+            JSON.stringify({
+                code: '0',
+                msg: '',
+                result: {
+                    text: '通过 register 测试 mock watch: 初始状态',
+                },
+            }),
+        );
     });
 
     // 返回一个数字
@@ -61,17 +69,23 @@ export default function ({ cgiMock, mockjs, utils }) {
     cgiMock({
         url: '/json',
         result: {
-            code: '400101', msg: "不合法的请求:Missing cookie 'wb_app_id' for method parameter of type String", transactionTime: '20170309171146', success: false
-        }
+            code: '400101',
+            msg: "不合法的请求:Missing cookie 'wb_app_id' for method parameter of type String",
+            transactionTime: '20170309171146',
+            success: false,
+        },
     });
 
     // 利用 mock.js 产生随机文本
     cgiMock('/text', Random.cparagraph());
 
     // 返回一个字符串 利用 mock.js 产生随机字符
-    cgiMock('/random', mockjs.mock({
-        'string|1-10': '★'
-    }));
+    cgiMock(
+        '/random',
+        mockjs.mock({
+            'string|1-10': '★',
+        }),
+    );
 
     // 正则匹配url, 返回一个字符串
     cgiMock(/\/abc|\/xyz/, 'regexp test!');
@@ -98,20 +112,21 @@ export default function ({ cgiMock, mockjs, utils }) {
         headers: {
             'Content-Type': 'text/plain',
             'Content-Length': '123',
-            ETag: '12345'
+            ETag: '12345',
         },
         cookies: [
             {
-                name: 'myname', value: 'kwan', maxAge: 900000, httpOnly: true
-            }
-        ]
+                name: 'myname',
+                value: 'kwan',
+                maxAge: 900000,
+                httpOnly: true,
+            },
+        ],
     });
 
     // 携带参数的请求
     cgiMock('/v2/audit/list', (req, res) => {
-        const {
-            currentPage, pageSize, isAudited
-        } = req.body;
+        const { currentPage, pageSize, isAudited } = req.body;
         res.send({
             code: '0',
             msg: '',
@@ -135,9 +150,9 @@ export default function ({ cgiMock, mockjs, utils }) {
                     handleTag: '已采纳',
                     postType: 'voice',
                     postStatus: isAudited ? 'pass' : 'auditing',
-                    auditStatus: 'audit1'
-                }))
-            }
+                    auditStatus: 'audit1',
+                })),
+            },
         });
     });
 
@@ -145,37 +160,47 @@ export default function ({ cgiMock, mockjs, utils }) {
     cgiMock('/v2/upload', (req, res) => {
         res.send({
             code: '0',
-            msg: '文件上传成功'
+            msg: '文件上传成功',
         });
     });
-};
+}
 ```
 
-### cgiMock 参数
+### cgiMock 参数
+
 创建一个 mock 接口，参数非常灵活，参考上面的 demo 即可。
 
-
 ### mockjs 参数
+
 [Mock.js](http://mockjs.com/) 是常用的辅助生成模拟数据的三方库，借助他可以提升我们的 mock 数据能力。
 
 比如：
+
 ```js
 export default function ({ cgiMock, mockjs, utils }) {
-    cgiMock('/random', mockjs.mock({
-        'string|1-10': '★'
-    }));
+    cgiMock(
+        '/random',
+        mockjs.mock({
+            'string|1-10': '★',
+        }),
+    );
 }
 ```
 
 ### utils 参数
+
 工具函数：
-- utils.file(path)，从项目根目录根据path寻找文件，返回文件流。
+
+-   utils.file(path)，从项目根目录根据 path 寻找文件，返回文件流。
 
 ## 配置 Mock
+
 详见配置 [mock](../reference/config/#mock)。
 
 ## 关闭 Mock
+
 可以通过配置关闭。
+
 ```js
 export default {
     mock: false,

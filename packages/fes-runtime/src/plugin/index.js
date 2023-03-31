@@ -20,7 +20,7 @@ function isPromiseLike(obj) {
 export const ApplyPluginsType = {
     compose: 'compose',
     event: 'event',
-    modify: 'modify'
+    modify: 'modify',
 };
 
 export default class Plugin {
@@ -44,10 +44,7 @@ export default class Plugin {
         assert(!!plugin.apply, 'register failed, plugin.apply must supplied');
         assert(!!plugin.path, 'register failed, plugin.path must supplied');
         Object.keys(plugin.apply).forEach((key) => {
-            assert(
-                this.validKeys.indexOf(key) > -1,
-                `register failed, invalid key ${key} from plugin ${plugin.path}.`
-            );
+            assert(this.validKeys.indexOf(key) > -1, `register failed, invalid key ${key} from plugin ${plugin.path}.`);
             if (!this.hooks[key]) this.hooks[key] = [];
             this.hooks[key] = this.hooks[key].concat(plugin.apply[key]);
         });
@@ -74,20 +71,11 @@ export default class Plugin {
         return hooks;
     }
 
-    applyPlugins({
-        key,
-        type,
-        initialValue,
-        args,
-        async
-    }) {
+    applyPlugins({ key, type, initialValue, args, async }) {
         const hooks = this.getHooks(key) || [];
 
         if (args) {
-            assert(
-                typeof args === 'object',
-                'applyPlugins failed, args must be plain object.'
-            );
+            assert(typeof args === 'object', 'applyPlugins failed, args must be plain object.');
         }
 
         switch (type) {
@@ -95,8 +83,10 @@ export default class Plugin {
                 if (async) {
                     return hooks.reduce(
                         async (memo, hook) => {
-                            assert(typeof hook === 'function' || typeof hook === 'object' || isPromiseLike(hook),
-                                `applyPlugins failed, all hooks for key ${key} must be function, plain object or Promise.`);
+                            assert(
+                                typeof hook === 'function' || typeof hook === 'object' || isPromiseLike(hook),
+                                `applyPlugins failed, all hooks for key ${key} must be function, plain object or Promise.`,
+                            );
                             if (isPromiseLike(memo)) {
                                 memo = await memo;
                             }
@@ -112,15 +102,13 @@ export default class Plugin {
                             }
                             return { ...memo, ...hook };
                         },
-                        isPromiseLike(initialValue)
-                            ? initialValue
-                            : Promise.resolve(initialValue)
+                        isPromiseLike(initialValue) ? initialValue : Promise.resolve(initialValue),
                     );
                 }
                 return hooks.reduce((memo, hook) => {
                     assert(
                         typeof hook === 'function' || typeof hook === 'object',
-                        `applyPlugins failed, all hooks for key ${key} must be function or plain object.`
+                        `applyPlugins failed, all hooks for key ${key} must be function or plain object.`,
                     );
                     if (typeof hook === 'function') {
                         return hook(memo, args);
@@ -128,21 +116,18 @@ export default class Plugin {
                     return { ...memo, ...hook };
                 }, initialValue);
 
-
             case ApplyPluginsType.event:
                 return hooks.forEach((hook) => {
-                    assert(
-                        typeof hook === 'function',
-                        `applyPlugins failed, all hooks for key ${key} must be function.`
-                    );
+                    assert(typeof hook === 'function', `applyPlugins failed, all hooks for key ${key} must be function.`);
                     hook(args);
                 });
 
             case ApplyPluginsType.compose:
-                return () => _compose({
-                    fns: hooks.concat(initialValue),
-                    args
-                })();
+                return () =>
+                    _compose({
+                        fns: hooks.concat(initialValue),
+                        args,
+                    })();
             default:
                 return null;
         }
