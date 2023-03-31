@@ -17,6 +17,7 @@ export function buildSwcOptions(targets, config, isJsx, isTs, minify = false) {
                         return memo;
                     }, {}),
                 mode: 'usage',
+                // eslint-disable-next-line import/no-extraneous-dependencies
                 coreJs: require('core-js/package.json').version,
             },
             jsc: {
