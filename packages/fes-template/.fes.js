@@ -2,11 +2,7 @@ import { defineBuildConfig } from '@fesjs/fes';
 
 export default defineBuildConfig({
     swc: {
-        loader: {
-            env: {
-                coreJs: '3.27',
-            },
-        },
+        loader: {},
     },
     targets: {
         chrome: '78',

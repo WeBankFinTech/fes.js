@@ -44,11 +44,15 @@ const arrToObj = (arr, key) =>
 async function publishPackage(pkg, runIfNotDry) {
     step(`Publishing ${pkg.name}...`);
     try {
+        let _releaseTag;
+        if (pkg.newVersion.includes('-')) {
+            _releaseTag = 'next';
+        }
         await runIfNotDry(
             // note: use of pnpm is intentional here as we rely on its publishing
             // behavior.
             'npm',
-            ['publish', '--access', 'public', '--registry', 'https://registry.npmjs.org'],
+            ['publish', ...(_releaseTag ? ['--tag', _releaseTag] : []), '--access', 'public', '--registry', 'https://registry.npmjs.org'],
             {
                 cwd: getPkgRoot(pkg.dirName),
                 stdio: 'pipe',
@@ -94,13 +98,13 @@ function updatePackage(pkgName, version, pkgs) {
     pkgJson.dependencies &&
         Object.keys(pkgJson.dependencies).forEach((npmName) => {
             if (pkgs[npmName]) {
-                pkgJson.dependencies[npmName] = pkgs[npmName].newVersion;
+                pkgJson.dependencies[npmName] = `^${pkgs[npmName].newVersion}`;
             }
         });
     pkgJson.peerDependencies &&
         Object.keys(pkgJson.peerDependencies).forEach((npmName) => {
             if (pkgs[npmName]) {
-                pkgJson.peerDependencies[npmName] = pkgs[npmName].newVersion;
+                pkgJson.peerDependencies[npmName] = `^${pkgs[npmName].newVersion}`;
             }
         });
     writePackageJson(pkgName, pkgJson);

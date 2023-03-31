@@ -3,7 +3,7 @@
     "composite": true,
     "declaration": true,
     "declarationMap": true,
-    "lib": ["DOM", "ES2020"],
+    "lib": ["DOM", "ESNext"],
     "module": "CommonJS",
     "moduleResolution": "node",
     "newLine": "lf",
@@ -14,6 +14,6 @@
     "sourceMap": true,
     "strict": true,
     "strictNullChecks": true,
-    "target": "ES2018"
+    "target": "ESNext"
   }
 }

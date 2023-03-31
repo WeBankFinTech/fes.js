@@ -77,8 +77,8 @@ export default async function getConfig({ api, cwd, config, env, entry = {}, mod
     webpackConfig.output
         .path(absoluteOutput)
         .publicPath(publicPath || '/')
-        .filename('[name].[contenthash:8].js')
-        .chunkFilename('[name].[contenthash:8].chunk.js');
+        .filename('static/[name].[contenthash:8].js')
+        .chunkFilename('static/[name].[contenthash:8].chunk.js');
 
     // --------------- resolve -----------
     webpackConfig.resolve.extensions.merge(['.mjs', '.js', '.jsx', '.vue', '.ts', '.tsx', '.json', '.wasm']);
