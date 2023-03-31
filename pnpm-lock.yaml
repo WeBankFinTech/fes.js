@@ -560,24 +560,24 @@ importers:
 
   packages/fes-template:
     specifiers:
-      '@fesjs/fes': ^3.0.0-rc.0
+      '@fesjs/fes': workspace:*
       '@fesjs/fes-design': ^0.7.20
-      '@fesjs/plugin-access': ^3.0.0-rc.0
-      '@fesjs/plugin-enums': ^3.0.0-rc.0
-      '@fesjs/plugin-jest': ^2.0.0
-      '@fesjs/plugin-layout': ^5.0.0-rc.0
-      '@fesjs/plugin-locale': ^4.0.0-rc.0
-      '@fesjs/plugin-login': ^3.0.0-rc.0
-      '@fesjs/plugin-model': ^3.0.0-rc.0
-      '@fesjs/plugin-monaco-editor': ^3.0.0-rc.0
-      '@fesjs/plugin-pinia': ^3.0.0-rc.0
-      '@fesjs/plugin-qiankun': ^3.0.0-rc.0
-      '@fesjs/plugin-request': ^3.0.0-rc.0
-      '@fesjs/plugin-sass': ^3.0.0-rc.0
-      '@fesjs/plugin-swc': ^3.0.0-rc.0
-      '@fesjs/plugin-watermark': ^3.0.0-rc.0
-      '@fesjs/plugin-windicss': ^3.0.0-rc.0
-      core-js: 3.27.0
+      '@fesjs/plugin-access': workspace:*
+      '@fesjs/plugin-enums': workspace:*
+      '@fesjs/plugin-jest': workspace:*
+      '@fesjs/plugin-layout': workspace:*
+      '@fesjs/plugin-locale': workspace:*
+      '@fesjs/plugin-login': workspace:*
+      '@fesjs/plugin-model': workspace:*
+      '@fesjs/plugin-monaco-editor': workspace:*
+      '@fesjs/plugin-pinia': workspace:*
+      '@fesjs/plugin-qiankun': workspace:*
+      '@fesjs/plugin-request': workspace:*
+      '@fesjs/plugin-sass': workspace:*
+      '@fesjs/plugin-swc': workspace:*
+      '@fesjs/plugin-watermark': workspace:*
+      '@fesjs/plugin-windicss': workspace:*
+      core-js: 3.29.1
       pinia: ^2.0.33
       vue: ^3.2.47
     dependencies:
@@ -585,29 +585,29 @@ importers:
       '@fesjs/fes-design': 0.7.23_vue@3.2.47
       '@fesjs/plugin-access': link:../fes-plugin-access
       '@fesjs/plugin-enums': link:../fes-plugin-enums
-      '@fesjs/plugin-jest': 2.0.5_ae7q6n2pxdofq35ibmbyyxc3lm
+      '@fesjs/plugin-jest': link:../fes-plugin-jest
       '@fesjs/plugin-layout': link:../fes-plugin-layout
       '@fesjs/plugin-locale': link:../fes-plugin-locale
       '@fesjs/plugin-login': link:../fes-plugin-login
       '@fesjs/plugin-model': link:../fes-plugin-model
       '@fesjs/plugin-monaco-editor': link:../fes-plugin-monaco-editor
       '@fesjs/plugin-pinia': link:../fes-plugin-pinia
-      '@fesjs/plugin-qiankun': 3.0.0-rc.2_upiwrfrltzfvpffgxz4zmpbq7e
+      '@fesjs/plugin-qiankun': link:../fes-plugin-qiankun
       '@fesjs/plugin-request': link:../fes-plugin-request
       '@fesjs/plugin-sass': link:../fes-plugin-sass
       '@fesjs/plugin-swc': link:../fes-plugin-swc
       '@fesjs/plugin-watermark': link:../fes-plugin-watermark
       '@fesjs/plugin-windicss': link:../fes-plugin-windicss
-      core-js: 3.27.0
-      pinia: 2.0.33_hmuptsblhheur2tugfgucj7gc4
+      core-js: 3.29.1
+      pinia: 2.0.33_vue@3.2.47
       vue: 3.2.47
 
   packages/fes-template-h5:
     specifiers:
-      '@fesjs/builder-vite': ^3.0.0-rc.1
-      '@fesjs/fes': ^3.0.0-rc.0
-      '@fesjs/plugin-icon': ^3.0.0-rc.0
-      '@fesjs/plugin-request': ^3.0.0-rc.0
+      '@fesjs/builder-vite': workspace:*
+      '@fesjs/fes': workspace:*
+      '@fesjs/plugin-icon': workspace:*
+      '@fesjs/plugin-request': workspace:*
       '@ttou/postcss-px-to-viewport': ^2.0.3
       core-js: ^3.29.1
       vue: ^3.2.47
@@ -622,21 +622,21 @@ importers:
 
   packages/fes-template-vite:
     specifiers:
-      '@fesjs/builder-vite': ^3.0.0-rc.0
-      '@fesjs/builder-webpack': ^3.0.0-rc.0
-      '@fesjs/fes': ^3.0.0-rc.0
+      '@fesjs/builder-vite': workspace:*
+      '@fesjs/builder-webpack': workspace:*
+      '@fesjs/fes': workspace:*
       '@fesjs/fes-design': ^0.7.0
-      '@fesjs/plugin-access': ^3.0.0-rc.0
-      '@fesjs/plugin-enums': ^3.0.0-rc.0
-      '@fesjs/plugin-icon': ^3.0.0-rc.0
-      '@fesjs/plugin-jest': ^2.0.0
-      '@fesjs/plugin-layout': ^5.0.0-rc.0
-      '@fesjs/plugin-locale': ^4.0.0-rc.0
-      '@fesjs/plugin-model': ^3.0.0-rc.0
-      '@fesjs/plugin-monaco-editor': ^3.0.0-rc.0
-      '@fesjs/plugin-pinia': ^3.0.0-rc.0
-      '@fesjs/plugin-request': ^3.0.0-rc.0
-      '@fesjs/plugin-sass': ^3.0.0-rc.0
+      '@fesjs/plugin-access': workspace:*
+      '@fesjs/plugin-enums': workspace:*
+      '@fesjs/plugin-icon': workspace:*
+      '@fesjs/plugin-jest': workspace:*
+      '@fesjs/plugin-layout': workspace:*
+      '@fesjs/plugin-locale': workspace:*
+      '@fesjs/plugin-model': workspace:*
+      '@fesjs/plugin-monaco-editor': workspace:*
+      '@fesjs/plugin-pinia': workspace:*
+      '@fesjs/plugin-request': workspace:*
+      '@fesjs/plugin-sass': workspace:*
       core-js: ^3.29.1
       cssnano: ^6.0.0
       pinia: ^2.0.11
@@ -649,7 +649,7 @@ importers:
       '@fesjs/plugin-access': link:../fes-plugin-access
       '@fesjs/plugin-enums': link:../fes-plugin-enums
       '@fesjs/plugin-icon': link:../fes-plugin-icon
-      '@fesjs/plugin-jest': 2.0.5_ae7q6n2pxdofq35ibmbyyxc3lm
+      '@fesjs/plugin-jest': link:../fes-plugin-jest
       '@fesjs/plugin-layout': link:../fes-plugin-layout
       '@fesjs/plugin-locale': link:../fes-plugin-locale
       '@fesjs/plugin-model': link:../fes-plugin-model
@@ -659,7 +659,7 @@ importers:
       '@fesjs/plugin-sass': link:../fes-plugin-sass
       core-js: 3.29.1
       cssnano: 6.0.0_postcss@8.4.21
-      pinia: 2.0.33_hmuptsblhheur2tugfgucj7gc4
+      pinia: 2.0.33_vue@3.2.47
       vue: 3.2.47
 
   packages/fes-utils:
@@ -2586,23 +2586,6 @@ packages:
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     dev: true
 
-  /@fesjs/compiler/2.0.5:
-    resolution: {integrity: sha512-zfKZcwOBRVtjnNQRvPtvffBN8gw3oSeI4+OkH9cUoh0irqpYBLX9FkaJmCMo+RlG3R1ke21Ssk/ZU/r7VyF5jA==}
-    dependencies:
-      '@babel/core': 7.21.3
-      '@babel/preset-env': 7.20.2_@babel+core@7.21.3
-      '@babel/register': 7.21.0_@babel+core@7.21.3
-      '@fesjs/utils': 2.0.4
-      commander: 7.2.0
-      dotenv: 8.2.0
-      joi: 17.3.0
-      readline: 1.3.0
-      set-value: 3.0.2
-      tapable: 2.2.1
-    transitivePeerDependencies:
-      - supports-color
-    dev: false
-
   /@fesjs/fes-design/0.7.23_vue@3.2.47:
     resolution: {integrity: sha512-FCQk4+SBVmYgQLhxjUqkxT701o7LprnhrBf7o5zPLhu3wZKbhPGAc2g96reBf08nWjxV6UubAX3QpeQ5aQWxcA==}
     peerDependencies:
@@ -2626,54 +2609,10 @@ packages:
       - '@vue/composition-api'
     dev: false
 
-  /@fesjs/plugin-jest/2.0.5_ae7q6n2pxdofq35ibmbyyxc3lm:
-    resolution: {integrity: sha512-E2rEVLhevFz6SgNrM2toPNOh383m+Nlng2gZP2fa3S3pHuz1uAqAfHrRfHNLt/e8CVWMafyvXIXh6GLHYu3IdQ==}
-    dependencies:
-      '@babel/preset-env': 7.20.2_@babel+core@7.21.3
-      '@fesjs/compiler': 2.0.5
-      '@vue/babel-plugin-jsx': 1.1.1_@babel+core@7.21.3
-      babel-jest: 27.5.1_@babel+core@7.21.3
-      jest: 27.5.1
-      jest-transform-stub: 2.0.0
-      jest-watch-typeahead: 0.6.5_jest@27.5.1
-      ts-jest: 27.1.5_5dmciyzakmnmbjegs7ltqvvgua
-      typescript: 4.9.5
-      vue3-jest: 27.0.0-alpha.1_jfh2pauwv6tb4tqxutgk5exgga
-    transitivePeerDependencies:
-      - '@babel/core'
-      - '@types/jest'
-      - bufferutil
-      - canvas
-      - esbuild
-      - node-notifier
-      - supports-color
-      - ts-node
-      - utf-8-validate
-      - vue
-    dev: false
-
   /@fesjs/plugin-qiankun/3.0.0-rc.0_upiwrfrltzfvpffgxz4zmpbq7e:
     resolution: {integrity: sha512-qFQ3cDBmGJYZPbc8Mu4ZVodm+/Q8g1rIPRAg24cxVybVc1taA0YbGo8FefQayyaUTxFLtYp921TYWytzGDNJRg==}
     peerDependencies:
       '@fesjs/fes': ^3.0.0-beta.0
-      '@fesjs/fes-design': ^0.7.0
-      vue: ^3.2.37
-    dependencies:
-      '@fesjs/fes': link:packages/fes
-      '@fesjs/fes-design': 0.7.23_vue@3.2.47
-      '@fesjs/utils': 3.0.0-rc.2
-      address: 1.2.2
-      lodash-es: 4.17.21
-      qiankun: 2.10.4
-      vue: 3.2.47
-    transitivePeerDependencies:
-      - supports-color
-    dev: false
-
-  /@fesjs/plugin-qiankun/3.0.0-rc.2_upiwrfrltzfvpffgxz4zmpbq7e:
-    resolution: {integrity: sha512-YTfoWEMeDEMOqx/Na71gw3t1h577fb+3ZapAWjxm1gVZ0HiiALPRZnboKeiAQxZHpHKiSr8s8pmoDlC2Unq5hQ==}
-    peerDependencies:
-      '@fesjs/fes': 3.0.0-rc.2
       '@fesjs/fes-design': ^0.7.0
       vue: ^3.2.37
     dependencies:
@@ -2698,31 +2637,6 @@ packages:
       '@fesjs/utils': 3.0.0-rc.2
       lodash-es: 4.17.21
       vue: 3.2.47
-    transitivePeerDependencies:
-      - supports-color
-    dev: false
-
-  /@fesjs/utils/2.0.4:
-    resolution: {integrity: sha512-jnTs+ioRjYJ34LaoSzKeOQ5qgPJIYdeh+Uj9frjEJ2ZIIB+D+MyL82ciISRnnSs0XkocV5eNsb6Bs8p3/eEd4Q==}
-    dependencies:
-      '@babel/generator': 7.21.3
-      '@babel/parser': 7.21.3
-      '@babel/traverse': 7.21.3
-      chalk: 4.1.2
-      chokidar: 3.5.3
-      crequire: 1.8.1
-      debug: 4.3.4
-      deepmerge: 4.3.1
-      glob: 7.2.3
-      lodash: 4.17.21
-      mkdirp: 1.0.4
-      mustache: 4.2.0
-      pkg-up: 3.1.0
-      portfinder: 1.0.32
-      resolve: 1.22.1
-      rimraf: 3.0.2
-      semver: 7.3.8
-      yargs-parser: 20.2.9
     transitivePeerDependencies:
       - supports-color
     dev: false
@@ -5692,11 +5606,6 @@ packages:
     resolution: {integrity: sha512-QmchCua884D8wWskMX8tW5ydINzd8oSJVx38lx/pVkFGqztxt73GYre3pm/hyYq8bPf+MW5In4I/uRShFDsbrA==}
     dependencies:
       browserslist: 4.21.5
-
-  /core-js/3.27.0:
-    resolution: {integrity: sha512-wY6cKosevs430KRkHUIsvepDXHGjlXOZO3hYXNyqpD6JvB0X28aXyv0t1Y1vZMwE7SoKmtfa6IASHCPN52FwBQ==}
-    requiresBuild: true
-    dev: false
 
   /core-js/3.29.1:
     resolution: {integrity: sha512-+jwgnhg6cQxKYIIjGtAHq2nwUOolo9eoFZ4sHfUH09BLXBgxnH4gA0zEd+t+BO2cNB8idaBtZFcFTRjQJRJmAw==}
@@ -10247,24 +10156,6 @@ packages:
   /pify/4.0.1:
     resolution: {integrity: sha512-uB80kBFb/tfd68bVleG9T5GGsGPjJrLAUpR5PZIrhBnIaRTQRjqdJSsIKkOP6OAIFbj7GOrcudc5pNjZ+geV2g==}
     engines: {node: '>=6'}
-    dev: false
-
-  /pinia/2.0.33_hmuptsblhheur2tugfgucj7gc4:
-    resolution: {integrity: sha512-HOj1yVV2itw6rNIrR2f7+MirGNxhORjrULL8GWgRwXsGSvEqIQ+SE0MYt6cwtpegzCda3i+rVTZM+AM7CG+kRg==}
-    peerDependencies:
-      '@vue/composition-api': ^1.4.0
-      typescript: '>=4.4.4'
-      vue: ^2.6.14 || ^3.2.0
-    peerDependenciesMeta:
-      '@vue/composition-api':
-        optional: true
-      typescript:
-        optional: true
-    dependencies:
-      '@vue/devtools-api': 6.5.0
-      typescript: 4.9.5
-      vue: 3.2.47
-      vue-demi: 0.13.11_vue@3.2.47
     dev: false
 
   /pinia/2.0.33_vue@3.2.47:
