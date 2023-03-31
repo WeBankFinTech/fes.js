@@ -2,7 +2,7 @@ name: Deploy Docs
 on:
     push:
         branches:
-            - master
+            - "2.0"
         paths:
             - 'docs/**/**'
             - 'package.json'

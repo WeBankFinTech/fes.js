@@ -6,7 +6,7 @@ const config: UserConfig<DefaultThemeOptions> = {
 
   bundler: '@vuepress/webpack',
 
-  base: process.env.BASE ? process.env.BASE : '/',
+  base: process.env.BASE ? process.env.BASE : '/2.0/',
 
   // evergreen: process.env.NODE_ENV !== 'production',
 
