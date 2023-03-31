@@ -65,7 +65,7 @@
     "webpackbar": "^5.0.2"
   },
   "peerDependencies": {
-    "@fesjs/fes": "3.0.0-rc.8",
+    "@fesjs/fes": "^3.0.0-rc.0",
     "core-js": "^3.29.1"
   }
 }

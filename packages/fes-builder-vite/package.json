@@ -42,7 +42,7 @@
     "vite-plugin-html": "^3.2.0"
   },
   "peerDependencies": {
-    "@fesjs/fes": "3.0.0-rc.2",
+    "@fesjs/fes": "^3.0.0-rc.0",
     "core-js": "^3.29.1"
   },
   "typings": "./types.d.ts"

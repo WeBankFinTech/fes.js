@@ -61,7 +61,7 @@
     "@fesjs/plugin-watermark": "^3.0.0-rc.0",
     "@fesjs/plugin-windicss": "^3.0.0-rc.0",
     "@fesjs/plugin-swc": "^3.0.0-rc.0",
-    "core-js": "3.27.0",
+    "core-js": "3.29.1",
     "pinia": "^2.0.33",
     "vue": "^3.2.47"
   },

@@ -32,7 +32,7 @@
     "sass-loader": "^11.0.1"
   },
   "peerDependencies": {
-    "@fesjs/fes": "3.0.0-rc.1"
+    "@fesjs/fes": "^3.0.0-rc.0"
   },
   "typings": "./types.d.ts"
 }

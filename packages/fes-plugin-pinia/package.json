@@ -31,7 +31,7 @@
     "@fesjs/utils": "3.0.0-rc.2"
   },
   "peerDependencies": {
-    "@fesjs/fes": "3.0.0-rc.4",
+    "@fesjs/fes": "^3.0.0-rc.0",
     "pinia": "^2.0.11",
     "vue": "^3.2.47"
   },

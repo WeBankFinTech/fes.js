@@ -29,6 +29,9 @@
   "publishConfig": {
     "access": "public"
   },
+  "peerDependencies": {
+    "@fesjs/fes": "^3.0.0-rc.0"
+  },
   "dependencies": {
     "@babel/preset-env": "^7.15.0",
     "@vue/babel-plugin-jsx": "^1.0.6",

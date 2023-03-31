@@ -28,6 +28,7 @@
   "dependencies": {
     "@fesjs/compiler": "3.0.0-rc.3",
     "@fesjs/utils": "3.0.0-rc.2",
+    "@fesjs/runtime": "3.0.0-rc.2",
     "@vue/compiler-sfc": "^3.2.47",
     "envinfo": "^7.7.3",
     "express": "^4.17.3",
