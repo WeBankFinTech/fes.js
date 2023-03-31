@@ -1,50 +1,50 @@
 name: Deploy Docs
 on:
-  push:
-    branches:
-      - master
-    paths:
-      - 'docs/**/**'
-      - 'package.json'
+    push:
+        branches:
+            - master
+        paths:
+            - 'docs/**/**'
+            - 'package.json'
 jobs:
-  build-and-deploy:
-    runs-on: ubuntu-latest
-    steps:
-    - name: Checkout
-      uses: actions/checkout@v2.3.1
-    
-    - name: Install and Build 🔧 # This example project is built using npm and outputs the result to the 'build' folder. Replace with the commands required to build your project, or remove this step entirely if your site is pre-built.
-      run: yarn && yarn docs:build
+    build-and-deploy:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v2.3.1
 
-    - name: Deploy
-      uses: easingthemes/ssh-deploy@main
-      env:
-        # 本地.ssh文件下的私钥id_rsa，存在secrets的TOKEN中
-        SSH_PRIVATE_KEY: ${{ secrets.HARRYWAN_PRIVATE_KEY }} 
-        # 源目录，相对于$GITHUB_WORKSPACE根目录的路径
-        SOURCE: docs/.vuepress/dist/
-        # 服务器域名
-        REMOTE_HOST: ${{ secrets.TX_IP }}
-        # 腾讯云默认用户名为root
-        REMOTE_USER: root 
-        # 目标目录
-        TARGET: /data/web-packages/p/fesjs
+            - name: Install and Build 🔧 # This example project is built using npm and outputs the result to the 'build' folder. Replace with the commands required to build your project, or remove this step entirely if your site is pre-built.
+              run: yarn && yarn docs:build
 
-  build-and-deploy-pages:
-    concurrency: ci-${{ github.ref }} # Recommended if you intend to make multiple deployments in quick succession.
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout 🛎️
-        uses: actions/checkout@v3
+            - name: Deploy
+              uses: easingthemes/ssh-deploy@main
+              env:
+                  # 本地.ssh文件下的私钥id_rsa，存在secrets的TOKEN中
+                  SSH_PRIVATE_KEY: ${{ secrets.HARRYWAN_PRIVATE_KEY }}
+                  # 源目录，相对于$GITHUB_WORKSPACE根目录的路径
+                  SOURCE: docs/.vuepress/dist/
+                  # 服务器域名
+                  REMOTE_HOST: ${{ secrets.TX_IP }}
+                  # 腾讯云默认用户名为root
+                  REMOTE_USER: root
+                  # 目标目录
+                  TARGET: /data/web-packages/p/fesjs/2.0
 
-      - name: Install and Build 🔧 # This example project is built using npm and outputs the result to the 'build' folder. Replace with the commands required to build your project, or remove this step entirely if your site is pre-built.
-        run: |
-          yarn
-          yarn docs:build-pages
+    build-and-deploy-pages:
+        concurrency: ci-${{ github.ref }} # Recommended if you intend to make multiple deployments in quick succession.
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout 🛎️
+              uses: actions/checkout@v3
 
-      - name: Deploy 🚀
-        uses: JamesIves/github-pages-deploy-action@v4.3.3
-        with:
-          branch: gh-pages # The branch the action should deploy to.
-          folder: docs/.vuepress/dist
-          token: ${{ secrets.ACCESS_TOKEN }}
+            - name: Install and Build 🔧 # This example project is built using npm and outputs the result to the 'build' folder. Replace with the commands required to build your project, or remove this step entirely if your site is pre-built.
+              run: |
+                  yarn
+                  yarn docs:build-pages
+
+            - name: Deploy 🚀
+              uses: JamesIves/github-pages-deploy-action@v4.3.3
+              with:
+                  branch: gh-pages # The branch the action should deploy to.
+                  folder: docs/.vuepress/dist
+                  token: ${{ secrets.ACCESS_TOKEN }}
