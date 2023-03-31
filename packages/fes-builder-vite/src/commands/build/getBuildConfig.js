@@ -46,6 +46,7 @@ export default async (api) => {
             terserOptions: build.terserOptions || api.config.terserOptions,
             target: build.target || getEsbuildTarget(targets),
             outDir: build.outDir || api.config.outputPath || 'dist',
+            assetsDir: build.assetsDir || 'static',
             assetsInlineLimit: build.assetsInlineLimit || api.config.inlineLimit || 8192,
         },
     });
