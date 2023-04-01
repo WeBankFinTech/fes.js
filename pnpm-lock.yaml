@@ -43,7 +43,7 @@ importers:
         version: 2.0.0-beta.53
       '@vuepress/plugin-docsearch':
         specifier: 2.0.0-beta.53
-        version: 2.0.0-beta.53
+        version: 2.0.0-beta.53(@algolia/client-search@4.16.0)
       '@vuepress/plugin-pwa':
         specifier: 2.0.0-beta.53
         version: 2.0.0-beta.53
@@ -81,8 +81,8 @@ importers:
         specifier: ^7.1.0
         version: 7.1.0(postcss@8.4.21)(webpack@5.76.2)
       yargs-parser:
-        specifier: ^20.2.9
-        version: 20.2.9
+        specifier: ^21.1.1
+        version: 21.1.1
 
   packages/create-fes-app:
     dependencies:
@@ -960,16 +960,14 @@ packages:
       '@algolia/autocomplete-shared': 1.7.4
     dev: true
 
-  /@algolia/autocomplete-preset-algolia@1.7.4(algoliasearch@4.16.0):
+  /@algolia/autocomplete-preset-algolia@1.7.4(@algolia/client-search@4.16.0)(algoliasearch@4.16.0):
     resolution: {integrity: sha512-s37hrvLEIfcmKY8VU9LsAXgm2yfmkdHT3DnA3SgHaY93yjZ2qL57wzb5QweVkYuEBZkT2PIREvRoLXC2sxTbpQ==}
     peerDependencies:
       '@algolia/client-search': '>= 4.9.1 < 6'
       algoliasearch: '>= 4.9.1 < 6'
-    peerDependenciesMeta:
-      '@algolia/client-search':
-        optional: true
     dependencies:
       '@algolia/autocomplete-shared': 1.7.4
+      '@algolia/client-search': 4.16.0
       algoliasearch: 4.16.0
     dev: true
 
@@ -2550,10 +2548,10 @@ packages:
     resolution: {integrity: sha512-6SCwI7P8ao+se1TUsdZ7B4XzL+gqeQZnBc+2EONZlcVa0dVrk0NjETxozFKgMv0eEGH8QzP1fkN+A1rH61l4eg==}
     dev: true
 
-  /@docsearch/js@3.3.3:
+  /@docsearch/js@3.3.3(@algolia/client-search@4.16.0):
     resolution: {integrity: sha512-2xAv2GFuHzzmG0SSZgf8wHX0qZX8n9Y1ZirKUk5Wrdc+vH9CL837x2hZIUdwcPZI9caBA+/CzxsS68O4waYjUQ==}
     dependencies:
-      '@docsearch/react': 3.3.3
+      '@docsearch/react': 3.3.3(@algolia/client-search@4.16.0)
       preact: 10.13.2
     transitivePeerDependencies:
       - '@algolia/client-search'
@@ -2562,7 +2560,7 @@ packages:
       - react-dom
     dev: true
 
-  /@docsearch/react@3.3.3:
+  /@docsearch/react@3.3.3(@algolia/client-search@4.16.0):
     resolution: {integrity: sha512-pLa0cxnl+G0FuIDuYlW+EBK6Rw2jwLw9B1RHIeS4N4s2VhsfJ/wzeCi3CWcs5yVfxLd5ZK50t//TMA5e79YT7Q==}
     peerDependencies:
       '@types/react': '>= 16.8.0 < 19.0.0'
@@ -2577,7 +2575,7 @@ packages:
         optional: true
     dependencies:
       '@algolia/autocomplete-core': 1.7.4
-      '@algolia/autocomplete-preset-algolia': 1.7.4(algoliasearch@4.16.0)
+      '@algolia/autocomplete-preset-algolia': 1.7.4(@algolia/client-search@4.16.0)(algoliasearch@4.16.0)
       '@docsearch/css': 3.3.3
       algoliasearch: 4.16.0
     transitivePeerDependencies:
@@ -4346,12 +4344,12 @@ packages:
       - supports-color
     dev: false
 
-  /@vuepress/plugin-docsearch@2.0.0-beta.53:
+  /@vuepress/plugin-docsearch@2.0.0-beta.53(@algolia/client-search@4.16.0):
     resolution: {integrity: sha512-U5s3gHo9989fGhMq/wUp85c0GOuajVOFMbf2bH5NzZIZ2j70vwJubfqc3Pb496DOKSu6gEPYZCRzNHkzgOPIAg==}
     dependencies:
       '@docsearch/css': 3.3.3
-      '@docsearch/js': 3.3.3
-      '@docsearch/react': 3.3.3
+      '@docsearch/js': 3.3.3(@algolia/client-search@4.16.0)
+      '@docsearch/react': 3.3.3(@algolia/client-search@4.16.0)
       '@vuepress/client': 2.0.0-beta.53
       '@vuepress/core': 2.0.0-beta.53
       '@vuepress/shared': 2.0.0-beta.53
@@ -14271,7 +14269,6 @@ packages:
   /yargs-parser@21.1.1:
     resolution: {integrity: sha512-tVpsJW7DdjecAiFpbIB1e3qxIQsE6NoPc5/eTdrbbIC4h0LVsWhnoa3g+m2HclBIujHzsxZ4VJVA+GUuc2/LBw==}
     engines: {node: '>=12'}
-    dev: false
 
   /yargs@15.4.1:
     resolution: {integrity: sha512-aePbxDmcYW++PaqBsJ+HYUFwCdv4LVvdnhBy78E57PIor8/OVvhMrADFFEDh8DHDFRv/O9i3lPhsENjO7QX0+A==}
