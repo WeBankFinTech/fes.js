@@ -1,3 +1,12 @@
+## [3.0.1](https://github.com/WeBankFinTech/fes.js/compare/v3.0.1-0...v3.0.1) (2023-04-01)
+
+
+### Features
+
+* change request to fetch ([21c404a](https://github.com/WeBankFinTech/fes.js/commit/21c404aa0701acf75542fd9c4b1c77866dfa744b))
+
+
+
 ## [3.0.1-0](https://github.com/WeBankFinTech/fes.js/compare/v3.0.0-rc.17...v3.0.1-0) (2023-04-01)
 
 
