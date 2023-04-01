@@ -99,7 +99,7 @@ FES_ENV=sit fes dev
 
 ### PORT
 
-`fes dev` 时服务指定的端口号，默认是 `8080`
+`fes dev` 时服务指定的端口号，默认是 `8000`
 
 ### HOST
 

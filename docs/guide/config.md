@@ -51,7 +51,7 @@ export default { mock: false };
 // .fes.local.js
 export default {
     mock: true,
-    devServer: { port: 8080 }
+    devServer: { port: 8000 }
 };
 ```
 
@@ -60,7 +60,7 @@ export default {
 ```js
 {
     mock: true,
-    devServer: { port: 8080 }
+    devServer: { port: 8000 }
 };
 ```
 
@@ -81,7 +81,7 @@ export default { mock: false };
 // .fes.uat.js
 export default {
     mock: true,
-    devServer: { port: 8080 }
+    devServer: { port: 8000 }
 };
 ```
 
@@ -96,7 +96,7 @@ FES_ENV=uat fes dev
 ```js
 {
     mock: true,
-    devServer: { port: 8080 }
+    devServer: { port: 8000 }
 };
 ```
 

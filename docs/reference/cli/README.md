@@ -112,7 +112,7 @@ Usage: fes dev [options]
 start a local http service for development
 
 Options:
-  --port      http service port, like 8080
+  --port      http service port, like 8000
   --https     whether to turn on the https service
   -h, --help  display help for command
 ```
@@ -120,7 +120,7 @@ Options:
 比如：
 
 ```bash
-fes dev --port=8080
+fes dev --port=8000
 ```
 
 ### fes build
