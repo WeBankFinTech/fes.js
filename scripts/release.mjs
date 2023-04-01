@@ -13,14 +13,17 @@ import buildConfig from '../build.config.js';
 const { prompt } = enquirer;
 const __dirname = url.fileURLToPath(new URL('.', import.meta.url));
 
-const { preid, dry: isDryRun } = minimist(process.argv.slice(2));
+const { preid: preId, dry: isDryRun } = minimist(process.argv.slice(2));
 const packages = buildConfig.pkgs;
 
 const versionIncrements = ['patch', 'minor', 'major', 'prepatch', 'preminor', 'premajor', 'prerelease'];
 
 const incVersion = (version, i) => {
-    const preId = preid || semver.prerelease(version)[0];
-    return semver.inc(version, i, preId);
+    let _preId = preId || semver.prerelease(version)?.[0];
+    if (!_preId && /pre/.test(i)) {
+        _preId = 'beta';
+    }
+    return semver.inc(version, i, _preId);
 };
 const autoIncVersion = (version) => {
     if (version.includes('-')) {
