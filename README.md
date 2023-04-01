@@ -105,17 +105,9 @@ npm run dev
 
 ## 反馈
 
-<<<<<<< HEAD
-| Github Issue | Fes.js 开源运营小助手 |
-| --- | --- |
-| [@fesjs/fes.js/issues](../../issues) | <img src="https://cos-1254145788.cos.ap-guangzhou.myqcloud.com/WechatIMG104.jpeg" height="250"/> |
-
-=======
-| Github Issue | Fes.js 开源运营小助手 |
+| Github Issue                         | Fes.js 开源运营小助手                                                                            |
 | ------------------------------------ | ------------------------------------------------------------------------------------------------ |
 | [@fesjs/fes.js/issues](../../issues) | <img src="https://cos-1254145788.cos.ap-guangzhou.myqcloud.com/WechatIMG104.jpeg" height="250"/> |
-
-> > > > > > > next
 
 ## 参与共建
 
