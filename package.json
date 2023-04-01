@@ -55,7 +55,7 @@
     "lint-staged": "^13.2.0",
     "postcss": "^8.4.21",
     "postcss-loader": "^7.1.0",
-    "yargs-parser": "^20.2.9"
+    "yargs-parser": "^21.1.1"
   },
   "lint-staged": {
     "*.{js,jsx,vue,ts}": [

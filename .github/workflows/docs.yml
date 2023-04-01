@@ -42,6 +42,11 @@ jobs:
             - name: Checkout 🛎️
               uses: actions/checkout@v3
 
+            - name: PNPM
+              uses: pnpm/action-setup@v2
+              with:
+                  version: 8.1.0
+
             - name: Install and Build 🔧 # This example project is built using npm and outputs the result to the 'build' folder. Replace with the commands required to build your project, or remove this step entirely if your site is pre-built.
               run: |
                   pnpm i
