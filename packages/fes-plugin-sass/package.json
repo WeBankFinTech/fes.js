@@ -1,6 +1,6 @@
 {
   "name": "@fesjs/plugin-sass",
-  "version": "3.0.0-rc.1",
+  "version": "3.0.0",
   "description": "@fesjs/plugin-sass",
   "main": "lib/index.js",
   "files": [
@@ -32,7 +32,7 @@
     "sass-loader": "^11.0.1"
   },
   "peerDependencies": {
-    "@fesjs/fes": "^3.0.0-rc.0"
+    "@fesjs/fes": "^3.0.0"
   },
   "typings": "./types.d.ts"
 }
