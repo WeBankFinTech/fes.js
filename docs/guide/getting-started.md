@@ -112,7 +112,7 @@ pnpm dev
 
 pnpm run v1.22.4
 $ fes dev
-Starting the development server http://localhost:8080 ...
+Starting the development server http://localhost:8000 ...
 
 ✔ Webpack
   Compiled successfully in 15.91s
@@ -129,7 +129,7 @@ Starting the development server http://localhost:8080 ...
 npm run dev
 
 > fes dev
-Starting the development server http://localhost:8080 ...
+Starting the development server http://localhost:8000 ...
 
 ✔ Webpack
   Compiled successfully in 3.66s
@@ -140,7 +140,7 @@ Starting the development server http://localhost:8080 ...
   </CodeGroupItem>
 </CodeGroup>
 
-Fes.js 会在 [http://localhost:8080](http://localhost:8080) 启动一个热重载的开发服务器。当你修改你的 .vue 文件时，浏览器中的内容也会自动更新。
+Fes.js 会在 [http://localhost:8000](http://localhost:8000) 启动一个热重载的开发服务器。当你修改你的 .vue 文件时，浏览器中的内容也会自动更新。
 
 <img :src="$withBase('home.png')" alt="home">
 

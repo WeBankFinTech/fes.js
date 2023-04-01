@@ -78,6 +78,20 @@ export default {
 2.1.x 版本请使用 router.base 代替
 :::
 
+### builder
+
+-   类型： `string`
+-   默认值： 如果装了多个构建,需要通过 builder 指定具体使用哪个
+-   详情：
+    比如 dev 用 vite，构建用 webpack
+-   示例：
+
+```js
+export default {
+    builder: 'webpack',
+};
+```
+
 ### define
 
 -   类型： `object`
@@ -319,7 +333,7 @@ const defaultTerserOptions = {
 -   默认值：`null`
 -   详情：
 
-    通过 [webpack-chain](https://github.com/neutrinojs/webpack-chain) 的 API 修改 webpack 配置。
+    通过 [webpack-chain](https://github.com/sorrycc/webpack-chain#readme) 的 API 修改 webpack 配置。
 
 示例：
 

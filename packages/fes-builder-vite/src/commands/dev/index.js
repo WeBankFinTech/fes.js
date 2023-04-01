@@ -19,7 +19,7 @@ export default (api) => {
         options: [
             {
                 name: '--port',
-                description: 'http service port, like 8080',
+                description: 'http service port, like 8000',
             },
             {
                 name: '--https',

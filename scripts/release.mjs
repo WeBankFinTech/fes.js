@@ -78,12 +78,6 @@ function writePackageJson(pkg, content) {
     fs.writeFileSync(path.join(pkgPath, 'package.json'), `${JSON.stringify(content, null, 2)}\n`);
 }
 
-function genRootPackageVersion() {
-    const pkgPath = path.resolve(path.resolve(__dirname, '..'), 'package.json');
-    const pkg = JSON.parse(fs.readFileSync(pkgPath, 'utf-8'));
-    return semver.inc(pkg.version, 'prerelease', semver.prerelease(pkg.version) && semver.prerelease(pkg.version)[0]);
-}
-
 function readPackageVersionAndName(pkg) {
     const { version, name } = readPackageJson(pkg);
     return {
@@ -140,9 +134,7 @@ const filterChangedPackages = async () => {
     return packages.filter((_v, index) => results[index]);
 };
 
-async function createPackageNewVersion(pkg) {
-    const { name, version } = readPackageVersionAndName(pkg);
-
+async function createPackageNewVersion(name, version) {
     // no explicit version, offer suggestions
     const { release } = await prompt({
         type: 'select',
@@ -167,9 +159,16 @@ async function createPackageNewVersion(pkg) {
 
     if (!semver.valid(newVersion)) {
         console.log(`invalid target version: ${newVersion}, please again.`);
-        return createPackageNewVersion(pkg);
+        return createPackageNewVersion(name, version);
     }
 
+    return newVersion;
+}
+
+async function genRootPackageVersion() {
+    const pkgPath = path.resolve(path.resolve(__dirname, '..'), 'package.json');
+    const pkg = JSON.parse(fs.readFileSync(pkgPath, 'utf-8'));
+    const newVersion = await createPackageNewVersion(pkg.name, pkg.version);
     return newVersion;
 }
 
@@ -216,7 +215,8 @@ async function main() {
 
     const updatedPkgs = [];
     for (const pkg of changedPackages) {
-        const newVersion = await createPackageNewVersion(pkg);
+        const { name, version } = readPackageVersionAndName(pkg);
+        const newVersion = await createPackageNewVersion(name, version);
         updatedPkgs.push({
             dirName: pkg,
             newVersion,
@@ -239,7 +239,7 @@ async function main() {
         return;
     }
 
-    const newRootVersion = genRootPackageVersion();
+    const newRootVersion = await genRootPackageVersion();
 
     // update all package versions and inter-dependencies
     step('\nUpdating cross dependencies...');
