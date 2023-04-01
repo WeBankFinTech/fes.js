@@ -1,6 +1,6 @@
 {
   "name": "@fesjs/builder-webpack",
-  "version": "3.0.0-rc.6",
+  "version": "3.0.0",
   "description": "@fesjs/builder-webpack",
   "main": "lib/index.js",
   "types": "types.d.ts",
@@ -34,7 +34,7 @@
     "@babel/plugin-transform-runtime": "^7.21.0",
     "@babel/preset-env": "^7.20.2",
     "@babel/preset-typescript": "^7.21.0",
-    "@fesjs/utils": "3.0.0-rc.2",
+    "@fesjs/utils": "^3.0.0",
     "@vue/babel-plugin-jsx": "^1.1.1",
     "autoprefixer": "^10.4.14",
     "babel-loader": "^9.1.2",
@@ -65,7 +65,7 @@
     "webpackbar": "^5.0.2"
   },
   "peerDependencies": {
-    "@fesjs/fes": "^3.0.0-rc.0",
+    "@fesjs/fes": "^3.0.0",
     "core-js": "^3.29.1"
   }
 }

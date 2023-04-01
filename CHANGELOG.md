@@ -1,3 +1,35 @@
+## [3.0.1-0](https://github.com/WeBankFinTech/fes.js/compare/v3.0.0-rc.17...v3.0.1-0) (2023-04-01)
+
+
+### Bug Fixes
+
+* 打开相同path的链接会更新route & 第一次打开会触发onActivated ([#145](https://github.com/WeBankFinTech/fes.js/issues/145)) ([864904e](https://github.com/WeBankFinTech/fes.js/commit/864904e68d5dcb3d7c61ec2e69ecfd6224541f6f))
+* 解决 core-js 版本问题 ([#165](https://github.com/WeBankFinTech/fes.js/issues/165)) ([bb51ba1](https://github.com/WeBankFinTech/fes.js/commit/bb51ba18ad82fade940cc34d1243b99a766d0705))
+* 解决 webpack 安全漏洞问题 ([#176](https://github.com/WeBankFinTech/fes.js/issues/176)) ([ad352f2](https://github.com/WeBankFinTech/fes.js/commit/ad352f2b442375bd388ae4c400dfd45c1faab1d9))
+* 解决 webpack 缓存问题 ([#166](https://github.com/WeBankFinTech/fes.js/issues/166)) ([a9fae0f](https://github.com/WeBankFinTech/fes.js/commit/a9fae0fa7dd35ab40a2bc237be6276896e69d5da))
+* 修复 fes-icon 删除 viewBox 导致异常问题 ([#153](https://github.com/WeBankFinTech/fes.js/issues/153)) ([17ab4f2](https://github.com/WeBankFinTech/fes.js/commit/17ab4f2b79954393878f360eaa47c2d81b38bec7))
+* 修复watermark插件类型问题 ([fdf548d](https://github.com/WeBankFinTech/fes.js/commit/fdf548d6c38ab8234fb75fc7549f21871f83756c))
+* build cache ([a7ed929](https://github.com/WeBankFinTech/fes.js/commit/a7ed9297d4a7d3c39fd2ccf9d9d8869e7cdca56f))
+* **built-in:**  规范 beforeRender 逻辑，如果异常，则不应该执行后续的 router.beforeEach ([#179](https://github.com/WeBankFinTech/fes.js/issues/179)) ([07b1d84](https://github.com/WeBankFinTech/fes.js/commit/07b1d844f06cf64304fe15709d96b0e3133c32f4))
+* defineRouteMeta parse 异常 ([#151](https://github.com/WeBankFinTech/fes.js/issues/151)) ([7cb69d1](https://github.com/WeBankFinTech/fes.js/commit/7cb69d18439e5b18b5c98d599b86d41c0c28d78e))
+* js 语法错误导致 dev 退出 ([#149](https://github.com/WeBankFinTech/fes.js/issues/149)) ([9e3e5c1](https://github.com/WeBankFinTech/fes.js/commit/9e3e5c1aca7f632b1d59dcf08685d9819217009b))
+* plugin-locale的legacy默认为false, 最新版vue-i18n中设置为true不支持composition api方式 ([d714a64](https://github.com/WeBankFinTech/fes.js/commit/d714a64b00d9e68c175940e180cec27b5d41f4fe))
+* qiankun plugin props error ([#150](https://github.com/WeBankFinTech/fes.js/issues/150)) ([ec1cf5b](https://github.com/WeBankFinTech/fes.js/commit/ec1cf5b4270e13b0f20c96fbf6e3bca7e540eede))
+* request cache 类型声明问题 ([3caaf58](https://github.com/WeBankFinTech/fes.js/commit/3caaf58afb97818ef3c67343172531ceb54b4e6b))
+
+
+### Features
+
+* 对齐 webpack 和 vite 文件输出 ([852aad2](https://github.com/WeBankFinTech/fes.js/commit/852aad294c808d21e730a82b8715116a59018841))
+* 给使用mini-css-extract-plugin增加开关 ([#178](https://github.com/WeBankFinTech/fes.js/issues/178)) ([d258a27](https://github.com/WeBankFinTech/fes.js/commit/d258a274baf229a171277978b0cd2e33ae0d133d))
+* 优化一些demo ([679b5ce](https://github.com/WeBankFinTech/fes.js/commit/679b5ce3be91b286eebfd341b238e2976fecdc74))
+* 优化peer依赖 ([bafa4d0](https://github.com/WeBankFinTech/fes.js/commit/bafa4d08cc88290451191604e9289ab1e8915596))
+* 增加bootstrap和clean命令 ([c87be8a](https://github.com/WeBankFinTech/fes.js/commit/c87be8a78803348197a7c9fcd18af0c30ac81755))
+* script setup 支持 defineRouteMeta ([#144](https://github.com/WeBankFinTech/fes.js/issues/144)) ([05d593e](https://github.com/WeBankFinTech/fes.js/commit/05d593e0f86b846e94c1cb255c152ec718e1474b))
+* template改为使用workspace协议 ([e808556](https://github.com/WeBankFinTech/fes.js/commit/e80855638507e7ccdab8a49757e060083eadd123))
+
+
+
 # [3.0.0-rc.17](https://github.com/WeBankFinTech/fes.js/compare/v3.0.0-rc.16...v3.0.0-rc.17) (2023-03-17)
 
 
