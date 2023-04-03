@@ -27,7 +27,7 @@
             <f-layout :fixed="isFixedSidebar" :style="sideStyleRef">
                 <f-header ref="headerRef" class="layout-header" :fixed="currentFixedHeaderRef">
                     <div class="layout-header-custom">
-                        <slot name="renderCustom"></slot>
+                        <slot name="renderCustom" :menus="menus"></slot>
                     </div>
                     <template v-if="locale">
                         <slot name="locale"></slot>
@@ -71,7 +71,7 @@
                     </div>
                     <div>
                         <div class="layout-aside-custom">
-                            <slot name="renderCustom"></slot>
+                            <slot name="renderCustom" :menus="menus"></slot>
                         </div>
                         <div v-if="locale" class="layout-aside-locale">
                             <slot name="locale"></slot>
@@ -106,7 +106,7 @@
                     :accordion="menuProps?.accordion"
                 />
                 <div class="layout-header-custom">
-                    <slot name="renderCustom"></slot>
+                    <slot name="renderCustom" :menus="menus"></slot>
                 </div>
                 <template v-if="locale">
                     <slot name="locale"></slot>
@@ -128,7 +128,7 @@
                     <div v-if="title" class="logo-name">{{ title }}</div>
                 </div>
                 <div class="layout-header-custom">
-                    <slot name="renderCustom"></slot>
+                    <slot name="renderCustom" :menus="menus"></slot>
                 </div>
                 <template v-if="locale">
                     <slot name="locale"></slot>
