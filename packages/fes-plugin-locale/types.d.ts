@@ -1,4 +1,4 @@
-import '@fesjs/fes';
+export { useI18n } from 'vue-i18n'
 
 export const locale: {
     setLocale({ locale }: { locale: string }): void;
@@ -6,6 +6,7 @@ export const locale: {
     getAllLocales(): string[];
     messages: Record<string, object>;
 };
+
 declare module '@fesjs/fes' {
     interface PluginBuildConfig {
         locale?:
