@@ -81,6 +81,9 @@ export default (api) => {
                 path: '/403',
                 name: 'Exception403',
                 component: winPath(join(api.paths.absTmpPath, join(namespace, 'views/403.vue'))),
+                meta: {
+                    title: '403',
+                },
             });
         }
         if (!routes.find((item) => item.path === '/404')) {
@@ -88,6 +91,9 @@ export default (api) => {
                 path: '/404',
                 name: 'Exception404',
                 component: winPath(join(api.paths.absTmpPath, join(namespace, 'views/404.vue'))),
+                meta: {
+                    title: '404',
+                },
             });
         }
         return [
