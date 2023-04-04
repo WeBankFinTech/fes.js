@@ -1,9 +1,7 @@
 import { defineBuildConfig } from '@fesjs/fes';
 
 export default defineBuildConfig({
-    swc: {
-        loader: {},
-    },
+    swc: false,
     targets: {
         chrome: '78',
     },

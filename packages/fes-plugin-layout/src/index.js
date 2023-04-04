@@ -51,13 +51,6 @@ export default (api) => {
         });
 
         api.writeTmpFile({
-            path: absFilePath,
-            content: Mustache.render(readFileSync(join(__dirname, 'runtime/views/index.tpl'), 'utf-8'), {
-                REPLACE_USER_CONFIG: JSON.stringify(userConfig),
-            }),
-        });
-
-        api.writeTmpFile({
             path: absConfigFilePath,
             content: Mustache.render(readFileSync(join(__dirname, 'runtime/helpers/getConfig.tpl'), 'utf-8'), {
                 REPLACE_USER_CONFIG: JSON.stringify(userConfig),

@@ -189,13 +189,13 @@ export default {
                 return [];
             },
         },
-        title: {
-            type: String,
-            default: '',
-        },
         locale: {
             type: Boolean,
             default: false,
+        },
+        title: {
+            type: String,
+            default: '',
         },
         logo: {
             type: String,
