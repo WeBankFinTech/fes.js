@@ -21,7 +21,10 @@ export const beforeRender = {
 
 export const layout = (layoutConfig, { initialState }) => ({
     ...layoutConfig,
-    renderCustom: () => <UserCenter />,
+    renderCustom: (props) => {
+        console.log(props);
+        return <UserCenter />;
+    },
     menus: () => {
         const menusRef = ref(layoutConfig.menus);
         watch(

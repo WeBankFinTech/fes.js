@@ -23,5 +23,8 @@ export const beforeRender = {
 };
 
 export const layout = {
-    renderCustom: () => <UserCenter />,
+    renderCustom: (props) => {
+        console.log(props);
+        return <UserCenter />;
+    },
 };
