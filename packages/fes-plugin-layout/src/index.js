@@ -51,13 +51,6 @@ export default (api) => {
         });
 
         api.writeTmpFile({
-            path: absFilePath,
-            content: Mustache.render(readFileSync(join(__dirname, 'runtime/views/index.tpl'), 'utf-8'), {
-                REPLACE_USER_CONFIG: JSON.stringify(userConfig),
-            }),
-        });
-
-        api.writeTmpFile({
             path: absConfigFilePath,
             content: Mustache.render(readFileSync(join(__dirname, 'runtime/helpers/getConfig.tpl'), 'utf-8'), {
                 REPLACE_USER_CONFIG: JSON.stringify(userConfig),
@@ -80,14 +73,37 @@ export default (api) => {
         },
     ]);
 
-    // 把BaseLayout插入到路由配置中，作为根路由
-    api.modifyRoutes((routes) => [
-        {
-            path: '/',
-            component: winPath(join(api.paths.absTmpPath || '', absFilePath)),
-            children: routes,
-        },
-    ]);
+    // 把 BaseLayout插入到路由配置中，作为根路由
+    // 添加 403 和 404 路由
+    api.modifyRoutes((routes) => {
+        if (!routes.find((item) => item.path === '/403')) {
+            routes.push({
+                path: '/403',
+                name: 'Exception403',
+                component: winPath(join(api.paths.absTmpPath, join(namespace, 'views/403.vue'))),
+                meta: {
+                    title: '403',
+                },
+            });
+        }
+        if (!routes.find((item) => item.path === '/404')) {
+            routes.push({
+                path: '/404',
+                name: 'Exception404',
+                component: winPath(join(api.paths.absTmpPath, join(namespace, 'views/404.vue'))),
+                meta: {
+                    title: '404',
+                },
+            });
+        }
+        return [
+            {
+                path: '/',
+                component: winPath(join(api.paths.absTmpPath || '', absFilePath)),
+                children: routes,
+            },
+        ];
+    });
 
     api.addConfigType(() => ({
         source: name,

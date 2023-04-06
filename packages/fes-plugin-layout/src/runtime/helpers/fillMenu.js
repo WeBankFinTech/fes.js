@@ -29,27 +29,16 @@ const fillMenuByRoute = (menuConfig, routeConfig, dep = 0) => {
         menuConfig.forEach((menu) => {
             const pageConfig = {};
             if (menu.name) {
-                Object.assign(
-                    pageConfig,
-                    getMetaByName(routeConfig, menu.name)
-                );
+                Object.assign(pageConfig, getMetaByName(routeConfig, menu.name));
             }
             // menu的配置优先级高，当menu存在配置时，忽略页面的配置
             Object.keys(pageConfig).forEach((prop) => {
-                if (
-                    menu[prop] === undefined
-                    || menu[prop] === null
-                    || menu[prop] === ''
-                ) {
+                if (menu[prop] === undefined || menu[prop] === null || menu[prop] === '') {
                     menu[prop] = pageConfig[prop];
                 }
             });
             if (menu.children && menu.children.length > 0) {
-                menu.children = fillMenuByRoute(
-                    menu.children,
-                    routeConfig,
-                    dep
-                );
+                menu.children = fillMenuByRoute(menu.children, routeConfig, dep);
             }
             arr.push(menu);
         });
