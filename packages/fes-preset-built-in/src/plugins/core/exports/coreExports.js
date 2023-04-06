@@ -1,7 +1,7 @@
 import { readFileSync } from 'fs';
 import { join } from 'path';
-import generateExports from '../../../../utils/generateExports';
-import { runtimePath } from '../../../../utils/constants';
+import generateExports from '../../../utils/generateExports';
+import { runtimePath } from '../../../utils/constants';
 
 export default function (api) {
     api.onGenerateFiles(async () => {
