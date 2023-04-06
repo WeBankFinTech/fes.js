@@ -1,3 +1,17 @@
+## [3.0.2](https://github.com/WeBankFinTech/fes.js/compare/v3.0.1...v3.0.2) (2023-04-06)
+
+
+### Bug Fixes
+
+* 修复plugin-locale类型问题 ([#180](https://github.com/WeBankFinTech/fes.js/issues/180)) ([d110953](https://github.com/WeBankFinTech/fes.js/commit/d11095355fe0d2ce7e6da0eaa39f91b28a69472c))
+
+
+### Features
+
+* **plugin-layout:** custom插槽支持 menus 参数 & 重构403、404逻辑 ([#181](https://github.com/WeBankFinTech/fes.js/issues/181)) ([43496ef](https://github.com/WeBankFinTech/fes.js/commit/43496ef3074a4a527e7108621b60fa88be7f2057))
+
+
+
 ## [3.0.1](https://github.com/WeBankFinTech/fes.js/compare/v3.0.1-0...v3.0.1) (2023-04-01)
 
 

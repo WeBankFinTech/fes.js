@@ -1,6 +1,6 @@
 {
   "name": "@fesjs/plugin-locale",
-  "version": "4.0.0",
+  "version": "4.0.1",
   "description": "@fesjs/plugin-locale",
   "main": "lib/index.js",
   "files": [
