@@ -34,7 +34,7 @@ export default {
 ```
 pages
 ├── index.vue         # 根路由页面 路径为 /
-├── *.vue             # 模糊匹配 路径为 *
+├── [...slug].vue     # 模糊匹配 路径为 /:slug(.*)
 ├── a.vue             # 路径 /a
 ├── b                 # 文件夹b
 │   ├── index.vue     # 路径 /b
