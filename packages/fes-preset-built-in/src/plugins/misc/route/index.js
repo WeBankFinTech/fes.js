@@ -50,7 +50,7 @@ const getRouteName = function (parentRoutePath, fileName) {
         .replace(/\//g, '_')
         .replace(/@/g, '_')
         .replace(/\*/g, 'FUZZYMATCH')
-        .replace(/\[...([a-z]*)\]/, 'FUZZYMATCH-$1');
+        .replace(/\[...([a-zA-Z]*)\]/, 'FUZZYMATCH-$1');
 };
 
 const getRoutePath = function (parentRoutePath, fileName, isFile = true) {
@@ -67,8 +67,8 @@ const getRoutePath = function (parentRoutePath, fileName, isFile = true) {
         fileName = fileName.replace('*', ':pathMatch(.*)');
     }
     // /[...slug].vue -> /:slug(.*)
-    if (/\[...[a-z]*\]/.test(fileName)) {
-        fileName = fileName.replace(/\[...([a-z]*)\]/, ':$1(.*)').replace(':(.*)', ':pathMatch(.*)');
+    if (/\[...[a-zA-Z]*\]/.test(fileName)) {
+        fileName = fileName.replace(/\[...([a-zA-Z]*)\]/, ':$1(.*)').replace(':(.*)', ':pathMatch(.*)');
     }
     return winPath(join(parentRoutePath, fileName));
 };
