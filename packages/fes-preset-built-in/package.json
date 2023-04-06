@@ -1,6 +1,6 @@
 {
     "name": "@fesjs/preset-built-in",
-    "version": "2.1.10",
+    "version": "2.2.0",
     "description": "@fesjs/preset-built-in",
     "main": "lib/index.js",
     "types": "lib/index.d.ts",
