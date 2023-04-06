@@ -13,7 +13,7 @@ const logger = new Logger('fes:router');
 
 //   pages
 //  ├── index.vue         # 根路由页面 路径 /
-//  ├── *.vue             # 模糊匹配 路径 *
+//  ├── [...slug].vue     # 模糊匹配 路径  /:slug(.*)
 //  ├── a.vue             # 路径 /a
 //  ├── b
 //  │   ├── index.vue     # 路径 /b
@@ -49,7 +49,8 @@ const getRouteName = function (parentRoutePath, fileName) {
         .slice(1)
         .replace(/\//g, '_')
         .replace(/@/g, '_')
-        .replace(/\*/g, 'FUZZYMATCH');
+        .replace(/\*/g, 'FUZZYMATCH')
+        .replace(/\[...([a-zA-Z]*)\]/, 'FUZZYMATCH-$1');
 };
 
 const getRoutePath = function (parentRoutePath, fileName, isFile = true) {
@@ -61,9 +62,13 @@ const getRoutePath = function (parentRoutePath, fileName, isFile = true) {
     if (fileName.startsWith('@')) {
         fileName = fileName.replace(/@/, ':');
     }
-    // /*.vue -> :pathMatch(.*)
+    // /*.vue -> /:pathMatch(.*)
     if (fileName.includes('*')) {
         fileName = fileName.replace('*', ':pathMatch(.*)');
+    }
+    // /[...slug].vue -> /:slug(.*)
+    if (/\[...[a-zA-Z]*\]/.test(fileName)) {
+        fileName = fileName.replace(/\[...([a-zA-Z]*)\]/, ':$1(.*)').replace(':(.*)', ':pathMatch(.*)');
     }
     return winPath(join(parentRoutePath, fileName));
 };
@@ -195,9 +200,9 @@ const rank = function (routes) {
         let count = 0;
         arr.forEach((sonPath) => {
             count += 4;
-            if (sonPath.indexOf(':') !== -1 && sonPath.indexOf(':pathMatch(.*)') === -1) {
+            if (sonPath.indexOf(':') !== -1 && sonPath.indexOf('(.*)') === -1) {
                 count += 2;
-            } else if (sonPath.indexOf(':pathMatch(.*)') !== -1) {
+            } else if (sonPath.indexOf('(.*)') !== -1) {
                 count -= 1;
             } else if (sonPath === '') {
                 count += 1;
