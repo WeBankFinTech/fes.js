@@ -2,15 +2,15 @@ import { readdirSync, statSync, readFileSync } from 'fs';
 import { join, extname, basename } from 'path';
 import { lodash, parser, generator, logger, winPath } from '@fesjs/utils';
 import { parse } from '@vue/compiler-sfc';
-import { runtimePath } from '../../utils/constants';
+import { runtimePath } from '../../../utils/constants';
 
 //   pages
 //  ├── index.vue         # 根路由页面 路径 /
-//  ├── *.vue             # 模糊匹配 路径 *
+//  ├── [...slug].vue     # 模糊匹配 路径 /:slug(.*)
 //  ├── a.vue             # 路径 /a
 //  ├── b
 //  │   ├── index.vue     # 路径 /b
-//  │   ├── @id.vue       # 动态路由 /b/:id
+//  │   ├── [slug].vue       # 动态路由 /b/:slug
 //  │   └── c.vue         # 路径 /b/c
 //  └── layout.vue        # 根路由下所有page共用的外层
 
@@ -38,7 +38,14 @@ const checkHasLayout = function (path) {
 
 const getRouteName = function (parentRoutePath, fileName) {
     const routeName = winPath(join(parentRoutePath, fileName));
-    return routeName.slice(1).replace(/\//g, '_').replace(/@/g, '_').replace(/:/g, '_').replace(/\*/g, 'FUZZYMATCH');
+    return routeName
+        .slice(1)
+        .replace(/\//g, '_')
+        .replace(/@/g, '_')
+        .replace(/:/g, '_')
+        .replace(/\*/g, 'FUZZYMATCH')
+        .replace(/\[([a-zA-Z]+)\]/, '_$1')
+        .replace(/\[...([a-zA-Z]*)\]/, 'FUZZYMATCH-$1');
 };
 
 const getRoutePath = function (parentRoutePath, fileName, isFile = true) {
@@ -48,11 +55,21 @@ const getRoutePath = function (parentRoutePath, fileName, isFile = true) {
     }
     // /@id.vue -> /:id
     if (fileName.startsWith('@')) {
+        logger.warn(`[WARNING]: ${fileName} is deprecated, please use [slug]`);
         fileName = fileName.replace(/@/, ':');
     }
     // /*.vue -> :pathMatch(.*)
     if (fileName.includes('*')) {
+        logger.warn(`[WARNING]: ${fileName} is deprecated, please use [...slug]`);
         fileName = fileName.replace('*', ':pathMatch(.*)');
+    }
+    // /[slug].vue -> /:slug
+    if (/\[[a-zA-Z]+\]/.test(fileName)) {
+        fileName = fileName.replace(/\[([a-zA-Z]+)\]/g, ':$1');
+    }
+    // /[...slug].vue -> /:slug(.*)
+    if (/\[...[a-zA-Z]*\]/.test(fileName)) {
+        fileName = fileName.replace(/\[...([a-zA-Z]*)\]/, ':$1(.*)').replace(':(.*)', ':pathMatch(.*)');
     }
     return winPath(join(parentRoutePath, fileName));
 };
@@ -75,7 +92,7 @@ function getRouteMeta(content) {
             const fn = eval(`() => (${argument.code})`);
             return fn();
         }
-    } catch (err) { }
+    } catch (err) {}
     return null;
 }
 
@@ -186,9 +203,9 @@ const rank = function (routes) {
         let count = 0;
         arr.forEach((sonPath) => {
             count += 4;
-            if (sonPath.indexOf(':') !== -1 && sonPath.indexOf(':pathMatch(.*)') === -1) {
+            if (sonPath.indexOf(':') !== -1 && sonPath.indexOf('(.*)') === -1) {
                 count += 2;
-            } else if (sonPath.indexOf(':pathMatch(.*)') !== -1) {
+            } else if (sonPath.indexOf('(.*)') !== -1) {
                 count -= 1;
             } else if (sonPath === '') {
                 count += 1;

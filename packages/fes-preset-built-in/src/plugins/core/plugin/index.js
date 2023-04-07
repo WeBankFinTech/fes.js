@@ -1,7 +1,7 @@
 import { readFileSync } from 'fs';
 import { join } from 'path';
 import { winPath } from '@fesjs/utils';
-import { runtimePath } from '../../../../utils/constants';
+import { runtimePath } from '../../../utils/constants';
 
 export default function (api) {
     const {

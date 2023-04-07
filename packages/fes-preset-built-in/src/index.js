@@ -6,11 +6,11 @@ export default function () {
             require.resolve('./plugins/registerType'),
 
             // generate files
-            require.resolve('./plugins/generateFiles/core/plugin'),
-            require.resolve('./plugins/generateFiles/core/exports/coreExports'),
-            require.resolve('./plugins/generateFiles/core/exports/pluginExports'),
-            require.resolve('./plugins/generateFiles/fes'),
-            require.resolve('./plugins/generateFiles/genType'),
+            require.resolve('./plugins/core/plugin'),
+            require.resolve('./plugins/core/exports/coreExports'),
+            require.resolve('./plugins/core/exports/pluginExports'),
+            require.resolve('./plugins/core/entry'),
+            require.resolve('./plugins/core/route'),
 
             // bundle configs
             require.resolve('./plugins/features/alias'),
@@ -30,9 +30,6 @@ export default function () {
             require.resolve('./plugins/features/targets'),
             require.resolve('./plugins/features/terserOptions'),
             require.resolve('./plugins/features/title'),
-
-            // route
-            require.resolve('./plugins/route'),
 
             // commands
             require.resolve('./plugins/commands/help'),
