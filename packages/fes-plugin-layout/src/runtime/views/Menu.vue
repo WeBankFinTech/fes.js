@@ -1,7 +1,7 @@
 <template>
     <f-menu
         :modelValue="activePath"
-        :expandedKeys="defaultExpandMenu"
+        :expandedKeys="expandedKeysRef"
         :inverted="inverted"
         :mode="mode"
         :options="transformedMenus"
@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import { computed, h } from 'vue';
+import { computed, h, ref } from 'vue';
 import { FMenu } from '@fesjs/fes-design';
 import { useRoute, useRouter } from '@@/core/coreExports';
 import { transform as transformByAccess } from '../helpers/pluginAccess';
@@ -94,7 +94,7 @@ export default {
             }
             return matchMenus[0].path;
         });
-        const defaultExpandMenu = computed(() => {
+        const getDefaultExpandMenu = () => {
             let index = menuArray.value.findIndex((item) => item.value === activePath.value);
             if (index === -1) {
                 return props.expandedKeys;
@@ -109,7 +109,8 @@ export default {
                 }
             }
             return props.expandedKeys.concat(arr.map((item) => item.value));
-        });
+        };
+        const expandedKeysRef = ref(getDefaultExpandMenu());
         const onMenuClick = (e) => {
             const path = e.value;
             if (/^https?:\/\//.test(path)) {
@@ -122,7 +123,7 @@ export default {
         };
         return {
             activePath,
-            defaultExpandMenu,
+            expandedKeysRef,
             transformedMenus,
             onMenuClick,
         };
