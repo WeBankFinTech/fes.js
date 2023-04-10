@@ -7,7 +7,7 @@ import { backToTopPlugin } from '@vuepress/plugin-back-to-top'
 import { navbar, sidebar } from './configs';
 
 export default defineUserConfig({
-    base: '/',
+    base: process.env.BASE ? `/${process.env.BASE}/` : '/',
 
     head: [
         ['link', { rel: 'manifest', href: '/manifest.webmanifest' }],
