@@ -15,6 +15,7 @@
     "clean": "rm -rf ./node_modules & rm -rf packages/**/node_modules & rm -rf packages/**/.cache",
     "docs:dev": "vuepress dev docs --clean-cache",
     "docs:build": "vuepress build docs --clean-cache",
+    "docs:build-pages": "BASE=/fes.js/ vuepress build docs --clean-cache",
     "test": "fes test",
     "lint": "eslint -c ./.eslintrc.js --ignore-pattern='templates' --ext .js,.jsx,.vue,.ts",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s"
