@@ -31,7 +31,7 @@
     "@swc/css": "^0.0.20",
     "css-minimizer-webpack-plugin": "^5.0.0",
     "swc-loader": "^0.2.3",
-    "swc-plugin-vue-jsx": "^0.2.1",
+    "swc-plugin-vue-jsx": "^0.2.2",
     "terser-webpack-plugin": "^5.3.7"
   },
   "peerDependencies": {
