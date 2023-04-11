@@ -1,6 +1,6 @@
 {
   "name": "@fesjs/plugin-swc",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "@fesjs/plugin-swc",
   "main": "lib/index.js",
   "types": "types.d.ts",
@@ -35,6 +35,6 @@
     "terser-webpack-plugin": "^5.3.7"
   },
   "peerDependencies": {
-    "@fesjs/fes": "^3.0.0"
+    "@fesjs/fes": "^3.1.1"
   }
 }

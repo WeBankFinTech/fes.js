@@ -108,7 +108,7 @@ importers:
         specifier: ^3.0.0
         version: link:../fes-compiler
       '@fesjs/preset-built-in':
-        specifier: ^3.1.0
+        specifier: ^3.1.1
         version: link:../fes-preset-built-in
       '@fesjs/runtime':
         specifier: ^3.0.0
@@ -405,7 +405,7 @@ importers:
   packages/fes-plugin-layout:
     dependencies:
       '@fesjs/fes':
-        specifier: ^3.0.1
+        specifier: ^3.1.1
         version: link:../fes
       '@fesjs/fes-design':
         specifier: ^0.7.0
@@ -640,7 +640,7 @@ importers:
   packages/fes-plugin-swc:
     dependencies:
       '@fesjs/fes':
-        specifier: ^3.0.0
+        specifier: ^3.1.1
         version: link:../fes
       '@fesjs/utils':
         specifier: ^3.0.0
@@ -4536,6 +4536,7 @@ packages:
 
   /@vuepress/shared@2.0.0-beta.50-pre.1:
     resolution: {integrity: sha512-Gk6ikIV2V8LMokc+H/juH+kBOigo38Woup42Q2pmmWqmlwdLqbUcCYZSt/z+opeOUAqC9s3CZnKR8xCw+qo8BQ==}
+    deprecated: deprecated
     dependencies:
       '@vue/shared': 3.2.47
     dev: false
