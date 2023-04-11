@@ -55,12 +55,12 @@ const getRoutePath = function (parentRoutePath, fileName, isFile = true) {
     }
     // /@id.vue -> /:id
     if (fileName.startsWith('@')) {
-        logger.warn(`[WARNING]: ${fileName} is deprecated, please use [slug]`);
+        logger.warn(`[WARNING]: filename or directory ${fileName} is deprecated, please use [${fileName.replace(/@/, '')}]`);
         fileName = fileName.replace(/@/, ':');
     }
     // /*.vue -> :pathMatch(.*)
     if (fileName.includes('*')) {
-        logger.warn(`[WARNING]: ${fileName} is deprecated, please use [...slug]`);
+        logger.warn(`[WARNING]: filename or directory ${fileName} is deprecated, please use ${fileName.replace('*', '[...]')}`);
         fileName = fileName.replace('*', ':pathMatch(.*)');
     }
     // /[slug].vue -> /:slug

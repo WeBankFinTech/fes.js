@@ -7,11 +7,15 @@ if (!accessApi) {
     throw new Error('[plugin-layout]: plugin-layout depends on plugin-access，please install plugin-access first！');
 }
 
-const accessIds = accessApi.getAccess();
-accessApi.setAccess(accessIds.concat(['/403', '/404']));
-
 export const access = (memo) => {
     const runtimeConfig = getConfig();
+    const accessIds = accessApi.getAccess();
+    if (!accessIds.includes('/403')) {
+        accessApi.setAccess(accessIds.concat('/403'));
+    }
+    if (!accessIds.includes('/404')) {
+        accessApi.setAccess(accessIds.concat('/404'));
+    }
     return {
         unAccessHandler({ router, to, from, next }) {
             if (runtimeConfig.unAccessHandler && typeof runtimeConfig.unAccessHandler === 'function') {
