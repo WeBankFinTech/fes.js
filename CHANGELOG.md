@@ -1,3 +1,17 @@
+## [3.0.4](https://github.com/WeBankFinTech/fes.js/compare/v3.0.3...v3.0.4) (2023-04-11)
+
+
+### Bug Fixes
+
+* 完善路由文件命名提示 & 保证403和404路由一直有权限 ([#186](https://github.com/WeBankFinTech/fes.js/issues/186)) ([29f925b](https://github.com/WeBankFinTech/fes.js/commit/29f925b644ee6123f0e01432225b79570587105f))
+
+
+### Features
+
+* 更新fes版本,保持跟fes-buitin同步 ([57ed444](https://github.com/WeBankFinTech/fes.js/commit/57ed444573be804287463158d29e4c240c1f7f5b))
+
+
+
 ## [3.0.3](https://github.com/WeBankFinTech/fes.js/compare/v3.0.2...v3.0.3) (2023-04-11)
 
 
