@@ -1,7 +1,7 @@
 <template>
     <f-menu
+        v-model:expandedKeys="expandedKeysRef"
         :modelValue="activePath"
-        :expandedKeys="expandedKeysRef"
         :inverted="inverted"
         :mode="mode"
         :options="transformedMenus"
@@ -20,12 +20,12 @@ import { transform as transformByLocale } from '../helpers/pluginLocale';
 import { flatNodes } from '../helpers/utils';
 import MenuIcon from './MenuIcon.vue';
 
-const transform = (menus) =>
-    menus.map((menu) => {
+const transform = (menus, level = 1) =>
+    menus.map((menu, index) => {
         const copy = {
             ...menu,
             label: menu.title,
-            value: menu.path || Date.now(),
+            value: menu.path || `${level}_${index}`,
         };
         if (menu.icon) {
             copy.icon = () =>
@@ -34,7 +34,7 @@ const transform = (menus) =>
                 });
         }
         if (menu.children) {
-            copy.children = transform(menu.children);
+            copy.children = transform(menu.children, level + 1);
         }
         return copy;
     });
