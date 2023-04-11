@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import { computed, h, ref } from 'vue';
+import { computed, h, ref, watch } from 'vue';
 import { FMenu } from '@fesjs/fes-design';
 import { useRoute, useRouter } from '@@/core/coreExports';
 import { transform as transformByAccess } from '../helpers/pluginAccess';
@@ -94,23 +94,34 @@ export default {
             }
             return matchMenus[0].path;
         });
-        const getDefaultExpandMenu = () => {
-            let index = menuArray.value.findIndex((item) => item.value === activePath.value);
-            if (index === -1) {
-                return props.expandedKeys;
-            }
-            const activeMenu = menuArray.value[index];
-            const arr = [activeMenu];
-            while (index > 0) {
-                index = index - 1;
-                const lastMenu = menuArray.value[index];
-                if (lastMenu.children && lastMenu.children.indexOf(arr[arr.length - 1]) !== -1) {
-                    arr.push(lastMenu);
+
+        const expandedKeysRef = ref(props.expandedKeys);
+
+        watch(
+            [menuArray, activePath],
+            () => {
+                let index = menuArray.value.findIndex((item) => item.value === activePath.value);
+                if (index === -1) {
+                    return;
                 }
-            }
-            return props.expandedKeys.concat(arr.map((item) => item.value));
-        };
-        const expandedKeysRef = ref(getDefaultExpandMenu());
+                const activeMenu = menuArray.value[index];
+                const arr = [activeMenu];
+                while (index > 0) {
+                    index = index - 1;
+                    const lastMenu = menuArray.value[index];
+                    if (lastMenu.children && lastMenu.children.indexOf(arr[arr.length - 1]) !== -1) {
+                        arr.push(lastMenu);
+                    }
+                }
+                expandedKeysRef.value = expandedKeysRef.value.concat(
+                    arr.filter((item) => !expandedKeysRef.value.includes(item.value)).map((item) => item.value),
+                );
+            },
+            {
+                immediate: true,
+            },
+        );
+
         const onMenuClick = (e) => {
             const path = e.value;
             if (/^https?:\/\//.test(path)) {
@@ -121,6 +132,7 @@ export default {
                 console.warn('[plugin-layout]: 菜单的path只能使以http(s)开头的网址或者路由地址');
             }
         };
+
         return {
             activePath,
             expandedKeysRef,
