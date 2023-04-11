@@ -1,3 +1,17 @@
+## [3.0.3](https://github.com/WeBankFinTech/fes.js/compare/v3.0.2...v3.0.3) (2023-04-11)
+
+
+### Bug Fixes
+
+* 修复layout菜单折叠不更新状态问题 ([#184](https://github.com/WeBankFinTech/fes.js/issues/184)) ([a5d422e](https://github.com/WeBankFinTech/fes.js/commit/a5d422ea04494f8cd8f21082a6d8abfde6026768))
+
+
+### Features
+
+* 添加[...slug].vue方式替换*.vue实现模糊匹配 ([#183](https://github.com/WeBankFinTech/fes.js/issues/183)) ([c3969f8](https://github.com/WeBankFinTech/fes.js/commit/c3969f8d8710f4d8c83dd95c03999d63c8e15d9f))
+
+
+
 ## [3.0.2](https://github.com/WeBankFinTech/fes.js/compare/v3.0.1...v3.0.2) (2023-04-06)
 
 
