@@ -6,7 +6,7 @@ export const transTitle = (name) => {
     }
     const sharedLocale = plugin.getShared('locale');
     if (sharedLocale) {
-        const { t } = sharedLocale.useI18n();
+        const { t } = sharedLocale.locale;
         return t(name.slice(1));
     }
     return name;

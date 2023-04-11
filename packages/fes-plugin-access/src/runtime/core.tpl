@@ -3,8 +3,6 @@ import createDirective from "./createDirective";
 import createComponent from "./createComponent";
 import {isPlainObject} from "{{{ lodashPath }}}";
 
-const accessKey = Symbol("plugin-access");
-
 function isPromise(obj) {
     return (
         !!obj &&
@@ -132,14 +130,6 @@ const hasAccess = async (path) => {
 };
 
 export const install = (app) => {
-    const allowPageIds = computed(getAllowAccessIds);
-    const useAccess = (path) => {
-        const result = computed(() => {
-            return match(unref(path), allowPageIds.value);
-        });
-        return result;
-    };
-    app.provide(accessKey, useAccess);
     app.directive("access", createDirective(useAccess));
     app.component("Access", createComponent(useAccess));
 };
@@ -153,6 +143,14 @@ export const access = {
     getAccess: getAllowAccessIds,
 };
 
+export const hasAccessSync = (path) => {
+    return match(unref(path), getAllowAccessIds());
+}
+
 export const useAccess = (path) => {
-    return inject(accessKey)(path);
+    const allowPageIds = computed(getAllowAccessIds);
+    const result = computed(() => {
+        return match(unref(path), allowPageIds.value);
+    });
+    return result;
 };

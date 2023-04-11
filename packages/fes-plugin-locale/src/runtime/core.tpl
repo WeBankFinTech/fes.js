@@ -85,19 +85,19 @@ const getAllLocales = () => {
 };
 
 const install = (app) => {
-    const runtimeConfig = plugin.applyPlugins({
-        key: "locale",
-        type: ApplyPluginsType.modify,
-        initialValue: {},
-    });
     app.use(i18n);
 };
+
+const t = (key) => {
+    return i18n.global.t(key)
+}
 
 const locale = {
     setLocale,
     addLocale,
     getAllLocales,
     messages,
+    t
 };
 
 export { useI18n, locale, install };

@@ -1,7 +1,7 @@
 <template>
     <f-menu
+        v-model:expandedKeys="expandedKeysRef"
         :modelValue="activePath"
-        :expandedKeys="defaultExpandMenu"
         :inverted="inverted"
         :mode="mode"
         :options="transformedMenus"
@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import { computed, h } from 'vue';
+import { computed, h, ref, watch } from 'vue';
 import { FMenu } from '@fesjs/fes-design';
 import { useRoute, useRouter } from '@@/core/coreExports';
 import { transform as transformByAccess } from '../helpers/pluginAccess';
@@ -20,12 +20,12 @@ import { transform as transformByLocale } from '../helpers/pluginLocale';
 import { flatNodes } from '../helpers/utils';
 import MenuIcon from './MenuIcon.vue';
 
-const transform = (menus) =>
-    menus.map((menu) => {
+const transform = (menus, level = 1) =>
+    menus.map((menu, index) => {
         const copy = {
             ...menu,
             label: menu.title,
-            value: menu.path || Date.now(),
+            value: menu.path || `${level}_${index}`,
         };
         if (menu.icon) {
             copy.icon = () =>
@@ -34,7 +34,7 @@ const transform = (menus) =>
                 });
         }
         if (menu.children) {
-            copy.children = transform(menu.children);
+            copy.children = transform(menu.children, level + 1);
         }
         return copy;
     });
@@ -94,22 +94,34 @@ export default {
             }
             return matchMenus[0].path;
         });
-        const defaultExpandMenu = computed(() => {
-            let index = menuArray.value.findIndex((item) => item.value === activePath.value);
-            if (index === -1) {
-                return props.expandedKeys;
-            }
-            const activeMenu = menuArray.value[index];
-            const arr = [activeMenu];
-            while (index > 0) {
-                index = index - 1;
-                const lastMenu = menuArray.value[index];
-                if (lastMenu.children && lastMenu.children.indexOf(arr[arr.length - 1]) !== -1) {
-                    arr.push(lastMenu);
+
+        const expandedKeysRef = ref(props.expandedKeys);
+
+        watch(
+            [menuArray, activePath],
+            () => {
+                let index = menuArray.value.findIndex((item) => item.value === activePath.value);
+                if (index === -1) {
+                    return;
                 }
-            }
-            return props.expandedKeys.concat(arr.map((item) => item.value));
-        });
+                const activeMenu = menuArray.value[index];
+                const arr = [activeMenu];
+                while (index > 0) {
+                    index = index - 1;
+                    const lastMenu = menuArray.value[index];
+                    if (lastMenu.children && lastMenu.children.indexOf(arr[arr.length - 1]) !== -1) {
+                        arr.push(lastMenu);
+                    }
+                }
+                expandedKeysRef.value = expandedKeysRef.value.concat(
+                    arr.filter((item) => !expandedKeysRef.value.includes(item.value)).map((item) => item.value),
+                );
+            },
+            {
+                immediate: true,
+            },
+        );
+
         const onMenuClick = (e) => {
             const path = e.value;
             if (/^https?:\/\//.test(path)) {
@@ -120,9 +132,10 @@ export default {
                 console.warn('[plugin-layout]: 菜单的path只能使以http(s)开头的网址或者路由地址');
             }
         };
+
         return {
             activePath,
-            defaultExpandMenu,
+            expandedKeysRef,
             transformedMenus,
             onMenuClick,
         };
