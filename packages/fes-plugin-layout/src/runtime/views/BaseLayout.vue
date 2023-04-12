@@ -10,10 +10,18 @@
                 collapsible
                 :inverted="theme === 'dark'"
             >
-                <div v-if="routeLayout.logo" class="layout-logo">
+                <a
+                    v-if="routeLayout.logo"
+                    :class="[
+                        'layout-logo',
+                        routeLayout.onClickLogo && 'is-active'
+                    ]"
+                    @click="routeLayout.onClickLogo"
+                >
                     <img :src="logo" class="logo-img" />
-                    <div class="logo-name">{{title}}</div>
-                </div>
+                    <span class="logo-name">{{title}}</span>
+                </a>
+
                 <Menu
                     class="layout-menu"
                     :menus="menus"
@@ -25,10 +33,7 @@
                     :accordion="menuConfig?.accordion"
                 />
             </f-aside>
-            <f-layout
-                :fixed="fixedSideBar"
-                :style="sideStyleRef"
-            >
+            <f-layout :fixed="fixedSideBar" :style="sideStyleRef">
                 <f-header
                     v-if="routeLayout.header"
                     ref="headerRef"
@@ -64,10 +69,17 @@
                 :inverted="theme === 'dark'"
                 :fixed="currentFixedHeaderRef"
             >
-                <div v-if="routeLayout.logo" class="layout-logo">
+                <a
+                    v-if="routeLayout.logo"
+                    :class="[
+                        'layout-logo',
+                        routeLayout.onClickLogo && 'is-active'
+                    ]"
+                    @click="routeLayout.onClickLogo"
+                >
                     <img :src="logo" class="logo-img" />
-                    <div class="logo-name">{{title}}</div>
-                </div>
+                    <span class="logo-name">{{title}}</span>
+                </a>
                 <Menu
                     class="layout-menu"
                     :menus="menus"
@@ -105,10 +117,17 @@
                 :fixed="currentFixedHeaderRef"
                 :inverted="theme === 'dark'"
             >
-                <div v-if="routeLayout.logo" class="layout-logo">
+                <a
+                    v-if="routeLayout.logo"
+                    :class="[
+                        'layout-logo',
+                        routeLayout.onClickLogo && 'is-active'
+                    ]"
+                    @click="routeLayout.onClickLogo"
+                >
                     <img :src="logo" class="logo-img" />
-                    <div class="logo-name">{{title}}</div>
-                </div>
+                    <span class="logo-name">{{title}}</span>
+                </a>
                 <div class="layout-header-custom">
                     <slot name="customHeader"></slot>
                 </div>
@@ -160,8 +179,8 @@ import {
     FLayout, FAside, FMain, FFooter, FHeader
 } from '@fesjs/fes-design';
 import Menu from './Menu';
-import MultiTabProvider from './MultiTabProvider';
 import defaultLogo from '../assets/logo.png';
+import MultiTabProvider from './MultiTabProvider';
 import getRuntimeConfig from '../helpers/getRuntimeConfig';
 
 export default {
@@ -264,7 +283,9 @@ export default {
         const currentFixedHeaderRef = computed(
             () => props.fixedHeader || props.navigation === 'mixin'
         );
-        const headerStyleRef = computed(() => (currentFixedHeaderRef.value ? { top: `${headerHeightRef.value}px` } : null));
+        const headerStyleRef = computed(() => (currentFixedHeaderRef.value
+            ? { top: `${headerHeightRef.value}px` }
+            : null));
         const sideStyleRef = computed(() => (props.fixedSideBar
             ? {
                 left: collapsedRef.value ? '48px' : `${props.sideWidth}px`
@@ -286,6 +307,11 @@ export default {
 <style lang="less" scoped>
 .main-layout {
     height: 100vh;
+    .layout-logo {
+        &.is-active {
+            cursor: pointer;
+        }
+    }
     .layout-main {
         z-index: 0;
     }
