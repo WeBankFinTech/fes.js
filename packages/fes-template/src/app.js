@@ -1,6 +1,8 @@
 
 
-import { access as accessApi, pinia, createWatermark } from '@fesjs/fes';
+import {
+    access as accessApi, pinia, getRouter, createWatermark
+} from '@fesjs/fes';
 import PageLoading from '@/components/PageLoading';
 import UserCenter from '@/components/UserCenter';
 import { useStore } from '@/store/main';
@@ -29,6 +31,10 @@ export const beforeRender = {
 export const layout = layoutConfig => ({
     ...layoutConfig,
     customHeader: <UserCenter />,
+    onClickLogo() {
+        const router = getRouter();
+        router.push('/');
+    },
     menus: (defaultMenuData) => {
         const menusRef = ref(defaultMenuData);
         // watch(() => initialValue.initialState.userName, () => {
