@@ -57,7 +57,7 @@
 可以为页面单独设置布局类型：
 
 ```js
-import { defineRouteMete } from '@fesjs/fes';
+import { defineRouteMeta } from '@fesjs/fes';
 
 defineRouteMeta({
     layout: {
@@ -73,7 +73,7 @@ defineRouteMeta({
 支持配置页面缓存，通过[定义路由元信息](../../../guide/route.html#扩展路由元信息)开启缓存：
 
 ```js
-import { defineRouteMete } from '@fesjs/fes';
+import { defineRouteMeta } from '@fesjs/fes';
 
 defineRouteMeta({
     'keep-alive': true,
@@ -248,16 +248,16 @@ export const layout = (layoutConfig, { initialState }) => ({
         ```
 
     -   **title**：菜单的标题。
-        
-        - 如果同时使用[国际化插件](./locale.md)，而且`title`的值以`$`开头，则使用`$`后面的内容去匹配语言设置。
-        
-        - title支持配置函数，对应 Fes Design 中 Menu 组件的`label`插槽。仅在运行时配置中支持。
+
+        -   如果同时使用[国际化插件](./locale.md)，而且`title`的值以`$`开头，则使用`$`后面的内容去匹配语言设置。
+
+        -   title 支持配置函数，对应 Fes Design 中 Menu 组件的`label`插槽。仅在运行时配置中支持。
 
     -   **icon**: 菜单的图标，只一级标题展示图标。
 
-        - 图标使用[fes-design icon](https://fes-design-4gvn317r3b6bfe17-1254145788.ap-shanghai.app.tcloudbase.com/zh/components/icon.html)，编译时配置使用组件名称，我们会自动引入组件。
+        -   图标使用[fes-design icon](https://fes-design-4gvn317r3b6bfe17-1254145788.ap-shanghai.app.tcloudbase.com/zh/components/icon.html)，编译时配置使用组件名称，我们会自动引入组件。
 
-        - 图标使用本地或者远程 svg 图片。
+        -   图标使用本地或者远程 svg 图片。
 
             ```js
             {
@@ -357,13 +357,15 @@ export const layout = {
 ## API
 
 ### useTabTitle
+
 类型定义如下：
+
 ```ts
 function useTabTitle(title: string | Ref<string>): void;
 ```
-                
-                
+
 当使用多页签模式时，在页面中使用 `useTabTitle` 可以自定义页面标签：
+
 ```vue
 <script setup>
 import { useRoute, useTabTitle } from '@fesjs/fes';
@@ -371,12 +373,9 @@ import { useRoute, useTabTitle } from '@fesjs/fes';
 const titleRef = useTabTitle(`详情-${route.params?.id}`);
 
 //如果要更新
-titleRef.value = "changed"
+titleRef.value = 'changed';
 </script>
 ```
-
-
-
 
 ## 4.x 升级到 5.x
 
