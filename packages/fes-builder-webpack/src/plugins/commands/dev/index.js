@@ -1,5 +1,7 @@
-const path = require('path');
-const fs = require('fs');
+import path from 'path';
+import fs from 'fs';
+import { cleanTmpPathExceptCache, getBundleAndConfigs } from '../../common/buildDevUtils';
+import connectHistoryMiddleware from './connectHistoryMiddleware';
 
 async function handleCacheClean(cwd) {
     return new Promise((resolve, reject) => {
@@ -49,8 +51,6 @@ export default (api) => {
             },
         ],
         async fn({ args = {} }) {
-            const { cleanTmpPathExceptCache, getBundleAndConfigs } = require('../buildDevUtils');
-            const connectHistoryMiddleware = require('./connectHistoryMiddleware').default;
             await handleCacheClean(api.paths.cwd);
 
             port = await getPort(process.env.PORT || args.port || api.config.devServer?.port);

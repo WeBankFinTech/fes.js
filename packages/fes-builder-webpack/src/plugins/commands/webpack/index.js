@@ -1,3 +1,5 @@
+import { getBundleAndConfigs } from '../../common/buildDevUtils';
+
 export default function (api) {
     api.registerCommand({
         command: 'webpack',
@@ -26,7 +28,6 @@ export default function (api) {
         ],
         async fn({ options }) {
             const assert = require('assert');
-            const { getBundleAndConfigs } = require('../buildDevUtils');
             const { toString } = require('webpack-5-chain');
             const { highlight } = require('cli-highlight');
             const { bundleConfig } = await getBundleAndConfigs({ api });
