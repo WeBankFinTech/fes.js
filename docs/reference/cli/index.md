@@ -1,5 +1,6 @@
 ---
-sidebar: auto
+aside: left
+outline: [2, 3]
 ---
 
 # 命令行工具

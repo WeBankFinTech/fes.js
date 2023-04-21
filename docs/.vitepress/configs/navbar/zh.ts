@@ -1,10 +1,11 @@
-import type { NavbarConfig } from '@vuepress/theme-default'
+// import type { NavbarConfig } from '@vuepress/theme-default'
 import { version } from '../../../../package.json'
 
-export const zh: NavbarConfig = [
+export const zh = [
   {
     text: '指南',
     link: '/guide/',
+    activeMatch: '/guide/'
   },
   {
     text: '编译时配置',
@@ -17,6 +18,7 @@ export const zh: NavbarConfig = [
   {
     text: '插件',
     link: '/reference/plugin/',
+    activeMatch: '/plugin/'
   },
   {
     text: 'CLI',
@@ -24,7 +26,7 @@ export const zh: NavbarConfig = [
   },
   {
     text: `v${version}`,
-    children: [
+    items: [
       {
         text: 'v2.0',
         link:
@@ -38,11 +40,11 @@ export const zh: NavbarConfig = [
   },
   {
     text: '了解更多',
-    children: [
+    items: [
       {
         text: '更新日志',
         link:
-          'https://github.com/WeBankFinTech/fes.js/blob/next/CHANGELOG.md',
+          'https://github.com/WeBankFinTech/fes.js/blob/master/CHANGELOG.md',
       },
       {
         text: 'fes-design',

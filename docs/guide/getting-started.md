@@ -1,5 +1,9 @@
 # 快速上手
 
+<script setup>
+import { withBase } from 'vitepress'
+</script>
+
 ## 依赖环境
 
 首先得有 [Node.js](https://nodejs.org/)，并确保 node 版本是 12.13 或以上。
@@ -63,7 +67,7 @@ npx @fesjs/create-fes-app myapp
 
 如果项目文件夹 `workspace/myapp` 已经存在，会提示目录已存在：
 
-<img :src="$withBase('pickTemplateTip.png')" alt="目录已存在提示">
+<img :src="withBase('pickTemplateTip.png')" alt="目录已存在提示">
 
 你可以选择：
 
@@ -71,7 +75,7 @@ npx @fesjs/create-fes-app myapp
 -   `Merge` 保留原项目文件夹，存在相同文件则用模板文件覆盖当前目录文件。
 
 当选择 `Overwrite` 或者 `Merge` 或者项目目录 `workspace/myapp` 不存在，会提示选取一个 `template`：
-<img :src="$withBase('pickTemplate.png')" alt="选择模板类型">
+<img :src="withBase('pickTemplate.png')" alt="选择模板类型">
 
 你可以选默认适用于中后台前端应用的 `PC` 类型，也可以选适用于移动端的 `H5` 类型。
 
@@ -142,7 +146,7 @@ Starting the development server http://localhost:8000 ...
 
 Fes.js 会在 [http://localhost:8000](http://localhost:8000) 启动一个热重载的开发服务器。当你修改你的 .vue 文件时，浏览器中的内容也会自动更新。
 
-<img :src="$withBase('home.png')" alt="home">
+<img :src="withBase('home.png')" alt="home">
 
 ## 部署发布
 

@@ -17,24 +17,20 @@ set PORT=3000 && fes dev
 ```
 
 如果要同时考虑 OS X 和 Windows，可借助三方工具 [cross-env](https://github.com/kentcdodds/cross-env)
-<CodeGroup>
-<CodeGroupItem title="PNPM" active>
 
-```bash
+::: code-group
+
+```sh [pnpm]
 pnpm add cross-env --dev
 cross-env PORT=3000 fes dev
 ```
 
-  </CodeGroupItem>
-  <CodeGroupItem title="NPM">
-
-```bash
+```sh [npm]
 npm i cross-env --save-dev
 cross-env PORT=3000 fes dev
 ```
 
-  </CodeGroupItem>
-</CodeGroup>
+:::
 
 ### `.env` 文件配置
 

@@ -1,5 +1,6 @@
 ---
-sidebar: auto
+aside: left
+outline: [2, 3]
 ---
 
 ## 配置文件

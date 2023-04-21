@@ -1,7 +1,7 @@
 import { defineBuildConfig } from '@fesjs/fes';
 
 export default defineBuildConfig({
-    builder: 'vite',
+    builder: 'webpack',
     define: {
         __DEV__: false,
     },

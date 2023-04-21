@@ -1,3 +1,7 @@
+<script setup>
+import { withBase } from 'vitepress'
+</script>
+
 # @fesjs/plugin-layout
 
 ## 介绍
@@ -35,22 +39,22 @@
 ### side
 
 <!-- ![side](/side.png) -->
-<img :src="$withBase('side.png')" alt="side">
+<img :src="withBase('side.png')" alt="side">
 
 ### top
 
 <!-- ![top](/top.png) -->
-<img :src="$withBase('top.png')" alt="top">
+<img :src="withBase('top.png')" alt="top">
 
 ### mixin
 
 <!-- ![mixin](/mixin.png) -->
-<img :src="$withBase('mixin.png')" alt="mixin">
+<img :src="withBase('mixin.png')" alt="mixin">
 
 ### left-right
 
 <!-- ![mixin](/mixin.png) -->
-<img :src="$withBase('left-right.png')" alt="left-right">
+<img :src="withBase('left-right.png')" alt="left-right">
 
 ### 页面个性化
 
