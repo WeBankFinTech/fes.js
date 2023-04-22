@@ -50,6 +50,7 @@
     "lint-staged": "^13.2.0",
     "vite-plugin-pwa": "^0.14.7",
     "vitepress": "1.0.0-alpha.73",
+    "vue": "^3.2.47",
     "yargs-parser": "^21.1.1"
   },
   "lint-staged": {

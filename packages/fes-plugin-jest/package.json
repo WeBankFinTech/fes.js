@@ -33,12 +33,13 @@
     "@fesjs/fes": "^3.0.0"
   },
   "dependencies": {
+    "@babel/core": "^7.21.3",
     "@babel/preset-env": "^7.15.0",
     "@vue/babel-plugin-jsx": "^1.0.6",
     "babel-jest": "^27.0.6",
     "jest": "^27.0.6",
     "jest-transform-stub": "^2.0.0",
-    "jest-watch-typeahead": "^0.6.1",
+    "jest-watch-typeahead": "^2.2.2",
     "ts-jest": "^27.0.4",
     "typescript": "^4.9.0",
     "vue3-jest": "^27.0.0-alpha.1"

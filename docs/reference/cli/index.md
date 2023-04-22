@@ -20,10 +20,10 @@ Options:
 ```
 
 可以在本机安装后使用：
-<CodeGroup>
-<CodeGroupItem title="PNPM" active>
 
-```bash
+::: code-group
+
+```bash [pnpm]
 # 全局安装
 pnpm global add @fesjs/create-fes-app
 
@@ -31,11 +31,7 @@ pnpm global add @fesjs/create-fes-app
 create-fes-app fes-app
 ```
 
-  </CodeGroupItem>
-
-  <CodeGroupItem title="NPM">
-
-```bash
+```bash [npm]
 # 全局安装
 npm i -g @fesjs/create-fes-app
 
@@ -43,15 +39,13 @@ npm i -g @fesjs/create-fes-app
 create-fes-app fes-app
 ```
 
-  </CodeGroupItem>
-</CodeGroup>
+:::
 
 推荐使用 `pnpm create` 和 `npx` 方式创建模板，一直使用最新的模板：
 
-<CodeGroup>
-  <CodeGroupItem title="PNPM" active>
+::: code-group
 
-```bash
+```bash [pnpm]
 # 创建模板
 pnpm create @fesjs/fes-app myapp
 
@@ -62,11 +56,7 @@ pnpm i
 pnpm dev
 ```
 
-  </CodeGroupItem>
-
-  <CodeGroupItem title="NPM">
-
-```bash
+```bash [npm]
 # 创建模板
 npx @fesjs/create-fes-app myapp
 
@@ -77,8 +67,7 @@ npm install
 npm run dev
 ```
 
-  </CodeGroupItem>
-</CodeGroup>
+:::
 
 ## fes
 

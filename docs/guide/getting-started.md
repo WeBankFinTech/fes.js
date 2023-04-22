@@ -45,25 +45,19 @@ cd workspace
 
 ##### 步骤 2 在工作空间创建项目
 
-<CodeGroup>
-  <CodeGroupItem title="PNPM" active>
+::: code-group
 
-```bash
+```bash [pnpm]
 # 创建模板
 pnpm create @fesjs/fes-app myapp
 ```
 
-  </CodeGroupItem>
-
-  <CodeGroupItem title="NPM">
-
-```bash
+```bash [npm]
 # 创建模板
 npx @fesjs/create-fes-app myapp
 ```
 
-  </CodeGroupItem>
-</CodeGroup>
+:::
 
 如果项目文件夹 `workspace/myapp` 已经存在，会提示目录已存在：
 
@@ -81,36 +75,29 @@ npx @fesjs/create-fes-app myapp
 
 ##### 步骤 3 安装依赖
 
-<CodeGroup>
-  <CodeGroupItem title="PNPM" active>
+::: code-group
 
-```bash
+```bash [pnpm]
 # 进入项目目录
 cd myapp
 # 安装依赖
 pnpm i
 ```
 
-  </CodeGroupItem>
-
-  <CodeGroupItem title="NPM">
-
-```bash
+```bash [npm]
 # 进入项目目录
 cd myapp
 # 安装依赖
 npm i
 ```
 
-  </CodeGroupItem>
-</CodeGroup>
+:::
 
 ## 启动项目
 
-<CodeGroup>
-  <CodeGroupItem title="PNPM" active>
+::: code-group
 
-```bash
+```bash [pnpm]
 # 开发调试
 pnpm dev
 
@@ -124,11 +111,7 @@ Starting the development server http://localhost:8000 ...
  DONE  Compiled successfully in 15917ms                               11:17:08 AM
 ```
 
-  </CodeGroupItem>
-
-  <CodeGroupItem title="NPM">
-
-```bash
+```bash [npm]
 # 开发调试
 npm run dev
 
@@ -141,8 +124,7 @@ Starting the development server http://localhost:8000 ...
  DONE  Compiled successfully in 3662ms                                11:17:46 AM
 ```
 
-  </CodeGroupItem>
-</CodeGroup>
+:::
 
 Fes.js 会在 [http://localhost:8000](http://localhost:8000) 启动一个热重载的开发服务器。当你修改你的 .vue 文件时，浏览器中的内容也会自动更新。
 
@@ -152,10 +134,9 @@ Fes.js 会在 [http://localhost:8000](http://localhost:8000) 启动一个热重�
 
 ### 构建
 
-<CodeGroup>
-  <CodeGroupItem title="PNPM" active>
+::: code-group
 
-```bash
+```bash [pnpm]
 # 构建
 pnpm build
 
@@ -168,11 +149,7 @@ $ fes build
 ✨  Done in 48.87s.
 ```
 
-  </CodeGroupItem>
-
-  <CodeGroupItem title="NPM">
-
-```bash
+```bash [npm]
 # 构建
 npm run build
 
@@ -182,8 +159,7 @@ npm run build
   Compiled successfully in 45.37s
 ```
 
-  </CodeGroupItem>
-</CodeGroup>
+:::
 
 构建产物默认生成到 ./dist 下，然后通过 tree 命令查看。
 

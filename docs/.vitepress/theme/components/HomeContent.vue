@@ -1,6 +1,6 @@
 <template>
     <div class="VPFeatures">
-        <div class="container">
+        <div class="vp-doc fes-home container">
             <slot></slot>
         </div>
     </div>
@@ -28,5 +28,11 @@
 .container {
     margin: 0 auto;
     max-width: 1152px;
+}
+</style>
+
+<style>
+.fes-home img {
+    height: 320px;
 }
 </style>
