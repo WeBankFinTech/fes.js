@@ -1,6 +1,7 @@
 import Config from 'webpack-5-chain'
 import webpack from 'webpack';
 import HtmlWebpackPlugin from 'html-webpack-plugin'
+import { LoaderOptions, PluginOptions } from 'mini-css-extract-plugin'
 
 interface CopyFileType {
     from: string;
@@ -54,5 +55,9 @@ declare module "@fesjs/fes" {
         };
         postcssLoader?: Record<string, any>;
         vueLoader?: object;
+        extraCSS?: {
+            loader?: LoaderOptions,
+            plugin?: PluginOptions
+        };
     }
 }

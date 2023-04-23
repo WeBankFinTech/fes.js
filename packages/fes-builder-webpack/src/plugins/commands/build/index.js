@@ -5,6 +5,7 @@
 
 import { relative } from 'path';
 import { existsSync } from 'fs';
+import { cleanTmpPathExceptCache, getBundleAndConfigs, printFileSizes } from '../../common/buildDevUtils';
 
 export default function (api) {
     const {
@@ -16,7 +17,6 @@ export default function (api) {
         command: 'build',
         description: 'build application for production',
         async fn() {
-            const { cleanTmpPathExceptCache, getBundleAndConfigs, printFileSizes } = require('../buildDevUtils');
             const { build } = require('./build');
 
             cleanTmpPathExceptCache({
