@@ -1,4 +1,3 @@
-// import type { NavbarConfig } from '@vuepress/theme-default'
 import { version } from '../../../../package.json'
 
 export const zh = [

@@ -16,7 +16,7 @@ node_modules
 npm-debug.log
 docs/.vitepress/cache
 /packages/fes-template/dist
-/packages/fes-doc/docs/.vuepress/dist
+/packages/fes-doc/docs/.vitepress/dist
 /packages/fes-template/package-lock.json
 /.changelog
 /packages/*/lib
