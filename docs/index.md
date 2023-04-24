@@ -1,14 +1,20 @@
 ---
-home: true
-title: 首页
-heroImage: /logo.png
-actions:
-    - text: 快速上手
-      link: /guide/getting-started.html
-      type: primary
-    - text: 项目简介
-      link: /guide/
-      type: secondary
+layout: home
+title: Fes.js
+
+hero:
+    name: Fes.js
+    tagline: 一个好用的前端应用解决方案
+    image:
+        src: /logo.png
+        alt: VitePress
+    actions:
+        - text: 快速上手
+          link: /guide/getting-started.html
+          theme: brand
+        - text: 项目简介
+          link: /guide/
+          theme: alt
 features:
     - title: Fast
       details: Fes.js 内置路由、构建、插件管理，提供测试、布局、权限、国际化、状态管理、请求、数据字典、SVG等插件，可以满足大部分日常开发需求。
@@ -22,16 +28,15 @@ features:
       details: 在满足需求的同时，我们也不会停止对新技术的探索。已使用 Vue3.0 来提升应用性能，已使用 webpack5 和 vite 提升构建性能和实现微服务。
     - title: 令人愉悦
       details: 我们的主要重点是开发人员体验。我们喜欢 Fes.js，并且会不断改进框架，所以您也喜欢它！期待有吸引力的解决方案，描述性的错误消息，强大的默认值和详细的文档。如果有问题或疑问，我们有用的社区将为您提供帮助。
-footer: MIT Licensed | Copyright © 2020-present Webank
 ---
+
+<HomeContent>
 
 ## 像数 1, 2, 3 一样容易
 
+::: code-group
 
-<CodeGroup>
-  <CodeGroupItem title="PNPM" active>
-
-```bash
+```bash [pnpm]
 # 创建模板
 pnpm create @fesjs/fes-app myapp
 
@@ -42,11 +47,7 @@ pnpm i
 pnpm dev
 ```
 
-  </CodeGroupItem>
-
-  <CodeGroupItem title="NPM">
-
-```bash
+```bash [npm]
 # 创建模板
 npx @fesjs/create-fes-app myapp
 
@@ -57,11 +58,12 @@ npm install
 npm run dev
 ```
 
-  </CodeGroupItem>
-</CodeGroup>
+:::
 
 ## 反馈
 
 | Github Issue                                                           | Fes.js 开源运营小助手                                                                            |
 | ---------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------ |
 | [@fesjs/fes.js/issues](https://github.com/WeBankFinTech/fes.js/issues) | <img src="https://cos-1254145788.cos.ap-guangzhou.myqcloud.com/WechatIMG104.jpeg" height="250"/> |
+
+</HomeContent>
