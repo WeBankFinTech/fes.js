@@ -1,3 +1,17 @@
+## [3.0.6](https://github.com/WeBankFinTech/fes.js/compare/v3.0.5...v3.0.6) (2023-04-24)
+
+
+### Bug Fixes
+
+* 修复设置extraCSS为false时关闭压缩css错误 ([#193](https://github.com/WeBankFinTech/fes.js/issues/193)) ([1fb871d](https://github.com/WeBankFinTech/fes.js/commit/1fb871da09ea829af225cc448357ef883d79a652))
+
+
+### Features
+
+* mini-css-extract-plugin支持配置 ([#190](https://github.com/WeBankFinTech/fes.js/issues/190)) ([92fa191](https://github.com/WeBankFinTech/fes.js/commit/92fa1919b745466d713631e78f76833b404ec053))
+
+
+
 ## [3.0.5](https://github.com/WeBankFinTech/fes.js/compare/v3.0.4...v3.0.5) (2023-04-17)
 
 
