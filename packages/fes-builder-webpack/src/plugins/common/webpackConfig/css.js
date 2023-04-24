@@ -101,6 +101,9 @@ export default function createCssWebpackConfig({ isDev, config, webpackConfig, b
                 config.extraCSS?.plugin ?? {},
             ),
         ]);
+    }
+
+    if (!isDev) {
         webpackConfig.optimization.minimizer('css').use(require.resolve('css-minimizer-webpack-plugin'), [{}]);
     }
 

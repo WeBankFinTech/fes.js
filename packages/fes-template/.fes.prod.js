@@ -1,7 +1,7 @@
-// .fes.js 只负责管理编译时配置，只能使用plain Object
 import path from 'path';
+import { defineBuildConfig } from '@fesjs/fes';
 
-export default {
+export default defineBuildConfig({
     // publicPath: 'https://gw.alipayobjects.com/',
     // 配置 mini-css-extract-plugin
     extraCSS: {
@@ -9,4 +9,4 @@ export default {
             publicPath: (resourcePath, context) => `${path.relative(path.dirname(resourcePath), context)}/`,
         },
     },
-};
+});

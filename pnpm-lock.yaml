@@ -750,6 +750,9 @@ importers:
 
   packages/fes-template:
     dependencies:
+      '@fesjs/builder-webpack':
+        specifier: workspace:*
+        version: link:../fes-builder-webpack
       '@fesjs/fes':
         specifier: workspace:*
         version: link:../fes
@@ -4541,6 +4544,7 @@ packages:
 
   /@vuepress/shared@2.0.0-beta.50-pre.1:
     resolution: {integrity: sha512-Gk6ikIV2V8LMokc+H/juH+kBOigo38Woup42Q2pmmWqmlwdLqbUcCYZSt/z+opeOUAqC9s3CZnKR8xCw+qo8BQ==}
+    deprecated: deprecated
     dependencies:
       '@vue/shared': 3.2.47
     dev: false

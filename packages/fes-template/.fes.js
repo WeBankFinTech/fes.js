@@ -1,7 +1,6 @@
 import { defineBuildConfig } from '@fesjs/fes';
 
 export default defineBuildConfig({
-    swc: false,
     targets: {
         chrome: '78',
     },
@@ -89,5 +88,4 @@ export default defineBuildConfig({
     monacoEditor: {
         languages: ['javascript', 'typescript', 'html', 'json'],
     },
-    presets: [require.resolve('../fes-builder-webpack/lib')],
 });
