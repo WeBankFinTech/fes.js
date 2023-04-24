@@ -119,6 +119,7 @@ export default {
 
     路由是否按需加载
 
+
 ### inlineLimit
 
 -   类型： `number`
@@ -399,6 +400,26 @@ export default {
 -   详情：
 
     用户配置 sourcemap 类型。详见 [ webpack#devtool 配置](https://webpack.js.org/configuration/devtool/#devtool)。
+
+### extraCSS
+
+-   类型： `object`
+-   默认值： `{}`
+-   详情：
+
+    配置如何使用`mini-css-extract-plugin`，默认使用插件的默认配置。`loader` 选项对应loader参数，`plugin`选项对应插件参数。例如：
+
+```js
+export default {
+    // 配置 mini-css-extract-plugin
+    extraCSS: {
+        loader: {
+            publicPath: (resourcePath, context) => `${path.relative(path.dirname(resourcePath), context)}/`,
+        },
+    },
+};
+
+```
 
 ### exportStatic
 

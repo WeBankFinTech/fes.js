@@ -627,9 +627,6 @@ importers:
       sass-loader:
         specifier: ^11.0.1
         version: 11.0.1(sass@1.32.11)(webpack@5.76.2)
-      webpack:
-        specifier: '>=5.0.0'
-        version: 5.76.2(@swc/core@1.3.49)
 
   packages/fes-plugin-swc:
     dependencies:
@@ -744,6 +741,9 @@ importers:
 
   packages/fes-template:
     dependencies:
+      '@fesjs/builder-webpack':
+        specifier: workspace:*
+        version: link:../fes-builder-webpack
       '@fesjs/fes':
         specifier: workspace:*
         version: link:../fes

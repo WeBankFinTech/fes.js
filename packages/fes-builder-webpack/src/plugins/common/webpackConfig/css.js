@@ -8,15 +8,16 @@
 // css 压缩 https://github.com/webpack-contrib/css-minimizer-webpack-plugin
 // 根据 entry 进行代码块拆分
 // 根据 entry 将文件输出到不同的文件夹
-
 import { deepmerge } from '@fesjs/utils';
 
 function createRules({ isDev, webpackConfig, config, lang, test, loader, options, browserslist, styleLoaderOption }) {
     function applyLoaders(rule, cssLoaderOption = {}) {
-        if (isDev) {
+        if (isDev || !config.extraCSS) {
             rule.use('extra-css-loader').loader(require.resolve('style-loader')).options(Object.assign({}, styleLoaderOption));
         } else {
-            rule.use('extra-css-loader').loader(require('mini-css-extract-plugin').loader).options({});
+            rule.use('extra-css-loader')
+                .loader(require('mini-css-extract-plugin').loader)
+                .options(config.extraCSS?.loader ?? {});
         }
 
         rule.use('css-loader')
@@ -90,13 +91,19 @@ export default function createCssWebpackConfig({ isDev, config, webpackConfig, b
         browserslist,
     });
 
-    if (!isDev) {
+    if (!isDev && config.extraCSS) {
         webpackConfig.plugin('extra-css').use(require.resolve('mini-css-extract-plugin'), [
-            {
-                filename: 'static/[name].[contenthash:8].css',
-                chunkFilename: 'static/[id].[contenthash:8].css',
-            },
+            Object.assign(
+                {
+                    filename: 'static/[name].[contenthash:8].css',
+                    chunkFilename: 'static/[id].[contenthash:8].css',
+                },
+                config.extraCSS?.plugin ?? {},
+            ),
         ]);
+    }
+
+    if (!isDev) {
         webpackConfig.optimization.minimizer('css').use(require.resolve('css-minimizer-webpack-plugin'), [{}]);
     }
 

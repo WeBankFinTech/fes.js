@@ -1,29 +1,30 @@
-import Config from 'webpack-5-chain'
+import Config from 'webpack-5-chain';
 import webpack from 'webpack';
-import HtmlWebpackPlugin from 'html-webpack-plugin'
+import HtmlWebpackPlugin from 'html-webpack-plugin';
+import { LoaderOptions, PluginOptions } from 'mini-css-extract-plugin';
 
 interface CopyFileType {
     from: string;
     to: string;
 }
 
-declare module "@fesjs/fes" {
+declare module '@fesjs/fes' {
     interface PluginBuildConfig {
         analyze?: {
             analyzerMode?: 'server' | 'static' | 'disabled';
             analyzerHost?: string;
             analyzerPort?: number | 'auto';
             openAnalyzer?: boolean;
-            generateStatsFile?:  boolean;
+            generateStatsFile?: boolean;
             statsFilename?: string;
             logLevel?: 'info' | 'warn' | 'error' | 'silent';
-            defaultSizes?: 'stat' | 'parsed' | 'gzip'
+            defaultSizes?: 'stat' | 'parsed' | 'gzip';
         };
-        chainWebpack?: (memo: Config, args: {env: string, webpack: typeof webpack}) => void;
+        chainWebpack?: (memo: Config, args: { env: string; webpack: typeof webpack }) => void;
         copy?: CopyFileType | CopyFileType[];
         cssLoader?: {
             url?: boolean | ((url: string, resourcePath: string) => boolean);
-            import?: boolean | ({ filter: (url: string, media: string, resourcePath: string) => boolean });
+            import?: boolean | { filter: (url: string, media: string, resourcePath: string) => boolean };
             modules?: boolean | string | object;
             sourceMap?: boolean;
             importLoaders?: number;
@@ -50,9 +51,13 @@ declare module "@fesjs/fes" {
         html?: HtmlWebpackPlugin.Options;
         lessLoader?: Record<string, any>;
         nodeModulesTransform?: {
-            exclude: string[]
+            exclude: string[];
         };
         postcssLoader?: Record<string, any>;
         vueLoader?: object;
+        extraCSS?: {
+            loader?: LoaderOptions;
+            plugin?: PluginOptions;
+        };
     }
 }

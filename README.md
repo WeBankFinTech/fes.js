@@ -69,7 +69,7 @@ Fes.js 是一个好用的前端应用解决方案。提供覆盖编译构建到�
 | [@fesjs/plugin-windicss](http://fesjs.mumblefe.cn/reference/plugin/plugins/windicss.html)                                    | 基于 `windicss`，提供原子化 CSS 能力                                    |
 | [@fesjs/plugin-pinia](http://fesjs.mumblefe.cn/reference/plugin/plugins/pinia.html)                                          | pinia，状态处理                                                         |
 | [@fesjs/plugin-watermark](http://fesjs.mumblefe.cn/reference/plugin/plugins/watermark.html)                                  | 水印                                                                    |
-| [@fesjs/plugin-swc](http://fesjs.mumblefe.cn/reference/plugin/plugins/swc.html)                                              | 使用 swc-loader 构建                                                    |
+| [@fesjs/plugin-swc](http://fesjs.mumblefe.cn/reference/plugin/plugins/swc.html)                                              |  webpack构建中使用 swc-loader，构建速度蹭蹭蹭                                                    |
 
 ## 像数 1, 2, 3 一样容易
 
