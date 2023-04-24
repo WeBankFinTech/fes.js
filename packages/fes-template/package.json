@@ -45,6 +45,7 @@
   },
   "dependencies": {
     "@fesjs/fes": "workspace:*",
+    "@fesjs/builder-webpack": "workspace:*",
     "@fesjs/plugin-login": "workspace:*",
     "@fesjs/plugin-access": "workspace:*",
     "@fesjs/plugin-enums": "workspace:*",
