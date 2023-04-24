@@ -2,7 +2,7 @@
 
 Fes.js 约定 `.fes.js` 文件为项目编译需要编译时配置文件，可以引入 `node` 端依赖项，不要引入浏览器端依赖项。
 
-一份常见的配置示例如下（更多配置项请查阅[配置](../reference/config))：
+一份常见的配置示例如下（更多配置项请查阅[配置](../reference/config/index.md))：
 
 ```js
 import { defineBuildConfig } from '@fesjs/fes';

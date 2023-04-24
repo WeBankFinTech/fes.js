@@ -22,7 +22,7 @@ export const zh = [
   },
   {
     text: 'CLI',
-    link: '/reference/cli/',
+    link: '/reference/cli/index.md',
   },
   {
     text: `v${version}`,

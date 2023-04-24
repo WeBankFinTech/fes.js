@@ -11,7 +11,7 @@
 
 ### 配置
 
-Webpack 和 Vite 构建在配置方面有一些差异，具体可以查看[配置](../reference/config)。
+Webpack 和 Vite 构建在配置方面有一些差异，具体可以查看[配置](../reference/config/index.md)。
 
 ### 静态文件处理
 
