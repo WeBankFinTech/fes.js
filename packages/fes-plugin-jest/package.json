@@ -1,6 +1,6 @@
 {
   "name": "@fesjs/plugin-jest",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "@fesjs/plugin-jest",
   "main": "lib/index.js",
   "files": [
