@@ -1,5 +1,9 @@
 # 贡献指南
 
+<script setup>
+import { withBase } from 'vitepress'
+</script>
+
 ## 包概览
 
 项目仓库借助于 [pnpm 工作区](https://pnpm.io/pnpm-workspace_yaml) 来实现 [ Monorepo](https://en.wikipedia.org/wiki/Monorepo) ，在 `packages` 目录下存放多个互相关联的独立包。
@@ -60,7 +64,7 @@ pnpm docs:dev
 如果想添加图片，则可以先把图片添加至`/docs/.vuepress/public`，在代码中使用：
 
 ```html
-<img :src="$withBase('framework.png')" alt="架构" />
+<img :src="withBase('framework.png')" alt="架构" />
 ```
 
 #### 第三步：查看更新

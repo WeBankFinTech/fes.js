@@ -1,5 +1,9 @@
 # 快速上手
 
+<script setup>
+import { withBase } from 'vitepress'
+</script>
+
 ## 依赖环境
 
 首先得有 [Node.js](https://nodejs.org/)，并确保 node 版本是 12.13 或以上。
@@ -41,29 +45,23 @@ cd workspace
 
 ##### 步骤 2 在工作空间创建项目
 
-<CodeGroup>
-  <CodeGroupItem title="PNPM" active>
+::: code-group
 
-```bash
+```bash [pnpm]
 # 创建模板
 pnpm create @fesjs/fes-app myapp
 ```
 
-  </CodeGroupItem>
-
-  <CodeGroupItem title="NPM">
-
-```bash
+```bash [npm]
 # 创建模板
 npx @fesjs/create-fes-app myapp
 ```
 
-  </CodeGroupItem>
-</CodeGroup>
+:::
 
 如果项目文件夹 `workspace/myapp` 已经存在，会提示目录已存在：
 
-<img :src="$withBase('pickTemplateTip.png')" alt="目录已存在提示">
+<img :src="withBase('pickTemplateTip.png')" alt="目录已存在提示">
 
 你可以选择：
 
@@ -71,42 +69,35 @@ npx @fesjs/create-fes-app myapp
 -   `Merge` 保留原项目文件夹，存在相同文件则用模板文件覆盖当前目录文件。
 
 当选择 `Overwrite` 或者 `Merge` 或者项目目录 `workspace/myapp` 不存在，会提示选取一个 `template`：
-<img :src="$withBase('pickTemplate.png')" alt="选择模板类型">
+<img :src="withBase('pickTemplate.png')" alt="选择模板类型">
 
 你可以选默认适用于中后台前端应用的 `PC` 类型，也可以选适用于移动端的 `H5` 类型。
 
 ##### 步骤 3 安装依赖
 
-<CodeGroup>
-  <CodeGroupItem title="PNPM" active>
+::: code-group
 
-```bash
+```bash [pnpm]
 # 进入项目目录
 cd myapp
 # 安装依赖
 pnpm i
 ```
 
-  </CodeGroupItem>
-
-  <CodeGroupItem title="NPM">
-
-```bash
+```bash [npm]
 # 进入项目目录
 cd myapp
 # 安装依赖
 npm i
 ```
 
-  </CodeGroupItem>
-</CodeGroup>
+:::
 
 ## 启动项目
 
-<CodeGroup>
-  <CodeGroupItem title="PNPM" active>
+::: code-group
 
-```bash
+```bash [pnpm]
 # 开发调试
 pnpm dev
 
@@ -120,11 +111,7 @@ Starting the development server http://localhost:8000 ...
  DONE  Compiled successfully in 15917ms                               11:17:08 AM
 ```
 
-  </CodeGroupItem>
-
-  <CodeGroupItem title="NPM">
-
-```bash
+```bash [npm]
 # 开发调试
 npm run dev
 
@@ -137,21 +124,19 @@ Starting the development server http://localhost:8000 ...
  DONE  Compiled successfully in 3662ms                                11:17:46 AM
 ```
 
-  </CodeGroupItem>
-</CodeGroup>
+:::
 
 Fes.js 会在 [http://localhost:8000](http://localhost:8000) 启动一个热重载的开发服务器。当你修改你的 .vue 文件时，浏览器中的内容也会自动更新。
 
-<img :src="$withBase('home.png')" alt="home">
+<img :src="withBase('home.png')" alt="home">
 
 ## 部署发布
 
 ### 构建
 
-<CodeGroup>
-  <CodeGroupItem title="PNPM" active>
+::: code-group
 
-```bash
+```bash [pnpm]
 # 构建
 pnpm build
 
@@ -164,11 +149,7 @@ $ fes build
 ✨  Done in 48.87s.
 ```
 
-  </CodeGroupItem>
-
-  <CodeGroupItem title="NPM">
-
-```bash
+```bash [npm]
 # 构建
 npm run build
 
@@ -178,8 +159,7 @@ npm run build
   Compiled successfully in 45.37s
 ```
 
-  </CodeGroupItem>
-</CodeGroup>
+:::
 
 构建产物默认生成到 ./dist 下，然后通过 tree 命令查看。
 

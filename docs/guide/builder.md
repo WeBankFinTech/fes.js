@@ -1,4 +1,4 @@
-# 支持 Vite 和 Webpack 双构建
+# Vite 和 Webpack 双构建
 
 `Fes.js@3.0.x` 版本支持 Vite 和 Webpack 两种构建方式，不再内置构建方式，需要开发者自行选择:
 
