@@ -1,7 +1,7 @@
-import { defineBuildConfig } from "@fesjs/fes";
+import { defineBuildConfig } from '@fesjs/fes';
 
-export default {
+export default defineBuildConfig({
     // define: {
     //     __DEV__: true
     // },
-}
+});
