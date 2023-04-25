@@ -105,7 +105,7 @@ export default {
                     return;
                 }
                 const activeMenu = menuArray.value[index];
-                const arr = [activeMenu];
+                const arr = activeMenu.children?.length ? [activeMenu] : [];
                 while (index > 0) {
                     index = index - 1;
                     const lastMenu = menuArray.value[index];
