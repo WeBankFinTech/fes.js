@@ -254,7 +254,7 @@ access.getAccess();
 
 ### useAccess
 
--   **类型**：[composition](<(https://v3.cn.vuejs.org/guide/composition-api-introduction.html)>) 函数
+-   **类型**：[composition](https://vuejs.org/guide/extras/composition-api-faq.html#what-is-composition-api) 函数
 -   **详情**：判断某个资源是否可见。
 -   **参数**：
     -   accessId，资源 Id
