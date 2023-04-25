@@ -5,8 +5,7 @@ import { withPwa } from '@vite-pwa/vitepress';
 import { navbar, sidebar } from './configs';
 
 const BASE_URL = process.env.BASE ? `/${process.env.BASE}/` : '/';
-export default withPwa(
-    defineConfig({
+export default defineConfig({
         base: BASE_URL,
         title: 'Fes.js',
         description: '一个好用的前端应用解决方案',
@@ -45,6 +44,4 @@ export default withPwa(
             },
         },
 
-        pwa: {},
-    }),
-);
+});
