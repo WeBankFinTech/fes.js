@@ -126,7 +126,7 @@ Starting the development server http://localhost:8000 ...
 
 :::
 
-Fes.js 会在 [http://localhost:8000](http://localhost:8000) 启动一个热重载的开发服务器。当你修改你的 .vue 文件时，浏览器中的内容也会自动更新。
+Fes.js 会在 `http://localhost:8000` 启动一个热重载的开发服务器。当你修改你的 .vue 文件时，浏览器中的内容也会自动更新。
 
 <img :src="withBase('home.png')" alt="home">
 

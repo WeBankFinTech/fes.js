@@ -1,4 +1,3 @@
-// import type { NavbarConfig } from '@vuepress/theme-default'
 import { version } from '../../../../package.json'
 
 export const zh = [
@@ -22,7 +21,7 @@ export const zh = [
   },
   {
     text: 'CLI',
-    link: '/reference/cli/',
+    link: '/reference/cli/index.md',
   },
   {
     text: `v${version}`,

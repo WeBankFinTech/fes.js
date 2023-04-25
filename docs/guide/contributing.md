@@ -49,7 +49,7 @@ pnpm i
 
 ## 贡献文档
 
-文档代码在`docs`目录，基于 [vuepress](https://v2.vuepress.vuejs.org/zh/) 实现。
+文档代码在`docs`目录，基于 [vitepress](https://vitepress.dev/guide/what-is-vitepress) 实现。
 
 #### 第一步：启动服务
 
@@ -59,9 +59,9 @@ pnpm docs:dev
 
 #### 第二步：修改 md 文件
 
-菜单配置在`/docs/.vuepress/configs/sidebar/zh.ts`中，可以通过此配置找到对应想修改的文档。
+菜单配置在`/docs/.vitpress/configs/sidebar/zh.ts`中，可以通过此配置找到对应想修改的文档。
 
-如果想添加图片，则可以先把图片添加至`/docs/.vuepress/public`，在代码中使用：
+如果想添加图片，则可以先把图片添加至`/docs/.vitpress/public`，在代码中使用：
 
 ```html
 <img :src="withBase('framework.png')" alt="架构" />
