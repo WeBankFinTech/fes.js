@@ -2,10 +2,7 @@ import { relative, join } from 'path';
 import { existsSync } from 'fs';
 
 export default (api) => {
-    const {
-        paths,
-        utils: { winPath },
-    } = api;
+    const { paths } = api;
     const { absSrcPath = '', absTmpPath = '' } = paths;
     const files = ['global.css', 'global.less', 'global.scss', 'global.sass', 'global.styl', 'global.stylus'];
     const globalCSSFile = files
@@ -13,5 +10,10 @@ export default (api) => {
         .filter((file) => existsSync(file))
         .slice(0, 1);
 
-    api.addEntryCodeAhead(() => `${globalCSSFile.map((file) => `import '${winPath(relative(absTmpPath, file))}';`).join('')}`);
+    if (globalCSSFile.length) {
+        api.addEntryImportsAhead({
+            stage: 1,
+            fn: () => [{ source: relative(absTmpPath, globalCSSFile[0]) }],
+        });
+    }
 };
