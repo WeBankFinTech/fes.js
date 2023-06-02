@@ -29,11 +29,11 @@ export const zh = [
       {
         text: 'v2.0',
         link:
-          'https://fesjs.mumblefe.cn/2.0',
+          'https://fesjs.mumblefe.cn/2.0/',
       },
       {
         text: 'v1.0',
-        link: 'https://fesjs.mumblefe.cn/1.0',
+        link: 'https://fesjs.mumblefe.cn/1.0/',
       },
     ],
   },

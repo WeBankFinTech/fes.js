@@ -119,7 +119,6 @@ export default {
 
     路由是否按需加载
 
-
 ### inlineLimit
 
 -   类型： `number`
@@ -127,6 +126,14 @@ export default {
 -   详情：
 
     配置图片文件是否走 base64 编译的阈值。默认是 `8192` 字节，小于它会被编译为 base64 编码，否则会生成单独的文件。
+
+### globalCSS
+
+-   类型： `beforeImports` | `afterImports`
+-   默认值： `afterImports`
+-   详情：
+
+    定义 globalCSS 的位置，处理一些 CSS 覆盖问题。
 
 ### mock
 
@@ -407,7 +414,7 @@ export default {
 -   默认值： `{}`
 -   详情：
 
-    配置如何使用`mini-css-extract-plugin`，默认使用插件的默认配置。`loader` 选项对应loader参数，`plugin`选项对应插件参数。例如：
+    配置如何使用`mini-css-extract-plugin`，默认使用插件的默认配置。`loader` 选项对应 loader 参数，`plugin`选项对应插件参数。例如：
 
 ```js
 export default {
@@ -418,7 +425,6 @@ export default {
         },
     },
 };
-
 ```
 
 ### exportStatic

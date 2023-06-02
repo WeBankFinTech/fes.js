@@ -2,10 +2,16 @@ import { relative, join } from 'path';
 import { existsSync } from 'fs';
 
 export default (api) => {
-    const {
-        paths,
-        utils: { winPath },
-    } = api;
+    api.describe({
+        key: 'globalCSS',
+        config: {
+            schema(joi) {
+                return joi.string();
+            },
+        },
+        default: '',
+    });
+    const { paths, utils } = api;
     const { absSrcPath = '', absTmpPath = '' } = paths;
     const files = ['global.css', 'global.less', 'global.scss', 'global.sass', 'global.styl', 'global.stylus'];
     const globalCSSFile = files
@@ -13,5 +19,23 @@ export default (api) => {
         .filter((file) => existsSync(file))
         .slice(0, 1);
 
-    api.addEntryCodeAhead(() => `${globalCSSFile.map((file) => `import '${winPath(relative(absTmpPath, file))}';`).join('')}`);
+    const isBeforeImports = () => api.config.globalCSS === 'beforeImports';
+
+    if (globalCSSFile.length) {
+        api.addEntryImportsAhead({
+            stage: 1,
+            fn: () => {
+                if (isBeforeImports()) {
+                    return [{ source: relative(absTmpPath, globalCSSFile[0]) }];
+                }
+                return [];
+            },
+        });
+        api.addEntryCodeAhead(() => {
+            if (!isBeforeImports()) {
+                return `import '${utils.winPath(relative(absTmpPath, globalCSSFile[0]))}';`;
+            }
+            return [];
+        });
+    }
 };
