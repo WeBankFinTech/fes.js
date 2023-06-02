@@ -31,12 +31,11 @@ export default (api) => {
                 return [];
             },
         });
+        api.addEntryCodeAhead(() => {
+            if (!isBeforeImports()) {
+                return `import '${utils.winPath(relative(absTmpPath, globalCSSFile[0]))}';`;
+            }
+            return [];
+        });
     }
-
-    api.addEntryCodeAhead(() => {
-        if (!isBeforeImports()) {
-            return `${globalCSSFile.map((file) => `import '${utils.winPath(relative(absTmpPath, file))}';`).join('')}`;
-        }
-        return [];
-    });
 };
