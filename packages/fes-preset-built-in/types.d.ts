@@ -42,6 +42,7 @@ declare module '@fesjs/fes' {
     }
 
     interface PluginBuildConfig {
+        globalCSS?: 'beforeImports' | 'afterImports';
         alias?: Record<string, string>;
         autoprefixer?: {
             /** environment for `Browserslist` */
