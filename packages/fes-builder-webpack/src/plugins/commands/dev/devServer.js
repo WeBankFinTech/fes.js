@@ -9,6 +9,7 @@ export function startDevServer({ webpackConfig, host, port, proxy, https, before
         server: https ? 'https' : 'http',
         client: {
             logging: 'error',
+            overlay: false,
             webSocketURL: {
                 hostname: host,
                 port,
