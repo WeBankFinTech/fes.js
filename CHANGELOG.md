@@ -1,3 +1,18 @@
+## [3.0.7](https://github.com/WeBankFinTech/fes.js/compare/v3.0.6...v3.0.7) (2023-06-09)
+
+
+### Bug Fixes
+
+* 删去 webpack dev overlay 全屏弹窗 ([#197](https://github.com/WeBankFinTech/fes.js/issues/197)) ([9c57f9c](https://github.com/WeBankFinTech/fes.js/commit/9c57f9c7e5420c9f780b36d6249464e50c46c719))
+* **plugin-layout:** 默认路由如果不是菜单,则不需要添加到expandedKeys中,否则会导则defaultExpandAll不生效 ([d5b014e](https://github.com/WeBankFinTech/fes.js/commit/d5b014ecc5a1f93aa6f0499da423999a3db7a405))
+
+
+### Features
+
+* 增加配置控制全局样式加载顺序 ([#195](https://github.com/WeBankFinTech/fes.js/issues/195)) ([3c1290f](https://github.com/WeBankFinTech/fes.js/commit/3c1290fc5895000ae479779b30cf4372848ebfbb))
+
+
+
 ## [3.0.6](https://github.com/WeBankFinTech/fes.js/compare/v3.0.5...v3.0.6) (2023-04-24)
 
 
