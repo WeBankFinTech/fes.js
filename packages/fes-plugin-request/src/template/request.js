@@ -15,13 +15,16 @@ function getRequestInstance() {
     return createRequest(defaultConfig);
 }
 
-const currentRequest = getRequestInstance();
+let currentRequest;
 
 export const rawRequest = (url, data, options = {}) => {
     if (typeof options === 'string') {
         options = {
             method: options,
         };
+    }
+    if (!currentRequest) {
+        currentRequest = getRequestInstance();
     }
     return currentRequest(url, data, options);
 };
