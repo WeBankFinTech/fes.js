@@ -1,3 +1,12 @@
+## [3.0.8](https://github.com/WeBankFinTech/fes.js/compare/v3.0.7...v3.0.8) (2023-06-14)
+
+
+### Bug Fixes
+
+* 修复 request 初始化问题 ([#198](https://github.com/WeBankFinTech/fes.js/issues/198)) ([bbb4db7](https://github.com/WeBankFinTech/fes.js/commit/bbb4db750de0d6d630b3027129d1a7f3769943a9))
+
+
+
 ## [3.0.7](https://github.com/WeBankFinTech/fes.js/compare/v3.0.6...v3.0.7) (2023-06-09)
 
 
