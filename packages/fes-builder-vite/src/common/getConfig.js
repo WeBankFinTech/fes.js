@@ -36,19 +36,24 @@ export function getInnerCommonConfig(api) {
                 vue(api.config.viteVuePlugin || {}),
                 SFCConfigBlockPlugin,
                 vueJsx(api.config.viteVueJsx || {}),
-                createHtmlPlugin({
-                    minify: true,
-                    // 使用绝对地址在win下会提示没有权限
-                    entry: `/src/${api.paths.tmpDir}/fes.js`,
-                    template: 'index.html',
-                    inject: {
-                        data: {
-                            ...resolveRuntimeEnv(publicPath),
-                            title: api.config.title || 'Fes.js',
-                            mountElementId: api.config.mountElementId,
+                createHtmlPlugin(
+                    deepmerge(
+                        {
+                            minify: true,
+                            // 使用绝对地址在win下会提示没有权限
+                            entry: `/src/${api.paths.tmpDir}/fes.js`,
+                            template: 'index.html',
+                            inject: {
+                                data: {
+                                    ...resolveRuntimeEnv(publicPath),
+                                    title: api.config.title || 'Fes.js',
+                                    mountElementId: api.config.mountElementId,
+                                },
+                            },
                         },
-                    },
-                }),
+                        api.config.viteHtml,
+                    ),
+                ),
             ],
             resolve: {
                 alias: {
