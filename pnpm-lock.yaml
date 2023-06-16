@@ -193,7 +193,7 @@ importers:
         specifier: ^7.21.0
         version: 7.21.0(@babel/core@7.21.3)
       '@babel/preset-env':
-        specifier: ^7.20.2
+        specifier: 7.20.2
         version: 7.20.2(@babel/core@7.21.3)
       '@babel/preset-typescript':
         specifier: ^7.21.0
