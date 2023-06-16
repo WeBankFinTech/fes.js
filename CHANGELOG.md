@@ -1,3 +1,12 @@
+## [3.0.9](https://github.com/WeBankFinTech/fes.js/compare/v3.0.8...v3.0.9) (2023-06-16)
+
+
+### Bug Fixes
+
+* 修复 vite html 配置问题 ([#200](https://github.com/WeBankFinTech/fes.js/issues/200)) ([ebfdea7](https://github.com/WeBankFinTech/fes.js/commit/ebfdea7522e0db7796dc6fd735a4fb43899be519))
+
+
+
 ## [3.0.8](https://github.com/WeBankFinTech/fes.js/compare/v3.0.7...v3.0.8) (2023-06-14)
 
 
