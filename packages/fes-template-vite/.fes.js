@@ -1,7 +1,7 @@
 import { defineBuildConfig } from '@fesjs/fes';
 
 export default defineBuildConfig({
-    builder: 'webpack',
+    builder: 'vite',
     define: {
         __DEV__: false,
     },
@@ -70,6 +70,9 @@ export default defineBuildConfig({
             ['0', '无效的'],
             ['1', '有效的'],
         ],
+    },
+    viteHtml: {
+        template: 'hello.html',
     },
     dynamicImport: true,
     monacoEditor: {

@@ -6,6 +6,7 @@ export default function () {
             require.resolve('./registerType'),
 
             // bundle configs
+            require.resolve('./features/viteHtml'),
             require.resolve('./features/viteOption'),
             require.resolve('./features/viteVueJsx'),
             require.resolve('./features/viteVuePlugin'),
