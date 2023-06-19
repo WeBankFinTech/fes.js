@@ -30,39 +30,38 @@ function timeFormat(date, format = 'YYYY-MM-DD') {
     return format.replace(/Y+|M+|D+|H+|h+|m+|s+|S+|Q/g, str => String(map[str]));
 }
 
-const defaultOption = {
-    content: '请勿外传',
-    container: document.body,
-    width: 300,
-    height: 300,
-    textAlign: 'center',
-    textBaseline: 'middle',
-    fontSize: '14px',
-    fontFamily: 'Microsoft Yahei',
-    fillStyle: 'rgba(184, 184, 184, 0.3)',
-    rotate: 25,
-    zIndex: 99999,
-    timestamp: 'YYYY-MM-DD HH:mm'
-};
+let wmContainerObx = null; // MutationObserver
+let wmObx = null; // MutationObserver
+let wmTimer = null; // timestamp
+let watermarkDiv = null;
 
-let _wmMo = null; // MutationObserver
-let _wmTimer = null; // timestamp
+// 销毁水印
+export function destroyWatermark() {
+    // 监听器关闭
+    wmObx?.disconnect();
+    wmObx = null;
+    wmContainerObx?.disconnect();
+    wmContainerObx = null;
+    // 清除timer
+    if (wmTimer) {
+        window.clearTimeout(wmTimer);
+        wmTimer = null;
+    }
+    // 删除水印元素
+    watermarkDiv?.parentNode?.removeChild(watermarkDiv);
+    watermarkDiv = null;
+}
 
-function _createWatermark(param) {
+function innerCreateWatermark(param) {
     const {
-        content,
-        container,
-        width,
-        height,
-        textAlign,
-        textBaseline,
-        fontSize,
-        fontFamily,
-        fillStyle,
-        rotate,
-        zIndex,
-        timestamp
+        content, container, width, height, textAlign, textBaseline, fontSize, fontFamily, fillStyle, rotate, zIndex, timestamp, watch
     } = param;
+
+    if (!container) {
+        return console.warn('createWatermark配置的container不能为空');
+    }
+
+    destroyWatermark();
 
     const canvas = document.createElement('canvas');
     canvas.setAttribute('width', `${width}px`);
@@ -75,19 +74,14 @@ function _createWatermark(param) {
     ctx.fillStyle = fillStyle;
     ctx.translate(width / 2, height / 2);
     ctx.rotate(-(Math.PI / 180) * rotate);
-    ctx.fillText(
-        `${content}`,
-        0,
-        0
-    );
-    timestamp && ctx.fillText(
-        `${timeFormat(new Date(), timestamp)}`,
-        0,
-        parseInt(fontSize) + 5
-    );
+    ctx.fillText(`${content}`, 0, 0);
+    if (timestamp) {
+        ctx.fillText(`${timeFormat(new Date(), timestamp)}`, 0, parseInt(fontSize) + 5);
+    }
 
-    let __wm = document.querySelector('.__wm');
-    const watermarkDiv = __wm || document.createElement('div');
+    const CLASS_NAME = `wm_${Date.now()}`;
+
+    watermarkDiv = document.createElement('div');
     const styleStr = `
     position: ${container === document.body ? 'fixed' : 'absolute'};
     user-select: none;
@@ -99,30 +93,35 @@ function _createWatermark(param) {
     pointer-events: none !important;
     background-repeat: repeat;
     background-image: url('${canvas.toDataURL()}')`;
-
     watermarkDiv.setAttribute('style', styleStr);
-    watermarkDiv.classList.add('__wm');
+    watermarkDiv.classList.add(CLASS_NAME);
 
-    if (!__wm) {
+    if (container.firstChild) {
         container.insertBefore(watermarkDiv, container.firstChild);
+    } else {
+        container.appendChild(watermarkDiv);
     }
 
-    const MutationObserver = window.MutationObserver || window.WebKitMutationObserver;
-    if (MutationObserver) {
-        _wmMo = new MutationObserver(() => {
-            __wm = document.querySelector('.__wm');
-            if ((__wm && __wm.getAttribute('style') !== styleStr) || !__wm) {
-                // 避免一直触发
-                _wmMo.disconnect();
-                _wmMo = null;
-                _createWatermark(param);
+    const MutationObserver = window.MutationObserver;
+    if (watch && MutationObserver) {
+        wmContainerObx = new MutationObserver(() => {
+            if (!container.querySelector(`.${CLASS_NAME}`)) {
+                innerCreateWatermark(param);
             }
         });
 
-        _wmMo.observe(container, {
-            attributes: true,
-            subtree: true,
+        wmContainerObx.observe(container, {
             childList: true
+        });
+
+        wmObx = new MutationObserver(() => {
+            if (watermarkDiv.getAttribute('style') !== styleStr) {
+                innerCreateWatermark(param);
+            }
+        });
+
+        wmObx.observe(watermarkDiv, {
+            attributes: true
         });
     }
 
@@ -136,24 +135,10 @@ function _createWatermark(param) {
             timeout = 1000 * 60 * 60;
         }
 
-        _wmTimer = window.setTimeout(() => {
-            // 触发 MutationObserver
-            watermarkDiv.style.bottom = '0';
+        wmTimer = window.setTimeout(() => {
+            innerCreateWatermark(param);
         }, timeout);
     }
-}
-
-// 销毁水印
-export function destroyWatermark() {
-    // 监听器关闭
-    _wmMo && _wmMo.disconnect();
-    _wmMo = null;
-    _wmTimer && window.clearTimeout(_wmTimer);
-    _wmTimer = null;
-
-    // 删除水印元素
-    const __wm = document.querySelector('.__wm');
-    __wm && __wm.parentNode.removeChild(__wm);
 }
 
 // canvas 实现 watermark
@@ -163,10 +148,23 @@ export function createWatermark(option) {
         return;
     }
 
-    // 为避免多次调用 createWatermark 触发重复监听，这里先执行销毁水印操作
-    destroyWatermark();
+    const defaultOption = {
+        content: '请勿外传',
+        container: document.body,
+        width: 300,
+        height: 300,
+        textAlign: 'center',
+        textBaseline: 'middle',
+        fontSize: '14px',
+        fontFamily: 'Microsoft Yahei',
+        fillStyle: 'rgba(184, 184, 184, 0.3)',
+        rotate: 25,
+        zIndex: 99999,
+        timestamp: 'YYYY-MM-DD HH:mm',
+        watch: true
+    };
 
-    _createWatermark({
+    innerCreateWatermark({
         ...defaultOption,
         ...option
     });
