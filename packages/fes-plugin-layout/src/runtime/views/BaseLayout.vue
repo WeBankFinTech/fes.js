@@ -165,8 +165,8 @@
 </template>
 
 <script>
-import { ref, computed, onMounted } from 'vue';
-import { useRoute } from '@@/core/coreExports';
+import { ref, computed, watch, nextTick } from 'vue';
+import { useRoute, useRouter } from '@@/core/coreExports';
 import { FLayout, FAside, FMain, FFooter, FHeader } from '@fesjs/fes-design';
 import defaultLogo from '../assets/logo.png';
 import Menu from './Menu.vue';
@@ -235,6 +235,7 @@ export default {
         const headerHeightRef = ref(0);
         const collapsedRef = ref(false);
         const route = useRoute();
+        const router = useRouter();
 
         const currentNavigation = computed(() => {
             if (route.meta.layout && route.meta.layout.navigation !== undefined) {
@@ -250,11 +251,20 @@ export default {
             return props.isFixedSidebar ? { left } : null;
         });
 
-        onMounted(() => {
-            if (headerRef.value) {
-                headerHeightRef.value = headerRef.value.$el.offsetHeight;
-            }
-        });
+        watch(
+            router.currentRoute,
+            () => {
+                nextTick(() => {
+                    if (headerRef.value) {
+                        headerHeightRef.value = headerRef.value.$el.offsetHeight;
+                    }
+                });
+            },
+            {
+                immediate: true,
+            },
+        );
+
         return {
             headerRef,
             headerHeightRef,
