@@ -1,3 +1,12 @@
+## [3.0.10](https://github.com/WeBankFinTech/fes.js/compare/v3.0.9...v3.0.10) (2023-06-29)
+
+
+### Bug Fixes
+
+* 修复plugin-layout中body的top计算问题 ([#202](https://github.com/WeBankFinTech/fes.js/issues/202)) ([c5a6e7b](https://github.com/WeBankFinTech/fes.js/commit/c5a6e7b34894c3d12b468fdaf05b0b4dd25ccc28))
+
+
+
 ## [3.0.9](https://github.com/WeBankFinTech/fes.js/compare/v3.0.8...v3.0.9) (2023-06-16)
 
 
