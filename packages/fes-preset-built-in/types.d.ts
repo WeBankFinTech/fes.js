@@ -6,7 +6,7 @@ import { Plugin } from '@fesjs/runtime';
 
 interface BeforeRenderConfig {
     loading: Component;
-    action: () => Promise<any>;
+    action: ({ router }: { router: Router }) => Promise<any>;
 }
 
 interface ClientRenderOption {
@@ -86,10 +86,10 @@ declare module '@fesjs/fes' {
         dynamicImport?: boolean;
         inlineLimit?: number;
         mock?:
-            | boolean
-            | {
-                  prefix?: string;
-              };
+        | boolean
+        | {
+            prefix?: string;
+        };
         mountElementId?: string;
         plugins?: string[];
         presets?: string[];
