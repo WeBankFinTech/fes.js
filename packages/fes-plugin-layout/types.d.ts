@@ -1,5 +1,6 @@
 import { Component, VNode, Ref } from 'vue';
-import { Router, RouteLocationNormalized, NavigationGuardNext, NavigationGuardReturn, NavigationGuard } from 'vue-router';
+import { Router, RouteLocationNormalized, NavigationGuardNext, NavigationGuard } from 'vue-router';
+import { MenuOption } from '@fesjs/fes-design/es/menu/interface';
 
 interface CustomNavigationGuardOption {
     router: Router;
@@ -9,15 +10,15 @@ interface CustomNavigationGuardOption {
 }
 
 interface CustomNavigationGuard {
-    (option: CustomNavigationGuardOption): NavigationGuardReturn | Promise<NavigationGuardReturn>;
+    (option: CustomNavigationGuardOption): ReturnType<NavigationGuard>;
 }
 
 interface Menu {
-    name: string;
-    path: string;
-    match: string[];
-    title: string;
-    icon: string | Component;
+    name?: string;
+    path?: string;
+    match?: string[];
+    title?: MenuOption['label'];
+    icon?: string | Component;
     children?: Menu[];
 }
 
