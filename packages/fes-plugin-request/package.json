@@ -28,11 +28,11 @@
     "access": "public"
   },
   "peerDependencies": {
-    "@fesjs/fes": "3.0.0-rc.5",
+    "@fesjs/fes": "^3.0.0",
     "vue": "^3.2.37"
   },
   "dependencies": {
-    "@fesjs/utils": "3.0.0-rc.2",
+    "@fesjs/utils": "^3.0.0",
     "@qlin/request": "^0.1.2"
   },
   "typings": "./types.d.ts"
