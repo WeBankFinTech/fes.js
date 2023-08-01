@@ -1,4 +1,4 @@
-import { Router, RouteLocationNormalized, NavigationGuardNext, NavigationGuardReturn, NavigationGuard } from 'vue-router';
+import { Router, RouteLocationNormalized, NavigationGuardNext, NavigationGuard } from 'vue-router';
 import { Ref } from 'vue';
 
 export const access: {
@@ -19,7 +19,7 @@ interface CustomNavigationGuardOption {
 }
 
 interface CustomNavigationGuard {
-    (option: CustomNavigationGuardOption): NavigationGuardReturn | Promise<NavigationGuardReturn>;
+    (option: CustomNavigationGuardOption): ReturnType<NavigationGuard>;
 }
 
 declare module '@fesjs/fes' {
@@ -33,8 +33,9 @@ declare module '@fesjs/fes' {
 
     interface PluginRuntimeConfig {
         access?: {
-            noFoundHandler: NavigationGuard;
-            unAccessHandler: CustomNavigationGuard;
+            noFoundHandler?: CustomNavigationGuard;
+            unAccessHandler?: CustomNavigationGuard;
+            ignoreAccess?: string[];
         };
     }
 }
