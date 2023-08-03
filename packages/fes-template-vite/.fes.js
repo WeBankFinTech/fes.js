@@ -71,9 +71,6 @@ export default defineBuildConfig({
             ['1', '有效的'],
         ],
     },
-    viteHtml: {
-        template: 'hello.html',
-    },
     dynamicImport: true,
     monacoEditor: {
         languages: ['javascript', 'typescript', 'html', 'json'],
