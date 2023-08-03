@@ -1,8 +1,6 @@
 # @fesjs/plugin-request
 
-基于 axios 封装的 request，内置防止重复请求、请求缓存、错误处理等功能。
-
-[4.x 版本请点击](./request-4.md)
+基于 fetch 封装的 request，内置防止重复请求、请求缓存、错误处理等功能。
 
 ## 启用方式
 
@@ -12,35 +10,39 @@
 {
     "dependencies": {
         "@fesjs/fes": "^3.0.0",
-        "@fesjs/plugin-request": "^3.0.0"
+        "@fesjs/plugin-request": "^4.0.0-beta.0"
     }
 }
 ```
 
 ## 运行时配置
 
-入口文件的全局配置，具体请求的配置参数会覆盖全局配置，支持 [axios](https://axios-http.com/zh/docs/req_config) 所有的参数。
+入口文件的全局配置，具体请求的配置参数会覆盖全局配置，支持 [fetch](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch#sending_a_request_with_credentials_included) 所有的参数。
 
 ```js
 import { defineRuntimeConfig } from '@fesjs/fes';
 
 export default defineRuntimeConfig({
     request: {
-        // API  前缀
         baseURL: '',
-        dataHandler(data, response) {
+        timeout: 10000, // 默认 10s
+        method: 'POST', // 默认 post
+        mergeRequest: false, // 是否合并请求
+        responseType: null, // 可选 'json' | 'text' | 'blob' | 'arrayBuffer' | 'formData'，默认根据 content-type 处理
+        credentials: 'include', // 默认 include, 'include' | 'same-origin' | 'omit'
+        headers: {}, // 传给服务器的 header
+        cacheData: false, // 是否缓存
+        requestInterceptor: (config: Config) => Config,
+        responseInterceptor: (response: RequestResponse) => RequestResponse,
+        transformData(data, response) {
             // 处理响应内容异常
-            if (data.code !== '0') {
+            if (isPlainObject(data)) {
                 if (data.code === '10000') {
-                    FMesseage.error('hello world');
+                    return Promise.reject(data);
                 }
-                if (data.code === '20000') {
-                    FMesseage.error('hello world');
-                }
-                throw new Error(response);
+                return data?.result ? data.result : data;
             }
-            // 响应数据格式化
-            return data?.result ? data.result : data;
+            return data;
         },
         // http 异常，和插件异常
         errorHandler(error) {
@@ -49,13 +51,7 @@ export default defineRuntimeConfig({
                 console.log(error.response.data);
                 console.log(error.response.status);
                 console.log(error.response.headers);
-            } else if (error.request) {
-                // 请求已经成功发起，但没有收到响应
-                // `error.request` 在浏览器中是 XMLHttpRequest 的实例，
-                // 而在node.js中是 http.ClientRequest 的实例
-                console.log(error.request);
-            } else if (error.type) {
-                // 插件异常
+            } else if (error.msg) {
                 console.log(error.msg);
             } else {
                 // 发送请求时出了点问题
@@ -63,11 +59,7 @@ export default defineRuntimeConfig({
             }
             console.log(error.config);
         },
-        // 请求拦截器
-        requestInterceptors: [],
-        // 响应拦截器
-        responseInterceptors: [],
-        // 支持其他 axios 配置
+        // 支持其他 fetch 配置
         ...otherConfigs,
     },
 });
@@ -84,7 +76,7 @@ export default defineRuntimeConfig({
 
     -   url: 后端接口 url
     -   data: 参数
-    -   options: 配置支持 [axios](https://axios-http.com/zh/docs/req_config) 所有的参数，和插件扩展参数。
+    -   options: 配置支持 [fetch](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch#sending_a_request_with_credentials_included) 所有的参数，和插件扩展参数。
 
 -   **返回值**: Promise
 
@@ -150,7 +142,7 @@ request(
         password: '123456',
     },
     {
-        cache: {
+        cacheData: {
             cacheType: 'ram', // ram: 内存，session: sessionStorage，local：localStorage
             cacheTime: 1000 * 60 * 3, // 缓存时间：默认3min
         },
@@ -164,7 +156,37 @@ request(
     });
 ```
 
-若 `cache` 传 `true`，则默认使用 `ram` 缓存类型，缓存时间 3min。
+若 `cacheData` 传 `true`，则默认使用 `ram` 缓存类型，缓存时间 3min。
+
+### 请求 abort
+
+```javascript
+import { request } from '@fesjs/fes';
+
+const controller = new AbortController();
+request('/url/abort', null, {
+    signal: controller.signal,
+}).then((response) => {
+    console.log('process response: ' + response);
+});
+// cancel the request
+controller.abort();
+```
+
+### 获取 response headers
+
+```javascript
+import { rawRequest } from '@fesjs/fes';
+
+const controller = new AbortController();
+rawRequest('/url/abort', null, {
+    signal: controller.signal,
+}).then((response) => {
+    console.log('process headers: ' + response.headers);
+});
+// cancel the request
+controller.abort();
+```
 
 ### 结合 use 使用
 
@@ -186,3 +208,11 @@ export default {
     },
 };
 ```
+
+## 3.x 升级到 4.x
+
+1. 缓存参数 cache 改成 cacheData（避免与 fetch 原本的 cache 冲突）
+2. dataHandler 改成 transformData
+3. requestInterceptors 改为 requestInterceptor，不在支持数组，只支持函数
+4. responseInterceptors 改为 responseInterceptor，不在支持数组，只支持函数
+5. 其他 axios 特有的配置不在支持
