@@ -220,7 +220,13 @@ export const layout = (layoutConfig, { initialState }) => ({
 -   **类型**：`String`
 -   **默认值**：默认提供 `fes.js` 的 Logo
 
--   **详情**：Logo 的链接
+-   **详情**：Logo 的链接，例如在 public/logo.png 放了一个 logo，可以这么配置([BASE_URL 来自这里](../../../guide/env#process-env))
+
+```js
+export const layout = {
+    logo: `${process.env.BASE_URL}logo.png`,
+};
+```
 
 ### multiTabs
 
