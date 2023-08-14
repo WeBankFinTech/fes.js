@@ -1,3 +1,14 @@
+## [3.0.12](https://github.com/WeBankFinTech/fes.js/compare/v3.0.11...v3.0.12) (2023-08-14)
+
+
+### Bug Fixes
+
+* **plugin-access:** 修复 useAccess 类型定义 ([#206](https://github.com/WeBankFinTech/fes.js/issues/206)) ([7c6c662](https://github.com/WeBankFinTech/fes.js/commit/7c6c662837bc477d4c4cc5ab4a3e5b457ba9b0d1))
+* **plugin-access:** 补充 RuntimeConfig['access'] 字段 ([#205](https://github.com/WeBankFinTech/fes.js/issues/205)) ([61fa8be](https://github.com/WeBankFinTech/fes.js/commit/61fa8be45ecc3b85854f99ba6cc86a0954f8807a))
+* **plugin-layout:** 修复 Menu、CustomNaviGuard 类型 ([#204](https://github.com/WeBankFinTech/fes.js/issues/204)) ([b0357e9](https://github.com/WeBankFinTech/fes.js/commit/b0357e9fdbe52362bba3a9fe087cc0a23454db80))
+
+
+
 ## [3.0.11](https://github.com/WeBankFinTech/fes.js/compare/v3.0.10...v3.0.11) (2023-07-10)
 
 
