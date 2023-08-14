@@ -9,7 +9,7 @@ export const access: {
     getAccess(): string[];
 };
 
-export function useAccess(accessId: Array<string | number>): Ref<boolean>;
+export function useAccess(accessId: string | number): Ref<boolean>;
 
 interface CustomNavigationGuardOption {
     router: Router;
