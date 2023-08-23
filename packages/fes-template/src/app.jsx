@@ -6,13 +6,14 @@ import UserCenter from '@/components/userCenter.vue';
 export const beforeRender = {
     loading: <PageLoading />,
     action() {
-        const { setRole } = accessApi;
+        const { setRole, getRole } = accessApi;
         return new Promise((resolve) => {
             setTimeout(() => {
                 setRole('admin');
                 resolve({
                     userName: '李雷',
                 });
+                console.log('currentRole', getRole());
                 createWatermark({ content: '万纯(harrywan)' });
             }, 1000);
         });
