@@ -138,6 +138,9 @@ export const access = {
     hasAccess,
     isDataReady,
     setRole,
+    getRole: () => {
+        return state.currentRoleId
+    },
     setAccess,
     match,
     getAccess: getAllowAccessIds,
