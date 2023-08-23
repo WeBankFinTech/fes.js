@@ -227,6 +227,16 @@ import { access } from '@fesjs/fes';
 access.setRole('admin');
 ```
 
+#### access.getRole
+
+-   **类型**：函数
+-   **详情**：获取当前的角色。
+
+```js
+import { access } from '@fesjs/fes';
+access.getRole();
+```
+
 #### access.setAccess
 
 -   **类型**：函数
