@@ -1,3 +1,12 @@
+## [3.0.13](https://github.com/WeBankFinTech/fes.js/compare/v3.0.12...v3.0.13) (2023-08-24)
+
+
+### Features
+
+* plugin access 添加 getRole 接口 ([#207](https://github.com/WeBankFinTech/fes.js/issues/207)) ([fdaf1fd](https://github.com/WeBankFinTech/fes.js/commit/fdaf1fde7399612f68e32d3eb2f1ba4ae95070a5))
+
+
+
 ## [3.0.12](https://github.com/WeBankFinTech/fes.js/compare/v3.0.11...v3.0.12) (2023-08-14)
 
 
