@@ -1,3 +1,12 @@
+## [3.0.14](https://github.com/WeBankFinTech/fes.js/compare/v3.0.13...v3.0.14) (2023-08-25)
+
+
+### Features
+
+* plugin request 添加版本导出 ([#208](https://github.com/WeBankFinTech/fes.js/issues/208)) ([15a2b99](https://github.com/WeBankFinTech/fes.js/commit/15a2b99df29835031c532f2887e8aaa9639a7fc6))
+
+
+
 ## [3.0.13](https://github.com/WeBankFinTech/fes.js/compare/v3.0.12...v3.0.13) (2023-08-24)
 
 
