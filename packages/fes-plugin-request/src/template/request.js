@@ -34,6 +34,8 @@ export const request = async (url, data, options = {}) => {
     return response.data;
 };
 
+request.version = '4.0.0';
+
 function isPromiseLike(obj) {
     return !!obj && typeof obj === 'object' && typeof obj.then === 'function';
 }
