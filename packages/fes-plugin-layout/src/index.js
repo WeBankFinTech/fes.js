@@ -57,6 +57,22 @@ export default (api) => {
             }),
         });
 
+        const HAS_PLUGIN_ACCESS = api.hasPlugins(['@fesjs/plugin-access']);
+
+        api.writeTmpFile({
+            path: join(namespace, 'helpers/pluginAccess.js'),
+            content: Mustache.render(readFileSync(join(__dirname, 'runtime/helpers/pluginAccess.js.tpl'), 'utf-8'), {
+                HAS_PLUGIN_ACCESS,
+            }),
+        });
+
+        api.writeTmpFile({
+            path: absRuntimeFilePath,
+            content: Mustache.render(readFileSync(join(__dirname, 'runtime/runtime.js.tpl'), 'utf-8'), {
+                HAS_PLUGIN_ACCESS,
+            }),
+        });
+
         api.copyTmpFiles({
             namespace,
             path: join(__dirname, 'runtime'),
