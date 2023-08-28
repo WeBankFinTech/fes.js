@@ -1,6 +1,5 @@
-// eslint-disable-next-line import/extensions
+{{#HAS_PLUGIN_ACCESS}}
 import { access as accessApi } from '../plugin-access/core';
-// eslint-disable-next-line import/extensions
 import getConfig from './helpers/getConfig';
 
 if (!accessApi) {
@@ -42,3 +41,5 @@ export const access = (memo) => {
         ...memo,
     };
 };
+
+{{/HAS_PLUGIN_ACCESS}}
