@@ -1,3 +1,12 @@
+## [3.0.15](https://github.com/WeBankFinTech/fes.js/compare/v3.0.14...v3.0.15) (2023-08-28)
+
+
+### Features
+
+* plugin-layout不强依赖plugin-access ([#209](https://github.com/WeBankFinTech/fes.js/issues/209)) ([4955ae1](https://github.com/WeBankFinTech/fes.js/commit/4955ae184104c9f03a0bb6c07457e6f3f458f5a0))
+
+
+
 ## [3.0.14](https://github.com/WeBankFinTech/fes.js/compare/v3.0.13...v3.0.14) (2023-08-25)
 
 
