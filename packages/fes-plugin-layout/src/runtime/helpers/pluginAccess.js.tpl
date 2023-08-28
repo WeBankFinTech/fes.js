@@ -1,4 +1,4 @@
-// eslint-disable-next-line
+{{#HAS_PLUGIN_ACCESS}}
 import { hasAccessSync } from '../../plugin-access/core';
 
 if (!hasAccessSync) {
@@ -32,3 +32,11 @@ export const transform = (menus) =>
             return menu;
         })
         .filter(Boolean);
+
+{{/HAS_PLUGIN_ACCESS}}
+
+{{^HAS_PLUGIN_ACCESS}}
+
+export const transform = (menus) => menus;
+
+{{/HAS_PLUGIN_ACCESS}}
