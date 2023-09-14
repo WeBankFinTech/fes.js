@@ -44,10 +44,10 @@
     },
     "dependencies": {
         "vue": "^3.2.47",
-        "@fesjs/fes": "^3.0.0-rc.0",
-        "@fesjs/builder-vite": "^3.0.0-rc.4",
-        "@fesjs/plugin-qiankun": "3.0.0-rc.0",
-        "@fesjs/fes-design": "^0.7.0"
+        "@fesjs/fes": "^3.0.0",
+        "@fesjs/builder-vite": "^3.0.0",
+        "@fesjs/plugin-qiankun": "^3.0.0",
+        "@fesjs/fes-design": "^0.8.0"
     },
     "private": true
 }

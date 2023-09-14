@@ -61,7 +61,7 @@
     "@fesjs/plugin-watermark": "workspace:*",
     "@fesjs/plugin-windicss": "workspace:*",
     "@fesjs/plugin-swc": "workspace:*",
-    "@fesjs/fes-design": "^0.7.20",
+    "@fesjs/fes-design": "^0.8.0",
     "core-js": "3.29.1",
     "pinia": "^2.0.33",
     "vue": "^3.2.47"
