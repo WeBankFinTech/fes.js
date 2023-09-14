@@ -1,12 +1,10 @@
 import { Generator } from '@fesjs/utils';
 
 export default class AppGenerator extends Generator {
-    constructor({
-        cwd, args, path, targetDir
-    }) {
+    constructor({ cwd, args, path, targetDir }) {
         super({
             cwd,
-            args
+            args,
         });
         this.path = path;
         this.targetDir = targetDir;
@@ -15,10 +13,10 @@ export default class AppGenerator extends Generator {
     async writing() {
         this.copyDirectory({
             context: {
-                version: require('../../package.json').version
+                version: require('../../package.json').version,
             },
             path: this.path,
-            target: this.targetDir
+            target: this.targetDir,
         });
     }
 }

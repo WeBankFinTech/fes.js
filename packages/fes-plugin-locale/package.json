@@ -33,7 +33,7 @@
   },
   "peerDependencies": {
     "@fesjs/fes": "^3.0.1",
-    "@fesjs/fes-design": "^0.7.0",
+    "@fesjs/fes-design": ">=0.7.0",
     "vue": "^3.2.47"
   },
   "typings": "./types.d.ts"
