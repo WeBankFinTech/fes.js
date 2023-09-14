@@ -41,17 +41,16 @@ class Generator {
             const absFile = join(opts.path, file);
             if (statSync(absFile).isDirectory()) return;
             if (file.endsWith('.tpl')) {
-                this.copyTpl({
+                return this.copyTpl({
                     templatePath: absFile,
                     target: join(opts.target, file.replace(/\.tpl$/, '')),
                     context: opts.context,
                 });
-            } else {
-                console.log(`${chalk.green('Copy: ')} ${file}`);
-                const absTarget = join(opts.target, file);
-                mkdirp.sync(dirname(absTarget));
-                copyFileSync(absFile, absTarget);
             }
+            console.log(`${chalk.green('Copy: ')} ${file}`);
+            const absTarget = join(opts.target, file);
+            mkdirp.sync(dirname(absTarget));
+            copyFileSync(absFile, absTarget);
         });
     }
 }

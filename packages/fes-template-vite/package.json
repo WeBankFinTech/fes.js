@@ -46,7 +46,7 @@
     "@fesjs/builder-vite": "workspace:*",
     "@fesjs/builder-webpack": "workspace:*",
     "@fesjs/fes": "workspace:*",
-    "@fesjs/fes-design": "^0.7.0",
+    "@fesjs/fes-design": "^0.8.0",
     "@fesjs/plugin-access": "workspace:*",
     "@fesjs/plugin-enums": "workspace:*",
     "@fesjs/plugin-icon": "workspace:*",
