@@ -69,6 +69,25 @@ export default {
 
 想了解更多语言信息配置、匹配规则，请参考 [Vue I18n](https://vue-i18n.intlify.dev/guide/essentials/syntax.html) 文档。
 
+
+### 多层配置
+如果国际化内容较多，希望模块化配置，则可以这样：
+
+```
+src
+  ├── locales
+  │    ├── zh-CN.js
+  │    └── en-US.js
+  |    └── system
+  |       ├── zh-CN.js
+  │       └── en-US.js
+  └── pages
+  │    └── index.vue
+  └── app.js
+```
+
+插件会把相同语言的配置合并在一起！
+
 ### 编译时配置
 
 在执行 `fes dev` 或者 `fes build` 时，通过此配置生成运行时的代码，在配置文件`.fes.js` 中配置：
