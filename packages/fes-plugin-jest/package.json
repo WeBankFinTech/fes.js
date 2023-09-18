@@ -1,6 +1,6 @@
 {
   "name": "@fesjs/plugin-jest",
-  "version": "3.0.2",
+  "version": "3.1.0",
   "description": "@fesjs/plugin-jest",
   "main": "lib/index.js",
   "files": [
@@ -30,7 +30,7 @@
     "access": "public"
   },
   "peerDependencies": {
-    "@fesjs/fes": "^3.1.2"
+    "@fesjs/fes": "^3.1.4"
   },
   "dependencies": {
     "@babel/core": "^7.21.3",
