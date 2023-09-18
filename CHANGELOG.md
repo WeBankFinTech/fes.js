@@ -1,3 +1,17 @@
+## [3.0.16](https://github.com/WeBankFinTech/fes.js/compare/v3.0.15...v3.0.16) (2023-09-18)
+
+
+### Bug Fixes
+
+* 处理create-fes-app中丢失.npmrc问题 & 升级plugin-jest支持tsx? ([#216](https://github.com/WeBankFinTech/fes.js/issues/216)) ([33b7694](https://github.com/WeBankFinTech/fes.js/commit/33b76940d85d0c0d5f1936c46837c14adf64bfae))
+
+
+### Features
+
+* 国际化支持模块化配置 ([#217](https://github.com/WeBankFinTech/fes.js/issues/217)) ([7e0d5ab](https://github.com/WeBankFinTech/fes.js/commit/7e0d5ab9919470b67ab888a62c420e2304a93648))
+
+
+
 ## [3.0.15](https://github.com/WeBankFinTech/fes.js/compare/v3.0.14...v3.0.15) (2023-08-28)
 
 
