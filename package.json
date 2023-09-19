@@ -13,7 +13,7 @@
     "dev": "node scripts/build.js --watch",
     "build": "node scripts/build.js",
     "ver": "lerna version --conventional-prerelease --no-changelog --no-commit-hooks --no-private",
-    "release": "node scripts/build.js && lerna publish from-git",
+    "release": "node scripts/build.js && lerna publish from-git --dist-tag legacy",
     "docs:dev": "vuepress dev docs --clean-cache",
     "docs:build": "vuepress build docs --clean-cache",
     "docs:build-pages": "BASE=/fes.js/ vuepress build docs --clean-cache",
