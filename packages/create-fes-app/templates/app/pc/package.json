@@ -51,7 +51,7 @@
     "@fesjs/plugin-layout": "^4.0.0",
     "@fesjs/plugin-model": "^2.0.0",
     "@fesjs/plugin-enums": "^2.0.0",
-    "@fesjs/fes-design": "^0.5.0",
+    "@fesjs/fes-design": ">=0.5.0 <2.0.0",
     "vue": "^3.2.37",
     "core-js": "^3.27.0"
   },

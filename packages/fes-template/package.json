@@ -61,7 +61,7 @@
     "@fesjs/plugin-windicss": "^2.0.0",
     "@fesjs/plugin-pinia": "^2.0.0",
     "@fesjs/plugin-watermark": "^2.0.0",
-    "@fesjs/fes-design": "^0.5.0",
+    "@fesjs/fes-design": "^0.8.0",
     "vue": "^3.2.37",
     "vuex": "^4.0.0",
     "pinia": "^2.0.11"
