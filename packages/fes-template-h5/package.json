@@ -40,7 +40,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@ttou/postcss-px-to-viewport": "^2.0.3",
+    "postcss-px-to-viewport-8-plugin": "^1.2.3",
     "@fesjs/fes": "workspace:*",
     "@fesjs/plugin-icon": "workspace:*",
     "@fesjs/plugin-request": "workspace:*",
