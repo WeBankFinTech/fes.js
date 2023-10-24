@@ -29,7 +29,7 @@
     "@fesjs/compiler": "^3.0.1",
     "@fesjs/utils": "^3.0.1",
     "@fesjs/runtime": "^3.0.0",
-    "@vue/compiler-sfc": "^3.2.47",
+    "@vue/compiler-sfc": "^3.3.4",
     "envinfo": "^7.7.3",
     "express": "^4.17.3",
     "mockjs": "^1.1.0"

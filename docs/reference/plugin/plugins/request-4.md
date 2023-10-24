@@ -46,18 +46,16 @@ export default defineRuntimeConfig({
         },
         // http 异常，和插件异常
         errorHandler(error) {
-            if (error.response) {
+            // 处理业务异常，例如上述 transformData 抛出的异常
+            if (error.code) {
+                console.log(error.msg)
+            } else if (error.response) {
                 // 请求成功发出且服务器也响应了状态码，但状态代码超出了 2xx 的范围
-                console.log(error.response.data);
-                console.log(error.response.status);
-                console.log(error.response.headers);
-            } else if (error.msg) {
-                console.log(error.msg);
+                console.log(`服务异常：${error.response.status}`)
             } else {
-                // 发送请求时出了点问题
-                console.log('Error', error.message);
+                // 请求异常
+                console.log(error.msg || error.message || `请求失败`)
             }
-            console.log(error.config);
         },
         // 支持其他 fetch 配置
         ...otherConfigs,

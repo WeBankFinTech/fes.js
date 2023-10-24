@@ -12,7 +12,7 @@
   },
   "devDependencies": {
     "@webank/eslint-config-webank": "1.2.7",
-    "@ttou/postcss-px-to-viewport": "^2.0.3"
+    "postcss-px-to-viewport-8-plugin": "^1.2.3"
   },
   "dependencies": {
     "@fesjs/fes": "^3.0.0",
