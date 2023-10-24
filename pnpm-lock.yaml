@@ -91,10 +91,10 @@ importers:
   packages/fes:
     dependencies:
       '@fesjs/compiler':
-        specifier: ^3.0.1
+        specifier: ^3.0.2
         version: link:../fes-compiler
       '@fesjs/preset-built-in':
-        specifier: ^3.1.4
+        specifier: ^3.1.5
         version: link:../fes-preset-built-in
       '@fesjs/runtime':
         specifier: ^3.0.0
@@ -193,7 +193,7 @@ importers:
         specifier: ^7.23.2
         version: 7.23.2(@babel/core@7.23.2)
       '@fesjs/fes':
-        specifier: ^3.1.4
+        specifier: ^3.1.5
         version: link:../fes
       '@fesjs/utils':
         specifier: ^3.0.1
@@ -367,7 +367,7 @@ importers:
         specifier: ^7.23.2
         version: 7.23.2(@babel/core@7.23.2)
       '@fesjs/fes':
-        specifier: ^3.1.4
+        specifier: ^3.1.5
         version: link:../fes
       '@vue/babel-plugin-jsx':
         specifier: ^1.0.6
@@ -692,7 +692,7 @@ importers:
   packages/fes-plugin-windicss:
     dependencies:
       '@fesjs/fes':
-        specifier: ^3.0.0
+        specifier: ^3.1.5
         version: link:../fes
       vite-plugin-windicss:
         specifier: ^1.9.1
@@ -710,7 +710,7 @@ importers:
   packages/fes-preset-built-in:
     dependencies:
       '@fesjs/compiler':
-        specifier: ^3.0.1
+        specifier: ^3.0.2
         version: link:../fes-compiler
       '@fesjs/runtime':
         specifier: ^3.0.0
