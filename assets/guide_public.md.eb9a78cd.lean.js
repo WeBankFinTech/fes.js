@@ -1,1 +1,0 @@
-import{_ as s,o as a,c as n,V as l}from"./chunks/framework.c1e1f082.js";const u=JSON.parse('{"title":"静态资源","description":"","frontmatter":{},"headers":[],"relativePath":"guide/public.md"}'),o={name:"guide/public.md"},p=l("",7),e=[p];function t(c,r,D,F,i,y){return a(),n("div",null,e)}const h=s(o,[["render",t]]);export{u as __pageData,h as default};
