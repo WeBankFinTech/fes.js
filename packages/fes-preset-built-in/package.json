@@ -1,6 +1,6 @@
 {
   "name": "@fesjs/preset-built-in",
-  "version": "3.1.4",
+  "version": "3.1.5",
   "description": "@fesjs/preset-built-in",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -26,7 +26,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@fesjs/compiler": "^3.0.1",
+    "@fesjs/compiler": "^3.0.2",
     "@fesjs/utils": "^3.0.1",
     "@fesjs/runtime": "^3.0.0",
     "@vue/compiler-sfc": "^3.3.4",
