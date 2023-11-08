@@ -1,3 +1,12 @@
+## [3.0.18](https://github.com/WeBankFinTech/fes.js/compare/v3.0.17...v3.0.18) (2023-11-08)
+
+
+### Bug Fixes
+
+* 添加默认 responseType 配置 ([2e01629](https://github.com/WeBankFinTech/fes.js/commit/2e0162984a34f52e4f1f02be5d660105ea479986))
+
+
+
 ## [3.0.17](https://github.com/WeBankFinTech/fes.js/compare/v3.0.16...v3.0.17) (2023-10-24)
 
 
