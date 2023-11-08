@@ -9,6 +9,7 @@ function getRequestInstance() {
         type: ApplyPluginsType.modify,
         initialValue: {
             timeout: 10000,
+            responseType: 'json',
         },
     });
 
