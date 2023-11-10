@@ -19,8 +19,8 @@
   "dependencies": {
   },
   "devDependencies": {
-    "@babel/core": "^7.21.3",
-    "@babel/preset-env": "^7.20.2",
+    "@babel/core": "^7.23.2",
+    "@babel/preset-env": "^7.23.2",
     "@webank/eslint-config-webank": "1.2.7",
     "chalk": "^4.1.2",
     "chokidar": "^3.5.2",

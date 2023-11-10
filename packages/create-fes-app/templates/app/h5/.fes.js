@@ -1,6 +1,7 @@
 // fes.config.js 只负责管理 cli 相关的配置
 import { defineBuildConfig } from '@fesjs/fes';
-import pxtoviewport from '@ttou/postcss-px-to-viewport';
+import postcsspxtoviewport8plugin from 'postcss-px-to-viewport-8-plugin';
+
 
 export default defineBuildConfig({
     define: {
@@ -15,7 +16,7 @@ export default defineBuildConfig({
         ios: '10',
     },
     extraPostCSSPlugins: [
-        pxtoviewport({
+        postcsspxtoviewport8plugin({
             unitToConvert: 'px',
             viewportWidth: 375,
             unitPrecision: 5,

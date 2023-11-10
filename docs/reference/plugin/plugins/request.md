@@ -186,3 +186,10 @@ export default {
     },
 };
 ```
+
+## 2.x 升级到 3.x
+
+1. 删除 dataField 配置，通过 dataHandler 实现类似功能，详情看上文案例
+2. errorHandler 改成了函数了，异常处理逻辑，查看上文案例
+3. 废弃 base 参数，用 baseURL
+4. 移除 skipErrorHandler 参数，直接传 errorHandler 可覆盖默认 errorHandler
