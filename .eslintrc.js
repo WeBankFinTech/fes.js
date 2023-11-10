@@ -14,6 +14,7 @@ module.exports = {
         'no-restricted-syntax': 'off',
         'no-undefined': 'off',
         'vue/valid-template-root': 'off',
+        'no-use-before-define': 'off',
     },
     env: {
         jest: true,

@@ -125,6 +125,9 @@ importers:
       '@fesjs/utils':
         specifier: ^3.0.1
         version: link:../fes-utils
+      '@rollup/pluginutils':
+        specifier: ^4.2.0
+        version: 4.2.1
       '@vitejs/plugin-basic-ssl':
         specifier: ^1.0.1
         version: 1.0.1(vite@4.2.1)
@@ -143,12 +146,45 @@ importers:
       babel-plugin-polyfill-corejs3:
         specifier: ^0.7.1
         version: 0.7.1(@babel/core@7.21.3)
+      colorette:
+        specifier: ^2.0.16
+        version: 2.0.20
+      connect-history-api-fallback:
+        specifier: ^2.0.0
+        version: 2.0.0
+      consola:
+        specifier: ^2.15.3
+        version: 2.15.3
       core-js:
         specifier: ^3.29.1
         version: 3.29.1
+      dotenv:
+        specifier: ^16.0.0
+        version: 16.0.3
+      dotenv-expand:
+        specifier: ^8.0.2
+        version: 8.0.3
+      ejs:
+        specifier: ^3.1.6
+        version: 3.1.9
+      fast-glob:
+        specifier: ^3.2.11
+        version: 3.2.12
+      fs-extra:
+        specifier: ^10.0.1
+        version: 10.1.0
+      html-minifier-terser:
+        specifier: ^6.1.0
+        version: 6.1.0
       less:
         specifier: ^4.1.2
         version: 4.1.3
+      node-html-parser:
+        specifier: ^5.3.3
+        version: 5.4.2
+      pathe:
+        specifier: ^0.2.0
+        version: 0.2.0
       postcss-flexbugs-fixes:
         specifier: ^5.0.2
         version: 5.0.2(postcss@8.4.21)
@@ -164,9 +200,6 @@ importers:
       vite:
         specifier: ^4.2.1
         version: 4.2.1(@types/node@18.15.13)(less@4.1.3)(terser@5.16.8)
-      vite-plugin-html:
-        specifier: ^3.2.0
-        version: 3.2.0(vite@4.2.1)
 
   packages/fes-builder-webpack:
     dependencies:
@@ -2829,7 +2862,7 @@ packages:
       vue: ^3.2.47
     dependencies:
       '@fesjs/fes': link:packages/fes
-      '@fesjs/utils': 3.0.0
+      '@fesjs/utils': 3.0.1
       axios: 1.3.6
       vue: 3.2.47
     transitivePeerDependencies:
@@ -2837,8 +2870,8 @@ packages:
       - supports-color
     dev: false
 
-  /@fesjs/utils@3.0.0:
-    resolution: {integrity: sha512-mQoQKn7wm+itO0iR2ysaoEGiEATHgbjvY2gvEj/ev8K/zwTjxBpSID/XIGyAJMh7DxCOPARpWf8BO6Kyafh6hA==}
+  /@fesjs/utils@3.0.1:
+    resolution: {integrity: sha512-L8Ygr1/coKCoRRsxZdkV2b0R3xgup127uXZ2mbzEihGzMzUJgN9jlfarHfsAaBbxvOcswEbLqMrTQWg6CNqFdg==}
     dependencies:
       '@babel/generator': 7.21.3
       '@babel/parser': 7.21.3
@@ -3270,7 +3303,7 @@ packages:
     dev: true
 
   /@nodelib/fs.scandir@2.1.5:
-    resolution: {integrity: sha1-dhnC6yGyVIP20WdUi0z9WnSIw9U=, tarball: https://registry.npmmirror.com/@nodelib/fs.scandir/download/@nodelib/fs.scandir-2.1.5.tgz}
+    resolution: {integrity: sha512-vq24Bq3ym5HEQm2NKCr3yXDwjc7vTsEThRDnkp2DK9p1uqLR+DHurm/NOTo0KG7HYHU7eppKZj3MyqYuMBf62g==}
     engines: {node: '>= 8'}
     dependencies:
       '@nodelib/fs.stat': 2.0.5
@@ -5452,7 +5485,7 @@ packages:
     dev: false
 
   /concat-map@0.0.1:
-    resolution: {integrity: sha1-2Klr13/Wjfd5OnMDajug1UBdR3s=, tarball: https://registry.npmmirror.com/concat-map/download/concat-map-0.0.1.tgz}
+    resolution: {integrity: sha512-/Srv4dswyQNBfohGpz9o6Yb3Gz3SrUDqBH5rTuhGR7ahtlbYKnVxw2bCFMRljaA7EXHaXZ8wsHdodFvbkhKmqg==}
 
   /confusing-browser-globals@1.0.11:
     resolution: {integrity: sha512-JsPKdmh8ZkmnHxDk55FZ1TqVLvEQTvoByJZRN9jzI0UjxK/QgAmsphz7PGtqgPieQZ/CQcHWXCR7ATDNhGe+YA==}
@@ -12417,26 +12450,6 @@ packages:
   /vary@1.1.2:
     resolution: {integrity: sha512-BNGbWLfd0eUPabhkXUVm0j8uuvREyTh5ovRa/dyow/BqAbZJyC+5fU+IzQOzmAKzYqYRAISoRhdQr3eIZ/PXqg==}
     engines: {node: '>= 0.8'}
-    dev: false
-
-  /vite-plugin-html@3.2.0(vite@4.2.1):
-    resolution: {integrity: sha512-2VLCeDiHmV/BqqNn5h2V+4280KRgQzCFN47cst3WiNK848klESPQnzuC3okH5XHtgwHH/6s1Ho/YV6yIO0pgoQ==}
-    peerDependencies:
-      vite: '>=2.0.0'
-    dependencies:
-      '@rollup/pluginutils': 4.2.1
-      colorette: 2.0.20
-      connect-history-api-fallback: 1.6.0
-      consola: 2.15.3
-      dotenv: 16.0.3
-      dotenv-expand: 8.0.3
-      ejs: 3.1.9
-      fast-glob: 3.2.12
-      fs-extra: 10.1.0
-      html-minifier-terser: 6.1.0
-      node-html-parser: 5.4.2
-      pathe: 0.2.0
-      vite: 4.2.1(@types/node@18.15.13)(less@4.1.3)(terser@5.16.8)
     dev: false
 
   /vite-plugin-monaco-editor@1.1.0(monaco-editor@0.36.1):
