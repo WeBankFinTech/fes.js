@@ -2,7 +2,7 @@ import { join } from 'path';
 import { existsSync } from 'fs';
 import vue from '@vitejs/plugin-vue';
 import vueJsx from '@vitejs/plugin-vue-jsx';
-import { createHtmlPlugin } from 'vite-plugin-html';
+import { createHtmlPlugin } from './vite-plugin-html';
 import SFCConfigBlockPlugin from './SFCConfigBlockPlugin';
 import getDefine from './getDefine';
 
