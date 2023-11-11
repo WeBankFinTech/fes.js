@@ -1,0 +1,1 @@
+import{_ as e,o as a,c as t,V as i}from"./chunks/framework.85b09291.js";const m=JSON.parse('{"title":"Vite 和 Webpack 双构建","description":"","frontmatter":{},"headers":[],"relativePath":"guide/builder.md"}'),r={name:"guide/builder.md"},l=i("",12),c=[l];function o(s,n,h,p,d,b){return a(),t("div",null,c)}const _=e(r,[["render",o]]);export{m as __pageData,_ as default};
