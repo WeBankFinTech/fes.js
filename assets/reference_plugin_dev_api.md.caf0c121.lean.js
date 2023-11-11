@@ -1,1 +1,0 @@
-import{_ as s,o as a,c as n,V as l}from"./chunks/framework.6405946a.js";const d=JSON.parse('{"title":"插件 API","description":"","frontmatter":{},"headers":[],"relativePath":"reference/plugin/dev/api.md"}'),p={name:"reference/plugin/dev/api.md"},o=l("",211),e=[o];function t(c,r,y,D,F,i){return a(),n("div",null,e)}const A=s(p,[["render",t]]);export{d as __pageData,A as default};

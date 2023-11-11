@@ -1,0 +1,1 @@
+import{_ as s,o as a,c as n,V as l}from"./chunks/framework.85b09291.js";const i=JSON.parse('{"title":"路由","description":"","frontmatter":{},"headers":[],"relativePath":"guide/route.md"}'),p={name:"guide/route.md"},o=l("",62),e=[o];function t(c,r,D,F,y,C){return a(),n("div",null,e)}const u=s(p,[["render",t]]);export{i as __pageData,u as default};
