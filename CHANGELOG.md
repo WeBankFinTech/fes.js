@@ -1,3 +1,13 @@
+## [3.0.19](https://github.com/WeBankFinTech/fes.js/compare/v3.0.17...v3.0.19) (2023-11-11)
+
+
+### Bug Fixes
+
+* 添加默认 responseType 配置 ([2e01629](https://github.com/WeBankFinTech/fes.js/commit/2e0162984a34f52e4f1f02be5d660105ea479986))
+* 修复vite构建时public下的html文件无法正常访问问题 ([#221](https://github.com/WeBankFinTech/fes.js/issues/221)) ([e556fc3](https://github.com/WeBankFinTech/fes.js/commit/e556fc342eeb061f84082e3969a74200e11b6601))
+
+
+
 ## [3.0.18](https://github.com/WeBankFinTech/fes.js/compare/v3.0.17...v3.0.18) (2023-11-08)
 
 
