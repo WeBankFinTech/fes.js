@@ -170,6 +170,7 @@ export default async (ctx, next) => {
         const cacheData = getCacheData({ key: ctx.key, cacheType: config.cache.cacheType });
         if (cacheData) {
             ctx.response = {
+                config,
                 data: cacheData,
             };
             return;
