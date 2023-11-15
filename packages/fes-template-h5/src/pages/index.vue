@@ -3,11 +3,13 @@
 </template>
 
 <script setup>
-import { defineRouteMeta } from '@fesjs/fes';
+import { defineRouteMeta, request } from '@fesjs/fes';
 
 defineRouteMeta({
     title: '首页',
     name: 'testIndex',
     layout: false,
 });
+
+request('http://f1.test-adm.weoa.com/rcs-cscm/user/checkAlddddive.do');
 </script>
