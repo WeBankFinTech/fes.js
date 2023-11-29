@@ -1,4 +1,4 @@
-module.exports = {
+export default {
     pkgs: [
         'create-fes-app',
         'fes',

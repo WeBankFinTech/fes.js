@@ -1,7 +1,8 @@
+import process from 'node:process';
 import { render } from 'ejs';
 import { expand } from 'dotenv-expand';
 import dotenv from 'dotenv';
-import path, { join, dirname } from 'pathe';
+import path, { dirname, join } from 'pathe';
 import fse from 'fs-extra';
 import { normalizePath } from 'vite';
 import { parse } from 'node-html-parser';
@@ -15,20 +16,18 @@ import history from './connectHistoryMiddleware';
 function lookupFile(dir, formats, pathOnly = false) {
     for (const format of formats) {
         const fullPath = join(dir, format);
-        if (fse.pathExistsSync(fullPath) && fse.statSync(fullPath).isFile()) {
+        if (fse.pathExistsSync(fullPath) && fse.statSync(fullPath).isFile())
             return pathOnly ? fullPath : fse.readFileSync(fullPath, 'utf-8');
-        }
     }
     const parentDir = dirname(dir);
-    if (parentDir !== dir) {
+    if (parentDir !== dir)
         return lookupFile(parentDir, formats, pathOnly);
-    }
 }
 
 function loadEnv(mode, envDir, prefix = '') {
-    if (mode === 'local') {
+    if (mode === 'local')
         throw new Error(`"local" cannot be used as a mode name because it conflicts with the .local postfix for .env files.`);
-    }
+
     const env = {};
     const envFiles = [`.env.${mode}.local`, `.env.${mode}`, `.env.local`, `.env`];
     for (const file of envFiles) {
@@ -40,11 +39,11 @@ function loadEnv(mode, envDir, prefix = '') {
                 ignoreProcessEnv: true,
             });
             for (const [key, value] of Object.entries(parsed)) {
-                if (key.startsWith(prefix) && env[key] === undefined) {
+                if (key.startsWith(prefix) && env[key] === undefined)
                     env[key] = value;
-                } else if (key === 'NODE_ENV') {
+
+                else if (key === 'NODE_ENV')
                     process.env.VITE_USER_NODE_ENV = value;
-                }
             }
         }
     }
@@ -52,7 +51,7 @@ function loadEnv(mode, envDir, prefix = '') {
 }
 
 async function isDirEmpty(dir) {
-    return fse.readdir(dir).then((files) => files.length === 0);
+    return fse.readdir(dir).then(files => files.length === 0);
 }
 
 const DEFAULT_TEMPLATE = 'index.html';
@@ -65,7 +64,7 @@ function createPlugin(userOptions = {}) {
     let env = {};
     return {
         name: 'vite:html',
-        enforce: 'pre',
+        order: 'pre',
         configResolved(resolvedConfig) {
             viteConfig = resolvedConfig;
             env = loadEnv(viteConfig.mode, viteConfig.root, '');
@@ -92,8 +91,9 @@ function createPlugin(userOptions = {}) {
                     filename,
                     template: template2,
                 });
-            } else {
-                _pages = pages.map((page) => ({
+            }
+            else {
+                _pages = pages.map(page => ({
                     filename: page.filename || DEFAULT_TEMPLATE,
                     template: page.template || DEFAULT_TEMPLATE,
                 }));
@@ -103,15 +103,15 @@ function createPlugin(userOptions = {}) {
             const keys = Object.keys(proxy);
             let indexPage = null;
             for (const page of _pages) {
-                if (page.filename !== 'index.html') {
+                if (page.filename !== 'index.html')
                     rewrites.push(createRewire(page.template, page, baseUrl, keys));
-                } else {
+
+                else
                     indexPage = page;
-                }
             }
-            if (indexPage) {
+            if (indexPage)
                 rewrites.push(createRewire('', indexPage, baseUrl, keys));
-            }
+
             server.middlewares.use(
                 history(viteConfig, {
                     disableDotRule: undefined,
@@ -121,8 +121,8 @@ function createPlugin(userOptions = {}) {
             );
         },
         transformIndexHtml: {
-            enforce: 'pre',
-            async transform(html, ctx) {
+            order: 'pre',
+            async handler(html, ctx) {
                 const url = ctx.filename;
                 const base = viteConfig.base;
                 const excludeBaseUrl = url.replace(base, '/');
@@ -148,38 +148,36 @@ function createPlugin(userOptions = {}) {
             if (isMpa(viteConfig) || pages.length) {
                 for (const page of pages) {
                     const dir = path.dirname(page.template);
-                    if (!ignoreDirs.includes(dir)) {
+                    if (!ignoreDirs.includes(dir))
                         outputDirs.push(dir);
-                    }
                 }
-            } else {
+            }
+            else {
                 const dir = path.dirname(template);
-                if (!ignoreDirs.includes(dir)) {
+                if (!ignoreDirs.includes(dir))
                     outputDirs.push(dir);
-                }
             }
             const cwd = path.resolve(viteConfig.root, viteConfig.build.outDir);
             const htmlFiles = await fg(
-                outputDirs.map((dir) => `${dir}/*.html`),
+                outputDirs.map(dir => `${dir}/*.html`),
                 { cwd: path.resolve(cwd), absolute: true },
             );
             await Promise.all(
-                htmlFiles.map((file) =>
+                htmlFiles.map(file =>
                     fse.move(file, path.resolve(cwd, path.basename(file)), {
                         overwrite: true,
                     }),
                 ),
             );
             const htmlDirs = await fg(
-                outputDirs.map((dir) => dir),
+                outputDirs.map(dir => dir),
                 { cwd: path.resolve(cwd), onlyDirectories: true, absolute: true },
             );
             await Promise.all(
                 htmlDirs.map(async (item) => {
                     const isEmpty = await isDirEmpty(item);
-                    if (isEmpty) {
+                    if (isEmpty)
                         return fse.remove(item);
-                    }
                 }),
             );
         },
@@ -189,7 +187,7 @@ function createPlugin(userOptions = {}) {
 function createInput({ pages = [], template = DEFAULT_TEMPLATE }, viteConfig) {
     const input = {};
     if (isMpa(viteConfig) || pages?.length) {
-        const templates = pages.map((page) => page.template);
+        const templates = pages.map(page => page.template);
         templates.forEach((temp) => {
             let dirName = path.dirname(temp);
             const file = path.basename(temp);
@@ -200,9 +198,9 @@ function createInput({ pages = [], template = DEFAULT_TEMPLATE }, viteConfig) {
         return input;
     }
     const dir = path.dirname(template);
-    if (ignoreDirs.includes(dir)) {
+    if (ignoreDirs.includes(dir))
         return undefined;
-    }
+
     const file = path.basename(template);
     const key = file.replace(/\.html/, '');
     return {
@@ -229,11 +227,12 @@ async function renderHtml(html, config) {
 
 function getPage({ pages = [], entry, template = DEFAULT_TEMPLATE, inject = {} }, name, viteConfig) {
     let page;
-    if (isMpa(viteConfig) || pages?.length) {
+    if (isMpa(viteConfig) || pages?.length)
         page = getPageConfig(name, pages, DEFAULT_TEMPLATE);
-    } else {
+
+    else
         page = createSpaPage(entry, template, inject);
-    }
+
     return page;
 }
 
@@ -243,9 +242,9 @@ function isMpa(viteConfig) {
 }
 
 function removeEntryScript(html, verbose = false) {
-    if (!html) {
+    if (!html)
         return html;
-    }
+
     const root = parse(html);
     const scriptNodes = root.querySelectorAll('script[type=module]') || [];
     const removedNode = [];
@@ -253,9 +252,9 @@ function removeEntryScript(html, verbose = false) {
         removedNode.push(item.toString());
         item.parentNode.removeChild(item);
     });
-    verbose &&
-        removedNode.length &&
-        consola.warn(`vite-plugin-html: Since you have already configured entry, ${dim(
+    verbose
+    && removedNode.length
+    && consola.warn(`vite-plugin-html: Since you have already configured entry, ${dim(
             removedNode.toString(),
         )} is deleted. You may also delete it from the index.html.
         `);
@@ -276,7 +275,7 @@ function getPageConfig(htmlName, pages, defaultPage) {
         filename: defaultPage,
         template: `./${defaultPage}`,
     };
-    const page = pages.filter((page2) => path.resolve(`/${page2.template}`) === path.resolve(`/${htmlName}`))?.[0];
+    const page = pages.filter(page2 => path.resolve(`/${page2.template}`) === path.resolve(`/${htmlName}`))?.[0];
     return page ?? defaultPageOption ?? undefined;
 }
 
@@ -287,10 +286,10 @@ function createRewire(reg, page, baseUrl, proxyUrlKeys) {
             const pathname = parsedUrl.pathname;
             const excludeBaseUrl = pathname.replace(baseUrl, '/');
             const template = path.resolve(baseUrl, page.template);
-            if (excludeBaseUrl === '/') {
+            if (excludeBaseUrl === '/')
                 return template;
-            }
-            const isApiUrl = proxyUrlKeys.some((item) => pathname.startsWith(path.resolve(baseUrl, item)));
+
+            const isApiUrl = proxyUrlKeys.some(item => pathname.startsWith(path.resolve(baseUrl, item)));
             return isApiUrl ? parsedUrl.path : template;
         },
     };
@@ -312,13 +311,13 @@ function getOptions(_minify) {
 }
 
 async function minifyHtml(html, minify$1) {
-    if (typeof minify$1 === 'boolean' && !minify$1) {
+    if (typeof minify$1 === 'boolean' && !minify$1)
         return html;
-    }
+
     let minifyOptions = minify$1;
-    if (typeof minify$1 === 'boolean' && minify$1) {
+    if (typeof minify$1 === 'boolean' && minify$1)
         minifyOptions = getOptions(minify$1);
-    }
+
     const res = await minify(html, minifyOptions);
     return res;
 }
@@ -326,13 +325,12 @@ async function minifyHtml(html, minify$1) {
 function createMinifyHtmlPlugin({ _minify = true } = {}) {
     return {
         name: 'vite:minify-html',
-        enforce: 'post',
+        order: 'post',
         async generateBundle(_, outBundle) {
             if (_minify) {
                 for (const bundle of Object.values(outBundle)) {
-                    if (bundle.type === 'asset' && htmlFilter(bundle.fileName) && typeof bundle.source === 'string') {
+                    if (bundle.type === 'asset' && htmlFilter(bundle.fileName) && typeof bundle.source === 'string')
                         bundle.source = await minifyHtml(bundle.source, _minify);
-                    }
                 }
             }
         },

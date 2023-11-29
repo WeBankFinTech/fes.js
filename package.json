@@ -7,6 +7,7 @@
   "workspaces": [
     "packages/*"
   ],
+  "type": "module",
   "scripts": {
     "bootstrap": "pnpm i",
     "dev": "node scripts/build.mjs --watch",
@@ -37,16 +38,17 @@
     "semver": "^7.3.6"
   },
   "devDependencies": {
+    "@antfu/eslint-config": "^2.1.1",
     "@commitlint/cli": "^11.0.0",
     "@commitlint/config-conventional": "^11.0.0",
-    "@webank/eslint-config-webank": "1.2.7",
     "chokidar": "^3.5.3",
     "commitizen": "^4.3.0",
     "cz-conventional-changelog": "^3.3.0",
     "deepmerge": "^4.2.2",
+    "eslint": "^8.54.0",
     "fs-extra": "^11.1.1",
-    "husky": "^8.0.3",
     "lint-staged": "^13.2.0",
+    "simple-git-hooks": "^2.9.0",
     "typescript": "^5.0.4",
     "vitepress": "1.0.0-alpha.73",
     "vue": "^3.3.4",
@@ -57,11 +59,9 @@
       "npm run lint"
     ]
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged",
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
-    }
+  "simple-git-hooks": {
+    "pre-commit": "lint-staged",
+    "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
   },
   "config": {
     "commitizen": {
