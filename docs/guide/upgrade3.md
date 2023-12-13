@@ -4,6 +4,8 @@
 
 1. 编译时的 [base](../reference/config/index.md/#base) 配置，移到了 [router.base](../reference/config/index.md/#router) 下。
 2. [webpack-dev-server](https://github.com/webpack/webpack-dev-server) 从 `v3.x` 升级到了 `v4.x`，如果遇到配置不兼容，可以查看[webpack-dev-server 3.x 升级 4.x](https://github.com/webpack/webpack-dev-server/blob/master/migration-v4.md)。
+3. [layout 插件](../reference/plugin/plugins/layout.md#_4-x-升级到-5-x) 有一些属性变更
+3. [request 插件](../reference/plugin/plugins/request.md#_2-x-升级到-3-x) 有一些参数变更
 
 ## 继续使用 Webpack
 

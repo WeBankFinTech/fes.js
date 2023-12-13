@@ -31,12 +31,12 @@ export default defineRuntimeConfig({
         dataHandler(data, response) {
             // 处理响应内容异常
             if (data.code !== '0') {
-                if (data.code === '10000') {
+                if (data.code === '10000')
                     FMesseage.error('hello world');
-                }
-                if (data.code === '20000') {
+
+                if (data.code === '20000')
                     FMesseage.error('hello world');
-                }
+
                 throw new Error(response);
             }
             // 响应数据格式化
@@ -49,15 +49,18 @@ export default defineRuntimeConfig({
                 console.log(error.response.data);
                 console.log(error.response.status);
                 console.log(error.response.headers);
-            } else if (error.request) {
+            }
+            else if (error.request) {
                 // 请求已经成功发起，但没有收到响应
                 // `error.request` 在浏览器中是 XMLHttpRequest 的实例，
                 // 而在node.js中是 http.ClientRequest 的实例
                 console.log(error.request);
-            } else if (error.type) {
+            }
+            else if (error.type) {
                 // 插件异常
                 console.log(error.msg);
-            } else {
+            }
+            else {
                 // 发送请求时出了点问题
                 console.log('Error', error.message);
             }
@@ -192,4 +195,4 @@ export default {
 1. 删除 dataField 配置，通过 dataHandler 实现类似功能，详情看上文案例
 2. errorHandler 改成了函数了，异常处理逻辑，查看上文案例
 3. 废弃 base 参数，用 baseURL
-4. 移除 skipErrorHandler 参数，直接传 errorHandler 可覆盖默认 errorHandler
+4. 移除 skipErrorHandler 参数，目前还做了兼容，最好用 dataHandler 和 errorHandler 代替
