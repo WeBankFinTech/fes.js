@@ -1,5 +1,5 @@
-import { join } from 'path';
-import { existsSync } from 'fs';
+import { join } from 'node:path';
+import { existsSync } from 'node:fs';
 import Config from 'webpack-5-chain';
 import webpack from 'webpack';
 import createCssWebpackConfig from './css';
@@ -27,11 +27,10 @@ function genTranspileDepRegex(exclude) {
     const deps = exclude.map((dep) => {
         if (typeof dep === 'string') {
             const depPath = join('node_modules', dep, '/');
-            return /^win/.test(require('os').platform()) ? depPath.replace(/\\/g, '\\\\') : depPath;
+            return require('node:os').platform().startsWith('win') ? depPath.replace(/\\/g, '\\\\') : depPath;
         }
-        if (dep instanceof RegExp) {
+        if (dep instanceof RegExp)
             return dep.source;
-        }
 
         throw new Error('exclude only accepts an array of string or regular expressions');
     });
@@ -76,7 +75,6 @@ export default async function getConfig({ api, cwd, config, env, entry = {}, mod
     // --------------- output -----------
     webpackConfig.output
         .path(absoluteOutput)
-        .publicPath(publicPath || '/')
         .filename('static/[name].[contenthash:8].js')
         .chunkFilename('static/[name].[contenthash:8].chunk.js')
         .assetModuleFilename('static/[name][hash:8][ext]');
@@ -133,9 +131,9 @@ export default async function getConfig({ api, cwd, config, env, entry = {}, mod
         .test(/\.(js|mjs|jsx|ts|tsx)$/)
         .exclude.add((filepath) => {
             // always transpile js in vue files
-            if (/(\.vue|\.jsx)$/.test(filepath)) {
+            if (/(\.vue|\.jsx)$/.test(filepath))
                 return false;
-            }
+
             // Don't transpile node_modules
             return /node_modules/.test(filepath);
         })
@@ -153,9 +151,8 @@ export default async function getConfig({ api, cwd, config, env, entry = {}, mod
             .include.add(/node_modules/)
             .end()
             .exclude.add((filepath) => {
-                if (transpileDepRegex && transpileDepRegex.test(filepath)) {
+                if (transpileDepRegex && transpileDepRegex.test(filepath))
                     return true;
-                }
 
                 return false;
             })
@@ -195,12 +192,12 @@ export default async function getConfig({ api, cwd, config, env, entry = {}, mod
         existsSync(join(cwd, 'public')) && {
             from: join(cwd, 'public'),
             filter: (resourcePath) => {
-                if (resourcePath.indexOf('.DS_Store') !== -1) {
+                if (resourcePath.includes('.DS_Store'))
                     return false;
-                }
-                if (publicCopyIgnore.includes(resourcePath)) {
+
+                if (publicCopyIgnore.includes(resourcePath))
                     return false;
-                }
+
                 return true;
             },
             to: absoluteOutput,

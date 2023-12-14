@@ -25,7 +25,6 @@ export const beforeRender = {
 export const layout = {
     logo: `${process.env.BASE_URL}wine-outline.svg`,
     renderCustom: (props) => {
-        console.log(props);
         return <UserCenter />;
     },
 };

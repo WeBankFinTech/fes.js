@@ -1,4 +1,5 @@
-import { chalk, yParser, semver } from '@fesjs/utils';
+import process from 'node:process';
+import { chalk, semver, yParser } from '@fesjs/utils';
 import fesPkg from '../package.json';
 import { Service } from './serviceWithBuiltIn';
 import fork from './utils/fork';
@@ -10,6 +11,7 @@ const requiredVersion = fesPkg.engines.node;
 
 function checkNodeVersion(wanted, id) {
     if (!semver.satisfies(process.version, wanted, { includePrerelease: true })) {
+        // eslint-disable-next-line no-console
         console.log(chalk.red(`You are using Node ${process.version}, but this version of ${id} requires Node ${wanted}.\nPlease upgrade your Node version.`));
         process.exit(1);
     }
@@ -37,11 +39,12 @@ const args = yParser(rawArgv);
                 child.kill('SIGTERM');
                 process.exit(1);
             });
-        } else {
+        }
+        else {
             hackFesInBuild();
-            if (command === 'build') {
+            if (command === 'build')
                 process.env.NODE_ENV = 'production';
-            }
+
             await new Service({
                 cwd: getCwd(),
                 pkg: getPkg(process.cwd()),
@@ -51,7 +54,8 @@ const args = yParser(rawArgv);
                 rawArgv,
             });
         }
-    } catch (e) {
+    }
+    catch (e) {
         console.error(chalk.red(e.message));
         console.error(e.stack);
         process.exit(1);

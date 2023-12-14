@@ -1,5 +1,5 @@
-import { join } from 'path';
-import { existsSync } from 'fs';
+import { join } from 'node:path';
+import { existsSync } from 'node:fs';
 import vue from '@vitejs/plugin-vue';
 import vueJsx from '@vitejs/plugin-vue-jsx';
 import { createHtmlPlugin } from './vite-plugin-html';
@@ -9,15 +9,15 @@ import getDefine from './getDefine';
 function getPostcssConfig(api) {
     // TODO 支持其他 postcss 配置文件类型
     const configPath = `${api.paths.cwd}/postcss.config.js`;
-    if (existsSync(configPath)) {
+    if (existsSync(configPath))
         return require(`${api.paths.cwd}/postcss.config.js`);
-    }
+
     return {};
 }
 
 export function getInnerCommonConfig(api) {
     const { deepmerge, resolveRuntimeEnv } = api.utils;
-    const { server, build, define, base, ...otherViteOption } = api.config.viteOption;
+    const { base, ...otherViteOption } = api.config.viteOption;
 
     const publicPath = base || api.config.publicPath || '/';
 

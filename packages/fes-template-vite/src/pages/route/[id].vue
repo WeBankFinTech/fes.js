@@ -1,14 +1,9 @@
 <template>
     <div>
-        {{params.id}}
+        {{ params.id }}
     </div>
 </template>
-<config>
-{
-    "name": "activeRoute",
-    "title": "动态路由"
-}
-</config>
+
 <script>
 import { useRoute } from '@fesjs/fes';
 
@@ -16,8 +11,15 @@ export default {
     setup() {
         const { params } = useRoute();
         return {
-            params
+            params,
         };
-    }
+    },
 };
 </script>
+
+<config>
+{
+    "name": "activeRoute",
+    "title": "动态路由"
+}
+</config>

@@ -25,11 +25,11 @@ export default function (pkg) {
         const color = colors[index];
         const str = chalk[color].bold(pkg);
         cache[pkg] = str;
-        if (index === colors.length - 1) {
+        if (index === colors.length - 1)
             index = 0;
-        } else {
+
+        else
             index += 1;
-        }
     }
     return cache[pkg];
 }
