@@ -122,7 +122,10 @@ export const request = (url, data, options = {}) => {
     return currentRequestInstance.request(context).then(async () => {
         if (context.config.skipErrorHandler) {
             console.warn('3.x 已移除 skipErrorHandler 参数，请改用 dataHandler 处理');
-            if (context.config.skipErrorHandler === true || context.response?.data?.code === context.config.skipErrorHandler) {
+            if (
+                ((context.error || context.response?.data?.code !== '0') && context.config.skipErrorHandler === true) ||
+                context.response?.data?.code === context.config.skipErrorHandler
+            ) {
                 return Promise.reject(context.response);
             }
         }
