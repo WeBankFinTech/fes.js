@@ -8,9 +8,13 @@ export default (api, publicPath) => {
         ...api.config.define,
         ...viteOption.define,
     });
+    const formatEnv = Object.keys(env).reduce((acc, cur) => {
+        acc[`process.env.${cur}`] = JSON.stringify(env[cur]);
+        return acc;
+    }, {});
 
     return {
-        'process.env': env,
+        ...formatEnv,
         ...define,
     };
 };

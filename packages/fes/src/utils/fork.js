@@ -1,11 +1,12 @@
-import { fork } from 'child_process';
+import { fork } from 'node:child_process';
+import process from 'node:process';
 
 const usedPorts = [];
 let CURRENT_PORT;
 
 export default function start({ scriptPath }) {
     const execArgv = process.execArgv.slice(0);
-    const inspectArgvIndex = execArgv.findIndex((argv) => argv.includes('--inspect-brk'));
+    const inspectArgvIndex = execArgv.findIndex(argv => argv.includes('--inspect-brk'));
 
     if (inspectArgvIndex > -1) {
         const inspectArgv = execArgv[inspectArgvIndex];
@@ -15,13 +16,14 @@ export default function start({ scriptPath }) {
             inspectArgv.replace(/--inspect-brk=(.*)/, (match, s1) => {
                 let port;
                 try {
-                    port = parseInt(s1, 10) + 1;
-                } catch (e) {
+                    port = Number.parseInt(s1, 10) + 1;
+                }
+                catch (e) {
                     port = 9230; // node default inspect port plus 1.
                 }
-                if (usedPorts.includes(port)) {
+                if (usedPorts.includes(port))
                     port += 1;
-                }
+
                 usedPorts.push(port);
                 return `--inspect-brk=${port}`;
             }),
@@ -29,10 +31,8 @@ export default function start({ scriptPath }) {
     }
 
     // set port to env when current port has value
-    if (CURRENT_PORT) {
-        // @ts-ignore
+    if (CURRENT_PORT)
         process.env.PORT = CURRENT_PORT;
-    }
 
     const child = fork(scriptPath, process.argv.slice(2), {
         execArgv,
@@ -45,7 +45,8 @@ export default function start({ scriptPath }) {
             start({
                 scriptPath,
             });
-        } else if (type === 'UPDATE_PORT') {
+        }
+        else if (type === 'UPDATE_PORT') {
             // set current used port
             CURRENT_PORT = data.port;
         }

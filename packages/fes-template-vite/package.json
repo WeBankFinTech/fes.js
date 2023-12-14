@@ -1,66 +1,38 @@
 {
-  "name": "@fesjs/template-vite",
-  "version": "2.0.0",
-  "description": "fes项目模版",
-  "scripts": {
-    "build": "fes build",
-    "prod": "FES_ENV=prod fes build",
-    "analyze": "ANALYZE=1 fes build",
-    "dev": "fes dev",
-    "test": "fes test"
-  },
-  "keywords": [
-    "管理端",
-    "fes",
-    "fast",
-    "easy",
-    "strong"
-  ],
-  "files": [
-    ".eslintrc.js",
-    ".gitignore",
-    ".fes.js",
-    ".fes.prod.js",
-    "mock.js",
-    "package.json",
-    "README.md",
-    "tsconfig.json",
-    "/src",
-    "/config"
-  ],
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/WeBankFinTech/fes.js.git",
-    "directory": "packages/fes-template"
-  },
-  "author": "harrywan",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/WeBankFinTech/fes.js/issues"
-  },
-  "homepage": "https://github.com/WeBankFinTech/fes.js#readme",
-  "publishConfig": {
-    "access": "public"
-  },
-  "dependencies": {
-    "@fesjs/builder-vite": "workspace:*",
-    "@fesjs/builder-webpack": "workspace:*",
-    "@fesjs/fes": "workspace:*",
-    "@fesjs/fes-design": "^0.8.0",
-    "@fesjs/plugin-access": "workspace:*",
-    "@fesjs/plugin-enums": "workspace:*",
-    "@fesjs/plugin-icon": "workspace:*",
-    "@fesjs/plugin-jest": "workspace:*",
-    "@fesjs/plugin-layout": "workspace:*",
-    "@fesjs/plugin-locale": "workspace:*",
-    "@fesjs/plugin-model": "workspace:*",
-    "@fesjs/plugin-monaco-editor": "workspace:*",
-    "@fesjs/plugin-pinia": "workspace:*",
-    "@fesjs/plugin-request": "workspace:*",
-    "@fesjs/plugin-sass": "workspace:*",
-    "core-js": "^3.29.1",
-    "pinia": "^2.0.11",
-    "vue": "^3.2.47"
-  },
-  "private": true
+    "name": "@fesjs/template-vite",
+    "version": "2.0.0",
+    "private": true,
+    "description": "fes项目模版",
+    "author": "harrywan",
+    "license": "MIT",
+    "scripts": {
+        "build": "fes build",
+        "prod": "FES_ENV=prod fes build",
+        "analyze": "ANALYZE=1 fes build",
+        "dev": "fes dev",
+        "test": "fes test"
+    },
+    "publishConfig": {
+        "access": "public"
+    },
+    "dependencies": {
+        "@fesjs/builder-vite": "workspace:*",
+        "@fesjs/builder-webpack": "workspace:*",
+        "@fesjs/fes": "workspace:*",
+        "@fesjs/fes-design": "^0.8.0",
+        "@fesjs/plugin-access": "workspace:*",
+        "@fesjs/plugin-enums": "workspace:*",
+        "@fesjs/plugin-icon": "workspace:*",
+        "@fesjs/plugin-jest": "workspace:*",
+        "@fesjs/plugin-layout": "workspace:*",
+        "@fesjs/plugin-locale": "workspace:*",
+        "@fesjs/plugin-model": "workspace:*",
+        "@fesjs/plugin-monaco-editor": "workspace:*",
+        "@fesjs/plugin-pinia": "workspace:*",
+        "@fesjs/plugin-request": "workspace:*",
+        "@fesjs/plugin-sass": "workspace:*",
+        "core-js": "^3.29.1",
+        "pinia": "^2.0.11",
+        "vue": "^3.2.47"
+    }
 }

@@ -62,7 +62,7 @@
     "webpack": "^5.87.0",
     "webpack-5-chain": "^8.0.1",
     "webpack-bundle-analyzer": "^4.4.0",
-    "webpack-dev-server": "^4.8.1",
+    "webpack-dev-server": "^4.15.1",
     "webpackbar": "^5.0.2"
   },
   "peerDependencies": {
