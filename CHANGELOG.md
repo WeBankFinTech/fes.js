@@ -1,3 +1,12 @@
+## [3.1.1](https://github.com/WeBankFinTech/fes.js/compare/v3.0.19...v3.1.1) (2023-12-14)
+
+
+### Features
+
+* 升级 vite5 ([#222](https://github.com/WeBankFinTech/fes.js/issues/222)) ([fec7a8f](https://github.com/WeBankFinTech/fes.js/commit/fec7a8f1ae8685c7ef91ab60499166ae0fb22fb8))
+
+
+
 # [3.1.0](https://github.com/WeBankFinTech/fes.js/compare/v3.0.19...v3.1.0) (2023-12-14)
 
 
