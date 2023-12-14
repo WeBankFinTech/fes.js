@@ -1,53 +1,53 @@
 {
-  "name": "@fesjs/fes",
-  "version": "3.1.5",
-  "description": "一个好用的前端管理台快速开发框架",
-  "preferGlobal": true,
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "files": [
-    "lib",
-    "bin",
-    "types.d.ts"
-  ],
-  "bin": {
-    "fes": "./bin/fes.js"
-  },
-  "main": "lib/index.js",
-  "module": "lib/index.js",
-  "author": "qlin",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/WeBankFinTech/fes.js.git",
-    "directory": "packages/fes"
-  },
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/WeBankFinTech/fes.js/issues"
-  },
-  "homepage": "https://github.com/WeBankFinTech/fes.js#readme",
-  "publishConfig": {
-    "access": "public"
-  },
-  "keywords": [
-    "管理端",
-    "fes",
-    "fast",
-    "easy",
-    "strong"
-  ],
-  "dependencies": {
-    "@fesjs/compiler": "^3.0.2",
-    "@fesjs/preset-built-in": "^3.1.5",
-    "@fesjs/runtime": "^3.0.0",
-    "@fesjs/utils": "^3.0.1",
-    "pirates": "^4.0.5",
-    "resolve-cwd": "^3.0.0",
-    "vue-router": "^4.1.6"
-  },
-  "engines": {
-    "node": "^10.12.0 || ^12.0.0 || >= 14.0.0"
-  },
-  "types": "types.d.ts"
+    "name": "@fesjs/fes",
+    "version": "3.1.6",
+    "description": "一个好用的前端管理台快速开发框架",
+    "preferGlobal": true,
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "files": [
+        "lib",
+        "bin",
+        "types.d.ts"
+    ],
+    "bin": {
+        "fes": "./bin/fes.js"
+    },
+    "main": "lib/index.js",
+    "module": "lib/index.js",
+    "author": "qlin",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/WeBankFinTech/fes.js.git",
+        "directory": "packages/fes"
+    },
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/WeBankFinTech/fes.js/issues"
+    },
+    "homepage": "https://github.com/WeBankFinTech/fes.js#readme",
+    "publishConfig": {
+        "access": "public"
+    },
+    "keywords": [
+        "管理端",
+        "fes",
+        "fast",
+        "easy",
+        "strong"
+    ],
+    "dependencies": {
+        "@fesjs/compiler": "^3.0.2",
+        "@fesjs/preset-built-in": "^3.1.6",
+        "@fesjs/runtime": "^3.0.0",
+        "@fesjs/utils": "^3.0.1",
+        "pirates": "^4.0.5",
+        "resolve-cwd": "^3.0.0",
+        "vue-router": "^4.1.6"
+    },
+    "engines": {
+        "node": "^10.12.0 || ^12.0.0 || >= 14.0.0"
+    },
+    "types": "types.d.ts"
 }
