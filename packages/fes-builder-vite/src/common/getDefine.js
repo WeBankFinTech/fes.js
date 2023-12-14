@@ -12,7 +12,7 @@ export default (api, publicPath) => {
         acc[`process.env.${cur}`] = JSON.stringify(env[cur]);
         return acc;
     }, {});
-    console.log(formatEnv);
+
     return {
         ...formatEnv,
         ...define,
