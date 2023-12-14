@@ -75,7 +75,6 @@ export default async function getConfig({ api, cwd, config, env, entry = {}, mod
     // --------------- output -----------
     webpackConfig.output
         .path(absoluteOutput)
-        .publicPath(publicPath ?? '/')
         .filename('static/[name].[contenthash:8].js')
         .chunkFilename('static/[name].[contenthash:8].chunk.js')
         .assetModuleFilename('static/[name][hash:8][ext]');
