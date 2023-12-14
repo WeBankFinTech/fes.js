@@ -134,6 +134,8 @@ export const request = (url, data, options = {}) => {
     });
 };
 
+export const rawRequest = request;
+
 function isPromiseLike(obj) {
     return !!obj && typeof obj === 'object' && typeof obj.then === 'function';
 }
