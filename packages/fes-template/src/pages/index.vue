@@ -1,7 +1,9 @@
 <template>
     <div class="page">
         home
-        <FButton class="m-2" @click="go">Button</FButton>
+        <FButton class="m-2" @click="go">
+            Button
+        </FButton>
     </div>
 </template>
 
@@ -13,12 +15,13 @@ defineRouteMeta({
     name: 'index',
     title: '$home',
 });
+
 console.log('123123'.replaceAll('123', '234'));
 
 const router = useRouter();
-const go = () => {
+function go() {
     router.push('/editor');
-};
+}
 </script>
 
 <style>

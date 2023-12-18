@@ -1,5 +1,5 @@
-import { readFileSync } from 'fs';
-import { join } from 'path';
+import { readFileSync } from 'node:fs';
+import { join } from 'node:path';
 import { winPath } from '@fesjs/utils';
 import { name } from '../package.json';
 
@@ -40,7 +40,7 @@ export default (api) => {
 
         const iconNames = helper.getIconNamesFromMenu(userConfig.menus);
 
-        const iconsString = iconNames.map((iconName) => `import { ${iconName} } from '@fesjs/fes-design/icon'`);
+        const iconsString = iconNames.map(iconName => `import { ${iconName} } from '@fesjs/fes-design/icon'`);
         api.writeTmpFile({
             path: join(namespace, 'icons.js'),
             content: `
@@ -84,7 +84,7 @@ export default (api) => {
 
     api.addPluginExports(() => [
         {
-            specifiers: ['Page', 'useTabTitle'],
+            specifiers: ['Page', 'useTabTitle', 'useLayout'],
             source: join(namespace, 'index.js'),
         },
     ]);
@@ -92,7 +92,7 @@ export default (api) => {
     // 把 BaseLayout插入到路由配置中，作为根路由
     // 添加 403 和 404 路由
     api.modifyRoutes((routes) => {
-        if (!routes.find((item) => item.path === '/403')) {
+        if (!routes.find(item => item.path === '/403')) {
             routes.push({
                 path: '/403',
                 name: 'Exception403',
@@ -102,7 +102,7 @@ export default (api) => {
                 },
             });
         }
-        if (!routes.find((item) => item.path === '/404')) {
+        if (!routes.find(item => item.path === '/404')) {
             routes.push({
                 path: '/404',
                 name: 'Exception404',
