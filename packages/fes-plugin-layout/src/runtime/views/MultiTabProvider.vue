@@ -33,6 +33,7 @@ import { MoreOutlined, ReloadOutlined } from '@fesjs/fes-design/icon';
 import { useRoute, useRouter } from '@@/core/coreExports';
 import { transTitle } from '../helpers/pluginLocale';
 import { deleteTitle, getTitle } from '../useTitle';
+import { useLayout } from '../useLayout';
 import Page from './page.vue';
 
 let i = 0;
@@ -53,6 +54,8 @@ export default {
         const pageRef = ref();
         const route = useRoute();
         const router = useRouter();
+        const layoutState = useLayout();
+
         const createPage = (_route) => {
             const computedTitle = computed(() => {
                 const customTitle = unref(getTitle(_route.path));
@@ -104,6 +107,7 @@ export default {
             }
         };
         const handleCloseTab = async (targetKey) => {
+            targetKey = targetKey || route.path;
             const selectedPage = findPage(targetKey);
             const list = [...pageList.value];
             const index = list.indexOf(selectedPage);
@@ -121,6 +125,8 @@ export default {
             pageRef.value.removeKeepAlive(selectedPage.name);
             deleteTitle(selectedPage.path);
         };
+        layoutState.closeTab = handleCloseTab;
+
         const reloadPage = (path) => {
             const selectedPage = findPage(path || unref(route.path));
             if (selectedPage)

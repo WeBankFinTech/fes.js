@@ -34,7 +34,8 @@
         "vue-router": "^4.0.1"
     },
     "dependencies": {
-        "@fesjs/utils": "^3.0.1"
+        "@fesjs/utils": "^3.0.1",
+        "@vueuse/core": "^10.7.0"
     },
     "typings": "./types.d.ts"
 }
