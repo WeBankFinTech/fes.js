@@ -1,9 +1,9 @@
 <template>
     <template v-if="multiTabs">
         <FTabs
-            :modelValue="route.path"
+            :model-value="route.path"
             closable
-            :tabsPadding="24"
+            :tabs-padding="24"
             type="card"
             class="layout-content-tabs"
             @close="handleCloseTab"
@@ -21,17 +21,19 @@
                 </FDropdown>
             </template>
         </FTabs>
-        <Page ref="pageRef" :pageKey="getPageKey" isAllKeepAlive />
+        <Page ref="pageRef" :page-key="getPageKey" is-all-keep-alive />
     </template>
     <Page v-else />
 </template>
+
 <script>
-import { computed, unref, ref } from 'vue';
-import { FTabs, FTabPane, FDropdown } from '@fesjs/fes-design';
-import { ReloadOutlined, MoreOutlined } from '@fesjs/fes-design/icon';
-import { useRouter, useRoute } from '@@/core/coreExports';
+import { computed, ref, unref } from 'vue';
+import { FDropdown, FTabPane, FTabs } from '@fesjs/fes-design';
+import { MoreOutlined, ReloadOutlined } from '@fesjs/fes-design/icon';
+import { useRoute, useRouter } from '@@/core/coreExports';
 import { transTitle } from '../helpers/pluginLocale';
-import { getTitle, deleteTitle } from '../useTitle';
+import { deleteTitle, getTitle } from '../useTitle';
+import { useLayout } from '../useLayout';
 import Page from './page.vue';
 
 let i = 0;
@@ -52,6 +54,8 @@ export default {
         const pageRef = ref();
         const route = useRoute();
         const router = useRouter();
+        const layoutState = useLayout();
+
         const createPage = (_route) => {
             const computedTitle = computed(() => {
                 const customTitle = unref(getTitle(_route.path));
@@ -78,15 +82,16 @@ export default {
             },
         ];
 
-        const findPage = (path) => pageList.value.find((item) => unref(item.path) === unref(path));
+        const findPage = path => pageList.value.find(item => unref(item.path) === unref(path));
 
         router.beforeEach((to) => {
             const page = findPage(to.path);
-            if (!page) {
+            if (!page)
                 pageList.value = [...pageList.value, createPage(to)];
-            } else {
+
+            else
                 page.route = to;
-            }
+
             return true;
         });
 
@@ -102,16 +107,17 @@ export default {
             }
         };
         const handleCloseTab = async (targetKey) => {
+            targetKey = targetKey || route.path;
             const selectedPage = findPage(targetKey);
             const list = [...pageList.value];
             const index = list.indexOf(selectedPage);
             if (route.path === selectedPage.path) {
                 if (list.length > 1) {
-                    if (list.length - 1 === index) {
+                    if (list.length - 1 === index)
                         await switchPage(list[index - 1].path);
-                    } else {
+
+                    else
                         await switchPage(list[index + 1].path);
-                    }
                 }
             }
             list.splice(index, 1);
@@ -119,11 +125,12 @@ export default {
             pageRef.value.removeKeepAlive(selectedPage.name);
             deleteTitle(selectedPage.path);
         };
+        layoutState.closeTab = handleCloseTab;
+
         const reloadPage = (path) => {
             const selectedPage = findPage(path || unref(route.path));
-            if (selectedPage) {
+            if (selectedPage)
                 selectedPage.key = getKey();
-            }
         };
         const closeOtherPage = (path) => {
             const selectedPage = findPage(path || unref(route.path));
@@ -132,9 +139,9 @@ export default {
         };
         const getPageKey = (_route) => {
             const selectedPage = findPage(_route.path);
-            if (selectedPage) {
+            if (selectedPage)
                 return selectedPage.key;
-            }
+
             return '';
         };
         const handlerMore = (key) => {
@@ -163,6 +170,7 @@ export default {
     },
 };
 </script>
+
 <style lang="less">
 .layout-content-tabs {
     background: rgb(255, 255, 255);
