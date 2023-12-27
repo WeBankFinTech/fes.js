@@ -23,24 +23,28 @@
 
 ```js
 import { defineRuntimeConfig } from '@fesjs/fes';
+import { isPlainObject } from 'lodash-es';
 
 export default defineRuntimeConfig({
     request: {
         // API  前缀
         baseURL: '',
         dataHandler(data, response) {
-            // 处理响应内容异常
-            if (data.code !== '0') {
-                if (data.code === '10000')
-                    FMesseage.error('hello world');
+            if (isPlainObject(data)) {
+                // 处理响应内容异常
+                if (data.code !== '0') {
+                    if (data.code === '10000')
+                        FMesseage.error('hello world');
 
-                if (data.code === '20000')
-                    FMesseage.error('hello world');
+                    if (data.code === '20000')
+                        FMesseage.error('hello world');
 
-                throw new Error(response);
+                    throw new Error(response);
+                }
+                // 响应数据格式化
+                return data?.result ? data.result : data;
             }
-            // 响应数据格式化
-            return data?.result ? data.result : data;
+            return data;
         },
         // http 异常，和插件异常
         errorHandler(error) {
