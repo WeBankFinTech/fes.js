@@ -1,4 +1,8 @@
+import process from 'node:process';
+
 export default function () {
+    process.env.VITE_CJS_IGNORE_WARNING = 'true';
+
     return {
         plugins: [
             require.resolve('./registerBuilder'),
