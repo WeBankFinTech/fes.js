@@ -218,7 +218,7 @@ export default {
             default: 'side', // side 左右（上/下）、 top 上/下、 mixin 上/下（左/右）
         },
         navigationOnError: {
-            type: String, // 403, 404 时的 navigation
+            type: [String, Function], // 403, 404 时的 navigation
         },
         isFixedHeader: {
             type: Boolean,
