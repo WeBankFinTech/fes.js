@@ -90,8 +90,9 @@ Fes.js 里约定目录下有 `layout.vue` 时会生成嵌套路由，以 `layout
 
 ```vue
 <template>
-    <Page></Page>
+    <Page />
 </template>
+
 <script>
 import { Page } from '@fesjs/fes';
 export default {
@@ -112,7 +113,7 @@ export default {
 export default {
     layout: {
         // 标题
-        title: "Fes.js",
+        title: 'Fes.js',
         // 底部文字
         footer: 'Created by MumbleFE',
         // 主题light
@@ -128,6 +129,7 @@ export default {
         }],
 
     },
+};
 ```
 
 #### 运行时配置方式
@@ -146,27 +148,29 @@ export const layout = {
 };
 ```
 
-在`fes.js`中，运行时配置有定义对象和函数两种方式，当使用函数配置`layout`时，`layoutConfig`是编译时配置结果，`initialState`是 `beforeRender.action`执行后创建的应用初始状态数据。  
+在`fes.js`中，运行时配置有定义对象和函数两种方式，当使用函数配置`layout`时，`layoutConfig`是编译时配置结果，`initialState`是 `beforeRender.action`执行后创建的应用初始状态数据。
 。
 
 ```js
-export const layout = (layoutConfig, { initialState }) => ({
-    renderCustom: () => <UserCenter />,
-    menus: () => {
-        const menusRef = ref(layoutConfig.menus);
-        watch(
-            () => initialState.userName,
-            () => {
-                menusRef.value = [
-                    {
-                        name: 'store',
-                    },
-                ];
-            },
-        );
-        return menusRef;
-    },
-});
+export function layout(layoutConfig, { initialState }) {
+    return {
+        renderCustom: () => <UserCenter />,
+        menus: () => {
+            const menusRef = ref(layoutConfig.menus);
+            watch(
+                () => initialState.userName,
+                () => {
+                    menusRef.value = [
+                        {
+                            name: 'store',
+                        },
+                    ];
+                },
+            );
+            return menusRef;
+        },
+    };
+}
 ```
 
 最终配置结果是运行时配置跟编译时配置合并的结果，运行时配置优先于编译时配置。
@@ -193,6 +197,12 @@ export const layout = (layoutConfig, { initialState }) => ({
 -   **默认值**：`side`
 
 -   **详情**：页面布局类型，可选有 `side`、 `top`、 `mixin`
+
+### navigationOnError
+
+-   **类型**：`String`、`Function`
+
+-   **详情**：指定 `403`、`404` 时，页面的布局类型。值同 `navigation`。也支持函数返回。
 
 ### isFixedHeader
 
@@ -382,7 +392,7 @@ import { useRoute, useTabTitle } from '@fesjs/fes';
 
 const titleRef = useTabTitle(`详情-${route.params?.id}`);
 
-//如果要更新
+// 如果要更新
 titleRef.value = 'changed';
 </script>
 ```

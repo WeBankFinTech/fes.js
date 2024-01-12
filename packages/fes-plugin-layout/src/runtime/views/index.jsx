@@ -1,9 +1,9 @@
-import { unref, defineComponent, computed } from 'vue';
 import { plugin } from '@@/core/coreExports';
 import { getRoutes } from '@@/core/routes/routes';
-// eslint-disable-next-line import/extensions
-import getConfig from '../helpers/getConfig';
+import { computed, defineComponent, unref } from 'vue';
+
 import fillMenu from '../helpers/fillMenu';
+import getConfig from '../helpers/getConfig';
 import BaseLayout from './BaseLayout.vue';
 
 const Layout = defineComponent({
@@ -33,11 +33,12 @@ const Layout = defineComponent({
             return (
                 <BaseLayout
                     menus={filledMenuRef.value}
-                    locale={localeShared ? true : false}
+                    locale={!!localeShared}
                     title={config.title}
                     logo={config.logo}
                     theme={config.theme}
                     navigation={config.navigation}
+                    navigationOnError={config.navigationOnError}
                     isFixedHeader={config.isFixedHeader}
                     isFixedSidebar={config.isFixedSidebar}
                     multiTabs={config.multiTabs}
@@ -45,7 +46,7 @@ const Layout = defineComponent({
                     footer={config.footer}
                     menuProps={config.menuProps}
                     v-slots={slots}
-                ></BaseLayout>
+                />
             );
         };
     },
