@@ -1,3 +1,17 @@
+## [3.1.2](https://github.com/WeBankFinTech/fes.js/compare/v3.1.1...v3.1.2) (2024-01-13)
+
+
+### Bug Fixes
+
+* 关闭 vite 告警 ([14d7f6e](https://github.com/WeBankFinTech/fes.js/commit/14d7f6eaada07211cac95b60ff20e28e0f5db0f3))
+
+
+### Features
+
+* **plugin-layout:** 支持配置 403、404 的 navigation ([#224](https://github.com/WeBankFinTech/fes.js/issues/224)) ([74fa0ba](https://github.com/WeBankFinTech/fes.js/commit/74fa0ba122610181eb0d983183c9acf52a72c901))
+
+
+
 ## [3.1.1](https://github.com/WeBankFinTech/fes.js/compare/v3.0.19...v3.1.1) (2023-12-14)
 
 
