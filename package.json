@@ -40,15 +40,15 @@
     },
     "devDependencies": {
         "@antfu/eslint-config": "^2.6.2",
-        "@commitlint/cli": "^11.0.0",
-        "@commitlint/config-conventional": "^11.0.0",
+        "@commitlint/cli": "^18.4.4",
+        "@commitlint/config-conventional": "^18.4.4",
         "chokidar": "^3.5.3",
         "commitizen": "^4.3.0",
         "cz-conventional-changelog": "^3.3.0",
         "deepmerge": "^4.2.2",
         "eslint": "^8.56.0",
         "fs-extra": "^11.1.1",
-        "lint-staged": "^13.2.0",
+        "lint-staged": "^15.2.0",
         "simple-git-hooks": "^2.9.0",
         "typescript": "^5.0.4",
         "vitepress": "1.0.0-alpha.73",
@@ -56,8 +56,8 @@
         "yargs-parser": "^21.1.1"
     },
     "simple-git-hooks": {
-        "pre-commit": "lint-staged",
-        "commit-msg": "commitlint"
+        "pre-commit": "npx lint-staged",
+        "commit-msg": "npx commitlint --edit $1"
     },
     "lint-staged": {
         "*.{js,jsx,vue,ts}": [
