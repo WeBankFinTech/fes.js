@@ -117,7 +117,7 @@ importers:
         specifier: ^7.23.3
         version: 7.23.3
       '@fesjs/fes':
-        specifier: ^3.1.7
+        specifier: ^3.1.8
         version: link:../fes
       '@fesjs/utils':
         specifier: ^3.0.1
@@ -222,7 +222,7 @@ importers:
         specifier: ^7.23.2
         version: 7.23.2(@babel/core@7.23.3)
       '@fesjs/fes':
-        specifier: ^3.1.7
+        specifier: ^3.1.8
         version: link:../fes
       '@fesjs/utils':
         specifier: ^3.0.1
@@ -426,7 +426,7 @@ importers:
   packages/fes-plugin-layout:
     dependencies:
       '@fesjs/fes':
-        specifier: ^3.1.4
+        specifier: ^3.1.8
         version: link:../fes
       '@fesjs/fes-design':
         specifier: '>=0.7.0'
