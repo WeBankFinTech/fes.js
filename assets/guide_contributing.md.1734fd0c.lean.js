@@ -1,1 +1,0 @@
-import{o as e,c as a,V as s}from"./chunks/framework.85b09291.js";const o=s("",41),l=[o],i=JSON.parse('{"title":"贡献指南","description":"","frontmatter":{},"headers":[],"relativePath":"guide/contributing.md"}'),t={name:"guide/contributing.md"},d=Object.assign(t,{setup(p){return(n,r)=>(e(),a("div",null,l))}});export{i as __pageData,d as default};

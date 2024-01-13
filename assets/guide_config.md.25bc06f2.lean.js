@@ -1,1 +1,0 @@
-import{_ as s,o as a,c as n,V as l}from"./chunks/framework.85b09291.js";const A=JSON.parse('{"title":"编译时配置","description":"","frontmatter":{},"headers":[],"relativePath":"guide/config.md"}'),p={name:"guide/config.md"},o=l("",21),e=[o];function c(t,r,D,F,y,C){return a(),n("div",null,e)}const d=s(p,[["render",c]]);export{A as __pageData,d as default};
