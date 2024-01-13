@@ -2,28 +2,32 @@
     "name": "@fesjs/builder-webpack",
     "version": "3.0.8",
     "description": "@fesjs/builder-webpack",
+    "author": "qlin",
+    "license": "MIT",
+    "homepage": "https://github.com/WeBankFinTech/fes.js#readme",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/WeBankFinTech/fes.js.git",
+        "directory": "packages/fes-builder-webpack"
+    },
+    "bugs": {
+        "url": "https://github.com/WeBankFinTech/fes.js/issues"
+    },
+    "keywords": [
+        "fes"
+    ],
     "main": "lib/index.js",
     "types": "types.d.ts",
     "files": [
         "lib",
         "types.d.ts"
     ],
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/WeBankFinTech/fes.js.git",
-        "directory": "packages/fes-builder-webpack"
-    },
-    "keywords": [
-        "fes"
-    ],
-    "author": "qlin",
-    "license": "MIT",
-    "bugs": {
-        "url": "https://github.com/WeBankFinTech/fes.js/issues"
-    },
-    "homepage": "https://github.com/WeBankFinTech/fes.js#readme",
     "publishConfig": {
         "access": "public"
+    },
+    "peerDependencies": {
+        "@fesjs/fes": "^3.1.7",
+        "core-js": "^3.29.1"
     },
     "dependencies": {
         "@babel/core": "^7.23.2",
@@ -52,7 +56,7 @@
         "less": "^4.1.3",
         "less-loader": "^11.1.0",
         "mini-css-extract-plugin": "^2.7.5",
-        "postcss": "^8.4.21",
+        "postcss": "^8.4.33",
         "postcss-flexbugs-fixes": "^5.0.2",
         "postcss-loader": "^7.1.0",
         "postcss-safe-parser": "^6.0.0",
@@ -64,9 +68,5 @@
         "webpack-bundle-analyzer": "^4.4.0",
         "webpack-dev-server": "^4.15.1",
         "webpackbar": "^5.0.2"
-    },
-    "peerDependencies": {
-        "@fesjs/fes": "^3.1.7",
-        "core-js": "^3.29.1"
     }
 }
