@@ -141,7 +141,7 @@ const _request = (url, data, options, onSuccess) => {
         }
         if (!context.error) {
             if (onSuccess) {
-                return onSuccess(dataHandler(context.response.data, context.response), context);
+                return onSuccess(await dataHandler(context.response.data, context.response), context);
             }
             return dataHandler(context.response.data, context.response);
         }
