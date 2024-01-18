@@ -34,10 +34,10 @@ export default defineRuntimeConfig({
                 // 处理响应内容异常
                 if (data.code !== '0') {
                     if (data.code === '10000')
-                        FMesseage.error('hello world');
+                        FMessage.error('hello world');
 
                     if (data.code === '20000')
-                        FMesseage.error('hello world');
+                        FMessage.error('hello world');
 
                     throw new Error(response);
                 }
