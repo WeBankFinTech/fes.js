@@ -3,6 +3,7 @@ import { defineRuntimeConfig } from '@fesjs/fes';
 export default defineRuntimeConfig({
     request: {
         baseURL: '/ras-mas',
+        responseDataAdaptor() {},
         dataHandler(data) {
             console.log('data', data);
             if (data?.code !== '0') {

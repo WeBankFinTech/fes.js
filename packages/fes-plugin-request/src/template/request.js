@@ -49,6 +49,17 @@ function getRequestInstance() {
         initialValue: {},
     });
 
+    if (process.env.NODE_ENV === 'development') {
+        if (typeof errorHandler === 'object') {
+            console.error('[plugin-request]: errorHandler 更改为函数了，具体请看文档 https://fesjs.mumblefe.cn/reference/plugin/plugins/request.html');
+        }
+        if (otherConfigs.responseDataAdaptor) {
+            console.warn(
+                '[plugin-request]: responseDataAdaptor 在 3.x 已经被移除，请改用 dataHandler 实现，具体请看文档 https://fesjs.mumblefe.cn/reference/plugin/plugins/request.html',
+            );
+        }
+    }
+
     const defaultConfig = Object.assign(
         {
             timeout: 10000,
