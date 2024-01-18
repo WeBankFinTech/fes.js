@@ -106,20 +106,30 @@ function getCustomerHandler(ctx, options = {}) {
     };
 }
 
-export const request = (url, data, options = {}) => {
+function formatOptions(options = {}) {
     if (typeof options === 'string') {
         options = {
             method: options,
         };
     }
+    return options;
+}
+
+function getReqInstance() {
     if (!currentRequestInstance) {
         currentRequestInstance = getRequestInstance();
     }
+    return currentRequestInstance;
+}
+
+const _request = (url, data, options, onSuccess) => {
+    options = formatOptions(options);
+    const reqInstance = getReqInstance();
     const userConfig = userConfigHandler(url, data, options);
     const context = createContext(userConfig);
     const { dataHandler, errorHandler } = getCustomerHandler(context, options);
 
-    return currentRequestInstance.request(context).then(async () => {
+    return reqInstance.request(context).then(async () => {
         if (context.config.skipErrorHandler) {
             console.warn('3.x 已移除 skipErrorHandler 参数，请改用 dataHandler 处理');
             if (
@@ -130,6 +140,9 @@ export const request = (url, data, options = {}) => {
             }
         }
         if (!context.error) {
+            if (onSuccess) {
+                return onSuccess(dataHandler(context.response.data, context.response), context);
+            }
             return dataHandler(context.response.data, context.response);
         }
         errorHandler && errorHandler(context.error);
@@ -137,7 +150,14 @@ export const request = (url, data, options = {}) => {
     });
 };
 
-export const rawRequest = request;
+export const request = _request;
+
+export const rawRequest = (url, data, options) =>
+    _request(url, data, options, (d, ctx) => {
+        ctx.response.rawData = ctx.response.data;
+        ctx.response.data = d;
+        return ctx.response;
+    });
 
 function isPromiseLike(obj) {
     return !!obj && typeof obj === 'object' && typeof obj.then === 'function';
