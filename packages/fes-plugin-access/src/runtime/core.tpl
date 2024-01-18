@@ -89,6 +89,8 @@ const setRole = async (roleId) => {
         throw new Error("[plugin-access]: argument to the setRole() must be string or promise");
     }
     state.currentRoleId = roleId;
+    const roleAccessIds = state.roles[roleId] || [];
+    setAccess(roleAccessIds);
 };
 
 const match = (path, accessIds) => {
