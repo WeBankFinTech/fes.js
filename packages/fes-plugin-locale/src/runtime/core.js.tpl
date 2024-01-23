@@ -57,6 +57,10 @@ const setLocale = ({ locale }) => {
     window.localStorage.setItem("fes_locale", locale);
 };
 
+const getLocale = () => {
+    return unref(i18n.global.locale)
+}
+
 const addLocale = ({ locale, messages }) => {
     messages[locale] = messages;
     if (isRef(i18n.global.messages)) {
@@ -82,6 +86,7 @@ const t = (key) => {
 
 const locale = {
     setLocale,
+    getLocale,
     addLocale,
     getAllLocales,
     messages,
