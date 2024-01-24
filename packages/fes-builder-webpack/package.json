@@ -1,6 +1,6 @@
 {
     "name": "@fesjs/builder-webpack",
-    "version": "3.0.9",
+    "version": "3.0.10",
     "description": "@fesjs/builder-webpack",
     "author": "qlin",
     "license": "MIT",
