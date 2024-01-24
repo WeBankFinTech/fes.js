@@ -29,8 +29,7 @@ function genTranspileDepRegex(exclude) {
             const depPath = join('node_modules', dep, '/');
             return require('node:os').platform().startsWith('win') ? depPath.replace(/\\/g, '\\\\') : depPath;
         }
-        if (dep instanceof RegExp)
-            return dep.source;
+        if (dep instanceof RegExp) { return dep.source; }
 
         throw new Error('exclude only accepts an array of string or regular expressions');
     });
@@ -75,6 +74,7 @@ export default async function getConfig({ api, cwd, config, env, entry = {}, mod
     // --------------- output -----------
     webpackConfig.output
         .path(absoluteOutput)
+        .publicPath(publicPath)
         .filename('static/[name].[contenthash:8].js')
         .chunkFilename('static/[name].[contenthash:8].chunk.js')
         .assetModuleFilename('static/[name][hash:8][ext]');
@@ -131,8 +131,7 @@ export default async function getConfig({ api, cwd, config, env, entry = {}, mod
         .test(/\.(js|mjs|jsx|ts|tsx)$/)
         .exclude.add((filepath) => {
             // always transpile js in vue files
-            if (/(\.vue|\.jsx)$/.test(filepath))
-                return false;
+            if (/(\.vue|\.jsx)$/.test(filepath)) { return false; }
 
             // Don't transpile node_modules
             return /node_modules/.test(filepath);
@@ -151,8 +150,7 @@ export default async function getConfig({ api, cwd, config, env, entry = {}, mod
             .include.add(/node_modules/)
             .end()
             .exclude.add((filepath) => {
-                if (transpileDepRegex && transpileDepRegex.test(filepath))
-                    return true;
+                if (transpileDepRegex && transpileDepRegex.test(filepath)) { return true; }
 
                 return false;
             })
@@ -192,11 +190,9 @@ export default async function getConfig({ api, cwd, config, env, entry = {}, mod
         existsSync(join(cwd, 'public')) && {
             from: join(cwd, 'public'),
             filter: (resourcePath) => {
-                if (resourcePath.includes('.DS_Store'))
-                    return false;
+                if (resourcePath.includes('.DS_Store')) { return false; }
 
-                if (publicCopyIgnore.includes(resourcePath))
-                    return false;
+                if (publicCopyIgnore.includes(resourcePath)) { return false; }
 
                 return true;
             },
