@@ -1,3 +1,17 @@
+## [3.1.3](https://github.com/WeBankFinTech/fes.js/compare/v3.1.2...v3.1.3) (2024-1-24)
+
+
+### Bug Fixes
+
+* webpack 丢失 publicPath ([#229](https://github.com/WeBankFinTech/fes.js/issues/229)) ([20303cf](https://github.com/WeBankFinTech/fes.js/commit/20303cfec9f1109cafb1e7f925369481898a7a03))
+
+
+### Features
+
+* [plugin-local] 添加 getLocal API 获取当前用户选择的语言 ([#228](https://github.com/WeBankFinTech/fes.js/issues/228)) ([5c7bdca](https://github.com/WeBankFinTech/fes.js/commit/5c7bdca371433d65ac3ca0cb995795e0b28e0a11))
+
+
+
 ## [3.1.2](https://github.com/WeBankFinTech/fes.js/compare/v3.1.1...v3.1.2) (2024-01-13)
 
 

@@ -1,41 +1,41 @@
 {
-  "name": "@fesjs/plugin-locale",
-  "version": "4.2.0",
-  "description": "@fesjs/plugin-locale",
-  "main": "lib/index.js",
-  "files": [
-    "lib",
-    "types.d.ts"
-  ],
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/WeBankFinTech/fes.js.git",
-    "directory": "packages/fes-plugin-locale"
-  },
-  "keywords": [
-    "fes"
-  ],
-  "author": "harrywan",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/WeBankFinTech/fes.js/issues"
-  },
-  "homepage": "https://github.com/WeBankFinTech/fes.js#readme",
-  "publishConfig": {
-    "access": "public"
-  },
-  "dependencies": {
-    "@fesjs/utils": "^3.0.1",
-    "vue-i18n": "^9.0.0",
-    "lodash-es": "^4.17.21"
-  },
-  "peerDependencies": {
-    "@fesjs/fes": "^3.1.4",
-    "@fesjs/fes-design": ">=0.7.0",
-    "vue": "^3.2.47"
-  },
-  "typings": "./types.d.ts"
+    "name": "@fesjs/plugin-locale",
+    "version": "4.2.1",
+    "description": "@fesjs/plugin-locale",
+    "main": "lib/index.js",
+    "files": [
+        "lib",
+        "types.d.ts"
+    ],
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/WeBankFinTech/fes.js.git",
+        "directory": "packages/fes-plugin-locale"
+    },
+    "keywords": [
+        "fes"
+    ],
+    "author": "harrywan",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/WeBankFinTech/fes.js/issues"
+    },
+    "homepage": "https://github.com/WeBankFinTech/fes.js#readme",
+    "publishConfig": {
+        "access": "public"
+    },
+    "dependencies": {
+        "@fesjs/utils": "^3.0.1",
+        "vue-i18n": "^9.0.0",
+        "lodash-es": "^4.17.21"
+    },
+    "peerDependencies": {
+        "@fesjs/fes": "^3.1.4",
+        "@fesjs/fes-design": ">=0.7.0",
+        "vue": "^3.2.47"
+    },
+    "typings": "./types.d.ts"
 }
