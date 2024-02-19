@@ -1,12 +1,12 @@
-import { Router, RouteLocationNormalized, NavigationGuardNext, NavigationGuard } from 'vue-router';
-import { Ref } from 'vue';
+import type { NavigationGuard, NavigationGuardNext, RouteLocationNormalized, Router } from 'vue-router';
+import type { Ref } from 'vue';
 
 export const access: {
-    hasAccess(accessId: string | number): Promise<boolean>;
-    isDataReady(): boolean;
-    setRole(roleId: string | Promise<string>): void;
-    setAccess(accessIds: Array<string | number> | Promise<Array<string | number>>): void;
-    getAccess(): string[];
+    hasAccess: (accessId: string | number) => Promise<boolean>;
+    isDataReady: () => boolean;
+    setRole: (roleId: string | Promise<string>) => void;
+    setAccess: (accessIds: Array<string | number> | Promise<Array<string | number>>) => void;
+    getAccess: () => string[];
 };
 
 export function useAccess(accessId: string | number): Ref<boolean>;
@@ -26,8 +26,8 @@ declare module '@fesjs/fes' {
     interface PluginBuildConfig {
         access?:
             | {
-                  rules: Record<string, []>;
-              }
+                rules: Record<string, []>;
+            }
             | false;
     }
 
