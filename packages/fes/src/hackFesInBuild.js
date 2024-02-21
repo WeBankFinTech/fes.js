@@ -1,9 +1,9 @@
 // my-module/register.js
+import { join } from 'node:path';
 import { addHook } from 'pirates';
 
 function matcher(filename) {
-    if (filename.endsWith('/fes/lib/index.js')) return true;
-    return false;
+    return filename.endsWith(join(...['fes', 'lib', 'index.js']));
 }
 
 export function hackFesInBuild() {
