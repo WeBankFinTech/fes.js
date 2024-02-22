@@ -347,21 +347,22 @@ export default {
         z-index: 1;
         box-shadow: 2px 0 8px 0 rgba(29, 35, 41, 5%);
         .layout-logo {
-            height: 32px;
             margin: 16px;
             display: flex;
+            flex-direction: column;
             justify-content: flex-start;
-            align-items: center;
             .logo-img {
                 height: 36px;
                 width: auto;
+                object-fit: contain;
             }
             .logo-name {
                 overflow: hidden;
-                margin: 0 0 0 12px;
+                margin: 12px 0 0 0;
                 font-weight: 600;
                 font-size: 18px;
                 line-height: 32px;
+                text-align: center;
             }
         }
         .layout-menu {
