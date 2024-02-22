@@ -1,16 +1,23 @@
 <template>
     <div class="wrapper">
-        <img :src="iconSrc" class="icon" />
-        <div class="title">{{ title }}</div>
-        <div v-if="subTitle" class="sub-title">{{ subTitle }}</div>
+        <img :src="iconSrc" class="icon">
+        <div class="title">
+            {{ title }}
+        </div>
+        <div v-if="subTitle" class="sub-title">
+            {{ subTitle }}
+        </div>
         <div class="btn-wrapper">
-            <FButton type="primary" @click="click"> 返回上一页 </FButton>
+            <FButton type="primary" @click="click">
+                返回上一页
+            </FButton>
         </div>
     </div>
 </template>
+
 <script>
-import { FButton } from '@fesjs/fes-design';
 import { useRouter } from '@fesjs/fes';
+import { FButton } from '@fesjs/fes-design';
 import { defineComponent } from 'vue';
 
 export default defineComponent({
@@ -40,12 +47,16 @@ export default defineComponent({
     },
 });
 </script>
+
 <style lang="less" scoped>
 .wrapper {
     width: 100%;
-    text-align: center;
     padding-top: 150px;
     padding-bottom: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
     .icon {
         width: 240px;
         height: 220px;
