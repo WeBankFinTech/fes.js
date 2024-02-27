@@ -1,6 +1,6 @@
 {
     "name": "@fesjs/fes",
-    "version": "3.1.8",
+    "version": "3.1.9",
     "description": "一个好用的前端管理台快速开发框架",
     "preferGlobal": true,
     "scripts": {

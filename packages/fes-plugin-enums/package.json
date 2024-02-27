@@ -1,35 +1,35 @@
 {
-  "name": "@fesjs/plugin-enums",
-  "version": "3.0.0",
-  "description": "@fesjs/plugin-enums",
-  "main": "lib/index.js",
-  "files": [
-    "lib",
-    "types.d.ts"
-  ],
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/WeBankFinTech/fes.js.git",
-    "directory": "packages/fes-plugin-enums"
-  },
-  "keywords": [
-    "fes"
-  ],
-  "author": "aringlai",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/WeBankFinTech/fes.js/issues"
-  },
-  "homepage": "https://github.com/WeBankFinTech/fes.js#readme",
-  "publishConfig": {
-    "access": "public"
-  },
-  "peerDependencies": {
-    "@fesjs/fes": "^3.0.0",
-    "vue": "^3.2.47"
-  },
-  "typings": "./types.d.ts"
+    "name": "@fesjs/plugin-enums",
+    "version": "3.0.1",
+    "description": "@fesjs/plugin-enums",
+    "main": "lib/index.js",
+    "files": [
+        "lib",
+        "types.d.ts"
+    ],
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/WeBankFinTech/fes.js.git",
+        "directory": "packages/fes-plugin-enums"
+    },
+    "keywords": [
+        "fes"
+    ],
+    "author": "aringlai",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/WeBankFinTech/fes.js/issues"
+    },
+    "homepage": "https://github.com/WeBankFinTech/fes.js#readme",
+    "publishConfig": {
+        "access": "public"
+    },
+    "peerDependencies": {
+        "@fesjs/fes": "^3.1.9",
+        "vue": "^3.2.47"
+    },
+    "typings": "./types.d.ts"
 }
