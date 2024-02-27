@@ -1,3 +1,19 @@
+## [3.1.4](https://github.com/WeBankFinTech/fes.js/compare/v3.1.3...v3.1.4) (2024-2-27)
+
+
+### Bug Fixes
+
+* 优化类型 ([#231](https://github.com/WeBankFinTech/fes.js/issues/231)) ([cca6223](https://github.com/WeBankFinTech/fes.js/commit/cca6223477145719b89e42f5e50911781e5851d8))
+* **fes:** [hackFesInBuild] fix issues [#210](https://github.com/WeBankFinTech/fes.js/issues/210) ([#232](https://github.com/WeBankFinTech/fes.js/issues/232)) ([3de08bc](https://github.com/WeBankFinTech/fes.js/commit/3de08bc024817a6ea57526c288928eba83d8eb68))
+* **plugin-layout:** 403、404 样式优化，防止被覆盖 ([#233](https://github.com/WeBankFinTech/fes.js/issues/233)) ([e4b4d09](https://github.com/WeBankFinTech/fes.js/commit/e4b4d0939d40f7df51f871a05dbb771eb4785e69))
+
+
+### Features
+
+* **plugin-layout:** 调整 layout: aside 的 logo 布局 ([#230](https://github.com/WeBankFinTech/fes.js/issues/230)) ([e8aad1f](https://github.com/WeBankFinTech/fes.js/commit/e8aad1fbc12cca4898911fdf67e36dc7929aff8e))
+
+
+
 ## [3.1.3](https://github.com/WeBankFinTech/fes.js/compare/v3.1.2...v3.1.3) (2024-1-24)
 
 
