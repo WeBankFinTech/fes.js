@@ -1,14 +1,14 @@
 <template>
-    <f-menu
+    <FMenu
         v-model:expandedKeys="expandedKeysRef"
-        :modelValue="activePath"
+        :model-value="activePath"
         :inverted="inverted"
         :mode="mode"
         :options="transformedMenus"
-        :defaultExpandAll="defaultExpandAll"
+        :default-expand-all="defaultExpandAll"
         :accordion="accordion"
         @select="onMenuClick"
-    ></f-menu>
+    />
 </template>
 
 <script>
@@ -20,8 +20,8 @@ import { transform as transformByLocale } from '../helpers/pluginLocale';
 import { flatNodes } from '../helpers/utils';
 import MenuIcon from './MenuIcon.vue';
 
-const transform = (menus, level = 1) =>
-    menus.map((menu, index) => {
+function transform(menus, level = 1) {
+    return menus.map((menu, index) => {
         const copy = {
             ...menu,
             label: menu.title,
@@ -38,6 +38,7 @@ const transform = (menus, level = 1) =>
         }
         return copy;
     });
+}
 
 export default {
     components: {
@@ -100,7 +101,7 @@ export default {
         watch(
             [menuArray, activePath],
             () => {
-                let index = menuArray.value.findIndex((item) => item.value === activePath.value);
+                let index = menuArray.value.findIndex(item => item.value === activePath.value);
                 if (index === -1) {
                     return;
                 }
@@ -109,12 +110,12 @@ export default {
                 while (index > 0) {
                     index = index - 1;
                     const lastMenu = menuArray.value[index];
-                    if (lastMenu.children && lastMenu.children.indexOf(arr[arr.length - 1]) !== -1) {
+                    if (lastMenu.children && lastMenu.children.includes(arr[arr.length - 1])) {
                         arr.push(lastMenu);
                     }
                 }
                 expandedKeysRef.value = expandedKeysRef.value.concat(
-                    arr.filter((item) => !expandedKeysRef.value.includes(item.value)).map((item) => item.value),
+                    arr.filter(item => !expandedKeysRef.value.includes(item.value)).map(item => item.value),
                 );
             },
             {
@@ -126,10 +127,12 @@ export default {
             const path = e.value;
             if (/^https?:\/\//.test(path)) {
                 window.open(path, '_blank');
-            } else if (/^\//.test(path)) {
+            }
+            else if (/^\//.test(path)) {
                 router.push(path);
-            } else {
-                console.warn('[plugin-layout]: 菜单的path只能使以http(s)开头的网址或者路由地址');
+            }
+            else {
+                console.warn('[plugin-layout]: 菜单的path只能是以http(s)开头的网址或者路由地址');
             }
         };
 
