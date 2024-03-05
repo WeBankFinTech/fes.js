@@ -23,11 +23,9 @@ export function getLocales(cwd) {
 
 export function getLocalesJSON(cwd) {
     const locales = getLocales(cwd);
-    return JSON.stringify(locales, null, 2)
+    return JSON.stringify(locales)
         .replace(
             /"message": ("(.+?)")/g,
             (global, m1, m2) => `"message": ${m2.replace(/\^/g, '"')}`
-        )
-        .replace(/\\r\\n/g, '\r\n')
-        .replace(/\\n/g, '\r\n');
+        );
 }
