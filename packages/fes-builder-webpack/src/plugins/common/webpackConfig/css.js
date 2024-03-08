@@ -14,10 +14,16 @@ function createRules({ isDev, webpackConfig, config, lang, test, loader, options
     function applyLoaders(rule, cssLoaderOption = {}) {
         if (isDev || !config.extraCSS) {
             rule.use('extra-css-loader').loader(require.resolve('style-loader')).options(Object.assign({}, styleLoaderOption));
-        } else {
+        }
+        else {
+            const loaderOptions = config.extraCSS?.loader ?? {};
+
+            if (!loaderOptions.publicPath && config.publicPath.startsWith('./')) {
+                loaderOptions.publicPath = '../';
+            }
             rule.use('extra-css-loader')
                 .loader(require('mini-css-extract-plugin').loader)
-                .options(config.extraCSS?.loader ?? {});
+                .options(loaderOptions);
         }
 
         rule.use('css-loader')
