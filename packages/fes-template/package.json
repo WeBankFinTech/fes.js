@@ -34,7 +34,6 @@
         "@fesjs/plugin-sass": "workspace:*",
         "@fesjs/plugin-swc": "workspace:*",
         "@fesjs/plugin-watermark": "workspace:*",
-        "@fesjs/plugin-windicss": "workspace:*",
         "core-js": "3.29.1",
         "pinia": "^2.0.33",
         "vue": "^3.2.47"
