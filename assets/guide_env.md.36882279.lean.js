@@ -1,0 +1,1 @@
+import{_ as a,o as s,c as e,V as o}from"./chunks/framework.b31a4d00.js";const b=JSON.parse('{"title":"环境变量","description":"","frontmatter":{},"headers":[],"relativePath":"guide/env.md"}'),l={name:"guide/env.md"},n=o("",64),p=[n];function t(c,r,i,d,h,y){return s(),e("div",null,p)}const E=a(l,[["render",t]]);export{b as __pageData,E as default};
