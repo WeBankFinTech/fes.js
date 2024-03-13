@@ -1,3 +1,12 @@
+## [3.1.5](https://github.com/WeBankFinTech/fes.js/compare/v3.1.4...v3.1.5) (2024-3-13)
+
+
+### Bug Fixes
+
+* 修复 webpack 构建 publicPath 使用相对路径,导致 css 里面依赖资源路径异常问题 ([#237](https://github.com/WeBankFinTech/fes.js/issues/237)) ([ad9de02](https://github.com/WeBankFinTech/fes.js/commit/ad9de027b416412c64e50bdc1625de3826a6afb3))
+
+
+
 ## [3.1.4](https://github.com/WeBankFinTech/fes.js/compare/v3.1.3...v3.1.4) (2024-2-27)
 
 
