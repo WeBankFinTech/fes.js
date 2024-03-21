@@ -1,3 +1,12 @@
+## [3.1.6](https://github.com/WeBankFinTech/fes.js/compare/v3.1.5...v3.1.6) (2024-03-21)
+
+
+### Bug Fixes
+
+* 修复DefaultContainer中找不到defineComponent问题 ([7fe26ae](https://github.com/WeBankFinTech/fes.js/commit/7fe26ae3ac0239f3707ad3ffe3a0eb10adeb9d7b))
+
+
+
 ## [3.1.5](https://github.com/WeBankFinTech/fes.js/compare/v3.1.4...v3.1.5) (2024-3-13)
 
 
