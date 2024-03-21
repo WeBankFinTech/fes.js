@@ -1,47 +1,47 @@
 {
-  "name": "@fesjs/plugin-jest",
-  "version": "3.1.1",
-  "description": "@fesjs/plugin-jest",
-  "main": "lib/index.js",
-  "files": [
-    "lib",
-    "helpers"
-  ],
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/WeBankFinTech/fes.js.git",
-    "directory": "packages/fes-plugin-jest"
-  },
-  "keywords": [
-    "fes",
-    "unit",
-    "jest"
-  ],
-  "author": "harrywan",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/WeBankFinTech/fes.js/issues"
-  },
-  "homepage": "https://github.com/WeBankFinTech/fes.js#readme",
-  "publishConfig": {
-    "access": "public"
-  },
-  "peerDependencies": {
-    "@fesjs/fes": "^3.1.5"
-  },
-  "dependencies": {
-    "@babel/core": "^7.23.2",
-    "@babel/preset-env": "^7.23.2",
-    "@vue/babel-plugin-jsx": "^1.0.6",
-    "babel-jest": "^29.0.0",
-    "jest": "^29.0.0",
-    "jest-transform-stub": "^2.0.0",
-    "jest-watch-typeahead": "^2.2.2",
-    "ts-jest": "^29.1.0",
-    "typescript": "^5.0.4",
-    "@vue/vue3-jest": "^29.2.0"
-  }
+    "name": "@fesjs/plugin-jest",
+    "version": "3.1.1",
+    "description": "@fesjs/plugin-jest",
+    "author": "harrywan",
+    "license": "MIT",
+    "homepage": "https://github.com/WeBankFinTech/fes.js#readme",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/WeBankFinTech/fes.js.git",
+        "directory": "packages/fes-plugin-jest"
+    },
+    "bugs": {
+        "url": "https://github.com/WeBankFinTech/fes.js/issues"
+    },
+    "keywords": [
+        "fes",
+        "unit",
+        "jest"
+    ],
+    "main": "lib/index.js",
+    "files": [
+        "helpers",
+        "lib"
+    ],
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "publishConfig": {
+        "access": "public"
+    },
+    "peerDependencies": {
+        "@fesjs/fes": "^3.1.5"
+    },
+    "dependencies": {
+        "@babel/core": "^7.23.2",
+        "@babel/preset-env": "^7.23.2",
+        "@vue/babel-plugin-jsx": "^1.2.2",
+        "@vue/vue3-jest": "^29.2.0",
+        "babel-jest": "^29.0.0",
+        "jest": "^29.0.0",
+        "jest-transform-stub": "^2.0.0",
+        "jest-watch-typeahead": "^2.2.2",
+        "ts-jest": "^29.1.0",
+        "typescript": "^5.0.4"
+    }
 }

@@ -1,5 +1,5 @@
-import { readFileSync } from 'fs';
-import { join } from 'path';
+import { readFileSync } from 'node:fs';
+import { join } from 'node:path';
 import { winPath } from '@fesjs/utils';
 import { runtimePath } from '../../../utils/constants';
 
@@ -60,10 +60,8 @@ export default function (api) {
 
         const defaultContainerName = 'defaultContainer';
         api.writeTmpFile({
-            path: `${defaultContainerName}.jsx`,
-            content: Mustache.render(readFileSync(join(__dirname, `./${defaultContainerName}.tpl`), 'utf-8'), {
-                runtimePath,
-            }),
+            path: `${defaultContainerName}.vue`,
+            content: readFileSync(join(__dirname, `./${defaultContainerName}.tpl`), 'utf-8'),
         });
 
         api.writeTmpFile({
