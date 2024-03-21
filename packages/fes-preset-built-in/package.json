@@ -2,40 +2,40 @@
     "name": "@fesjs/preset-built-in",
     "version": "3.1.7",
     "description": "@fesjs/preset-built-in",
+    "author": "qlin",
+    "license": "MIT",
+    "homepage": "https://github.com/WeBankFinTech/fes.js#readme",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/WeBankFinTech/fes.js.git",
+        "directory": "packages/fes-preset-built-in"
+    },
+    "bugs": {
+        "url": "https://github.com/WeBankFinTech/fes.js/issues"
+    },
+    "keywords": [
+        "fes"
+    ],
     "main": "lib/index.js",
     "types": "lib/index.d.ts",
     "files": [
         "lib",
         "types.d.ts"
     ],
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/WeBankFinTech/fes.js.git",
-        "directory": "packages/fes-preset-built-in"
-    },
-    "keywords": [
-        "fes"
-    ],
-    "author": "qlin",
-    "license": "MIT",
-    "bugs": {
-        "url": "https://github.com/WeBankFinTech/fes.js/issues"
-    },
-    "homepage": "https://github.com/WeBankFinTech/fes.js#readme",
     "publishConfig": {
         "access": "public"
     },
+    "peerDependencies": {
+        "vue": "^3.2.47"
+    },
     "dependencies": {
         "@fesjs/compiler": "^3.0.2",
-        "@fesjs/utils": "^3.0.1",
         "@fesjs/runtime": "^3.0.0",
+        "@fesjs/utils": "^3.0.1",
         "@vue/compiler-sfc": "^3.3.4",
         "envinfo": "^7.7.3",
         "express": "^4.17.3",
         "mockjs": "^1.1.0"
-    },
-    "peerDependencies": {
-        "vue": "^3.2.47"
     },
     "typings": "./types.d.ts"
 }

@@ -6,7 +6,7 @@ import { plugin } from './core/plugin';
 import './core/pluginRegister';
 import { ApplyPluginsType } from '{{{ runtimePath }}}';
 import { getRoutes } from './core/routes/routes';
-import DefaultContainer from './defaultContainer.jsx';
+import DefaultContainer from './defaultContainer.vue';
 
 {{{ imports }}}
 
