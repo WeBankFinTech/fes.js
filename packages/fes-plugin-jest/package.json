@@ -1,6 +1,6 @@
 {
     "name": "@fesjs/plugin-jest",
-    "version": "3.1.1",
+    "version": "3.1.2",
     "description": "@fesjs/plugin-jest",
     "author": "harrywan",
     "license": "MIT",
@@ -30,7 +30,7 @@
         "access": "public"
     },
     "peerDependencies": {
-        "@fesjs/fes": "^3.1.5"
+        "@fesjs/fes": "^3.1.10"
     },
     "dependencies": {
         "@babel/core": "^7.23.2",
