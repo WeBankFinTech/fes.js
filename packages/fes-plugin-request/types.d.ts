@@ -20,7 +20,7 @@ interface RequestPluginOption {
 
 export type RequestOptions = AxiosRequestConfig & RequestPluginOption;
 
-export function request(url: string, data?: null | Record<string, any>, options?: AxiosRequestConfig & RequestPluginOption): Promise<any>;
+export function request(url: string, data?: null | Record<string, any>, options?: (AxiosRequestConfig & RequestPluginOption) | string): Promise<any>;
 export function useRequest(
     url: string,
     data?: null | Record<string, any>,
