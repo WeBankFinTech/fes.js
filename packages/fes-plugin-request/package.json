@@ -1,6 +1,6 @@
 {
     "name": "@fesjs/plugin-request",
-    "version": "3.0.6",
+    "version": "3.0.7",
     "description": "@fesjs/plugin-request",
     "main": "lib/index.js",
     "files": [
