@@ -27,10 +27,11 @@
 </template>
 
 <script>
-import { computed, ref, unref } from 'vue';
+import { computed, ref, unref, watch } from 'vue';
 import { FDropdown, FTabPane, FTabs } from '@fesjs/fes-design';
 import { MoreOutlined, ReloadOutlined } from '@fesjs/fes-design/icon';
 import { useRoute, useRouter } from '@@/core/coreExports';
+import { access } from '@fesjs/fes'
 import { transTitle } from '../helpers/pluginLocale';
 import { deleteTitle, getTitle } from '../useTitle';
 import { useLayout } from '../useLayout';
@@ -94,6 +95,15 @@ export default {
 
             return true;
         });
+
+        // 监听role变化，如果没有权限关闭当前页面
+        watch(() => access.getRole(), async () => {
+            const isAccess = await access.hasAccess(router.currentRoute.value.path)
+            if(!isAccess) {
+                handleCloseTab()
+                router.push('/403')
+            }
+        })
 
         // 还需要考虑参数
         const switchPage = async (path) => {
