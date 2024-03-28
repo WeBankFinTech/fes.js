@@ -1,4 +1,4 @@
-import { join } from 'path';
+import { join } from 'node:path';
 import { name } from '../package.json';
 
 export default (api) => {
@@ -9,7 +9,9 @@ export default (api) => {
 
     let generatedOnce = false;
     api.onGenerateFiles(() => {
-        if (generatedOnce) return;
+        if (generatedOnce) {
+            return;
+        }
         generatedOnce = true;
         api.copyTmpFiles({
             namespace,
