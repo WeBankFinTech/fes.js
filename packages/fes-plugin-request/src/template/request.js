@@ -9,7 +9,6 @@ function getRequestInstance() {
         type: ApplyPluginsType.modify,
         initialValue: {
             timeout: 10000,
-            responseType: 'json',
         },
     });
 
@@ -18,7 +17,7 @@ function getRequestInstance() {
 
 let currentRequest;
 
-export const rawRequest = (url, data, options = {}) => {
+export function rawRequest(url, data, options = {}) {
     if (typeof options === 'string') {
         options = {
             method: options,
@@ -28,12 +27,12 @@ export const rawRequest = (url, data, options = {}) => {
         currentRequest = getRequestInstance();
     }
     return currentRequest(url, data, options);
-};
+}
 
-export const request = async (url, data, options = {}) => {
+export async function request(url, data, options = {}) {
     const response = await rawRequest(url, data, options);
     return response.data;
-};
+}
 
 request.version = '4.0.0';
 
@@ -41,14 +40,15 @@ function isPromiseLike(obj) {
     return !!obj && typeof obj === 'object' && typeof obj.then === 'function';
 }
 
-export const useRequest = (url, data, options = {}) => {
+export function useRequest(url, data, options = {}) {
     const loadingRef = ref(true);
     const errorRef = ref(null);
     const dataRef = shallowRef(null);
     let promise;
     if (isPromiseLike(url)) {
         promise = url;
-    } else {
+    }
+    else {
         promise = request(url, data, options);
     }
     promise
@@ -66,4 +66,4 @@ export const useRequest = (url, data, options = {}) => {
         error: errorRef,
         data: dataRef,
     };
-};
+}
