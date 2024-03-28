@@ -1,3 +1,12 @@
+## [3.1.7](https://github.com/WeBankFinTech/fes.js/compare/v3.1.6...v3.1.7) (2024-3-28)
+
+
+### Bug Fixes
+
+* 解决 reqeust 生成文件流的问题 ([#239](https://github.com/WeBankFinTech/fes.js/issues/239)) ([c369572](https://github.com/WeBankFinTech/fes.js/commit/c369572c4193600416bab1f9950cab2b1517c580))
+
+
+
 ## [3.1.6](https://github.com/WeBankFinTech/fes.js/compare/v3.1.5...v3.1.6) (2024-03-21)
 
 
