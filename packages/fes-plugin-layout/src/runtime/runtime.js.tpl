@@ -8,13 +8,8 @@ if (!accessApi) {
 
 export const access = (memo) => {
     const runtimeConfig = getConfig();
-    const accessIds = accessApi.getAccess();
-    if (!accessIds.includes('/403')) {
-        accessApi.setAccess(accessIds.concat('/403'));
-    }
-    if (!accessIds.includes('/404')) {
-        accessApi.setAccess(accessIds.concat('/404'));
-    }
+    accessApi.setPresetAccess(['/403', '/404']);
+
     return {
         unAccessHandler({ router, to, from, next }) {
             if (runtimeConfig.unAccessHandler && typeof runtimeConfig.unAccessHandler === 'function') {

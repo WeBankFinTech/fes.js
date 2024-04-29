@@ -1,7 +1,7 @@
-import { reactive, unref, computed, inject } from "vue";
-import createDirective from "./createDirective";
+import { computed, reactive, unref } from "vue";
+import { isPlainObject } from "{{{ lodashPath }}}";
 import createComponent from "./createComponent";
-import {isPlainObject} from "{{{ lodashPath }}}";
+import createDirective from "./createDirective";
 
 function isPromise(obj) {
     return (
@@ -20,12 +20,23 @@ const state = reactive({
 const rolePromiseList = [];
 const accessPromiseList = [];
 
+// 预设的 accessId，且不会被移除
+const presetAccessIds = []
+const setPresetAccess = (access) => {
+    const accessIds = Array.isArray(access) ? access : [access];
+
+    presetAccessIds.push(...accessIds.filter(id => !presetAccessIds.includes(id)));
+}
+
 const getAllowAccessIds = () => {
+    const result = [...presetAccessIds, ...state.currentAccessIds];
+
     const roleAccessIds = state.roles[state.currentRoleId];
     if (Array.isArray(roleAccessIds) && roleAccessIds.length > 0) {
-        return state.currentAccessIds.concat(roleAccessIds);
+        result.push(...roleAccessIds);
     }
-    return state.currentAccessIds;
+
+    return result;
 };
 
 const _syncSetAccessIds = (promise) => {
@@ -144,6 +155,7 @@ export const access = {
     setAccess,
     match,
     getAccess: getAllowAccessIds,
+    setPresetAccess,
 };
 
 export const hasAccessSync = (path) => {
