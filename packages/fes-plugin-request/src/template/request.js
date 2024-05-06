@@ -154,7 +154,9 @@ const _request = (url, data, options, onSuccess) => {
             if (onSuccess) {
                 return onSuccess(await dataHandler(context.response.data, context.response), context);
             }
-            return dataHandler(context.response.data, context.response);
+            context.response.data = await dataHandler(context.response.data, context.response);
+            // 兼容以前的 useResponse 属性
+            return context.config.useResponse ? context.response : context.response.data;
         }
         errorHandler && errorHandler(context.error);
         return Promise.reject(context.error);
