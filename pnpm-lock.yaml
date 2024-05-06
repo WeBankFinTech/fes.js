@@ -475,8 +475,8 @@ importers:
         specifier: ^3.0.0
         version: link:../fes
       '@fesjs/plugin-request':
-        specifier: ^3.0.0
-        version: 3.0.0(@fesjs/fes@packages+fes)(vue@3.3.4)
+        specifier: ^4.0.0-rc.3
+        version: link:../fes-plugin-request
       vue:
         specifier: ^3.2.47
         version: 3.3.4
@@ -3479,21 +3479,6 @@ packages:
       - '@vue/composition-api'
     dev: false
 
-  /@fesjs/plugin-request@3.0.0(@fesjs/fes@packages+fes)(vue@3.3.4):
-    resolution: {integrity: sha512-xlTAaGW6xsaZ3NFdvmUm3a8X3nxwpbtFUm85D2IrKJT8Ie/reGpC2CIQ808hODVdyVJxbSounu5sRx5KZELKNQ==}
-    peerDependencies:
-      '@fesjs/fes': ^3.0.0
-      vue: ^3.2.47
-    dependencies:
-      '@fesjs/fes': link:packages/fes
-      '@fesjs/utils': 3.0.1
-      axios: 1.6.5
-      vue: 3.3.4
-    transitivePeerDependencies:
-      - debug
-      - supports-color
-    dev: false
-
   /@fesjs/utils@3.0.1:
     resolution: {integrity: sha512-L8Ygr1/coKCoRRsxZdkV2b0R3xgup127uXZ2mbzEihGzMzUJgN9jlfarHfsAaBbxvOcswEbLqMrTQWg6CNqFdg==}
     dependencies:
@@ -5552,10 +5537,6 @@ packages:
     resolution: {integrity: sha512-baNZyqaaLhyLVKm/DlvdW051MSgO6b8eVfIezl9E5PqWxFgzLm/wQntEW4zOytVburDEr0JlALEpdOFwvErLsg==}
     dev: false
 
-  /asynckit@0.4.0:
-    resolution: {integrity: sha512-Oei9OH4tRh0YqU3GxhX79dM/mwVgvbZJaSNaRk+bshkj0S5cfHcgYakreBjrHwatXKbz+IoIdYLxrKim2MjW0Q==}
-    dev: false
-
   /at-least-node@1.0.0:
     resolution: {integrity: sha512-+q/t7Ekv1EDY2l6Gda6LLiX14rU9TV20Wa3ofeQmwPFZbOMo9DXrLbOjFaaclkXKWidIaopwAObQDqwWtGUjqg==}
     engines: {node: '>= 4.0.0'}
@@ -5597,16 +5578,6 @@ packages:
     resolution: {integrity: sha512-DMD0KiN46eipeziST1LPP/STfDU0sufISXmjSgvVsoU2tqxctQeASejWcfNtxYKqETM1UxQ8sp2OrSBWpHY6sw==}
     engines: {node: '>= 0.4'}
     dev: true
-
-  /axios@1.6.5:
-    resolution: {integrity: sha512-Ii012v05KEVuUoFWmMW/UQv9aRIc3ZwkWDcM+h5Il8izZCtRVpDUfwpoFf7eOtajT3QiGR4yDUx7lPqHJULgbg==}
-    dependencies:
-      follow-redirects: 1.15.5
-      form-data: 4.0.0
-      proxy-from-env: 1.1.0
-    transitivePeerDependencies:
-      - debug
-    dev: false
 
   /babel-jest@29.0.0(@babel/core@7.23.3):
     resolution: {integrity: sha512-EJM2dqxz9+uWJLLucZLPYAmRsHHt1IMkitAHGqjDlIP2IQXzkIMO3ATbBWk0lU6VwX4rNeVN04t/DDB8U5C2rg==}
@@ -6177,13 +6148,6 @@ packages:
   /colorette@2.0.20:
     resolution: {integrity: sha512-IfEDxwoWIjkeXL1eXcDiow4UbKjhLdq6/EuSVR9GMN7KVH3r9gQ83e73hsz1Nd1T3ijd5xv1wcWRYO+D6kCI2w==}
     dev: true
-
-  /combined-stream@1.0.8:
-    resolution: {integrity: sha512-FQN4MRfuJeHf7cBbBMJFXhKSDq+2kAArBlmRBvcvFE5BB1HZKXtSFASDhdlz9zOYwxh8lDdnvmMOe/+5cdoEdg==}
-    engines: {node: '>= 0.8'}
-    dependencies:
-      delayed-stream: 1.0.0
-    dev: false
 
   /commander@11.1.0:
     resolution: {integrity: sha512-yPVavfyCcRhmorC7rWlkHn15b4wDVgVmBA7kV4QVBsF7kv/9TKJAbAXVTxvTnwP8HHKjRCJDClKbciiYS7p0DQ==}
@@ -6922,11 +6886,6 @@ packages:
       has-property-descriptors: 1.0.1
       object-keys: 1.1.1
     dev: true
-
-  /delayed-stream@1.0.0:
-    resolution: {integrity: sha512-ZySD7Nf91aLB0RxL4KGrKHBXl7Eds1DAmEdcoVawXnLD7SDhpNgtuII2aAkg7a7QS41jxPSZ17p4VdGnMHk3MQ==}
-    engines: {node: '>=0.4.0'}
-    dev: false
 
   /depd@1.1.2:
     resolution: {integrity: sha512-7emPTl6Dpo6JRXOXjLRxck+FlLRX5847cLKEn00PLAgc3g2hTZZgr+e4c2v6QpSmLeFP3n5yUo7ft6avBK/5jQ==}
@@ -8068,15 +8027,6 @@ packages:
     dependencies:
       is-callable: 1.2.7
     dev: true
-
-  /form-data@4.0.0:
-    resolution: {integrity: sha512-ETEklSGi5t0QMZuiXoA/Q6vcnxcLQP5vdugSpuAyi6SVGi2clPPp+xgEhuMaHC+zGgn31Kd235W35f7Hykkaww==}
-    engines: {node: '>= 6'}
-    dependencies:
-      asynckit: 0.4.0
-      combined-stream: 1.0.8
-      mime-types: 2.1.35
-    dev: false
 
   /forwarded@0.2.0:
     resolution: {integrity: sha512-buRG0fpBtRHSTCOASe6hD258tEubFoRLb4ZNA6NxMVHNw2gOcwHo9wyablzMzOA5z9xA9L1KNjk/Nt6MT9aYow==}
@@ -11293,10 +11243,6 @@ packages:
     dependencies:
       forwarded: 0.2.0
       ipaddr.js: 1.9.1
-    dev: false
-
-  /proxy-from-env@1.1.0:
-    resolution: {integrity: sha512-D+zkORCbA9f1tdWRK0RaCR3GPv50cMxcrz4X8k5LTSUD1Dkw47mKJEZQNunItRTkWwgtaUSo1RVFRIG9ZXiFYg==}
     dev: false
 
   /prr@1.0.1:

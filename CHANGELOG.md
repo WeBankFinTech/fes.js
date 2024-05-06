@@ -1,3 +1,13 @@
+## [3.1.8](https://github.com/WeBankFinTech/fes.js/compare/v3.1.7...v3.1.8) (2024-5-6)
+
+
+### Bug Fixes
+
+* login 兼容不同的 request 版本 ([#242](https://github.com/WeBankFinTech/fes.js/issues/242)) ([c7e7efa](https://github.com/WeBankFinTech/fes.js/commit/c7e7efaa316986bbd65d64fc9b6ce2102fa792ca))
+* **plugin-access:** 修复切换角色时，getAccess 不正确 ([#240](https://github.com/WeBankFinTech/fes.js/issues/240)) ([1b0d340](https://github.com/WeBankFinTech/fes.js/commit/1b0d3409bb9da3f9b4f91121fbc1035fc0b7df7b))
+
+
+
 ## [3.1.7](https://github.com/WeBankFinTech/fes.js/compare/v3.1.6...v3.1.7) (2024-3-28)
 
 
