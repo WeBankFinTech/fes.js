@@ -1,6 +1,6 @@
 {
     "name": "@fesjs/plugin-login",
-    "version": "3.0.1",
+    "version": "3.0.2",
     "description": "@fesjs/plugin-login",
     "main": "lib/index.js",
     "files": [
