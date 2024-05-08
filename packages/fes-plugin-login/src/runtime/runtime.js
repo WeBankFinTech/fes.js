@@ -40,7 +40,7 @@ const defaultExport = {
 
 if (request.version) {
     defaultExport.request = (memo) => {
-        const config = getRunTimeConfig();
+        const config = getLoginConfig();
         if (config.ignore401Redirect) {
             return memo;
         }
@@ -59,6 +59,10 @@ if (request.version) {
 }
 else {
     defaultExport.request = (memo) => {
+        const config = getLoginConfig();
+        if (config.ignore401Redirect) {
+            return memo;
+        }
         if (!memo.responseInterceptors) {
             memo.responseInterceptors = [];
         }
