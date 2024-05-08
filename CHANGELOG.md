@@ -1,3 +1,12 @@
+## [3.1.9](https://github.com/WeBankFinTech/fes.js/compare/v3.1.8...v3.1.9) (2024-5-8)
+
+
+### Bug Fixes
+
+* login 插件获取配置问题 ([f337e69](https://github.com/WeBankFinTech/fes.js/commit/f337e69f3e40937bbdb2f3674e2be2fde2a56b2e))
+
+
+
 ## [3.1.8](https://github.com/WeBankFinTech/fes.js/compare/v3.1.7...v3.1.8) (2024-5-6)
 
 
