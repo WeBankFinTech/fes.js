@@ -127,6 +127,58 @@
                 </FFooter>
             </FLayout>
         </template>
+        <template v-else-if="currentNavigation === 'top-left'">
+            <FHeader ref="headerRef" class="layout-header" :inverted="theme === 'dark'" :fixed="currentFixedHeaderRef">
+                <div class="layout-logo">
+                    <img v-if="logo" :src="logo" class="logo-img">
+                    <div v-if="title" class="logo-name">
+                        {{ title }}
+                    </div>
+                </div>
+                <LayoutMenu
+                    class="layout-menu"
+                    :menus="rootMenus"
+                    mode="horizontal"
+                    :inverted="theme === 'dark'"
+                />
+                <div class="layout-header-custom">
+                    <slot name="renderCustom" :menus="menus" />
+                </div>
+                <template v-if="locale">
+                    <slot name="locale" />
+                </template>
+            </FHeader>
+            <FLayout v-if="activeSubMenus.length" :embedded="!multiTabs" :fixed="currentFixedHeaderRef" :style="headerStyleRef">
+                <FAside v-model:collapsed="collapsedRef" :fixed="isFixedSidebar" :width="`${sideWidth}px`" collapsible class="layout-aside">
+                    <LayoutMenu
+                        class="layout-menu"
+                        :menus="activeSubMenus"
+                        :collapsed="collapsedRef"
+                        mode="vertical"
+                        :expanded-keys="menuProps?.expandedKeys"
+                        :default-expand-all="menuProps?.defaultExpandAll"
+                        :accordion="menuProps?.accordion"
+                    />
+                </FAside>
+
+                <FLayout :embedded="!multiTabs" :fixed="isFixedSidebar" :style="sideStyleRef">
+                    <FMain class="layout-main">
+                        <MultiTabProvider :multi-tabs="multiTabs" />
+                    </FMain>
+                    <FFooter v-if="footer" class="layout-footer">
+                        {{ footer }}
+                    </FFooter>
+                </FLayout>
+            </FLayout>
+            <FLayout v-else :embedded="!multiTabs" :fixed="currentFixedHeaderRef" :style="headerStyleRef">
+                <FMain class="layout-main">
+                    <MultiTabProvider :multi-tabs="multiTabs" />
+                </FMain>
+                <FFooter v-if="footer" class="layout-footer">
+                    {{ footer }}
+                </FFooter>
+            </FLayout>
+        </template>
         <template v-else-if="currentNavigation === 'mixin'">
             <FHeader ref="headerRef" class="layout-header" :fixed="currentFixedHeaderRef" :inverted="theme === 'dark'">
                 <div class="layout-logo">
@@ -282,6 +334,40 @@ export default {
             },
         );
 
+        const rootMenus = computed(() => {
+            return props.menus.filter((menu) => {
+                return menu.path;
+            }).map((menu) => {
+                const { children, ...others } = menu;
+                return {
+                    ...others,
+                    _children: children,
+                };
+            });
+        });
+
+        const activeRootMenu = computed(() => {
+            const matchRootMenus = rootMenus.value.filter((menu) => {
+                const match = menu.match;
+                if (!match || !Array.isArray(match)) {
+                    return false;
+                }
+                return match.some((str) => {
+                    const reg = new RegExp(str);
+                    return reg.test(route.path);
+                });
+            });
+
+            return matchRootMenus[0] ?? null;
+        });
+
+        const activeSubMenus = computed(() => {
+            if (!activeRootMenu.value) {
+                return [];
+            }
+            return activeRootMenu.value._children || [];
+        });
+
         return {
             headerRef,
             headerHeightRef,
@@ -291,6 +377,8 @@ export default {
             headerStyleRef,
             sideStyleRef,
             currentNavigation,
+            rootMenus,
+            activeSubMenus,
         };
     },
 };
