@@ -1,3 +1,12 @@
+## [3.1.10](https://ssh.github.com:443/WeBankFinTech/fes.js/compare/v3.1.9...v3.1.10) (2024-05-21)
+
+
+### Features
+
+* **plugin-layout:** 增加 top-left 布局类型 ([#243](https://ssh.github.com:443/WeBankFinTech/fes.js/issues/243)) ([8375fe9](https://ssh.github.com:443/WeBankFinTech/fes.js/commit/8375fe9be7f9469732e0a32120e0a1c7c846bc31))
+
+
+
 ## [3.1.9](https://github.com/WeBankFinTech/fes.js/compare/v3.1.8...v3.1.9) (2024-5-8)
 
 
