@@ -22,7 +22,7 @@ interface Menu {
     children?: Menu[];
 }
 
-type Navigation = 'side' | 'mixin' | 'top' | 'left-right';
+type Navigation = 'side' | 'mixin' | 'top' | 'left-right' | 'top-left';
 
 export const Page: Component;
 
