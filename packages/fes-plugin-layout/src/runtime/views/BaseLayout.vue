@@ -140,6 +140,7 @@
                     :menus="rootMenus"
                     mode="horizontal"
                     :inverted="theme === 'dark'"
+                    :navigation="currentNavigation"
                 />
                 <div class="layout-header-custom">
                     <slot name="renderCustom" :menus="menus" />
@@ -229,6 +230,7 @@ import { useRoute, useRouter } from '@@/core/coreExports';
 import { FAside, FFooter, FHeader, FLayout, FMain } from '@fesjs/fes-design';
 import { computed, nextTick, ref, watch } from 'vue';
 import defaultLogo from '../assets/logo.png';
+import { flatNodes } from '../helpers/utils';
 import LayoutMenu from './Menu.vue';
 import MultiTabProvider from './MultiTabProvider.vue';
 
@@ -335,12 +337,16 @@ export default {
         );
 
         const rootMenus = computed(() => {
-            return props.menus.filter((menu) => {
-                return menu.path;
-            }).map((menu) => {
-                const { children, ...others } = menu;
+            return props.menus.map((menu) => {
+                const { children, match, ...others } = menu;
+                const flatChildren = flatNodes(children || []);
                 return {
                     ...others,
+                    match: (match || [])
+                        .concat(...flatChildren.map(item => []
+                            .concat(item.match || [])
+                            .concat(item.path)),
+                        ),
                     _children: children,
                 };
             });

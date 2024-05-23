@@ -73,6 +73,7 @@ export default {
             type: Boolean,
             default: false,
         },
+        navigation: String,
     },
     setup(props) {
         const route = useRoute();
@@ -93,7 +94,13 @@ export default {
             if (matchMenus.length === 0) {
                 return route.path;
             }
-            return matchMenus[0].path;
+            // 兼容 top-left 布局情况下，匹配菜单可能没有 path 的情况
+            if (props.navigation === 'top-left') {
+                return matchMenus[0].value;
+            }
+            else {
+                return matchMenus[0].path;
+            }
         });
 
         const expandedKeysRef = ref(props.expandedKeys);
@@ -124,12 +131,27 @@ export default {
         );
 
         const onMenuClick = (e) => {
-            const path = e.value;
+            let path = e.value;
+            let currentMenu = menuArray.value.find(item => item.value === path);
+
+            // 兼容 top-left 顶部导航没有链接的情况
+            if (props.navigation === 'top-left' && currentMenu && !currentMenu.path) {
+                // 判断当前菜单是否有子菜单
+                if (currentMenu._children && currentMenu._children.length > 0) {
+                    path = currentMenu._children[0].path;
+                    currentMenu = currentMenu._children[0];
+                }
+            }
+
             if (/^https?:\/\//.test(path)) {
                 window.open(path, '_blank');
             }
             else if (/^\//.test(path)) {
-                router.push(path);
+                router.push({
+                    path,
+                    query: currentMenu.query || {},
+                    params: currentMenu.params || {},
+                });
             }
             else {
                 console.warn('[plugin-layout]: 菜单的path只能是以http(s)开头的网址或者路由地址');
