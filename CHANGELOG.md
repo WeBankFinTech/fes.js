@@ -1,3 +1,12 @@
+## [3.1.11](https://ssh.github.com:443/WeBankFinTech/fes.js/compare/v3.1.10...v3.1.11) (2024-05-24)
+
+
+### Features
+
+* plugin-layout 支持顶部导航栏父菜单没有配置跳转链接的情况 ([#244](https://ssh.github.com:443/WeBankFinTech/fes.js/issues/244)) ([d87baed](https://ssh.github.com:443/WeBankFinTech/fes.js/commit/d87baedac0da0d2b719761ed5ab425f2db0851c0))
+
+
+
 ## [3.1.10](https://ssh.github.com:443/WeBankFinTech/fes.js/compare/v3.1.9...v3.1.10) (2024-05-21)
 
 
