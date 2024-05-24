@@ -54,6 +54,7 @@ export default defineBuildConfig({
                     {
                         title: '子菜单',
                         path: '/menuTest',
+                        query: { id: 1 },
                     },
                 ],
             },

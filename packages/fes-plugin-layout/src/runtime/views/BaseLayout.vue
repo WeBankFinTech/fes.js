@@ -127,7 +127,7 @@
                 </FFooter>
             </FLayout>
         </template>
-        <template v-else-if="currentNavigation === 'top-left'">
+        <template v-else-if="currentNavigation === 'top-left-right'">
             <FHeader ref="headerRef" class="layout-header" :inverted="theme === 'dark'" :fixed="currentFixedHeaderRef">
                 <div class="layout-logo">
                     <img v-if="logo" :src="logo" class="logo-img">
@@ -149,7 +149,7 @@
                 </template>
             </FHeader>
             <FLayout v-if="activeSubMenus.length" :embedded="!multiTabs" :fixed="currentFixedHeaderRef" :style="headerStyleRef">
-                <FAside v-model:collapsed="collapsedRef" :fixed="isFixedSidebar" :width="`${sideWidth}px`" collapsible class="layout-aside">
+                <FAside v-model:collapsed="collapsedRef" :inverted="theme === 'dark'" :fixed="isFixedSidebar" :width="`${sideWidth}px`" collapsible class="layout-aside">
                     <LayoutMenu
                         class="layout-menu"
                         :menus="activeSubMenus"
@@ -158,6 +158,7 @@
                         :expanded-keys="menuProps?.expandedKeys"
                         :default-expand-all="menuProps?.defaultExpandAll"
                         :accordion="menuProps?.accordion"
+                        :inverted="theme === 'dark'"
                     />
                 </FAside>
 
@@ -229,6 +230,7 @@ import { useRoute, useRouter } from '@@/core/coreExports';
 import { FAside, FFooter, FHeader, FLayout, FMain } from '@fesjs/fes-design';
 import { computed, nextTick, ref, watch } from 'vue';
 import defaultLogo from '../assets/logo.png';
+import { flatNodes } from '../helpers/utils';
 import LayoutMenu from './Menu.vue';
 import MultiTabProvider from './MultiTabProvider.vue';
 
@@ -267,7 +269,7 @@ export default {
         },
         navigation: {
             type: String,
-            default: 'side', // side 左右（上/下）、 top 上/下、 mixin 上/下（左/右）
+            default: 'side', // side 左右（上/下）、 top 上/下、 mixin 上/下（左/右）、top-left-right 上/下（左/右）
         },
         navigationOnError: {
             type: [String, Function], // 403, 404 时的 navigation
@@ -335,12 +337,28 @@ export default {
         );
 
         const rootMenus = computed(() => {
-            return props.menus.filter((menu) => {
-                return menu.path;
-            }).map((menu) => {
-                const { children, ...others } = menu;
+            return props.menus.map((menu) => {
+                const { children, match, ...others } = menu;
+                let { path, query, params } = menu;
+                const flatChildren = flatNodes(children || []);
+                if (!menu.path) {
+                    const firstChild = flatChildren.find(item => item.path);
+                    if (firstChild) {
+                        path = firstChild.path;
+                        query = firstChild.query;
+                        params = firstChild.params;
+                    }
+                }
                 return {
                     ...others,
+                    path,
+                    query,
+                    params,
+                    match: (match || [])
+                        .concat(...flatChildren.map(item => []
+                            .concat(item.match || [])
+                            .concat(item.path)),
+                        ),
                     _children: children,
                 };
             });

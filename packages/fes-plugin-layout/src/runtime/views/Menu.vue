@@ -125,11 +125,17 @@ export default {
 
         const onMenuClick = (e) => {
             const path = e.value;
+            const currentMenu = menuArray.value.find(item => item.value === path);
+
             if (/^https?:\/\//.test(path)) {
                 window.open(path, '_blank');
             }
             else if (/^\//.test(path)) {
-                router.push(path);
+                router.push({
+                    path,
+                    query: currentMenu?.query || {},
+                    params: currentMenu?.params || {},
+                });
             }
             else {
                 console.warn('[plugin-layout]: 菜单的path只能是以http(s)开头的网址或者路由地址');
