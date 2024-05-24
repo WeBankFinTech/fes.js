@@ -9,7 +9,7 @@ import { withBase } from 'vitepress'
 为了进一步降低研发成本，我们将布局利用 `fes.js` 插件的方式内置，只需通过简单的配置即可拥有布局，包括导航以及侧边栏。从而做到用户无需关心布局。
 
 -   侧边栏菜单数据根据路由中的配置自动生成。
--   布局，提供 `side`、 `top`、`mixin`、`left-right` 四种布局。
+-   布局，提供 `side`、 `top`、`mixin`、`left-right`、`top-left-right` 五种布局。
 -   主题，提供 `light`、`dark` 两种主题。
 -   默认实现对路由的 404、403 处理。
 -   搭配 [@fesjs/plugin-access](./access.html) 插件使用，可以完成对路由的权限控制。
@@ -34,7 +34,7 @@ import { withBase } from 'vitepress'
 
 ## 布局类型
 
-配置参数是 `navigation`, 布局有三种类型 `side`、`mixin` 、`top` 和 `left-right`， 默认是 `side`。
+配置参数是 `navigation`, 布局有五种类型 `side`、`mixin` 、`top` 、`left-right`、`top-left-right`， 默认是 `side`。
 
 ### side
 
@@ -53,8 +53,11 @@ import { withBase } from 'vitepress'
 
 ### left-right
 
-<!-- ![mixin](/mixin.png) -->
+<!-- ![mixin](/left-right.png) -->
 <img :src="withBase('left-right.png')" alt="left-right">
+
+<!-- ![mixin](/top-left-right.png) -->
+<img :src="withBase('top-left-right.png')" alt="top-left-right">
 
 ### 页面个性化
 
@@ -257,6 +260,10 @@ export const layout = {
     -   **name**：菜单的名称。通过匹配 `name` 和路由元信息 [meta](../../../guide/route.md#扩展路由元信息) 中的 `name`，把菜单和路由关联起来， 然后使用路由元信息补充菜单配置，比如 `title`、`path`  等。
 
     -   **path**：菜单的路径，可配置第三方地址。
+
+    -   **query**：同 vue-router 的 query 参数。
+
+    -   **params**：同 vue-router 的 params 参数。
 
     -   **match (v4.0.0+）**：额外匹配的路径，当前路由命中匹配规则时，此菜单高亮。
 
