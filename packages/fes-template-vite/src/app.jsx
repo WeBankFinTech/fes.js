@@ -23,8 +23,9 @@ export const beforeRender = {
 };
 
 export const layout = {
-    logo: `${process.env.BASE_URL}wine-outline.svg`,
-    renderCustom: (props) => {
+    // eslint-disable-next-line node/prefer-global/process
+    logo: `${process.env.BASE_URL}logo.png`,
+    renderCustom: () => {
         return <UserCenter />;
     },
 };
