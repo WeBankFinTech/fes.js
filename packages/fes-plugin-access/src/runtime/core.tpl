@@ -145,8 +145,13 @@ export const install = (app) => {
     app.component("Access", createComponent(useAccess));
 };
 
+export const hasAccessSync = (path) => {
+    return match(unref(path), getAllowAccessIds());
+}
+
 export const access = {
     hasAccess,
+    hasAccessSync,
     isDataReady,
     setRole,
     getRole: () => {
@@ -157,10 +162,6 @@ export const access = {
     getAccess: getAllowAccessIds,
     setPresetAccess,
 };
-
-export const hasAccessSync = (path) => {
-    return match(unref(path), getAllowAccessIds());
-}
 
 export const useAccess = (path) => {
     const allowPageIds = computed(getAllowAccessIds);
