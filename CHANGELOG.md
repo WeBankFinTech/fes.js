@@ -1,3 +1,12 @@
+## [3.1.12](https://github.com/WeBankFinTech/fes.js/compare/v3.1.11...v3.1.12) (2024-05-30)
+
+
+### Features
+
+* plugin-access中导出hasAccessSync方法 ([56f6120](https://github.com/WeBankFinTech/fes.js/commit/56f6120f889a88b37760db029faa597597572831))
+
+
+
 ## [3.1.11](https://ssh.github.com:443/WeBankFinTech/fes.js/compare/v3.1.10...v3.1.11) (2024-05-24)
 
 
