@@ -3,10 +3,14 @@ import type { Ref } from 'vue';
 
 export const access: {
     hasAccess: (accessId: string | number) => Promise<boolean>;
+    hasAccessSync: (accessId: string | number) => boolean;
     isDataReady: () => boolean;
     setRole: (roleId: string | Promise<string>) => void;
+    getRole: () => string;
     setAccess: (accessIds: Array<string | number> | Promise<Array<string | number>>) => void;
     getAccess: () => string[];
+    match: (path: string, accessIds: string[]) => boolean;
+    setPresetAccess: (accessId: string | string[]) => void;
 };
 
 export function useAccess(accessId: string | number): Ref<boolean>;
