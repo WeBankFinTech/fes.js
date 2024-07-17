@@ -1,12 +1,15 @@
+import { existsSync, readFileSync, readdirSync, statSync } from 'node:fs';
+import { join } from 'node:path';
 import { parser, winPath } from '@fesjs/utils';
-import { readdirSync, readFileSync, statSync } from 'fs';
-import { join } from 'path';
 
 /**
  * 获取文件夹所有JS文件路径
  * @param {string} dir
  */
 function getDirFilePaths(dir) {
+    if (!existsSync(dir)) {
+        return [];
+    }
     const dirs = readdirSync(dir);
     let pathList = [];
     for (const name of dirs) {
@@ -14,7 +17,8 @@ function getDirFilePaths(dir) {
         const info = statSync(path);
         if (info.isDirectory()) {
             pathList = pathList.concat(getDirFilePaths(path));
-        } else if (path.endsWith('.js')) {
+        }
+        else if (path.endsWith('.js')) {
             pathList.push(path);
         }
     }
@@ -29,8 +33,8 @@ function pathToHump(path, root) {
     return path
         .replace(root, '')
         .replace('.js', '')
-        .replace(RegExp('(/|\\.|-|_)\\S', 'g'), (text) => text[1].toUpperCase())
-        .replace(/\S/, (text) => text.toLowerCase());
+        .replace(RegExp('(/|\\.|-|_)\\S', 'g'), text => text[1].toUpperCase())
+        .replace(/\S/, text => text.toLowerCase());
 }
 
 /**
@@ -45,7 +49,7 @@ function getModelTypes(ast, name, namespace = '') {
         getters: {},
     };
     let namespaced = false;
-    if (ast.type !== 'ObjectExpression') return types;
+    if (ast.type !== 'ObjectExpression') { return types; }
     ast.properties.forEach((node) => {
         if (node.key.name === 'namespaced' && node.value.value) {
             namespaced = true;
@@ -56,7 +60,6 @@ function getModelTypes(ast, name, namespace = '') {
             if (namespaced) {
                 type = types[node.key.name][name];
                 if (!type) {
-                    // eslint-disable-next-line no-multi-assign
                     type = types[node.key.name][name] = {};
                 }
             }
@@ -77,7 +80,8 @@ function getModelTypes(ast, name, namespace = '') {
                             ...subTypes[key],
                             ...types[key][name],
                         };
-                    } else {
+                    }
+                    else {
                         types[key] = {
                             ...subTypes[key],
                             ...types[key],
@@ -112,8 +116,9 @@ function parseModel(paths = [], root) {
                 sourceType: 'module',
                 plugins: ['jsx', 'typescript'],
             });
-            ast = ast.program.body.filter((body) => body.type === 'ExportDefaultDeclaration')[0];
-        } catch (err) { }
+            ast = ast.program.body.filter(body => body.type === 'ExportDefaultDeclaration')[0];
+        }
+        catch (err) { }
         if (ast) {
             const { mutations, actions, getters } = getModelTypes(ast.declaration, moduleName);
             MUTATION_TYPES = {
@@ -155,9 +160,10 @@ export function parseStore(root) {
     const modelPaths = [];
     const pluginPaths = [];
     paths.forEach((path) => {
-        if (path.indexOf('plugin') > -1) {
+        if (path.includes('plugin')) {
             pluginPaths.push(path);
-        } else {
+        }
+        else {
             modelPaths.push(path);
         }
     });
