@@ -1,37 +1,37 @@
 {
-  "name": "@fesjs/compiler",
-  "version": "3.0.2",
-  "description": "@fesjs/compiler",
-  "main": "lib/index.js",
-  "files": [
-    "lib"
-  ],
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/WeBankFinTech/fes.js.git",
-    "directory": "packages/fes-compiler"
-  },
-  "keywords": [
-    "fes"
-  ],
-  "author": "qlin",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/WeBankFinTech/fes.js/issues"
-  },
-  "homepage": "https://github.com/WeBankFinTech/fes.js#readme",
-  "publishConfig": {
-    "access": "public"
-  },
-  "dependencies": {
-    "@babel/core": "^7.23.2",
-    "@babel/preset-env": "^7.23.2",
-    "@babel/register": "^7.22.15",
-    "@fesjs/utils": "^3.0.1",
-    "commander": "^7.0.0",
-    "dotenv": "8.2.0",
-    "joi": "17.3.0",
-    "set-value": "3.0.2",
-    "tapable": "^2.2.0"
-  }
+    "name": "@fesjs/compiler",
+    "version": "3.0.3",
+    "description": "@fesjs/compiler",
+    "main": "lib/index.js",
+    "files": [
+        "lib"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/WeBankFinTech/fes.js.git",
+        "directory": "packages/fes-compiler"
+    },
+    "keywords": [
+        "fes"
+    ],
+    "author": "qlin",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/WeBankFinTech/fes.js/issues"
+    },
+    "homepage": "https://github.com/WeBankFinTech/fes.js#readme",
+    "publishConfig": {
+        "access": "public"
+    },
+    "dependencies": {
+        "@babel/core": "^7.23.2",
+        "@babel/preset-env": "^7.23.2",
+        "@babel/register": "^7.22.15",
+        "@fesjs/utils": "^3.0.2",
+        "commander": "^7.0.0",
+        "dotenv": "8.2.0",
+        "joi": "17.3.0",
+        "set-value": "3.0.2",
+        "tapable": "^2.2.0"
+    }
 }

@@ -1,40 +1,40 @@
 {
-  "name": "@fesjs/plugin-monaco-editor",
-  "version": "3.0.1",
-  "description": "@fesjs/plugin-monaco-editor",
-  "main": "lib/index.js",
-  "files": [
-    "lib",
-    "types.d.ts"
-  ],
-  "scripts": {},
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/WeBankFinTech/fes.js.git",
-    "directory": "packages/fes-plugin-monaco-editor"
-  },
-  "keywords": [
-    "fes"
-  ],
-  "author": "harrywan",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/WeBankFinTech/fes.js/issues"
-  },
-  "homepage": "https://github.com/WeBankFinTech/fes.js#readme",
-  "publishConfig": {
-    "access": "public"
-  },
-  "dependencies": {
-    "@fesjs/utils": "^3.0.1",
-    "lodash-es": "^4.17.21",
-    "monaco-editor": "^0.36.1",
-    "monaco-editor-webpack-plugin": "^7.0.1",
-    "vite-plugin-monaco-editor": "^1.1.0"
-  },
-  "peerDependencies": {
-    "@fesjs/fes": "^3.1.4",
-    "vue": "^3.2.47"
-  },
-  "typings": "./types.d.ts"
+    "name": "@fesjs/plugin-monaco-editor",
+    "version": "3.0.2",
+    "description": "@fesjs/plugin-monaco-editor",
+    "main": "lib/index.js",
+    "files": [
+        "lib",
+        "types.d.ts"
+    ],
+    "scripts": {},
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/WeBankFinTech/fes.js.git",
+        "directory": "packages/fes-plugin-monaco-editor"
+    },
+    "keywords": [
+        "fes"
+    ],
+    "author": "harrywan",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/WeBankFinTech/fes.js/issues"
+    },
+    "homepage": "https://github.com/WeBankFinTech/fes.js#readme",
+    "publishConfig": {
+        "access": "public"
+    },
+    "dependencies": {
+        "@fesjs/utils": "^3.0.2",
+        "lodash-es": "^4.17.21",
+        "monaco-editor": "^0.36.1",
+        "monaco-editor-webpack-plugin": "^7.0.1",
+        "vite-plugin-monaco-editor": "^1.1.0"
+    },
+    "peerDependencies": {
+        "@fesjs/fes": "^3.1.11",
+        "vue": "^3.2.47"
+    },
+    "typings": "./types.d.ts"
 }
