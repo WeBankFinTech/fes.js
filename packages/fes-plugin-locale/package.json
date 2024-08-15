@@ -1,6 +1,6 @@
 {
     "name": "@fesjs/plugin-locale",
-    "version": "4.2.3",
+    "version": "4.2.4",
     "description": "@fesjs/plugin-locale",
     "main": "lib/index.js",
     "files": [
@@ -28,12 +28,12 @@
         "access": "public"
     },
     "dependencies": {
-        "@fesjs/utils": "^3.0.2",
+        "@fesjs/utils": "^3.0.3",
         "vue-i18n": "^9.0.0",
         "lodash-es": "^4.17.21"
     },
     "peerDependencies": {
-        "@fesjs/fes": "^3.1.11",
+        "@fesjs/fes": "^3.1.12",
         "@fesjs/fes-design": ">=0.7.0",
         "vue": "^3.2.47"
     },

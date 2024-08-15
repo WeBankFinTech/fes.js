@@ -1,3 +1,13 @@
+## [3.1.14](https://github.com/WeBankFinTech/fes.js/compare/v3.1.12...v3.1.14) (2024-8-15)
+
+
+### Bug Fixes
+
+* 修复 vuex 插件没有 store 目录报错问题 ([#245](https://github.com/WeBankFinTech/fes.js/issues/245)) ([5f305e5](https://github.com/WeBankFinTech/fes.js/commit/5f305e53ae8e23fc2fb385184986460f32636d89))
+* remove comment ([7815fc1](https://github.com/WeBankFinTech/fes.js/commit/7815fc1e8e32e24f35d5237a3e88cf9ebd327216))
+
+
+
 ## [3.1.13](https://github.com/WeBankFinTech/fes.js/compare/v3.1.12...v3.1.13) (2024-8-15)
 
 

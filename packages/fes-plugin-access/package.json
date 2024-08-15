@@ -1,6 +1,6 @@
 {
     "name": "@fesjs/plugin-access",
-    "version": "3.1.7",
+    "version": "3.1.8",
     "description": "@fesjs/plugin-access",
     "main": "lib/index.js",
     "files": [
@@ -28,11 +28,11 @@
         "access": "public"
     },
     "dependencies": {
-        "@fesjs/utils": "^3.0.2",
+        "@fesjs/utils": "^3.0.3",
         "lodash-es": "^4.17.21"
     },
     "peerDependencies": {
-        "@fesjs/fes": "^3.1.11",
+        "@fesjs/fes": "^3.1.12",
         "vue": "^3.2.47",
         "vue-router": "^4.0.1"
     },
