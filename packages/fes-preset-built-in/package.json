@@ -1,6 +1,6 @@
 {
     "name": "@fesjs/preset-built-in",
-    "version": "3.1.8",
+    "version": "3.1.9",
     "description": "@fesjs/preset-built-in",
     "author": "qlin",
     "license": "MIT",
@@ -29,9 +29,9 @@
         "vue": "^3.2.47"
     },
     "dependencies": {
-        "@fesjs/compiler": "^3.0.2",
+        "@fesjs/compiler": "^3.0.3",
         "@fesjs/runtime": "^3.0.0",
-        "@fesjs/utils": "^3.0.1",
+        "@fesjs/utils": "^3.0.2",
         "@vue/compiler-sfc": "^3.3.4",
         "envinfo": "^7.7.3",
         "express": "^4.17.3",

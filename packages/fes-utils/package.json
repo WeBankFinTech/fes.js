@@ -1,46 +1,46 @@
 {
-  "name": "@fesjs/utils",
-  "version": "3.0.1",
-  "description": "@fesjs/utils",
-  "main": "lib/index.js",
-  "files": [
-    "lib"
-  ],
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/WeBankFinTech/fes.js.git",
-    "directory": "packages/fes-utils"
-  },
-  "keywords": [
-    "fes"
-  ],
-  "author": "qlin",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/WeBankFinTech/fes.js/issues"
-  },
-  "homepage": "https://github.com/WeBankFinTech/fes.js#readme",
-  "publishConfig": {
-    "access": "public"
-  },
-  "dependencies": {
-    "@babel/generator": "^7.21.3",
-    "@babel/parser": "^7.21.3",
-    "@babel/traverse": "^7.21.3",
-    "chalk": "^4.1.2",
-    "chokidar": "^3.5.2",
-    "crequire": "^1.8.1",
-    "debug": "^4.3.2",
-    "deepmerge": "^4.2.2",
-    "glob": "^9.3.2",
-    "lodash": "^4.17.21",
-    "mkdirp": "^2.1.6",
-    "mustache": "^4.2.0",
-    "pkg-up": "^3.1.0",
-    "portfinder": "^1.0.32",
-    "resolve": "^1.20.0",
-    "rimraf": "^4.4.1",
-    "semver": "^7.3.5",
-    "yargs-parser": "^21.1.1"
-  }
+    "name": "@fesjs/utils",
+    "version": "3.0.2",
+    "description": "@fesjs/utils",
+    "main": "lib/index.js",
+    "files": [
+        "lib"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/WeBankFinTech/fes.js.git",
+        "directory": "packages/fes-utils"
+    },
+    "keywords": [
+        "fes"
+    ],
+    "author": "qlin",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/WeBankFinTech/fes.js/issues"
+    },
+    "homepage": "https://github.com/WeBankFinTech/fes.js#readme",
+    "publishConfig": {
+        "access": "public"
+    },
+    "dependencies": {
+        "@babel/generator": "^7.21.3",
+        "@babel/parser": "^7.21.3",
+        "@babel/traverse": "^7.21.3",
+        "chalk": "^4.1.2",
+        "chokidar": "^3.5.2",
+        "crequire": "^1.8.1",
+        "debug": "^4.3.2",
+        "deepmerge": "^4.2.2",
+        "glob": "^9.3.2",
+        "lodash": "^4.17.21",
+        "mkdirp": "^2.1.6",
+        "mustache": "^4.2.0",
+        "pkg-up": "^3.1.0",
+        "portfinder": "^1.0.32",
+        "resolve": "^1.20.0",
+        "rimraf": "^4.4.1",
+        "semver": "^7.3.5",
+        "yargs-parser": "^21.1.1"
+    }
 }
