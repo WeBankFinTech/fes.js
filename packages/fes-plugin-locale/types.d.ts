@@ -1,3 +1,5 @@
+import type { VueI18n } from 'vue-i18n';
+
 export { useI18n } from 'vue-i18n';
 
 export const locale: {
@@ -5,6 +7,7 @@ export const locale: {
     addLocale: ({ locale, messages }: { locale: string; messages: object }) => void;
     getAllLocales: () => string[];
     messages: Record<string, object>;
+    t: VueI18n['t'];
 };
 
 declare module '@fesjs/fes' {
