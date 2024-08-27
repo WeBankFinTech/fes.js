@@ -1,3 +1,7 @@
+## [3.1.15](https://github.com/WeBankFinTech/fes.js/compare/v3.1.14...v3.1.15) (2024-08-27)
+
+
+
 ## [3.1.14](https://github.com/WeBankFinTech/fes.js/compare/v3.1.12...v3.1.14) (2024-8-15)
 
 
