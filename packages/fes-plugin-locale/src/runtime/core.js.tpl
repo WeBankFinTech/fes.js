@@ -80,9 +80,7 @@ const install = (app) => {
     app.use(i18n);
 };
 
-const t = (key) => {
-    return i18n.global.t(key)
-}
+const t = i18n.global.t;
 
 const locale = {
     setLocale,
