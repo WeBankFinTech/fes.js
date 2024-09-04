@@ -1,3 +1,12 @@
+# [3.2.0](https://github.com/WeBankFinTech/fes.js/compare/v3.1.16...v3.2.0) (2024-09-04)
+
+
+### Features
+
+* plugin-layout的页签信息支持国际化 ([0a78b72](https://github.com/WeBankFinTech/fes.js/commit/0a78b72fdf00e6333634fafffa6868d69c2553a2))
+
+
+
 ## [3.1.16](https://github.com/WeBankFinTech/fes.js/compare/v3.1.15...v3.1.16) (2024-09-04)
 
 
