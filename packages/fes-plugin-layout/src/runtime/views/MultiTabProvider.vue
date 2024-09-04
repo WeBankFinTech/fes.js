@@ -7,7 +7,7 @@
             type="card"
             class="layout-content-tabs"
             @close="handleCloseTab"
-            @update:modelValue="switchPage"
+            @update:model-value="switchPage"
         >
             <FTabPane v-for="page in pageList" :key="page.path" :value="page.path" :closable="pageList.length > 1">
                 <template #tab>
@@ -30,7 +30,7 @@
 import { computed, ref, unref } from 'vue';
 import { FDropdown, FTabPane, FTabs } from '@fesjs/fes-design';
 import { MoreOutlined, ReloadOutlined } from '@fesjs/fes-design/icon';
-import { useRoute, useRouter } from '@@/core/coreExports';
+import { plugin, useRoute, useRouter } from '@@/core/coreExports';
 import { transTitle } from '../helpers/pluginLocale';
 import { deleteTitle, getTitle } from '../useTitle';
 import { useLayout } from '../useLayout';
@@ -71,26 +71,45 @@ export default {
         };
 
         const pageList = ref([createPage(router.currentRoute.value)]);
-        const actions = [
-            {
-                value: 'closeOtherPage',
-                label: '关闭其他页签',
-            },
-            {
-                value: 'reloadPage',
-                label: '刷新当前页签',
-            },
-        ];
+
+        const actions = computed(() => {
+            const sharedLocale = plugin.getShared('locale');
+            if (sharedLocale) {
+                const { t } = sharedLocale.locale;
+                return [
+                    {
+                        value: 'closeOtherPage',
+                        label: t('pluginLayout.closeOtherPage'),
+                    },
+                    {
+                        value: 'reloadPage',
+                        label: t('pluginLayout.reloadPage'),
+                    },
+                ];
+            }
+            return [
+                {
+                    value: 'closeOtherPage',
+                    label: '关闭其他页签',
+                },
+                {
+                    value: 'reloadPage',
+                    label: '刷新当前页签',
+                },
+            ];
+        });
 
         const findPage = path => pageList.value.find(item => unref(item.path) === unref(path));
 
         router.beforeEach((to) => {
             const page = findPage(to.path);
-            if (!page)
+            if (!page) {
                 pageList.value = [...pageList.value, createPage(to)];
+            }
 
-            else
+            else {
                 page.route = to;
+            }
 
             return true;
         });
@@ -113,11 +132,13 @@ export default {
             const index = list.indexOf(selectedPage);
             if (route.path === selectedPage.path) {
                 if (list.length > 1) {
-                    if (list.length - 1 === index)
+                    if (list.length - 1 === index) {
                         await switchPage(list[index - 1].path);
+                    }
 
-                    else
+                    else {
                         await switchPage(list[index + 1].path);
+                    }
                 }
             }
             list.splice(index, 1);
@@ -129,8 +150,9 @@ export default {
 
         const reloadPage = (path) => {
             const selectedPage = findPage(path || unref(route.path));
-            if (selectedPage)
+            if (selectedPage) {
                 selectedPage.key = getKey();
+            }
         };
         const closeOtherPage = (path) => {
             const selectedPage = findPage(path || unref(route.path));
@@ -139,8 +161,9 @@ export default {
         };
         const getPageKey = (_route) => {
             const selectedPage = findPage(_route.path);
-            if (selectedPage)
+            if (selectedPage) {
                 return selectedPage.key;
+            }
 
             return '';
         };

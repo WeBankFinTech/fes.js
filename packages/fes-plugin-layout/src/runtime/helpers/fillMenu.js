@@ -1,4 +1,4 @@
-const getMetaByName = (config, name) => {
+function getMetaByName(config, name) {
     let res = {};
     if (Array.isArray(config)) {
         for (let i = 0; i < config.length; i++) {
@@ -17,9 +17,9 @@ const getMetaByName = (config, name) => {
         }
     }
     return res;
-};
+}
 
-const fillMenuByRoute = (menuConfig, routeConfig, dep = 0) => {
+function fillMenuByRoute(menuConfig, routeConfig, dep = 0) {
     dep += 1;
     if (dep > 3) {
         console.warn('[plugin-layout]: 菜单层级最好不要超出三层！');
@@ -44,6 +44,6 @@ const fillMenuByRoute = (menuConfig, routeConfig, dep = 0) => {
         });
     }
     return arr;
-};
+}
 
 export default fillMenuByRoute;

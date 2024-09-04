@@ -2,7 +2,7 @@ const isStr = function (str) {
     return typeof str === 'string';
 };
 
-export const isValid = (elm) => {
+export function isValid(elm) {
     if (elm.nodeType === 1) {
         if (elm.nodeName.toLowerCase() === 'script') {
             return false;
@@ -22,9 +22,9 @@ export const isValid = (elm) => {
         }
     }
     return true;
-};
+}
 
-export const validateContent = (svgContent) => {
+export function validateContent(svgContent) {
     const div = document.createElement('div');
     div.innerHTML = svgContent;
 
@@ -46,4 +46,4 @@ export const validateContent = (svgContent) => {
         }
     }
     return '';
-};
+}

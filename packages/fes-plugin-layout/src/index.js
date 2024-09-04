@@ -30,6 +30,13 @@ export default (api) => {
 
     const absRuntimeFilePath = join(namespace, 'runtime.js');
 
+    api.register({
+        key: 'addExtraLocales',
+        fn: () => [
+            join(api.paths.absTmpPath, namespace, 'locales'),
+        ],
+    });
+
     api.onGenerateFiles(async () => {
         // .fes配置
         const userConfig = {

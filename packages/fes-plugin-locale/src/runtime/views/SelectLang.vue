@@ -1,11 +1,11 @@
 <template>
-    <FTooltip v-model="isOpened" popperClass="lang-popper" mode="popover">
+    <FTooltip v-model="isOpened" popper-class="lang-popper" mode="popover">
         <div class="lang-icon">
             <LanguageOutlined />
         </div>
         <template #content>
             <FScrollbar height="274" class="lang-container">
-                <div v-for="item in configs" :key="item.lang" :class="['lang-option', item.lang === locale && 'is-selected']" @click="handleSelect(item)">
+                <div v-for="item in configs" :key="item.lang" class="lang-option" :class="[item.lang === locale && 'is-selected']" @click="handleSelect(item)">
                     <span>{{ item.icon }}</span>
                     <span>{{ item.label }}</span>
                 </div>
@@ -15,12 +15,12 @@
 </template>
 
 <script>
-import { FTooltip, FScrollbar } from '@fesjs/fes-design';
+import { FScrollbar, FTooltip } from '@fesjs/fes-design';
 import { LanguageOutlined } from '@fesjs/fes-design/icon';
 import { useI18n } from 'vue-i18n';
 import { computed, ref } from 'vue';
 import langUConfigMap from '../langUConfigMap';
-// eslint-disable-next-line import/extensions
+
 import { locale as _locale } from '../core';
 
 export default {
@@ -55,11 +55,13 @@ export default {
     },
 };
 </script>
+
 <style>
 .fes-tooltip.fes-tooltip-popover.lang-popper {
     padding: 0;
 }
 </style>
+
 <style lang="less" scoped>
 .lang-icon {
     display: flex;

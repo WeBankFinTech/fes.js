@@ -31,5 +31,8 @@
             "source": "./fixtures/output/**/*.*",
             "target": "./fixtures/input/<base>"
         }
+    ],
+    "cSpell.words": [
+        "unref"
     ]
 }
