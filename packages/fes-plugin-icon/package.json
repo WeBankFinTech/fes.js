@@ -1,38 +1,38 @@
 {
-  "name": "@fesjs/plugin-icon",
-  "version": "3.0.0",
-  "description": "@fesjs/plugin-icon",
-  "main": "lib/index.js",
-  "files": [
-    "lib",
-    "types.d.ts"
-  ],
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/WeBankFinTech/fes.js.git",
-    "directory": "packages/fes-plugin-icon"
-  },
-  "keywords": [
-    "fes"
-  ],
-  "author": "qlin",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/WeBankFinTech/fes.js/issues"
-  },
-  "homepage": "https://github.com/WeBankFinTech/fes.js#readme",
-  "publishConfig": {
-    "access": "public"
-  },
-  "peerDependencies": {
-    "@fesjs/fes": "^3.0.0",
-    "vue": "^3.2.47"
-  },
-  "dependencies": {
-    "svgo": "^3.0.2"
-  },
-  "typings": "./types.d.ts"
+    "name": "@fesjs/plugin-icon",
+    "version": "3.0.0",
+    "description": "@fesjs/plugin-icon",
+    "author": "qlin",
+    "license": "MIT",
+    "homepage": "https://github.com/WeBankFinTech/fes.js#readme",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/WeBankFinTech/fes.js.git",
+        "directory": "packages/fes-plugin-icon"
+    },
+    "bugs": {
+        "url": "https://github.com/WeBankFinTech/fes.js/issues"
+    },
+    "keywords": [
+        "fes"
+    ],
+    "main": "lib/index.js",
+    "files": [
+        "lib",
+        "types.d.ts"
+    ],
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "publishConfig": {
+        "access": "public"
+    },
+    "peerDependencies": {
+        "@fesjs/fes": "^3.0.0",
+        "vue": "^3.2.47"
+    },
+    "dependencies": {
+        "svgo": "^3.0.2"
+    },
+    "typings": "./types.d.ts"
 }

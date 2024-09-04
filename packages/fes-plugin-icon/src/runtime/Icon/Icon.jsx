@@ -1,8 +1,8 @@
 import { computed } from 'vue';
-// eslint-disable-next-line
+
 import icons from '../icons';
 
-const noop = () => {};
+function noop() {}
 
 export default {
     name: 'FesIcon',
@@ -19,9 +19,9 @@ export default {
         const svgStyle = computed(() =>
             props.rotate
                 ? {
-                      msTransform: `rotate(${props.rotate}deg)`,
-                      transform: `rotate(${props.rotate}deg)`,
-                  }
+                        msTransform: `rotate(${props.rotate}deg)`,
+                        transform: `rotate(${props.rotate}deg)`,
+                    }
                 : null,
         );
         const svgCls = computed(() => ({

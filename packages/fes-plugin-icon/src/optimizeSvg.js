@@ -1,5 +1,5 @@
-import { extname, basename } from 'path';
-import { statSync, readFileSync } from 'fs';
+import { basename, extname } from 'node:path';
+import { readFileSync, statSync } from 'node:fs';
 import { optimize } from 'svgo';
 
 const presetDefault = [
@@ -15,7 +15,7 @@ const presetDefault = [
     {
         name: 'removeAttrs',
         params: {
-            attrs: '(fill|stroke|class)',
+            attrs: '(class)',
         },
     },
 ];
