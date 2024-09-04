@@ -1,3 +1,12 @@
+## [3.1.16](https://github.com/WeBankFinTech/fes.js/compare/v3.1.15...v3.1.16) (2024-09-04)
+
+
+### Bug Fixes
+
+* 优化svg不能去掉fill等属性 ([77d2b09](https://github.com/WeBankFinTech/fes.js/commit/77d2b09121bd7742a37ea4a8d2dc5150c8c17175))
+
+
+
 ## [3.1.15](https://github.com/WeBankFinTech/fes.js/compare/v3.1.14...v3.1.15) (2024-08-27)
 
 
