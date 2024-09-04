@@ -1,6 +1,6 @@
 import { plugin } from '@@/core/coreExports';
-// eslint-disable-next-line import/extensions
-import { useI18n, locale, install } from './core';
+
+import { install, locale, useI18n } from './core';
 import SelectLang from './views/SelectLang.vue';
 
 // 共享出去

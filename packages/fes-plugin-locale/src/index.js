@@ -1,5 +1,5 @@
-import { readFileSync } from 'fs';
-import { join } from 'path';
+import { readFileSync } from 'node:fs';
+import { join } from 'node:path';
 import { name } from '../package.json';
 
 const namespace = 'plugin-locale';
@@ -32,10 +32,17 @@ export default (api) => {
         return join(api.paths.absSrcPath, api.config.singular ? 'locale' : 'locales');
     }
 
+    api.register({
+        key: 'addExtraLocales',
+        fn: () => [
+            getLocaleFileBasePath(),
+        ],
+    });
+
     // 监听 locale 文件改变，重新生成文件
     api.addTmpGenerateWatcherPaths(getLocaleFileBasePath);
 
-    api.onGenerateFiles(() => {
+    api.onGenerateFiles(async () => {
         // .fes配置
         const userConfig = {
             locale: 'zh-CN', // default locale
@@ -45,9 +52,13 @@ export default (api) => {
             ...api.config.locale,
         };
 
-        const localeConfigFileBasePath = getLocaleFileBasePath();
+        const additionalLocales = await api.applyPlugins({
+            key: 'addExtraLocales',
+            type: api.ApplyPluginsType.add,
+            initialValue: [],
+        });
 
-        const { files, locales } = getLocales(localeConfigFileBasePath);
+        const { files, locales } = getLocales(additionalLocales);
 
         const { baseNavigator, ...otherConfig } = userConfig;
 
@@ -55,7 +66,7 @@ export default (api) => {
             path: join(namespace, 'locales.js'),
             content: Mustache.render(readFileSync(join(__dirname, 'runtime/locales.js.tpl'), 'utf-8'), {
                 REPLACE_IMPORTS: files,
-                REPLACE_LOCALES: locales.map((item) => ({
+                REPLACE_LOCALES: locales.map(item => ({
                     locale: item.locale,
                     importNames: item.importNames.join(', '),
                 })),

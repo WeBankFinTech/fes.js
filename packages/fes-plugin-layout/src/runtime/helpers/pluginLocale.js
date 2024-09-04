@@ -1,6 +1,6 @@
 import { plugin } from '@@/core/coreExports';
 
-export const transTitle = (name) => {
+export function transTitle(name) {
     if (!/^\$\S+$/.test(name)) {
         return name;
     }
@@ -10,10 +10,10 @@ export const transTitle = (name) => {
         return t(name.slice(1));
     }
     return name;
-};
+}
 
-export const transform = (menus) =>
-    menus.map((menu) => {
+export function transform(menus) {
+    return menus.map((menu) => {
         const copy = {
             ...menu,
             label: transTitle(menu.label),
@@ -23,3 +23,4 @@ export const transform = (menus) =>
         }
         return copy;
     });
+}
