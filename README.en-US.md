@@ -97,9 +97,11 @@ npm install
 npm run dev
 ```
 
-## Start On Cloud IDE
+## Project Demo
 
-[https://idegithub.com/WeBankFinTech/fes.js](https://idegithub.com/WeBankFinTech/fes.js)
+| Project     |  Description           |
+|----------------------------------------- | ----------------------------------------- |
+| <img src="https://docs.icegl.cn/logo.png" width="100px"> | [threejs webgl three three.js tres.js tvt.js](https://gitee.com/ice-gl/icegl-three-vue-tres) |
 
 ## Feedback
 
@@ -128,9 +130,3 @@ In order for the Fes.js open source project to run better, and to give back to t
 The output of experience can also help your system accumulate your own projects, sort out your work ideas, and also help your technology blog to promote. Good practice cases will have the opportunity to be invited to participate in the project community technical meeting to share, hurry up and participate.
 
 Please stamp: <https://mp.weixin.qq.com/s/nV4NG_OUUrdgtft8g_IW4g>
-
-## 项目样例
-
-| Project     |  Description           |
-|----------------------------------------- | ----------------------------------------- |
-| <img src="https://docs.icegl.cn/logo.png" width="100px"> | [threejs webgl three three.js tres.js tvt.js](https://gitee.com/ice-gl/icegl-three-vue-tres) |
