@@ -64,6 +64,6 @@ npm run dev
 
 | Github Issue                                                           | Fes.js 开源运营小助手                                                                            |
 | ---------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------ |
-| [@fesjs/fes.js/issues](https://github.com/WeBankFinTech/fes.js/issues) | <img src="https://cos-1254145788.cos.ap-guangzhou.myqcloud.com/WechatIMG104.jpeg" height="250"/> |
+| [@fesjs/fes.js/issues](https://github.com/WeBankFinTech/fes.js/issues) | <img src="https://wanchun-1252303708.cos.ap-nanjing.myqcloud.com/WeChatb7bcfb33e47b8949ced831b8e79ffb0b.jpg" height="250"/> |
 
 </HomeContent>
