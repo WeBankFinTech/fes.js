@@ -99,6 +99,14 @@ npm install
 npm run dev
 ```
 
+## 项目样例
+
+使用 fes.js 构建的优秀项目，欢迎联系。
+
+| 项目     |  描述           |
+|----------------------------------------- | ----------------------------------------- |
+| <img src="https://docs.icegl.cn/logo.png" width="100px"> | [三维可视化项目快速落地の开源框架](https://gitee.com/ice-gl/icegl-three-vue-tres) |
+
 ## 反馈
 
 | Github Issue                         | Fes.js 开源运营小助手                                                                            |
@@ -125,9 +133,3 @@ npm run dev
 
 经验输出也可以帮助到你系统沉淀自有项目，梳理工作思路，也能够帮助你的技术博客做宣传。优秀的实践案例将有机会邀请参与项目社区技术会议分享，赶快来参与吧。
 请戳：<https://mp.weixin.qq.com/s/nV4NG_OUUrdgtft8g_IW4g>
-
-## 项目样例
-
-| 项目     |  描述           |
-|----------------------------------------- | ----------------------------------------- |
-| <img src="https://docs.icegl.cn/logo.png" width="100px"> | [三维可视化项目快速落地の开源框架](https://gitee.com/ice-gl/icegl-three-vue-tres) |
