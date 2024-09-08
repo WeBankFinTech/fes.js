@@ -122,6 +122,7 @@ export default (api) => {
         return [
             {
                 path: '/',
+                name: 'fesLayout',
                 component: winPath(join(api.paths.absTmpPath || '', absFilePath)),
                 children: routes,
             },
