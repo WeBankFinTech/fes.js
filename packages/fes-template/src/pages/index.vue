@@ -27,6 +27,5 @@ function go() {
 <style lang="less">
 .page {
     height: 1000px;
-    background-image: url('@/images/hello.png');
 }
 </style>
