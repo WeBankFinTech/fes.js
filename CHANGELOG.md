@@ -1,3 +1,17 @@
+## [3.2.1](https://github.com/WeBankFinTech/fes.js/compare/v3.2.0...v3.2.1) (2024-09-08)
+
+
+### Bug Fixes
+
+* fes layout 添加 route name, 用于动态路由创建 ([#249](https://github.com/WeBankFinTech/fes.js/issues/249)) ([95a1e07](https://github.com/WeBankFinTech/fes.js/commit/95a1e07c6a3abd9b3f95f91f2587bafb827250b6))
+
+
+### Features
+
+* 更新文档 ([e2e5fa9](https://github.com/WeBankFinTech/fes.js/commit/e2e5fa94960c3ce79560c9a1ba47b0851b4fe831))
+
+
+
 # [3.2.0](https://github.com/WeBankFinTech/fes.js/compare/v3.1.16...v3.2.0) (2024-09-04)
 
 
