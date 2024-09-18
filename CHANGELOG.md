@@ -1,3 +1,13 @@
+# [3.3.0](https://github.com/WeBankFinTech/fes.js/compare/v3.2.1...v3.3.0) (2024-09-18)
+
+
+### Features
+
+* 规范pnpm版本 ([b665358](https://github.com/WeBankFinTech/fes.js/commit/b66535831e1c21416b7120bacff5dc5d87edade3))
+* 默认 ([7c00f3d](https://github.com/WeBankFinTech/fes.js/commit/7c00f3defd13ca0eb6201e41c309022728594532))
+
+
+
 ## [3.2.1](https://github.com/WeBankFinTech/fes.js/compare/v3.2.0...v3.2.1) (2024-09-08)
 
 
