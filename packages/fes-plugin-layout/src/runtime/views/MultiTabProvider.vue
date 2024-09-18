@@ -27,13 +27,12 @@
 </template>
 
 <script>
-import { computed, ref, unref } from 'vue';
+import { computed, provide, reactive, ref, unref } from 'vue';
 import { FDropdown, FTabPane, FTabs } from '@fesjs/fes-design';
 import { MoreOutlined, ReloadOutlined } from '@fesjs/fes-design/icon';
 import { plugin, useRoute, useRouter } from '@@/core/coreExports';
 import { transTitle } from '../helpers/pluginLocale';
-import { deleteTitle, getTitle } from '../useTitle';
-import { useLayout } from '../useLayout';
+import { PLUGIN_LAYOUT_KEY, PLUGIN_LAYOUT_TITLE_KEY } from '../useLayout';
 import Page from './page.vue';
 
 let i = 0;
@@ -54,7 +53,14 @@ export default {
         const pageRef = ref();
         const route = useRoute();
         const router = useRouter();
-        const layoutState = useLayout();
+
+        const titleCache = reactive(new Map());
+
+        provide(PLUGIN_LAYOUT_TITLE_KEY, titleCache);
+
+        const getTitle = path => titleCache.get(path);
+
+        const deleteTitle = patch => titleCache.delete(patch);
 
         const createPage = (_route) => {
             const computedTitle = computed(() => {
@@ -146,7 +152,6 @@ export default {
             pageRef.value.removeKeepAlive(selectedPage.name);
             deleteTitle(selectedPage.path);
         };
-        layoutState.closeTab = handleCloseTab;
 
         const reloadPage = (path) => {
             const selectedPage = findPage(path || unref(route.path));
@@ -178,6 +183,11 @@ export default {
                 default:
             }
         };
+
+        provide(PLUGIN_LAYOUT_KEY, {
+            closeTab: handleCloseTab,
+            reloadTab: reloadPage,
+        });
 
         return {
             pageRef,

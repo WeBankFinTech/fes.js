@@ -28,6 +28,8 @@ export const Page: Component;
 
 export function useTabTitle(title: string | Ref<string>): void;
 
+export function useLayout(options: { title?: string }): { title: Ref<string>; reloadTab: () => void; closeTab: () => void };
+
 interface LayoutRuntimeConfig {
     footer?: string;
     theme?: 'dark' | 'light';
