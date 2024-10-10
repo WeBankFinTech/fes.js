@@ -13,7 +13,10 @@ export default function createDirective(useAccess) {
         beforeMount(el) {
             const ctx = {};
             ctx.watch = (path) => {
-                el._display = el._display || el.style.display;
+                // el._display = el._display || el.style.display; // 这种只能获取到行内样式 会导致保存不了组件加载时的初始display
+                if (!el._display) {
+                    el._display = window.getComputedStyle(el).display
+                }
                 const access = useAccess(path);
                 setDisplay(el, access);
                 return watch(access, () => {
