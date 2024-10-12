@@ -1,3 +1,18 @@
+## [3.3.1](https://github.com/WeBankFinTech/fes.js/compare/v3.3.0...v3.3.1) (2024-10-12)
+
+
+### Bug Fixes
+
+* 修复清空父应用状态,子应用状态未清空问题 ([#251](https://github.com/WeBankFinTech/fes.js/issues/251)) ([df36be4](https://github.com/WeBankFinTech/fes.js/commit/df36be4671344461aee77255a794d0e9f9086ba0))
+* v-access指令无法控制元素展示隐藏 ([#252](https://github.com/WeBankFinTech/fes.js/issues/252)) ([11c392d](https://github.com/WeBankFinTech/fes.js/commit/11c392d3d1982ffec1c686523a18a7a89db24f2d))
+
+
+### Features
+
+* 403 404 页面文案可配置 ([#253](https://github.com/WeBankFinTech/fes.js/issues/253)) ([314dc21](https://github.com/WeBankFinTech/fes.js/commit/314dc2133b1a6cfacb727512e8168a3e40972172))
+
+
+
 # [3.3.0](https://github.com/WeBankFinTech/fes.js/compare/v3.2.1...v3.3.0) (2024-09-18)
 
 
