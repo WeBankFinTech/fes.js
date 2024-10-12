@@ -9,7 +9,7 @@ export const beforeRender = {
         const { setRole, getRole } = accessApi;
         return new Promise((resolve) => {
             setTimeout(() => {
-                setRole('admin');
+                setRole('menuTest');
                 resolve({
                     userName: '李雷',
                 });
@@ -20,24 +20,29 @@ export const beforeRender = {
     },
 };
 
-export const layout = (layoutConfig, { initialState }) => ({
-    ...layoutConfig,
-    renderCustom: (props) => {
-        console.log(props);
-        return <UserCenter />;
-    },
-    menus: () => {
-        const menusRef = ref(layoutConfig.menus);
-        watch(
-            () => initialState.userName,
-            () => {
-                menusRef.value = [
-                    {
-                        name: 'store',
-                    },
-                ];
-            },
-        );
-        return menusRef;
-    },
-});
+export function layout(layoutConfig, { initialState }) {
+    return {
+        ...layoutConfig,
+        403: {
+            title: 'hello word',
+        },
+        renderCustom: (props) => {
+            console.log(props);
+            return <UserCenter />;
+        },
+        menus: () => {
+            const menusRef = ref(layoutConfig.menus);
+            watch(
+                () => initialState.userName,
+                () => {
+                    menusRef.value = [
+                        {
+                            name: 'store',
+                        },
+                    ];
+                },
+            );
+            return menusRef;
+        },
+    };
+}
