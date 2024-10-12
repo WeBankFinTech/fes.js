@@ -1,4 +1,4 @@
-export { Plugin } from './es/index' 
+export { Plugin } from './es/index';
 
 export {
     useRoute,
@@ -15,7 +15,7 @@ export {
 } from 'vue-router';
 
 export interface ApplyPluginsType {
-    compose: 'compose',
-    event: 'event',
-    modify: 'modify'
+    compose: 'compose';
+    event: 'event';
+    modify: 'modify';
 };
