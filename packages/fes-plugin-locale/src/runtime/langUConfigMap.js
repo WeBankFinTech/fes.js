@@ -162,7 +162,7 @@ export default {
         title: 'Ziman',
     },
     'kn-IN': {
-        lang: 'zh-TW',
+        lang: 'kn-IN',
         label: 'ಕನ್ನಡ',
         icon: '🇮🇳',
         title: 'ಭಾಷೆ',
