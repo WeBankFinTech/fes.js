@@ -126,7 +126,7 @@ export default {
         title: 'Nyelv',
     },
     'hy-AM': {
-        lang: 'hu-HU',
+        lang: 'hy-AM',
         label: 'Հայերեն',
         icon: '🇦🇲',
         title: 'Լեզու',
