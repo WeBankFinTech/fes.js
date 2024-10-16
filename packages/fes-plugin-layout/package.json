@@ -30,6 +30,7 @@
     "peerDependencies": {
         "@fesjs/fes": "^3.1.13",
         "@fesjs/fes-design": ">=0.7.0",
+        "dompurify": "^3.1.7",
         "vue": "^3.2.47",
         "vue-router": "^4.0.1"
     },

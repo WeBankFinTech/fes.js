@@ -1,11 +1,11 @@
 <script lang="jsx">
-import { ref, onBeforeMount, isVNode } from 'vue';
-// eslint-disable-next-line import/extensions
+import { isVNode, onBeforeMount, ref } from 'vue';
+
 import Icons from '../icons';
 import { validateContent } from '../helpers/svg';
 
 const urlReg = /^((https?|ftp|file):\/\/)?([\da-z.-]+)\.([a-z.]{2,6})([/\w .-]*)*\/?$/;
-const isUrlResource = (name) => urlReg.test(name) || name.includes('.svg');
+const isUrlResource = name => urlReg.test(name) || name.includes('.svg');
 
 export default {
     props: {
@@ -25,7 +25,8 @@ export default {
                             });
                         }
                     });
-                } else {
+                }
+                else {
                     AIconComponent.value = Icons[props.icon];
                 }
             }
@@ -39,13 +40,14 @@ export default {
                 return <AIconComponent.value />;
             }
             if (AText.value) {
-                return <span class={'fes-layout-icon'} innerHTML={AText.value}></span>;
+                return <span class="fes-layout-icon" innerHTML={AText.value}></span>;
             }
             return null;
         };
     },
 };
 </script>
+
 <style>
 .fes-layout-icon {
     display: inline-block;
