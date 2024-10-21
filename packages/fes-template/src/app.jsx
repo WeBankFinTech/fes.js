@@ -9,7 +9,7 @@ export const beforeRender = {
         const { setRole, getRole } = accessApi;
         return new Promise((resolve) => {
             setTimeout(() => {
-                setRole('menuTest');
+                setRole('admin');
                 resolve({
                     userName: '李雷',
                 });

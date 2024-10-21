@@ -441,6 +441,9 @@ importers:
       '@vueuse/core':
         specifier: ^10.7.0
         version: 10.7.0(vue@3.3.4)
+      dompurify:
+        specifier: ^3.1.7
+        version: 3.1.7
       vue:
         specifier: ^3.2.47
         version: 3.3.4
@@ -6978,6 +6981,10 @@ packages:
     engines: {node: '>= 4'}
     dependencies:
       domelementtype: 2.3.0
+    dev: false
+
+  /dompurify@3.1.7:
+    resolution: {integrity: sha512-VaTstWtsneJY8xzy7DekmYWEOZcmzIe3Qb3zPd4STve1OBTa+e+WmS1ITQec1fZYXI3HCsOZZiSMpG6oxoWMWQ==}
     dev: false
 
   /domutils@2.8.0:

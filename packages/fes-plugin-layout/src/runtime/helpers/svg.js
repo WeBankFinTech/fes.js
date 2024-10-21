@@ -1,3 +1,5 @@
+import DOMPurify from 'dompurify';
+
 const isStr = function (str) {
     return typeof str === 'string';
 };
@@ -26,7 +28,7 @@ export function isValid(elm) {
 
 export function validateContent(svgContent) {
     const div = document.createElement('div');
-    div.innerHTML = svgContent;
+    div.innerHTML = DOMPurify.sanitize(svgContent);
 
     // setup this way to ensure it works on our buddy IE
     for (let i = div.childNodes.length - 1; i >= 0; i--) {
