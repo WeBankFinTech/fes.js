@@ -11,7 +11,7 @@
 
 1. 添加 Webpack 构建依赖包： `npm i @fesjs/builder-webpack -D`。
 2. 如果设置了 `publicPath: './'`，请更改为 `publicPath: ''`
-3. 如果有，将 `public/index.html` 文件挪到项目根目录，移除 [html-webpack-plugin](https://github.com/jantimon/html-webpack-plugin) 相关配置，具体模版变量使用请查看[HTML 模版](../guide/template.html)。
+3. 将 html 模版文件从 `public/index.html` 文件挪到项目根目录，移除 [html-webpack-plugin](https://github.com/jantimon/html-webpack-plugin) 相关配置，具体模版变量使用请查看[HTML 模版](../guide/template.html)。
 
 ## 换成 Vite
 
