@@ -33,7 +33,7 @@ export default defineBuildConfig({
         },
     },
     layout: {
-        title: 'Fes.js',
+        title: '$home',
         footer: 'Created by MumbleFE',
         multiTabs: true,
         navigation: 'mixin',

@@ -69,11 +69,9 @@ export default {
 
 想了解更多语言信息配置、匹配规则，请参考 [Vue I18n](https://vue-i18n.intlify.dev/guide/essentials/syntax.html) 文档。
 
-
 ### 多层配置
-如果国际化内容较多，希望模块化配置，则可以这样：
 
-```
+如果国际化内容较多，希望模块化配置，则可以这样：
 src
   ├── locales
   │    ├── zh-CN.js
@@ -84,6 +82,7 @@ src
   └── pages
   │    └── index.vue
   └── app.js
+
 ```
 
 插件会把相同语言的配置合并在一起！
@@ -115,37 +114,49 @@ export default {
 
 #### locale
 
--   **类型**：`String`
--   **默认值**：`zh-CN`
+- **类型**：`String`
+- **默认值**：`zh-CN`
 
--   **详情**：当前的语言。
+- **详情**：当前的语言。
 
 #### fallbackLocale
 
--   **类型**：`String`
--   **默认值**：`zh-CN`
+- **类型**：`String`
+- **默认值**：`zh-CN`
 
--   **详情**：兜底的语言，如果当前语言找不到配置，则使用默认语言，需要保证默认语言配置文件存在。
+- **详情**：兜底的语言，如果当前语言找不到配置，则使用默认语言，需要保证默认语言配置文件存在。
 
 #### baseNavigator
 
--   **类型**：`Boolean`
--   **默认值**：`true`
+- **类型**：`Boolean`
+- **默认值**：`true`
 
--   **详情**：开启浏览器语言检测。
+- **详情**：开启浏览器语言检测。
 
 默认情况下，当前语言环境的识别按照：`localStorage` 中 `fes_locale` 值 > 浏览器检测 > `default` 设置的默认语言 > `zh-CN` 中文。
 
 #### legacy
 
--   **类型**：`Boolean`
--   **默认值**：`false`
+- **类型**：`Boolean`
+- **默认值**：`false`
 
--   **详情**：用户是否需要 Legacy API 模式
+- **详情**：用户是否需要 Legacy API 模式
 
 ### 运行时配置
 
-暂无。
+## onLocaleChange
+
+当语言环境发生变化时，会触发此函数。
+
+```js
+import { defineRuntimeConfig } from '@fesjs/fes';
+
+export default defineRuntimeConfig({
+    onLocaleChange: ({ t, locale }) => {
+
+    }
+});
+```
 
 ## API
 
@@ -159,16 +170,16 @@ import { locale } from '@fesjs/fes';
 
 #### locale.messages
 
--   **类型**：`Object`
--   **详情**：当前的配置的语言信息。
+- **类型**：`Object`
+- **详情**：当前的配置的语言信息。
 
 #### locale.setLocale
 
--   **类型**：`Function`
--   **详情**：设置当前的语言。
--   **参数**：
-    -   locale，语言的名称，应该是符合 `<lang>-<COUNTRY>` 规范的名称。
--   **返回值**：`null`
+- **类型**：`Function`
+- **详情**：设置当前的语言。
+- **参数**：
+  - locale，语言的名称，应该是符合 `<lang>-<COUNTRY>` 规范的名称。
+- **返回值**：`null`
 
 ```js
 import { locale } from '@fesjs/fes';
@@ -177,12 +188,12 @@ locale.setLocale({ locale: 'en-US' });
 
 #### locale.addLocale
 
--   **类型**：`Function`
--   **详情**：手动添加语言配置。
--   **参数**：
-    -   locale，语言的名称，符合 `<lang>-<COUNTRY>` 规范的名称。
-    -   messages, 语言信息。
--   **返回值**：`null`
+- **类型**：`Function`
+- **详情**：手动添加语言配置。
+- **参数**：
+  - locale，语言的名称，符合 `<lang>-<COUNTRY>` 规范的名称。
+  - messages, 语言信息。
+- **返回值**：`null`
 
 ```js
 import { locale } from '@fesjs/fes';
@@ -191,10 +202,10 @@ locale.addLocale({ locale: 'ja-JP', messages: { test: 'テスト' } });
 
 #### locale.getAllLocales
 
--   **类型**：`Function`
--   **详情**：获取当前获得所有国际化文件的列表，默认会在 locales 文件夹下寻找类似 `en-US.js` 文件。
--   **参数**：null
--   **返回值**：`Array`
+- **类型**：`Function`
+- **详情**：获取当前获得所有国际化文件的列表，默认会在 locales 文件夹下寻找类似 `en-US.js` 文件。
+- **参数**：null
+- **返回值**：`Array`
 
 ```js
 import { locale } from '@fesjs/fes';

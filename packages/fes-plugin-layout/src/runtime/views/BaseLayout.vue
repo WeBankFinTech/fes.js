@@ -11,8 +11,8 @@
             >
                 <div class="layout-logo">
                     <img v-if="logo" :src="logo" class="logo-img">
-                    <div v-if="title" class="logo-name">
-                        {{ title }}
+                    <div v-if="transformedTitle" class="logo-name">
+                        {{ transformedTitle }}
                     </div>
                 </div>
                 <LayoutMenu
@@ -58,8 +58,8 @@
                     <div>
                         <div class="layout-logo">
                             <img v-if="logo" :src="logo" class="logo-img">
-                            <div v-if="title" class="logo-name">
-                                {{ title }}
+                            <div v-if="transformedTitle" class="logo-name">
+                                {{ transformedTitle }}
                             </div>
                         </div>
                         <LayoutMenu
@@ -98,8 +98,8 @@
             <FHeader ref="headerRef" class="layout-header" :inverted="theme === 'dark'" :fixed="currentFixedHeaderRef">
                 <div class="layout-logo">
                     <img v-if="logo" :src="logo" class="logo-img">
-                    <div v-if="title" class="logo-name">
-                        {{ title }}
+                    <div v-if="transformedTitle" class="logo-name">
+                        {{ transformedTitle }}
                     </div>
                 </div>
                 <LayoutMenu
@@ -131,8 +131,8 @@
             <FHeader ref="headerRef" class="layout-header" :inverted="theme === 'dark'" :fixed="currentFixedHeaderRef">
                 <div class="layout-logo">
                     <img v-if="logo" :src="logo" class="logo-img">
-                    <div v-if="title" class="logo-name">
-                        {{ title }}
+                    <div v-if="transformedTitle" class="logo-name">
+                        {{ transformedTitle }}
                     </div>
                 </div>
                 <LayoutMenu
@@ -184,8 +184,8 @@
             <FHeader ref="headerRef" class="layout-header" :fixed="currentFixedHeaderRef" :inverted="theme === 'dark'">
                 <div class="layout-logo">
                     <img v-if="logo" :src="logo" class="logo-img">
-                    <div v-if="title" class="logo-name">
-                        {{ title }}
+                    <div v-if="transformedTitle" class="logo-name">
+                        {{ transformedTitle }}
                     </div>
                 </div>
                 <div class="layout-header-custom">
@@ -231,6 +231,7 @@ import { FAside, FFooter, FHeader, FLayout, FMain } from '@fesjs/fes-design';
 import { computed, nextTick, ref, watch } from 'vue';
 import defaultLogo from '../assets/logo.png';
 import { flatNodes } from '../helpers/utils';
+import { transTitle } from '../helpers/pluginLocale';
 import LayoutMenu from './Menu.vue';
 import MultiTabProvider from './MultiTabProvider.vue';
 
@@ -301,6 +302,10 @@ export default {
         const collapsedRef = ref(false);
         const route = useRoute();
         const router = useRouter();
+
+        const transformedTitle = computed(() => {
+            return transTitle(props.title);
+        });
 
         const currentNavigation = computed(() => {
             if (route.meta.layout && route.meta.layout.navigation !== undefined) {
@@ -397,6 +402,7 @@ export default {
             currentNavigation,
             rootMenus,
             activeSubMenus,
+            transformedTitle,
         };
     },
 };
