@@ -13,7 +13,7 @@ import { FButton } from '@fesjs/fes-design';
 
 defineRouteMeta({
     name: 'index',
-    title: '$home',
+    title: '$test.test',
 });
 
 console.log('123123'.replaceAll('123', '234'));

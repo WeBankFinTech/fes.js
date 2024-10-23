@@ -4,6 +4,6 @@ export default {
     externalLink: 'externalLink',
     mock: 'mock',
     test: {
-        b: 1,
+        test: 'test',
     },
 };
