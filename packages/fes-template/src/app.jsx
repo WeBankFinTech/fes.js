@@ -3,6 +3,11 @@ import { ref, watch } from 'vue';
 import PageLoading from '@/components/pageLoading.vue';
 import UserCenter from '@/components/userCenter.vue';
 
+export function onLocaleChange({ locale }) {
+    // 切换语言
+    console.log(locale);
+}
+
 export const beforeRender = {
     loading: <PageLoading />,
     action() {

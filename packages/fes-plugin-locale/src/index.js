@@ -24,6 +24,8 @@ export default (api) => {
 
     api.addRuntimePluginKey(() => 'locale');
 
+    api.addRuntimePluginKey(() => 'onLocaleChange');
+
     const absoluteFilePath = join(namespace, 'core.js');
 
     const absRuntimeFilePath = join(namespace, 'runtime.js');

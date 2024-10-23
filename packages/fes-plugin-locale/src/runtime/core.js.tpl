@@ -8,7 +8,7 @@
 import { isRef, unref } from 'vue';
 import { createI18n, useI18n } from '{{{ VUE_I18N_PATH }}}';
 import locales from './locales'
-
+import { plugin, ApplyPluginsType } from '@@/core/coreExports';
 
 const defaultOptions = {{{REPLACE_DEFAULT_OPTIONS}}};
 
@@ -51,6 +51,8 @@ const i18n = createI18n({
     messages,
 });
 
+const t = i18n.global.t;
+
 window.localStorage.setItem("fes_locale", unref(i18n.global.locale));
 const setLocale = ({ locale }) => {
     if (isRef(i18n.global.locale)) {
@@ -59,6 +61,11 @@ const setLocale = ({ locale }) => {
         i18n.global.locale = locale;
     }
     window.localStorage.setItem("fes_locale", locale);
+    plugin.applyPlugins({
+        key: 'onLocaleChange',
+        type: ApplyPluginsType.event,
+        args: { i18n, t, locale: unref(i18n.global.locale) },
+    });
 };
 
 const getLocale = () => {
@@ -82,9 +89,12 @@ const getAllLocales = () => {
 
 const install = (app) => {
     app.use(i18n);
+    plugin.applyPlugins({
+        key: 'onLocaleChange',
+        type: ApplyPluginsType.event,
+        args: { i18n, t, locale: unref(i18n.global.locale) },
+    });
 };
-
-const t = i18n.global.t;
 
 const locale = {
     setLocale,

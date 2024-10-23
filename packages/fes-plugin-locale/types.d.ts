@@ -21,4 +21,7 @@ declare module '@fesjs/fes' {
             }
             | false;
     }
+    interface PluginRuntimeConfig {
+        onLocaleChange: (params: { t: VueI18n['t']; locale: string }) => void;
+    }
 }
