@@ -1,3 +1,19 @@
+## [3.3.2](https://github.com/WeBankFinTech/fes.js/compare/v3.3.1...v3.3.2) (2024-10-23)
+
+
+### Bug Fixes
+
+* **plugin-locale:** 修复默认语言取值问题 ([47b32a2](https://github.com/WeBankFinTech/fes.js/commit/47b32a276796231c66f363d5c30a2c02e471be07))
+* 修复国际化配置问题 ([eda6fba](https://github.com/WeBankFinTech/fes.js/commit/eda6fba09c5236fa2dfcabf155bf51eaf15b6af3))
+* 修复语言插件问题 ([743e863](https://github.com/WeBankFinTech/fes.js/commit/743e86328528d4f911e2cb4d1e18239a43f6496d))
+
+
+### Features
+
+* 修复xss漏洞 ([#254](https://github.com/WeBankFinTech/fes.js/issues/254)) ([66a8572](https://github.com/WeBankFinTech/fes.js/commit/66a8572ed67f9a4fbcd965e8c8a6504abfe4ddb2))
+
+
+
 ## [3.3.1](https://github.com/WeBankFinTech/fes.js/compare/v3.3.0...v3.3.1) (2024-10-12)
 
 
