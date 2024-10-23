@@ -1,7 +1,7 @@
 import { readFileSync } from 'fs';
 import { join } from 'path';
 import { resolvePkg } from '@fesjs/utils';
-import { getLocalesJSON } from './utils';
+import { getLocales } from './utils';
 
 const namespace = 'plugin-locale';
 
@@ -49,16 +49,26 @@ export default (api) => {
 
         const localeConfigFileBasePath = getLocaleFileBasePath();
 
-        const locales = getLocalesJSON(localeConfigFileBasePath);
+        const { files, locales } = getLocales([localeConfigFileBasePath]);
 
         const { baseNavigator, ...otherConfig } = userConfig;
 
         api.writeTmpFile({
+            path: join(namespace, 'locales.js'),
+            content: Mustache.render(readFileSync(join(__dirname, 'runtime/locales.js.tpl'), 'utf-8'), {
+                REPLACE_IMPORTS: files,
+                REPLACE_LOCALES: locales.map(item => ({
+                    locale: item.locale,
+                    importNames: item.importNames.join(', '),
+                })),
+            }),
+        });
+
+        api.writeTmpFile({
             path: absoluteFilePath,
             content: Mustache.render(
-                readFileSync(join(__dirname, 'runtime/core.tpl'), 'utf-8'),
+                readFileSync(join(__dirname, 'runtime/core.js.tpl'), 'utf-8'),
                 {
-                    REPLACE_LOCALES: locales,
                     REPLACE_DEFAULT_OPTIONS: JSON.stringify(
                         otherConfig,
                         null,

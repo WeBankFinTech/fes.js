@@ -7,13 +7,8 @@
 // 所有插件使用一个语言和配置
 import { isRef, unref } from 'vue';
 import { createI18n, useI18n } from '{{{ VUE_I18N_PATH }}}';
-import { plugin, ApplyPluginsType } from "@@/core/coreExports";
-import SelectLang from "./views/SelectLang";
+import locales from './locales'
 
-// 共享出去
-plugin.share("locale", {useI18n, SelectLang });
-
-const locales = {{{REPLACE_LOCALES}}};
 
 const defaultOptions = {{{REPLACE_DEFAULT_OPTIONS}}};
 
@@ -71,6 +66,10 @@ const addLocale = ({ locale, messages }) => {
     }
 };
 
+const getLocale = () => {
+    return unref(i18n.global.locale)
+}
+
 const getAllLocales = () => {
     return Object.keys(
         unref(i18n.global.messages)
@@ -78,19 +77,18 @@ const getAllLocales = () => {
 };
 
 const install = (app) => {
-    const runtimeConfig = plugin.applyPlugins({
-        key: "locale",
-        type: ApplyPluginsType.modify,
-        initialValue: {},
-    });
     app.use(i18n);
 };
 
+const t = i18n.global.t;
+
 const locale = {
     setLocale,
+    getLocale,
     addLocale,
     getAllLocales,
     messages,
+    t
 };
 
 export { useI18n, locale, install };
