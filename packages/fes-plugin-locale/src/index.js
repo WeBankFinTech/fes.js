@@ -62,6 +62,9 @@ export default (api) => {
 
         const { baseNavigator, ...otherConfig } = userConfig;
 
+        const title = api.config.title || 'fes.js';
+        const isLocaleTitle = title.startsWith('$');
+
         api.writeTmpFile({
             path: join(namespace, 'locales.js'),
             content: Mustache.render(readFileSync(join(__dirname, 'runtime/locales.js.tpl'), 'utf-8'), {
@@ -79,6 +82,8 @@ export default (api) => {
                 REPLACE_DEFAULT_OPTIONS: JSON.stringify(otherConfig, null, 2),
                 BASE_NAVIGATOR: baseNavigator,
                 VUE_I18N_PATH: 'vue-i18n',
+                TITLE: title.slice(1),
+                IS_LOCALE_TITle: isLocaleTitle,
             }),
         });
 

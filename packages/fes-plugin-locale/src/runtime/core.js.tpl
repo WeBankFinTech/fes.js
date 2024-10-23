@@ -92,7 +92,7 @@ const locale = {
     addLocale,
     getAllLocales,
     messages,
-    t
+    t,
 };
 
 export { useI18n, locale, install };
