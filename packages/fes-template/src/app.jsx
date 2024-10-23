@@ -3,9 +3,9 @@ import { ref, watch } from 'vue';
 import PageLoading from '@/components/pageLoading.vue';
 import UserCenter from '@/components/userCenter.vue';
 
-export function onLocaleChange({ locale }) {
+export function onLocaleChange({ locale, t }) {
     // 切换语言
-    console.log(locale);
+    console.log(locale, t);
 }
 
 export const beforeRender = {
