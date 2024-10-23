@@ -3,312 +3,312 @@ export default {
         lang: 'ar-EG',
         label: 'العربية',
         icon: '🇪🇬',
-        title: 'لغة'
+        title: 'لغة',
     },
     'az-AZ': {
         lang: 'az-AZ',
         label: 'Azərbaycan dili',
         icon: '🇦🇿',
-        title: 'Dil'
+        title: 'Dil',
     },
     'bg-BG': {
         lang: 'bg-BG',
         label: 'Български език',
         icon: '🇧🇬',
-        title: 'език'
+        title: 'език',
     },
     'ca-ES': {
         lang: 'ca-ES',
         label: 'Catalá',
         icon: '🇨🇦',
-        title: 'llengua'
+        title: 'llengua',
     },
     'cs-CZ': {
         lang: 'cs-CZ',
         label: 'Čeština',
         icon: '🇨🇿',
-        title: 'Jazyk'
+        title: 'Jazyk',
     },
     'da-DK': {
         lang: 'da-DK',
         label: 'Dansk',
         icon: '🇩🇰',
-        title: 'Sprog'
+        title: 'Sprog',
     },
     'de-DE': {
         lang: 'de-DE',
         label: 'Deutsch',
         icon: '🇩🇪',
-        title: 'Sprache'
+        title: 'Sprache',
     },
     'el-GR': {
         lang: 'el-GR',
         label: 'Ελληνικά',
         icon: '🇬🇷',
-        title: 'Γλώσσα'
+        title: 'Γλώσσα',
     },
     'en-GB': {
         lang: 'en-GB',
         label: 'English',
         icon: '🇬🇧',
-        title: 'Language'
+        title: 'Language',
     },
     'en-US': {
         lang: 'en-US',
         label: 'English',
         icon: '🇺🇸',
-        title: 'Language'
+        title: 'Language',
     },
     'es-ES': {
         lang: 'es-ES',
         label: 'Español',
         icon: '🇪🇸',
-        title: 'Idioma'
+        title: 'Idioma',
     },
     'et-EE': {
         lang: 'et-EE',
         label: 'Eesti',
         icon: '🇪🇪',
-        title: 'Keel'
+        title: 'Keel',
     },
     'fa-IR': {
         lang: 'fa-IR',
         label: 'فارسی',
         icon: '🇮🇷',
-        title: 'زبان'
+        title: 'زبان',
     },
     'fi-FI': {
         lang: 'fi-FI',
         label: 'Suomi',
         icon: '🇫🇮',
-        title: 'Kieli'
+        title: 'Kieli',
     },
     'fr-BE': {
         lang: 'fr-BE',
         label: 'Français',
         icon: '🇧🇪',
-        title: 'Langue'
+        title: 'Langue',
     },
     'fr-FR': {
         lang: 'fr-FR',
         label: 'Français',
         icon: '🇫🇷',
-        title: 'Langue'
+        title: 'Langue',
     },
     'ga-IE': {
         lang: 'ga-IE',
         label: 'Gaeilge',
         icon: '🇮🇪',
-        title: 'Teanga'
+        title: 'Teanga',
     },
     'he-IL': {
         lang: 'he-IL',
         label: 'עברית',
         icon: '🇮🇱',
-        title: 'שפה'
+        title: 'שפה',
     },
     'hi-IN': {
         lang: 'hi-IN',
         label: 'हिन्दी, हिंदी',
         icon: '🇮🇳',
-        title: 'भाषा: हिन्दी'
+        title: 'भाषा: हिन्दी',
     },
     'hr-HR': {
         lang: 'hr-HR',
         label: 'Hrvatski jezik',
         icon: '🇭🇷',
-        title: 'Jezik'
+        title: 'Jezik',
     },
     'hu-HU': {
         lang: 'hu-HU',
         label: 'Magyar',
         icon: '🇭🇺',
-        title: 'Nyelv'
+        title: 'Nyelv',
     },
     'hy-AM': {
-        lang: 'hu-HU',
+        lang: 'hy-AM',
         label: 'Հայերեն',
         icon: '🇦🇲',
-        title: 'Լեզու'
+        title: 'Լեզու',
     },
     'id-ID': {
         lang: 'id-ID',
         label: 'Bahasa Indonesia',
         icon: '🇮🇩',
-        title: 'Bahasa'
+        title: 'Bahasa',
     },
     'it-IT': {
         lang: 'it-IT',
         label: 'Italiano',
         icon: '🇮🇹',
-        title: 'Linguaggio'
+        title: 'Linguaggio',
     },
     'is-IS': {
         lang: 'is-IS',
         label: 'Íslenska',
         icon: '🇮🇸',
-        title: 'Tungumál'
+        title: 'Tungumál',
     },
     'ja-JP': {
         lang: 'ja-JP',
         label: '日本語',
         icon: '🇯🇵',
-        title: '言語'
+        title: '言語',
     },
     'ku-IQ': {
         lang: 'ku-IQ',
         label: 'کوردی',
         icon: '🇮🇶',
-        title: 'Ziman'
+        title: 'Ziman',
     },
     'kn-IN': {
-        lang: 'zh-TW',
+        lang: 'kn-IN',
         label: 'ಕನ್ನಡ',
         icon: '🇮🇳',
-        title: 'ಭಾಷೆ'
+        title: 'ಭಾಷೆ',
     },
     'ko-KR': {
         lang: 'ko-KR',
         label: '한국어',
         icon: '🇰🇷',
-        title: '언어'
+        title: '언어',
     },
     'lv-LV': {
         lang: 'lv-LV',
         label: 'Latviešu valoda',
         icon: '🇱🇮',
-        title: 'Kalba'
+        title: 'Kalba',
     },
     'mk-MK': {
         lang: 'mk-MK',
         label: 'македонски јазик',
         icon: '🇲🇰',
-        title: 'Јазик'
+        title: 'Јазик',
     },
     'mn-MN': {
         lang: 'mn-MN',
         label: 'Монгол хэл',
         icon: '🇲🇳',
-        title: 'Хэл'
+        title: 'Хэл',
     },
     'ms-MY': {
         lang: 'ms-MY',
         label: 'بهاس ملايو‎',
         icon: '🇲🇾',
-        title: 'Bahasa'
+        title: 'Bahasa',
     },
     'nb-NO': {
         lang: 'nb-NO',
         label: 'Norsk',
         icon: '🇳🇴',
-        title: 'Språk'
+        title: 'Språk',
     },
     'ne-NP': {
         lang: 'ne-NP',
         label: 'नेपाली',
         icon: '🇳🇵',
-        title: 'भाषा'
+        title: 'भाषा',
     },
     'nl-BE': {
         lang: 'nl-BE',
         label: 'Vlaams',
         icon: '🇧🇪',
-        title: 'Taal'
+        title: 'Taal',
     },
     'nl-NL': {
         lang: 'nl-NL',
         label: 'Vlaams',
         icon: '🇳🇱',
-        title: 'Taal'
+        title: 'Taal',
     },
     'pt-BR': {
         lang: 'pt-BR',
         label: 'Português',
         icon: '🇧🇷',
-        title: 'Idiomas'
+        title: 'Idiomas',
     },
     'pt-PT': {
         lang: 'pt-PT',
         label: 'Português',
         icon: '🇵🇹',
-        title: 'Idiomas'
+        title: 'Idiomas',
     },
     'ro-RO': {
         lang: 'ro-RO',
         label: 'Română',
         icon: '🇷🇴',
-        title: 'Limba'
+        title: 'Limba',
     },
     'ru-RU': {
         lang: 'ru-RU',
         label: 'русский',
         icon: '🇷🇺',
-        title: 'язык'
+        title: 'язык',
     },
     'sk-SK': {
         lang: 'sk-SK',
         label: 'Slovenčina',
         icon: '🇸🇰',
-        title: 'Jazyk'
+        title: 'Jazyk',
     },
     'sr-RS': {
         lang: 'sr-RS',
         label: 'српски језик',
         icon: '🇸🇷',
-        title: 'Језик'
+        title: 'Језик',
     },
     'sl-SI': {
         lang: 'sl-SI',
         label: 'Slovenščina',
         icon: '🇸🇱',
-        title: 'Jezik'
+        title: 'Jezik',
     },
     'sv-SE': {
         lang: 'sv-SE',
         label: 'Svenska',
         icon: '🇸🇪',
-        title: 'Språk'
+        title: 'Språk',
     },
     'ta-IN': {
         lang: 'ta-IN',
         label: 'தமிழ்',
         icon: '🇮🇳',
-        title: 'மொழி'
+        title: 'மொழி',
     },
     'th-TH': {
         lang: 'th-TH',
         label: 'ไทย',
         icon: '🇹🇭',
-        title: 'ภาษา'
+        title: 'ภาษา',
     },
     'tr-TR': {
         lang: 'tr-TR',
         label: 'Türkçe',
         icon: '🇹🇷',
-        title: 'Dil'
+        title: 'Dil',
     },
     'uk-UA': {
         lang: 'uk-UA',
         label: 'Українська',
         icon: '🇺🇰',
-        title: 'Мова'
+        title: 'Мова',
     },
     'vi-VN': {
         lang: 'vi-VN',
         label: 'Tiếng Việt',
         icon: '🇻🇳',
-        title: 'Ngôn ngữ'
+        title: 'Ngôn ngữ',
     },
     'zh-CN': {
         lang: 'zh-CN',
         label: '简体中文',
         icon: '🇨🇳',
-        title: '语言'
+        title: '语言',
     },
     'zh-TW': {
         lang: 'zh-TW',
         label: '繁体中文',
         icon: '🇭🇰',
-        title: '語言'
-    }
+        title: '語言',
+    },
 };
