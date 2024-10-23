@@ -4,6 +4,6 @@ export default {
     externalLink: '外部链接',
     mock: '代理',
     test: {
-        b: 1,
+        test: '测试',
     },
 };

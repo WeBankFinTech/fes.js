@@ -19,18 +19,22 @@ const getDefaultLocale = () => {
     if (fes_locale) {
         return {
             locale: fes_locale,
-            fallbackLocale: fes_locale,
+            fallbackLocale: defaultOptions.fallbackLocale,
         };
     }
     if (BASE_NAVIGATOR) {
-        return {
-            locale: window.navigator.language,
-            fallbackLocale: window.navigator.language,
-        };
+        const keys = locales.map(item=> item.locale);
+        const findKey = keys.find(item=> item.includes(window.navigator.language))
+        if(findKey){
+            return {
+                locale: findKey,
+                fallbackLocale: defaultOptions.fallbackLocale,
+            };
+        }
     }
     return {
-        locale: 'zh-CN',
-        fallbackLocale: 'zh-CN',
+        locale: defaultOptions.locale,
+        fallbackLocale: defaultOptions.fallbackLocale,
     };
 };
 
