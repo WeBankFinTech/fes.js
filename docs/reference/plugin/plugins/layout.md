@@ -233,7 +233,7 @@ export function layout(layoutConfig, { initialState }) {
 - **类型**：`String`
 - **默认值**：默认为 [编译时配置 title](../../../reference/config/#title)
 
-- **详情**：产品名。
+- **详情**：产品名，当配置为"$"开头时，开启国际化，使用`$`后面的内容去匹配语言设置。
 
 ### logo
 
