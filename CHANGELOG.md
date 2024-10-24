@@ -1,3 +1,12 @@
+# [3.4.0](https://github.com/WeBankFinTech/fes.js/compare/v3.3.2...v3.4.0) (2024-10-24)
+
+
+### Features
+
+*  暴露语言变化事件 & layout的title支持配置国际化 ([#255](https://github.com/WeBankFinTech/fes.js/issues/255)) ([a303e17](https://github.com/WeBankFinTech/fes.js/commit/a303e171c98371eb331fd834ca55f600b89f29d1))
+
+
+
 ## [3.3.2](https://github.com/WeBankFinTech/fes.js/compare/v3.3.1...v3.3.2) (2024-10-23)
 
 
