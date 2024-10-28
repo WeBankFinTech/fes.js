@@ -1,3 +1,12 @@
+## [3.4.1](https://github.com/WeBankFinTech/fes.js/compare/v3.4.0...v3.4.1) (2024-10-28)
+
+
+### Bug Fixes
+
+* 修复依赖问题 ([6957e5c](https://github.com/WeBankFinTech/fes.js/commit/6957e5c2c787ea78fab745e9ff9c80960908532d))
+
+
+
 # [3.4.0](https://github.com/WeBankFinTech/fes.js/compare/v3.3.2...v3.4.0) (2024-10-24)
 
 
