@@ -17,8 +17,7 @@ export default async function createHtmlWebpackConfig({
         title: 'fes.js',
         filename: '[name].html',
         ...config.html,
-        templateParameters: resolveDefine(config, true),
-        mountElementId: config.mountElementId
+        templateParameters: Object.assign(resolveDefine(config, true), { mountElementId: config.mountElementId }),
     };
 
     if (isProd) {
@@ -61,8 +60,7 @@ export default async function createHtmlWebpackConfig({
                             ...config.html,
                             title: route?.meta?.title || config.html.title || 'fes.js',
                             filename: _fileName,
-                            templateParameters: resolveDefine(config, true),
-                            mountElementId: config.mountElementId
+                            templateParameters: Object.assign(resolveDefine(config, true), { mountElementId: config.mountElementId })
                         };
                         webpackConfig
                             .plugin(_fileName)
