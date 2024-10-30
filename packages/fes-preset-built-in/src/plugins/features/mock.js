@@ -122,7 +122,7 @@ export default (api) => {
                 api.logger.info('mock.js should export Function');
                 return;
             }
-            const mockjs = require('mockjs');
+            const mockjs = require('@wll8/better-mock');
             initFunction({ cgiMock, mockjs, utils });
         } catch (err) {
             api.logger.error('mock.js run fail!');

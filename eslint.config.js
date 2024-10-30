@@ -2,7 +2,6 @@
 import antfu from '@antfu/eslint-config';
 
 export default await antfu({
-    files: ['**/*.js', '**/*.jsx', '**/*.vue', '**/*.ts'],
     // TODO: 使用 ignore 代替 cli 命令中的配置
     stylistic: {
         indent: 4,

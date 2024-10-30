@@ -1,31 +1,30 @@
 {
-  "compilerOptions": {
-    "outDir": "build/dist",
-    "module": "esnext",
-    "target": "esnext",
-    "lib": ["esnext", "dom"],
-    "sourceMap": true,
-    "baseUrl": ".",
-    "jsx": "preserve",
-    "allowSyntheticDefaultImports": true,
-    "moduleResolution": "node",
-    "forceConsistentCasingInFileNames": true,
-    "noImplicitReturns": true,
-    "suppressImplicitAnyIndexErrors": true,
-    "noUnusedLocals": true,
-    "allowJs": true,
-    "skipLibCheck": true,
-    "experimentalDecorators": true,
-    "strict": true,
-    "paths": {
-      "@/*": ["./src/*"],
-      "@@/*": ["./src/.fes/*"]
-    }
-  },
-  "include": [
-    "src/**/*",
-    ".fes.js",
-    ".fes.*.js"
-  ],
-  "exclude": ["node_modules", "build", "dist", "scripts", "src/.fes/*", "webpack", "jest"]
+    "compilerOptions": {
+        "target": "esnext",
+        "jsx": "preserve",
+        "lib": ["esnext", "dom"],
+        "experimentalDecorators": true,
+        "baseUrl": ".",
+        "module": "esnext",
+        "moduleResolution": "node",
+        "paths": {
+            "@/*": ["./src/*"],
+            "@@/*": ["./src/.fes/*"]
+        },
+        "allowJs": true,
+        "strict": true,
+        "noImplicitReturns": true,
+        "noUnusedLocals": true,
+        "outDir": "build/dist",
+        "sourceMap": true,
+        "allowSyntheticDefaultImports": true,
+        "forceConsistentCasingInFileNames": true,
+        "skipLibCheck": true
+    },
+    "include": [
+        "src/**/*",
+        ".fes.js",
+        ".fes.*.js"
+    ],
+    "exclude": ["node_modules", "build", "dist", "scripts", "src/.fes/*", "webpack", "jest"]
 }
