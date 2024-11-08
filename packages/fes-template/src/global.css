@@ -5,4 +5,5 @@ html, body {
 
 .page {
     height: 1000px;
+    background: url("@/images/hello.png");
 }
