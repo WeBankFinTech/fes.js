@@ -9,7 +9,7 @@ import {
     shallowRef,
 } from "vue";
 import { loadMicroApp } from "{{{QIANKUN}}}";
-import { mergeWith, cloneDeep, isEqual } from "{{{LODASH_ES}}}";
+import { mergeWith, cloneDeep, isEqual, concat } from "{{{LODASH_ES}}}";
 // eslint-disable-next-line import/extensions
 import { getMasterOptions } from "./masterOptions";
 
@@ -66,7 +66,7 @@ export const MicroApp = defineComponent({
             return {};
         });
 
-        
+
         const propsConfigRef = shallowRef({});
 
         watch(
