@@ -1,6 +1,6 @@
 {
     "name": "@fesjs/plugin-qiankun",
-    "version": "3.1.5",
+    "version": "3.1.6",
     "description": "@fesjs/plugin-qiankun",
     "main": "lib/index.js",
     "files": [

@@ -1,3 +1,12 @@
+## [3.4.2](https://github.com/WeBankFinTech/fes.js/compare/v3.4.1...v3.4.2) (2024-11-08)
+
+
+### Features
+
+* 修复乾坤问题 ([dfe2ca4](https://github.com/WeBankFinTech/fes.js/commit/dfe2ca4b898676ca8cacf580c018e336b382a823))
+
+
+
 ## [3.4.1](https://github.com/WeBankFinTech/fes.js/compare/v3.4.0...v3.4.1) (2024-10-28)
 
 
