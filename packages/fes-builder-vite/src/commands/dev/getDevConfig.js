@@ -25,7 +25,7 @@ export default async (api, args) => {
         args: {},
     });
 
-    const isHTTPS = !!(process.env.HTTPS || args.https);
+    const isHTTPS = !!(process.env.HTTPS || args.https || api.config.viteOption.server?.https);
 
     const bundleConfig = deepmerge(getInnerCommonConfig(api), {
         mode: 'development',
