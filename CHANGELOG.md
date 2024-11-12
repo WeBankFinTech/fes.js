@@ -1,3 +1,12 @@
+## [3.4.3](https://github.com/WeBankFinTech/fes.js/compare/v3.4.2...v3.4.3) (2024-11-12)
+
+
+### Bug Fixes
+
+* 修复vite配置https无效问题 ([fb5caa6](https://github.com/WeBankFinTech/fes.js/commit/fb5caa61bcd08be319b60e17ed5f019667058c75))
+
+
+
 ## [3.4.2](https://github.com/WeBankFinTech/fes.js/compare/v3.4.1...v3.4.2) (2024-11-08)
 
 
