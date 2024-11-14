@@ -1,17 +1,16 @@
 import { lodash } from '@fesjs/utils';
-import set from 'set-value';
 
 export function updateUserConfigWithKey({
     key,
     value,
-    userConfig
+    userConfig,
 }) {
-    set(userConfig, key, value);
+    lodash.set(userConfig, key, value);
 }
 
 export function getUserConfigWithKey({
     key,
-    userConfig
+    userConfig,
 }) {
     return lodash.get(userConfig, key);
 }

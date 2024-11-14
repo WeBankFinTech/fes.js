@@ -33,9 +33,9 @@
         "@fesjs/runtime": "^3.0.1",
         "@fesjs/utils": "^3.0.3",
         "@vue/compiler-sfc": "^3.3.4",
+        "@wll8/better-mock": "0.3.3-alpha",
         "envinfo": "^7.7.3",
-        "express": "^4.17.3",
-        "mockjs": "^1.1.0"
+        "express": "^4.17.3"
     },
     "typings": "./types.d.ts"
 }
