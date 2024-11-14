@@ -40,18 +40,18 @@
         "semver": "^7.3.6"
     },
     "devDependencies": {
-        "@antfu/eslint-config": "^2.6.2",
+        "@antfu/eslint-config": "^3.8.0",
         "@commitlint/cli": "^18.4.4",
         "@commitlint/config-conventional": "^18.4.4",
         "chokidar": "^3.5.3",
-        "commitizen": "^4.3.0",
+        "commitizen": "^4.3.1",
         "cz-conventional-changelog": "^3.3.0",
         "deepmerge": "^4.2.2",
-        "eslint": "^8.56.0",
+        "eslint": "^9.13.0",
         "fs-extra": "^11.1.1",
         "lint-staged": "^15.2.0",
         "simple-git-hooks": "^2.9.0",
-        "typescript": "^5.0.4",
+        "typescript": "^5.6.3",
         "vitepress": "1.0.0-alpha.73",
         "vue": "^3.3.4",
         "yargs-parser": "^21.1.1"
