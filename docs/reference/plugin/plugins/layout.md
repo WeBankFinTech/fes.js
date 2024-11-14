@@ -253,7 +253,7 @@ export const layout = {
 - **类型**：`boolean`
 - **默认值**：`false`
 
-- **详情**：是否开启多页。
+- **详情**：是否开启多页。可通过  tabReload: false 控制标签页是否重新加载。
 
 ### menus
 

@@ -12,7 +12,7 @@
             <FTabPane v-for="page in pageList" :key="page.path" :value="page.path" :closable="pageList.length > 1">
                 <template #tab>
                     {{ page.title }}
-                    <ReloadOutlined v-show="route.path === page.path" class="layout-tabs-close-icon" @click="reloadPage(page.path)" />
+                    <ReloadOutlined v-if="page.tabReload" v-show="route.path === page.path" class="layout-tabs-close-icon" @click="reloadPage(page.path)" />
                 </template>
             </FTabPane>
             <template #suffix>
@@ -73,6 +73,7 @@ export default {
                 name: _route.meta.name ?? _route.name,
                 title: computedTitle,
                 key: getKey(),
+                tabReload: _route.meta.tabReload ?? true,
             };
         };
 
