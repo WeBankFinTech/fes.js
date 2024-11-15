@@ -47,6 +47,7 @@ export default defineBuildConfig({
             {
                 name: 'editor',
                 icon: '/wine-outline.svg',
+                _blank: true,
             },
             {
                 title: '$externalLink',
@@ -70,6 +71,7 @@ export default defineBuildConfig({
             },
             {
                 name: 'pinia',
+                _blank: true,
             },
         ],
         menuProps: {

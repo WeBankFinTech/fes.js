@@ -134,6 +134,9 @@ export default {
         const handleCloseTab = async (targetKey) => {
             targetKey = targetKey || route.path;
             const selectedPage = findPage(targetKey);
+            if (!selectedPage) {
+                return;
+            }
             const list = [...pageList.value];
             const index = list.indexOf(selectedPage);
             if (route.path === selectedPage.path) {
