@@ -94,10 +94,10 @@ importers:
   packages/fes:
     dependencies:
       '@fesjs/compiler':
-        specifier: ^3.0.5
+        specifier: ^3.0.6
         version: link:../fes-compiler
       '@fesjs/preset-built-in':
-        specifier: ^3.1.12
+        specifier: ^3.1.13
         version: link:../fes-preset-built-in
       '@fesjs/runtime':
         specifier: ^3.0.1
@@ -226,7 +226,7 @@ importers:
         specifier: ^7.23.2
         version: 7.23.2(@babel/core@7.23.3)
       '@fesjs/fes':
-        specifier: ^3.1.14
+        specifier: ^3.1.15
         version: link:../fes
       '@fesjs/utils':
         specifier: ^3.0.3
@@ -427,7 +427,7 @@ importers:
   packages/fes-plugin-layout:
     dependencies:
       '@fesjs/fes':
-        specifier: ^3.1.14
+        specifier: ^3.1.15
         version: link:../fes
       '@fesjs/fes-design':
         specifier: '>=0.7.0'
@@ -746,7 +746,7 @@ importers:
   packages/fes-preset-built-in:
     dependencies:
       '@fesjs/compiler':
-        specifier: ^3.0.5
+        specifier: ^3.0.6
         version: link:../fes-compiler
       '@fesjs/runtime':
         specifier: ^3.0.1

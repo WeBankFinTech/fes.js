@@ -1,6 +1,6 @@
 {
     "name": "@fesjs/plugin-layout",
-    "version": "5.4.2",
+    "version": "5.4.3",
     "description": "@fesjs/plugin-layout",
     "author": "harrywan",
     "license": "MIT",
@@ -28,7 +28,7 @@
         "access": "public"
     },
     "peerDependencies": {
-        "@fesjs/fes": "^3.1.14",
+        "@fesjs/fes": "^3.1.15",
         "@fesjs/fes-design": ">=0.7.0",
         "vue": "^3.2.47",
         "vue-router": "^4.0.1"
