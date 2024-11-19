@@ -1,7 +1,10 @@
 <template>
     <div>{{ store.counter }}</div>
-    <FButton class="m-2" @click="store.increment">Button</FButton>
+    <FButton class="m-2" @click="store.increment">
+        Button
+    </FButton>
 </template>
+
 <config>
 {
     "name": "pinia",
@@ -11,6 +14,7 @@
     }
 }
 </config>
+
 <script>
 import { FButton } from '@fesjs/fes-design';
 import { useStore } from '@/store/main';
