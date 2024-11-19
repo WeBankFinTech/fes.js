@@ -1,3 +1,17 @@
+## [3.4.4](https://github.com/WeBankFinTech/fes.js/compare/v3.4.3...v3.4.4) (2024-11-19)
+
+
+### Bug Fixes
+
+* 控制 tab 是否可以刷新 ([#257](https://github.com/WeBankFinTech/fes.js/issues/257)) ([4b3fb7b](https://github.com/WeBankFinTech/fes.js/commit/4b3fb7b3d120a36eb894b47a7c08267888b53c15))
+
+
+### Features
+
+* menu 支持配置 _blank 在新页面打开 ([#258](https://github.com/WeBankFinTech/fes.js/issues/258)) ([eb6ed75](https://github.com/WeBankFinTech/fes.js/commit/eb6ed75dd45bea746b2dac339f2c2aae5b361b66))
+
+
+
 ## [3.4.3](https://github.com/WeBankFinTech/fes.js/compare/v3.4.2...v3.4.3) (2024-11-12)
 
 
