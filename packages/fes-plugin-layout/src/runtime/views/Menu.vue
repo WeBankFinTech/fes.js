@@ -126,8 +126,15 @@ export default {
         const onMenuClick = (e) => {
             const path = e.value;
             const currentMenu = menuArray.value.find(item => item.value === path);
-
-            if (/^https?:\/\//.test(path)) {
+            if (currentMenu._blank) {
+                const resolved = router.resolve({
+                    path,
+                    query: currentMenu?.query || {},
+                    params: currentMenu?.params || {},
+                });
+                window.open(resolved.href, '_blank');
+            }
+            else if (/^https?:\/\//.test(path)) {
                 window.open(path, '_blank');
             }
             else if (/^\//.test(path)) {
