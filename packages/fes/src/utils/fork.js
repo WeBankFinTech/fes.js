@@ -21,8 +21,9 @@ export default function start({ scriptPath }) {
                 catch (e) {
                     port = 9230; // node default inspect port plus 1.
                 }
-                if (usedPorts.includes(port))
+                if (usedPorts.includes(port)) {
                     port += 1;
+                }
 
                 usedPorts.push(port);
                 return `--inspect-brk=${port}`;
@@ -31,8 +32,9 @@ export default function start({ scriptPath }) {
     }
 
     // set port to env when current port has value
-    if (CURRENT_PORT)
+    if (CURRENT_PORT) {
         process.env.PORT = CURRENT_PORT;
+    }
 
     const child = fork(scriptPath, process.argv.slice(2), {
         execArgv,
