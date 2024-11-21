@@ -1,13 +1,13 @@
-import { join } from 'node:path';
 import { existsSync } from 'node:fs';
-import Config from 'webpack-5-chain';
+import { join } from 'node:path';
 import webpack from 'webpack';
+import Config from 'webpack-5-chain';
 import createCssWebpackConfig from './css';
-import getBabelOpts from './getBabelOpts';
-import createVueWebpackConfig from './vue';
 import createDefineWebpackConfig from './define';
-import createMinimizerWebpackConfig from './minimizer';
+import getBabelOpts from './getBabelOpts';
 import createHtmlWebpackConfig from './html';
+import createMinimizerWebpackConfig from './minimizer';
+import createVueWebpackConfig from './vue';
 
 const DEFAULT_EXCLUDE_NODE_MODULES = [
     'vue',
@@ -124,12 +124,14 @@ export default async function getConfig({ api, cwd, config, env, entry = {}, mod
     webpackConfig.module
         .rule('esm')
         .test(/\.m?jsx?$/)
-        .resolve.set('fullySpecified', false);
+        .resolve
+        .set('fullySpecified', false);
 
     webpackConfig.module
         .rule('js')
         .test(/\.(js|mjs|jsx|ts|tsx)$/)
-        .exclude.add((filepath) => {
+        .exclude
+        .add((filepath) => {
             // always transpile js in vue files
             if (/(\.vue|\.jsx)$/.test(filepath)) { return false; }
 
@@ -147,9 +149,11 @@ export default async function getConfig({ api, cwd, config, env, entry = {}, mod
         webpackConfig.module
             .rule('js-in-node_modules')
             .test(/\.(js|mjs)$/)
-            .include.add(/node_modules/)
+            .include
+            .add(/node_modules/)
             .end()
-            .exclude.add((filepath) => {
+            .exclude
+            .add((filepath) => {
                 if (transpileDepRegex && transpileDepRegex.test(filepath)) { return true; }
 
                 return false;

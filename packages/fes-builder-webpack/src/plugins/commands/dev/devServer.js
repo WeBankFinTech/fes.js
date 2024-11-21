@@ -2,6 +2,23 @@ import { chalk } from '@fesjs/utils';
 import webpack from 'webpack';
 import WebpackDevServer from 'webpack-dev-server';
 
+function formatProxy(proxy) {
+    if (!proxy) {
+        return [];
+    }
+
+    if (Array.isArray(proxy)) {
+        return proxy;
+    }
+
+    return Object.keys(proxy).map((apiPath) => {
+        return {
+            context: [apiPath],
+            ...proxy[apiPath],
+        };
+    });
+}
+
 export function startDevServer({ webpackConfig, host, port, proxy, https, beforeMiddlewares, afterMiddlewares, customerDevServerConfig }) {
     const options = {
         hot: true,
@@ -10,6 +27,7 @@ export function startDevServer({ webpackConfig, host, port, proxy, https, before
         client: {
             logging: 'error',
             overlay: false,
+            progress: true,
             webSocketURL: {
                 hostname: host,
                 port,
@@ -27,7 +45,7 @@ export function startDevServer({ webpackConfig, host, port, proxy, https, before
         ...(customerDevServerConfig || {}),
         port,
         host,
-        proxy,
+        proxy: formatProxy(proxy),
     };
     const compiler = webpack(webpackConfig);
     const server = new WebpackDevServer(options, compiler);
