@@ -1,0 +1,1 @@
+import{_ as e,o as a,c as r,V as l}from"./chunks/framework.b31a4d00.js";const f=JSON.parse('{"title":"从 2.x 迁移到 3.x","description":"","frontmatter":{},"headers":[],"relativePath":"guide/upgrade3.md"}'),t={name:"guide/upgrade3.md"},i=l("",10),o=[i];function c(n,d,h,p,u,s){return a(),r("div",null,o)}const m=e(t,[["render",c]]);export{f as __pageData,m as default};
