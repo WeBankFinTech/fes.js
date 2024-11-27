@@ -32,5 +32,6 @@ export default await antfu({
                 multilineDetection: 'brackets',
             },
         ],
+        'no-console': 'off',
     },
 });
