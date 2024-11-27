@@ -1,12 +1,13 @@
-import path from 'path';
+import path from 'node:path';
+import process from 'node:process';
 import { chalk } from '@fesjs/utils';
-import validateProjectName from 'validate-npm-package-name';
 import fs from 'fs-extra';
 import inquirer from 'inquirer';
+import validateProjectName from 'validate-npm-package-name';
 
-import { clearConsole } from './utils';
 import AppGenerator from './generator/App';
 import PluginGenerator from './generator/Plugin';
+import { clearConsole } from './utils';
 
 export default async ({ cwd, args }) => {
     if (args.proxy) {
@@ -20,20 +21,21 @@ export default async ({ cwd, args }) => {
     const result = validateProjectName(name);
     if (!result.validForNewPackages) {
         console.error(chalk.red(`Invalid project name: "${name}"`));
-        result.errors &&
-            result.errors.forEach((err) => {
-                console.error(chalk.red.dim(`Error: ${err}`));
-            });
-        result.warnings &&
-            result.warnings.forEach((warn) => {
-                console.error(chalk.red.dim(`Warning: ${warn}`));
-            });
+        result.errors
+        && result.errors.forEach((err) => {
+            console.error(chalk.red.dim(`Error: ${err}`));
+        });
+        result.warnings
+        && result.warnings.forEach((warn) => {
+            console.error(chalk.red.dim(`Warning: ${warn}`));
+        });
         throw new Error('Process exited');
     }
     if (fs.pathExistsSync(targetDir) && !args.merge) {
         if (args.force) {
             await fs.remove(targetDir);
-        } else if (inCurrent) {
+        }
+        else if (inCurrent) {
             clearConsole();
             const { ok } = await inquirer.prompt([
                 {
@@ -45,7 +47,8 @@ export default async ({ cwd, args }) => {
             if (!ok) {
                 return null;
             }
-        } else {
+        }
+        else {
             clearConsole();
             const { action } = await inquirer.prompt([
                 {
@@ -98,7 +101,8 @@ export default async ({ cwd, args }) => {
         console.log('$ pnpm i');
         console.log('$ pnpm dev');
         console.log();
-    } else if (template === 'plugin') {
+    }
+    else if (template === 'plugin') {
         const generator = new PluginGenerator({
             cwd,
             args,

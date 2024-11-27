@@ -1,17 +1,18 @@
 // 关闭 import 规则
 /* eslint import/no-extraneous-dependencies: 0 */
 
-const fs = require('fs');
-const fse = require('fs-extra');
-const path = require('path');
-const merge = require('deepmerge');
-const chokidar = require('chokidar');
+const fs = require('node:fs');
+const path = require('node:path');
+const process = require('node:process');
 const chalk = require('chalk');
+const chokidar = require('chokidar');
+const merge = require('deepmerge');
+const fse = require('fs-extra');
 const argv = require('yargs-parser')(process.argv.slice(2));
 
+const pkg = require('../package.json');
 const compiler = require('./compiler');
 const randomColor = require('./randomColor');
-const pkg = require('../package.json');
 
 const ESM_OUTPUT_DIR = 'es';
 const NODE_CJS_OUTPUT_DIR = 'lib';
@@ -76,10 +77,12 @@ function transformFile(filePath, outputPath, config, log) {
             const type = config.target === 'browser' ? ESM_OUTPUT_DIR : NODE_CJS_OUTPUT_DIR;
             log(`Transform to ${type} for ${config.target === 'browser' ? chalk.yellow(shortFilePath) : chalk.blue(shortFilePath)}`);
             fse.outputFileSync(outputPath, transformedCode);
-        } catch (error) {
+        }
+        catch (error) {
             console.error(error);
         }
-    } else {
+    }
+    else {
         fse.copySync(filePath, outputPath);
     }
 }
@@ -92,10 +95,12 @@ function compilerPkg(codeDir, outputDir, config, log) {
         const fileStats = fs.lstatSync(filePath);
         if (config.copy.includes(file)) {
             fse.copySync(filePath, outputFilePath);
-        } else if (fileStats.isDirectory(filePath) && !/__tests__/.test(file)) {
+        }
+        else if (fileStats.isDirectory(filePath) && !/__tests__/.test(file)) {
             fse.ensureDirSync(outputFilePath);
             compilerPkg(filePath, outputFilePath, config, log);
-        } else if (fileStats.isFile(filePath)) {
+        }
+        else if (fileStats.isFile(filePath)) {
             transformFile(filePath, outputFilePath, config, log);
         }
     });
@@ -112,11 +117,13 @@ function watchFile(dir, outputDir, config, log) {
             const outputPath = changeFile.replace(dir, outputDir);
             const stat = fs.lstatSync(changeFile);
             log(`[${event}] ${shortChangeFile}`);
-            if (config.resolveCopy.some((item) => changeFile.startsWith(item))) {
+            if (config.resolveCopy.some(item => changeFile.startsWith(item))) {
                 fse.copySync(changeFile, outputPath);
-            } else if (stat.isFile()) {
+            }
+            else if (stat.isFile()) {
                 transformFile(changeFile, outputPath, config, log);
-            } else if (stat.isDirectory()) {
+            }
+            else if (stat.isDirectory()) {
                 compilerPkg(changeFile, outputPath, config);
             }
         });

@@ -2,30 +2,30 @@
     "name": "@fesjs/create-fes-app",
     "version": "3.0.4",
     "description": "create a app base on fes.js",
-    "main": "lib/index.js",
-    "files": [
-        "lib",
-        "bin",
-        "templates/**/*"
-    ],
-    "bin": {
-        "create-fes-app": "bin/create-fes-app.js"
-    },
+    "author": "qlin",
+    "license": "MIT",
+    "homepage": "https://github.com/WeBankFinTech/fes.js#readme",
     "repository": {
         "type": "git",
         "url": "git+https://github.com/WeBankFinTech/fes.js.git",
         "directory": "packages/create-fes-app"
     },
+    "bugs": {
+        "url": "https://github.com/WeBankFinTech/fes.js/issues"
+    },
     "keywords": [
         "fes"
     ],
     "sideEffects": false,
-    "author": "qlin",
-    "license": "MIT",
-    "bugs": {
-        "url": "https://github.com/WeBankFinTech/fes.js/issues"
+    "main": "lib/index.js",
+    "bin": {
+        "create-fes-app": "bin/create-fes-app.js"
     },
-    "homepage": "https://github.com/WeBankFinTech/fes.js#readme",
+    "files": [
+        "bin",
+        "lib",
+        "templates/**/*"
+    ],
     "publishConfig": {
         "access": "public"
     },

@@ -27,7 +27,8 @@ module.exports = function (pkg) {
         cache[pkg] = str;
         if (index === colors.length - 1) {
             index = 0;
-        } else {
+        }
+        else {
             index += 1;
         }
     }
