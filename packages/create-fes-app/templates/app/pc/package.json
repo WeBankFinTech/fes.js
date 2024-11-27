@@ -17,8 +17,8 @@
   },
   "dependencies": {
     "@fesjs/fes": "^3.0.0",
-    "@fesjs/plugin-access": "^3.0.0",
-    "@fesjs/plugin-layout": "^5.0.0",
+    "@fesjs/plugin-access": "^3.1.9",
+    "@fesjs/plugin-layout": "^5.4.3",
     "@fesjs/plugin-model": "^3.0.0",
     "@fesjs/plugin-enums": "^3.0.0",
     "@fesjs/fes-design": "^0.8.0",
