@@ -226,7 +226,7 @@ importers:
         specifier: ^7.23.2
         version: 7.23.2(@babel/core@7.23.3)
       '@fesjs/fes':
-        specifier: ^3.1.15
+        specifier: ^3.1.16
         version: link:../fes
       '@fesjs/utils':
         specifier: ^3.0.3
@@ -427,7 +427,7 @@ importers:
   packages/fes-plugin-layout:
     dependencies:
       '@fesjs/fes':
-        specifier: ^3.1.15
+        specifier: ^3.1.16
         version: link:../fes
       '@fesjs/fes-design':
         specifier: '>=0.7.0'
@@ -567,7 +567,7 @@ importers:
     dependencies:
       '@fesjs/builder-vite':
         specifier: ^3.0.0
-        version: 3.0.0(@fesjs/fes@packages+fes)(@types/node@22.9.1)(core-js@3.39.0)(postcss@8.4.49)(vue@3.3.4)
+        version: 3.0.0(@fesjs/fes@packages+fes)(@types/node@22.9.1)(core-js@3.29.1)(postcss@8.4.49)(vue@3.3.4)
       '@fesjs/fes':
         specifier: ^3.0.0
         version: link:../../../fes
@@ -585,7 +585,7 @@ importers:
     dependencies:
       '@fesjs/builder-vite':
         specifier: ^3.0.0
-        version: 3.0.0(@fesjs/fes@packages+fes)(@types/node@22.9.1)(core-js@3.39.0)(postcss@8.4.49)(vue@3.3.4)
+        version: 3.0.0(@fesjs/fes@packages+fes)(@types/node@22.9.1)(core-js@3.29.1)(postcss@8.4.49)(vue@3.3.4)
       '@fesjs/fes':
         specifier: ^3.0.0
         version: link:../../../fes
@@ -3869,7 +3869,7 @@ packages:
       levn: 0.4.1
     dev: true
 
-  /@fesjs/builder-vite@3.0.0(@fesjs/fes@packages+fes)(@types/node@22.9.1)(core-js@3.39.0)(postcss@8.4.49)(vue@3.3.4):
+  /@fesjs/builder-vite@3.0.0(@fesjs/fes@packages+fes)(@types/node@22.9.1)(core-js@3.29.1)(postcss@8.4.49)(vue@3.3.4):
     resolution: {integrity: sha512-hYs8pz37zq1smvvHNdRDQprQy5mD8rOUH19tU9jo8MHc4emvGUS3bXAYg/OryaVZ1AeECzL69DOJrJlXoWPdcw==}
     peerDependencies:
       '@fesjs/fes': ^3.0.0
@@ -3884,7 +3884,7 @@ packages:
       '@vitejs/plugin-vue-jsx': 3.1.0(vite@4.5.1)(vue@3.3.4)
       autoprefixer: 10.4.14(postcss@8.4.49)
       babel-plugin-polyfill-corejs3: 0.7.1(@babel/core@7.23.3)
-      core-js: 3.39.0
+      core-js: 3.29.1
       less: 4.2.0
       postcss-flexbugs-fixes: 5.0.2(postcss@8.4.49)
       postcss-safe-parser: 6.0.0(postcss@8.4.49)
@@ -7841,11 +7841,6 @@ packages:
 
   /core-js@3.35.0:
     resolution: {integrity: sha512-ntakECeqg81KqMueeGJ79Q5ZgQNR+6eaE8sxGCx62zMbAIj65q+uYvatToew3m6eAGdU4gNZwpZ34NMe4GYswg==}
-    requiresBuild: true
-    dev: false
-
-  /core-js@3.39.0:
-    resolution: {integrity: sha512-raM0ew0/jJUqkJ0E6e8UDtl+y/7ktFivgWvqw8dNSQeNWoSDLvQ1H/RN3aPXB9tBd4/FhyR4RDPGhsNIMsAn7g==}
     requiresBuild: true
     dev: false
 
