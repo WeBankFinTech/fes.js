@@ -1,7 +1,7 @@
 <template>
     <FMenu
-        v-model:expandedKeys="expandedKeysRef"
-        :model-value="activePath"
+        v-model:expanded-keys="expandedKeysRef"
+        v-model="activeMenu"
         :inverted="inverted"
         :mode="mode"
         :options="transformedMenus"
@@ -12,9 +12,9 @@
 </template>
 
 <script>
-import { computed, h, ref, watch } from 'vue';
-import { FMenu } from '@fesjs/fes-design';
 import { useRoute, useRouter } from '@@/core/coreExports';
+import { FMenu } from '@fesjs/fes-design';
+import { computed, h, nextTick, ref, watch } from 'vue';
 import { transform as transformByAccess } from '../helpers/pluginAccess';
 import { transform as transformByLocale } from '../helpers/pluginLocale';
 import { flatNodes } from '../helpers/utils';
@@ -79,6 +79,7 @@ export default {
         const router = useRouter();
         const transformedMenus = computed(() => transformByLocale(transformByAccess(transform(props.menus))));
         const menuArray = computed(() => flatNodes(transformedMenus.value));
+
         const activePath = computed(() => {
             const matchMenus = menuArray.value.filter((menu) => {
                 const match = menu.match;
@@ -94,6 +95,12 @@ export default {
                 return route.path;
             }
             return matchMenus[0].path;
+        });
+
+        const activeMenu = ref(activePath.value);
+
+        watch(activePath, () => {
+            activeMenu.value = activePath.value;
         });
 
         const expandedKeysRef = ref(props.expandedKeys);
@@ -132,9 +139,17 @@ export default {
                     query: currentMenu?.query || {},
                     params: currentMenu?.params || {},
                 });
+                // TODO 有受控模式之后优化
+                nextTick(() => {
+                    activeMenu.value = activePath.value;
+                });
                 window.open(resolved.href, '_blank');
             }
             else if (/^https?:\/\//.test(path)) {
+                // TODO 有受控模式之后优化
+                nextTick(() => {
+                    activeMenu.value = activePath.value;
+                });
                 window.open(path, '_blank');
             }
             else if (/^\//.test(path)) {
@@ -150,6 +165,7 @@ export default {
         };
 
         return {
+            activeMenu,
             activePath,
             expandedKeysRef,
             transformedMenus,
