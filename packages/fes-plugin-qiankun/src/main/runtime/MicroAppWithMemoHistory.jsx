@@ -1,5 +1,5 @@
-import { defineComponent, watch, onUnmounted } from 'vue';
-// eslint-disable-next-line import/extensions
+import { defineComponent, onUnmounted, watch } from 'vue';
+
 import { MicroApp } from './MicroApp';
 
 export const MicroAppWithMemoHistory = defineComponent({
@@ -11,6 +11,7 @@ export const MicroAppWithMemoHistory = defineComponent({
             type: String,
             required: true,
         },
+        entry: String,
         cacheName: String,
         settings: Object,
         props: Object,
