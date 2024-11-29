@@ -93,6 +93,22 @@ export default {
 };
 ```
 
+### console
+
+-   类型： `object`
+-   默认值：`{}`
+-   详情：
+    用于控制应用启动的时候在 console 中打印的信息，目前仅支持 version
+-   示例：
+
+```js
+export default {
+    console: {
+        version: true
+    }
+};
+```
+
 ### define
 
 -   类型： `object`
