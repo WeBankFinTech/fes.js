@@ -8,6 +8,9 @@ export default defineBuildConfig({
     define: {
         __DEV__: false,
     },
+    console: {
+        version: true,
+    },
     html: {
         title: '海贼王',
     },

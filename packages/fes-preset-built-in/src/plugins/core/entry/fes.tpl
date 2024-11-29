@@ -12,6 +12,8 @@ import DefaultContainer from './defaultContainer.vue';
 
 {{{ entryCodeAhead }}}
 
+{{{ CONSOLE }}}
+
 const renderClient = (opts = {}) => {
     const { plugin, routes, rootElement } = opts;
     const rootContainer = plugin.applyPlugins({

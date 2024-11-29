@@ -16,6 +16,7 @@ export default function () {
             require.resolve('./plugins/features/alias'),
             require.resolve('./plugins/features/autoprefixer'),
             require.resolve('./plugins/features/define'),
+            require.resolve('./plugins/features/console'),
             require.resolve('./plugins/features/dynamicImport'),
             require.resolve('./plugins/features/globalCSS'),
             require.resolve('./plugins/features/inlineLimit'),
