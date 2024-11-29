@@ -98,7 +98,7 @@ export const MicroApp = defineComponent({
                 {
                     // 保证唯一
                     name: `${name}_${props.cacheName || ''}`,
-                    entry: entry,
+                    entry: props.entry || entry,
                     container: containerRef.value,
                     props: propsConfigRef.value
                 },
