@@ -1,6 +1,6 @@
 {
     "name": "@fesjs/builder-webpack",
-    "version": "3.0.17",
+    "version": "3.1.0",
     "description": "@fesjs/builder-webpack",
     "author": "qlin",
     "license": "MIT",
@@ -26,7 +26,7 @@
         "access": "public"
     },
     "peerDependencies": {
-        "@fesjs/fes": "^3.1.16",
+        "@fesjs/fes": "^3.1.17",
         "core-js": "^3.29.1"
     },
     "dependencies": {
