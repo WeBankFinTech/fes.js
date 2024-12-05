@@ -6,12 +6,12 @@ import { withBase } from 'vitepress'
 
 ## 依赖环境
 
-首先得有 [Node.js](https://nodejs.org/)，并确保 node 版本是 12.13 或以上。
+首先得有 [Node.js](https://nodejs.org/)，并确保 node 版本是 `v18.12.0` 或以上。
 
 ```bash
 # 打印 node 版本
 node -v
-v12.13.0
+v18.12.0
 ```
 
 推荐使用 [pnpm](https://pnpm.io/installation) 管理 npm 依赖
