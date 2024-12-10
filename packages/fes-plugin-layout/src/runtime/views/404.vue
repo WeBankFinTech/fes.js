@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import { defineComponent } from 'vue';
+import { computed, defineComponent } from 'vue';
 import img404 from '../assets/404.png';
 import getConfig from '../helpers/getConfig';
 import Wrapper from './components/Wrapper.vue';
