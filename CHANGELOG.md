@@ -1,3 +1,12 @@
+## [3.4.8](https://github.com/WeBankFinTech/fes.js/compare/v3.4.7...v3.4.8) (2024-12-10)
+
+
+### Bug Fixes
+
+* 修复plugin-layout 404页面无法正常渲染问题 ([63e55cc](https://github.com/WeBankFinTech/fes.js/commit/63e55cc44f0112c2fab9f7f4eea1b5d58b4e9390))
+
+
+
 ## [3.4.7](https://github.com/WeBankFinTech/fes.js/compare/v3.4.5...v3.4.7) (2024-12-01)
 
 
