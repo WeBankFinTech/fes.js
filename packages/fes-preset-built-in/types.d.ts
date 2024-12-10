@@ -1,8 +1,8 @@
-import { Component, DefineComponent, Component, App } from 'vue';
-import { RouteRecordRaw, Router, RouterHistory, createMemoryHistory, createWebHashHistory, createWebHistory } from 'vue-router';
+import type { App, Component, DefineComponent } from 'vue';
+import type { createMemoryHistory, createWebHashHistory, createWebHistory, Router, RouteRecordRaw, RouterHistory } from 'vue-router';
 
 // @ts-ignore
-import { Plugin } from '@fesjs/runtime';
+import type { Plugin } from '@fesjs/runtime';
 
 interface BeforeRenderConfig {
     loading: Component;
@@ -44,6 +44,9 @@ declare module '@fesjs/fes' {
     interface PluginBuildConfig {
         globalCSS?: 'beforeImports' | 'afterImports';
         alias?: Record<string, string>;
+        console?: {
+            version?: boolean;
+        };
         autoprefixer?: {
             /** environment for `Browserslist` */
             env?: string;
@@ -86,10 +89,10 @@ declare module '@fesjs/fes' {
         dynamicImport?: boolean;
         inlineLimit?: number;
         mock?:
-        | boolean
-        | {
-            prefix?: string;
-        };
+            | boolean
+            | {
+                prefix?: string;
+            };
         mountElementId?: string;
         plugins?: string[];
         presets?: string[];

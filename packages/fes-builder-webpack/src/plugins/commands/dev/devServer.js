@@ -1,6 +1,23 @@
-import WebpackDevServer from 'webpack-dev-server';
-import webpack from 'webpack';
 import { chalk } from '@fesjs/utils';
+import webpack from 'webpack';
+import WebpackDevServer from 'webpack-dev-server';
+
+function formatProxy(proxy) {
+    if (!proxy) {
+        return [];
+    }
+
+    if (Array.isArray(proxy)) {
+        return proxy;
+    }
+
+    return Object.keys(proxy).map((apiPath) => {
+        return {
+            context: [apiPath],
+            ...proxy[apiPath],
+        };
+    });
+}
 
 export function startDevServer({ webpackConfig, host, port, proxy, https, beforeMiddlewares, afterMiddlewares, customerDevServerConfig }) {
     const options = {
@@ -10,6 +27,7 @@ export function startDevServer({ webpackConfig, host, port, proxy, https, before
         client: {
             logging: 'error',
             overlay: false,
+            progress: true,
             webSocketURL: {
                 hostname: host,
                 port,
@@ -27,12 +45,20 @@ export function startDevServer({ webpackConfig, host, port, proxy, https, before
         ...(customerDevServerConfig || {}),
         port,
         host,
-        proxy,
+        proxy: formatProxy(proxy),
     };
     const compiler = webpack(webpackConfig);
     const server = new WebpackDevServer(options, compiler);
-
-    console.log(chalk.green('Server: '), chalk.blue(`${options.server}://${options.host}:${options.port}`));
+    if (options.host === '0.0.0.0') {
+        // eslint-disable-next-line no-console
+        console.log(chalk.green('  ➜ Local: '), chalk.cyan(`${options.server}://127.0.0.1:${options.port}`));
+        // eslint-disable-next-line no-console
+        console.log(chalk.gray('  ➜ Network: '), chalk.gray(`${options.server}://${options.host}:${options.port}`));
+    }
+    else {
+        // eslint-disable-next-line no-console
+        console.log(chalk.green('  ➜ :Local: '), chalk.cyan(`${options.server}://${options.host}:${options.port}`));
+    }
     server.startCallback((err) => {
         if (err) {
             console.error(err);

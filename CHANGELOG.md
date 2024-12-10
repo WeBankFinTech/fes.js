@@ -1,3 +1,64 @@
+## [3.4.7](https://github.com/WeBankFinTech/fes.js/compare/v3.4.5...v3.4.7) (2024-12-01)
+
+
+### Bug Fixes
+
+* 代理插件兼容 array 写法 ([#260](https://github.com/WeBankFinTech/fes.js/issues/260)) ([7c01ee9](https://github.com/WeBankFinTech/fes.js/commit/7c01ee979e0776101c0f00bebca8a283d48cef6e))
+* 受控模式优化 ([#262](https://github.com/WeBankFinTech/fes.js/issues/262)) ([4d28a09](https://github.com/WeBankFinTech/fes.js/commit/4d28a09c85ff1d140ffbc086b7ca6f24e02c6a4f))
+* 修复pc模版无法启动问题 ([#261](https://github.com/WeBankFinTech/fes.js/issues/261)) ([b1ea675](https://github.com/WeBankFinTech/fes.js/commit/b1ea675f40b158266c28bcc7fedfd3eabba9f38c))
+
+
+### Features
+
+* 添加 console 配置,支持输出 version ([#263](https://github.com/WeBankFinTech/fes.js/issues/263)) ([c7ad0cd](https://github.com/WeBankFinTech/fes.js/commit/c7ad0cd8062d50519e3aea7ca957320967d41d41))
+* webpack-dev 升级到5.x,提升 dev 性能,优化日志输出 ([#259](https://github.com/WeBankFinTech/fes.js/issues/259)) ([efd8708](https://github.com/WeBankFinTech/fes.js/commit/efd87087522cd2dce6b5dc89fbe93ef46efd08bf))
+
+
+
+## [3.4.6](https://github.com/WeBankFinTech/fes.js/compare/v3.4.5...v3.4.6) (2024-11-28)
+
+
+### Bug Fixes
+
+* 代理插件兼容 array 写法 ([#260](https://github.com/WeBankFinTech/fes.js/issues/260)) ([7c01ee9](https://github.com/WeBankFinTech/fes.js/commit/7c01ee979e0776101c0f00bebca8a283d48cef6e))
+* 受控模式优化 ([#262](https://github.com/WeBankFinTech/fes.js/issues/262)) ([4d28a09](https://github.com/WeBankFinTech/fes.js/commit/4d28a09c85ff1d140ffbc086b7ca6f24e02c6a4f))
+* 修复pc模版无法启动问题 ([#261](https://github.com/WeBankFinTech/fes.js/issues/261)) ([b1ea675](https://github.com/WeBankFinTech/fes.js/commit/b1ea675f40b158266c28bcc7fedfd3eabba9f38c))
+
+
+### Features
+
+* webpack-dev 升级到5.x,提升 dev 性能,优化日志输出 ([#259](https://github.com/WeBankFinTech/fes.js/issues/259)) ([efd8708](https://github.com/WeBankFinTech/fes.js/commit/efd87087522cd2dce6b5dc89fbe93ef46efd08bf))
+
+
+
+## [3.4.5](https://github.com/WeBankFinTech/fes.js/compare/v3.4.3...v3.4.5) (2024-11-19)
+
+
+### Bug Fixes
+
+* 控制 tab 是否可以刷新 ([#257](https://github.com/WeBankFinTech/fes.js/issues/257)) ([4b3fb7b](https://github.com/WeBankFinTech/fes.js/commit/4b3fb7b3d120a36eb894b47a7c08267888b53c15))
+
+
+### Features
+
+* menu 支持配置 _blank 在新页面打开 ([#258](https://github.com/WeBankFinTech/fes.js/issues/258)) ([eb6ed75](https://github.com/WeBankFinTech/fes.js/commit/eb6ed75dd45bea746b2dac339f2c2aae5b361b66))
+
+
+
+## [3.4.4](https://github.com/WeBankFinTech/fes.js/compare/v3.4.3...v3.4.4) (2024-11-19)
+
+
+### Bug Fixes
+
+* 控制 tab 是否可以刷新 ([#257](https://github.com/WeBankFinTech/fes.js/issues/257)) ([4b3fb7b](https://github.com/WeBankFinTech/fes.js/commit/4b3fb7b3d120a36eb894b47a7c08267888b53c15))
+
+
+### Features
+
+* menu 支持配置 _blank 在新页面打开 ([#258](https://github.com/WeBankFinTech/fes.js/issues/258)) ([eb6ed75](https://github.com/WeBankFinTech/fes.js/commit/eb6ed75dd45bea746b2dac339f2c2aae5b361b66))
+
+
+
 ## [3.4.3](https://github.com/WeBankFinTech/fes.js/compare/v3.4.2...v3.4.3) (2024-11-12)
 
 
