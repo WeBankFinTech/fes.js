@@ -1,5 +1,6 @@
-import path from 'path';
-import fs from 'fs';
+import fs from 'node:fs';
+import path from 'node:path';
+import process from 'node:process';
 import { cleanTmpPathExceptCache, getBundleAndConfigs } from '../../common/buildDevUtils';
 import connectHistoryMiddleware from './connectHistoryMiddleware';
 
