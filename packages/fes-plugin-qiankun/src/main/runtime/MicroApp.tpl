@@ -32,7 +32,8 @@ export const MicroApp = defineComponent({
         cacheName: String,
         settings: Object,
         props: Object,
-        lifeCycles: Object
+        lifeCycles: Object,
+        onRouterInit: Function
     },
     setup(props, { attrs }) {
         const {
