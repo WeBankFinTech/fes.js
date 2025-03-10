@@ -1,7 +1,7 @@
 import { ApplyPluginsType, plugin } from '@fesjs/fes';
-import { ref, shallowRef } from 'vue';
-
 import { createRequest } from '@qlin/request';
+
+import { ref, shallowRef } from 'vue';
 
 function getRequestInstance() {
     const defaultConfig = plugin.applyPlugins({
