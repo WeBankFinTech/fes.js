@@ -650,8 +650,8 @@ importers:
         specifier: ^3.0.3
         version: link:../fes-utils
       '@qlin/request':
-        specifier: ^0.3.0
-        version: 0.3.0
+        specifier: ^0.3.1
+        version: 0.3.1
       vue:
         specifier: ^3.2.37
         version: 3.3.4
@@ -4777,8 +4777,8 @@ packages:
     resolution: {integrity: sha512-2LuNTFBIO0m7kKIQvvPHN6UE63VjpmL9rnEEaOOaiSPbZK+zUOYIzBAWcED+3XYzhYsd/0mD57VdxAEqqV52CQ==}
     dev: false
 
-  /@qlin/request@0.3.0:
-    resolution: {integrity: sha512-/1bvNA1BPjxXrFONbBvq+e/+uJKgvKjZs9YhQ97NABAXGNOaqMXsRS6MEfDIRZok4lbkHRquCXON2Lht3CkD6A==}
+  /@qlin/request@0.3.1:
+    resolution: {integrity: sha512-/oTvZ+zPwNN0Zdv/MiP9AHcgajEkMElZ1568TOKRe3H4Wv8RjjwVAp/0as7eiNc8pdegK2Vj2nNbL09JUhsvOQ==}
     dependencies:
       lodash-es: 4.17.21
     dev: false
