@@ -1,3 +1,12 @@
+## [3.4.10](https://github.com/WeBankFinTech/fes.js/compare/v3.4.9...v3.4.10) (2025-03-14)
+
+
+### Bug Fixes
+
+* 修复 request 属性挂载问题 ([6649e06](https://github.com/WeBankFinTech/fes.js/commit/6649e0615b5141fe8fccfeaa0565b961ba360fde))
+
+
+
 ## [3.4.9](https://github.com/WeBankFinTech/fes.js/compare/v3.4.8...v3.4.9) (2025-03-10)
 
 
