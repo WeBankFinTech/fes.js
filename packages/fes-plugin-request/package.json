@@ -33,7 +33,7 @@
     },
     "dependencies": {
         "@fesjs/utils": "^3.0.3",
-        "@qlin/request": "^0.3.0"
+        "@qlin/request": "^0.3.1"
     },
     "typings": "./types.d.ts"
 }

@@ -15,16 +15,14 @@ function getRequestInstance() {
     return createRequest(defaultConfig);
 }
 
+// 不能立马初始化，用户配置可能还没准备好
 let currentRequest;
 
 export function rawRequest(url, data, options = {}) {
-    if (typeof options === 'string') {
-        options = {
-            method: options,
-        };
-    }
     if (!currentRequest) {
         currentRequest = getRequestInstance();
+        // 将 request 实例上的属性挂在到 rawRequest 上。
+        Object.assign(rawRequest, currentRequest);
     }
     return currentRequest(url, data, options);
 }
