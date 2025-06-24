@@ -1,3 +1,12 @@
+## [3.4.12](https://github.com/WeBankFinTech/fes.js/compare/v3.4.11...v3.4.12) (2025-06-24)
+
+
+### Bug Fixes
+
+* upgrade app ([bc71554](https://github.com/WeBankFinTech/fes.js/commit/bc715542cee638a7825129ce0d8f002346705af7))
+
+
+
 ## [3.4.11](https://github.com/WeBankFinTech/fes.js/compare/v3.4.10...v3.4.11) (2025-03-14)
 
 
