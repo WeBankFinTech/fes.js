@@ -1,30 +1,32 @@
 {
-  "name": "@fesjs/template",
-  "version": "3.0.0",
-  "description": "fes项目模版",
-  "scripts": {
-    "build": "fes build",
-    "prod": "FES_ENV=prod fes build",
-    "analyze": "ANALYZE=1 fes build",
-    "dev": "fes dev",
-    "test:unit": "fes test:unit"
-  },
-  "publishConfig": {
-    "access": "public"
-  },
-  "devDependencies": {
-    "@webank/eslint-config-webank": "1.2.7"
-  },
-  "dependencies": {
-    "@fesjs/fes": "^3.0.0",
-    "@fesjs/plugin-access": "^3.1.9",
-    "@fesjs/plugin-layout": "^5.4.3",
-    "@fesjs/plugin-model": "^3.0.0",
-    "@fesjs/plugin-enums": "^3.0.0",
-    "@fesjs/fes-design": "^0.8.0",
-    "@fesjs/builder-webpack": "^3.0.0",
-    "vue": "^3.2.47",
-    "core-js": "^3.29.1"
-  },
-  "private": true
+    "name": "@fesjs/template",
+    "version": "3.0.0",
+    "private": true,
+    "description": "fes项目模版",
+    "scripts": {
+        "build": "fes build",
+        "prod": "FES_ENV=prod fes build",
+        "analyze": "ANALYZE=1 fes build",
+        "dev": "fes dev",
+        "test:unit": "fes test:unit"
+    },
+    "publishConfig": {
+        "access": "public"
+    },
+    "dependencies": {
+        "@fesjs/builder-webpack": "^3.1.0",
+        "@fesjs/fes": "^3.1.17",
+        "@fesjs/fes-design": "^0.8.82",
+        "@fesjs/plugin-access": "^3.1.9",
+        "@fesjs/plugin-enums": "^3.0.1",
+        "@fesjs/plugin-layout": "^5.4.6",
+        "@fesjs/plugin-model": "^3.0.3",
+        "core-js": "^3.43.0",
+        "vue": "^3.5.17"
+    },
+    "devDependencies": {
+        "@antfu/eslint-config": "4.16.1",
+        "eslint": "9.29.0",
+        "typescript": "5.8.3"
+    }
 }
