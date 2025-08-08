@@ -1,5 +1,5 @@
+import { existsSync } from 'node:fs';
 import { build } from 'vite';
-import { existsSync } from 'fs';
 import getBuildConfig from './getBuildConfig';
 
 export default function (api) {
@@ -33,7 +33,8 @@ export default function (api) {
                 if (process.env.RM_TMPDIR !== 'none') {
                     rimraf.sync(paths.absTmpPath);
                 }
-            } catch (err) {
+            }
+            catch (err) {
                 // throw build error
                 throw err;
             }

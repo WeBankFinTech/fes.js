@@ -1,32 +1,35 @@
 import process from 'node:process';
-import { render } from 'ejs';
-import { expand } from 'dotenv-expand';
-import dotenv from 'dotenv';
-import path, { dirname, join } from 'pathe';
-import fse from 'fs-extra';
-import { normalizePath } from 'vite';
-import { parse } from 'node-html-parser';
-import fg from 'fast-glob';
-import consola from 'consola';
-import { dim } from 'colorette';
-import { minify } from 'html-minifier-terser';
 import { createFilter } from '@rollup/pluginutils';
+import { dim } from 'colorette';
+import consola from 'consola';
+import dotenv from 'dotenv';
+import { expand } from 'dotenv-expand';
+import { render } from 'ejs';
+import fg from 'fast-glob';
+import fse from 'fs-extra';
+import { minify } from 'html-minifier-terser';
+import { parse } from 'node-html-parser';
+import path, { dirname, join } from 'pathe';
+import { normalizePath } from 'vite';
 import history from './connectHistoryMiddleware';
 
 function lookupFile(dir, formats, pathOnly = false) {
     for (const format of formats) {
         const fullPath = join(dir, format);
-        if (fse.pathExistsSync(fullPath) && fse.statSync(fullPath).isFile())
+        if (fse.pathExistsSync(fullPath) && fse.statSync(fullPath).isFile()) {
             return pathOnly ? fullPath : fse.readFileSync(fullPath, 'utf-8');
+        }
     }
     const parentDir = dirname(dir);
-    if (parentDir !== dir)
+    if (parentDir !== dir) {
         return lookupFile(parentDir, formats, pathOnly);
+    }
 }
 
 function loadEnv(mode, envDir, prefix = '') {
-    if (mode === 'local')
+    if (mode === 'local') {
         throw new Error(`"local" cannot be used as a mode name because it conflicts with the .local postfix for .env files.`);
+    }
 
     const env = {};
     const envFiles = [`.env.${mode}.local`, `.env.${mode}`, `.env.local`, `.env`];
@@ -39,11 +42,13 @@ function loadEnv(mode, envDir, prefix = '') {
                 ignoreProcessEnv: true,
             });
             for (const [key, value] of Object.entries(parsed)) {
-                if (key.startsWith(prefix) && env[key] === undefined)
+                if (key.startsWith(prefix) && env[key] === undefined) {
                     env[key] = value;
+                }
 
-                else if (key === 'NODE_ENV')
+                else if (key === 'NODE_ENV') {
                     process.env.VITE_USER_NODE_ENV = value;
+                }
             }
         }
     }
@@ -103,14 +108,15 @@ function createPlugin(userOptions = {}) {
             const keys = Object.keys(proxy);
             let indexPage = null;
             for (const page of _pages) {
-                if (page.filename !== 'index.html')
+                if (page.filename !== 'index.html') {
                     rewrites.push(createRewire(page.template, page, baseUrl, keys));
+                }
 
-                else
-                    indexPage = page;
+                else { indexPage = page; }
             }
-            if (indexPage)
+            if (indexPage) {
                 rewrites.push(createRewire('', indexPage, baseUrl, keys));
+            }
 
             server.middlewares.use(
                 history(viteConfig, {
@@ -148,14 +154,16 @@ function createPlugin(userOptions = {}) {
             if (isMpa(viteConfig) || pages.length) {
                 for (const page of pages) {
                     const dir = path.dirname(page.template);
-                    if (!ignoreDirs.includes(dir))
+                    if (!ignoreDirs.includes(dir)) {
                         outputDirs.push(dir);
+                    }
                 }
             }
             else {
                 const dir = path.dirname(template);
-                if (!ignoreDirs.includes(dir))
+                if (!ignoreDirs.includes(dir)) {
                     outputDirs.push(dir);
+                }
             }
             const cwd = path.resolve(viteConfig.root, viteConfig.build.outDir);
             const htmlFiles = await fg(
@@ -176,8 +184,9 @@ function createPlugin(userOptions = {}) {
             await Promise.all(
                 htmlDirs.map(async (item) => {
                     const isEmpty = await isDirEmpty(item);
-                    if (isEmpty)
+                    if (isEmpty) {
                         return fse.remove(item);
+                    }
                 }),
             );
         },
@@ -198,8 +207,9 @@ function createInput({ pages = [], template = DEFAULT_TEMPLATE }, viteConfig) {
         return input;
     }
     const dir = path.dirname(template);
-    if (ignoreDirs.includes(dir))
+    if (ignoreDirs.includes(dir)) {
         return undefined;
+    }
 
     const file = path.basename(template);
     const key = file.replace(/\.html/, '');
@@ -227,11 +237,11 @@ async function renderHtml(html, config) {
 
 function getPage({ pages = [], entry, template = DEFAULT_TEMPLATE, inject = {} }, name, viteConfig) {
     let page;
-    if (isMpa(viteConfig) || pages?.length)
+    if (isMpa(viteConfig) || pages?.length) {
         page = getPageConfig(name, pages, DEFAULT_TEMPLATE);
+    }
 
-    else
-        page = createSpaPage(entry, template, inject);
+    else { page = createSpaPage(entry, template, inject); }
 
     return page;
 }
@@ -242,8 +252,9 @@ function isMpa(viteConfig) {
 }
 
 function removeEntryScript(html, verbose = false) {
-    if (!html)
+    if (!html) {
         return html;
+    }
 
     const root = parse(html);
     const scriptNodes = root.querySelectorAll('script[type=module]') || [];
@@ -255,8 +266,8 @@ function removeEntryScript(html, verbose = false) {
     verbose
     && removedNode.length
     && consola.warn(`vite-plugin-html: Since you have already configured entry, ${dim(
-            removedNode.toString(),
-        )} is deleted. You may also delete it from the index.html.
+        removedNode.toString(),
+    )} is deleted. You may also delete it from the index.html.
         `);
     return root.toString();
 }
@@ -286,8 +297,9 @@ function createRewire(reg, page, baseUrl, proxyUrlKeys) {
             const pathname = parsedUrl.pathname;
             const excludeBaseUrl = pathname.replace(baseUrl, '/');
             const template = path.resolve(baseUrl, page.template);
-            if (excludeBaseUrl === '/')
+            if (excludeBaseUrl === '/') {
                 return template;
+            }
 
             const isApiUrl = proxyUrlKeys.some(item => pathname.startsWith(path.resolve(baseUrl, item)));
             return isApiUrl ? parsedUrl.path : template;
@@ -311,12 +323,14 @@ function getOptions(_minify) {
 }
 
 async function minifyHtml(html, minify$1) {
-    if (typeof minify$1 === 'boolean' && !minify$1)
+    if (typeof minify$1 === 'boolean' && !minify$1) {
         return html;
+    }
 
     let minifyOptions = minify$1;
-    if (typeof minify$1 === 'boolean' && minify$1)
+    if (typeof minify$1 === 'boolean' && minify$1) {
         minifyOptions = getOptions(minify$1);
+    }
 
     const res = await minify(html, minifyOptions);
     return res;
@@ -329,8 +343,9 @@ function createMinifyHtmlPlugin({ _minify = true } = {}) {
         async generateBundle(_, outBundle) {
             if (_minify) {
                 for (const bundle of Object.values(outBundle)) {
-                    if (bundle.type === 'asset' && htmlFilter(bundle.fileName) && typeof bundle.source === 'string')
+                    if (bundle.type === 'asset' && htmlFilter(bundle.fileName) && typeof bundle.source === 'string') {
                         bundle.source = await minifyHtml(bundle.source, _minify);
+                    }
                 }
             }
         },

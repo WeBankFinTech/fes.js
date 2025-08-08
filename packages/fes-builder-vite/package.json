@@ -32,10 +32,10 @@
         "@babel/core": "^7.23.3",
         "@fesjs/utils": "^3.0.3",
         "@rollup/pluginutils": "^5.1.0",
-        "@vitejs/plugin-basic-ssl": "^1.0.2",
-        "@vitejs/plugin-legacy": "^5.2.0",
-        "@vitejs/plugin-vue": "^4.5.0",
-        "@vitejs/plugin-vue-jsx": "^3.1.0",
+        "@vitejs/plugin-basic-ssl": "^2.1.0",
+        "@vitejs/plugin-legacy": "^7.0.0",
+        "@vitejs/plugin-vue": "^6.0.1",
+        "@vitejs/plugin-vue-jsx": "^5.0.1",
         "autoprefixer": "^10.4.4",
         "colorette": "^2.0.16",
         "connect-history-api-fallback": "^2.0.0",
@@ -51,9 +51,12 @@
         "pathe": "^0.2.0",
         "postcss-flexbugs-fixes": "^5.0.2",
         "postcss-safe-parser": "^6.0.0",
+        "rolldown-vite": "^7.1.0",
         "rollup-plugin-visualizer": "^5.9.3",
-        "terser": "^5.24.0",
-        "vite": "^5.0.3"
+        "terser": "^5.24.0"
+    },
+    "devDependencies": {
+        "@types/node": "^22.12.0"
     },
     "typings": "./types.d.ts"
 }

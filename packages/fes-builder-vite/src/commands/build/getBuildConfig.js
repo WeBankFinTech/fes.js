@@ -1,4 +1,3 @@
-import { splitVendorChunkPlugin } from 'vite';
 import legacy from '@vitejs/plugin-legacy';
 import { getInnerCommonConfig } from '../../common/getConfig';
 
@@ -39,7 +38,6 @@ export default async (api) => {
                 targets,
                 ...api.config.viteLegacy,
             }),
-            splitVendorChunkPlugin(),
         ],
         build: {
             ...build,
