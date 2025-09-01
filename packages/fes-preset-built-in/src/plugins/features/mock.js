@@ -137,7 +137,7 @@ export default (api) => {
                 return next();
             }
             // 请求以 cgiMock.prefix 开头，匹配处理
-            const matchRequet = requestList.find((item) => req.path.search(item.url) !== -1);
+            const matchRequet = requestList.find((item) => req.path.search(item.url) !== -1 && req.method === (item.method || 'GET').toUpperCase());
             if (!matchRequet) {
                 return next();
             }
