@@ -1,0 +1,56 @@
+{
+    "name": "@fesjs/utils",
+    "version": "3.0.3",
+    "description": "@fesjs/utils",
+    "author": "qlin",
+    "license": "MIT",
+    "homepage": "https://github.com/WeBankFinTech/fes.js#readme",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/WeBankFinTech/fes.js.git",
+        "directory": "packages/utils"
+    },
+    "bugs": {
+        "url": "https://github.com/WeBankFinTech/fes.js/issues"
+    },
+    "keywords": [
+        "fes"
+    ],
+    "main": "./dist/index.mjs",
+    "module": "./dist/index.mjs",
+    "types": "./dist/index.d.mts",
+    "files": [
+        "dist"
+    ],
+    "scripts": {
+        "dev": "tsup --watch --sourcemap",
+        "build": "tsup"
+    },
+    "publishConfig": {
+        "access": "public"
+    },
+    "dependencies": {
+        "@babel/generator": "^7.21.3",
+        "@babel/parser": "^7.21.3",
+        "@babel/traverse": "^7.21.3",
+        "chalk": "^4.1.2",
+        "chokidar": "^3.5.2",
+        "debug": "^4.3.2",
+        "deepmerge": "^4.2.2",
+        "glob": "^9.3.2",
+        "lodash": "^4.17.21",
+        "mkdirp": "^2.1.6",
+        "mustache": "^4.2.0",
+        "portfinder": "^1.0.32",
+        "resolve": "^1.20.0",
+        "rimraf": "^4.4.1",
+        "semver": "^7.7.2",
+        "yargs-parser": "^21.1.1"
+    },
+    "devDependencies": {
+        "@types/lodash": "^4.17.20",
+        "@types/mustache": "^4.2.6",
+        "@types/resolve": "^1.20.6",
+        "@types/semver": "^7.7.1"
+    }
+}

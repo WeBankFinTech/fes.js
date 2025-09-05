@@ -1,0 +1,64 @@
+{
+    "name": "@fesjs/builder-vite",
+    "version": "4.0.5",
+    "description": "@fesjs/builder-vite",
+    "author": "qlin",
+    "license": "MIT",
+    "homepage": "https://github.com/WeBankFinTech/fes.js#readme",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/WeBankFinTech/fes.js.git",
+        "directory": "packages/builder-vite"
+    },
+    "bugs": {
+        "url": "https://github.com/WeBankFinTech/fes.js/issues"
+    },
+    "keywords": [
+        "fes"
+    ],
+    "main": "dist/index.mjs",
+    "module": "dist/index.mjs",
+    "files": [
+        "dist",
+        "types.d.ts"
+    ],
+    "scripts": {
+        "dev": "tsup --watch --sourcemap",
+        "build": "tsup"
+    },
+    "publishConfig": {
+        "access": "public"
+    },
+    "peerDependencies": {
+        "@fesjs/fes": "^3.1.12",
+        "core-js": "^3.45.1"
+    },
+    "dependencies": {
+        "@fesjs/shared": "workspace:*",
+        "@fesjs/utils": "workspace:*",
+        "@rollup/pluginutils": "^5.1.0",
+        "@vitejs/plugin-basic-ssl": "^2.1.0",
+        "@vitejs/plugin-legacy": "^7.2.1",
+        "@vitejs/plugin-vue": "^6.0.1",
+        "@vitejs/plugin-vue-jsx": "^5.1.1",
+        "autoprefixer": "^10.4.21",
+        "colorette": "^2.0.16",
+        "connect-history-api-fallback": "^2.0.0",
+        "consola": "^3.4.2",
+        "dotenv": "^16.0.0",
+        "dotenv-expand": "^8.0.2",
+        "ejs": "^3.1.6",
+        "fast-glob": "^3.2.11",
+        "fs-extra": "^11.3.1",
+        "html-minifier-terser": "^6.1.0",
+        "less": "^4.2.0",
+        "node-html-parser": "^5.3.3",
+        "pathe": "^0.2.0",
+        "postcss-flexbugs-fixes": "^5.0.2",
+        "postcss-safe-parser": "^6.0.0",
+        "rollup-plugin-visualizer": "^6.0.3",
+        "terser": "^5.24.0",
+        "vite": "^7.1.4"
+    },
+    "typings": "./types.d.ts"
+}

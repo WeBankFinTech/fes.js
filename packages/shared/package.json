@@ -1,0 +1,35 @@
+{
+    "name": "@fesjs/shared",
+    "version": "3.0.3",
+    "description": "@fesjs/shared",
+    "author": "qlin",
+    "license": "MIT",
+    "homepage": "https://github.com/WeBankFinTech/fes.js#readme",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/WeBankFinTech/fes.js.git",
+        "directory": "packages/shared"
+    },
+    "bugs": {
+        "url": "https://github.com/WeBankFinTech/fes.js/issues"
+    },
+    "keywords": [
+        "fes"
+    ],
+    "main": "./dist/index.mjs",
+    "module": "./dist/index.mjs",
+    "types": "./dist/index.d.mts",
+    "files": [
+        "dist"
+    ],
+    "scripts": {
+        "dev": "tsup --watch --sourcemap",
+        "build": "tsup"
+    },
+    "publishConfig": {
+        "access": "public"
+    },
+    "dependencies": {
+        "@fesjs/utils": "workspace:*"
+    }
+}

@@ -1,0 +1,42 @@
+{
+    "name": "@fesjs/plugin-request",
+    "version": "4.0.1",
+    "description": "@fesjs/plugin-request",
+    "author": "qlin",
+    "license": "MIT",
+    "homepage": "https://github.com/WeBankFinTech/fes.js#readme",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/WeBankFinTech/fes.js.git",
+        "directory": "packages/plugin-request"
+    },
+    "bugs": {
+        "url": "https://github.com/WeBankFinTech/fes.js/issues"
+    },
+    "keywords": [
+        "fes"
+    ],
+    "main": "dist/index.mjs",
+    "module": "dist/index.mjs",
+    "files": [
+        "dist",
+        "types.d.ts"
+    ],
+    "scripts": {
+        "dev": "tsup --watch --sourcemap",
+        "build": "tsup"
+    },
+    "publishConfig": {
+        "access": "public"
+    },
+    "peerDependencies": {
+        "@fesjs/fes": "^3.1.12",
+        "vue": "^3.2.37"
+    },
+    "dependencies": {
+        "@fesjs/shared": "workspace:*",
+        "@fesjs/utils": "workspace:*",
+        "@qlin/request": "^0.3.1"
+    },
+    "typings": "./types.d.ts"
+}

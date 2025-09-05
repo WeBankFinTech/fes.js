@@ -1,34 +1,19 @@
 {
     "name": "@fesjs/fes",
+    "type": "module",
     "version": "3.1.17",
     "description": "一个好用的前端管理台快速开发框架",
     "preferGlobal": true,
-    "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1"
-    },
-    "files": [
-        "lib",
-        "bin",
-        "types.d.ts"
-    ],
-    "bin": {
-        "fes": "./bin/fes.js"
-    },
-    "main": "lib/index.js",
-    "module": "lib/index.js",
     "author": "qlin",
+    "license": "MIT",
+    "homepage": "https://github.com/WeBankFinTech/fes.js#readme",
     "repository": {
         "type": "git",
         "url": "git+https://github.com/WeBankFinTech/fes.js.git",
         "directory": "packages/fes"
     },
-    "license": "MIT",
     "bugs": {
         "url": "https://github.com/WeBankFinTech/fes.js/issues"
-    },
-    "homepage": "https://github.com/WeBankFinTech/fes.js#readme",
-    "publishConfig": {
-        "access": "public"
     },
     "keywords": [
         "管理端",
@@ -37,17 +22,40 @@
         "easy",
         "strong"
     ],
-    "dependencies": {
-        "@fesjs/compiler": "^3.0.6",
-        "@fesjs/preset-built-in": "^3.1.14",
-        "@fesjs/runtime": "^3.0.1",
-        "@fesjs/utils": "^3.0.3",
-        "pirates": "^4.0.5",
-        "resolve-cwd": "^3.0.0",
-        "vue-router": "^4.1.6"
+    "exports": {
+        "import": {
+            "node": "./dist/node.js",
+            "default": "./dist/browser.js"
+        }
     },
+    "main": "./dist/node.js",
+    "types": "types.d.ts",
+    "bin": {
+        "fes": "./bin/fes.mjs"
+    },
+    "files": [
+        "bin",
+        "dist",
+        "types.d.ts"
+    ],
     "engines": {
-        "node": "^10.12.0 || ^12.0.0 || >= 14.0.0"
+        "node": ">= 18.0.0"
     },
-    "types": "types.d.ts"
+    "scripts": {
+        "dev": "tsup --watch --sourcemap",
+        "build": "tsup"
+    },
+    "publishConfig": {
+        "access": "public"
+    },
+    "dependencies": {
+        "@fesjs/compiler": "workspace:*",
+        "@fesjs/preset-built-in": "workspace:*",
+        "@fesjs/utils": "workspace:*",
+        "fs-extra": "^11.3.1",
+        "vue-router": "^4.5.1"
+    },
+    "devDependencies": {
+        "@types/fs-extra": "^11.0.4"
+    }
 }

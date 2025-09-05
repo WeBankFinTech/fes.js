@@ -1,0 +1,46 @@
+{
+    "name": "@fesjs/plugin-swc",
+    "version": "3.0.5",
+    "description": "@fesjs/plugin-swc",
+    "author": "RiESAEX",
+    "license": "MIT",
+    "homepage": "https://github.com/WeBankFinTech/fes.js#readme",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/WeBankFinTech/fes.js.git",
+        "directory": "packages/plugin-swc"
+    },
+    "bugs": {
+        "url": "https://github.com/WeBankFinTech/fes.js/issues"
+    },
+    "keywords": [
+        "fes"
+    ],
+    "main": "dist/index.mjs",
+    "module": "dist/index.mjs",
+    "types": "types.d.ts",
+    "files": [
+        "dist",
+        "types.d.ts"
+    ],
+    "scripts": {
+        "dev": "tsup --watch --sourcemap",
+        "build": "tsup"
+    },
+    "publishConfig": {
+        "access": "public"
+    },
+    "peerDependencies": {
+        "@fesjs/fes": "^3.1.12"
+    },
+    "dependencies": {
+        "@fesjs/shared": "workspace:*",
+        "@fesjs/utils": "workspace:*",
+        "@swc/core": "^1.13.5",
+        "@swc/css": "^0.0.28",
+        "css-minimizer-webpack-plugin": "^7.0.2",
+        "swc-loader": "^0.2.6",
+        "swc-plugin-vue-jsx": "^0.4.0",
+        "terser-webpack-plugin": "^5.3.14"
+    }
+}

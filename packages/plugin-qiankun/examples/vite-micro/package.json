@@ -1,0 +1,54 @@
+{
+    "name": "vite-micro",
+    "type": "module",
+    "version": "2.0.0",
+    "private": true,
+    "description": "fes项目模版",
+    "author": "harrywan",
+    "license": "MIT",
+    "homepage": "https://github.com/WeBankFinTech/fes.js#readme",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/WeBankFinTech/fes.js.git",
+        "directory": "packages/plugin-qiankun"
+    },
+    "bugs": {
+        "url": "https://github.com/WeBankFinTech/fes.js/issues"
+    },
+    "keywords": [
+        "管理端",
+        "fes",
+        "fast",
+        "easy",
+        "strong"
+    ],
+    "files": [
+        ".eslintrc.js",
+        ".fes.js",
+        ".fes.prod.js",
+        ".gitignore",
+        "/config",
+        "README.md",
+        "mock.js",
+        "package.json",
+        "tsconfig.json"
+    ],
+    "scripts": {
+        "build": "fes build",
+        "prod": "FES_ENV=prod fes build",
+        "analyze": "ANALYZE=1 fes build",
+        "dev": "fes dev",
+        "test": "fes test"
+    },
+    "publishConfig": {
+        "access": "public"
+    },
+    "dependencies": {
+        "@fesjs/builder-vite": "file:../../../builder-vite",
+        "@fesjs/fes": "file:../../../fes",
+        "@fesjs/fes-design": "^0.8.0",
+        "@fesjs/plugin-qiankun": "file:../../../plugin-qiankun",
+        "@fesjs/plugin-watermark": "file:../../../plugin-watermark",
+        "vue": "^3.5.21"
+    }
+}

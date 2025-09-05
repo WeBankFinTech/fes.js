@@ -1,5 +1,6 @@
 {
     "name": "@fesjs/template",
+    "type": "module",
     "version": "2.0.0",
     "private": true,
     "description": "fes项目模版",
@@ -13,16 +14,12 @@
         "test": "fes test",
         "prev": "fes preview"
     },
-    "publishConfig": {
-        "access": "public"
-    },
     "dependencies": {
         "@fesjs/builder-webpack": "workspace:*",
         "@fesjs/fes": "workspace:*",
         "@fesjs/fes-design": "^0.8.0",
         "@fesjs/plugin-access": "workspace:*",
         "@fesjs/plugin-enums": "workspace:*",
-        "@fesjs/plugin-jest": "workspace:*",
         "@fesjs/plugin-layout": "workspace:*",
         "@fesjs/plugin-locale": "workspace:*",
         "@fesjs/plugin-login": "workspace:*",
@@ -34,8 +31,8 @@
         "@fesjs/plugin-sass": "workspace:*",
         "@fesjs/plugin-swc": "workspace:*",
         "@fesjs/plugin-watermark": "workspace:*",
-        "core-js": "3.29.1",
-        "pinia": "^2.0.33",
-        "vue": "^3.2.47"
+        "core-js": "^3.45.1",
+        "pinia": "^3.0.3",
+        "vue": "^3.5.21"
     }
 }

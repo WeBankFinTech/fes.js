@@ -1,10 +1,10 @@
+import fs from 'node:fs';
 import path from 'node:path';
 import process from 'node:process';
-import fs from 'node:fs';
-import fse from 'fs-extra';
 import chalk from 'chalk';
-import merge from 'deepmerge';
 import chokidar from 'chokidar';
+import merge from 'deepmerge';
+import fse from 'fs-extra';
 import yargsParser from 'yargs-parser';
 import buildConfig from '../build.config.js';
 import compiler from './compiler.mjs';
@@ -47,23 +47,26 @@ function getPkgSourcePath(pkgName) {
 }
 
 function getOutputPath(config, pkgName) {
-    if (config.target === 'browser')
+    if (config.target === 'browser') {
         return path.join(getPkgPath(pkgName), ESM_OUTPUT_DIR);
+    }
 
     return path.join(getPkgPath(pkgName), NODE_CJS_OUTPUT_DIR);
 }
 
 function getGlobalConfig() {
-    if (fs.existsSync(GLOBAL_CONFIG_PATH))
+    if (fs.existsSync(GLOBAL_CONFIG_PATH)) {
         return merge(DEFAULT_CONFIG, buildConfig);
+    }
 
     return DEFAULT_CONFIG;
 }
 
 async function getPkgConfig(config, pkgName) {
     const pkgConfigPath = path.join(getPkgPath(pkgName), CONFIG_FILE_NAME);
-    if (argv.watch)
+    if (argv.watch) {
         config.sourceMap = true;
+    }
 
     if (fs.existsSync(pkgConfigPath)) {
         const content = await import(process.platform === 'win32' ? `file://${pkgConfigPath}` : pkgConfigPath);
@@ -77,8 +80,9 @@ async function getPkgConfig(config, pkgName) {
 
 function getNeedCompilerPkg(config) {
     // 用户通过 cli 指定的包，优先级最高
-    if (argv.pkg)
+    if (argv.pkg) {
         return Array.isArray(argv.pkg) ? argv.pkg : argv.pkg;
+    }
 
     // 默认编译所有 packages
     if (!config.pkgs?.length) {
@@ -107,8 +111,9 @@ function transformFile(filePath, outputPath, config, log) {
         try {
             const code = fs.readFileSync(filePath, 'utf-8');
             const shortFilePath = genShortPath(filePath);
-            if (config.sourceMap)
+            if (config.sourceMap) {
                 config.sourceFileName = filePath;
+            }
 
             const transformedCode = compiler(code, config);
 
@@ -155,14 +160,11 @@ function watchFile(dir, outputDir, config, log) {
             const outputPath = changeFile.replace(dir, outputDir);
             const stat = fs.lstatSync(changeFile);
             log(`[${event}] ${shortChangeFile}`);
-            if (config.resolveCopy?.some(item => changeFile.startsWith(item)))
-                fse.copySync(changeFile, outputPath);
+            if (config.resolveCopy?.some(item => changeFile.startsWith(item))) { fse.copySync(changeFile, outputPath); }
 
-            else if (stat.isFile())
-                transformFile(changeFile, outputPath, config, log);
+            else if (stat.isFile()) { transformFile(changeFile, outputPath, config, log); }
 
-            else if (stat.isDirectory())
-                compilerPkg(changeFile, outputPath, config);
+            else if (stat.isDirectory()) { compilerPkg(changeFile, outputPath, config); }
         });
 }
 

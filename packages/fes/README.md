@@ -35,7 +35,6 @@ Fes.js 是一个好用的前端应用解决方案。提供覆盖编译构建到�
 | [@fesjs/plugin-access](http://fesjs.mumblefe.cn/reference/plugin/plugins/access.html)                                        | 提供对页面资源的权限控制能力                                            |
 | [@fesjs/plugin-enums](http://fesjs.mumblefe.cn/reference/plugin/plugins/enums.html#%E4%BB%8B%E7%BB%8D)                       | 提供统一的枚举存取及丰富的函数来处理枚举                                |
 | [@fesjs/plugin-icon](http://fesjs.mumblefe.cn/reference/plugin/plugins/icon.html#%E4%BB%8B%E7%BB%8D)                         | svg 文件自动注册为组件                                                  |
-| [@fesjs/plugin-jest](http://fesjs.mumblefe.cn/reference/plugin/plugins/jest.html#%E5%90%AF%E7%94%A8%E6%96%B9%E5%BC%8F)       | 基于 `Jest`，提供单元测试、覆盖测试能力                                 |
 | [ @fesjs/plugin-layout](http://fesjs.mumblefe.cn/reference/plugin/plugins/layout.html)                                       | 简单的配置即可拥有布局，包括导航以及侧边栏                              |
 | [@fesjs/plugin-locale](http://fesjs.mumblefe.cn/reference/plugin/plugins/locale.html#%E4%BB%8B%E7%BB%8D)                     | 基于 `Vue I18n`，提供国际化能力                                         |
 | [@fesjs/plugin-model](http://fesjs.mumblefe.cn/reference/plugin/plugins/model.html#%E4%BB%8B%E7%BB%8D)                       | 简易的数据管理方案                                                      |
@@ -44,7 +43,6 @@ Fes.js 是一个好用的前端应用解决方案。提供覆盖编译构建到�
 | [@fesjs/plugin-qiankun](http://fesjs.mumblefe.cn/reference/plugin/plugins/qiankun.html#%E4%BB%8B%E7%BB%8D)                   | 基于 `qiankun`，提供微服务能力                                          |
 | [@fesjs/plugin-sass](http://fesjs.mumblefe.cn/reference/plugin/plugins/sass.html#%E4%BB%8B%E7%BB%8D)                         | 样式支持 sass                                                           |
 | [@fesjs/plugin-monaco-editor](http://fesjs.mumblefe.cn/reference/plugin/plugins/editor.html#%E4%BB%8B%E7%BB%8D)              | 提供代码编辑器能力， 基于`monaco-editor`（VS Code 使用的代码编辑器）    |
-| [@fesjs/plugin-windicss](http://fesjs.mumblefe.cn/reference/plugin/plugins/windicss.html)                                    | 基于 `windicss`，提供原子化 CSS 能力                                    |
 | [@fesjs/plugin-pinia](http://fesjs.mumblefe.cn/reference/plugin/plugins/pinia.html)                                          | pinia，状态处理                                                         |
 | [@fesjs/plugin-watermark](http://fesjs.mumblefe.cn/reference/plugin/plugins/watermark.html)                                  | 水印                                                                    |
 

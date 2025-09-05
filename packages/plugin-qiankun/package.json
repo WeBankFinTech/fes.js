@@ -1,0 +1,54 @@
+{
+    "name": "@fesjs/plugin-qiankun",
+    "version": "3.1.6",
+    "description": "@fesjs/plugin-qiankun",
+    "author": "michaelxxie、harrywan",
+    "license": "MIT",
+    "homepage": "https://github.com/WeBankFinTech/fes.js#readme",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/WeBankFinTech/fes.js.git",
+        "directory": "packages/plugin-qiankun"
+    },
+    "bugs": {
+        "url": "https://github.com/WeBankFinTech/fes.js/issues"
+    },
+    "keywords": [
+        "fes"
+    ],
+    "main": "dist/index.mjs",
+    "module": "dist/index.mjs",
+    "files": [
+        "dist",
+        "types.d.ts"
+    ],
+    "scripts": {
+        "dev": "tsup --watch --sourcemap",
+        "build": "tsup",
+        "start": "npm-run-all --parallel start:*",
+        "start:vite-main": "cd ./examples/vite-main && fes dev",
+        "start:vite-micro": "cd ./examples/vite-micro && fes dev",
+        "start:webpack-main": "cd ./examples/webpack-main && fes dev",
+        "start:webpack-micro": "cd ./examples/webpack-micro && fes dev"
+    },
+    "publishConfig": {
+        "access": "public"
+    },
+    "peerDependencies": {
+        "@fesjs/fes": "^3.1.13",
+        "@fesjs/fes-design": ">=0.7.20",
+        "vue": "^3.5.21"
+    },
+    "dependencies": {
+        "@fesjs/shared": "workspace:*",
+        "@fesjs/utils": "workspace:*",
+        "address": "^1.1.2",
+        "lodash-es": "^4.17.21",
+        "qiankun": "^2.7.0",
+        "vite-plugin-qiankun": "^1.0.15"
+    },
+    "devDependencies": {
+        "npm-run-all": "^4.1.5"
+    },
+    "typings": "./types.d.ts"
+}

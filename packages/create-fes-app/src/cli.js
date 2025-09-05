@@ -1,7 +1,7 @@
+import { existsSync } from 'node:fs';
+import { join } from 'node:path';
+import process from 'node:process';
 import { chalk, yParser } from '@fesjs/utils';
-import { existsSync } from 'fs';
-import { join } from 'path';
-
 
 const args = yParser(process.argv.slice(2), {
     alias: {
@@ -9,9 +9,9 @@ const args = yParser(process.argv.slice(2), {
         help: ['h'],
         force: ['f'],
         merge: ['m'],
-        proxy: ['x']
+        proxy: ['x'],
     },
-    boolean: ['version', 'help', 'merge', 'force']
+    boolean: ['version', 'help', 'merge', 'force'],
 });
 
 if (args._.length > 1) {
@@ -25,7 +25,8 @@ if (args.version && !args._[0]) {
         : '';
     const { name, version } = require('../package.json');
     console.log(`${name}@${version}${local}`);
-} else if (args.help && !args._[0]) {
+}
+else if (args.help && !args._[0]) {
     console.log(`
 Usage: create-fes-app <name>
 
@@ -36,11 +37,12 @@ Options:
     -m, --merge              Merge target directory if it exists
     -x, --proxy <proxyUrl>   Use specified proxy when creating project
     `);
-} else {
+}
+else {
     require('.')
         .default({
             cwd: process.cwd(),
-            args
+            args,
         })
         .catch((err) => {
             console.error(`Create failed, ${err.message}`);

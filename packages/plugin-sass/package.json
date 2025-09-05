@@ -1,0 +1,41 @@
+{
+    "name": "@fesjs/plugin-sass",
+    "version": "3.0.0",
+    "description": "@fesjs/plugin-sass",
+    "author": "harrywan",
+    "license": "MIT",
+    "homepage": "https://github.com/WeBankFinTech/fes.js#readme",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/WeBankFinTech/fes.js.git",
+        "directory": "packages/plugin-sass"
+    },
+    "bugs": {
+        "url": "https://github.com/WeBankFinTech/fes.js/issues"
+    },
+    "keywords": [
+        "fes"
+    ],
+    "main": "dist/index.mjs",
+    "module": "dist/index.mjs",
+    "files": [
+        "dist",
+        "types.d.ts"
+    ],
+    "scripts": {
+        "dev": "tsup --watch --sourcemap",
+        "build": "tsup"
+    },
+    "publishConfig": {
+        "access": "public"
+    },
+    "peerDependencies": {
+        "@fesjs/fes": "^3.0.0"
+    },
+    "dependencies": {
+        "@fesjs/shared": "workspace:*",
+        "sass": "^1.92.0",
+        "sass-loader": "^16.0.5"
+    },
+    "typings": "./types.d.ts"
+}

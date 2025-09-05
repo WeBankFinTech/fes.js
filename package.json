@@ -3,7 +3,7 @@
     "type": "module",
     "version": "3.4.12",
     "private": true,
-    "packageManager": "pnpm@8.6.6",
+    "packageManager": "pnpm@10.14.0",
     "description": "一个好用的前端管理台快速开发框架",
     "preferGlobal": true,
     "workspaces": [
@@ -37,23 +37,24 @@
         "enquirer": "^2.3.6",
         "execa": "^6.1.0",
         "minimist": "^1.2.6",
-        "semver": "^7.3.6"
+        "semver": "^7.3.6",
+        "tsup": "^8.5.0"
     },
     "devDependencies": {
-        "@antfu/eslint-config": "^3.8.0",
+        "@antfu/eslint-config": "^5.2.2",
         "@commitlint/cli": "^18.4.4",
         "@commitlint/config-conventional": "^18.4.4",
         "chokidar": "^3.5.3",
         "commitizen": "^4.3.1",
         "cz-conventional-changelog": "^3.3.0",
         "deepmerge": "^4.2.2",
-        "eslint": "^9.13.0",
-        "fs-extra": "^11.1.1",
+        "eslint": "^9.34.0",
+        "fs-extra": "^11.3.1",
         "lint-staged": "^15.2.0",
         "simple-git-hooks": "^2.9.0",
-        "typescript": "^5.6.3",
+        "typescript": "^5.9.2",
         "vitepress": "1.0.0-alpha.73",
-        "vue": "^3.3.4",
+        "vue": "^3.5.21",
         "yargs-parser": "^21.1.1"
     },
     "simple-git-hooks": {

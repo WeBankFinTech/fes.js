@@ -1,4 +1,5 @@
 import { defineBuildConfig } from '@fesjs/fes';
+import tailwindcss from '@tailwindcss/vite';
 
 export default defineBuildConfig({
     builder: 'vite',
@@ -66,14 +67,19 @@ export default defineBuildConfig({
             },
         ],
     },
-    enums: {
-        status: [
-            ['0', '无效的'],
-            ['1', '有效的'],
+    vite: {
+        plugins: [
+            tailwindcss(),
         ],
     },
+    // enums: {
+    //     status: [
+    //         ['0', '无效的'],
+    //         ['1', '有效的'],
+    //     ],
+    // },
     dynamicImport: true,
-    monacoEditor: {
-        languages: ['javascript', 'typescript', 'html', 'json'],
-    },
+    // monacoEditor: {
+    //     languages: ['javascript', 'typescript', 'html', 'json'],
+    // },
 });
