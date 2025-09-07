@@ -1,3 +1,4 @@
+import { copySync } from 'fs-extra/esm';
 import { defineConfig } from 'tsup';
 
 export default defineConfig({
@@ -8,6 +9,8 @@ export default defineConfig({
     dts: false,
     shims: true,
     outExtension: () => ({ js: '.mjs' }),
-    onSuccess: 'cp public/* dist/',
+    onSuccess() {
+        copySync('public', 'dist');
+    },
     format: ['esm'],
 });

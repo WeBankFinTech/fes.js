@@ -1,3 +1,4 @@
+import { copySync } from 'fs-extra/esm';
 import { defineConfig } from 'tsup';
 
 export default defineConfig({
@@ -34,5 +35,7 @@ export default defineConfig({
     dts: true,
     shims: true,
     format: ['esm'],
-    onSuccess: 'cp -r src/plugins/commands/index-default.html dist/plugins/commands/index-default.html',
+    onSuccess() {
+        copySync('src/plugins/commands/index-default.html', 'dist/plugins/commands/index-default.html');
+    },
 });

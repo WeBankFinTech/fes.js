@@ -1,5 +1,5 @@
 <template>
-    <div>webpack - micro - index</div>
+    <div>Fes4.x webpack - micro - index</div>
 </template>
 
 <config>
