@@ -1,15 +1,17 @@
 <template>
     <div>webpack - micro - index</div>
 </template>
+
 <config>
 {
     "name": "index",
     "title": "home"
 }
 </config>
+
 <script>
-import { onBeforeUnmount } from 'vue';
 import { createWatermark, destroyWatermark } from '@fesjs/fes';
+import { onBeforeUnmount } from 'vue';
 
 export default {
     setup() {
@@ -17,7 +19,7 @@ export default {
 
         onBeforeUnmount(destroyWatermark);
         return {
-            bigData: new Array(5 * 1024 * 1024),
+            bigData: Array.from({ length: 5 * 1024 * 1024 }),
         };
     },
 };

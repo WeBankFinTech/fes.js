@@ -20,7 +20,7 @@
     "scripts": {
         "bootstrap": "pnpm i",
         "dev": "node scripts/build.mjs --watch",
-        "build": "node scripts/build.mjs",
+        "build": "turbo run build",
         "release": "node scripts/release.mjs",
         "clean": "rm -rf ./node_modules & rm -rf packages/**/node_modules & rm -rf packages/**/.cache",
         "docs:dev": "vitepress dev docs",
@@ -38,7 +38,8 @@
         "execa": "^6.1.0",
         "minimist": "^1.2.6",
         "semver": "^7.3.6",
-        "tsup": "^8.5.0"
+        "tsup": "^8.5.0",
+        "turbo": "^2.5.6"
     },
     "devDependencies": {
         "@antfu/eslint-config": "^5.2.2",

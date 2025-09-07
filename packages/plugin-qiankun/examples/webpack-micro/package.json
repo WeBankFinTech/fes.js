@@ -10,25 +10,6 @@
     "bugs": {
         "url": "https://github.com/WeBankFinTech/fes.js/issues"
     },
-    "keywords": [
-        "管理端",
-        "fes",
-        "fast",
-        "easy",
-        "strong"
-    ],
-    "files": [
-        ".eslintrc.js",
-        ".fes.js",
-        ".fes.prod.js",
-        ".gitignore",
-        "/config",
-        "/src",
-        "README.md",
-        "mock.js",
-        "package.json",
-        "tsconfig.json"
-    ],
     "scripts": {
         "build": "fes build",
         "prod": "FES_ENV=prod fes build",

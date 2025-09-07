@@ -2,7 +2,7 @@
     <div>hello wrold</div>
     <FTabs v-model="activeKey">
         <FTabPane name="webpack子应用首页" value="1">
-            <MicroAppWithMemoHistory key="1" name="webpack-micro" url="/webpack" />
+            <!-- <MicroAppWithMemoHistory key="1" name="webpack-micro" url="/webpack" /> -->
         </FTabPane>
         <FTabPane name="webpack子应用测试页" value="2">
             <MicroAppWithMemoHistory key="2" name="webpack-micro" url="/webpack/test" />

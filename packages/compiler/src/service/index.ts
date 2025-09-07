@@ -279,7 +279,8 @@ export default class Service extends EventEmitter {
         this.setStage(ServiceStage.initPlugins);
         this._extraPlugins.push(...this.initialPlugins);
         while (this._extraPlugins.length) {
-            await this.initPlugin(this._extraPlugins.shift()!);
+            const plugin = this._extraPlugins.shift();
+            await this.initPlugin(plugin!);
         }
     }
 
@@ -392,13 +393,6 @@ export default class Service extends EventEmitter {
             this._extraPlugins.push(
                 ..._plugins,
             );
-        }
-
-        // 深度优先
-        const extraPlugins = lodash.clone(this._extraPlugins);
-        this._extraPlugins = [];
-        while (extraPlugins.length) {
-            await this.initPlugin(extraPlugins.shift()!);
         }
     }
 

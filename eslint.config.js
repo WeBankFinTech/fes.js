@@ -6,6 +6,7 @@ export default await antfu({
         indent: 4,
         quotes: 'single',
         semi: 'always',
+        ignores: ['*.yaml'],
     },
     typescript: true,
     vue: true,
