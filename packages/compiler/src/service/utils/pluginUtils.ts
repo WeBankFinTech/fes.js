@@ -1,6 +1,7 @@
 import type { Plugin } from '../../types';
 import { basename, dirname, extname, join, relative } from 'node:path';
 import process from 'node:process';
+import { pathToFileURL } from 'node:url';
 import { chalk, compatESModuleRequire, lodash, resolve, winPath } from '@fesjs/utils';
 import { readJSONSync } from 'fs-extra/esm';
 import { packageUp } from 'package-up';
@@ -158,7 +159,9 @@ export async function pathToObj({ path, type, cwd }: PathToObjOptions): Promise<
         path: winPath(path),
         async apply() {
             try {
-                const ret = await import(path);
+                // 使用 pathToFileURL 确保在 Windows 下路径格式正确
+                const fileUrl = pathToFileURL(path).href;
+                const ret = await import(fileUrl);
                 // use the default member for es modules
                 return compatESModuleRequire(ret);
             }

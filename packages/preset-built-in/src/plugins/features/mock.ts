@@ -1,6 +1,7 @@
 import { existsSync, readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import process from 'node:process';
+import { pathToFileURL } from 'node:url';
 import { chokidar, lodash } from '@fesjs/utils';
 
 export default (api) => {
@@ -100,7 +101,7 @@ export default (api) => {
         // require最新的 mock.js 文件
         try {
             // register babel
-            const _initFunction = await import(mockFile);
+            const _initFunction = await import(pathToFileURL(mockFile).href);
             const initFunction = _initFunction.default || _initFunction;
             if (!lodash.isFunction(initFunction)) {
                 api.logger.info('mock.js should export Function');

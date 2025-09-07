@@ -3,6 +3,7 @@ import assert from 'node:assert';
 import { existsSync } from 'node:fs';
 import { extname, join } from 'node:path';
 import process from 'node:process';
+import { pathToFileURL } from 'node:url';
 import { chalk, chokidar, compatESModuleRequire, deepmerge, lodash, winPath } from '@fesjs/utils';
 import joi from 'joi';
 import { ServiceStage } from '../service/enums';
@@ -141,7 +142,11 @@ export default class Config {
     }
 
     async requireConfigs(configFiles: string[]): Promise<any[]> {
-        const models = await Promise.all(configFiles.map(f => import(f)));
+        const models = await Promise.all(configFiles.map(f => {
+            // 使用 pathToFileURL 确保在 Windows 下路径格式正确
+            const fileUrl = pathToFileURL(f).href;
+            return import(fileUrl);
+        }));
         return models.map(m => compatESModuleRequire(m));
     }
 
