@@ -1,25 +1,6 @@
-import { copyFileSync, mkdirSync, readdirSync } from 'node:fs';
-import { dirname, join } from 'node:path';
 import { defineConfig } from 'tsup';
+import { copyTplFiles } from '../../scripts/shared.mjs';
 
-function copyTplFiles(srcDir: string, dstDir: string) {
-    function walk(currentSrc: string, currentDst: string) {
-        readdirSync(currentSrc, { withFileTypes: true }).forEach((dirent) => {
-            const srcPath = join(currentSrc, dirent.name);
-            const dstPath = join(currentDst, dirent.name);
-
-            if (dirent.isDirectory()) {
-                walk(srcPath, dstPath);
-            }
-            else if (dirent.isFile() && dirent.name.endsWith('.tpl')) {
-                mkdirSync(dirname(dstPath), { recursive: true });
-                copyFileSync(srcPath, dstPath);
-                console.log(`Copied: ${srcPath} -> ${dstPath}`);
-            }
-        });
-    }
-    walk(srcDir, dstDir);
-}
 export default defineConfig({
     entry: [
         'src/index.ts',
@@ -57,7 +38,6 @@ export default defineConfig({
     dts: false,
     shims: true,
     format: ['esm'],
-    outExtension: () => ({ js: '.mjs' }),
     onSuccess: () => {
         copyTplFiles('src', 'dist');
     },
