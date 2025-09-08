@@ -44,7 +44,7 @@
         "@fesjs/utils": "workspace:*",
         "address": "^1.1.2",
         "lodash-es": "^4.17.21",
-        "qiankun": "^2.7.0",
+        "qiankun": "^2.10.16",
         "vite-plugin-qiankun": "^1.0.15"
     },
     "devDependencies": {

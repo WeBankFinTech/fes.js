@@ -1,11 +1,3 @@
-// .fes.js 只负责管理编译时配置，只能使用plain Object
-import { createRequire } from 'node:module';
-
-export function esmResolve(specifier) {
-    const esmRequire = createRequire(import.meta.url);
-    return esmRequire.resolve(specifier);
-}
-
 export default {
     access: {
         roles: {
