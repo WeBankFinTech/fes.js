@@ -18,7 +18,6 @@ import yParser from 'yargs-parser';
 import changePort from './changePort';
 import compatESModuleRequire from './compatESModuleRequire';
 import delay from './delay';
-import Generator from './Generator';
 import getAppPath from './getAppPath';
 import getHostName from './getHostName';
 import getPort from './getPort';
@@ -53,7 +52,6 @@ export {
     changePort,
     compatESModuleRequire,
     delay,
-    Generator,
     getAppPath,
     getHostName,
     getPort,

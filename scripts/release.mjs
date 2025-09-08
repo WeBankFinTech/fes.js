@@ -1,12 +1,12 @@
 import fs from 'node:fs';
+import path from 'node:path';
 import process from 'node:process';
 import * as url from 'node:url';
-import path from 'node:path';
-import minimist from 'minimist';
 import chalk from 'chalk';
-import semver from 'semver';
 import enquirer from 'enquirer';
 import { execa } from 'execa';
+import minimist from 'minimist';
+import semver from 'semver';
 
 import buildConfig from '../build.config.js';
 
@@ -20,14 +20,16 @@ const versionIncrements = ['patch', 'minor', 'major', 'prepatch', 'preminor', 'p
 
 function incVersion(version, i) {
     let _preId = preId || semver.prerelease(version)?.[0];
-    if (!_preId && /pre/.test(i))
+    if (!_preId && /pre/.test(i)) {
         _preId = 'beta';
+    }
 
     return semver.inc(version, i, _preId);
 }
 function autoIncVersion(version) {
-    if (version.includes('-'))
+    if (version.includes('-')) {
         return semver.inc(version, 'prerelease');
+    }
 
     return semver.inc(version, 'patch');
 }
@@ -48,8 +50,9 @@ async function publishPackage(pkg, runIfNotDry) {
     step(`Publishing ${pkg.name}...`);
     try {
         let _releaseTag;
-        if (pkg.newVersion.includes('-'))
+        if (pkg.newVersion.includes('-')) {
             _releaseTag = 'next';
+        }
 
         await runIfNotDry(
             // note: use of pnpm is intentional here as we rely on its publishing
@@ -64,11 +67,11 @@ async function publishPackage(pkg, runIfNotDry) {
         console.log('Successfully published :', chalk.green(`${pkg.name}@${pkg.newVersion}`));
     }
     catch (e) {
-        if (e.stderr.match(/previously published/))
+        if (e.stderr.match(/previously published/)) {
             console.log(chalk.red(`Skipping already published: ${pkg.name}`));
+        }
 
-        else
-            throw e;
+        else { throw e; }
     }
 }
 
@@ -95,13 +98,15 @@ function updatePackage(pkgName, version, pkgs) {
     pkgJson.version = version;
     pkgJson.dependencies
     && Object.keys(pkgJson.dependencies).forEach((npmName) => {
-        if (pkgs[npmName])
+        if (pkgs[npmName]) {
             pkgJson.dependencies[npmName] = `^${pkgs[npmName].newVersion}`;
+        }
     });
     pkgJson.peerDependencies
     && Object.keys(pkgJson.peerDependencies).forEach((npmName) => {
-        if (pkgs[npmName])
+        if (pkgs[npmName]) {
             pkgJson.peerDependencies[npmName] = `^${pkgs[npmName].newVersion}`;
+        }
     });
     writePackageJson(pkgName, pkgJson);
 }
@@ -238,8 +243,9 @@ async function main() {
             .join('\n')}\nConfirm?`,
     });
 
-    if (!yes)
+    if (!yes) {
         return;
+    }
 
     const newRootVersion = await genRootPackageVersion();
 
@@ -252,11 +258,11 @@ async function main() {
     await run('pnpm', ['i']);
     // // build all packages with types
     step('\nBuilding all packages...');
-    if (!isDryRun)
+    if (!isDryRun) {
         await run('pnpm', ['build']);
+    }
 
-    else
-        console.log(`(skipped build)`);
+    else { console.log(`(skipped build)`); }
 
     // generate changelog
     step('\nGenerating changelog...');
@@ -274,8 +280,9 @@ async function main() {
 
     // publish packages
     step('\nPublishing packages...');
-    for (const pkg of packagesVersion)
+    for (const pkg of packagesVersion) {
         await publishPackage(pkg, runIfNotDry);
+    }
 
     // push to GitHub
     step('\nPushing to GitHub...');
@@ -283,8 +290,9 @@ async function main() {
     await runIfNotDry('git', ['push', 'origin', `refs/tags/v${newRootVersion}`]);
     await runIfNotDry('git', ['push']);
 
-    if (isDryRun)
+    if (isDryRun) {
         console.log(`\nDry run finished - run git diff to see package changes.`);
+    }
 
     console.log();
 }

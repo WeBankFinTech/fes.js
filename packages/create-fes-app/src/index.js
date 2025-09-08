@@ -9,8 +9,6 @@ import AppGenerator from './generator/App';
 import PluginGenerator from './generator/Plugin';
 import { clearConsole } from './utils';
 
-v;
-
 export default async ({ cwd, args }) => {
     if (args.proxy) {
         process.env.HTTP_PROXY = args.proxy;
