@@ -8,7 +8,6 @@ export default defineConfig({
     clean: true,
     dts: false,
     shims: true,
-    outExtension: () => ({ js: '.mjs' }),
     onSuccess() {
         copySync('public', 'dist');
     },
