@@ -11,5 +11,10 @@ export default defineConfig({
     onSuccess() {
         copySync('public', 'dist');
     },
+    outExtension({ format }) {
+        return {
+            js: format === 'esm' ? '.mjs' : '.cjs',
+        };
+    },
     format: ['esm'],
 });

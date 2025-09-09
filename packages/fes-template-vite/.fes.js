@@ -6,6 +6,7 @@ export default defineBuildConfig({
     define: {
         __DEV__: false,
     },
+    publicPath: './',
     title: '海贼王',
     router: {
         mode: 'hash',
@@ -71,6 +72,8 @@ export default defineBuildConfig({
         plugins: [
             tailwindcss(),
         ],
+        server: {
+        },
     },
     // enums: {
     //     status: [

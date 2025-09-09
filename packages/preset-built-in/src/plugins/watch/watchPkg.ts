@@ -1,18 +1,13 @@
-/**
- * @copy 该文件代码大部分出自 umi，有需要请参考：
- * https://github.com/umijs/umi/blob/master/packages/preset-built-in/src/plugins/commands/dev/watchPkg.ts
- */
-
-import { join } from 'path';
-import { chokidar, winPath, lodash } from '@fesjs/utils';
-import { existsSync, readFileSync } from 'fs';
+import { existsSync, readFileSync } from 'node:fs';
+import { join } from 'node:path';
 import { isPluginOrPreset, PluginType } from '@fesjs/compiler';
+import { chokidar, lodash, winPath } from '@fesjs/utils';
 
 function getPlugins(opts) {
     return Object.keys({
         ...opts.pkg.dependencies,
         ...opts.pkg.devDependencies,
-    }).filter((name) => isPluginOrPreset(PluginType.plugin, name) || isPluginOrPreset(PluginType.preset, name));
+    }).filter(name => isPluginOrPreset(PluginType.plugin, name) || isPluginOrPreset(PluginType.preset, name));
 }
 
 function getPluginsFromPkgPath(opts) {
@@ -20,7 +15,8 @@ function getPluginsFromPkgPath(opts) {
     if (existsSync(opts.pkgPath)) {
         try {
             pkg = JSON.parse(readFileSync(opts.pkgPath, 'utf-8'));
-        } catch (e) {
+        }
+        catch (e) {
             // ignore
         }
     }

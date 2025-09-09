@@ -142,10 +142,11 @@ export default class Config {
     }
 
     async requireConfigs(configFiles: string[]): Promise<any[]> {
-        const models = await Promise.all(configFiles.map(f => {
+        const models = await Promise.all(configFiles.map((f) => {
             // 使用 pathToFileURL 确保在 Windows 下路径格式正确
             const fileUrl = pathToFileURL(f).href;
-            return import(fileUrl);
+            // 避免命中模块缓存
+            return import(`${fileUrl}?t=${Date.now()}`);
         }));
         return models.map(m => compatESModuleRequire(m));
     }

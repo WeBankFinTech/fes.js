@@ -1,6 +1,6 @@
-import assert from 'assert';
-import { dirname, join } from 'path';
-import { existsSync, statSync, readFileSync, writeFileSync, copyFileSync } from 'fs';
+import assert from 'node:assert';
+import { copyFileSync, existsSync, readFileSync, statSync, writeFileSync } from 'node:fs';
+import { dirname, join } from 'node:path';
 import { startWatch } from './watch/watchMode';
 
 export default function (api) {
@@ -43,7 +43,7 @@ export default function (api) {
         fn({ namespace, path, ignore }) {
             const base = join(api.paths.absTmpPath, namespace);
             // copy 行为只需要执行一次
-            if (cacheCopyPath[base]) return;
+            if (cacheCopyPath[base]) { return; }
             cacheCopyPath[base] = true;
             assert(api.stage >= api.ServiceStage.pluginReady, 'api.copyTmpFiles() should not execute in register stage.');
             assert(path, 'api.copyTmpFiles() should has param path');
@@ -59,11 +59,13 @@ export default function (api) {
                 }
                 if (statSync(source).isDirectory()) {
                     api.utils.mkdirp.sync(target);
-                } else if (Array.isArray(ignore)) {
-                    if (!ignore.some((pattern) => new RegExp(pattern).test(file))) {
+                }
+                else if (Array.isArray(ignore)) {
+                    if (!ignore.some(pattern => new RegExp(pattern).test(file))) {
                         copyFileSync(source, target);
                     }
-                } else {
+                }
+                else {
                     copyFileSync(source, target);
                 }
             });

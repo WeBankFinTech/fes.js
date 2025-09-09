@@ -7,7 +7,6 @@
     "author": "harrywan",
     "license": "MIT",
     "scripts": {
-        "build": "fes build",
         "prod": "FES_ENV=prod fes build",
         "analyze": "ANALYZE=1 fes build",
         "dev": "fes dev",

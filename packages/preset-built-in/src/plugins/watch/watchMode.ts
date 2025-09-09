@@ -1,4 +1,5 @@
-import { chokidar, winPath, lodash, getAppPath } from '@fesjs/utils';
+import process from 'node:process';
+import { chokidar, getAppPath, lodash, winPath } from '@fesjs/utils';
 import { watchPkg } from './watchPkg';
 
 async function generateWhenFilesChange({ api }) {
@@ -36,7 +37,7 @@ async function generateWhenFilesChange({ api }) {
         type: api.ApplyPluginsType.add,
         initialValue: [paths.absPagesPath, getAppPath(paths.absSrcPath)],
     });
-    lodash.uniq(watcherPaths.map((p) => winPath(p))).forEach((p) => {
+    lodash.uniq(watcherPaths.map(p => winPath(p))).forEach((p) => {
         createWatcher(p);
     });
 
@@ -44,7 +45,9 @@ async function generateWhenFilesChange({ api }) {
 }
 
 export async function startWatch(api) {
-    if (process.env.WATCH === 'none') return;
+    if (process.env.WATCH === 'none') {
+        return;
+    }
 
     let unwatchs = [];
     const restartServer = () => {
@@ -76,7 +79,7 @@ export async function startWatch(api) {
         onChange: async ({ pluginChanged, valueChanged }) => {
             if (pluginChanged.length) {
                 console.log();
-                api.logger.info(`Plugins of ${pluginChanged.map((p) => p.key).join(', ')} changed.`);
+                api.logger.info(`Plugins of ${pluginChanged.map(p => p.key).join(', ')} changed.`);
                 restartServer();
             }
             if (valueChanged.length) {
@@ -102,7 +105,8 @@ export async function startWatch(api) {
                     console.log();
                     api.logger.info(`Config ${reloadConfigs.join(', ')} changed.`);
                     restartServer();
-                } else {
+                }
+                else {
                     api.service.userConfig = api.service.configInstance.getUserConfig();
 
                     await api.setConfig();
@@ -112,8 +116,9 @@ export async function startWatch(api) {
                             key: 'onGenerateFiles',
                             type: api.ApplyPluginsType.event,
                         });
-                    } else {
-                        fns.forEach((fn) => fn());
+                    }
+                    else {
+                        fns.forEach(fn => fn());
                     }
                 }
             }

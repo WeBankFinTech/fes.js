@@ -1,7 +1,3 @@
 packages:
-    -   'packages/**'
-    -   '!packages/create-fes-app/templates/**'
-    -   '!packages/plugin-qiankun/examples/**'
-    -   '!packages/fes-template/**'
-    -   '!packages/fes-template-vite/**'
-    -   '!packages/fes-template-h5/**'
+    - 'packages/**'
+    - '!packages/create-fes-app/templates/**'

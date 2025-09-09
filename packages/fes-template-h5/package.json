@@ -7,7 +7,7 @@
     "author": "qlin",
     "license": "MIT",
     "scripts": {
-        "build": "FES_ENV=prod fes build",
+        "prod": "FES_ENV=prod fes build",
         "dev": "fes dev"
     },
     "dependencies": {
