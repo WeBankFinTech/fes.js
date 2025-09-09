@@ -17,20 +17,33 @@
         "fes"
     ],
     "sideEffects": false,
-    "main": "dist/index.js",
+    "main": "dist/index.mjs",
+    "module": "dist/index.mjs",
     "bin": {
-        "create-fes-app": "bin/create-fes-app.js"
+        "create-fes-app": "bin/create-fes-app.mjs"
     },
     "files": [
         "bin",
         "dist",
         "templates/**/*"
     ],
+    "scripts": {
+        "dev": "tsup --watch --sourcemap",
+        "build": "tsup"
+    },
     "publishConfig": {
         "access": "public"
     },
     "dependencies": {
+        "citty": "^0.1.6",
+        "consola": "^3.4.2",
         "fs-extra": "^11.3.1",
-        "validate-npm-package-name": "^3.0.0"
+        "glob": "^11.0.3",
+        "mustache": "^4.2.0",
+        "semver": "^7.7.2",
+        "validate-npm-package-name": "^6.0.2"
+    },
+    "devDependencies": {
+        "@types/validate-npm-package-name": "^4.0.2"
     }
 }
