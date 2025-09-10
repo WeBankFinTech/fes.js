@@ -1,6 +1,5 @@
 import { readFileSync, statSync } from 'node:fs';
 import { join, relative } from 'node:path';
-import consola from 'consola';
 import { copySync, outputFileSync } from 'fs-extra/esm';
 import { globSync } from 'glob';
 import Mustache from 'mustache';
@@ -15,7 +14,6 @@ function copyTpl(opts: {
     const tpl = readFileSync(opts.templatePath, 'utf-8');
     const content = Mustache.render(tpl, opts.context);
 
-    consola.success(`Write: ${relative(getWorkPath(), opts.target)}`);
     outputFileSync(opts.target, content, 'utf-8');
 }
 
@@ -42,7 +40,6 @@ export function copyDirectory(opts: {
             });
         }
 
-        consola.success(`Copy:  ${file}`);
         const absTarget = join(opts.target, file);
         copySync(absFile, absTarget);
     });

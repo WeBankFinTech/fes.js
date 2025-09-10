@@ -2,6 +2,7 @@ import { join, relative, resolve } from 'node:path';
 import process from 'node:process';
 import { defineCommand } from 'citty';
 import consola from 'consola';
+import ora from 'ora';
 
 import validate from 'validate-npm-package-name';
 import pkg from '../package.json' assert { type: 'json' };
@@ -80,6 +81,7 @@ export const main = defineCommand({
 
         const targetDir = resolve(cwd, projectName || '.');
         if (template === 'pc' || template === 'h5') {
+            const spinner = ora('项目生成中加载中...').start();
             copyDirectory({
                 context: {
                     version: pkg.version,
@@ -87,7 +89,7 @@ export const main = defineCommand({
                 path: join(__dirname, `../templates/app/${template}`),
                 target: targetDir,
             });
-            consola.success(`Project ${projectName} created successfully!`);
+            spinner.succeed('项目创建成功');
             consola.box([
                 `cd ${projectName}`,
                 'pnpm i',
