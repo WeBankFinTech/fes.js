@@ -15,14 +15,14 @@
         "access": "public"
     },
     "dependencies": {
-        "@fesjs/builder-vite": "file:../../../builder-vite",
-        "@fesjs/fes": "file:../../../fes",
+        "@fesjs/builder-vite": "workspace:*",
+        "@fesjs/fes": "workspace:*",
         "@fesjs/fes-design": "^0.8.0",
-        "@fesjs/plugin-access": "file:../../../plugin-access",
-        "@fesjs/plugin-layout": "file:../../../plugin-layout",
-        "@fesjs/plugin-model": "file:../../../plugin-model",
-        "@fesjs/plugin-qiankun": "file:../../../plugin-qiankun",
-        "@fesjs/plugin-watermark": "file:../../../plugin-watermark",
+        "@fesjs/plugin-access": "workspace:*",
+        "@fesjs/plugin-layout": "workspace:*",
+        "@fesjs/plugin-model": "workspace:*",
+        "@fesjs/plugin-qiankun": "workspace:*",
+        "@fesjs/plugin-watermark": "workspace:*",
         "vue": "^3.5.21"
     }
 }

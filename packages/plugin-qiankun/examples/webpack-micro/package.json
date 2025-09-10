@@ -19,11 +19,11 @@
         "access": "public"
     },
     "dependencies": {
-        "@fesjs/builder-webpack": "file:../../../builder-webpack",
-        "@fesjs/fes": "file:../../../fes",
+        "@fesjs/builder-webpack": "workspace:*",
+        "@fesjs/fes": "workspace:*",
         "@fesjs/fes-design": "^0.8.0",
-        "@fesjs/plugin-qiankun": "file:../../../plugin-qiankun",
-        "@fesjs/plugin-watermark": "file:../../../plugin-watermark",
+        "@fesjs/plugin-qiankun": "workspace:*",
+        "@fesjs/plugin-watermark": "workspace:*",
         "vue": "^3.5.21"
     }
 }

@@ -8,21 +8,21 @@ importers:
 
   .:
     dependencies:
-      chalk:
-        specifier: ^5.0.1
-        version: 5.6.0
+      consola:
+        specifier: ^3.4.2
+        version: 3.4.2
       conventional-changelog-cli:
-        specifier: ^4.1.0
-        version: 4.1.0
-      enquirer:
-        specifier: ^2.3.6
-        version: 2.4.1
+        specifier: ^5.0.0
+        version: 5.0.0(conventional-commits-filter@5.0.0)
       execa:
         specifier: ^6.1.0
         version: 6.1.0
       minimist:
         specifier: ^1.2.6
         version: 1.2.8
+      picocolors:
+        specifier: ^1.1.1
+        version: 1.1.1
       semver:
         specifier: ^7.3.6
         version: 7.7.2
@@ -75,15 +75,12 @@ importers:
       vue:
         specifier: ^3.5.21
         version: 3.5.21(typescript@5.9.2)
-      yargs-parser:
-        specifier: ^21.1.1
-        version: 21.1.1
 
   packages/builder-vite:
     dependencies:
       '@fesjs/fes':
         specifier: ^3.1.12
-        version: 3.1.17(vue@3.5.21(typescript@5.9.2))
+        version: link:../fes
       '@fesjs/shared':
         specifier: workspace:*
         version: link:../shared
@@ -191,7 +188,7 @@ importers:
         version: 7.27.1(@babel/core@7.28.3)
       '@fesjs/fes':
         specifier: ^3.1.17
-        version: 3.1.17(vue@3.5.21(typescript@5.9.2))
+        version: link:../fes
       '@fesjs/shared':
         specifier: workspace:*
         version: link:../shared
@@ -448,8 +445,8 @@ importers:
         specifier: workspace:*
         version: link:../plugin-icon
       '@fesjs/plugin-request':
-        specifier: 3.0.8
-        version: 3.0.8(@fesjs/fes@packages+fes)(vue@3.5.21(typescript@5.9.2))
+        specifier: workspace:*
+        version: link:../plugin-request
       core-js:
         specifier: ^3.45.1
         version: 3.45.1
@@ -518,7 +515,7 @@ importers:
     dependencies:
       '@fesjs/fes':
         specifier: ^3.1.13
-        version: 3.1.17(vue@3.5.21(typescript@5.9.2))
+        version: link:../fes
       '@fesjs/shared':
         specifier: workspace:*
         version: link:../shared
@@ -539,7 +536,7 @@ importers:
     dependencies:
       '@fesjs/fes':
         specifier: ^3.1.9
-        version: 3.1.17(vue@3.5.21(typescript@5.9.2))
+        version: link:../fes
       '@fesjs/shared':
         specifier: workspace:*
         version: link:../shared
@@ -551,7 +548,7 @@ importers:
     dependencies:
       '@fesjs/fes':
         specifier: ^3.0.0
-        version: 3.1.17(vue@3.5.21(typescript@5.9.2))
+        version: link:../fes
       '@fesjs/shared':
         specifier: workspace:*
         version: link:../shared
@@ -566,7 +563,7 @@ importers:
     dependencies:
       '@fesjs/fes':
         specifier: ^3.1.17
-        version: 3.1.17(vue@3.5.21(typescript@5.9.2))
+        version: link:../fes
       '@fesjs/fes-design':
         specifier: '>=0.7.0'
         version: 0.8.83(vue@3.5.21(typescript@5.9.2))
@@ -590,7 +587,7 @@ importers:
     dependencies:
       '@fesjs/fes':
         specifier: ^3.1.12
-        version: 3.1.17(vue@3.5.21(typescript@5.9.2))
+        version: link:../fes
       '@fesjs/fes-design':
         specifier: '>=0.7.0'
         version: 0.8.83(vue@3.5.21(typescript@5.9.2))
@@ -614,10 +611,10 @@ importers:
     dependencies:
       '@fesjs/fes':
         specifier: ^3.0.0
-        version: 3.1.17(vue@3.5.21(typescript@5.9.2))
+        version: link:../fes
       '@fesjs/plugin-request':
         specifier: ^4.0.0-rc.3
-        version: 4.0.1(@fesjs/fes@3.1.17(vue@3.5.21(typescript@5.9.2)))(vue@3.5.21(typescript@5.9.2))
+        version: link:../plugin-request
       '@fesjs/shared':
         specifier: workspace:*
         version: link:../shared
@@ -629,7 +626,7 @@ importers:
     dependencies:
       '@fesjs/fes':
         specifier: ^3.1.12
-        version: 3.1.17(vue@3.5.21(typescript@5.9.2))
+        version: link:../fes
       '@fesjs/shared':
         specifier: workspace:*
         version: link:../shared
@@ -644,7 +641,7 @@ importers:
     dependencies:
       '@fesjs/fes':
         specifier: ^3.1.12
-        version: 3.1.17(vue@3.5.21(typescript@5.9.2))
+        version: link:../fes
       '@fesjs/shared':
         specifier: workspace:*
         version: link:../shared
@@ -671,7 +668,7 @@ importers:
     dependencies:
       '@fesjs/fes':
         specifier: ^3.1.12
-        version: 3.1.17(vue@3.5.21(typescript@5.9.2))
+        version: link:../fes
       '@fesjs/shared':
         specifier: workspace:*
         version: link:../shared
@@ -689,7 +686,7 @@ importers:
     dependencies:
       '@fesjs/fes':
         specifier: ^3.1.13
-        version: 3.1.17(vue@3.5.21(typescript@5.9.2))
+        version: link:../fes
       '@fesjs/fes-design':
         specifier: '>=0.7.20'
         version: 0.8.83(vue@3.5.21(typescript@5.9.2))
@@ -722,29 +719,29 @@ importers:
   packages/plugin-qiankun/examples/vite-main:
     dependencies:
       '@fesjs/builder-vite':
-        specifier: file:../../../builder-vite
-        version: file:packages/builder-vite(@fesjs/fes@file:packages/fes(vue@3.5.21(typescript@5.9.2)))(@types/node@24.3.0)(core-js@3.45.1)(jiti@2.5.1)(lightningcss@1.30.1)(postcss@8.5.6)(rollup@4.50.0)(sass@1.92.0)(vue@3.5.21(typescript@5.9.2))(yaml@2.8.1)
+        specifier: workspace:*
+        version: link:../../../builder-vite
       '@fesjs/fes':
-        specifier: file:../../../fes
-        version: file:packages/fes(vue@3.5.21(typescript@5.9.2))
+        specifier: workspace:*
+        version: link:../../../fes
       '@fesjs/fes-design':
         specifier: ^0.8.0
         version: 0.8.83(vue@3.5.21(typescript@5.9.2))
       '@fesjs/plugin-access':
-        specifier: file:../../../plugin-access
-        version: file:packages/plugin-access(@fesjs/fes@file:packages/fes(vue@3.5.21(typescript@5.9.2)))(vue-router@4.5.1(vue@3.5.21(typescript@5.9.2)))(vue@3.5.21(typescript@5.9.2))
+        specifier: workspace:*
+        version: link:../../../plugin-access
       '@fesjs/plugin-layout':
-        specifier: file:../../../plugin-layout
-        version: file:packages/plugin-layout(@fesjs/fes-design@0.8.83(vue@3.5.21(typescript@5.9.2)))(@fesjs/fes@file:packages/fes(vue@3.5.21(typescript@5.9.2)))(vue-router@4.5.1(vue@3.5.21(typescript@5.9.2)))(vue@3.5.21(typescript@5.9.2))
+        specifier: workspace:*
+        version: link:../../../plugin-layout
       '@fesjs/plugin-model':
-        specifier: file:../../../plugin-model
-        version: file:packages/plugin-model(@fesjs/fes@file:packages/fes(vue@3.5.21(typescript@5.9.2)))(vue@3.5.21(typescript@5.9.2))
+        specifier: workspace:*
+        version: link:../../../plugin-model
       '@fesjs/plugin-qiankun':
-        specifier: file:../../../plugin-qiankun
-        version: file:packages/plugin-qiankun(@fesjs/fes-design@0.8.83(vue@3.5.21(typescript@5.9.2)))(@fesjs/fes@file:packages/fes(vue@3.5.21(typescript@5.9.2)))(typescript@5.9.2)(vite@7.1.4(@types/node@24.3.0)(jiti@2.5.1)(less@4.4.1)(lightningcss@1.30.1)(sass@1.92.0)(terser@5.44.0)(yaml@2.8.1))(vue@3.5.21(typescript@5.9.2))
+        specifier: workspace:*
+        version: link:../..
       '@fesjs/plugin-watermark':
-        specifier: file:../../../plugin-watermark
-        version: file:packages/plugin-watermark(@fesjs/fes@file:packages/fes(vue@3.5.21(typescript@5.9.2)))(vue@3.5.21(typescript@5.9.2))
+        specifier: workspace:*
+        version: link:../../../plugin-watermark
       vue:
         specifier: ^3.5.21
         version: 3.5.21(typescript@5.9.2)
@@ -752,20 +749,20 @@ importers:
   packages/plugin-qiankun/examples/vite-micro:
     dependencies:
       '@fesjs/builder-vite':
-        specifier: file:../../../builder-vite
-        version: file:packages/builder-vite(@fesjs/fes@file:packages/fes(vue@3.5.21(typescript@5.9.2)))(@types/node@24.3.0)(core-js@3.45.1)(jiti@2.5.1)(lightningcss@1.30.1)(postcss@8.5.6)(rollup@4.50.0)(sass@1.92.0)(vue@3.5.21(typescript@5.9.2))(yaml@2.8.1)
+        specifier: workspace:*
+        version: link:../../../builder-vite
       '@fesjs/fes':
-        specifier: file:../../../fes
-        version: file:packages/fes(vue@3.5.21(typescript@5.9.2))
+        specifier: workspace:*
+        version: link:../../../fes
       '@fesjs/fes-design':
         specifier: ^0.8.0
         version: 0.8.83(vue@3.5.21(typescript@5.9.2))
       '@fesjs/plugin-qiankun':
-        specifier: file:../../../plugin-qiankun
-        version: file:packages/plugin-qiankun(@fesjs/fes-design@0.8.83(vue@3.5.21(typescript@5.9.2)))(@fesjs/fes@file:packages/fes(vue@3.5.21(typescript@5.9.2)))(typescript@5.9.2)(vite@7.1.4(@types/node@24.3.0)(jiti@2.5.1)(less@4.4.1)(lightningcss@1.30.1)(sass@1.92.0)(terser@5.44.0)(yaml@2.8.1))(vue@3.5.21(typescript@5.9.2))
+        specifier: workspace:*
+        version: link:../..
       '@fesjs/plugin-watermark':
-        specifier: file:../../../plugin-watermark
-        version: file:packages/plugin-watermark(@fesjs/fes@file:packages/fes(vue@3.5.21(typescript@5.9.2)))(vue@3.5.21(typescript@5.9.2))
+        specifier: workspace:*
+        version: link:../../../plugin-watermark
       vue:
         specifier: ^3.5.21
         version: 3.5.21(typescript@5.9.2)
@@ -773,29 +770,29 @@ importers:
   packages/plugin-qiankun/examples/webpack-main:
     dependencies:
       '@fesjs/builder-webpack':
-        specifier: file:../../../builder-webpack
-        version: file:packages/builder-webpack(@fesjs/fes@file:packages/fes(vue@3.5.21(typescript@5.9.2)))(@swc/core@1.13.5)(@vue/compiler-sfc@3.5.21)(core-js@3.45.1)(esbuild@0.25.9)(lightningcss@1.30.1)(typescript@5.9.2)(vue@3.5.21(typescript@5.9.2))
+        specifier: workspace:*
+        version: link:../../../builder-webpack
       '@fesjs/fes':
-        specifier: file:../../../fes
-        version: file:packages/fes(vue@3.5.21(typescript@5.9.2))
+        specifier: workspace:*
+        version: link:../../../fes
       '@fesjs/fes-design':
         specifier: ^0.8.0
         version: 0.8.83(vue@3.5.21(typescript@5.9.2))
       '@fesjs/plugin-access':
-        specifier: file:../../../plugin-access
-        version: file:packages/plugin-access(@fesjs/fes@file:packages/fes(vue@3.5.21(typescript@5.9.2)))(vue-router@4.5.1(vue@3.5.21(typescript@5.9.2)))(vue@3.5.21(typescript@5.9.2))
+        specifier: workspace:*
+        version: link:../../../plugin-access
       '@fesjs/plugin-layout':
-        specifier: file:../../../plugin-layout
-        version: file:packages/plugin-layout(@fesjs/fes-design@0.8.83(vue@3.5.21(typescript@5.9.2)))(@fesjs/fes@file:packages/fes(vue@3.5.21(typescript@5.9.2)))(vue-router@4.5.1(vue@3.5.21(typescript@5.9.2)))(vue@3.5.21(typescript@5.9.2))
+        specifier: workspace:*
+        version: link:../../../plugin-layout
       '@fesjs/plugin-model':
-        specifier: file:../../../plugin-model
-        version: file:packages/plugin-model(@fesjs/fes@file:packages/fes(vue@3.5.21(typescript@5.9.2)))(vue@3.5.21(typescript@5.9.2))
+        specifier: workspace:*
+        version: link:../../../plugin-model
       '@fesjs/plugin-qiankun':
-        specifier: file:../../../plugin-qiankun
-        version: file:packages/plugin-qiankun(@fesjs/fes-design@0.8.83(vue@3.5.21(typescript@5.9.2)))(@fesjs/fes@file:packages/fes(vue@3.5.21(typescript@5.9.2)))(typescript@5.9.2)(vite@7.1.4(@types/node@24.3.0)(jiti@2.5.1)(less@4.4.1)(lightningcss@1.30.1)(sass@1.92.0)(terser@5.44.0)(yaml@2.8.1))(vue@3.5.21(typescript@5.9.2))
+        specifier: workspace:*
+        version: link:../..
       '@fesjs/plugin-watermark':
-        specifier: file:../../../plugin-watermark
-        version: file:packages/plugin-watermark(@fesjs/fes@file:packages/fes(vue@3.5.21(typescript@5.9.2)))(vue@3.5.21(typescript@5.9.2))
+        specifier: workspace:*
+        version: link:../../../plugin-watermark
       vue:
         specifier: ^3.5.21
         version: 3.5.21(typescript@5.9.2)
@@ -803,20 +800,20 @@ importers:
   packages/plugin-qiankun/examples/webpack-micro:
     dependencies:
       '@fesjs/builder-webpack':
-        specifier: file:../../../builder-webpack
-        version: file:packages/builder-webpack(@fesjs/fes@file:packages/fes(vue@3.5.21(typescript@5.9.2)))(@swc/core@1.13.5)(@vue/compiler-sfc@3.5.21)(core-js@3.45.1)(esbuild@0.25.9)(lightningcss@1.30.1)(typescript@5.9.2)(vue@3.5.21(typescript@5.9.2))
+        specifier: workspace:*
+        version: link:../../../builder-webpack
       '@fesjs/fes':
-        specifier: file:../../../fes
-        version: file:packages/fes(vue@3.5.21(typescript@5.9.2))
+        specifier: workspace:*
+        version: link:../../../fes
       '@fesjs/fes-design':
         specifier: ^0.8.0
         version: 0.8.83(vue@3.5.21(typescript@5.9.2))
       '@fesjs/plugin-qiankun':
-        specifier: file:../../../plugin-qiankun
-        version: file:packages/plugin-qiankun(@fesjs/fes-design@0.8.83(vue@3.5.21(typescript@5.9.2)))(@fesjs/fes@file:packages/fes(vue@3.5.21(typescript@5.9.2)))(typescript@5.9.2)(vite@7.1.4(@types/node@24.3.0)(jiti@2.5.1)(less@4.4.1)(lightningcss@1.30.1)(sass@1.92.0)(terser@5.44.0)(yaml@2.8.1))(vue@3.5.21(typescript@5.9.2))
+        specifier: workspace:*
+        version: link:../..
       '@fesjs/plugin-watermark':
-        specifier: file:../../../plugin-watermark
-        version: file:packages/plugin-watermark(@fesjs/fes@file:packages/fes(vue@3.5.21(typescript@5.9.2)))(vue@3.5.21(typescript@5.9.2))
+        specifier: workspace:*
+        version: link:../../../plugin-watermark
       vue:
         specifier: ^3.5.21
         version: 3.5.21(typescript@5.9.2)
@@ -825,7 +822,7 @@ importers:
     dependencies:
       '@fesjs/fes':
         specifier: ^3.1.12
-        version: 3.1.17(vue@3.5.21(typescript@5.9.2))
+        version: link:../fes
       '@fesjs/shared':
         specifier: workspace:*
         version: link:../shared
@@ -843,7 +840,7 @@ importers:
     dependencies:
       '@fesjs/fes':
         specifier: ^3.0.0
-        version: 3.1.17(vue@3.5.21(typescript@5.9.2))
+        version: link:../fes
       '@fesjs/shared':
         specifier: workspace:*
         version: link:../shared
@@ -858,7 +855,7 @@ importers:
     dependencies:
       '@fesjs/fes':
         specifier: ^3.1.12
-        version: 3.1.17(vue@3.5.21(typescript@5.9.2))
+        version: link:../fes
       '@fesjs/shared':
         specifier: workspace:*
         version: link:../shared
@@ -888,7 +885,7 @@ importers:
     dependencies:
       '@fesjs/fes':
         specifier: ^3.1.12
-        version: 3.1.17(vue@3.5.21(typescript@5.9.2))
+        version: link:../fes
       '@fesjs/shared':
         specifier: workspace:*
         version: link:../shared
@@ -1698,12 +1695,6 @@ packages:
     peerDependencies:
       '@babel/core': ^7.0.0-0
 
-  '@babel/register@7.28.3':
-    resolution: {integrity: sha512-CieDOtd8u208eI49bYl4z1J22ySFw87IGwE+IswFEExH7e3rLgKb0WNQeumnacQ1+VoDJLYI5QFA3AJZuyZQfA==}
-    engines: {node: '>=6.9.0'}
-    peerDependencies:
-      '@babel/core': ^7.0.0-0
-
   '@babel/runtime@7.28.3':
     resolution: {integrity: sha512-9uIQ10o0WGdpP6GDhXcdOJPJuDgFtIDtN/9+ArJQ2NAfAmiuhTQdzkaTGR33v43GYS2UrSA0eX2pPPHoFVvpxA==}
     engines: {node: '>=6.9.0'}
@@ -1814,6 +1805,18 @@ packages:
   '@commitlint/types@19.8.1':
     resolution: {integrity: sha512-/yCrWGCoA1SVKOks25EGadP9Pnj0oAIHGpl2wH2M2Y46dPM2ueb8wyCVOD7O3WCTkaJ0IkKvzhl1JY7+uCT2Dw==}
     engines: {node: '>=v18'}
+
+  '@conventional-changelog/git-client@1.0.1':
+    resolution: {integrity: sha512-PJEqBwAleffCMETaVm/fUgHldzBE35JFk3/9LL6NUA5EXa3qednu+UT6M7E5iBu3zIQZCULYIiZ90fBYHt6xUw==}
+    engines: {node: '>=18'}
+    peerDependencies:
+      conventional-commits-filter: ^5.0.0
+      conventional-commits-parser: ^6.0.0
+    peerDependenciesMeta:
+      conventional-commits-filter:
+        optional: true
+      conventional-commits-parser:
+        optional: true
 
   '@discoveryjs/json-ext@0.5.7':
     resolution: {integrity: sha512-dBVuXR082gk3jsFp7Rd/JI4kytwGHecnCoTtXFb7DB6CNHp4rg5k1bhg0nWdLGLnOV71lmDzGQaLMy8iPLY0pw==}
@@ -2195,97 +2198,10 @@ packages:
     resolution: {integrity: sha512-Z5kJ+wU3oA7MMIqVR9tyZRtjYPr4OC004Q4Rw7pgOKUOKkJfZ3O24nz3WYfGRpMDNmcOi3TwQOmgm7B7Tpii0w==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
 
-  '@fesjs/builder-vite@file:packages/builder-vite':
-    resolution: {directory: packages/builder-vite, type: directory}
-    peerDependencies:
-      '@fesjs/fes': ^3.1.12
-      core-js: ^3.45.1
-
-  '@fesjs/builder-webpack@file:packages/builder-webpack':
-    resolution: {directory: packages/builder-webpack, type: directory}
-    peerDependencies:
-      '@fesjs/fes': ^3.1.17
-      core-js: ^3.45.1
-
-  '@fesjs/compiler@3.0.6':
-    resolution: {integrity: sha512-kAd/QeA1/s61RMFL0ufqB0Q78/qjnw3FDgyu/aI3fAa1k80AzZtsJh/JfOJ+q3vjD72YzaDo654QNowb1PQ1Hw==}
-
   '@fesjs/fes-design@0.8.83':
     resolution: {integrity: sha512-3NYpy9d05KMKMD5prLQh2Wh5Lfh9o7qc7LveJ+JS27tVNR4DrW72YqfULzKJH/7c8gBRWVpkpn2EjUz3Vlu9Ew==}
     peerDependencies:
       vue: ^3.2.24
-
-  '@fesjs/fes@3.1.17':
-    resolution: {integrity: sha512-SQnfsIz/Cbmuw29s0MHKaAPxH0IfkFTfaRDC4btg6ubMkYRZJsTX+8y9jG/7Y2b0evjqoDhqrqSswkbxUYwkGw==}
-    engines: {node: ^10.12.0 || ^12.0.0 || >= 14.0.0}
-    hasBin: true
-
-  '@fesjs/fes@file:packages/fes':
-    resolution: {directory: packages/fes, type: directory}
-    engines: {node: '>= 18.0.0'}
-    hasBin: true
-
-  '@fesjs/plugin-access@file:packages/plugin-access':
-    resolution: {directory: packages/plugin-access, type: directory}
-    peerDependencies:
-      '@fesjs/fes': ^3.1.13
-      vue: ^3.5.21
-      vue-router: ^4.5.1
-
-  '@fesjs/plugin-layout@file:packages/plugin-layout':
-    resolution: {directory: packages/plugin-layout, type: directory}
-    peerDependencies:
-      '@fesjs/fes': ^3.1.17
-      '@fesjs/fes-design': '>=0.7.0'
-      vue: ^3.5.21
-      vue-router: ^4.5.1
-
-  '@fesjs/plugin-model@file:packages/plugin-model':
-    resolution: {directory: packages/plugin-model, type: directory}
-    peerDependencies:
-      '@fesjs/fes': ^3.1.12
-      vue: ^3.5.21
-
-  '@fesjs/plugin-qiankun@file:packages/plugin-qiankun':
-    resolution: {directory: packages/plugin-qiankun, type: directory}
-    peerDependencies:
-      '@fesjs/fes': ^3.1.13
-      '@fesjs/fes-design': '>=0.7.20'
-      vue: ^3.5.21
-
-  '@fesjs/plugin-request@3.0.8':
-    resolution: {integrity: sha512-Pm+yJBQAZnmPFxPVjpQpKwqr/C/kQLI0BTxxudX26NdfPJg0XbnIOr7AsXGLZkbRdg/GAzJKzsta9WV08b3cag==}
-    peerDependencies:
-      '@fesjs/fes': ^3.0.0-rc.0
-      vue: ^3.2.47
-
-  '@fesjs/plugin-request@4.0.1':
-    resolution: {integrity: sha512-FIZy7lUmCrmUq9KyQCBbatLVQPSjBOln3dRsepTGinXwPrircLagd0F5SzsNB7us+Yrxh2CaGYtzobdj2vS65A==}
-    peerDependencies:
-      '@fesjs/fes': ^3.1.12
-      vue: ^3.2.37
-
-  '@fesjs/plugin-watermark@file:packages/plugin-watermark':
-    resolution: {directory: packages/plugin-watermark, type: directory}
-    peerDependencies:
-      '@fesjs/fes': ^3.1.12
-      vue: ^3.5.21
-
-  '@fesjs/preset-built-in@3.1.14':
-    resolution: {integrity: sha512-ffpxjfzh7GTvbq2O4ouVcYPTX/cwmwtQ6W8oBdNs1lNP1xWNDZ+2xe/GcC3AWM8tf8BnCBSQ0KrrKmHpLITLiQ==}
-    peerDependencies:
-      vue: ^3.2.47
-
-  '@fesjs/runtime@3.0.1':
-    resolution: {integrity: sha512-NOBOi/7S/8gzD4L5L9ldjySxGPPCAl1PTmLwgm02rvnoPgg1Bv8VYq30GoRJSk2Xnxqx49U2W3w7W3HCX3khYA==}
-    peerDependencies:
-      vue: ^3.2.47
-
-  '@fesjs/utils@3.0.0-rc.2':
-    resolution: {integrity: sha512-kZlFvKZtuw77Xd4gru0uHMWB13lTWvpSQzMhfD4UnPBQQhtpGZrDWX/7ik/qafdxPkZ3ovwPbirScrCMHdPvNw==}
-
-  '@fesjs/utils@3.0.3':
-    resolution: {integrity: sha512-FKXUqixAspT1I5aYGU79xmIUGSUqrMY/cElwyQ1DavMmM/p74BbuZkceXjk9FeicJ7a34v8UfVpzd7MmgnRuiw==}
 
   '@floating-ui/core@1.7.3':
     resolution: {integrity: sha512-sGnvb5dmrJaKEZ+LDIpguvdX3bDlEllmv4/ClQ9awcmCZrlx5jQyyMWFM5kBI+EyNOCDDiKk8il0zeuX3Zlg/w==}
@@ -3556,10 +3472,6 @@ packages:
     resolution: {integrity: sha512-FpwQ+p4x4RIsWnPj2z9idOC70T90ga7Oeh8BURSFKpqp5lITRsgkIj/bwYj2bY5xbyD7uBuP9AZRnM5EV20WOw==}
     engines: {node: '>= 14.0.0'}
 
-  ansi-colors@4.1.3:
-    resolution: {integrity: sha512-/6w/C21Pm1A7aZitlI5Ni/2J6FFQN8i1Cvz3kHABAAbw93v/NlvKdVOqz7CCWz/3iv/JplRSEEZ83XION15ovw==}
-    engines: {node: '>=6'}
-
   ansi-escapes@4.3.2:
     resolution: {integrity: sha512-gKXj5ALrKWQLsYG9jlTRmR/xKluxHV+Z9QEwNIgCfM1/uwPMCuzVVnh5mwTd+OuBZcwSIMbqssNWRm1lE51QaQ==}
     engines: {node: '>=8'}
@@ -3649,9 +3561,6 @@ packages:
   async@3.2.6:
     resolution: {integrity: sha512-htCUDlxyyCLMgaM3xXg0C0LW2xqfuQ6p05pCEIsXuyQ+a1koYKTuBMzRNwmybfLgvJDMd0r1LTn4+E0Ti6C2AA==}
 
-  asynckit@0.4.0:
-    resolution: {integrity: sha512-Oei9OH4tRh0YqU3GxhX79dM/mwVgvbZJaSNaRk+bshkj0S5cfHcgYakreBjrHwatXKbz+IoIdYLxrKim2MjW0Q==}
-
   at-least-node@1.0.0:
     resolution: {integrity: sha512-+q/t7Ekv1EDY2l6Gda6LLiX14rU9TV20Wa3ofeQmwPFZbOMo9DXrLbOjFaaclkXKWidIaopwAObQDqwWtGUjqg==}
     engines: {node: '>= 4.0.0'}
@@ -3666,9 +3575,6 @@ packages:
   available-typed-arrays@1.0.7:
     resolution: {integrity: sha512-wvUjBtSGN7+7SjNpq/9M2Tg350UZD3q62IFZLbRAR1bSMlCo1ZaeW+BJ+D090e4hIIZLBcTDWe4Mh4jvUDajzQ==}
     engines: {node: '>= 0.4'}
-
-  axios@1.11.0:
-    resolution: {integrity: sha512-1Lx3WLFQWm3ooKDYZD1eXmoGO9fxYQjrycfHFC8P0sCfQVXyROp0p9PFWBehewBOdCwHc+f/b8I0fMto5eSfwA==}
 
   babel-loader@10.0.0:
     resolution: {integrity: sha512-z8jt+EdS61AMw22nSfoNJAZ0vrtmhPRVi6ghL3rCeRZI8cdNYFiV5xeV3HbE7rlZZNmGH8BVccwWt8/ED0QOHA==}
@@ -3928,10 +3834,6 @@ packages:
     resolution: {integrity: sha512-BSeNnyus75C4//NQ9gQt1/csTXyo/8Sb+afLAkzAptFuMsod9HFokGNudZpi/oQV73hnVK+sR+5PVRMd+Dr7YQ==}
     engines: {node: '>=12'}
 
-  clone-deep@4.0.1:
-    resolution: {integrity: sha512-neHB9xuzh/wk0dIHweyAXv2aPGZIVk3pLMe+/RNzINf17fe0OG96QroktYAUm7SM1PBnzTabaLboqqxDyMU+SQ==}
-    engines: {node: '>=6'}
-
   clone@1.0.4:
     resolution: {integrity: sha512-JQHZ2QMW6l3aH/j6xCqQThY/9OH4D/9ls34cgkUBiEeocRTU04tHfKPBsUK1PqZCUQM7GiA0IIXJSuXHI64Kbg==}
     engines: {node: '>=0.8'}
@@ -3954,10 +3856,6 @@ packages:
 
   colorette@2.0.20:
     resolution: {integrity: sha512-IfEDxwoWIjkeXL1eXcDiow4UbKjhLdq6/EuSVR9GMN7KVH3r9gQ83e73hsz1Nd1T3ijd5xv1wcWRYO+D6kCI2w==}
-
-  combined-stream@1.0.8:
-    resolution: {integrity: sha512-FQN4MRfuJeHf7cBbBMJFXhKSDq+2kAArBlmRBvcvFE5BB1HZKXtSFASDhdlz9zOYwxh8lDdnvmMOe/+5cdoEdg==}
-    engines: {node: '>= 0.8'}
 
   commander@10.0.1:
     resolution: {integrity: sha512-y4Mg2tXshplEbSGzx7amzPwKKOCGuoSRP/CjEdwwk0FOGlUbq6lKuoyDZTNZkmxHdJtp54hdfY/JUrdL7Xfdug==}
@@ -3994,9 +3892,6 @@ packages:
     resolution: {integrity: sha512-gwAPAVTy/j5YcOOebcCRIijn+mSjWJC+IYKivTu6aG8Ei/scoXgfsMRnuAk6b0GRste2J4NGxVdMN3ZpfNaVaw==}
     engines: {node: '>= 12'}
     hasBin: true
-
-  commondir@1.0.1:
-    resolution: {integrity: sha512-W9pAhw0ja1Edb5GVdIF1mjZw/ASI0AlShXM83UUGe2DVr5TdAPEA1OA8m/g8zWp9x6On7gqufY+FatDbC3MDQg==}
 
   compare-func@2.0.0:
     resolution: {integrity: sha512-zHig5N+tPWARooBnb0Zx1MFcdfpyJrfTJ3Y5L+IFvUm8rM74hHz66z0gw0x4tijh5CorKkKUCnW82R2vmpeCRA==}
@@ -4038,70 +3933,83 @@ packages:
     resolution: {integrity: sha512-ROjNchA9LgfNMTTFSIWPzebCwOGFdgkEq45EnvvrmSLvCtAw0HSmrCs7/ty+wAeYUZyNay0YMUNYFTRL72PkBQ==}
     engines: {node: '>=16'}
 
-  conventional-changelog-atom@4.0.0:
-    resolution: {integrity: sha512-q2YtiN7rnT1TGwPTwjjBSIPIzDJCRE+XAUahWxnh+buKK99Kks4WLMHoexw38GXx9OUxAsrp44f9qXe5VEMYhw==}
-    engines: {node: '>=16'}
+  conventional-changelog-angular@8.0.0:
+    resolution: {integrity: sha512-CLf+zr6St0wIxos4bmaKHRXWAcsCXrJU6F4VdNDrGRK3B8LDLKoX3zuMV5GhtbGkVR/LohZ6MT6im43vZLSjmA==}
+    engines: {node: '>=18'}
 
-  conventional-changelog-cli@4.1.0:
-    resolution: {integrity: sha512-MscvILWZ6nWOoC+p/3Nn3D2cVLkjeQjyZPUr0bQ+vUORE/SPrkClJh8BOoMNpS4yk+zFJ5LlgXACxH6XGQoRXA==}
-    engines: {node: '>=16'}
+  conventional-changelog-atom@5.0.0:
+    resolution: {integrity: sha512-WfzCaAvSCFPkznnLgLnfacRAzjgqjLUjvf3MftfsJzQdDICqkOOpcMtdJF3wTerxSpv2IAAjX8doM3Vozqle3g==}
+    engines: {node: '>=18'}
+
+  conventional-changelog-cli@5.0.0:
+    resolution: {integrity: sha512-9Y8fucJe18/6ef6ZlyIlT2YQUbczvoQZZuYmDLaGvcSBP+M6h+LAvf7ON7waRxKJemcCII8Yqu5/8HEfskTxJQ==}
+    engines: {node: '>=18'}
     hasBin: true
 
-  conventional-changelog-codemirror@4.0.0:
-    resolution: {integrity: sha512-hQSojc/5imn1GJK3A75m9hEZZhc3urojA5gMpnar4JHmgLnuM3CUIARPpEk86glEKr3c54Po3WV/vCaO/U8g3Q==}
-    engines: {node: '>=16'}
+  conventional-changelog-codemirror@5.0.0:
+    resolution: {integrity: sha512-8gsBDI5Y3vrKUCxN6Ue8xr6occZ5nsDEc4C7jO/EovFGozx8uttCAyfhRrvoUAWi2WMm3OmYs+0mPJU7kQdYWQ==}
+    engines: {node: '>=18'}
 
   conventional-changelog-conventionalcommits@7.0.2:
     resolution: {integrity: sha512-NKXYmMR/Hr1DevQegFB4MwfM5Vv0m4UIxKZTTYuD98lpTknaZlSRrDOG4X7wIXpGkfsYxZTghUN+Qq+T0YQI7w==}
     engines: {node: '>=16'}
 
-  conventional-changelog-core@7.0.0:
-    resolution: {integrity: sha512-UYgaB1F/COt7VFjlYKVE/9tTzfU3VUq47r6iWf6lM5T7TlOxr0thI63ojQueRLIpVbrtHK4Ffw+yQGduw2Bhdg==}
-    engines: {node: '>=16'}
+  conventional-changelog-conventionalcommits@8.0.0:
+    resolution: {integrity: sha512-eOvlTO6OcySPyyyk8pKz2dP4jjElYunj9hn9/s0OB+gapTO8zwS9UQWrZ1pmF2hFs3vw1xhonOLGcGjy/zgsuA==}
+    engines: {node: '>=18'}
 
-  conventional-changelog-ember@4.0.0:
-    resolution: {integrity: sha512-D0IMhwcJUg1Y8FSry6XAplEJcljkHVlvAZddhhsdbL1rbsqRsMfGx/PIkPYq0ru5aDgn+OxhQ5N5yR7P9mfsvA==}
-    engines: {node: '>=16'}
+  conventional-changelog-core@8.0.0:
+    resolution: {integrity: sha512-EATUx5y9xewpEe10UEGNpbSHRC6cVZgO+hXQjofMqpy+gFIrcGvH3Fl6yk2VFKh7m+ffenup2N7SZJYpyD9evw==}
+    engines: {node: '>=18'}
 
-  conventional-changelog-eslint@5.0.0:
-    resolution: {integrity: sha512-6JtLWqAQIeJLn/OzUlYmzd9fKeNSWmQVim9kql+v4GrZwLx807kAJl3IJVc3jTYfVKWLxhC3BGUxYiuVEcVjgA==}
-    engines: {node: '>=16'}
+  conventional-changelog-ember@5.0.0:
+    resolution: {integrity: sha512-RPflVfm5s4cSO33GH/Ey26oxhiC67akcxSKL8CLRT3kQX2W3dbE19sSOM56iFqUJYEwv9mD9r6k79weWe1urfg==}
+    engines: {node: '>=18'}
 
-  conventional-changelog-express@4.0.0:
-    resolution: {integrity: sha512-yWyy5c7raP9v7aTvPAWzqrztACNO9+FEI1FSYh7UP7YT1AkWgv5UspUeB5v3Ibv4/o60zj2o9GF2tqKQ99lIsw==}
-    engines: {node: '>=16'}
+  conventional-changelog-eslint@6.0.0:
+    resolution: {integrity: sha512-eiUyULWjzq+ybPjXwU6NNRflApDWlPEQEHvI8UAItYW/h22RKkMnOAtfCZxMmrcMO1OKUWtcf2MxKYMWe9zJuw==}
+    engines: {node: '>=18'}
 
-  conventional-changelog-jquery@5.0.0:
-    resolution: {integrity: sha512-slLjlXLRNa/icMI3+uGLQbtrgEny3RgITeCxevJB+p05ExiTgHACP5p3XiMKzjBn80n+Rzr83XMYfRInEtCPPw==}
-    engines: {node: '>=16'}
+  conventional-changelog-express@5.0.0:
+    resolution: {integrity: sha512-D8Q6WctPkQpvr2HNCCmwU5GkX22BVHM0r4EW8vN0230TSyS/d6VQJDAxGb84lbg0dFjpO22MwmsikKL++Oo/oQ==}
+    engines: {node: '>=18'}
 
-  conventional-changelog-jshint@4.0.0:
-    resolution: {integrity: sha512-LyXq1bbl0yG0Ai1SbLxIk8ZxUOe3AjnlwE6sVRQmMgetBk+4gY9EO3d00zlEt8Y8gwsITytDnPORl8al7InTjg==}
-    engines: {node: '>=16'}
+  conventional-changelog-jquery@6.0.0:
+    resolution: {integrity: sha512-2kxmVakyehgyrho2ZHBi90v4AHswkGzHuTaoH40bmeNqUt20yEkDOSpw8HlPBfvEQBwGtbE+5HpRwzj6ac2UfA==}
+    engines: {node: '>=18'}
 
-  conventional-changelog-preset-loader@4.1.0:
-    resolution: {integrity: sha512-HozQjJicZTuRhCRTq4rZbefaiCzRM2pr6u2NL3XhrmQm4RMnDXfESU6JKu/pnKwx5xtdkYfNCsbhN5exhiKGJA==}
-    engines: {node: '>=16'}
+  conventional-changelog-jshint@5.0.0:
+    resolution: {integrity: sha512-gGNphSb/opc76n2eWaO6ma4/Wqu3tpa2w7i9WYqI6Cs2fncDSI2/ihOfMvXveeTTeld0oFvwMVNV+IYQIk3F3g==}
+    engines: {node: '>=18'}
 
-  conventional-changelog-writer@7.0.1:
-    resolution: {integrity: sha512-Uo+R9neH3r/foIvQ0MKcsXkX642hdm9odUp7TqgFS7BsalTcjzRlIfWZrZR1gbxOozKucaKt5KAbjW8J8xRSmA==}
-    engines: {node: '>=16'}
+  conventional-changelog-preset-loader@5.0.0:
+    resolution: {integrity: sha512-SetDSntXLk8Jh1NOAl1Gu5uLiCNSYenB5tm0YVeZKePRIgDW9lQImromTwLa3c/Gae298tsgOM+/CYT9XAl0NA==}
+    engines: {node: '>=18'}
+
+  conventional-changelog-writer@8.2.0:
+    resolution: {integrity: sha512-Y2aW4596l9AEvFJRwFGJGiQjt2sBYTjPD18DdvxX9Vpz0Z7HQ+g1Z+6iYDAm1vR3QOJrDBkRHixHK/+FhkR6Pw==}
+    engines: {node: '>=18'}
     hasBin: true
 
-  conventional-changelog@5.1.0:
-    resolution: {integrity: sha512-aWyE/P39wGYRPllcCEZDxTVEmhyLzTc9XA6z6rVfkuCD2UBnhV/sgSOKbQrEG5z9mEZJjnopjgQooTKxEg8mAg==}
-    engines: {node: '>=16'}
+  conventional-changelog@6.0.0:
+    resolution: {integrity: sha512-tuUH8H/19VjtD9Ig7l6TQRh+Z0Yt0NZ6w/cCkkyzUbGQTnUEmKfGtkC9gGfVgCfOL1Rzno5NgNF4KY8vR+Jo3w==}
+    engines: {node: '>=18'}
 
   conventional-commit-types@3.0.0:
     resolution: {integrity: sha512-SmmCYnOniSsAa9GqWOeLqc179lfr5TRu5b4QFDkbsrJ5TZjPJx85wtOr3zn+1dbeNiXDKGPbZ72IKbPhLXh/Lg==}
 
-  conventional-commits-filter@4.0.0:
-    resolution: {integrity: sha512-rnpnibcSOdFcdclpFwWa+pPlZJhXE7l+XK04zxhbWrhgpR96h33QLz8hITTXbcYICxVr3HZFtbtUAQ+4LdBo9A==}
-    engines: {node: '>=16'}
+  conventional-commits-filter@5.0.0:
+    resolution: {integrity: sha512-tQMagCOC59EVgNZcC5zl7XqO30Wki9i9J3acbUvkaosCT6JX3EeFwJD7Qqp4MCikRnzS18WXV3BLIQ66ytu6+Q==}
+    engines: {node: '>=18'}
 
   conventional-commits-parser@5.0.0:
     resolution: {integrity: sha512-ZPMl0ZJbw74iS9LuX9YIAiW8pfM5p3yh2o/NbXHbkFuZzY5jvdi5jFycEOkmBW5H5I7nA+D6f3UcsCLP2vvSEA==}
     engines: {node: '>=16'}
+    hasBin: true
+
+  conventional-commits-parser@6.2.0:
+    resolution: {integrity: sha512-uLnoLeIW4XaoFtH37qEcg/SXMJmKF4vi7V0H2rnPueg+VEtFGA/asSCNTcq4M/GQ6QmlzchAEtOoDTtKqWeHag==}
+    engines: {node: '>=18'}
     hasBin: true
 
   convert-source-map@2.0.0:
@@ -4169,10 +4077,6 @@ packages:
     peerDependenciesMeta:
       typescript:
         optional: true
-
-  crequire@1.8.1:
-    resolution: {integrity: sha512-GbElTY148ZRQbC3E3XlMAitKE9rEyO/2mIkkjwgqzIucRmHiaAMF2Ynpwsuxzp08SdAbeN4pTrEqZs0MWRN6/w==}
-    engines: {node: '>= 0.6.0'}
 
   cross-spawn@6.0.6:
     resolution: {integrity: sha512-VqCUuhcd1iB+dsv8gxPttb5iZh/D0iubSP21g36KXdEuf6I5JiioesUVjpCdHV9MZRUfVFlvwtIUyPfxo5trtw==}
@@ -4328,10 +4232,6 @@ packages:
     resolution: {integrity: sha512-2iy1EkLdlBzQGvbweYRFxmFath8+K7+AKB0TlhHWkNuH+TmovaMH/Wp7V7R4u7f4SnX3OgLsU9t1NI9ioDnUpg==}
     engines: {node: '>=8'}
 
-  dargs@8.1.0:
-    resolution: {integrity: sha512-wAV9QHOsNbwnWdNW2FYvE1P56wtgSbM+3SZcdGiWQILwVjACCXDCI3Ai8QlCjMDB8YK5zySiXZYBiwGmNY3lnw==}
-    engines: {node: '>=12'}
-
   data-view-buffer@1.0.2:
     resolution: {integrity: sha512-EmKO5V3OLXh1rtK2wgXRansaK1/mtVdTUEiEI0W8RkvgT05kfxaH29PliLnpLP73yYO6142Q72QNa8Wx/A5CqQ==}
     engines: {node: '>= 0.4'}
@@ -4419,10 +4319,6 @@ packages:
   define-properties@1.2.1:
     resolution: {integrity: sha512-8QmQKqEASLd5nx0U1B1okLElbUuuttJ/AnYmRXbbbGDWh6uS208EjD4Xqq/I9wK7u0v6O08XhTWnt5XtEbR6Dg==}
     engines: {node: '>= 0.4'}
-
-  delayed-stream@1.0.0:
-    resolution: {integrity: sha512-ZySD7Nf91aLB0RxL4KGrKHBXl7Eds1DAmEdcoVawXnLD7SDhpNgtuII2aAkg7a7QS41jxPSZ17p4VdGnMHk3MQ==}
-    engines: {node: '>=0.4.0'}
 
   depd@1.1.2:
     resolution: {integrity: sha512-7emPTl6Dpo6JRXOXjLRxck+FlLRX5847cLKEn00PLAgc3g2hTZZgr+e4c2v6QpSmLeFP3n5yUo7ft6avBK/5jQ==}
@@ -4574,10 +4470,6 @@ packages:
   enhanced-resolve@5.18.3:
     resolution: {integrity: sha512-d4lC8xfavMeBjzGr2vECC3fsGXziXZQyJxD868h2M/mBI3PwAuODxAkLkq5HYuvrPYcUtiLzsTo8U3PgX3Ocww==}
     engines: {node: '>=10.13.0'}
-
-  enquirer@2.4.1:
-    resolution: {integrity: sha512-rRqJg/6gd538VHvR3PSrdRBb/1Vy2YfzHqzvbhGIQpDRKIa4FgV/54b5Q1xYSxOOwKvjXweS26E0Q+nAMwp2pQ==}
-    engines: {node: '>=8.6'}
 
   entities@2.2.0:
     resolution: {integrity: sha512-p92if5Nz619I0w+akJrLZH0MX0Pb5DX39XOwQTtXSdQQOaYH03S1uIQp4mhOZtAXrxq4ViO67YTiLBo2638o9A==}
@@ -4974,10 +4866,6 @@ packages:
     resolution: {integrity: sha512-6BN9trH7bp3qvnrRyzsBz+g3lZxTNZTbVO2EV1CS0WIcDbawYVdYvGflME/9QP0h0pYlCDBCTjYa9nZzMDpyxQ==}
     engines: {node: '>= 0.8'}
 
-  find-cache-dir@2.1.0:
-    resolution: {integrity: sha512-Tq6PixE0w/VMFfCgbONnkiQIVol/JJL7nRMi20fqzA4NRs9AfeqMGeRdPi3wIhYkxjeBaWh2rxwapn5Tu3IqOQ==}
-    engines: {node: '>=6'}
-
   find-node-modules@2.1.3:
     resolution: {integrity: sha512-UC2I2+nx1ZuOBclWVNdcnbDR5dlrOdVb7xNjmT/lHE+LsgztWks3dG7boJ37yTS/venXw84B/mAW9uHVoC5QRg==}
 
@@ -4988,10 +4876,6 @@ packages:
     resolution: {integrity: sha512-afd4O7zpqHeRyg4PfDQsXmlDe2PfdHtJt6Akt8jOWaApLOZk5JXs6VMR29lz03pRe9mpykrRCYIYxaJYcfpncQ==}
     engines: {node: '>=18'}
 
-  find-up@3.0.0:
-    resolution: {integrity: sha512-1yD6RmLI1XBfxugvORwlck6f75tYL+iR0jqwsOrOxMZyGYqUuDhJ0l4AXdO1iX/FTs9cBAMEk1gWSEx1kSbylg==}
-    engines: {node: '>=6'}
-
   find-up@4.1.0:
     resolution: {integrity: sha512-PpOwAdQ/YlXQ2vj8a3h8IipDuYRi3wceVQQGYWxNINccq40Anw7BlsEXCMbt1Zt+OLA6Fq9suIpIWD0OsnISlw==}
     engines: {node: '>=8'}
@@ -4999,10 +4883,6 @@ packages:
   find-up@5.0.0:
     resolution: {integrity: sha512-78/PXT1wlLLDgTzDs7sjq9hzz0vXD+zn+7wypEe4fXQxCmdmqfGsEPQxmiCSQI3ajFV91bVSsvNtrJRiW6nGng==}
     engines: {node: '>=10'}
-
-  find-up@6.3.0:
-    resolution: {integrity: sha512-v2ZsoEuVHYy8ZIlYqwPe/39Cy+cFDzp4dXPaxNvkEuouymu+2Jbz0PxpKarJHYJTmv2HWT3O382qY8l4jMWthw==}
-    engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
 
   findup-sync@4.0.0:
     resolution: {integrity: sha512-6jvvn/12IC4quLBL1KNokxC7wWTvYncaVUYSoxWw7YykPLuRrnv4qdHcSOywOI5RpkOVGeQRtWM8/q+G6W6qfQ==}
@@ -5034,10 +4914,6 @@ packages:
   foreground-child@3.3.1:
     resolution: {integrity: sha512-gIXjKqtFuWEgzFRJA9WCQeSJLZDjgJUOMCMzxtvFq/37KojM1BFGufqsCy0r4qSQmYLsZYMeyRqzIWOMup03sw==}
     engines: {node: '>=14'}
-
-  form-data@4.0.4:
-    resolution: {integrity: sha512-KrGhL9Q4zjj0kiUt5OO4Mr/A/jlI2jDYs5eHBpYHPcBEVSiipAvn2Ko2HnPe20rmcuuvMHNdZFp+4IlGTMF0Ow==}
-    engines: {node: '>= 6'}
 
   format@0.2.2:
     resolution: {integrity: sha512-wzsgA6WOq+09wrU1tsJ09udeR/YZRaeArL9e1wPbFg3GG2yDnC2ldKpxs4xunpFF9DgqCqOIra3bc1HWrJ37Ww==}
@@ -5128,14 +5004,14 @@ packages:
     engines: {node: '>=10'}
     hasBin: true
 
-  git-raw-commits@4.0.0:
-    resolution: {integrity: sha512-ICsMM1Wk8xSGMowkOmPrzo2Fgmfo4bMHLNX6ytHjajRJUqvHOw/TFapQ+QG75c3X/tTDDhOSRPGC52dDbNM8FQ==}
-    engines: {node: '>=16'}
+  git-raw-commits@5.0.0:
+    resolution: {integrity: sha512-I2ZXrXeOc0KrCvC7swqtIFXFN+rbjnC7b2T943tvemIOVNl+XP8YnA9UVwqFhzzLClnSA60KR/qEjLpXzs73Qg==}
+    engines: {node: '>=18'}
     hasBin: true
 
-  git-semver-tags@7.0.1:
-    resolution: {integrity: sha512-NY0ZHjJzyyNXHTDZmj+GG7PyuAKtMsyWSwh07CR2hOZFa+/yoTsXci/nF2obzL8UDhakFNkD9gNdt/Ed+cxh2Q==}
-    engines: {node: '>=16'}
+  git-semver-tags@8.0.0:
+    resolution: {integrity: sha512-N7YRIklvPH3wYWAR2vysaqGLPRcpwQ0GKdlqTiVN5w1UmCdaeY3K8s6DMKRCh54DDdzyt/OAB6C8jgVtb7Y2Fg==}
+    engines: {node: '>=18'}
     hasBin: true
 
   github-slugger@2.0.0:
@@ -5444,6 +5320,10 @@ packages:
     resolution: {integrity: sha512-m6FAo/spmsW2Ab2fU35JTYwtOKa2yAwXSwgjSv1TJzh4Mh7mC3lzAOVLBprb72XsTrgkEIsl7YrFNAiDiRhIGg==}
     engines: {node: '>=12'}
 
+  index-to-position@1.1.0:
+    resolution: {integrity: sha512-XPdx9Dq4t9Qk1mTMbWONJqU7boCoumEH7fRET37HX5+khDUl3J2W6PdALxhILYlIYx2amlwYcRPp28p0tSiojg==}
+    engines: {node: '>=18'}
+
   inflight@1.0.6:
     resolution: {integrity: sha512-k92I/b08q4wvFscXCLvqfsHCrjrF7yiXsQuIVvVE7N82W3+aqpzuUdBbfhWcy/FZR3/4IgflMgKLOsvPDrGCJA==}
     deprecated: This module is not supported, and leaks memory. Do not use it. Check out lru-cache if you want a good and tested way to coalesce async requests by a key value, which is much more comprehensive and powerful.
@@ -5606,10 +5486,6 @@ packages:
     resolution: {integrity: sha512-gwsOE28k+23GP1B6vFl1oVh/WOzmawBrKwo5Ev6wMKzPkaXaCDIQKzLnvsA42DRlbVTWorkgTKIviAKCWkfUwA==}
     engines: {node: '>=10'}
 
-  is-plain-object@2.0.4:
-    resolution: {integrity: sha512-h5PpgXkWitc38BBMYawTYMWJHFZJVnBquFE57xFpjB8pJFiF6gZ+bU+WyI/yqXiFR5mdLsgYNaPe8uao6Uv9Og==}
-    engines: {node: '>=0.10.0'}
-
   is-regex@1.2.1:
     resolution: {integrity: sha512-MjYsKHO5O7mCsmRGxWcLWheFqN9DJ/2TmngvjKXihe6efViPqc274+Fx/4fYj/r03+ESvBdTXK0V6tA3rgez1g==}
     engines: {node: '>= 0.4'}
@@ -5701,10 +5577,6 @@ packages:
   isexe@2.0.0:
     resolution: {integrity: sha512-RHxMLp9lnKHGHRng9QFhRCMbYAcVpn69smSGcq3f36xjgVVWThj4qqLbTLlq7Ssj8B+fIQ1EuCEGI2lKsyQeIw==}
 
-  isobject@3.0.1:
-    resolution: {integrity: sha512-WhB9zCku7EGTj/HQQRz5aUQEUeoQZH2bWcltRErOpymJ4boYE6wL9Tbr23krRPSZ+C5zqNSrSw+Cc7sZZ4b7vg==}
-    engines: {node: '>=0.10.0'}
-
   jackspeak@3.4.3:
     resolution: {integrity: sha512-OGlZQpz2yfahA/Rd1Y8Cd9SIEsqvXkLVoSw/cgwhnhFMDbsQFeZYoJJ7bIZBS9BcamUW96asq/npPWugM+RQBw==}
 
@@ -5787,10 +5659,6 @@ packages:
   json-parse-even-better-errors@2.3.1:
     resolution: {integrity: sha512-xyFwyhro/JEof6Ghe2iz2NcXoj2sloNsWr/XsERDK/oiPCfaNhl5ONfp+jQdAZRQQ0IJWNzH9zIZF7li91kh2w==}
 
-  json-parse-even-better-errors@3.0.2:
-    resolution: {integrity: sha512-fi0NG4bPjCHunUJffmLd0gxssIgkNmArMvis4iNah6Owg1MCJjWhEcDLmsK6iGkJq3tHwbDkTlce70/tmXN4cQ==}
-    engines: {node: ^14.17.0 || ^16.13.0 || >=18.0.0}
-
   json-schema-traverse@0.4.1:
     resolution: {integrity: sha512-xbbCH5dCYU5T8LcEhhuh7HJ88HXuW3qsI3Y0zOZFKfZEHcpWiHU/Jxzk629Brsab/mMiHQti9wMP+845RPe3Vg==}
 
@@ -5799,9 +5667,6 @@ packages:
 
   json-stable-stringify-without-jsonify@1.0.1:
     resolution: {integrity: sha512-Bdboy+l7tA3OGW6FjyFHWkP5LuByj1Tk33Ljyq0axyzdk9//JSi2u3fP1QSmd1KNwq6VOKYGlAu87CisVir6Pw==}
-
-  json-stringify-safe@5.0.1:
-    resolution: {integrity: sha512-ZClg6AaYvamvYEE82d3Iyd3vSSIjQ+odgjaTzRuO3s7toCdFKczob2i0zCh7JE8kWn17yvAWhUVxvqGwUalsRA==}
 
   json5@2.2.3:
     resolution: {integrity: sha512-XmOWe7eyHYH14cLdVPoyg+GOH3rYX++KpzrylJwSW98t3Nk+U8XOl8FWKOgwtzdb8lXGf6zYwDUzeHMWfxasyg==}
@@ -5923,10 +5788,6 @@ packages:
   lines-and-columns@1.2.4:
     resolution: {integrity: sha512-7ylylesZQ/PV29jhEDl3Ufjo6ZX7gCqJr5F7PKrqc93v7fzSymt1BpwEU8nAUXs8qzzvqhbjhK5QZg6Mt/HkBg==}
 
-  lines-and-columns@2.0.4:
-    resolution: {integrity: sha512-wM1+Z03eypVAVUCE7QdSqpVIvelbOakn1M0bPDoA4SGWPx3sNDVUiMo3L6To6WWGClB7VyXnhQ4Sn7gxiJbE6A==}
-    engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
-
   lint-staged@15.5.2:
     resolution: {integrity: sha512-YUSOLq9VeRNAo/CTaVmhGDKG+LBtA8KF1X4K5+ykMSwWST1vDxJRB2kv2COgLb1fvpCo+A/y9A0G0znNVmdx4w==}
     engines: {node: '>=18.12.0'}
@@ -5959,10 +5820,6 @@ packages:
     resolution: {integrity: sha512-arhlxbFRmoQHl33a0Zkle/YWlmNwoyt6QNZEIJcqNbdrsix5Lvc4HyyI3EnwxTYlZYc32EbYrQ8SzEZ7dqgg9A==}
     engines: {node: '>=14'}
 
-  locate-path@3.0.0:
-    resolution: {integrity: sha512-7AO748wWnIhNqAuaty2ZWHkQHRSNfPVIsPIfwEOWO22AmaoVrWavlOcMR5nzTLNYvp36X220/maaRsrec1G65A==}
-    engines: {node: '>=6'}
-
   locate-path@5.0.0:
     resolution: {integrity: sha512-t7hw9pI+WvuwNJXwk5zVHpyhIqzg2qTlklJOf0mVxGSbe3Fp2VieZcduNYjaLDoy6p9uGpQEGWG87WpMKlNq8g==}
     engines: {node: '>=8'}
@@ -5970,10 +5827,6 @@ packages:
   locate-path@6.0.0:
     resolution: {integrity: sha512-iPZK6eYjbxRu3uB4/WZ3EsEIMJFMqAoopl3R+zuq0UjcAm/MO6KCweDgPfP3elTztoKP3KtnVHxTn2NHBSDVUw==}
     engines: {node: '>=10'}
-
-  locate-path@7.2.0:
-    resolution: {integrity: sha512-gvVijfZvn7R+2qyPX8mAuKcFGDf6Nc61GdvGafQsHL0sBIxfKzA+usWn4GFC/bk+QdwPUD4kWFJLhElipq+0VA==}
-    engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
 
   lodash-es@4.17.21:
     resolution: {integrity: sha512-mKnC+QJ9pWVzv+C4/U3rRsHapFfHvQFoFB92e52xeyGMcX6/OlIl78je1u8vePzYZSkkogMPJ2yjxxsb89cxyw==}
@@ -6357,11 +6210,6 @@ packages:
     resolution: {integrity: sha512-FP+p8RB8OWpF3YZBCrP5gtADmtXApB5AMLn+vdyA+PyxCjrCs00mjyUozssO33cwDeT3wNGdLxJ5M//YqtHAJw==}
     hasBin: true
 
-  mkdirp@1.0.4:
-    resolution: {integrity: sha512-vVqVZQyf3WLx2Shd0qJ9xuvqgAyKPLAiqITEtqW0oIUjzo3PePDd6fW9iFz30ef7Ysp/oiWqbhszeGWW2T6Gzw==}
-    engines: {node: '>=10'}
-    hasBin: true
-
   mkdirp@2.1.6:
     resolution: {integrity: sha512-+hEnITedc8LAtIP9u3HJDFIdcLV2vXP33sqLLIzkv1Db1zO/1OxbvYf0Y1OC/S/Qo5dxHXepofhmxL02PsKe+A==}
     engines: {node: '>=10'}
@@ -6575,14 +6423,6 @@ packages:
     resolution: {integrity: sha512-TYOanM3wGwNGsZN2cVTYPArw454xnXj5qmWF1bEoAc4+cU/ol7GVh7odevjp1FNHduHc3KZMcFduxU5Xc6uJRQ==}
     engines: {node: '>=10'}
 
-  p-limit@4.0.0:
-    resolution: {integrity: sha512-5b0R4txpzjPWVw/cXXUResoD4hb6U/x9BH08L7nw+GN1sezDzPdxeRvpc9c433fZhBan/wusjbCsqwqm4EIBIQ==}
-    engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
-
-  p-locate@3.0.0:
-    resolution: {integrity: sha512-x+12w/To+4GFfgJhBEpiDcLozRJGegY+Ei7/z0tSLkMmxGZNybVMSfWj9aJn8Z5Fc7dBUNJOOVgPv2H7IwulSQ==}
-    engines: {node: '>=6'}
-
   p-locate@4.1.0:
     resolution: {integrity: sha512-R79ZZ/0wAxKGu3oYMlz8jy/kbhsNrS7SKZ7PxEHBgJ5+F2mtFW2fK2cOtBh1cHYkQsbzFV7I+EoRKe6Yt0oK7A==}
     engines: {node: '>=8'}
@@ -6590,10 +6430,6 @@ packages:
   p-locate@5.0.0:
     resolution: {integrity: sha512-LaNjtRWUBY++zB5nE/NwcaoMylSPk+S+ZHNB1TzdbMJMny6dynpAGt7X/tl/QYq3TIeE6nxHppbo2LGymrG5Pw==}
     engines: {node: '>=10'}
-
-  p-locate@6.0.0:
-    resolution: {integrity: sha512-wPrq66Llhl7/4AGC6I+cqxT07LhXvWL08LNXz1fENOw0Ap4sRZZ/gZpTTJ5jpurzzzfS2W/Ge9BY3LgLjCShcw==}
-    engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
 
   p-retry@6.2.1:
     resolution: {integrity: sha512-hEt02O4hUct5wtwg4H4KcWgDdm+l1bOaEy/hWzd8xtXB9BqxTWBBhb+2ImAtH4Cv4rPjV76xN3Zumqk3k3AhhQ==}
@@ -6650,9 +6486,9 @@ packages:
     resolution: {integrity: sha512-ayCKvm/phCGxOkYRSCM82iDwct8/EonSEgCSxWxD7ve6jHggsFl4fZVQBPRNgQoKiuV/odhFrGzQXZwbifC8Rg==}
     engines: {node: '>=8'}
 
-  parse-json@7.1.1:
-    resolution: {integrity: sha512-SgOTCX/EZXtZxBE5eJ97P4yGM5n37BwRU+YMsH4vNzFqJV/oWFXXCmwFlgWUM4PrakybVOueJJ6pwHqSVhTFDw==}
-    engines: {node: '>=16'}
+  parse-json@8.3.0:
+    resolution: {integrity: sha512-ybiGyvspI+fAoRQbIPRddCcSTV9/LsJbf0e/S85VLowVGzRmokfneg2kwVW/KU5rOXrPSbF1qAKPMgNTqqROQQ==}
+    engines: {node: '>=18'}
 
   parse-node-version@1.0.1:
     resolution: {integrity: sha512-3YHlOa/JgH6Mnpr05jP9eDG254US9ek25LyIxZlDItp2iJtwyaXQb57lBYLdT3MowkUFYEV2XXNAYIPlESvJlA==}
@@ -6690,17 +6526,9 @@ packages:
   pascal-case@3.1.2:
     resolution: {integrity: sha512-uWlGT3YSnK9x3BQJaOdcZwrnV6hPpd8jFH1/ucpiLRPh/2zCVJKS19E4GvYHvaCcACn3foXZ0cLB9Wrx1KGe5g==}
 
-  path-exists@3.0.0:
-    resolution: {integrity: sha512-bpC7GYwiDYQ4wYLe+FA8lhRjhQCMcQGuSgGGqDkg/QerRWw9CmGRT0iSOVRSZJ29NMLZgIzqaljJ63oaL4NIJQ==}
-    engines: {node: '>=4'}
-
   path-exists@4.0.0:
     resolution: {integrity: sha512-ak9Qy5Q7jYb2Wwcey5Fpvg2KoAc/ZIhLSLOSBmRmygPsGwkVVt0fZa0qrtMz+m6tJTAHfZQ8FnmB4MG4LWy7/w==}
     engines: {node: '>=8'}
-
-  path-exists@5.0.0:
-    resolution: {integrity: sha512-RjhtfwJOxzcFmNOi6ltcbcu4Iu+FL3zEj83dk4kAS+fVpTxXLO1b38RvJgT/0QwvV/L3aY9TAnyv0EOqW4GoMQ==}
-    engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
 
   path-is-absolute@1.0.1:
     resolution: {integrity: sha512-AVbw3UJ2e9bq64vSaS9Am0fje1Pa8pbGqTTsmXfaIiMpnr5DlDhfJOuLj9Sf95ZPVDAUerDfEk88MPmPe7UCQg==}
@@ -6807,19 +6635,11 @@ packages:
     resolution: {integrity: sha512-J8B6xqiO37sU/gkcMglv6h5Jbd9xNER7aHzpfRdNmV4IbQBzBpe4l9XmbG+xPF/znacgu2jfEw+wHffaq/YkXA==}
     hasBin: true
 
-  pkg-dir@3.0.0:
-    resolution: {integrity: sha512-/E57AYkoeQ25qkxMj5PBOVgF8Kiu/h7cYS30Z5+R7WaiCCBfLq58ZI/dSeaEKb9WVJV5n/03QwrN3IeWIFllvw==}
-    engines: {node: '>=6'}
-
   pkg-types@1.3.1:
     resolution: {integrity: sha512-/Jm5M4RvtBFVkKWRu2BLUTNP8/M2a+UwuAX+ae4770q1qVGtfjG+WTCupoZixokjmHiry8uI+dlY8KXYV5HVVQ==}
 
   pkg-types@2.3.0:
     resolution: {integrity: sha512-SIqCzDRg0s9npO5XQ3tNZioRY1uK06lA41ynBC1YmFTmnY6FjUjVt6s4LoADmwoig1qqD0oK8h1p/8mlMx8Oig==}
-
-  pkg-up@3.1.0:
-    resolution: {integrity: sha512-nDywThFk1i4BQK4twPQ6TA4RT8bDY96yeuCVBWL3ePARCiEKDRSrNGbFIgUJpLp+XeIR65v8ra7WuJOFUBtkMA==}
-    engines: {node: '>=8'}
 
   pluralize@8.0.0:
     resolution: {integrity: sha512-Nc3IT5yHzflTfbjgqWcCPpo7DaKy4FnpB0l/zCAW0Tc7jxAiuqSxHasntB3D7887LSrA93kDJ9IXovxJYxyLCA==}
@@ -7267,9 +7087,6 @@ packages:
     resolution: {integrity: sha512-llQsMLSUDUPT44jdrU/O37qlnifitDP+ZwrmmZcoSKyLKvtZxpyV0n2/bD/N4tBAAZ/gJEdZU7KMraoK1+XYAg==}
     engines: {node: '>= 0.10'}
 
-  proxy-from-env@1.1.0:
-    resolution: {integrity: sha512-D+zkORCbA9f1tdWRK0RaCR3GPv50cMxcrz4X8k5LTSUD1Dkw47mKJEZQNunItRTkWwgtaUSo1RVFRIG9ZXiFYg==}
-
   prr@1.0.1:
     resolution: {integrity: sha512-yPw4Sng1gWghHQWj0B3ZggWUm4qVbPwPFcRG8KyxiU7J2OHFSoEHKS+EZ3fv5l1t9CyCiop6l/ZYeWbrgoQejw==}
 
@@ -7305,9 +7122,9 @@ packages:
     resolution: {integrity: sha512-8zGqypfENjCIqGhgXToC8aB2r7YrBX+AQAfIPs/Mlk+BtPTztOvTS01NRW/3Eh60J+a48lt8qsCzirQ6loCVfA==}
     engines: {node: '>= 0.8'}
 
-  read-pkg-up@10.1.0:
-    resolution: {integrity: sha512-aNtBq4jR8NawpKJQldrQcSW9y/d+KWH4v24HWkHljOZ7H0av+YTGANBzRh9A5pw7v/bLVsLVPpOhJ7gHNVy8lA==}
-    engines: {node: '>=16'}
+  read-package-up@11.0.0:
+    resolution: {integrity: sha512-MbgfoNPANMdb4oRBNg5eqLbB2t2r+o5Ua1pNt8BqGp4I0FJZhuVSOj3PaBPni4azWuSzEdNn2evevzVmEk1ohQ==}
+    engines: {node: '>=18'}
 
   read-pkg-up@7.0.1:
     resolution: {integrity: sha512-zK0TB7Xd6JpCLmlLmufqykGE+/TlOePD6qKClNW7hHDKFh/J7/7gCWGR7joEQEW1bKq3a3yUZSObOoWLFQ4ohg==}
@@ -7321,9 +7138,9 @@ packages:
     resolution: {integrity: sha512-Ug69mNOpfvKDAc2Q8DRpMjjzdtrnv9HcSMX+4VsZxD1aZ6ZzrIE7rlzXBtWTyhULSMKg076AW6WR5iZpD0JiOg==}
     engines: {node: '>=8'}
 
-  read-pkg@8.1.0:
-    resolution: {integrity: sha512-PORM8AgzXeskHO/WEv312k9U03B8K9JSiWF/8N9sUuFjBa+9SF2u6K7VClzXwDXab51jCd8Nd36CNM+zR97ScQ==}
-    engines: {node: '>=16'}
+  read-pkg@9.0.1:
+    resolution: {integrity: sha512-9viLL4/n1BJUCT1NXVTdS1jtm80yDEgR5T4yCelII49Mbj0v1rZdKqj7zCiYdbB0CuCgdrvHcNogAKTFPBocFA==}
+    engines: {node: '>=18'}
 
   readable-stream@2.3.8:
     resolution: {integrity: sha512-8p0AUk4XODgIewSi0l8Epjs+EVnWiK7NoDIEGU0HhE7+ZyY8D1IMY7odu5lRrFXGg71L15KG8QrPmum45RTtdA==}
@@ -7418,10 +7235,6 @@ packages:
   requires-port@1.0.0:
     resolution: {integrity: sha512-KigOCHcocU3XODJxsu8i/j8T9tzT4adHiecwORRQ0ZZFcp7ahwXuRU1m+yuO90C5ZUyGeGfocHDI14M3L3yDAQ==}
 
-  resolve-cwd@3.0.0:
-    resolution: {integrity: sha512-OrZaX2Mb+rJCpH/6CpSqt9xFVpN++x01XnN2ie9g6P5/3xelLAkXWVADpdz1IHD/KFfEXyE6V0U01OQ3UO2rEg==}
-    engines: {node: '>=8'}
-
   resolve-dir@1.0.1:
     resolution: {integrity: sha512-R7uiTjECzvOsWSfdM0QKFNBVFcK27aHOUwdvK53BcW8zqnGdYp0Fbj82cy54+2A4P2tFM22J5kRfe1R+lM/1yg==}
     engines: {node: '>=0.10.0'}
@@ -7464,11 +7277,6 @@ packages:
 
   rfdc@1.4.1:
     resolution: {integrity: sha512-q1b3N5QkRUWUl7iyylaaj3kOpIT0N2i9MqIEQXP73GVsN9cw3fdx8X63cEmWhJGi2PPCF23Ijp7ktmd39rawIA==}
-
-  rimraf@3.0.2:
-    resolution: {integrity: sha512-JZkJMZkAGFFPP2YqXZXPbMlMBgsxzE8ILs4lMIX/2o0L9UBw9O/Y3o6wFw/i9YLapcUJWwqbi3kdxIPdC62TIA==}
-    deprecated: Rimraf versions prior to v4 are no longer supported
-    hasBin: true
 
   rimraf@4.4.1:
     resolution: {integrity: sha512-Gk8NlF062+T9CqNGn6h4tls3k6T1+/nXdOcSZVikNVtlRdYpA7wRJJMoXmuvOnLW844rPjdQ7JgXCYM6PPC/og==}
@@ -7634,10 +7442,6 @@ packages:
 
   setprototypeof@1.2.0:
     resolution: {integrity: sha512-E5LDX7Wrp85Kil5bhZv46j8jOeboKq5JMmYM3gVGdGH8xFpPWXUMsNrlODCrkoxMEeNi/XZIwuRvY4XNwYMJpw==}
-
-  shallow-clone@3.0.1:
-    resolution: {integrity: sha512-/6KqX+GVUdqPuPPd2LxDDxzX6CAbjJehAAOKlNpqqUpAqPM6HeL8f+o3a+JsyGjn2lv0WY8UsTgUJjU9Ok55NA==}
-    engines: {node: '>=8'}
 
   shebang-command@1.2.0:
     resolution: {integrity: sha512-EV3L1+UQWGor21OmnvojK36mhg+TyIKDh3iFBKBohr5xeXIhNBcx8oWdgkTEEQ+BEFFYdLRuqMfd5L84N1V5Vg==}
@@ -8155,10 +7959,6 @@ packages:
     resolution: {integrity: sha512-4dbzIzqvjtgiM5rw1k5rEHtBANKmdudhGyBEajN01fEyhaAIhsoKNy6y7+IN93IfpFtwY9iqi7kD+xwKhQsNJA==}
     engines: {node: '>=8'}
 
-  type-fest@3.13.1:
-    resolution: {integrity: sha512-tLq3bSNx+xSpwvAJnzrK0Ep5CLNWjvFTOp71URMaAEWBfRb9nnJiBoUe0tF8bI4ZFO3omgBR6NvnbzVUT3Ly4g==}
-    engines: {node: '>=14.16'}
-
   type-fest@4.41.0:
     resolution: {integrity: sha512-TeTSQ6H5YHvpqVwBRcnLDCBnDOHWYu7IvGbHT6N8AOymcr9PJGjc1GTtiWZTYg0NCgYwvnYWEkVChQAr9bjfwA==}
     engines: {node: '>=16'}
@@ -8222,6 +8022,10 @@ packages:
   unicode-property-aliases-ecmascript@2.1.0:
     resolution: {integrity: sha512-6t3foTQI9qne+OZoVQB/8x8rk2k1eVy1gRXhV3oFQ5T6R1dqQ1xtin3XqSlx3+ATBkliTaR/hHyJBm+LVPNM8w==}
     engines: {node: '>=4'}
+
+  unicorn-magic@0.1.0:
+    resolution: {integrity: sha512-lRfVq8fE8gz6QMBuDM6a+LO3IAzTi05H6gCVaUpir2E1Rwpo4ZUog45KpNXKC/Mn3Yb9UDuHumeFTo9iV/D9FQ==}
+    engines: {node: '>=18'}
 
   unist-util-is@6.0.0:
     resolution: {integrity: sha512-2qCTHimwdxLfz+YzdGfkqNlH0tLi9xjTnHddPmJwtIG9MGsdbutfTc4P+haPD7l7Cjxf/WZj+we5qfVPvvxfYw==}
@@ -8665,10 +8469,6 @@ packages:
   yocto-queue@0.1.0:
     resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
     engines: {node: '>=10'}
-
-  yocto-queue@1.2.1:
-    resolution: {integrity: sha512-AyeEbWOu/TAXdxlV9wmGcR0+yh2j3vYPGOECcIj2S7MkrLyC7ne+oye2BKTItt0ii2PHk4cDy+95+LshzbXnGg==}
-    engines: {node: '>=12.20'}
 
   zwitch@2.0.4:
     resolution: {integrity: sha512-bXE4cR/kVZhKZX/RjPEflHaKVhUVl85noU3v6b8apfQEc1x4A+zBxjZ4lN8LqGd6WZ3dl98pY4o717VFmoPp+A==}
@@ -9542,15 +9342,6 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@babel/register@7.28.3(@babel/core@7.28.3)':
-    dependencies:
-      '@babel/core': 7.28.3
-      clone-deep: 4.0.1
-      find-cache-dir: 2.1.0
-      make-dir: 2.1.0
-      pirates: 4.0.7
-      source-map-support: 0.5.21
-
   '@babel/runtime@7.28.3': {}
 
   '@babel/template@7.27.2':
@@ -9741,6 +9532,14 @@ snapshots:
       '@types/conventional-commits-parser': 5.0.1
       chalk: 5.6.0
     optional: true
+
+  '@conventional-changelog/git-client@1.0.1(conventional-commits-filter@5.0.0)(conventional-commits-parser@6.2.0)':
+    dependencies:
+      '@types/semver': 7.7.1
+      semver: 7.7.2
+    optionalDependencies:
+      conventional-commits-filter: 5.0.0
+      conventional-commits-parser: 6.2.0
 
   '@discoveryjs/json-ext@0.5.7': {}
 
@@ -9996,126 +9795,6 @@ snapshots:
       '@eslint/core': 0.15.2
       levn: 0.4.1
 
-  '@fesjs/builder-vite@file:packages/builder-vite(@fesjs/fes@file:packages/fes(vue@3.5.21(typescript@5.9.2)))(@types/node@24.3.0)(core-js@3.45.1)(jiti@2.5.1)(lightningcss@1.30.1)(postcss@8.5.6)(rollup@4.50.0)(sass@1.92.0)(vue@3.5.21(typescript@5.9.2))(yaml@2.8.1)':
-    dependencies:
-      '@fesjs/fes': file:packages/fes(vue@3.5.21(typescript@5.9.2))
-      '@fesjs/shared': link:packages/shared
-      '@fesjs/utils': link:packages/utils
-      '@rollup/pluginutils': 5.2.0(rollup@4.50.0)
-      '@vitejs/plugin-basic-ssl': 2.1.0(vite@7.1.4(@types/node@24.3.0)(jiti@2.5.1)(less@4.4.1)(lightningcss@1.30.1)(sass@1.92.0)(terser@5.44.0)(yaml@2.8.1))
-      '@vitejs/plugin-legacy': 7.2.1(terser@5.44.0)(vite@7.1.4(@types/node@24.3.0)(jiti@2.5.1)(less@4.4.1)(lightningcss@1.30.1)(sass@1.92.0)(terser@5.44.0)(yaml@2.8.1))
-      '@vitejs/plugin-vue': 6.0.1(vite@7.1.4(@types/node@24.3.0)(jiti@2.5.1)(less@4.4.1)(lightningcss@1.30.1)(sass@1.92.0)(terser@5.44.0)(yaml@2.8.1))(vue@3.5.21(typescript@5.9.2))
-      '@vitejs/plugin-vue-jsx': 5.1.1(vite@7.1.4(@types/node@24.3.0)(jiti@2.5.1)(less@4.4.1)(lightningcss@1.30.1)(sass@1.92.0)(terser@5.44.0)(yaml@2.8.1))(vue@3.5.21(typescript@5.9.2))
-      autoprefixer: 10.4.21(postcss@8.5.6)
-      colorette: 2.0.20
-      connect-history-api-fallback: 2.0.0
-      consola: 3.4.2
-      core-js: 3.45.1
-      dotenv: 16.6.1
-      dotenv-expand: 8.0.3
-      ejs: 3.1.10
-      fast-glob: 3.3.3
-      fs-extra: 11.3.1
-      html-minifier-terser: 7.2.0
-      less: 4.4.1
-      node-html-parser: 5.4.2
-      pathe: 0.2.0
-      postcss-flexbugs-fixes: 5.0.2(postcss@8.5.6)
-      postcss-safe-parser: 6.0.0(postcss@8.5.6)
-      rollup-plugin-visualizer: 6.0.3(rollup@4.50.0)
-      terser: 5.44.0
-      vite: 7.1.4(@types/node@24.3.0)(jiti@2.5.1)(less@4.4.1)(lightningcss@1.30.1)(sass@1.92.0)(terser@5.44.0)(yaml@2.8.1)
-    transitivePeerDependencies:
-      - '@types/node'
-      - jiti
-      - lightningcss
-      - postcss
-      - rolldown
-      - rollup
-      - sass
-      - sass-embedded
-      - stylus
-      - sugarss
-      - supports-color
-      - tsx
-      - vue
-      - yaml
-
-  '@fesjs/builder-webpack@file:packages/builder-webpack(@fesjs/fes@file:packages/fes(vue@3.5.21(typescript@5.9.2)))(@swc/core@1.13.5)(@vue/compiler-sfc@3.5.21)(core-js@3.45.1)(esbuild@0.25.9)(lightningcss@1.30.1)(typescript@5.9.2)(vue@3.5.21(typescript@5.9.2))':
-    dependencies:
-      '@babel/core': 7.28.3
-      '@babel/plugin-proposal-do-expressions': 7.28.3(@babel/core@7.28.3)
-      '@babel/plugin-proposal-export-default-from': 7.27.1(@babel/core@7.28.3)
-      '@babel/plugin-proposal-function-bind': 7.27.1(@babel/core@7.28.3)
-      '@babel/plugin-proposal-pipeline-operator': 7.27.1(@babel/core@7.28.3)
-      '@babel/plugin-transform-runtime': 7.28.3(@babel/core@7.28.3)
-      '@babel/preset-env': 7.28.3(@babel/core@7.28.3)
-      '@babel/preset-typescript': 7.27.1(@babel/core@7.28.3)
-      '@fesjs/fes': file:packages/fes(vue@3.5.21(typescript@5.9.2))
-      '@fesjs/shared': link:packages/shared
-      '@fesjs/utils': link:packages/utils
-      '@vue/babel-plugin-jsx': 1.5.0(@babel/core@7.28.3)
-      ajv: 8.17.1
-      autoprefixer: 10.4.21(postcss@8.5.6)
-      babel-loader: 10.0.0(@babel/core@7.28.3)(webpack@5.101.3(@swc/core@1.13.5)(esbuild@0.25.9))
-      cli-highlight: 2.1.11
-      cliui: 8.0.1
-      connect-history-api-fallback: 2.0.0
-      copy-webpack-plugin: 11.0.0(webpack@5.101.3(@swc/core@1.13.5)(esbuild@0.25.9))
-      core-js: 3.45.1
-      css-loader: 6.11.0(webpack@5.101.3(@swc/core@1.13.5)(esbuild@0.25.9))
-      css-minimizer-webpack-plugin: 5.0.1(esbuild@0.25.9)(lightningcss@1.30.1)(webpack@5.101.3(@swc/core@1.13.5)(esbuild@0.25.9))
-      fs-extra: 11.3.1
-      get-folder-size: 5.0.0
-      html-webpack-plugin: 5.6.4(webpack@5.101.3(@swc/core@1.13.5)(esbuild@0.25.9))
-      html-webpack-tags-plugin: 3.0.2(html-webpack-plugin@5.6.4(webpack@5.101.3(@swc/core@1.13.5)(esbuild@0.25.9)))(webpack@5.101.3(@swc/core@1.13.5)(esbuild@0.25.9))
-      less: 4.4.1
-      less-loader: 11.1.4(less@4.4.1)(webpack@5.101.3(@swc/core@1.13.5)(esbuild@0.25.9))
-      mini-css-extract-plugin: 2.9.4(webpack@5.101.3(@swc/core@1.13.5)(esbuild@0.25.9))
-      postcss: 8.5.6
-      postcss-flexbugs-fixes: 5.0.2(postcss@8.5.6)
-      postcss-loader: 7.3.4(postcss@8.5.6)(typescript@5.9.2)(webpack@5.101.3(@swc/core@1.13.5)(esbuild@0.25.9))
-      postcss-safe-parser: 6.0.0(postcss@8.5.6)
-      style-loader: 3.3.4(webpack@5.101.3(@swc/core@1.13.5)(esbuild@0.25.9))
-      terser-webpack-plugin: 5.3.14(@swc/core@1.13.5)(esbuild@0.25.9)(webpack@5.101.3(@swc/core@1.13.5)(esbuild@0.25.9))
-      vue-loader: 17.4.2(@vue/compiler-sfc@3.5.21)(vue@3.5.21(typescript@5.9.2))(webpack@5.101.3(@swc/core@1.13.5)(esbuild@0.25.9))
-      webpack: 5.101.3(@swc/core@1.13.5)(esbuild@0.25.9)
-      webpack-5-chain: 8.0.2
-      webpack-bundle-analyzer: 4.10.2
-      webpack-dev-server: 5.2.2(webpack@5.101.3(@swc/core@1.13.5)(esbuild@0.25.9))
-      webpackbar: 7.0.0(webpack@5.101.3(@swc/core@1.13.5)(esbuild@0.25.9))
-    transitivePeerDependencies:
-      - '@parcel/css'
-      - '@rspack/core'
-      - '@swc/core'
-      - '@swc/css'
-      - '@vue/compiler-sfc'
-      - bufferutil
-      - clean-css
-      - csso
-      - debug
-      - esbuild
-      - lightningcss
-      - supports-color
-      - typescript
-      - uglify-js
-      - utf-8-validate
-      - vue
-      - webpack-cli
-
-  '@fesjs/compiler@3.0.6':
-    dependencies:
-      '@babel/core': 7.28.3
-      '@babel/preset-env': 7.28.3(@babel/core@7.28.3)
-      '@babel/register': 7.28.3(@babel/core@7.28.3)
-      '@fesjs/utils': 3.0.3
-      commander: 7.2.0
-      dotenv: 8.2.0
-      joi: 17.3.0
-      tapable: 2.2.3
-    transitivePeerDependencies:
-      - supports-color
-
   '@fesjs/fes-design@0.8.83(vue@3.5.21(typescript@5.9.2))':
     dependencies:
       '@babel/runtime': 7.28.3
@@ -10136,163 +9815,6 @@ snapshots:
       - react-dom
       - solid-js
       - svelte
-
-  '@fesjs/fes@3.1.17(vue@3.5.21(typescript@5.9.2))':
-    dependencies:
-      '@fesjs/compiler': 3.0.6
-      '@fesjs/preset-built-in': 3.1.14(vue@3.5.21(typescript@5.9.2))
-      '@fesjs/runtime': 3.0.1(vue@3.5.21(typescript@5.9.2))
-      '@fesjs/utils': 3.0.3
-      pirates: 4.0.7
-      resolve-cwd: 3.0.0
-      vue-router: 4.5.1(vue@3.5.21(typescript@5.9.2))
-    transitivePeerDependencies:
-      - debug
-      - supports-color
-      - vue
-
-  '@fesjs/fes@file:packages/fes(vue@3.5.21(typescript@5.9.2))':
-    dependencies:
-      '@fesjs/compiler': link:packages/compiler
-      '@fesjs/preset-built-in': link:packages/preset-built-in
-      '@fesjs/utils': link:packages/utils
-      fs-extra: 11.3.1
-      vue-router: 4.5.1(vue@3.5.21(typescript@5.9.2))
-    transitivePeerDependencies:
-      - vue
-
-  '@fesjs/plugin-access@file:packages/plugin-access(@fesjs/fes@file:packages/fes(vue@3.5.21(typescript@5.9.2)))(vue-router@4.5.1(vue@3.5.21(typescript@5.9.2)))(vue@3.5.21(typescript@5.9.2))':
-    dependencies:
-      '@fesjs/fes': file:packages/fes(vue@3.5.21(typescript@5.9.2))
-      '@fesjs/shared': link:packages/shared
-      '@fesjs/utils': link:packages/utils
-      lodash-es: 4.17.21
-      vue: 3.5.21(typescript@5.9.2)
-      vue-router: 4.5.1(vue@3.5.21(typescript@5.9.2))
-
-  '@fesjs/plugin-layout@file:packages/plugin-layout(@fesjs/fes-design@0.8.83(vue@3.5.21(typescript@5.9.2)))(@fesjs/fes@file:packages/fes(vue@3.5.21(typescript@5.9.2)))(vue-router@4.5.1(vue@3.5.21(typescript@5.9.2)))(vue@3.5.21(typescript@5.9.2))':
-    dependencies:
-      '@fesjs/fes': file:packages/fes(vue@3.5.21(typescript@5.9.2))
-      '@fesjs/fes-design': 0.8.83(vue@3.5.21(typescript@5.9.2))
-      '@fesjs/shared': link:packages/shared
-      '@fesjs/utils': link:packages/utils
-      dompurify: 3.2.6
-      vue: 3.5.21(typescript@5.9.2)
-      vue-router: 4.5.1(vue@3.5.21(typescript@5.9.2))
-
-  '@fesjs/plugin-model@file:packages/plugin-model(@fesjs/fes@file:packages/fes(vue@3.5.21(typescript@5.9.2)))(vue@3.5.21(typescript@5.9.2))':
-    dependencies:
-      '@fesjs/fes': file:packages/fes(vue@3.5.21(typescript@5.9.2))
-      '@fesjs/shared': link:packages/shared
-      '@fesjs/utils': link:packages/utils
-      vue: 3.5.21(typescript@5.9.2)
-
-  '@fesjs/plugin-qiankun@file:packages/plugin-qiankun(@fesjs/fes-design@0.8.83(vue@3.5.21(typescript@5.9.2)))(@fesjs/fes@file:packages/fes(vue@3.5.21(typescript@5.9.2)))(typescript@5.9.2)(vite@7.1.4(@types/node@24.3.0)(jiti@2.5.1)(less@4.4.1)(lightningcss@1.30.1)(sass@1.92.0)(terser@5.44.0)(yaml@2.8.1))(vue@3.5.21(typescript@5.9.2))':
-    dependencies:
-      '@fesjs/fes': file:packages/fes(vue@3.5.21(typescript@5.9.2))
-      '@fesjs/fes-design': 0.8.83(vue@3.5.21(typescript@5.9.2))
-      '@fesjs/shared': link:packages/shared
-      '@fesjs/utils': link:packages/utils
-      address: 1.2.2
-      lodash-es: 4.17.21
-      qiankun: 2.10.16
-      vite-plugin-qiankun: 1.0.15(typescript@5.9.2)(vite@7.1.4(@types/node@24.3.0)(jiti@2.5.1)(less@4.4.1)(lightningcss@1.30.1)(sass@1.92.0)(terser@5.44.0)(yaml@2.8.1))
-      vue: 3.5.21(typescript@5.9.2)
-    transitivePeerDependencies:
-      - typescript
-      - vite
-
-  '@fesjs/plugin-request@3.0.8(@fesjs/fes@packages+fes)(vue@3.5.21(typescript@5.9.2))':
-    dependencies:
-      '@fesjs/fes': link:packages/fes
-      '@fesjs/utils': 3.0.0-rc.2
-      axios: 1.11.0
-      vue: 3.5.21(typescript@5.9.2)
-    transitivePeerDependencies:
-      - debug
-      - supports-color
-
-  '@fesjs/plugin-request@4.0.1(@fesjs/fes@3.1.17(vue@3.5.21(typescript@5.9.2)))(vue@3.5.21(typescript@5.9.2))':
-    dependencies:
-      '@fesjs/fes': 3.1.17(vue@3.5.21(typescript@5.9.2))
-      '@fesjs/utils': 3.0.3
-      '@qlin/request': 0.3.2
-      vue: 3.5.21(typescript@5.9.2)
-    transitivePeerDependencies:
-      - supports-color
-
-  '@fesjs/plugin-watermark@file:packages/plugin-watermark(@fesjs/fes@file:packages/fes(vue@3.5.21(typescript@5.9.2)))(vue@3.5.21(typescript@5.9.2))':
-    dependencies:
-      '@fesjs/fes': file:packages/fes(vue@3.5.21(typescript@5.9.2))
-      '@fesjs/shared': link:packages/shared
-      '@fesjs/utils': link:packages/utils
-      lodash-es: 4.17.21
-      vue: 3.5.21(typescript@5.9.2)
-
-  '@fesjs/preset-built-in@3.1.14(vue@3.5.21(typescript@5.9.2))':
-    dependencies:
-      '@fesjs/compiler': 3.0.6
-      '@fesjs/runtime': 3.0.1(vue@3.5.21(typescript@5.9.2))
-      '@fesjs/utils': 3.0.3
-      '@vue/compiler-sfc': 3.5.21
-      '@wll8/better-mock': 0.3.3-alpha
-      envinfo: 7.14.0
-      express: 4.21.2
-      vue: 3.5.21(typescript@5.9.2)
-    transitivePeerDependencies:
-      - debug
-      - supports-color
-
-  '@fesjs/runtime@3.0.1(vue@3.5.21(typescript@5.9.2))':
-    dependencies:
-      vue: 3.5.21(typescript@5.9.2)
-      vue-router: 4.5.1(vue@3.5.21(typescript@5.9.2))
-
-  '@fesjs/utils@3.0.0-rc.2':
-    dependencies:
-      '@babel/generator': 7.28.3
-      '@babel/parser': 7.28.3
-      '@babel/traverse': 7.28.3
-      chalk: 4.1.2
-      chokidar: 3.6.0
-      crequire: 1.8.1
-      debug: 4.4.1
-      deepmerge: 4.3.1
-      glob: 7.2.3
-      lodash: 4.17.21
-      mkdirp: 1.0.4
-      mustache: 4.2.0
-      pkg-up: 3.1.0
-      portfinder: 1.0.37
-      resolve: 1.22.10
-      rimraf: 3.0.2
-      semver: 7.7.2
-      yargs-parser: 20.2.9
-    transitivePeerDependencies:
-      - supports-color
-
-  '@fesjs/utils@3.0.3':
-    dependencies:
-      '@babel/generator': 7.28.3
-      '@babel/parser': 7.28.3
-      '@babel/traverse': 7.28.3
-      chalk: 4.1.2
-      chokidar: 3.6.0
-      crequire: 1.8.1
-      debug: 4.4.1
-      deepmerge: 4.3.1
-      glob: 9.3.5
-      lodash: 4.17.21
-      mkdirp: 2.1.6
-      mustache: 4.2.0
-      pkg-up: 3.1.0
-      portfinder: 1.0.37
-      resolve: 1.22.10
-      rimraf: 4.4.1
-      semver: 7.7.2
-      yargs-parser: 21.1.1
-    transitivePeerDependencies:
-      - supports-color
 
   '@floating-ui/core@1.7.3':
     dependencies:
@@ -11656,8 +11178,6 @@ snapshots:
       '@algolia/requester-fetch': 5.36.0
       '@algolia/requester-node-http': 5.36.0
 
-  ansi-colors@4.1.3: {}
-
   ansi-escapes@4.3.2:
     dependencies:
       type-fest: 0.21.3
@@ -11728,8 +11248,6 @@ snapshots:
 
   async@3.2.6: {}
 
-  asynckit@0.4.0: {}
-
   at-least-node@1.0.0: {}
 
   autoprefixer@10.4.21(postcss@8.5.6):
@@ -11745,14 +11263,6 @@ snapshots:
   available-typed-arrays@1.0.7:
     dependencies:
       possible-typed-array-names: 1.1.0
-
-  axios@1.11.0:
-    dependencies:
-      follow-redirects: 1.15.11
-      form-data: 4.0.4
-      proxy-from-env: 1.1.0
-    transitivePeerDependencies:
-      - debug
 
   babel-loader@10.0.0(@babel/core@7.28.3)(webpack@5.101.3(@swc/core@1.13.5)(esbuild@0.25.9)):
     dependencies:
@@ -12053,12 +11563,6 @@ snapshots:
       strip-ansi: 6.0.1
       wrap-ansi: 7.0.0
 
-  clone-deep@4.0.1:
-    dependencies:
-      is-plain-object: 2.0.4
-      kind-of: 6.0.3
-      shallow-clone: 3.0.1
-
   clone@1.0.4: {}
 
   color-convert@1.9.3:
@@ -12076,10 +11580,6 @@ snapshots:
   colord@2.9.3: {}
 
   colorette@2.0.20: {}
-
-  combined-stream@1.0.8:
-    dependencies:
-      delayed-stream: 1.0.0
 
   commander@10.0.1: {}
 
@@ -12116,8 +11616,6 @@ snapshots:
     transitivePeerDependencies:
       - '@types/node'
       - typescript
-
-  commondir@1.0.1: {}
 
   compare-func@2.0.0:
     dependencies:
@@ -12160,74 +11658,86 @@ snapshots:
     dependencies:
       compare-func: 2.0.0
 
-  conventional-changelog-atom@4.0.0: {}
+  conventional-changelog-angular@8.0.0:
+    dependencies:
+      compare-func: 2.0.0
 
-  conventional-changelog-cli@4.1.0:
+  conventional-changelog-atom@5.0.0: {}
+
+  conventional-changelog-cli@5.0.0(conventional-commits-filter@5.0.0):
     dependencies:
       add-stream: 1.0.0
-      conventional-changelog: 5.1.0
-      meow: 12.1.1
+      conventional-changelog: 6.0.0(conventional-commits-filter@5.0.0)
+      meow: 13.2.0
       tempfile: 5.0.0
+    transitivePeerDependencies:
+      - conventional-commits-filter
 
-  conventional-changelog-codemirror@4.0.0: {}
+  conventional-changelog-codemirror@5.0.0: {}
 
   conventional-changelog-conventionalcommits@7.0.2:
     dependencies:
       compare-func: 2.0.0
 
-  conventional-changelog-core@7.0.0:
-    dependencies:
-      '@hutson/parse-repository-url': 5.0.0
-      add-stream: 1.0.0
-      conventional-changelog-writer: 7.0.1
-      conventional-commits-parser: 5.0.0
-      git-raw-commits: 4.0.0
-      git-semver-tags: 7.0.1
-      hosted-git-info: 7.0.2
-      normalize-package-data: 6.0.2
-      read-pkg: 8.1.0
-      read-pkg-up: 10.1.0
-
-  conventional-changelog-ember@4.0.0: {}
-
-  conventional-changelog-eslint@5.0.0: {}
-
-  conventional-changelog-express@4.0.0: {}
-
-  conventional-changelog-jquery@5.0.0: {}
-
-  conventional-changelog-jshint@4.0.0:
+  conventional-changelog-conventionalcommits@8.0.0:
     dependencies:
       compare-func: 2.0.0
 
-  conventional-changelog-preset-loader@4.1.0: {}
-
-  conventional-changelog-writer@7.0.1:
+  conventional-changelog-core@8.0.0(conventional-commits-filter@5.0.0):
     dependencies:
-      conventional-commits-filter: 4.0.0
+      '@hutson/parse-repository-url': 5.0.0
+      add-stream: 1.0.0
+      conventional-changelog-writer: 8.2.0
+      conventional-commits-parser: 6.2.0
+      git-raw-commits: 5.0.0(conventional-commits-filter@5.0.0)(conventional-commits-parser@6.2.0)
+      git-semver-tags: 8.0.0(conventional-commits-filter@5.0.0)(conventional-commits-parser@6.2.0)
+      hosted-git-info: 7.0.2
+      normalize-package-data: 6.0.2
+      read-package-up: 11.0.0
+      read-pkg: 9.0.1
+    transitivePeerDependencies:
+      - conventional-commits-filter
+
+  conventional-changelog-ember@5.0.0: {}
+
+  conventional-changelog-eslint@6.0.0: {}
+
+  conventional-changelog-express@5.0.0: {}
+
+  conventional-changelog-jquery@6.0.0: {}
+
+  conventional-changelog-jshint@5.0.0:
+    dependencies:
+      compare-func: 2.0.0
+
+  conventional-changelog-preset-loader@5.0.0: {}
+
+  conventional-changelog-writer@8.2.0:
+    dependencies:
+      conventional-commits-filter: 5.0.0
       handlebars: 4.7.8
-      json-stringify-safe: 5.0.1
-      meow: 12.1.1
+      meow: 13.2.0
       semver: 7.7.2
-      split2: 4.2.0
 
-  conventional-changelog@5.1.0:
+  conventional-changelog@6.0.0(conventional-commits-filter@5.0.0):
     dependencies:
-      conventional-changelog-angular: 7.0.0
-      conventional-changelog-atom: 4.0.0
-      conventional-changelog-codemirror: 4.0.0
-      conventional-changelog-conventionalcommits: 7.0.2
-      conventional-changelog-core: 7.0.0
-      conventional-changelog-ember: 4.0.0
-      conventional-changelog-eslint: 5.0.0
-      conventional-changelog-express: 4.0.0
-      conventional-changelog-jquery: 5.0.0
-      conventional-changelog-jshint: 4.0.0
-      conventional-changelog-preset-loader: 4.1.0
+      conventional-changelog-angular: 8.0.0
+      conventional-changelog-atom: 5.0.0
+      conventional-changelog-codemirror: 5.0.0
+      conventional-changelog-conventionalcommits: 8.0.0
+      conventional-changelog-core: 8.0.0(conventional-commits-filter@5.0.0)
+      conventional-changelog-ember: 5.0.0
+      conventional-changelog-eslint: 6.0.0
+      conventional-changelog-express: 5.0.0
+      conventional-changelog-jquery: 6.0.0
+      conventional-changelog-jshint: 5.0.0
+      conventional-changelog-preset-loader: 5.0.0
+    transitivePeerDependencies:
+      - conventional-commits-filter
 
   conventional-commit-types@3.0.0: {}
 
-  conventional-commits-filter@4.0.0: {}
+  conventional-commits-filter@5.0.0: {}
 
   conventional-commits-parser@5.0.0:
     dependencies:
@@ -12235,6 +11745,10 @@ snapshots:
       is-text-path: 2.0.0
       meow: 12.1.1
       split2: 4.2.0
+
+  conventional-commits-parser@6.2.0:
+    dependencies:
+      meow: 13.2.0
 
   convert-source-map@2.0.0: {}
 
@@ -12301,8 +11815,6 @@ snapshots:
     optionalDependencies:
       typescript: 5.9.2
     optional: true
-
-  crequire@1.8.1: {}
 
   cross-spawn@6.0.6:
     dependencies:
@@ -12507,8 +12019,6 @@ snapshots:
 
   dargs@7.0.0: {}
 
-  dargs@8.1.0: {}
-
   data-view-buffer@1.0.2:
     dependencies:
       call-bound: 1.0.4
@@ -12586,8 +12096,6 @@ snapshots:
       define-data-property: 1.1.4
       has-property-descriptors: 1.0.2
       object-keys: 1.1.1
-
-  delayed-stream@1.0.0: {}
 
   depd@1.1.2: {}
 
@@ -12720,11 +12228,6 @@ snapshots:
     dependencies:
       graceful-fs: 4.2.11
       tapable: 2.2.3
-
-  enquirer@2.4.1:
-    dependencies:
-      ansi-colors: 4.1.3
-      strip-ansi: 6.0.1
 
   entities@2.2.0: {}
 
@@ -13336,12 +12839,6 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  find-cache-dir@2.1.0:
-    dependencies:
-      commondir: 1.0.1
-      make-dir: 2.1.0
-      pkg-dir: 3.0.0
-
   find-node-modules@2.1.3:
     dependencies:
       findup-sync: 4.0.0
@@ -13350,10 +12847,6 @@ snapshots:
   find-root@1.1.0: {}
 
   find-up-simple@1.0.1: {}
-
-  find-up@3.0.0:
-    dependencies:
-      locate-path: 3.0.0
 
   find-up@4.1.0:
     dependencies:
@@ -13364,11 +12857,6 @@ snapshots:
     dependencies:
       locate-path: 6.0.0
       path-exists: 4.0.0
-
-  find-up@6.3.0:
-    dependencies:
-      locate-path: 7.2.0
-      path-exists: 5.0.0
 
   findup-sync@4.0.0:
     dependencies:
@@ -13400,14 +12888,6 @@ snapshots:
     dependencies:
       cross-spawn: 7.0.6
       signal-exit: 4.1.0
-
-  form-data@4.0.4:
-    dependencies:
-      asynckit: 0.4.0
-      combined-stream: 1.0.8
-      es-set-tostringtag: 2.1.0
-      hasown: 2.0.2
-      mime-types: 2.1.35
 
   format@0.2.2: {}
 
@@ -13501,16 +12981,21 @@ snapshots:
       split2: 3.2.2
       through2: 4.0.2
 
-  git-raw-commits@4.0.0:
+  git-raw-commits@5.0.0(conventional-commits-filter@5.0.0)(conventional-commits-parser@6.2.0):
     dependencies:
-      dargs: 8.1.0
-      meow: 12.1.1
-      split2: 4.2.0
+      '@conventional-changelog/git-client': 1.0.1(conventional-commits-filter@5.0.0)(conventional-commits-parser@6.2.0)
+      meow: 13.2.0
+    transitivePeerDependencies:
+      - conventional-commits-filter
+      - conventional-commits-parser
 
-  git-semver-tags@7.0.1:
+  git-semver-tags@8.0.0(conventional-commits-filter@5.0.0)(conventional-commits-parser@6.2.0):
     dependencies:
-      meow: 12.1.1
-      semver: 7.7.2
+      '@conventional-changelog/git-client': 1.0.1(conventional-commits-filter@5.0.0)(conventional-commits-parser@6.2.0)
+      meow: 13.2.0
+    transitivePeerDependencies:
+      - conventional-commits-filter
+      - conventional-commits-parser
 
   github-slugger@2.0.0: {}
 
@@ -13833,6 +13318,8 @@ snapshots:
 
   indent-string@5.0.0: {}
 
+  index-to-position@1.1.0: {}
+
   inflight@1.0.6:
     dependencies:
       once: 1.4.0
@@ -13983,10 +13470,6 @@ snapshots:
 
   is-plain-obj@3.0.0: {}
 
-  is-plain-object@2.0.4:
-    dependencies:
-      isobject: 3.0.1
-
   is-regex@1.2.1:
     dependencies:
       call-bound: 1.0.4
@@ -14061,8 +13544,6 @@ snapshots:
   isarray@2.0.5: {}
 
   isexe@2.0.0: {}
-
-  isobject@3.0.1: {}
 
   jackspeak@3.4.3:
     dependencies:
@@ -14150,15 +13631,11 @@ snapshots:
 
   json-parse-even-better-errors@2.3.1: {}
 
-  json-parse-even-better-errors@3.0.2: {}
-
   json-schema-traverse@0.4.1: {}
 
   json-schema-traverse@1.0.0: {}
 
   json-stable-stringify-without-jsonify@1.0.1: {}
-
-  json-stringify-safe@5.0.1: {}
 
   json5@2.2.3: {}
 
@@ -14263,8 +13740,6 @@ snapshots:
 
   lines-and-columns@1.2.4: {}
 
-  lines-and-columns@2.0.4: {}
-
   lint-staged@15.5.2:
     dependencies:
       chalk: 5.6.0
@@ -14325,11 +13800,6 @@ snapshots:
       pkg-types: 2.3.0
       quansync: 0.2.11
 
-  locate-path@3.0.0:
-    dependencies:
-      p-locate: 3.0.0
-      path-exists: 3.0.0
-
   locate-path@5.0.0:
     dependencies:
       p-locate: 4.1.0
@@ -14337,10 +13807,6 @@ snapshots:
   locate-path@6.0.0:
     dependencies:
       p-locate: 5.0.0
-
-  locate-path@7.2.0:
-    dependencies:
-      p-locate: 6.0.0
 
   lodash-es@4.17.21: {}
 
@@ -14420,6 +13886,7 @@ snapshots:
     dependencies:
       pify: 4.0.1
       semver: 5.7.2
+    optional: true
 
   map-obj@1.0.1: {}
 
@@ -14870,8 +14337,6 @@ snapshots:
     dependencies:
       minimist: 1.2.8
 
-  mkdirp@1.0.4: {}
-
   mkdirp@2.1.6: {}
 
   mkdirp@3.0.1: {}
@@ -15102,14 +14567,6 @@ snapshots:
     dependencies:
       yocto-queue: 0.1.0
 
-  p-limit@4.0.0:
-    dependencies:
-      yocto-queue: 1.2.1
-
-  p-locate@3.0.0:
-    dependencies:
-      p-limit: 2.3.0
-
   p-locate@4.1.0:
     dependencies:
       p-limit: 2.3.0
@@ -15117,10 +14574,6 @@ snapshots:
   p-locate@5.0.0:
     dependencies:
       p-limit: 3.1.0
-
-  p-locate@6.0.0:
-    dependencies:
-      p-limit: 4.0.0
 
   p-retry@6.2.1:
     dependencies:
@@ -15178,13 +14631,11 @@ snapshots:
       json-parse-even-better-errors: 2.3.1
       lines-and-columns: 1.2.4
 
-  parse-json@7.1.1:
+  parse-json@8.3.0:
     dependencies:
       '@babel/code-frame': 7.27.1
-      error-ex: 1.3.2
-      json-parse-even-better-errors: 3.0.2
-      lines-and-columns: 2.0.4
-      type-fest: 3.13.1
+      index-to-position: 1.1.0
+      type-fest: 4.41.0
 
   parse-node-version@1.0.1: {}
 
@@ -15220,11 +14671,7 @@ snapshots:
       no-case: 3.0.4
       tslib: 2.8.1
 
-  path-exists@3.0.0: {}
-
   path-exists@4.0.0: {}
-
-  path-exists@5.0.0: {}
 
   path-is-absolute@1.0.1: {}
 
@@ -15282,7 +14729,8 @@ snapshots:
 
   pify@3.0.0: {}
 
-  pify@4.0.1: {}
+  pify@4.0.1:
+    optional: true
 
   pinia@3.0.3(typescript@5.9.2)(vue@3.5.21(typescript@5.9.2)):
     dependencies:
@@ -15297,10 +14745,6 @@ snapshots:
     dependencies:
       pngjs: 3.4.0
 
-  pkg-dir@3.0.0:
-    dependencies:
-      find-up: 3.0.0
-
   pkg-types@1.3.1:
     dependencies:
       confbox: 0.1.8
@@ -15312,10 +14756,6 @@ snapshots:
       confbox: 0.2.2
       exsolve: 1.0.7
       pathe: 2.0.3
-
-  pkg-up@3.1.0:
-    dependencies:
-      find-up: 3.0.0
 
   pluralize@8.0.0: {}
 
@@ -15719,8 +15159,6 @@ snapshots:
       forwarded: 0.2.0
       ipaddr.js: 1.9.1
 
-  proxy-from-env@1.1.0: {}
-
   prr@1.0.1:
     optional: true
 
@@ -15756,10 +15194,10 @@ snapshots:
       iconv-lite: 0.4.24
       unpipe: 1.0.0
 
-  read-pkg-up@10.1.0:
+  read-package-up@11.0.0:
     dependencies:
-      find-up: 6.3.0
-      read-pkg: 8.1.0
+      find-up-simple: 1.0.1
+      read-pkg: 9.0.1
       type-fest: 4.41.0
 
   read-pkg-up@7.0.1:
@@ -15781,12 +15219,13 @@ snapshots:
       parse-json: 5.2.0
       type-fest: 0.6.0
 
-  read-pkg@8.1.0:
+  read-pkg@9.0.1:
     dependencies:
       '@types/normalize-package-data': 2.4.4
       normalize-package-data: 6.0.2
-      parse-json: 7.1.1
+      parse-json: 8.3.0
       type-fest: 4.41.0
+      unicorn-magic: 0.1.0
 
   readable-stream@2.3.8:
     dependencies:
@@ -15901,10 +15340,6 @@ snapshots:
 
   requires-port@1.0.0: {}
 
-  resolve-cwd@3.0.0:
-    dependencies:
-      resolve-from: 5.0.0
-
   resolve-dir@1.0.1:
     dependencies:
       expand-tilde: 2.0.2
@@ -15941,10 +15376,6 @@ snapshots:
   reusify@1.1.0: {}
 
   rfdc@1.4.1: {}
-
-  rimraf@3.0.2:
-    dependencies:
-      glob: 7.2.3
 
   rimraf@4.4.1:
     dependencies:
@@ -16146,10 +15577,6 @@ snapshots:
   setprototypeof@1.1.0: {}
 
   setprototypeof@1.2.0: {}
-
-  shallow-clone@3.0.1:
-    dependencies:
-      kind-of: 6.0.3
 
   shebang-command@1.2.0:
     dependencies:
@@ -16670,8 +16097,6 @@ snapshots:
 
   type-fest@0.8.1: {}
 
-  type-fest@3.13.1: {}
-
   type-fest@4.41.0: {}
 
   type-is@1.6.18:
@@ -16740,6 +16165,8 @@ snapshots:
   unicode-match-property-value-ecmascript@2.2.0: {}
 
   unicode-property-aliases-ecmascript@2.1.0: {}
+
+  unicorn-magic@0.1.0: {}
 
   unist-util-is@6.0.0:
     dependencies:
@@ -17212,7 +16639,5 @@ snapshots:
       yargs-parser: 21.1.1
 
   yocto-queue@0.1.0: {}
-
-  yocto-queue@1.2.1: {}
 
   zwitch@2.0.4: {}
