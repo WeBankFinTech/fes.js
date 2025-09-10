@@ -10,7 +10,7 @@
     "types.d.ts"
   ],
   "scripts": {
-      "dev": "tsup --watch --sourcemap",
+      "watch": "tsup --watch",
       "build": "tsup"
   },
   "license": "MIT",

@@ -42,7 +42,7 @@
         "node": ">= 18.0.0"
     },
     "scripts": {
-        "dev": "tsup --watch --sourcemap",
+        "watch": "tsup --watch",
         "build": "tsup"
     },
     "publishConfig": {
