@@ -1,7 +1,5 @@
-import { createApp } from 'vue';
 import { createRouter as createVueRouter, {{{ CREATE_HISTORY }}}, ApplyPluginsType } from '{{{ runtimePath }}}';
 import { plugin } from '../plugin';
-import { updateInitialState } from '../../initialState';
 
 const ROUTER_BASE = '{{{ routerBase }}}';
 let router = null;
@@ -35,48 +33,7 @@ export const createRouter = (routes) => {
   router = createVueRouter({
     history,
     routes: route.routes
-  });
-
-  let isInit = false
-  router.beforeEach(async (to, from, next) => {
-    if(isInit){
-      return next()
-    }
-    isInit = true
-    const beforeRenderConfig = plugin.applyPlugins({
-      key: "beforeRender",
-      type: ApplyPluginsType.modify,
-      initialValue: {
-          loading: null,
-          action: null
-      },
-    });
-    if (typeof beforeRenderConfig.action !== "function") {
-      return next();
-    }
-    const rootElement = document.createElement('div');
-    document.body.appendChild(rootElement)
-    const app = createApp(beforeRenderConfig.loading);
-    app.mount(rootElement);
-    try {
-        const initialState = await beforeRenderConfig.action({router, history});
-        updateInitialState(initialState || {})
-        next();
-    } catch(e){
-        next(false);
-        console.error(`[fes] beforeRender执行出现异常：`);
-        console.error(e);
-    }
-    app.unmount();
-    app._container.innerHTML = '';
-    document.body.removeChild(rootElement);
-  })
-
-  plugin.applyPlugins({
-    key: 'onRouterCreated',
-    type: ApplyPluginsType.event,
-    args: { router, history },
-  });
+  });  
 
   return router;
 };

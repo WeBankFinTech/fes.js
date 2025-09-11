@@ -6,7 +6,7 @@ import { plugin } from './core/plugin';
 import './core/pluginRegister';
 import { ApplyPluginsType } from '{{{ runtimePath }}}';
 import { getRoutes } from './core/routes/routes';
-import DefaultContainer from './defaultContainer.vue';
+import getRootContainer from './getRootContainer';
 
 {{{ imports }}}
 
@@ -16,17 +16,8 @@ import DefaultContainer from './defaultContainer.vue';
 
 const renderClient = (opts = {}) => {
     const { plugin, routes, rootElement } = opts;
-    const rootContainer = plugin.applyPlugins({
-        type: ApplyPluginsType.modify,
-        key: 'rootContainer',
-        initialValue: DefaultContainer,
-        args: {
-            routes: routes,
-            plugin: plugin
-        }
-    });
-
-    const app = createApp(rootContainer);
+    
+    const app = createApp(getRootContainer(routes, plugin));
 
     plugin.applyPlugins({
         key: 'onAppCreated',

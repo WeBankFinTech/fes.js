@@ -73,15 +73,14 @@ export default function (api) {
             }),
         });
 
-        const defaultContainerName = 'defaultContainer';
-        api.writeTmpFile({
-            path: `${defaultContainerName}.vue`,
-            content: readFileSync(join(__dirname, `./${defaultContainerName}.tpl`), 'utf-8'),
-        });
-
         api.writeTmpFile({
             path: `initialState.js`,
             content: Mustache.render(readFileSync(join(__dirname, `./initialState.tpl`), 'utf-8')),
+        });
+
+        api.writeTmpFile({
+            path: `getRootContainer.jsx`,
+            content: Mustache.render(readFileSync(join(__dirname, `./getRootContainer.jsx.tpl`), 'utf-8'), { runtimePath }),
         });
     });
 }
