@@ -1,4 +1,4 @@
-import generator from '@babel/generator';
+import { generate } from '@babel/generator';
 import * as parser from '@babel/parser';
 import traverse from '@babel/traverse';
 import chalk from 'chalk';
@@ -33,7 +33,7 @@ export {
     chokidar,
     createDebug,
     deepmerge,
-    generator,
+    generate,
     glob,
     lodash,
     logger,

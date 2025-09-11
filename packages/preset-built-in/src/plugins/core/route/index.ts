@@ -1,7 +1,7 @@
 import { readdirSync, readFileSync, statSync } from 'node:fs';
 import { basename, dirname, extname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { generator, lodash, logger, parser, winPath } from '@fesjs/utils';
+import { generate, lodash, logger, parser, winPath } from '@fesjs/utils';
 
 import { parse } from '@vue/compiler-sfc';
 import { runtimePath } from '../../../utils/constants';
@@ -92,13 +92,15 @@ function getRouteMeta(content) {
                 && expression.expression.callee.name === 'defineRouteMeta',
         )[0];
         if (defineRouteExpression) {
-            const argument = generator(defineRouteExpression.expression.arguments[0]);
+            const argument = generate(defineRouteExpression.expression.arguments[0]);
+
             // eslint-disable-next-line no-eval
             const fn = eval(`() => (${argument.code})`);
             return fn();
         }
     }
-    catch (err) {}
+    catch (err) {
+    }
     return null;
 }
 

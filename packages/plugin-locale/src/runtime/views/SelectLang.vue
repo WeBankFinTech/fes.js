@@ -17,11 +17,11 @@
 <script>
 import { FScrollbar, FTooltip } from '@fesjs/fes-design';
 import { LanguageOutlined } from '@fesjs/fes-design/icon';
-import { useI18n } from 'vue-i18n';
 import { computed, ref } from 'vue';
-import langUConfigMap from '../langUConfigMap';
-
+import { useI18n } from 'vue-i18n';
 import { locale as _locale } from '../core';
+
+import langUConfigMap from '../langUConfigMap';
 
 export default {
     components: {
