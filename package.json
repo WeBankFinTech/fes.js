@@ -19,7 +19,7 @@
     ],
     "scripts": {
         "bootstrap": "pnpm i",
-        "dev": "node scripts/build.mjs --watch",
+        "dev": "turbo run watch",
         "build": "turbo run build",
         "release": "node scripts/release.mjs",
         "clean": "rm -rf ./node_modules & rm -rf packages/**/node_modules & rm -rf packages/**/.cache",

@@ -23,7 +23,7 @@
         "types.d.ts"
     ],
     "scripts": {
-        "dev": "tsup --watch --sourcemap",
+        "watch": "tsup --watch",
         "build": "tsup",
         "start": "npm-run-all --parallel start:*",
         "start:vite-main": "cd ./examples/vite-main && fes dev",

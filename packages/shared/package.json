@@ -23,7 +23,7 @@
         "dist"
     ],
     "scripts": {
-        "dev": "tsup --watch --sourcemap",
+        "watch": "tsup --watch",
         "build": "tsup"
     },
     "publishConfig": {
