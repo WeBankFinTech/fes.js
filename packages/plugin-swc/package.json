@@ -1,6 +1,6 @@
 {
     "name": "@fesjs/plugin-swc",
-    "version": "3.0.5",
+    "version": "4.0.0-beta.0",
     "description": "@fesjs/plugin-swc",
     "author": "RiESAEX",
     "license": "MIT",
@@ -31,11 +31,11 @@
         "access": "public"
     },
     "peerDependencies": {
-        "@fesjs/fes": "^3.1.12"
+        "@fesjs/fes": "^4.0.0-beta.0"
     },
     "dependencies": {
-        "@fesjs/shared": "workspace:*",
-        "@fesjs/utils": "workspace:*",
+        "@fesjs/shared": "^4.0.0-beta.0",
+        "@fesjs/utils": "^4.0.0-beta.0",
         "@swc/core": "^1.13.5",
         "@swc/css": "^0.0.28",
         "css-minimizer-webpack-plugin": "^7.0.2",

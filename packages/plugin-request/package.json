@@ -1,6 +1,6 @@
 {
     "name": "@fesjs/plugin-request",
-    "version": "4.0.1",
+    "version": "5.0.0-beta.0",
     "description": "@fesjs/plugin-request",
     "author": "qlin",
     "license": "MIT",
@@ -30,12 +30,12 @@
         "access": "public"
     },
     "peerDependencies": {
-        "@fesjs/fes": "^3.1.12",
+        "@fesjs/fes": "^4.0.0-beta.0",
         "vue": "^3.2.37"
     },
     "dependencies": {
-        "@fesjs/shared": "workspace:*",
-        "@fesjs/utils": "workspace:*",
+        "@fesjs/shared": "^4.0.0-beta.0",
+        "@fesjs/utils": "^4.0.0-beta.0",
         "@qlin/request": "^0.3.1"
     },
     "typings": "./types.d.ts"

@@ -1,6 +1,6 @@
 {
     "name": "@fesjs/shared",
-    "version": "3.0.3",
+    "version": "4.0.0-beta.0",
     "description": "@fesjs/shared",
     "author": "qlin",
     "license": "MIT",
@@ -30,6 +30,6 @@
         "access": "public"
     },
     "dependencies": {
-        "@fesjs/utils": "workspace:*"
+        "@fesjs/utils": "^4.0.0-beta.0"
     }
 }

@@ -1,7 +1,7 @@
 {
     "name": "@fesjs/fes",
     "type": "module",
-    "version": "3.1.17",
+    "version": "4.0.0-beta.0",
     "description": "一个好用的前端管理台快速开发框架",
     "preferGlobal": true,
     "author": "qlin",
@@ -49,9 +49,9 @@
         "access": "public"
     },
     "dependencies": {
-        "@fesjs/compiler": "workspace:*",
-        "@fesjs/preset-built-in": "workspace:*",
-        "@fesjs/utils": "workspace:*",
+        "@fesjs/compiler": "^4.0.0-beta.0",
+        "@fesjs/preset-built-in": "^4.0.0-beta.0",
+        "@fesjs/utils": "^4.0.0-beta.0",
         "fs-extra": "^11.3.1",
         "vue-router": "^4.5.1"
     },

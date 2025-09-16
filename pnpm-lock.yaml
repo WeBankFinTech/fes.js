@@ -79,13 +79,13 @@ importers:
   packages/builder-vite:
     dependencies:
       '@fesjs/fes':
-        specifier: ^3.1.12
+        specifier: ^4.0.0-beta.0
         version: link:../fes
       '@fesjs/shared':
-        specifier: workspace:*
+        specifier: ^4.0.0-beta.0
         version: link:../shared
       '@fesjs/utils':
-        specifier: workspace:*
+        specifier: ^4.0.0-beta.0
         version: link:../utils
       '@rollup/pluginutils':
         specifier: ^5.1.0
@@ -187,13 +187,13 @@ importers:
         specifier: ^7.27.1
         version: 7.27.1(@babel/core@7.28.3)
       '@fesjs/fes':
-        specifier: ^3.1.17
+        specifier: ^4.0.0-beta.0
         version: link:../fes
       '@fesjs/shared':
-        specifier: workspace:*
+        specifier: ^4.0.0-beta.0
         version: link:../shared
       '@fesjs/utils':
-        specifier: workspace:*
+        specifier: ^4.0.0-beta.0
         version: link:../utils
       '@vue/babel-plugin-jsx':
         specifier: ^1.5.0
@@ -295,7 +295,7 @@ importers:
         specifier: ^7.28.3
         version: 7.28.3(@babel/core@7.28.3)
       '@fesjs/utils':
-        specifier: workspace:*
+        specifier: ^4.0.0-beta.0
         version: link:../utils
       commander:
         specifier: ^7.0.0
@@ -354,13 +354,13 @@ importers:
   packages/fes:
     dependencies:
       '@fesjs/compiler':
-        specifier: workspace:*
+        specifier: ^4.0.0-beta.0
         version: link:../compiler
       '@fesjs/preset-built-in':
-        specifier: workspace:*
+        specifier: ^4.0.0-beta.0
         version: link:../preset-built-in
       '@fesjs/utils':
-        specifier: workspace:*
+        specifier: ^4.0.0-beta.0
         version: link:../utils
       fs-extra:
         specifier: ^11.3.1
@@ -517,13 +517,13 @@ importers:
   packages/plugin-access:
     dependencies:
       '@fesjs/fes':
-        specifier: ^3.1.13
+        specifier: ^4.0.0-beta.0
         version: link:../fes
       '@fesjs/shared':
-        specifier: workspace:*
+        specifier: ^4.0.0-beta.0
         version: link:../shared
       '@fesjs/utils':
-        specifier: workspace:*
+        specifier: ^4.0.0-beta.0
         version: link:../utils
       lodash-es:
         specifier: ^4.17.21
@@ -538,10 +538,10 @@ importers:
   packages/plugin-enums:
     dependencies:
       '@fesjs/fes':
-        specifier: ^3.1.9
+        specifier: ^4.0.0-beta.0
         version: link:../fes
       '@fesjs/shared':
-        specifier: workspace:*
+        specifier: ^4.0.0-beta.0
         version: link:../shared
       vue:
         specifier: ^3.5.21
@@ -550,10 +550,10 @@ importers:
   packages/plugin-icon:
     dependencies:
       '@fesjs/fes':
-        specifier: ^3.0.0
+        specifier: ^4.0.0-beta.0
         version: link:../fes
       '@fesjs/shared':
-        specifier: workspace:*
+        specifier: ^4.0.0-beta.0
         version: link:../shared
       svgo:
         specifier: ^4.0.0
@@ -565,16 +565,16 @@ importers:
   packages/plugin-layout:
     dependencies:
       '@fesjs/fes':
-        specifier: ^3.1.17
+        specifier: ^4.0.0-beta.0
         version: link:../fes
       '@fesjs/fes-design':
         specifier: '>=0.7.0'
         version: 0.8.83(vue@3.5.21(typescript@5.9.2))
       '@fesjs/shared':
-        specifier: workspace:*
+        specifier: ^4.0.0-beta.0
         version: link:../shared
       '@fesjs/utils':
-        specifier: workspace:*
+        specifier: ^4.0.0-beta.0
         version: link:../utils
       dompurify:
         specifier: ^3.1.7
@@ -589,16 +589,16 @@ importers:
   packages/plugin-locale:
     dependencies:
       '@fesjs/fes':
-        specifier: ^3.1.12
+        specifier: ^4.0.0-beta.0
         version: link:../fes
       '@fesjs/fes-design':
         specifier: '>=0.7.0'
         version: 0.8.83(vue@3.5.21(typescript@5.9.2))
       '@fesjs/shared':
-        specifier: workspace:*
+        specifier: ^4.0.0-beta.0
         version: link:../shared
       '@fesjs/utils':
-        specifier: workspace:*
+        specifier: ^4.0.0-beta.0
         version: link:../utils
       lodash-es:
         specifier: ^4.17.21
@@ -613,13 +613,13 @@ importers:
   packages/plugin-login:
     dependencies:
       '@fesjs/fes':
-        specifier: ^3.0.0
+        specifier: ^4.0.0-beta.0
         version: link:../fes
       '@fesjs/plugin-request':
-        specifier: ^4.0.0-rc.3
+        specifier: ^5.0.0-beta.0
         version: link:../plugin-request
       '@fesjs/shared':
-        specifier: workspace:*
+        specifier: ^4.0.0-beta.0
         version: link:../shared
       vue:
         specifier: ^3.5.21
@@ -628,13 +628,13 @@ importers:
   packages/plugin-model:
     dependencies:
       '@fesjs/fes':
-        specifier: ^3.1.12
+        specifier: ^4.0.0-beta.0
         version: link:../fes
       '@fesjs/shared':
-        specifier: workspace:*
+        specifier: ^4.0.0-beta.0
         version: link:../shared
       '@fesjs/utils':
-        specifier: workspace:*
+        specifier: ^4.0.0-beta.0
         version: link:../utils
       '@vueuse/core':
         specifier: ^13.0.0
@@ -646,13 +646,13 @@ importers:
   packages/plugin-monaco-editor:
     dependencies:
       '@fesjs/fes':
-        specifier: ^3.1.12
+        specifier: ^4.0.0-beta.0
         version: link:../fes
       '@fesjs/shared':
-        specifier: workspace:*
+        specifier: ^4.0.0-beta.0
         version: link:../shared
       '@fesjs/utils':
-        specifier: 'workspace: *'
+        specifier: ^4.0.0-beta.0
         version: link:../utils
       lodash-es:
         specifier: ^4.17.21
@@ -673,13 +673,13 @@ importers:
   packages/plugin-pinia:
     dependencies:
       '@fesjs/fes':
-        specifier: ^3.1.12
+        specifier: ^4.0.0-beta.0
         version: link:../fes
       '@fesjs/shared':
-        specifier: workspace:*
+        specifier: ^4.0.0-beta.0
         version: link:../shared
       '@fesjs/utils':
-        specifier: workspace:*
+        specifier: ^4.0.0-beta.0
         version: link:../utils
       pinia:
         specifier: ^3.0.3
@@ -691,16 +691,16 @@ importers:
   packages/plugin-qiankun:
     dependencies:
       '@fesjs/fes':
-        specifier: ^3.1.13
+        specifier: ^4.0.0-beta.0
         version: link:../fes
       '@fesjs/fes-design':
         specifier: '>=0.7.20'
         version: 0.8.83(vue@3.5.21(typescript@5.9.2))
       '@fesjs/shared':
-        specifier: workspace:*
+        specifier: ^4.0.0-beta.0
         version: link:../shared
       '@fesjs/utils':
-        specifier: workspace:*
+        specifier: ^4.0.0-beta.0
         version: link:../utils
       address:
         specifier: ^1.1.2
@@ -827,13 +827,13 @@ importers:
   packages/plugin-request:
     dependencies:
       '@fesjs/fes':
-        specifier: ^3.1.12
+        specifier: ^4.0.0-beta.0
         version: link:../fes
       '@fesjs/shared':
-        specifier: workspace:*
+        specifier: ^4.0.0-beta.0
         version: link:../shared
       '@fesjs/utils':
-        specifier: workspace:*
+        specifier: ^4.0.0-beta.0
         version: link:../utils
       '@qlin/request':
         specifier: ^0.3.1
@@ -845,10 +845,10 @@ importers:
   packages/plugin-sass:
     dependencies:
       '@fesjs/fes':
-        specifier: ^3.0.0
+        specifier: ^4.0.0-beta.0
         version: link:../fes
       '@fesjs/shared':
-        specifier: workspace:*
+        specifier: ^4.0.0-beta.0
         version: link:../shared
       sass:
         specifier: ^1.92.0
@@ -860,13 +860,13 @@ importers:
   packages/plugin-swc:
     dependencies:
       '@fesjs/fes':
-        specifier: ^3.1.12
+        specifier: ^4.0.0-beta.0
         version: link:../fes
       '@fesjs/shared':
-        specifier: workspace:*
+        specifier: ^4.0.0-beta.0
         version: link:../shared
       '@fesjs/utils':
-        specifier: workspace:*
+        specifier: ^4.0.0-beta.0
         version: link:../utils
       '@swc/core':
         specifier: ^1.13.5
@@ -890,13 +890,13 @@ importers:
   packages/plugin-watermark:
     dependencies:
       '@fesjs/fes':
-        specifier: ^3.1.12
+        specifier: ^4.0.0-beta.0
         version: link:../fes
       '@fesjs/shared':
-        specifier: workspace:*
+        specifier: ^4.0.0-beta.0
         version: link:../shared
       '@fesjs/utils':
-        specifier: workspace:*
+        specifier: ^4.0.0-beta.0
         version: link:../utils
       lodash-es:
         specifier: ^4.17.21
@@ -908,16 +908,16 @@ importers:
   packages/preset-built-in:
     dependencies:
       '@fesjs/compiler':
-        specifier: workspace:*
+        specifier: ^4.0.0-beta.0
         version: link:../compiler
       '@fesjs/runtime':
-        specifier: workspace:*
+        specifier: ^4.0.0-beta.0
         version: link:../runtime
       '@fesjs/shared':
-        specifier: workspace:*
+        specifier: ^4.0.0-beta.0
         version: link:../shared
       '@fesjs/utils':
-        specifier: workspace:*
+        specifier: ^4.0.0-beta.0
         version: link:../utils
       '@vue/compiler-sfc':
         specifier: ^3.3.4
@@ -947,7 +947,7 @@ importers:
   packages/shared:
     dependencies:
       '@fesjs/utils':
-        specifier: workspace:*
+        specifier: ^4.0.0-beta.0
         version: link:../utils
 
   packages/typescript-config: {}

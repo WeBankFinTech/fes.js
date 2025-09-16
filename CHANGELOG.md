@@ -1,3 +1,18 @@
+# [4.0.0-beta.0](https://github.com/WeBankFinTech/fes.js/compare/v3.4.12...v4.0.0-beta.0) (2025-09-16)
+
+
+### Bug Fixes
+
+* 优化模版样式 ([effd137](https://github.com/WeBankFinTech/fes.js/commit/effd1378b44dfdfab47ff46ccf1b7e6e0d4d7e66))
+* 使用 pathToFileURL 确保 Windows 下路径导入正确 ([ed26dfb](https://github.com/WeBankFinTech/fes.js/commit/ed26dfb39b753f7d28ab1e3d6bd43fb90c972427))
+
+
+### Features
+
+* esm ([c4c081a](https://github.com/WeBankFinTech/fes.js/commit/c4c081ae3a279ec891236460386b48cf7128d737))
+
+
+
 ## [3.4.12](https://github.com/WeBankFinTech/fes.js/compare/v3.4.11...v3.4.12) (2025-06-24)
 
 

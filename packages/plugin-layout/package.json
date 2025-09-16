@@ -1,6 +1,6 @@
 {
     "name": "@fesjs/plugin-layout",
-    "version": "5.4.6",
+    "version": "6.0.0-beta.0",
     "description": "@fesjs/plugin-layout",
     "author": "harrywan",
     "license": "MIT",
@@ -30,14 +30,14 @@
         "access": "public"
     },
     "peerDependencies": {
-        "@fesjs/fes": "^3.1.17",
+        "@fesjs/fes": "^4.0.0-beta.0",
         "@fesjs/fes-design": ">=0.7.0",
         "vue": "^3.5.21",
         "vue-router": "^4.5.1"
     },
     "dependencies": {
-        "@fesjs/shared": "workspace:*",
-        "@fesjs/utils": "workspace:*",
+        "@fesjs/shared": "^4.0.0-beta.0",
+        "@fesjs/utils": "^4.0.0-beta.0",
         "dompurify": "^3.1.7"
     },
     "typings": "./types.d.ts"

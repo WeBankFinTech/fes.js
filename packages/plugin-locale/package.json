@@ -1,6 +1,6 @@
 {
     "name": "@fesjs/plugin-locale",
-    "version": "4.4.0",
+    "version": "5.0.0-beta.0",
     "description": "@fesjs/plugin-locale",
     "author": "harrywan",
     "license": "MIT",
@@ -30,13 +30,13 @@
         "access": "public"
     },
     "peerDependencies": {
-        "@fesjs/fes": "^3.1.12",
+        "@fesjs/fes": "^4.0.0-beta.0",
         "@fesjs/fes-design": ">=0.7.0",
         "vue": "^3.5.21"
     },
     "dependencies": {
-        "@fesjs/shared": "workspace:*",
-        "@fesjs/utils": "workspace:*",
+        "@fesjs/shared": "^4.0.0-beta.0",
+        "@fesjs/utils": "^4.0.0-beta.0",
         "lodash-es": "^4.17.21",
         "vue-i18n": "^9.0.0"
     },
