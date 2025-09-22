@@ -25,11 +25,12 @@
     "exports": {
         "import": {
             "node": "./dist/node.js",
+            "types": "./types.d.ts",
             "default": "./dist/browser.js"
         }
     },
     "main": "./dist/node.js",
-    "types": "types.d.ts",
+    "typings": "types.d.ts",
     "bin": {
         "fes": "./bin/fes.mjs"
     },
