@@ -1,7 +1,7 @@
 {
     "name": "@fesjs/fes",
     "type": "module",
-    "version": "4.0.0-beta.0",
+    "version": "4.0.0-beta.1",
     "description": "一个好用的前端管理台快速开发框架",
     "preferGlobal": true,
     "author": "qlin",
