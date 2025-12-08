@@ -8,7 +8,7 @@ export default (api: IPluginAPI) => {
         const versionPlugin = {
             name: 'fes-version-emit',
             generateBundle() {
-                const pkgPath = join(process.cwd(), 'package.json');
+                const pkgPath = join(api.paths.cwd, 'package.json');
                 let name = '';
                 let version = '';
                 if (existsSync(pkgPath)) {

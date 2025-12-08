@@ -5,10 +5,11 @@ import process from 'node:process';
 import webpack from 'webpack';
 
 class VersionEmitPlugin {
+    constructor(private cwd: string) {}
     apply(compiler: webpack.Compiler) {
         compiler.hooks.thisCompilation.tap('VersionEmitPlugin', (compilation) => {
             compilation.hooks.processAssets.tap({ name: 'VersionEmitPlugin', stage: webpack.Compilation.PROCESS_ASSETS_STAGE_ADDITIONAL }, () => {
-                const pkgPath = join(process.cwd(), 'package.json');
+                const pkgPath = join(this.cwd, 'package.json');
                 let name = '';
                 let version = '';
                 if (existsSync(pkgPath)) {
@@ -41,7 +42,7 @@ class VersionEmitPlugin {
 export default (api: IPluginAPI) => {
     api.modifyBundleConfig((memo: any) => {
         memo.plugins = memo.plugins || [];
-        memo.plugins.push(new VersionEmitPlugin());
+        memo.plugins.push(new VersionEmitPlugin(api.paths.cwd));
         return memo;
     });
 };
