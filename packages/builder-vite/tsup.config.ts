@@ -10,6 +10,7 @@ export default defineConfig({
         'src/features/viteOption.ts',
         'src/features/viteVueJsx.ts',
         'src/features/viteVuePlugin.ts',
+        'src/features/versionEmit.ts',
         'src/features/viteAnalyze.ts',
         'src/features/viteLegacy.ts',
         'src/commands/build/index.ts',
