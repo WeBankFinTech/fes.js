@@ -2,6 +2,7 @@ import type { IPluginAPI } from '@fesjs/shared';
 import type { ViteDevServer } from 'vite';
 import process from 'node:process';
 import { createServer } from 'vite';
+import pc from 'picocolors';
 import getDevConfig from './getDevConfig';
 
 interface Args {
@@ -14,7 +15,7 @@ interface Args {
 export default (api: IPluginAPI) => {
     const {
         paths,
-        utils: { chalk, rimraf },
+        utils: { rimraf },
     } = api;
 
     let server: ViteDevServer | undefined;
@@ -63,7 +64,7 @@ export default (api: IPluginAPI) => {
         name: 'restartServer',
         fn() {
             // eslint-disable-next-line no-console
-            console.log(chalk.gray('Try to restart dev server...'));
+            console.log(pc.gray('Try to restart dev server...'));
             destroy();
             if (typeof process !== 'undefined' && process.send) {
                 process.send({

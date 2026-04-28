@@ -1,13 +1,13 @@
-import chalk from 'chalk';
+import pc from 'picocolors';
 
 export const prefixes = {
-    wait: `${chalk.cyan('wait')}  -`,
-    error: `${chalk.red('error')} -`,
-    warn: `${chalk.yellow('warn')}  -`,
-    ready: `${chalk.green('ready')} -`,
-    info: `${chalk.cyan('info')}  -`,
-    event: `${chalk.magenta('event')} -`,
-    debug: `${chalk.gray('debug')} -`,
+    wait: `${pc.cyan('wait')}  -`,
+    error: `${pc.red('error')} -`,
+    warn: `${pc.yellow('warn')}  -`,
+    ready: `${pc.green('ready')} -`,
+    info: `${pc.cyan('info')}  -`,
+    event: `${pc.magenta('event')} -`,
+    debug: `${pc.gray('debug')} -`,
 };
 
 export function wait(...message: any[]): void {

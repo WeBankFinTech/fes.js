@@ -7,7 +7,7 @@ export default defineBuildConfig({
         __DEV__: false,
     },
     publicPath: './',
-    title: '海贼王',
+    title: '歌者',
     router: {
         mode: 'hash',
     },

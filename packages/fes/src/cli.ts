@@ -1,7 +1,8 @@
 import type { CliArgs } from './types';
 import { join } from 'node:path';
 import process from 'node:process';
-import { chalk, semver, yParser } from '@fesjs/utils';
+import pc from 'picocolors';
+import { semver, yParser } from '@fesjs/utils';
 import fesPkg from '../package.json';
 import { Service } from './serviceWithBuiltIn';
 import fork from './utils/fork';
@@ -13,7 +14,7 @@ const requiredVersion = fesPkg.engines.node;
 
 function checkNodeVersion(wanted: string, id: string): void {
     if (!semver.satisfies(process.version, wanted, { includePrerelease: true })) {
-        console.log(chalk.red(`You are using Node ${process.version}, but this version of ${id} requires Node ${wanted}.\nPlease upgrade your Node version.`));
+        console.log(pc.red(`You are using Node ${process.version}, but this version of ${id} requires Node ${wanted}.\nPlease upgrade your Node version.`));
         process.exit(1);
     }
 }
@@ -58,7 +59,7 @@ export async function main(): Promise<void> {
         }
     }
     catch (e: any) {
-        console.error(chalk.red(e.message));
+        console.error(pc.red(e.message));
         console.error(e.stack);
         process.exit(1);
     }

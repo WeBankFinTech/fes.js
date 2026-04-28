@@ -1,7 +1,8 @@
 import type { Paths, UserConfig } from '../types';
 import { existsSync, statSync } from 'node:fs';
 import { join } from 'node:path';
-import { lodash, winPath } from '@fesjs/utils';
+import { winPath } from '@fesjs/utils';
+import { mapValues } from 'es-toolkit/compat';
 
 interface GetServicePathsOptions {
     cwd: string;
@@ -14,7 +15,7 @@ function isDirectoryAndExist(path: string): boolean {
 }
 
 function normalizeWithWinPath(obj: Record<string, string>): Record<string, string> {
-    return lodash.mapValues(obj, value => winPath(value));
+    return mapValues(obj, value => winPath(value));
 }
 
 export default function getServicePaths({ cwd, config, env }: GetServicePathsOptions): Paths {

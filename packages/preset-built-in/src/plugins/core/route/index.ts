@@ -1,9 +1,10 @@
 import { readdirSync, readFileSync, statSync } from 'node:fs';
 import { basename, dirname, extname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { generate, lodash, logger, parser, winPath } from '@fesjs/utils';
-
+import { generate, logger, parser, winPath } from '@fesjs/utils';
 import { parse } from '@vue/compiler-sfc';
+
+import { camelCase, cloneDeep, isEmpty } from 'es-toolkit/compat';
 import { runtimePath } from '../../../utils/constants';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -152,7 +153,7 @@ function genRoutes(parentRoutes, path, parentRoutePath) {
                     routeMeta = getRouteMeta(descriptor.script.content) || routeMeta;
                 }
                 // 优先使用 descriptor.script， 兼容 script 和 script setup 同时存在的情况
-                if (descriptor.scriptSetup && lodash.isEmpty(routeMeta)) {
+                if (descriptor.scriptSetup && isEmpty(routeMeta)) {
                     routeMeta = getRouteMeta(descriptor.scriptSetup.content) || routeMeta;
                 }
             }
@@ -203,7 +204,7 @@ function genRoutes(parentRoutes, path, parentRoutePath) {
  * 4、判断子项是否是动态的，即包含“：”特殊字符，若是计入2分。
  * 5、判断子项是否是模糊匹配，即包含“*”特殊字符，若是扣除1分。
  * 6、判断子项是否是根端，即只是“/”，若是计入1分。
-
+ 
  * @param {*} routes
  */
 function rank(routes) {
@@ -252,7 +253,7 @@ function getRoutes({ config, absPagesPath }) {
 }
 
 function genComponentName(component, paths) {
-    const componentName = lodash.camelCase(component.replace(paths.absPagesPath, '').replace('.vue', ''));
+    const componentName = camelCase(component.replace(paths.absPagesPath, '').replace('.vue', ''));
     if (/^\d+/.test(componentName)) {
         return `numPage${componentName}`;
     }
@@ -268,7 +269,7 @@ function isFunctionComponent(component) {
 
 function getRoutesJSON({ routes, config, paths }) {
     // 因为要往 routes 里加无用的信息，所以必须 deep clone 一下，避免污染
-    const clonedRoutes = lodash.cloneDeep(routes);
+    const clonedRoutes = cloneDeep(routes);
 
     const importList = [];
 

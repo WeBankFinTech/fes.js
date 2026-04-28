@@ -33,11 +33,14 @@
         "@babel/core": "^7.28.3",
         "@babel/preset-env": "^7.28.3",
         "@fesjs/utils": "^4.0.0-beta.0",
+        "chokidar": "^5.0.0",
         "commander": "^7.0.0",
         "dotenv": "8.2.0",
+        "es-toolkit": "^1.46.0",
         "fs-extra": "^11.3.1",
         "joi": "17.3.0",
         "package-up": "^5.0.0",
+        "picocolors": "^1.1.1",
         "tapable": "^2.2.0"
     },
     "devDependencies": {

@@ -1,5 +1,5 @@
 import { defineRuntimeConfig } from '@fesjs/fes'
-import { isPlainObject } from 'lodash-es'
+import { isPlainObject } from 'es-toolkit/compat'
 
 export default defineRuntimeConfig({
   request: {

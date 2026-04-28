@@ -1,5 +1,5 @@
 import type { UserConfig } from '../../types';
-import { lodash } from '@fesjs/utils';
+import { set, get } from 'es-toolkit/compat';
 
 interface UpdateUserConfigWithKeyOptions {
     key: string;
@@ -17,12 +17,12 @@ export function updateUserConfigWithKey({
     value,
     userConfig,
 }: UpdateUserConfigWithKeyOptions): void {
-    lodash.set(userConfig, key, value);
+    set(userConfig, key, value);
 }
 
 export function getUserConfigWithKey({
     key,
     userConfig,
 }: GetUserConfigWithKeyOptions): any {
-    return lodash.get(userConfig, key);
+    return get(userConfig, key);
 }

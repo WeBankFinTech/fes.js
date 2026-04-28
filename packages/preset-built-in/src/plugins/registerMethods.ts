@@ -1,6 +1,7 @@
 import assert from 'node:assert';
 import { copyFileSync, existsSync, readFileSync, statSync, writeFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
+import { globSync } from 'glob';
 import { startWatch } from './watch/watchMode';
 
 export default function (api) {
@@ -48,7 +49,7 @@ export default function (api) {
             assert(api.stage >= api.ServiceStage.pluginReady, 'api.copyTmpFiles() should not execute in register stage.');
             assert(path, 'api.copyTmpFiles() should has param path');
             assert(namespace, 'api.copyTmpFiles() should has param namespace');
-            const files = api.utils.glob.sync('**/*', {
+            const files = globSync('**/*', {
                 cwd: path,
             });
             files.forEach((file) => {

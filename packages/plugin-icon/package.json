@@ -35,6 +35,7 @@
     },
     "dependencies": {
         "@fesjs/shared": "^4.0.0-beta.0",
+        "glob": "^13.0.6",
         "svgo": "^4.0.0"
     },
     "typings": "./types.d.ts"

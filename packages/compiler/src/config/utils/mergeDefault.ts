@@ -1,4 +1,5 @@
-import { deepmerge, lodash } from '@fesjs/utils';
+import { deepmerge } from '@fesjs/utils';
+import { isPlainObject } from 'es-toolkit/compat';
 
 interface MergeDefaultOptions {
     defaultConfig: any;
@@ -6,7 +7,7 @@ interface MergeDefaultOptions {
 }
 
 export default function mergeDefault({ defaultConfig, config }: MergeDefaultOptions): any {
-    if (lodash.isPlainObject(defaultConfig) && lodash.isPlainObject(config)) {
+    if (isPlainObject(defaultConfig) && isPlainObject(config)) {
         return deepmerge(defaultConfig, config);
     }
     return typeof config !== 'undefined' ? config : defaultConfig;

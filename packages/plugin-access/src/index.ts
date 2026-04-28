@@ -39,7 +39,7 @@ export default (api: IPluginAPI) => {
             path: absoluteFilePath,
             content: Mustache.render(readFileSync(join(__dirname, 'runtime/core.tpl'), 'utf-8'), {
                 REPLACE_ROLES: JSON.stringify(roles),
-                lodashPath: 'lodash-es',
+                lodashPath: 'es-toolkit/compat',
             }),
         });
 

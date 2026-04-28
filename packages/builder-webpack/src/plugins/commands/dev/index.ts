@@ -5,6 +5,7 @@ import path from 'node:path';
 import process from 'node:process';
 import { removeSync } from 'fs-extra/esm';
 import getFolderSize from 'get-folder-size';
+import pc from 'picocolors';
 import { cleanTmpPathExceptCache, getBundleAndConfigs } from '../../common/buildDevUtils';
 import connectHistoryMiddleware from './connectHistoryMiddleware';
 import { startDevServer } from './devServer';
@@ -29,7 +30,7 @@ async function handleCacheClean(cwd: string) {
 export default (api: IPluginAPI<WebpackBuildConfig>) => {
     const {
         paths,
-        utils: { chalk, getPort, getHostName, changePort, logger },
+        utils: { getPort, getHostName, changePort, logger },
     } = api;
 
     let port: number;
@@ -112,7 +113,7 @@ export default (api: IPluginAPI<WebpackBuildConfig>) => {
     api.registerMethod({
         name: 'restartServer',
         fn() {
-            logger.info(chalk.gray('Try to restart dev server...'));
+            logger.info(pc.gray('Try to restart dev server...'));
             destroy();
             process.send?.({
                 type: 'RESTART',

@@ -1,7 +1,8 @@
 import type { ServiceInstance } from '@fesjs/compiler';
 import type { DevArgs } from './types';
 import process from 'node:process';
-import { chalk, yParser } from '@fesjs/utils';
+import pc from 'picocolors';
+import { yParser } from '@fesjs/utils';
 import fesPkg from '../package.json';
 import { Service } from './serviceWithBuiltIn';
 import getCwd from './utils/getCwd';
@@ -48,7 +49,7 @@ function onSignal(signal: string, service: ServiceInstance): void {
         process.once('SIGTERM', () => onSignal('SIGTERM', service));
     }
     catch (e: any) {
-        console.error(chalk.red(e.message));
+        console.error(pc.red(e.message));
         console.error(e.stack);
         process.exit(1);
     }

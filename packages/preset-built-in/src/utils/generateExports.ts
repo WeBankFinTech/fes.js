@@ -1,6 +1,7 @@
 import assert from 'node:assert';
 import path from 'node:path';
-import { lodash, winPath } from '@fesjs/utils';
+import { winPath } from '@fesjs/utils';
+import { isPlainObject } from 'es-toolkit/compat';
 
 const reserveLibrarys = ['fes']; // reserve library
 // todo 插件导出内容冲突问题待解决
@@ -22,7 +23,7 @@ export default function generateExports(basePath, { item, fesExportsHook }) {
             fesExportsHook[specifier] = true;
             return specifier;
         }
-        assert(lodash.isPlainObject(specifier), `Configure item context should be Plain Object, but got ${specifier}.`);
+        assert(isPlainObject(specifier), `Configure item context should be Plain Object, but got ${specifier}.`);
         assert(specifier.local && specifier.exported, 'local and exported should be supplied.');
         return `${specifier.local} as ${specifier.exported}`;
     });

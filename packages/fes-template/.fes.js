@@ -11,9 +11,6 @@ export default defineBuildConfig({
     console: {
         version: true,
     },
-    html: {
-        title: '海贼王',
-    },
     router: {
         mode: 'hash',
     },

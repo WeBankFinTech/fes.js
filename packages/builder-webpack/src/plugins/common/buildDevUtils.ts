@@ -4,7 +4,8 @@ import type { WebpackBuildConfig } from '../../shared';
 import { existsSync, readFileSync } from 'node:fs';
 import { join, resolve } from 'node:path';
 import zlib from 'node:zlib';
-import { chalk, rimraf } from '@fesjs/utils';
+import { rimraf } from '@fesjs/utils';
+import pc from 'picocolors';
 import UI from 'cliui';
 import getConfig from './webpackConfig';
 
@@ -168,14 +169,14 @@ export function printFileSizes({ stats, dir }: PrintFileSizesOptions) {
     }
 
     ui.div(
-        `${makeRow(chalk.cyan.bold('File'), chalk.cyan.bold('Size'), chalk.cyan.bold('Gzipped'))}\n\n${orderedAssets
+        `${makeRow(pc.cyan(pc.bold('File')), pc.cyan(pc.bold('Size')), pc.cyan(pc.bold('Gzipped')))}\n\n${orderedAssets
             .map((asset: any) =>
                 makeRow(
                     asset.name.endsWith('js')
                         ? asset.suggested
-                            ? chalk.yellow(join(dir, asset.name))
-                            : chalk.green(join(dir, asset.name))
-                        : chalk.blue(join(dir, asset.name)),
+                            ? pc.yellow(join(dir, asset.name))
+                            : pc.green(join(dir, asset.name))
+                        : pc.blue(join(dir, asset.name)),
                     filesize(asset.size),
                     getGzippedSize(asset),
                 ),
@@ -184,17 +185,17 @@ export function printFileSizes({ stats, dir }: PrintFileSizesOptions) {
     );
 
     // eslint-disable-next-line no-console
-    console.log(`${ui.toString()}\n\n  ${chalk.gray('Images and other types of assets omitted.')}\n`);
+    console.log(`${ui.toString()}\n\n  ${pc.gray('Images and other types of assets omitted.')}\n`);
 
     if (orderedAssets?.some((asset: any) => asset.suggested)) {
         // eslint-disable-next-line no-console
         console.log();
         // eslint-disable-next-line no-console
-        console.log(chalk.yellow('The bundle size is significantly larger than recommended.'));
+        console.log(pc.yellow('The bundle size is significantly larger than recommended.'));
         // eslint-disable-next-line no-console
-        console.log(chalk.yellow('Consider reducing it with code splitting'));
+        console.log(pc.yellow('Consider reducing it with code splitting'));
         // eslint-disable-next-line no-console
-        console.log(chalk.yellow('You can also analyze the project dependencies using ANALYZE=1'));
+        console.log(pc.yellow('You can also analyze the project dependencies using ANALYZE=1'));
         // eslint-disable-next-line no-console
         console.log();
     }

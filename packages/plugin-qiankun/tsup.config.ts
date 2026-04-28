@@ -6,6 +6,7 @@ export default defineConfig({
         'src/index.ts',
         'src/main/index.ts',
         'src/micro/index.ts',
+        'src/vite-plugin/index.ts',
     ],
     splitting: false,
     sourcemap: false,

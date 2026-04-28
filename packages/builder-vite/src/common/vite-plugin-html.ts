@@ -1,14 +1,14 @@
 import type { ConfigEnv, Plugin, ResolvedConfig, ViteDevServer } from 'vite';
 import process from 'node:process';
-import { createFilter } from '@rollup/pluginutils';
 import { dim } from 'colorette';
 import consola from 'consola';
 import dotenv from 'dotenv';
 import { expand } from 'dotenv-expand';
-import { render } from 'ejs';
+import ejs from 'ejs';
 import fg from 'fast-glob';
 import fse from 'fs-extra';
 import { minify } from 'html-minifier-terser';
+import { minimatch } from 'minimatch';
 import { parse } from 'node-html-parser';
 import path, { dirname, join } from 'pathe';
 import { normalizePath } from 'vite';
@@ -119,7 +119,7 @@ function createPlugin(userOptions: UserOptions = {}): Plugin {
             if (input) {
                 return {
                     build: {
-                        rollupOptions: {
+                        rolldownOptions: {
                             input,
                         },
                     },
@@ -271,7 +271,7 @@ async function renderHtml(html: string, config: any): Promise<string> {
         ...(env || {}),
         ...data,
     };
-    let result = await render(html, ejsData, ejsOptions);
+    let result = await ejs.render(html, ejsData, ejsOptions);
     if (entry) {
         result = removeEntryScript(result, verbose);
         result = result.replace(bodyInjectRE, `<script type="module" src="${normalizePath(`${entry}`)}"></script></body>`);
@@ -292,7 +292,7 @@ function getPage(userOptions: UserOptions, name: string, viteConfig: ResolvedCon
 }
 
 function isMpa(viteConfig: ResolvedConfig | undefined): boolean {
-    const input = viteConfig?.build?.rollupOptions?.input ?? undefined;
+    const input = viteConfig?.build?.rolldownOptions?.input ?? undefined;
     return typeof input !== 'string' && Object.keys(input || {}).length > 1;
 }
 
@@ -352,7 +352,7 @@ function createRewire(reg: string, page: Page, baseUrl: string, proxyUrlKeys: st
     };
 }
 
-const htmlFilter = createFilter(['**/*.html']);
+const htmlFilter = (id: string) => minimatch(id, '**/*.html');
 
 function getOptions(_minify: boolean) {
     return {

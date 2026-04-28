@@ -36,11 +36,11 @@
     "dependencies": {
         "@fesjs/shared": "^4.0.0-beta.0",
         "@fesjs/utils": "^4.0.0-beta.0",
-        "@swc/core": "^1.13.5",
+        "@swc/core": "1.13.5",
         "@swc/css": "^0.0.28",
-        "css-minimizer-webpack-plugin": "^7.0.2",
-        "swc-loader": "^0.2.6",
-        "swc-plugin-vue-jsx": "^0.4.0",
-        "terser-webpack-plugin": "^5.3.14"
+        "css-minimizer-webpack-plugin": "^8.0.0",
+        "swc-loader": "0.2.7",
+        "swc-plugin-vue-jsx": "0.4.0",
+        "terser-webpack-plugin": "^5.5.0"
     }
 }

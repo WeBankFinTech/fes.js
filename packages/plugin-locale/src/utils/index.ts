@@ -1,5 +1,6 @@
 import { basename, join } from 'node:path';
-import { glob, winPath } from '@fesjs/utils';
+import { globSync } from 'glob';
+import { winPath } from '@fesjs/utils';
 
 const ignore = /\.(d\.ts|\.test\.(js|ts))$/;
 
@@ -19,7 +20,7 @@ export function getLocales(cwdArray) {
     const map = {};
     const files = [];
     cwdArray.forEach((cwd) => {
-        glob.sync('**/*.js', {
+        globSync('**/*.js', {
             cwd,
         })
             .filter(file => !ignore.test(file))

@@ -3,9 +3,9 @@ import { readFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import process from 'node:process';
 import { fileURLToPath } from 'node:url';
-import { lodash } from '@fesjs/utils';
+import { isEqual } from 'es-toolkit/compat';
 
-import vitePluginQiankun from 'vite-plugin-qiankun';
+import qiankunPlugin from '../vite-plugin';
 import { qiankunStateFromMainModelNamespace } from '../constants';
 
 const namespace = 'plugin-qiankun/micro';
@@ -14,7 +14,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 export function isSlaveEnable(api) {
-    return !!api.userConfig?.qiankun?.micro || lodash.isEqual(api.userConfig?.qiankun, {}) || !!process.env.INITIAL_QIANKUN_MIRCO_OPTIONS;
+    return !!api.userConfig?.qiankun?.micro || isEqual(api.userConfig?.qiankun, {}) || !!process.env.INITIAL_QIANKUN_MIRCO_OPTIONS;
 }
 
 export default function (api) {
@@ -52,6 +52,7 @@ export default function (api) {
     const absLifecyclePath = join(namespace, 'lifecycle.js');
     const absMicroOptionsPath = join(namespace, 'slaveOptions.js');
     const absModelPath = join(namespace, 'qiankunModel.js');
+    const absViteHelperPath = join(namespace, 'viteHelper.js');
 
     api.register({
         key: 'addExtraModels',
@@ -92,6 +93,26 @@ export default function (api) {
             `,
         });
 
+        if (api.builder.name === 'vite') {
+            api.writeTmpFile({
+                path: absViteHelperPath,
+                content: `
+export const qiankunWindow = typeof window !== 'undefined' ? (window.proxy || window) : {};
+
+export const renderWithQiankun = (qiankunLifeCycle) => {
+    if (qiankunWindow?.__POWERED_BY_QIANKUN__) {
+        if (!window.moudleQiankunAppLifeCycles) {
+            window.moudleQiankunAppLifeCycles = {};
+        }
+        if (qiankunWindow.qiankunName) {
+            window.moudleQiankunAppLifeCycles[qiankunWindow.qiankunName] = qiankunLifeCycle;
+        }
+    }
+};
+`,
+            });
+        }
+
         if (HAS_PLUGIN_MODEL) {
             api.writeTmpFile({
                 path: absModelPath,
@@ -103,11 +124,10 @@ export default function (api) {
     api.addRuntimePlugin(() => `@@/${absRuntimePath}`);
 
     if (api.builder.name === 'vite') {
-        // 处理
         api.modifyBundleConfig((memo) => {
             assert(api.pkg.name, 'You should have name in package.json');
             memo.plugins.push(
-                vitePluginQiankun(api.pkg.name, {
+                qiankunPlugin(api.pkg.name, {
                     useDevMode: api.config.qiankun?.micro?.useDevMode,
                 }),
             );
@@ -115,8 +135,8 @@ export default function (api) {
         });
 
         api.addEntryImports(() => ({
-            source: `vite-plugin-qiankun/dist/helper`,
-            specifier: '{ renderWithQiankun, qiankunWindow }',
+            source: `@@/${absViteHelperPath}`,
+            specifier: '{ qiankunWindow, renderWithQiankun }',
         }));
 
         api.addEntryImports(() => ({
@@ -137,8 +157,8 @@ export default function (api) {
         mount,
         update,
         unmount,
-    })
-    
+    });
+
     if (!qiankunWindow.__POWERED_BY_QIANKUN__) {
         bootstrap().then(mount);
     }
@@ -181,7 +201,7 @@ export default function (api) {
     export const mount = qiankun_genMount('#${api.config.mountElementId}');
     export const unmount = qiankun_genUnmount();
     export const update = qiankun_genUpdate();
-    
+
     if (!window.__POWERED_BY_QIANKUN__) {
         bootstrap().then(mount);
     }

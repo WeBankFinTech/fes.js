@@ -1,5 +1,7 @@
 import process from 'node:process';
-import { chokidar, getAppPath, lodash, winPath } from '@fesjs/utils';
+import { getAppPath, winPath } from '@fesjs/utils';
+import * as chokidar from 'chokidar';
+import { throttle, uniq } from 'es-toolkit/compat';
 import { watchPkg } from './watchPkg';
 
 async function generateWhenFilesChange({ api }) {
@@ -22,7 +24,7 @@ async function generateWhenFilesChange({ api }) {
         });
         watcher.on(
             'all',
-            lodash.throttle(async () => {
+            throttle(async () => {
                 await api.applyPlugins({
                     key: 'onGenerateFiles',
                     type: api.ApplyPluginsType.event,
@@ -37,7 +39,7 @@ async function generateWhenFilesChange({ api }) {
         type: api.ApplyPluginsType.add,
         initialValue: [paths.absPagesPath, getAppPath(paths.absSrcPath)],
     });
-    lodash.uniq(watcherPaths.map(p => winPath(p))).forEach((p) => {
+    uniq(watcherPaths.map(p => winPath(p))).forEach((p) => {
         createWatcher(p);
     });
 

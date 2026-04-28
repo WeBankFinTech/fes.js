@@ -2,6 +2,7 @@ import type { IPluginAPI } from '@fesjs/shared';
 import { readFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { uniq } from 'es-toolkit/compat';
 
 import pkg from '../package.json' assert { type: 'json' };
 import { getModels } from './utils/getModels';
@@ -15,7 +16,7 @@ const __dirname = dirname(__filename);
 export default (api: IPluginAPI) => {
     const {
         paths,
-        utils: { lodash, Mustache, winPath },
+        utils: { Mustache, winPath },
     } = api;
 
     function getModelDir() {
@@ -28,7 +29,7 @@ export default (api: IPluginAPI) => {
 
     function getAllModels() {
         const srcModelsPath = getModelsPath();
-        return lodash.uniq([...getModels(srcModelsPath)]);
+        return uniq([...getModels(srcModelsPath)]);
     }
 
     const absCoreFilePath = join(namespace, 'core.js');

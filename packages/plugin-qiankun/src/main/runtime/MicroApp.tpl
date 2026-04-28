@@ -9,7 +9,7 @@ import {
     shallowRef,
 } from "vue";
 import { loadMicroApp } from "{{{QIANKUN}}}";
-import { mergeWith, cloneDeep, isEqual, concat } from "{{{LODASH_ES}}}";
+import { mergeWith, cloneDeep, isEqual, concat } from "es-toolkit/compat";
 // eslint-disable-next-line import/extensions
 import { getMasterOptions } from "./masterOptions";
 

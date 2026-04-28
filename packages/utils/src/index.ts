@@ -1,12 +1,8 @@
 import { generate } from '@babel/generator';
 import * as parser from '@babel/parser';
 import traverse from '@babel/traverse';
-import chalk from 'chalk';
-import * as chokidar from 'chokidar';
 import createDebug from 'debug';
 import deepmerge from 'deepmerge';
-import glob from 'glob';
-import lodash from 'lodash';
 import mkdirp from 'mkdirp';
 import Mustache from 'mustache';
 import portfinder from 'portfinder';
@@ -29,13 +25,9 @@ import stringifyObjValue from './stringifyObjValue';
 import winPath from './winPath';
 
 export {
-    chalk,
-    chokidar,
     createDebug,
     deepmerge,
     generate,
-    glob,
-    lodash,
     logger,
     mkdirp,
     Mustache,

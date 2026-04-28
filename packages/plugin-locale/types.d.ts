@@ -1,4 +1,4 @@
-import type { VueI18n } from 'vue-i18n';
+import type { Composer } from 'vue-i18n';
 
 export { useI18n } from 'vue-i18n';
 
@@ -7,7 +7,7 @@ export const locale: {
     addLocale: ({ locale, messages }: { locale: string; messages: object }) => void;
     getAllLocales: () => string[];
     messages: Record<string, object>;
-    t: VueI18n['t'];
+    t: Composer['t'];
 };
 
 declare module '@fesjs/fes' {
@@ -22,6 +22,6 @@ declare module '@fesjs/fes' {
             | false;
     }
     interface PluginRuntimeConfig {
-        onLocaleChange: (params: { t: VueI18n['t']; locale: string }) => void;
+        onLocaleChange: (params: { t: Composer['t']; locale: string }) => void;
     }
 }

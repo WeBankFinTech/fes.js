@@ -37,8 +37,9 @@
     "dependencies": {
         "@fesjs/shared": "^4.0.0-beta.0",
         "@fesjs/utils": "^4.0.0-beta.0",
-        "lodash-es": "^4.17.21",
-        "vue-i18n": "^9.0.0"
+        "glob": "^13.0.6",
+        "es-toolkit": "^1.46.0",
+        "vue-i18n": "^11.3.2"
     },
     "typings": "./types.d.ts"
 }

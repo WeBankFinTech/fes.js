@@ -54,6 +54,7 @@
         "@fesjs/preset-built-in": "^4.0.0-beta.0",
         "@fesjs/utils": "^4.0.0-beta.0",
         "fs-extra": "^11.3.1",
+        "picocolors": "^1.1.1",
         "vue-router": "^4.5.1"
     },
     "devDependencies": {
