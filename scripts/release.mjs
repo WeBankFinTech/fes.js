@@ -11,7 +11,7 @@ import { getPublicPkgs } from './shared.mjs';
 
 const __dirname = url.fileURLToPath(new URL('.', import.meta.url));
 
-const { preid: preId, dry: isDryRun } = minimist(process.argv.slice(2));
+const { preid: preId, dry: isDryRun, force: isForce } = minimist(process.argv.slice(2));
 
 const packages = getPublicPkgs();
 
@@ -64,7 +64,7 @@ async function publishPackage(pkg, runIfNotDry) {
         console.log('Successfully published :', pc.green(`${pkg.name}@${pkg.newVersion}`));
     }
     catch (e) {
-        if (e.stderr.match(/previously published/)) {
+        if (/previously published/.test(e.stderr)) {
             console.log(pc.red(`Skipping already published: ${pkg.name}`));
         }
 
@@ -177,7 +177,7 @@ async function genRootPackageVersion() {
 }
 
 function genOtherPkgsVersion(packagesVersion) {
-    const noChangedPkgs = packages.filter(name => !packagesVersion.find(item => item.dirName === name));
+    const noChangedPkgs = packages.filter(name => !packagesVersion.some(item => item.dirName === name));
     const pkgs = arrToObj(packagesVersion, 'name');
     const result = [];
     noChangedPkgs.forEach((currentPkg) => {
@@ -210,6 +210,43 @@ function genOtherPkgsVersion(packagesVersion) {
 }
 
 async function main() {
+    if (isForce) {
+        const packagesVersion = packages.map((pkg) => {
+            const { name, version } = readPackageVersionAndName(pkg);
+            return { dirName: pkg, name, version, newVersion: version };
+        });
+
+        const yes = await consola.prompt(`These packages will be published (force, version unchanged): \n${packagesVersion
+            .map(pkg => `${pc.magenta(pkg.name)}: v${pkg.version}`)
+            .join('\n')}\nConfirm?`, {
+            type: 'confirm',
+        });
+
+        if (!yes) {
+            return;
+        }
+
+        // build all packages
+        step('\nBuilding all packages...');
+        if (!isDryRun) {
+            await run('pnpm', ['build']);
+        }
+        else { console.log(`(skipped build)`); }
+
+        // publish packages
+        step('\nPublishing packages...');
+        for (const pkg of packagesVersion) {
+            await publishPackage(pkg, runIfNotDry);
+        }
+
+        if (isDryRun) {
+            console.log(`\nDry run finished.`);
+        }
+
+        console.log();
+        return;
+    }
+
     const changedPackages = await filterChangedPackages();
 
     if (!changedPackages.length) {

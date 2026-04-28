@@ -42,7 +42,7 @@
         "@babel/plugin-transform-runtime": "^7.28.3",
         "@babel/preset-env": "^7.28.3",
         "@babel/preset-typescript": "^7.27.1",
-        "@fesjs/shared": "^4.0.0-beta.1",
+        "@fesjs/shared": "^4.0.0",
         "@fesjs/utils": "^4.0.0",
         "@vue/babel-plugin-jsx": "^2.0.1",
         "ajv": "^8.12.0",

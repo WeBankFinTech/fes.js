@@ -35,7 +35,7 @@
         "vue-router": "^4.5.1"
     },
     "dependencies": {
-        "@fesjs/shared": "^4.0.0-beta.1",
+        "@fesjs/shared": "^4.0.0",
         "@fesjs/utils": "^4.0.0",
         "es-toolkit": "^1.46.0"
     },

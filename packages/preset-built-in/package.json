@@ -35,8 +35,8 @@
     },
     "dependencies": {
         "@fesjs/compiler": "^4.0.0",
-        "@fesjs/runtime": "^4.0.0-beta.0",
-        "@fesjs/shared": "^4.0.0-beta.1",
+        "@fesjs/runtime": "^4.0.0",
+        "@fesjs/shared": "^4.0.0",
         "@fesjs/utils": "^4.0.0",
         "@vue/compiler-sfc": "^3.5.33",
         "@wll8/better-mock": "0.3.3-alpha",

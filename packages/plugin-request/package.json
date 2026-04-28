@@ -1,6 +1,6 @@
 {
     "name": "@fesjs/plugin-request",
-    "version": "5.0.0-beta.1",
+    "version": "5.0.0",
     "description": "@fesjs/plugin-request",
     "author": "qlin",
     "license": "MIT",
@@ -34,7 +34,7 @@
         "vue": "^3.2.37"
     },
     "dependencies": {
-        "@fesjs/shared": "^4.0.0-beta.1",
+        "@fesjs/shared": "^4.0.0",
         "@fesjs/utils": "^4.0.0",
         "@qlin/request": "^0.3.1"
     },

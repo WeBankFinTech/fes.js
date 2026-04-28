@@ -34,7 +34,7 @@
         "core-js": "^3.45.1"
     },
     "dependencies": {
-        "@fesjs/shared": "^4.0.0-beta.1",
+        "@fesjs/shared": "^4.0.0",
         "@fesjs/utils": "^4.0.0",
         "@vitejs/plugin-basic-ssl": "^2.3.0",
         "@vitejs/plugin-legacy": "^8.0.1",

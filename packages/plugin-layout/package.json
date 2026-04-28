@@ -1,6 +1,6 @@
 {
     "name": "@fesjs/plugin-layout",
-    "version": "6.0.0-beta.1",
+    "version": "6.0.0",
     "description": "@fesjs/plugin-layout",
     "author": "harrywan",
     "license": "MIT",
@@ -36,7 +36,7 @@
         "vue-router": "^4.5.1"
     },
     "dependencies": {
-        "@fesjs/shared": "^4.0.0-beta.1",
+        "@fesjs/shared": "^4.0.0",
         "@fesjs/utils": "^4.0.0",
         "dompurify": "^3.1.7"
     },

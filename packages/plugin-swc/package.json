@@ -34,7 +34,7 @@
         "@fesjs/fes": "^4.0.0"
     },
     "dependencies": {
-        "@fesjs/shared": "^4.0.0-beta.1",
+        "@fesjs/shared": "^4.0.0",
         "@fesjs/utils": "^4.0.0",
         "@swc/core": "1.13.5",
         "@swc/css": "^0.0.28",
