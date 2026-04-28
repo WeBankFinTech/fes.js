@@ -7,6 +7,7 @@ import type {
 } from '../types';
 import assert from 'node:assert';
 import * as utils from '@fesjs/utils';
+import { isPlainObject } from 'es-toolkit/compat';
 import { EnableBy, PluginType, ServiceStage } from './enums';
 import { isValidPlugin, pathToObj } from './utils/pluginUtils';
 
@@ -135,7 +136,7 @@ export default class PluginAPI {
                 || function (hookFn: any) {
                     const hook: Partial<Hook> = {
                         key: name,
-                        ...(utils.lodash.isPlainObject(hookFn) ? hookFn : { fn: hookFn }),
+                        ...(isPlainObject(hookFn) ? hookFn : { fn: hookFn }),
                     };
                     // @ts-expect-error this
                     this.register(hook as Hook);

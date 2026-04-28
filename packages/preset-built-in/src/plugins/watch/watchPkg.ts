@@ -1,7 +1,9 @@
 import { existsSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { isPluginOrPreset, PluginType } from '@fesjs/compiler';
-import { chokidar, lodash, winPath } from '@fesjs/utils';
+import { winPath } from '@fesjs/utils';
+import * as chokidar from 'chokidar';
+import { isEqual } from 'es-toolkit/compat';
 
 function getPlugins(opts) {
     return Object.keys({
@@ -31,7 +33,7 @@ export function watchPkg(opts) {
     });
     watcher.on('all', () => {
         const newPlugins = getPluginsFromPkgPath({ pkgPath });
-        if (!lodash.isEqual(plugins, newPlugins)) {
+        if (!isEqual(plugins, newPlugins)) {
             // 已经重启了，只处理一次就够了
             opts.onChange();
         }

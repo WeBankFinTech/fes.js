@@ -45,7 +45,7 @@ export default function (api) {
                 qiankunStateForMicroModelNamespace,
                 HAS_PLUGIN_MODEL: HAS_PLUGIN_MODEL && existsSync(winPath(join(api.paths.absSrcPath, 'models/qiankunStateForMicro.js'))),
                 QIANKUN: 'qiankun',
-                LODASH_ES: 'lodash-es',
+                LODASH_ES: 'es-toolkit/compat',
             }),
         });
 

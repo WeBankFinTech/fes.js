@@ -1,6 +1,6 @@
 import type { IPluginAPI } from '@fesjs/shared';
 import process from 'node:process';
-import { visualizer } from 'rollup-plugin-visualizer';
+import { analyzer } from 'vite-bundle-analyzer';
 
 export default (api: IPluginAPI<{ viteAnalyze: Record<string, any> }>) => {
     api.describe({
@@ -16,11 +16,10 @@ export default (api: IPluginAPI<{ viteAnalyze: Record<string, any> }>) => {
 
     api.modifyBundleConfig((memo: any) => {
         memo.plugins.push(
-            visualizer({
-                filename: './.cache/visualizer/stats.html',
-                open: true,
-                gzipSize: true,
-                brotliSize: true,
+            analyzer({
+                analyzerMode: 'static',
+                fileName: './.cache/visualizer/stats',
+                openAnalyzer: true,
                 ...api.config.viteAnalyze,
             }),
         );

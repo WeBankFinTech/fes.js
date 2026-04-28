@@ -2,7 +2,8 @@ import { existsSync, readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import process from 'node:process';
 import { pathToFileURL } from 'node:url';
-import { chokidar, lodash } from '@fesjs/utils';
+import * as chokidar from 'chokidar';
+import { isArray, isFunction, isPlainObject } from 'es-toolkit/compat';
 
 export default (api) => {
     let mockFlag = false; // mock 开关flag
@@ -22,10 +23,10 @@ export default (api) => {
 
     // 对 array、object 遍历处理
     function traversalHandler(val, callback) {
-        if (lodash.isArray(val)) {
+        if (isArray(val)) {
             val.forEach(callback);
         }
-        if (lodash.isPlainObject(val)) {
+        if (isPlainObject(val)) {
             Object.keys(val).forEach((key) => {
                 callback(val[key], key);
             });
@@ -49,7 +50,7 @@ export default (api) => {
         }
         if (len === 1) {
             const newOption = arg[0];
-            if (lodash.isPlainObject(newOption)) {
+            if (isPlainObject(newOption)) {
                 traversalHandler(newOption, (value, key) => {
                     if (key === 'headers') {
                         traversalHandler(newOption.headers, (headervalue, headerkey) => {
@@ -103,7 +104,7 @@ export default (api) => {
             // register babel
             const _initFunction = await import(pathToFileURL(mockFile).href);
             const initFunction = _initFunction.default || _initFunction;
-            if (!lodash.isFunction(initFunction)) {
+            if (!isFunction(initFunction)) {
                 api.logger.info('mock.js should export Function');
                 return;
             }
@@ -144,10 +145,10 @@ export default (api) => {
                     res.cookie(name, value, item);
                 });
                 // do result
-                if (lodash.isFunction(matchRequet.result)) {
+                if (isFunction(matchRequet.result)) {
                     matchRequet.result(req, res);
                 }
-                else if (lodash.isArray(matchRequet.result) || lodash.isPlainObject(matchRequet.result)) {
+                else if (isArray(matchRequet.result) || isPlainObject(matchRequet.result)) {
                     !matchRequet.type && res.type('json');
                     res.json(matchRequet.result);
                 }
@@ -165,7 +166,7 @@ export default (api) => {
 
     api.onStart(async () => {
         // 获取mock配置: 是否打开
-        mockFlag = lodash.isPlainObject(api.config.mock) ? true : api.config.mock;
+        mockFlag = isPlainObject(api.config.mock) ? true : api.config.mock;
         if (!mockFlag) {
             return;
         }

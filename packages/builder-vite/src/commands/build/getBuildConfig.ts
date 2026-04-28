@@ -7,16 +7,6 @@ import postcssFlexbugsFixes from 'postcss-flexbugs-fixes';
 import postcssSafeParser from 'postcss-safe-parser';
 import { getInnerCommonConfig } from '../../common/getConfig';
 
-function getEsbuildTarget(targets: any): string[] {
-    const result: string[] = [];
-    ['chrome', 'edge', 'firefox', 'hermes', 'ios', 'node', 'opera', 'rhino', 'safari'].forEach((key) => {
-        if (targets[key]) {
-            result.push(`${key}${targets[key]}`);
-        }
-    });
-    return result;
-}
-
 export default async (api: IPluginAPI<ViteBuildConfig>): Promise<InlineConfig> => {
     const { deepmerge, getTargetsAndBrowsersList } = api.utils;
 

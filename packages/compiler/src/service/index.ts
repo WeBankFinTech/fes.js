@@ -15,7 +15,8 @@ import { EventEmitter } from 'node:events';
 import { existsSync } from 'node:fs';
 import { join } from 'node:path';
 import process from 'node:process';
-import { chalk, lodash } from '@fesjs/utils';
+import pc from 'picocolors';
+import { clone } from 'es-toolkit/compat';
 import { Command, Option } from 'commander';
 import { readJSONSync } from 'fs-extra/esm';
 import { AsyncSeriesWaterfallHook } from 'tapable';
@@ -375,7 +376,7 @@ export default class Service extends EventEmitter {
         }
 
         // 深度优先
-        const extraPresets = lodash.clone(this._extraPresets);
+        const extraPresets = clone(this._extraPresets);
         this._extraPresets = [];
         while (extraPresets.length) {
             await this.initPreset(extraPresets.shift()!);
@@ -542,7 +543,7 @@ export default class Service extends EventEmitter {
         command
             .usage('<command> [options]')
             .version(`@fesjs/fes ${this.fesPkg.version || ''}`, '-v, --vers', 'output the current version')
-            .description(chalk.cyan('一个好用的前端应用解决方案'));
+            .description(pc.cyan('一个好用的前端应用解决方案'));
         return command;
     }
 
@@ -599,7 +600,7 @@ export default class Service extends EventEmitter {
             // eslint-disable-next-line no-console
             console.log();
             // eslint-disable-next-line no-console
-            console.log(`  Run ${chalk.cyan('fes <command> --help')} for detailed usage of given command.`);
+            console.log(`  Run ${pc.cyan('fes <command> --help')} for detailed usage of given command.`);
             // eslint-disable-next-line no-console
             console.log();
         });

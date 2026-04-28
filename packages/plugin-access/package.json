@@ -37,7 +37,7 @@
     "dependencies": {
         "@fesjs/shared": "^4.0.0-beta.0",
         "@fesjs/utils": "^4.0.0-beta.0",
-        "lodash-es": "^4.17.21"
+        "es-toolkit": "^1.46.0"
     },
     "typings": "./types.d.ts"
 }

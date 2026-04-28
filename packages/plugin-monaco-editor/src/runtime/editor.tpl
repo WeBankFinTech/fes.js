@@ -5,7 +5,7 @@
 import {
     computed, ref, watch, onMounted, onBeforeUnmount
 } from 'vue';
-import { merge, debounce } from '{{{ LODASH_ES }}}';
+import { merge, debounce } from 'es-toolkit/compat';
 // eslint-disable-next-line
 import monaco from './loader';
 

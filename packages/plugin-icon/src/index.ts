@@ -2,6 +2,7 @@ import type { IPluginAPI } from '@fesjs/shared';
 import { readFileSync } from 'node:fs';
 import { basename, dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { globSync } from 'glob';
 import optimizeSvg from './optimizeSvg';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -28,7 +29,8 @@ export default (api: IPluginAPI) => {
     let generatedOnce = false;
     api.onGenerateFiles(async () => {
         const base = join(api.paths.absSrcPath, 'icons');
-        const iconFiles = api.utils.glob.sync('**/*', {
+        const iconFiles = globSync('**/*', {
+
             cwd: join(api.paths.absSrcPath, 'icons'),
         });
         const svgDatas = await optimizeSvg(iconFiles.map(item => join(base, item)));

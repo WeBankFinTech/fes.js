@@ -1,5 +1,5 @@
 import { access, defineRuntimeConfig } from '@fesjs/fes'
-import { isPlainObject } from 'lodash-es'
+import { isPlainObject } from 'es-toolkit/compat'
 import PageLoading from '@/components/pageLoading.vue'
 import UserCenter from '@/components/userCenter.vue'
 

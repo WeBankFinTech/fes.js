@@ -1,11 +1,10 @@
-import { glob } from '@fesjs/utils';
+import { globSync } from 'glob';
 import { getValidFiles } from '.';
 
 export function getModels(cwd: string, pattern?: string) {
-    const files = glob
-        .sync(pattern || '**/*.{js,jsx,ts,tsx}', {
-            cwd,
-        })
+    const files = globSync(pattern || '**/*.{js,jsx,ts,tsx}', {
+        cwd,
+    })
         .filter(
             file => !file.endsWith('.d.ts')
                 && !file.endsWith('.test.js')

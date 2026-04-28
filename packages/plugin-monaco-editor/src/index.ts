@@ -39,7 +39,6 @@ export default (api: IPluginAPI) => {
     const absEditorFilePath = join(namespace, 'editor.vue');
 
     api.onGenerateFiles(() => {
-        // 文件写出
         api.writeTmpFile({
             path: absoluteFilePath,
             content: Mustache.render(readFileSync(join(__dirname, 'runtime/core.tpl'), 'utf-8'), {}),
@@ -54,13 +53,14 @@ export default (api: IPluginAPI) => {
             path: absLoaderFilePath,
             content: Mustache.render(readFileSync(join(__dirname, 'runtime/loader.tpl'), 'utf-8'), {
                 MONACO_EDITOR: 'monaco-editor',
+                IS_VITE: api.builder.name === 'vite',
             }),
         });
 
         api.writeTmpFile({
             path: absEditorFilePath,
             content: Mustache.render(readFileSync(join(__dirname, 'runtime/editor.tpl'), 'utf-8'), {
-                LODASH_ES: 'lodash-es',
+                LODASH_ES: 'es-toolkit/compat',
             }),
         });
 
@@ -83,11 +83,18 @@ export default (api: IPluginAPI) => {
     api.addRuntimePlugin(() => `@@/${absRuntimeFilePath}`);
 
     if (api.builder.name === 'vite') {
-        api.modifyBundleConfig((config) => {
-            const monacoEditorPlugin = esmRequire('vite-plugin-monaco-editor').default;
-            config?.plugins?.push(monacoEditorPlugin(api.config?.monacoEditor || {}));
+        api.modifyBundleConfig((memo) => {
+            memo.plugins.push({
+                name: 'vite:monaco-editor-nls',
+                enforce: 'pre',
+                resolveId(id) {
+                    if (id === 'monaco-editor/esm/vs/nls' || id.endsWith('/vs/nls')) {
+                        return { id: 'monaco-editor/esm/vs/nls.js', moduleSideEffects: false };
+                    }
+                },
+            });
+            return memo;
         });
-        //
     }
     else {
         api.chainWebpack((webpackConfig) => {

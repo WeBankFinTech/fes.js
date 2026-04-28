@@ -4,8 +4,11 @@ import { existsSync } from 'node:fs';
 import { extname, join } from 'node:path';
 import process from 'node:process';
 import { pathToFileURL } from 'node:url';
-import { chalk, chokidar, compatESModuleRequire, deepmerge, lodash, winPath } from '@fesjs/utils';
+import { compatESModuleRequire, deepmerge, winPath } from '@fesjs/utils';
+import * as chokidar from 'chokidar';
+import { clone, difference } from 'es-toolkit/compat';
 import joi from 'joi';
+import pc from 'picocolors';
 import { ServiceStage } from '../service/enums';
 import { getUserConfigWithKey, updateUserConfigWithKey } from './utils/configUtils';
 import isEqual from './utils/isEqual';
@@ -185,7 +188,7 @@ export default class Config {
 
     getWatchFilesAndDirectories(): string[] {
         const fesEnv = process.env.FES_ENV;
-        const configFiles = lodash.clone(CONFIG_FILES);
+        const configFiles = clone(CONFIG_FILES);
         CONFIG_FILES.forEach((f) => {
             if (this.localConfig) {
                 configFiles.push(this.addAffix(f, 'local'));
@@ -217,9 +220,9 @@ export default class Config {
         });
         watcher.on('all', async (event, path) => {
             // eslint-disable-next-line no-console
-            console.log(chalk.green(`[${event}] ${path}`));
+            console.log(pc.green(`[${event}] ${path}`));
             const newPaths = this.getWatchFilesAndDirectories();
-            const diffs = lodash.difference(newPaths, paths);
+            const diffs = difference(newPaths, paths);
             if (diffs.length) {
                 watcher.add(diffs);
                 paths = paths.concat(diffs);

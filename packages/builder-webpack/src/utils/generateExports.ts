@@ -1,6 +1,7 @@
 import assert from 'node:assert';
 import path from 'node:path';
-import { lodash, winPath } from '@fesjs/utils';
+import { winPath } from '@fesjs/utils';
+import { isPlainObject } from 'es-toolkit/compat';
 
 interface SpecifierObject {
     local: string;
@@ -40,7 +41,7 @@ export default function generateExports(basePath: string, { item, fesExportsHook
             fesExportsHook[specifier] = true;
             return specifier;
         }
-        assert(lodash.isPlainObject(specifier), `Configure item context should be Plain Object, but got ${specifier}.`);
+        assert(isPlainObject(specifier), `Configure item context should be Plain Object, but got ${specifier}.`);
         assert((specifier as SpecifierObject).local && (specifier as SpecifierObject).exported, 'local and exported should be supplied.');
         return `${(specifier as SpecifierObject).local} as ${(specifier as SpecifierObject).exported}`;
     });

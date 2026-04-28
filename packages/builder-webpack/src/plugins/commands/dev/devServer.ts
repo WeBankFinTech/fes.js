@@ -1,5 +1,5 @@
 import type { WebpackBuildConfig } from '../../../shared';
-import { chalk } from '@fesjs/utils';
+import pc from 'picocolors';
 import webpack from 'webpack';
 import WebpackDevServer from 'webpack-dev-server';
 
@@ -68,13 +68,13 @@ export function startDevServer({ webpackConfig, host, port, proxy, https, before
     const server = new WebpackDevServer(options, compiler);
     if (options.host === '0.0.0.0') {
         // eslint-disable-next-line no-console
-        console.log(chalk.green('  ➜ Local: '), chalk.cyan(`${options.server}://127.0.0.1:${options.port}`));
+        console.log(pc.green('  ➜ Local: '), pc.cyan(`${options.server}://127.0.0.1:${options.port}`));
         // eslint-disable-next-line no-console
-        console.log(chalk.gray('  ➜ Network: '), chalk.gray(`${options.server}://${options.host}:${options.port}`));
+        console.log(pc.gray('  ➜ Network: '), pc.gray(`${options.server}://${options.host}:${options.port}`));
     }
     else {
         // eslint-disable-next-line no-console
-        console.log(chalk.green('  ➜ :Local: '), chalk.cyan(`${options.server}://${options.host}:${options.port}`));
+        console.log(pc.green('  ➜ :Local: '), pc.cyan(`${options.server}://${options.host}:${options.port}`));
     }
     server.startCallback((err) => {
         if (err) {

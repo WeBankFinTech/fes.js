@@ -36,7 +36,9 @@
     },
     "dependencies": {
         "@fesjs/shared": "^4.0.0-beta.0",
-        "@fesjs/utils": "^4.0.0-beta.0"
+        "@fesjs/utils": "^4.0.0-beta.0",
+        "es-toolkit": "^1.46.0",
+        "glob": "^13.0.6"
     },
     "typings": "./types.d.ts"
 }

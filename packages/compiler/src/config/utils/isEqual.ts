@@ -1,10 +1,10 @@
-import { lodash } from '@fesjs/utils';
+import { isPlainObject, isEqual as deepIsEqual } from 'es-toolkit/compat';
 
 function funcToStr(obj: any): any {
     if (typeof obj === 'function') {
         return obj.toString();
     }
-    if (lodash.isPlainObject(obj)) {
+    if (isPlainObject(obj)) {
         return Object.keys(obj).reduce((memo: Record<string, any>, key: string) => {
             memo[key] = funcToStr(obj[key]);
             return memo;
@@ -14,5 +14,5 @@ function funcToStr(obj: any): any {
 }
 
 export default function isEqual(a: any, b: any): boolean {
-    return lodash.isEqual(funcToStr(a), funcToStr(b));
+    return deepIsEqual(funcToStr(a), funcToStr(b));
 }

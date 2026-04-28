@@ -2,7 +2,9 @@ import type { Plugin } from '../../types';
 import { basename, dirname, extname, join, relative } from 'node:path';
 import process from 'node:process';
 import { pathToFileURL } from 'node:url';
-import { chalk, compatESModuleRequire, lodash, resolve, winPath } from '@fesjs/utils';
+import { compatESModuleRequire, resolve, winPath } from '@fesjs/utils';
+import pc from 'picocolors';
+import { camelCase } from 'es-toolkit/compat';
 import { readJSONSync } from 'fs-extra/esm';
 import { packageUp } from 'package-up';
 import { OWNER_DIR } from '../../shared';
@@ -72,7 +74,7 @@ function filterBuilder(opts: FilterBuilderOptions): string[] {
         .filter(builder => builder.includes(opts.builder || ''));
     if (builders.length > 1) {
         // eslint-disable-next-line no-console
-        console.log(chalk.yellow(`提示：您使用了多个builder，默认使用第一个${builders[0]}`));
+        console.log(pc.yellow(`提示：您使用了多个builder，默认使用第一个${builders[0]}`));
         return [builders[0]];
     }
     return builders;
@@ -115,7 +117,7 @@ export function getPluginsOrPresets(type: PluginType, opts: GetPluginsOrPresetsO
 function nameToKey(name: string): string {
     return name
         .split('.')
-        .map(part => lodash.camelCase(part))
+        .map(part => camelCase(part))
         .join('.');
 }
 

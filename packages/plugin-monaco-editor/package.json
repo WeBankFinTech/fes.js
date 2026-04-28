@@ -36,10 +36,9 @@
     "dependencies": {
         "@fesjs/shared": "^4.0.0-beta.0",
         "@fesjs/utils": "^4.0.0-beta.0",
-        "lodash-es": "^4.17.21",
+        "es-toolkit": "^1.46.0",
         "monaco-editor": "^0.36.1",
-        "monaco-editor-webpack-plugin": "^7.1.0",
-        "vite-plugin-monaco-editor": "^1.1.0"
+        "monaco-editor-webpack-plugin": "^7.1.0"
     },
     "typings": "./types.d.ts"
 }

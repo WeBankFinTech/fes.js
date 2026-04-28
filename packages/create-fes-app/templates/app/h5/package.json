@@ -17,7 +17,7 @@
     "@fesjs/plugin-icon": "^5.0.0",
     "@fesjs/plugin-request": "^5.0.0",
     "core-js": "^3.43.0",
-    "lodash-es": "^4.17.21",
+    "es-toolkit": "^1.46.0",
     "vue": "^3.5.17"
   },
   "devDependencies": {
