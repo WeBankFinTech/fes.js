@@ -1,6 +1,6 @@
 {
     "name": "@fesjs/plugin-pinia",
-    "version": "4.0.0-beta.0",
+    "version": "4.0.0-beta.1",
     "description": "@fesjs/plugin-pinia",
     "author": "harrywan",
     "license": "MIT",
@@ -30,13 +30,13 @@
         "access": "public"
     },
     "peerDependencies": {
-        "@fesjs/fes": "^4.0.0-beta.0",
+        "@fesjs/fes": "^4.0.0",
         "pinia": "^3.0.3",
         "vue": "^3.5.21"
     },
     "dependencies": {
-        "@fesjs/shared": "^4.0.0-beta.0",
-        "@fesjs/utils": "^4.0.0-beta.0"
+        "@fesjs/shared": "^4.0.0-beta.1",
+        "@fesjs/utils": "^4.0.0"
     },
     "typings": "./types.d.ts"
 }

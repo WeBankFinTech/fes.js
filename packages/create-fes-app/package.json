@@ -1,6 +1,6 @@
 {
     "name": "@fesjs/create-fes-app",
-    "version": "4.0.0-beta.0",
+    "version": "4.0.0",
     "description": "create a app base on fes.js",
     "author": "qlin",
     "license": "MIT",
