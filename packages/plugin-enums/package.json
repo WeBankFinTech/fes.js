@@ -1,6 +1,6 @@
 {
     "name": "@fesjs/plugin-enums",
-    "version": "4.0.0",
+    "version": "4.0.1",
     "description": "@fesjs/plugin-enums",
     "author": "aringlai",
     "license": "MIT",
@@ -34,7 +34,7 @@
         "vue": "^3.5.21"
     },
     "dependencies": {
-        "@fesjs/shared": "4.0.1"
+        "@fesjs/shared": "4.0.0"
     },
     "typings": "./types.d.ts"
 }
