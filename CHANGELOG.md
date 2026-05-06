@@ -2,9 +2,26 @@
 
 ## [Unreleased]
 
+### Bug Fixes
+
+* 包版本问题 #AI commit# ([b6b37e9](https://github.com/WeBankFinTech/fes.js/commit/b6b37e90c765ea5f31a63497e2671828bd051088))
+
+* 修复热更新问题 #AI commit# ([39bf164](https://github.com/WeBankFinTech/fes.js/commit/39bf1646e45153fd66a1aad7e36e10a6645b904e))
+
+
+### Chores
+
+* V4.0.0 ([3786b56](https://github.com/WeBankFinTech/fes.js/commit/3786b56ec57b135cda0ea3a9877bea90b688f15b))
+
+
 ### Features
 
 * 升级vite8 (#276) ([b7308f4](https://github.com/WeBankFinTech/fes.js/commit/b7308f445e8cc409cd1016ae43cb2baaf554be4a))
+
+
+### Ci
+
+* Release4.0.0 ([ed5d4ed](https://github.com/WeBankFinTech/fes.js/commit/ed5d4edaddea3d02d5c39abc9690e4fd78d86896))
 
 
 ## [4.0.0-beta.1](https://github.com/WeBankFinTech/fes.js/compare/v4.0.0-beta.0...v4.0.0-beta.1) (2025-09-22)

@@ -1,6 +1,6 @@
 {
     "name": "@fesjs/builder-vite",
-    "version": "5.0.0",
+    "version": "5.0.1",
     "description": "@fesjs/builder-vite",
     "author": "qlin",
     "license": "MIT",
@@ -30,12 +30,12 @@
         "access": "public"
     },
     "peerDependencies": {
-        "@fesjs/fes": "^4.0.0",
+        "@fesjs/fes": "^4.0.1",
         "core-js": "^3.45.1"
     },
     "dependencies": {
-        "@fesjs/shared": "^4.0.0",
-        "@fesjs/utils": "^4.0.0",
+        "@fesjs/shared": "^4.0.1",
+        "@fesjs/utils": "^4.0.1",
         "@vitejs/plugin-basic-ssl": "^2.3.0",
         "@vitejs/plugin-legacy": "^8.0.1",
         "@vitejs/plugin-vue": "^6.0.6",

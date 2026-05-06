@@ -1,6 +1,6 @@
 {
     "name": "@fesjs/plugin-icon",
-    "version": "5.0.0",
+    "version": "5.0.1",
     "description": "@fesjs/plugin-icon",
     "author": "qlin",
     "license": "MIT",
@@ -30,11 +30,11 @@
         "access": "public"
     },
     "peerDependencies": {
-        "@fesjs/fes": "^4.0.0",
+        "@fesjs/fes": "^4.0.1",
         "vue": "^3.5.21"
     },
     "dependencies": {
-        "@fesjs/shared": "^4.0.0",
+        "@fesjs/shared": "^4.0.1",
         "glob": "^13.0.6",
         "svgo": "^4.0.0"
     },

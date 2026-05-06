@@ -1,6 +1,6 @@
 {
     "name": "@fesjs/plugin-monaco-editor",
-    "version": "4.0.0",
+    "version": "4.0.1",
     "description": "@fesjs/plugin-monaco-editor",
     "author": "harrywan",
     "license": "MIT",
@@ -30,12 +30,12 @@
         "access": "public"
     },
     "peerDependencies": {
-        "@fesjs/fes": "^4.0.0",
+        "@fesjs/fes": "^4.0.1",
         "vue": "^3.5.21"
     },
     "dependencies": {
-        "@fesjs/shared": "^4.0.0",
-        "@fesjs/utils": "^4.0.0",
+        "@fesjs/shared": "^4.0.1",
+        "@fesjs/utils": "^4.0.1",
         "es-toolkit": "^1.46.0",
         "monaco-editor": "^0.36.1",
         "monaco-editor-webpack-plugin": "^7.1.0"

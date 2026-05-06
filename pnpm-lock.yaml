@@ -73,13 +73,13 @@ importers:
   packages/builder-vite:
     dependencies:
       '@fesjs/fes':
-        specifier: ^4.0.0
+        specifier: ^4.0.1
         version: link:../fes
       '@fesjs/shared':
-        specifier: ^4.0.0-beta.1
+        specifier: ^4.0.1
         version: link:../shared
       '@fesjs/utils':
-        specifier: ^4.0.0
+        specifier: ^4.0.1
         version: link:../utils
       '@vitejs/plugin-basic-ssl':
         specifier: ^2.3.0
@@ -184,13 +184,13 @@ importers:
         specifier: ^7.27.1
         version: 7.28.5(@babel/core@7.29.0)
       '@fesjs/fes':
-        specifier: ^4.0.0
+        specifier: ^4.0.1
         version: link:../fes
       '@fesjs/shared':
-        specifier: ^4.0.0-beta.1
+        specifier: ^4.0.1
         version: link:../shared
       '@fesjs/utils':
-        specifier: ^4.0.0
+        specifier: ^4.0.1
         version: link:../utils
       '@vue/babel-plugin-jsx':
         specifier: ^2.0.1
@@ -298,7 +298,7 @@ importers:
         specifier: ^7.28.3
         version: 7.29.2(@babel/core@7.29.0)
       '@fesjs/utils':
-        specifier: ^4.0.0
+        specifier: ^4.0.1
         version: link:../utils
       chokidar:
         specifier: ^5.0.0
@@ -366,13 +366,13 @@ importers:
   packages/fes:
     dependencies:
       '@fesjs/compiler':
-        specifier: ^4.0.0
+        specifier: ^4.0.1
         version: link:../compiler
       '@fesjs/preset-built-in':
-        specifier: ^4.0.0
+        specifier: ^4.0.1
         version: link:../preset-built-in
       '@fesjs/utils':
-        specifier: ^4.0.0
+        specifier: ^4.0.1
         version: link:../utils
       fs-extra:
         specifier: ^11.3.1
@@ -532,13 +532,13 @@ importers:
   packages/plugin-access:
     dependencies:
       '@fesjs/fes':
-        specifier: ^4.0.0
+        specifier: ^4.0.1
         version: link:../fes
       '@fesjs/shared':
-        specifier: ^4.0.0-beta.1
+        specifier: ^4.0.1
         version: link:../shared
       '@fesjs/utils':
-        specifier: ^4.0.0
+        specifier: ^4.0.1
         version: link:../utils
       es-toolkit:
         specifier: ^1.46.0
@@ -553,10 +553,10 @@ importers:
   packages/plugin-enums:
     dependencies:
       '@fesjs/fes':
-        specifier: ^4.0.0-beta.0
+        specifier: ^4.0.1
         version: link:../fes
       '@fesjs/shared':
-        specifier: ^4.0.0-beta.0
+        specifier: ^4.0.1
         version: link:../shared
       vue:
         specifier: ^3.5.21
@@ -565,10 +565,10 @@ importers:
   packages/plugin-icon:
     dependencies:
       '@fesjs/fes':
-        specifier: ^4.0.0
+        specifier: ^4.0.1
         version: link:../fes
       '@fesjs/shared':
-        specifier: ^4.0.0-beta.1
+        specifier: ^4.0.1
         version: link:../shared
       glob:
         specifier: ^13.0.6
@@ -583,16 +583,16 @@ importers:
   packages/plugin-layout:
     dependencies:
       '@fesjs/fes':
-        specifier: ^4.0.0
+        specifier: ^4.0.1
         version: link:../fes
       '@fesjs/fes-design':
         specifier: '>=0.7.0'
         version: 0.8.84(vue@3.5.32(typescript@5.9.3))
       '@fesjs/shared':
-        specifier: ^4.0.0-beta.1
+        specifier: ^4.0.1
         version: link:../shared
       '@fesjs/utils':
-        specifier: ^4.0.0
+        specifier: ^4.0.1
         version: link:../utils
       dompurify:
         specifier: ^3.1.7
@@ -607,16 +607,16 @@ importers:
   packages/plugin-locale:
     dependencies:
       '@fesjs/fes':
-        specifier: ^4.0.0
+        specifier: ^4.0.1
         version: link:../fes
       '@fesjs/fes-design':
         specifier: '>=0.7.0'
         version: 0.8.84(vue@3.5.32(typescript@5.9.3))
       '@fesjs/shared':
-        specifier: ^4.0.0-beta.1
+        specifier: ^4.0.1
         version: link:../shared
       '@fesjs/utils':
-        specifier: ^4.0.0
+        specifier: ^4.0.1
         version: link:../utils
       es-toolkit:
         specifier: ^1.46.0
@@ -634,13 +634,13 @@ importers:
   packages/plugin-login:
     dependencies:
       '@fesjs/fes':
-        specifier: ^4.0.0-beta.0
+        specifier: ^4.0.1
         version: link:../fes
       '@fesjs/plugin-request':
-        specifier: ^5.0.0-beta.0
+        specifier: ^5.0.1
         version: link:../plugin-request
       '@fesjs/shared':
-        specifier: ^4.0.0-beta.0
+        specifier: ^4.0.1
         version: link:../shared
       vue:
         specifier: ^3.5.21
@@ -649,13 +649,13 @@ importers:
   packages/plugin-model:
     dependencies:
       '@fesjs/fes':
-        specifier: ^4.0.0
+        specifier: ^4.0.1
         version: link:../fes
       '@fesjs/shared':
-        specifier: ^4.0.0-beta.1
+        specifier: ^4.0.1
         version: link:../shared
       '@fesjs/utils':
-        specifier: ^4.0.0
+        specifier: ^4.0.1
         version: link:../utils
       '@vueuse/core':
         specifier: ^13.0.0
@@ -673,13 +673,13 @@ importers:
   packages/plugin-monaco-editor:
     dependencies:
       '@fesjs/fes':
-        specifier: ^4.0.0
+        specifier: ^4.0.1
         version: link:../fes
       '@fesjs/shared':
-        specifier: ^4.0.0-beta.1
+        specifier: ^4.0.1
         version: link:../shared
       '@fesjs/utils':
-        specifier: ^4.0.0
+        specifier: ^4.0.1
         version: link:../utils
       es-toolkit:
         specifier: ^1.46.0
@@ -697,13 +697,13 @@ importers:
   packages/plugin-pinia:
     dependencies:
       '@fesjs/fes':
-        specifier: ^4.0.0
+        specifier: ^4.0.1
         version: link:../fes
       '@fesjs/shared':
-        specifier: ^4.0.0-beta.1
+        specifier: ^4.0.1
         version: link:../shared
       '@fesjs/utils':
-        specifier: ^4.0.0
+        specifier: ^4.0.1
         version: link:../utils
       pinia:
         specifier: ^3.0.3
@@ -715,16 +715,16 @@ importers:
   packages/plugin-qiankun:
     dependencies:
       '@fesjs/fes':
-        specifier: ^4.0.0
+        specifier: ^4.0.1
         version: link:../fes
       '@fesjs/fes-design':
         specifier: '>=0.7.20'
         version: 0.8.84(vue@3.5.32(typescript@5.9.3))
       '@fesjs/shared':
-        specifier: ^4.0.0-beta.1
+        specifier: ^4.0.1
         version: link:../shared
       '@fesjs/utils':
-        specifier: ^4.0.0
+        specifier: ^4.0.1
         version: link:../utils
       address:
         specifier: ^1.1.2
@@ -851,13 +851,13 @@ importers:
   packages/plugin-request:
     dependencies:
       '@fesjs/fes':
-        specifier: ^4.0.0
+        specifier: ^4.0.1
         version: link:../fes
       '@fesjs/shared':
-        specifier: ^4.0.0-beta.1
+        specifier: ^4.0.1
         version: link:../shared
       '@fesjs/utils':
-        specifier: ^4.0.0
+        specifier: ^4.0.1
         version: link:../utils
       '@qlin/request':
         specifier: ^0.3.1
@@ -869,10 +869,10 @@ importers:
   packages/plugin-sass:
     dependencies:
       '@fesjs/fes':
-        specifier: ^4.0.0-beta.0
+        specifier: ^4.0.1
         version: link:../fes
       '@fesjs/shared':
-        specifier: ^4.0.0-beta.0
+        specifier: ^4.0.1
         version: link:../shared
       sass:
         specifier: ^1.92.0
@@ -884,13 +884,13 @@ importers:
   packages/plugin-swc:
     dependencies:
       '@fesjs/fes':
-        specifier: ^4.0.0
+        specifier: ^4.0.1
         version: link:../fes
       '@fesjs/shared':
-        specifier: ^4.0.0-beta.1
+        specifier: ^4.0.1
         version: link:../shared
       '@fesjs/utils':
-        specifier: ^4.0.0
+        specifier: ^4.0.1
         version: link:../utils
       '@swc/core':
         specifier: 1.13.5
@@ -914,13 +914,13 @@ importers:
   packages/plugin-watermark:
     dependencies:
       '@fesjs/fes':
-        specifier: ^4.0.0
+        specifier: ^4.0.1
         version: link:../fes
       '@fesjs/shared':
-        specifier: ^4.0.0-beta.1
+        specifier: ^4.0.1
         version: link:../shared
       '@fesjs/utils':
-        specifier: ^4.0.0
+        specifier: ^4.0.1
         version: link:../utils
       es-toolkit:
         specifier: ^1.46.0
@@ -932,16 +932,16 @@ importers:
   packages/preset-built-in:
     dependencies:
       '@fesjs/compiler':
-        specifier: ^4.0.0
+        specifier: ^4.0.1
         version: link:../compiler
       '@fesjs/runtime':
-        specifier: ^4.0.0-beta.0
+        specifier: ^4.0.1
         version: link:../runtime
       '@fesjs/shared':
-        specifier: ^4.0.0-beta.1
+        specifier: ^4.0.1
         version: link:../shared
       '@fesjs/utils':
-        specifier: ^4.0.0
+        specifier: ^4.0.1
         version: link:../utils
       '@vue/compiler-sfc':
         specifier: ^3.5.33
@@ -980,7 +980,7 @@ importers:
   packages/shared:
     dependencies:
       '@fesjs/utils':
-        specifier: ^4.0.0
+        specifier: ^4.0.1
         version: link:../utils
 
   packages/typescript-config: {}

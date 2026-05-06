@@ -1,6 +1,6 @@
 {
     "name": "@fesjs/plugin-enums",
-    "version": "4.0.1",
+    "version": "4.0.2",
     "description": "@fesjs/plugin-enums",
     "author": "aringlai",
     "license": "MIT",
@@ -30,11 +30,11 @@
         "access": "public"
     },
     "peerDependencies": {
-        "@fesjs/fes": "^4.0.0",
+        "@fesjs/fes": "^4.0.1",
         "vue": "^3.5.21"
     },
     "dependencies": {
-        "@fesjs/shared": "4.0.0"
+        "@fesjs/shared": "^4.0.1"
     },
     "typings": "./types.d.ts"
 }
