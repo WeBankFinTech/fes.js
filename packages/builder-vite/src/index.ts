@@ -19,6 +19,7 @@ export default function (): BuilderPlugin {
             join(OWNER_DIR, 'dist/features/viteOption.mjs'),
             join(OWNER_DIR, 'dist/features/viteVueJsx.mjs'),
             join(OWNER_DIR, 'dist/features/viteVuePlugin.mjs'),
+            join(OWNER_DIR, 'dist/features/versionEmit.mjs'),
             join(OWNER_DIR, 'dist/features/viteAnalyze.mjs'),
             join(OWNER_DIR, 'dist/features/viteLegacy.mjs'),
 

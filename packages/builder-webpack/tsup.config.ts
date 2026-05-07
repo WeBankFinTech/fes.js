@@ -20,6 +20,7 @@ export default defineConfig({
         'src/plugins/features/extraBabelPresets.ts',
         'src/plugins/features/extraPostCSSPlugins.ts',
         'src/plugins/features/html.ts',
+        'src/plugins/features/versionEmit.ts',
         'src/plugins/features/lessLoader.ts',
         'src/plugins/features/postcssLoader.ts',
         'src/plugins/features/nodeModulesTransform.ts',
@@ -35,7 +36,7 @@ export default defineConfig({
     dts: true,
     shims: true,
     format: ['esm'],
-    onSuccess() {
+    onSuccess: async () => {
         copySync('src/plugins/commands/index-default.html', 'dist/plugins/commands/index-default.html');
     },
 });

@@ -31,6 +31,7 @@ export default function () {
             join(__dirname, './plugins/features/extraBabelPresets.mjs'),
             join(__dirname, './plugins/features/extraPostCSSPlugins.mjs'),
             join(__dirname, './plugins/features/html.mjs'),
+            join(__dirname, './plugins/features/versionEmit.mjs'),
             join(__dirname, './plugins/features/lessLoader.mjs'),
             join(__dirname, './plugins/features/postcssLoader.mjs'),
             join(__dirname, './plugins/features/nodeModulesTransform.mjs'),
