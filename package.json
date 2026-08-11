@@ -1,9 +1,9 @@
 {
     "name": "fes.js",
     "type": "module",
-    "version": "3.4.13",
+    "version": "4.0.1",
     "private": true,
-    "packageManager": "pnpm@8.6.6",
+    "packageManager": "pnpm@10.14.0",
     "description": "一个好用的前端管理台快速开发框架",
     "preferGlobal": true,
     "workspaces": [
@@ -19,8 +19,8 @@
     ],
     "scripts": {
         "bootstrap": "pnpm i",
-        "dev": "node scripts/build.mjs --watch",
-        "build": "node scripts/build.mjs",
+        "dev": "turbo run watch",
+        "build": "turbo run build",
         "release": "node scripts/release.mjs",
         "clean": "rm -rf ./node_modules & rm -rf packages/**/node_modules & rm -rf packages/**/.cache",
         "docs:dev": "vitepress dev docs",
@@ -28,33 +28,32 @@
         "docs:build-pages": "BASE=fes.js vitepress build docs",
         "test": "fes test",
         "lint": "eslint --ignore-pattern='templates'",
-        "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s",
+        "changelog": "git-cliff -o CHANGELOG.md",
         "hooks:sync": "simple-git-hooks"
     },
     "dependencies": {
-        "chalk": "^5.0.1",
-        "conventional-changelog-cli": "^4.1.0",
-        "enquirer": "^2.3.6",
-        "execa": "^6.1.0",
+        "consola": "^3.4.2",
+        "execa": "^9.6.1",
         "minimist": "^1.2.6",
-        "semver": "^7.3.6"
+        "picocolors": "^1.1.1",
+        "semver": "^7.3.6",
+        "tsup": "^8.5.0",
+        "turbo": "^2.9.6"
     },
     "devDependencies": {
-        "@antfu/eslint-config": "^3.8.0",
-        "@commitlint/cli": "^18.4.4",
-        "@commitlint/config-conventional": "^18.4.4",
-        "chokidar": "^3.5.3",
-        "commitizen": "^4.3.1",
-        "cz-conventional-changelog": "^3.3.0",
+        "@antfu/eslint-config": "^8.2.0",
+        "@commitlint/cli": "^20.5.0",
+        "@commitlint/config-conventional": "^20.5.0",
+        "chokidar": "^5.0.0",
         "deepmerge": "^4.2.2",
-        "eslint": "^9.13.0",
-        "fs-extra": "^11.1.1",
-        "lint-staged": "^15.2.0",
+        "eslint": "^9.34.0",
+        "fs-extra": "^11.3.1",
+        "git-cliff": "^2.12.0",
+        "lint-staged": "^16.4.0",
         "simple-git-hooks": "^2.9.0",
-        "typescript": "^5.6.3",
+        "typescript": "^5.9.2",
         "vitepress": "1.0.0-alpha.73",
-        "vue": "^3.3.4",
-        "yargs-parser": "^21.1.1"
+        "vue": "^3.5.21"
     },
     "simple-git-hooks": {
         "pre-commit": "npx lint-staged",
@@ -64,10 +63,5 @@
         "*.{js,jsx,vue,ts}": [
             "npm run lint"
         ]
-    },
-    "config": {
-        "commitizen": {
-            "path": "./node_modules/cz-conventional-changelog"
-        }
     }
 }

@@ -1,0 +1,82 @@
+import assert from 'node:assert';
+import { copyFileSync, existsSync, readFileSync, statSync, writeFileSync } from 'node:fs';
+import { dirname, join } from 'node:path';
+import { globSync } from 'glob';
+import { startWatch } from './watch/watchMode';
+
+export default function (api) {
+    [
+        'onExit',
+        'onGenerateFiles',
+        'addPluginExports',
+        'addCoreExports',
+        'addRuntimePluginKey',
+        'addRuntimePlugin',
+        'addEntryImportsAhead',
+        'addEntryImports',
+        'addEntryCodeAhead',
+        'addEntryCode',
+        'modifyRoutes',
+        'addConfigType',
+        'addTmpGenerateWatcherPaths',
+        'addBeforeMiddlewares',
+        'addMiddlewares',
+    ].forEach((name) => {
+        api.registerMethod({ name });
+    });
+
+    api.registerMethod({
+        name: 'writeTmpFile',
+        fn({ path, content }) {
+            assert(api.stage >= api.ServiceStage.pluginReady, 'api.writeTmpFile() should not execute in register stage.');
+            const absPath = join(api.paths.absTmpPath, path);
+            api.utils.mkdirp.sync(dirname(absPath));
+            if (!existsSync(absPath) || readFileSync(absPath, 'utf-8') !== content) {
+                writeFileSync(absPath, content, 'utf-8');
+            }
+        },
+    });
+
+    const cacheCopyPath = {};
+
+    api.registerMethod({
+        name: 'copyTmpFiles',
+        fn({ namespace, path, ignore }) {
+            const base = join(api.paths.absTmpPath, namespace);
+            // copy 行为只需要执行一次
+            if (cacheCopyPath[base]) { return; }
+            cacheCopyPath[base] = true;
+            assert(api.stage >= api.ServiceStage.pluginReady, 'api.copyTmpFiles() should not execute in register stage.');
+            assert(path, 'api.copyTmpFiles() should has param path');
+            assert(namespace, 'api.copyTmpFiles() should has param namespace');
+            const files = globSync('**/*', {
+                cwd: path,
+            });
+            files.forEach((file) => {
+                const source = join(path, file);
+                const target = join(base, file);
+                if (!existsSync(dirname(target))) {
+                    api.utils.mkdirp.sync(dirname(target));
+                }
+                if (statSync(source).isDirectory()) {
+                    api.utils.mkdirp.sync(target);
+                }
+                else if (Array.isArray(ignore)) {
+                    if (!ignore.some(pattern => new RegExp(pattern).test(file))) {
+                        copyFileSync(source, target);
+                    }
+                }
+                else {
+                    copyFileSync(source, target);
+                }
+            });
+        },
+    });
+
+    api.registerMethod({
+        name: 'startWatch',
+        fn() {
+            startWatch(api);
+        },
+    });
+}

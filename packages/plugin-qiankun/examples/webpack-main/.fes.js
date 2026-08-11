@@ -1,0 +1,56 @@
+export default {
+    access: {
+        roles: {
+            admin: ['*'],
+        },
+    },
+    layout: {
+        title: 'webpack 主应用',
+        footer: 'Created by MumbleFE',
+        multiTabs: false,
+        navigation: 'mixin',
+        menus: [
+            {
+                name: 'index',
+            },
+            {
+                title: 'webpack子应用',
+                children: [
+                    {
+                        name: 'webpack-micro-index',
+                    },
+                    {
+                        name: 'webpack-micro-test',
+                    },
+                ],
+            },
+            {
+                title: 'vite子应用',
+                children: [
+                    {
+                        name: 'vite-micro-index',
+                    },
+                    {
+                        name: 'vite-micro-test',
+                    },
+                ],
+            },
+        ],
+    },
+    qiankun: {
+        main: {
+            apps: [
+                {
+                    name: 'webpack-micro', // 唯一 id
+                    entry: '//localhost:9001', // html entry
+                    props: {}, // 传递给子应用的数据
+                },
+                {
+                    name: 'vite-micro', // 唯一 id
+                    entry: '//localhost:8001', // html entry
+                    props: {}, // 传递给子应用的数据
+                },
+            ],
+        },
+    },
+};

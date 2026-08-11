@@ -1,42 +1,43 @@
 import fs from 'node:fs';
+import path from 'node:path';
 import process from 'node:process';
 import * as url from 'node:url';
-import path from 'node:path';
-import minimist from 'minimist';
-import chalk from 'chalk';
-import semver from 'semver';
-import enquirer from 'enquirer';
+import consola from 'consola';
 import { execa } from 'execa';
+import minimist from 'minimist';
+import pc from 'picocolors';
+import semver from 'semver';
+import { getPublicPkgs } from './shared.mjs';
 
-import buildConfig from '../build.config.js';
-
-const { prompt } = enquirer;
 const __dirname = url.fileURLToPath(new URL('.', import.meta.url));
 
-const { preid: preId, dry: isDryRun } = minimist(process.argv.slice(2));
-const packages = buildConfig.pkgs;
+const { preid: preId, dry: isDryRun, force: isForce } = minimist(process.argv.slice(2));
+
+const packages = getPublicPkgs();
 
 const versionIncrements = ['patch', 'minor', 'major', 'prepatch', 'preminor', 'premajor', 'prerelease'];
 
 function incVersion(version, i) {
     let _preId = preId || semver.prerelease(version)?.[0];
-    if (!_preId && /pre/.test(i))
+    if (!_preId && /pre/.test(i)) {
         _preId = 'beta';
+    }
 
     return semver.inc(version, i, _preId);
 }
 function autoIncVersion(version) {
-    if (version.includes('-'))
+    if (version.includes('-')) {
         return semver.inc(version, 'prerelease');
+    }
 
     return semver.inc(version, 'patch');
 }
 
 const run = (bin, args, opts = {}) => execa(bin, args, { stdio: 'inherit', ...opts });
-const dryRun = (bin, args, opts = {}) => console.log(chalk.blue(`[dryrun] ${bin} ${args.join(' ')}`), opts);
+const dryRun = (bin, args, opts = {}) => consola.info(`[dryrun] ${bin} ${args.join(' ')}`, opts);
 const runIfNotDry = isDryRun ? dryRun : run;
 const getPkgRoot = pkg => path.resolve(__dirname, `../packages/${pkg}`);
-const step = msg => console.log(chalk.cyan(msg));
+const step = msg => consola.log(msg);
 function arrToObj(arr, key) {
     return arr.reduce((acc, cur) => {
         acc[cur[key]] = cur;
@@ -48,12 +49,11 @@ async function publishPackage(pkg, runIfNotDry) {
     step(`Publishing ${pkg.name}...`);
     try {
         let _releaseTag;
-        if (pkg.newVersion.includes('-'))
+        if (pkg.newVersion.includes('-')) {
             _releaseTag = 'next';
+        }
 
         await runIfNotDry(
-            // note: use of pnpm is intentional here as we rely on its publishing
-            // behavior.
             'npm',
             ['publish', ...(_releaseTag ? ['--tag', _releaseTag] : []), '--access', 'public', '--registry', 'https://registry.npmjs.org'],
             {
@@ -61,14 +61,14 @@ async function publishPackage(pkg, runIfNotDry) {
                 stdio: 'pipe',
             },
         );
-        console.log('Successfully published :', chalk.green(`${pkg.name}@${pkg.newVersion}`));
+        console.log('Successfully published :', pc.green(`${pkg.name}@${pkg.newVersion}`));
     }
     catch (e) {
-        if (e.stderr.match(/previously published/))
-            console.log(chalk.red(`Skipping already published: ${pkg.name}`));
+        if (/previously published/.test(e.stderr)) {
+            console.log(pc.red(`Skipping already published: ${pkg.name}`));
+        }
 
-        else
-            throw e;
+        else { throw e; }
     }
 }
 
@@ -95,13 +95,15 @@ function updatePackage(pkgName, version, pkgs) {
     pkgJson.version = version;
     pkgJson.dependencies
     && Object.keys(pkgJson.dependencies).forEach((npmName) => {
-        if (pkgs[npmName])
+        if (pkgs[npmName]) {
             pkgJson.dependencies[npmName] = `^${pkgs[npmName].newVersion}`;
+        }
     });
     pkgJson.peerDependencies
     && Object.keys(pkgJson.peerDependencies).forEach((npmName) => {
-        if (pkgs[npmName])
+        if (pkgs[npmName]) {
             pkgJson.peerDependencies[npmName] = `^${pkgs[npmName].newVersion}`;
+        }
     });
     writePackageJson(pkgName, pkgJson);
 }
@@ -138,26 +140,25 @@ async function filterChangedPackages() {
 
 async function createPackageNewVersion(name, version) {
     // no explicit version, offer suggestions
-    const { release } = await prompt({
+    const release = await consola.prompt(`Select release type: ${name}`, {
         type: 'select',
-        name: 'release',
-        message: `Select release type: ${name}`,
-        choices: versionIncrements.map(i => `${i} (${incVersion(version, i)})`).concat(['custom']),
+        options: versionIncrements.map((i) => {
+            return {
+                value: incVersion(version, i),
+                label: `${i} (${incVersion(version, i)})`,
+            };
+        }).concat({
+            value: 'custom',
+            label: 'custom',
+        }),
     });
 
-    let newVersion;
+    let newVersion = release;
     if (release === 'custom') {
-        newVersion = (
-            await prompt({
-                type: 'input',
-                name: 'version',
-                message: `Input custom version: ${name}`,
-                initial: version,
-            })
-        ).version;
-    }
-    else {
-        newVersion = release.match(/\((.*)\)/)[1];
+        newVersion = await consola.prompt(`Input custom version: ${name}`, {
+            type: 'text',
+            default: version,
+        });
     }
 
     if (!semver.valid(newVersion)) {
@@ -176,7 +177,7 @@ async function genRootPackageVersion() {
 }
 
 function genOtherPkgsVersion(packagesVersion) {
-    const noChangedPkgs = packages.filter(name => !packagesVersion.find(item => item.dirName === name));
+    const noChangedPkgs = packages.filter(name => !packagesVersion.some(item => item.dirName === name));
     const pkgs = arrToObj(packagesVersion, 'name');
     const result = [];
     noChangedPkgs.forEach((currentPkg) => {
@@ -209,10 +210,47 @@ function genOtherPkgsVersion(packagesVersion) {
 }
 
 async function main() {
+    if (isForce) {
+        const packagesVersion = packages.map((pkg) => {
+            const { name, version } = readPackageVersionAndName(pkg);
+            return { dirName: pkg, name, version, newVersion: version };
+        });
+
+        const yes = await consola.prompt(`These packages will be published (force, version unchanged): \n${packagesVersion
+            .map(pkg => `${pc.magenta(pkg.name)}: v${pkg.version}`)
+            .join('\n')}\nConfirm?`, {
+            type: 'confirm',
+        });
+
+        if (!yes) {
+            return;
+        }
+
+        // build all packages
+        step('\nBuilding all packages...');
+        if (!isDryRun) {
+            await run('pnpm', ['build']);
+        }
+        else { console.log(`(skipped build)`); }
+
+        // publish packages
+        step('\nPublishing packages...');
+        for (const pkg of packagesVersion) {
+            await publishPackage(pkg, runIfNotDry);
+        }
+
+        if (isDryRun) {
+            console.log(`\nDry run finished.`);
+        }
+
+        console.log();
+        return;
+    }
+
     const changedPackages = await filterChangedPackages();
 
     if (!changedPackages.length) {
-        console.log(chalk.yellow(`No changes to commit.`));
+        consola.warn(`No changes to commit.`);
         return;
     }
 
@@ -230,16 +268,15 @@ async function main() {
     const passiveUpdatePkgs = genOtherPkgsVersion(updatedPkgs);
     const packagesVersion = passiveUpdatePkgs.concat(updatedPkgs);
 
-    const { yes } = await prompt({
+    const yes = await consola.prompt(`These packages will be released: \n${packagesVersion
+        .map(pkg => `${pc.magenta(pkg.name)}: v${pkg.version} > ${pc.green(`v${pkg.newVersion}`)}`)
+        .join('\n')}\nConfirm?`, {
         type: 'confirm',
-        name: 'yes',
-        message: `These packages will be released: \n${packagesVersion
-            .map(pkg => `${chalk.magenta(pkg.name)}: v${pkg.version} > ${chalk.green(`v${pkg.newVersion}`)}`)
-            .join('\n')}\nConfirm?`,
     });
 
-    if (!yes)
+    if (!yes) {
         return;
+    }
 
     const newRootVersion = await genRootPackageVersion();
 
@@ -252,11 +289,11 @@ async function main() {
     await run('pnpm', ['i']);
     // // build all packages with types
     step('\nBuilding all packages...');
-    if (!isDryRun)
+    if (!isDryRun) {
         await run('pnpm', ['build']);
+    }
 
-    else
-        console.log(`(skipped build)`);
+    else { console.log(`(skipped build)`); }
 
     // generate changelog
     step('\nGenerating changelog...');
@@ -274,8 +311,9 @@ async function main() {
 
     // publish packages
     step('\nPublishing packages...');
-    for (const pkg of packagesVersion)
+    for (const pkg of packagesVersion) {
         await publishPackage(pkg, runIfNotDry);
+    }
 
     // push to GitHub
     step('\nPushing to GitHub...');
@@ -283,8 +321,9 @@ async function main() {
     await runIfNotDry('git', ['push', 'origin', `refs/tags/v${newRootVersion}`]);
     await runIfNotDry('git', ['push']);
 
-    if (isDryRun)
+    if (isDryRun) {
         console.log(`\nDry run finished - run git diff to see package changes.`);
+    }
 
     console.log();
 }

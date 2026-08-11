@@ -1,0 +1,41 @@
+import { copySync } from 'fs-extra/esm';
+import { defineConfig } from 'tsup';
+
+export default defineConfig({
+    entry: [
+        'src/index.ts',
+        'src/plugins/commands/pitcher.ts',
+        'src/plugins/registerBuilder.ts',
+        'src/plugins/registerMethods.ts',
+        'src/plugins/registerType.ts',
+        'src/plugins/features/analyze.ts',
+        'src/plugins/features/chainWebpack.ts',
+        'src/plugins/features/cssLoader.ts',
+        'src/plugins/features/copy.ts',
+        'src/plugins/features/devServer.ts',
+        'src/plugins/features/devtool.ts',
+        'src/plugins/features/externals.ts',
+        'src/plugins/features/exportStatic.ts',
+        'src/plugins/features/extraBabelPlugins.ts',
+        'src/plugins/features/extraBabelPresets.ts',
+        'src/plugins/features/extraPostCSSPlugins.ts',
+        'src/plugins/features/html.ts',
+        'src/plugins/features/lessLoader.ts',
+        'src/plugins/features/postcssLoader.ts',
+        'src/plugins/features/nodeModulesTransform.ts',
+        'src/plugins/features/vueLoader.ts',
+        'src/plugins/features/extraCSS.ts',
+        'src/plugins/commands/build/index.ts',
+        'src/plugins/commands/dev/index.ts',
+        'src/plugins/commands/webpack/index.ts',
+    ],
+    splitting: false,
+    sourcemap: false,
+    clean: true,
+    dts: true,
+    shims: true,
+    format: ['esm'],
+    onSuccess() {
+        copySync('src/plugins/commands/index-default.html', 'dist/plugins/commands/index-default.html');
+    },
+});

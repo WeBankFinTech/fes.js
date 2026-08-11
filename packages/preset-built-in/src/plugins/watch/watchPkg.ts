@@ -1,0 +1,56 @@
+import { existsSync, readFileSync } from 'node:fs';
+import { join } from 'node:path';
+import { isPluginOrPreset, PluginType } from '@fesjs/compiler';
+import { winPath } from '@fesjs/utils';
+import * as chokidar from 'chokidar';
+import { isEqual } from 'es-toolkit/compat';
+
+function getPlugins(opts) {
+    return Object.keys({
+        ...opts.pkg.dependencies,
+        ...opts.pkg.devDependencies,
+    }).filter(name => isPluginOrPreset(PluginType.plugin, name) || isPluginOrPreset(PluginType.preset, name));
+}
+
+function getPluginsFromPkgPath(opts) {
+    let pkg = {};
+    if (existsSync(opts.pkgPath)) {
+        try {
+            pkg = JSON.parse(readFileSync(opts.pkgPath, 'utf-8'));
+        }
+        catch (e) {
+            // ignore
+        }
+    }
+    return getPlugins({ pkg });
+}
+
+export function watchPkg(opts) {
+    const pkgPath = join(opts.cwd, 'package.json');
+    const plugins = getPluginsFromPkgPath({ pkgPath });
+    const watcher = chokidar.watch(pkgPath, {
+        ignoreInitial: true,
+    });
+    watcher.on('all', () => {
+        const newPlugins = getPluginsFromPkgPath({ pkgPath });
+        if (!isEqual(plugins, newPlugins)) {
+            // 已经重启了，只处理一次就够了
+            opts.onChange();
+        }
+    });
+    return () => {
+        watcher.close();
+    };
+}
+
+export function watchPkgs(opts) {
+    const unwatchs = [watchPkg({ cwd: opts.cwd, onChange: opts.onChange })];
+    if (winPath(opts.cwd) !== winPath(process.cwd())) {
+        unwatchs.push(watchPkg({ cwd: process.cwd(), onChange: opts.onChange }));
+    }
+    return () => {
+        unwatchs.forEach((unwatch) => {
+            unwatch();
+        });
+    };
+}

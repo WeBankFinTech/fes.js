@@ -1,0 +1,49 @@
+{
+    "name": "@fesjs/compiler",
+    "version": "4.0.1",
+    "description": "@fesjs/compiler",
+    "author": "qlin",
+    "license": "MIT",
+    "homepage": "https://github.com/WeBankFinTech/fes.js#readme",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/WeBankFinTech/fes.js.git",
+        "directory": "packages/compiler"
+    },
+    "bugs": {
+        "url": "https://github.com/WeBankFinTech/fes.js/issues"
+    },
+    "keywords": [
+        "fes"
+    ],
+    "main": "./dist/index.mjs",
+    "module": "./dist/index.mjs",
+    "types": "dist/index.d.mts",
+    "files": [
+        "dist"
+    ],
+    "scripts": {
+        "watch": "tsup --watch",
+        "build": "tsup"
+    },
+    "publishConfig": {
+        "access": "public"
+    },
+    "dependencies": {
+        "@babel/core": "^7.28.3",
+        "@babel/preset-env": "^7.28.3",
+        "@fesjs/utils": "^4.0.1",
+        "chokidar": "^5.0.0",
+        "commander": "^7.0.0",
+        "dotenv": "8.2.0",
+        "es-toolkit": "^1.46.0",
+        "fs-extra": "^11.3.1",
+        "joi": "17.3.0",
+        "package-up": "^5.0.0",
+        "picocolors": "^1.1.1",
+        "tapable": "^2.2.0"
+    },
+    "devDependencies": {
+        "@types/fs-extra": "^11.0.4"
+    }
+}

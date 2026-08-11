@@ -12,17 +12,18 @@
     "access": "public"
   },
   "dependencies": {
-    "@fesjs/builder-webpack": "^3.1.0",
-    "@fesjs/fes": "^3.1.17",
-    "@fesjs/plugin-icon": "^4.0.0",
-    "@fesjs/plugin-request": "^4.0.1",
+    "@fesjs/builder-webpack": "^4.0.0",
+    "@fesjs/fes": "^4.0.0",
+    "@fesjs/plugin-icon": "^5.0.0",
+    "@fesjs/plugin-request": "^5.0.0",
     "core-js": "^3.43.0",
+    "es-toolkit": "^1.46.0",
     "vue": "^3.5.17"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "4.16.1",
-    "eslint": "9.29.0",
+    "@antfu/eslint-config": "^5.2.2",
+    "eslint": "^9.35.0",
     "postcss-px-to-viewport-8-plugin": "^1.2.5",
-    "typescript": "5.8.3"
+    "typescript": "^5.9.2"
   }
 }

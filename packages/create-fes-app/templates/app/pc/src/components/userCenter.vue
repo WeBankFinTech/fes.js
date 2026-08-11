@@ -1,18 +1,15 @@
-<template>
-    <div class="right">{{ initialState.userName }}</div>
-</template>
-<script>
-import { useModel } from '@fesjs/fes';
+<script setup lang="ts">
+import { useModel } from '@fesjs/fes'
 
-export default {
-    setup() {
-        const initialState = useModel('@@initialState');
-        return {
-            initialState,
-        };
-    },
-};
+const initialState = useModel('@@initialState')
 </script>
+
+<template>
+  <div class="right">
+    {{ initialState.userName }}
+  </div>
+</template>
+
 <style scope>
 .right {
     text-align: right;

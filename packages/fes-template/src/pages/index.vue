@@ -8,7 +8,7 @@
 </template>
 
 <script setup>
-import { defineRouteMeta, useRouter } from '@fesjs/fes';
+import { defineRouteMeta, useModel, useRouter } from '@fesjs/fes';
 import { FButton } from '@fesjs/fes-design';
 
 defineRouteMeta({
@@ -16,7 +16,9 @@ defineRouteMeta({
     title: '$test.test',
 });
 
-console.log('123123'.replaceAll('123', '234'));
+const initialState = useModel('@@initialState');
+
+console.log(initialState);
 
 const router = useRouter();
 function go() {

@@ -1,11 +1,13 @@
 import { defineBuildConfig } from '@fesjs/fes';
+import tailwindcss from '@tailwindcss/vite';
 
 export default defineBuildConfig({
     builder: 'vite',
     define: {
         __DEV__: false,
     },
-    title: '海贼王',
+    publicPath: './',
+    title: '歌者',
     router: {
         mode: 'hash',
     },
@@ -66,14 +68,21 @@ export default defineBuildConfig({
             },
         ],
     },
-    enums: {
-        status: [
-            ['0', '无效的'],
-            ['1', '有效的'],
+    vite: {
+        plugins: [
+            tailwindcss(),
         ],
+        server: {
+        },
     },
+    // enums: {
+    //     status: [
+    //         ['0', '无效的'],
+    //         ['1', '有效的'],
+    //     ],
+    // },
     dynamicImport: true,
-    monacoEditor: {
-        languages: ['javascript', 'typescript', 'html', 'json'],
-    },
+    // monacoEditor: {
+    //     languages: ['javascript', 'typescript', 'html', 'json'],
+    // },
 });

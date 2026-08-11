@@ -1,4 +1,4 @@
-export * from '@@/configType'
+export * from '@@/configType';
 
 export * from '@fesjs/runtime';
 
@@ -10,12 +10,11 @@ export interface RouteMeta {
 export interface PluginRuntimeConfig {}
 
 export interface PluginBuildConfig {
-    builder?: string,
+    builder?: string;
 }
 
 export declare function defineRouteMeta(routeMeta: RouteMeta): RouteMeta;
 
-export declare function defineBuildConfig(config: PluginBuildConfig ): PluginBuildConfig;
+export declare function defineBuildConfig(config: PluginBuildConfig): PluginBuildConfig;
 
-export declare function defineRuntimeConfig(config:  PluginRuntimeConfig):  PluginRuntimeConfig;
-
+export declare function defineRuntimeConfig(config: PluginRuntimeConfig): PluginRuntimeConfig;

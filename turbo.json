@@ -1,0 +1,12 @@
+{
+    "tasks": {
+        "build": {
+            "dependsOn": ["^build"],
+            "outputs": ["dist/**"]
+        },
+        "watch": {
+            "dependsOn": [],
+            "outputs": []
+        }
+    }
+}

@@ -11,8 +11,8 @@
 </config>
 
 <script>
-import { onMounted, ref } from 'vue';
 import { MonacoEditor, useLayout } from '@fesjs/fes';
+import { onMounted, ref } from 'vue';
 
 export default {
     components: {

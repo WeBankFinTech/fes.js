@@ -1,0 +1,28 @@
+{
+    "compilerOptions": {
+        "target": "esnext",
+        "jsx": "preserve",
+        "lib": ["esnext", "dom"],
+        "experimentalDecorators": true,
+        "baseUrl": ".",
+        "module": "esnext",
+        "moduleResolution": "node",
+        "paths": {
+            "@/*": ["./src/*"],
+            "@@/*": ["./src/.fes/*"]
+        },
+        "allowJs": true,
+        "strict": true,
+        "noImplicitReturns": true,
+        "noUnusedLocals": true,
+        "outDir": "build/dist",
+        "sourceMap": true,
+        "allowSyntheticDefaultImports": true,
+        "forceConsistentCasingInFileNames": true,
+        "skipLibCheck": true
+    },
+    "include": [
+        "src/**/*"
+    ]
+
+}

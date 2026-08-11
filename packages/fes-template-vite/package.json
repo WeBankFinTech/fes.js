@@ -1,12 +1,12 @@
 {
     "name": "@fesjs/template-vite",
+    "type": "module",
     "version": "2.0.0",
     "private": true,
     "description": "fes项目模版",
     "author": "harrywan",
     "license": "MIT",
     "scripts": {
-        "build": "fes build",
         "prod": "FES_ENV=prod fes build",
         "analyze": "ANALYZE=1 fes build",
         "dev": "fes dev",
@@ -21,18 +21,17 @@
         "@fesjs/fes": "workspace:*",
         "@fesjs/fes-design": "^0.8.0",
         "@fesjs/plugin-access": "workspace:*",
-        "@fesjs/plugin-enums": "workspace:*",
         "@fesjs/plugin-icon": "workspace:*",
-        "@fesjs/plugin-jest": "workspace:*",
         "@fesjs/plugin-layout": "workspace:*",
         "@fesjs/plugin-locale": "workspace:*",
         "@fesjs/plugin-model": "workspace:*",
         "@fesjs/plugin-monaco-editor": "workspace:*",
         "@fesjs/plugin-pinia": "workspace:*",
         "@fesjs/plugin-request": "workspace:*",
-        "@fesjs/plugin-sass": "workspace:*",
-        "core-js": "^3.29.1",
-        "pinia": "^2.0.11",
-        "vue": "^3.2.47"
+        "@tailwindcss/vite": "^4.2.4",
+        "core-js": "^3.45.1",
+        "pinia": "^3.0.3",
+        "tailwindcss": "^4.1.12",
+        "vue": "^3.5.21"
     }
 }
