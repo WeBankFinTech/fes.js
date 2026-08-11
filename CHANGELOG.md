@@ -1,3 +1,13 @@
+## [3.4.13](https://github.com/WeBankFinTech/fes.js/compare/v3.4.12...v3.4.13) (2026-08-11)
+
+
+### Bug Fixes
+
+* 优化模版样式 ([effd137](https://github.com/WeBankFinTech/fes.js/commit/effd1378b44dfdfab47ff46ccf1b7e6e0d4d7e66))
+* upgrade lodash-es ([6b01260](https://github.com/WeBankFinTech/fes.js/commit/6b01260c556bd30277e831e06e562769e5044dad))
+
+
+
 ## [3.4.12](https://github.com/WeBankFinTech/fes.js/compare/v3.4.11...v3.4.12) (2025-06-24)
 
 
