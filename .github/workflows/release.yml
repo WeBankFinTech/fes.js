@@ -11,7 +11,7 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - name: Checkout code
-              uses: actions/checkout@master
+              uses: actions/checkout@v7
             - name: Get the release version from the tag
               shell: bash
               if: env.RELEASE_VERSION == ''
@@ -23,8 +23,7 @@ jobs:
                   cat notes-${{ env.RELEASE_VERSION }}.md
             - name: Create Release for Tag
               id: release_tag
-              uses: softprops/action-gh-release@v1
-              env:
-                  GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+              uses: softprops/action-gh-release@v3
               with:
+                  token: ${{ secrets.ACCESS_TOKEN }}
                   body_path: notes-${{ env.RELEASE_VERSION }}.md

@@ -22,7 +22,7 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
     - name: Mirror the Github organization repos to Gitee.
-      uses: Yikun/hub-mirror-action@master
+      uses: Yikun/hub-mirror-action@v1.5
       with:
         src: github/WeBankFinTech
         dst: gitee/WeBank
