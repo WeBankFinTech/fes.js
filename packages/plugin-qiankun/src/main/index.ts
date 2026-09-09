@@ -36,6 +36,7 @@ export default function (api) {
     const absMicroAppWithMemoHistoryPath = join(namespace, 'MicroAppWithMemoHistory.jsx');
     const absRuntimePath = join(namespace, 'runtime.js');
     const absMasterOptionsPath = join(namespace, 'masterOptions.js');
+    const absQiankunPath = join(namespace, 'qiankun.js');
 
     api.onGenerateFiles(() => {
         const HAS_PLUGIN_MODEL = api.hasPlugins(['@fesjs/plugin-model']);
@@ -58,6 +59,11 @@ export default function (api) {
             namespace,
             path: join(__dirname, 'runtime'),
             ignore: ['.tpl'],
+        });
+
+        api.writeTmpFile({
+            path: absQiankunPath,
+            content: `export { initGlobalState } from 'qiankun';`,
         });
 
         const { main: options } = api.config?.qiankun || {};
@@ -88,6 +94,13 @@ export default function (api) {
         {
             specifiers: ['MicroAppWithMemoHistory'],
             source: absMicroAppWithMemoHistoryPath,
+        },
+    ]);
+
+    api.addPluginExports(() => [
+        {
+            specifiers: ['initGlobalState'],
+            source: absQiankunPath,
         },
     ]);
 }

@@ -22,3 +22,5 @@ export interface PluginBuildConfig {
 
 export const MicroApp: Component;
 export const MicroAppWithMemoHistory: Component;
+
+export { initGlobalState } from 'qiankun';
