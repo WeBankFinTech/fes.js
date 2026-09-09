@@ -1,7 +1,7 @@
 {
     "name": "fes.js",
     "type": "module",
-    "version": "4.0.1",
+    "version": "4.0.2",
     "private": true,
     "packageManager": "pnpm@10.14.0",
     "description": "一个好用的前端管理台快速开发框架",

@@ -4,6 +4,28 @@
 
 ### Bug Fixes
 
+* Conflict ([beb90da](https://github.com/WeBankFinTech/fes.js/commit/beb90da73115dc54113cb757da3c66809a46fc85))
+
+
+### Chores
+
+* 导出 initGlobalState #AI commit# ([326df2f](https://github.com/WeBankFinTech/fes.js/commit/326df2fc464258e87befbaa6f990d70bdf4784d4))
+
+
+### Documentation
+
+* 优化文档 ([a1942e3](https://github.com/WeBankFinTech/fes.js/commit/a1942e3ed33c4b90682315a329c1cb4a9d82d057))
+
+
+### Ci
+
+* 升级 GitHub Actions 依赖 (#278) ([60d652b](https://github.com/WeBankFinTech/fes.js/commit/60d652b2feff9ad5ecf7d7f4a52a70a66e8044a0))
+
+
+## [4.0.1](https://github.com/WeBankFinTech/fes.js/compare/v4.0.0-beta.1...v4.0.1) (2026-05-06)
+
+### Bug Fixes
+
 * 包版本问题 #AI commit# ([b6b37e9](https://github.com/WeBankFinTech/fes.js/commit/b6b37e90c765ea5f31a63497e2671828bd051088))
 
 * 修复热更新问题 #AI commit# ([39bf164](https://github.com/WeBankFinTech/fes.js/commit/39bf1646e45153fd66a1aad7e36e10a6645b904e))
@@ -12,6 +34,8 @@
 ### Chores
 
 * V4.0.0 ([3786b56](https://github.com/WeBankFinTech/fes.js/commit/3786b56ec57b135cda0ea3a9877bea90b688f15b))
+
+* V4.0.1 ([f6d0119](https://github.com/WeBankFinTech/fes.js/commit/f6d0119eb6f6a58df347821d26b01efa5de42ad1))
 
 
 ### Features
@@ -33,11 +57,9 @@
 * V4.0.0-beta.1 ([6868e85](https://github.com/WeBankFinTech/fes.js/commit/6868e85a9b1f4bd184faac38468995b2c9f7af28))
 
 
-## [4.0.0-beta.0](https://github.com/WeBankFinTech/fes.js/compare/v3.4.12...v4.0.0-beta.0) (2025-09-16)
+## [4.0.0-beta.0](https://github.com/WeBankFinTech/fes.js/compare/v3.4.13...v4.0.0-beta.0) (2025-09-16)
 
 ### Bug Fixes
-
-* 优化模版样式 ([effd137](https://github.com/WeBankFinTech/fes.js/commit/effd1378b44dfdfab47ff46ccf1b7e6e0d4d7e66))
 
 * 使用 pathToFileURL 确保 Windows 下路径导入正确 ([ed26dfb](https://github.com/WeBankFinTech/fes.js/commit/ed26dfb39b753f7d28ab1e3d6bd43fb90c972427))
 
@@ -86,6 +108,20 @@
 ### Features
 
 * Esm ([c4c081a](https://github.com/WeBankFinTech/fes.js/commit/c4c081ae3a279ec891236460386b48cf7128d737))
+
+
+## [3.4.13](https://github.com/WeBankFinTech/fes.js/compare/v3.4.12...v3.4.13) (2026-08-11)
+
+### Bug Fixes
+
+* 优化模版样式 ([effd137](https://github.com/WeBankFinTech/fes.js/commit/effd1378b44dfdfab47ff46ccf1b7e6e0d4d7e66))
+
+* Upgrade lodash-es ([6b01260](https://github.com/WeBankFinTech/fes.js/commit/6b01260c556bd30277e831e06e562769e5044dad))
+
+
+### Chores
+
+* V3.4.13 ([974ddee](https://github.com/WeBankFinTech/fes.js/commit/974ddee4a2db9462ec42a1f35b18d3b3785782cf))
 
 
 ## [3.4.12](https://github.com/WeBankFinTech/fes.js/compare/v3.4.11...v3.4.12) (2025-06-24)
