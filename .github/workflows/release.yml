@@ -25,5 +25,4 @@ jobs:
               id: release_tag
               uses: softprops/action-gh-release@v3
               with:
-                  token: ${{ secrets.ACCESS_TOKEN }}
                   body_path: notes-${{ env.RELEASE_VERSION }}.md
